@@ -6,8 +6,8 @@
             "Losing the leg was bad enough, but now it feels like there's fire in m_c's veins.  Something is definitely wrong with {PRONOUN/m_c/poss} stump."
         ],
         "phantom pain": [
-            "m_c reports to r_c in the medicine den - {PRONOUN/m_c/subject} could swear {PRONOUN/m_c/poss} toes feel cramped and in spasm, but it's on the limb {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} have anymore.",
-            "Groaning, m_c lies in the sunshine as one of {PRONOUN/m_c/poss} friends massages the stump of {PRONOUN/m_c/poss} missing leg. {PRONOUN/m_c/subject/CAP} just {VERB/m_c/don't/doesn't} understand how something that's not even there anymore can hurt so much.",
+            "m_c reports to r_c in the medicine den - {PRONOUN/m_c/subject} could swear {PRONOUN/m_c/poss} toes feel cramped and in spasm, but it's on the limb {PRONOUN/m_c/subject} {VERB/m_c/do/does}n't have anymore.",
+            "Groaning, m_c lies in the sunshine as one of {PRONOUN/m_c/poss} friends massages the stump of {PRONOUN/m_c/poss} missing leg. {PRONOUN/m_c/subject/CAP} just {VERB/m_c/do/does}n't understand how something that's not even there any more can hurt so much.",
             "m_c sinks {PRONOUN/m_c/poss} claws into a branch, hoping that ripping something up will at least distract {PRONOUN/m_c/object} from the sparking pain coming from the leg {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} even have any more."
         ],
         "sore": [
@@ -19,7 +19,7 @@
     "born without a leg": {
         "sore": [
             "m_c reports to r_c with the ease of familiarity, asking for help sleeping at night - {PRONOUN/m_c/poss} missing limb is giving {PRONOUN/m_c/object} a bit of pain on that side of {PRONOUN/m_c/poss} body.",
-            "m_c has spent {PRONOUN/m_c/poss} whole life with only three legs, but that doesn't mean {PRONOUN/m_c/subject} never {VERB/m_c/feel/feels} the strain of moving in a way {PRONOUN/m_c/poss} body wasn't meant to.  This moon's activities have left m_c particularly sore."
+            "m_c has spent {PRONOUN/m_c/poss} whole life with only three legs, but that doesn't mean {PRONOUN/m_c/subject} never {VERB/m_c/feel/feels} the strain of moving in a way {PRONOUN/m_c/poss} body wasn't meant to. This moon's activities have left m_c particularly sore."
         ],
         "joint pain": [
             "m_c spends the morning with r_c, who helps {PRONOUN/m_c/object} with a paste on {PRONOUN/m_c/poss} joints that'll reduce {PRONOUN/m_c/poss} pain.",
@@ -102,7 +102,7 @@
 		],
         "yellowcough": [
             "If only {PRONOUN/r_c/subject} had lungwort... r_c searches the herb stores, desperate for a way to help m_c through yellowcough.",
-            "m_c has been weak and fevered, only barely coherent... It seems {PRONOUN/m_c/subject} {VERB/m_c/have/has} yellowcough."
+            "m_c has been weak and fevered, only barely coherent. It seems {PRONOUN/m_c/subject} {VERB/m_c/have/has} yellowcough."
         ],
         "redcough": [
             "r_c has quietly begun making m_c comfortable, or as comfortable as {PRONOUN/m_c/subject} can be while hacking blood.",
@@ -180,7 +180,7 @@
     "constant joint pain": {
         "joint pain": [
             "Sleepily, m_c thanks r_c for the pain relief. It feels like moons since {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} been able to have a good rest without the awful pain that's been so intense lately.",
-            "m_c's joint pain is worse than usual this moon. {PRONOUN/m_c/subject/CAP} {VERB/m_c/find/finds} {PRONOUN/m_c/self} barely able to get up out of {PRONOUN/m_c/poss} nest."
+            "m_c's joint pain is worse than usual this moon, {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} barely able to get up out of {PRONOUN/m_c/poss} nest."
         ]
     },
     "seizure prone": {
@@ -195,7 +195,7 @@
 			"m_c stops mid action, just staring blankly for a period as the sunlight shifts over {PRONOUN/m_c/poss} nose.",
 			"Carefully m_c's denmates check on {PRONOUN/m_c/object}, since {PRONOUN/m_c/subject} {VERB/m_c/are/is} just staring at a spot on the wall.",
 			"m_c blinks and the camp seems to have moved around {PRONOUN/m_c/object}. Awkwardly {PRONOUN/m_c/subject} {VERB/m_c/shuffle/shuffles}, trying to figure out what tasks have been assigned.",
-			"When m_c blinks, {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} no longer in the clearing but resting in the shade, a clanmate close by to keep watch."
+			"When m_c blinks, {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} no longer in the clearing but resting in the shade, a Clanmate close by to keep watch."
 		],
 		"spasms": [
 			"r_c gently guides m_c down into the nest, assuring {PRONOUN/m_c/object} {PRONOUN/r_c/subject} {VERB/r_c/understand/understands} while {PRONOUN/m_c/poss} forelimb refuses to remain in place beneath {PRONOUN/m_c/object}.",
@@ -207,7 +207,7 @@
     },
     "allergies": {
         "running nose": [
-            "r_c sighs to see m_c headed towards {PRONOUN/r_c/object} and goes to fix up {PRONOUN/r_c/poss} normal herbal mix, hoping that the allergic reaction m_c keeps having fades soon.",
+            "r_c sighs to see m_c headed towards {PRONOUN/r_c/object}, and goes to fix up {PRONOUN/r_c/poss} normal herbal mix, hoping that the allergic reaction m_c keeps having fades soon.",
             "Seems it's allergy season! m_c has been sneezing and sniffling all moon."
         ],
 		"rash": [
@@ -340,7 +340,7 @@
 		],
 		"lethargy": [
 				"Recently m_c's been feeling so worn down. It's all that {PRONOUN/m_c/subject} can do to explain to r_c the awful overwhelming feeling that prickles just beneath {PRONOUN/m_c/poss} fur.",
-				"Despite the cheerful air around the rest of the clan, m_c refuses to leave the den, curled up and feeling rather miserable.",
+				"Despite the cheerful air around the rest of the Clan, m_c refuses to leave the den, curled up and feeling rather miserable.",
 				"m_c's been feeling awfully tired lately, like a heavy fog is weighing down {PRONOUN/m_c/poss} paws."
 		],
 		"dizziness": [
@@ -399,6 +399,34 @@
 				"As if m_c doesn't have enough issues with {PRONOUN/m_c/poss} headaches, now {PRONOUN/m_c/poss} ears are buzzing and no matter how much they shake {PRONOUN/m_c/poss} head or hide it doesn't go away."
 		]
     },
+    "albinism" : {
+        "sunburn": [
+            "m_c's ears and nose feel sore to the touch after yesterday.",
+            "m_c's nose has been especially red and sore after spending time in the sun."
+        ],
+        "headache": [
+            "m_c may have spent a bit too much time out in the sun - if the headache is anything to go by.",
+            "m_c may have spent a bit too much time out in the sun - if the headache is anything to go by."
+        ],
+        "severe headache": [
+            "m_c wakes up with pounding head pain. {PRONOUN/m_c/subject/CAP} {VERB/m_c/curl/curls} up as tightly in {PRONOUN/m_c/poss} nest as {PRONOUN/m_c/subject} can, screwing {PRONOUN/m_c/poss} eyes shut and flattening {PRONOUN/m_c/poss} ears. There's no way {PRONOUN/m_c/subject}'ll get work done today.",
+            "m_c wakes up with pounding head pain. {PRONOUN/m_c/subject/CAP} {VERB/m_c/curl/curls} up as tightly in {PRONOUN/m_c/poss} nest as {PRONOUN/m_c/subject} can, screwing {PRONOUN/m_c/poss} eyes shut and flattening {PRONOUN/m_c/poss} ears. There's no way {PRONOUN/m_c/subject}'ll get work done today."
+        ],
+        "failing eyesight": [
+            "m_c had never had the clearest vision, forced to squint most of the time. But even still it seems it's noticeably less clear.",
+            "m_c had never had the clearest vision, forced to squint most of the time. But even still it seems it's noticeably less clear."
+        ]
+    },
+    "ocular albinism" : {
+        "headache": [
+            "m_c may have spent a bit too much time out in the sun - if the headache is anything to go by.",
+            "m_c may have spent a bit too much time out in the sun - if the headache is anything to go by."
+        ],
+        "severe headache": [
+            "m_c wakes up with pounding head pain. {PRONOUN/m_c/subject/CAP} {VERB/m_c/curl/curls} up as tightly in {PRONOUN/m_c/poss} nest as {PRONOUN/m_c/subject} can, screwing {PRONOUN/m_c/poss} eyes shut and flattening {PRONOUN/m_c/poss} ears. There's no way {PRONOUN/m_c/subject}'ll get work done today.",
+            "m_c wakes up with pounding head pain. {PRONOUN/m_c/subject/CAP} {VERB/m_c/curl/curls} up as tightly in {PRONOUN/m_c/poss} nest as {PRONOUN/m_c/subject} can, screwing {PRONOUN/m_c/poss} eyes shut and flattening {PRONOUN/m_c/poss} ears. There's no way {PRONOUN/m_c/subject}'ll get work done today."
+        ]
+    },
     "heavy soul": {
         "lasting grief": [
             "r_c lays comfortingly beside m_c, purring as {PRONOUN/r_c/subject} {VERB/m_c/try/tries} to comfort {PRONOUN/m_c/object}. {PRONOUN/m_c/poss/CAP} grief seems worse then normal, to a place not even herbs or words can fix.",
@@ -421,7 +449,7 @@
 		"lethargy": [
 				"r_c goes on a den visit to check in on m_c. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'ve/ has} been blankly staring at the den wall for most of the afternoon.",
 				"m_c comes into the medicine den looking barely able to carry {PRONOUN/m_c/self} on {PRONOUN/m_c/poss} paws.",
-				"{PRONOUN/m_c/poss/CAP} clanmates bring {PRONOUN/m_c/object} a little bit of extra prey and bedding while m_c lays in {PRONOUN/m_c/poss} nest weighed down and exhausted.",
+				"{PRONOUN/m_c/poss/CAP} Clanmates bring {PRONOUN/m_c/object} a little bit of extra prey and bedding while m_c lays in {PRONOUN/m_c/poss} nest weighed down and exhausted.",
 				"Part of them wishes it were raining, m_c likes the rain the sound like a lullabye to take {PRONOUN/m_c/object} away from the deep bone seated exhaustion.",
 				"m_c feels barely able to do {PRONOUN/m_c/poss} in camp jobs this moon."
 		],
@@ -432,7 +460,7 @@
 				"m_c hasn't been able to sleep with {PRONOUN/m_c/poss} head going around and around with thoughts that won't leave {PRONOUN/m_c/object} alone."
 		],
 		"absence": [
-				"After the worried reports of {PRONOUN/r_c/poss} clanmates r_c comes to check on m_c with a package of herbs. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'ve/ has} been staring blankly at one spot of the den for hours now.",
+				"After the worried reports of {PRONOUN/r_c/poss} Clanmates r_c comes to check on m_c with a package of herbs. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'ve/ has} been staring blankly at one spot of the den for hours now.",
 				"m_c's head spins and {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like every blink the world around {PRONOUN/m_c/object} speeds away. Leaving {PRONOUN/m_c/object} disoriented and lost.",
 				"Between one blink and the next m_c feels like {PRONOUN/m_c/poss} soul has jumped and the world is somewhat under water.",
 				"m_c's denmates carefully make sure that there's nothing too out of place for when {PRONOUN/m_c/poss} mind comes back to {PRONOUN/m_c/object}."
@@ -476,7 +504,7 @@
     "comet spirit": {
 		"zoomies": [
             "r_c watches bemused as m_c dashes into {PRONOUN/r_c/poss} den, bounces around cheerfully babbling something before zooming off again into the camp.",
-            "m_c's energy always brings joy to the rest of the clan but sometimes {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} to have far too much of it.",
+            "m_c's energy always brings joy to the rest of the Clan but sometimes {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} to have far too much of it.",
             "The peace of the camp is hardly disturbed by m_c playing around like a young kitten.",
             "m_c feels filled with the need to move, to jump around and just move."
 		],
@@ -486,7 +514,7 @@
             "m_c sits in place staring, paws vaguely tensing and untensing as {PRONOUN/m_c/subject} {VERB/m_c/do/does} so."
 		],
 		"vivid daydreams": [
-            "m_c talks to r_c at length about all {PRONOUN/m_c/poss} ideas and dreams to help the clan.",
+            "m_c talks to r_c at length about all {PRONOUN/m_c/poss} ideas and dreams to help the Clan.",
             "It's not odd to see m_c running around camp with {PRONOUN/m_c/poss} heads somewhere in the clouds.",
             "m_c purrs in a sunbeam while {PRONOUN/m_c/poss} mind is elsewhere.",
 			"m_c closes {PRONOUN/m_c/poss} eyes and daydreams for a long time today."
@@ -494,7 +522,7 @@
 		"hyperfixation": [
             "m_c spins circles around r_c running around and screaming about {PRONOUN/m_c/poss} latest interest and hyperfixation.",
             "m_c frustratedly digs {PRONOUN/m_c/poss} paws into the dirt of the camp struggling to focus on {PRONOUN/m_c/poss} tasks when {PRONOUN/m_c/subject} would rather be doing something to do with {PRONOUN/m_c/poss} hyperfixation.",
-            "m_c's clanmates purr in amusement listening to {PRONOUN/m_c/poss} rapid babbling."
+            "m_c's Clanmates purr in amusement listening to {PRONOUN/m_c/poss} rapid babbling."
 		],
 		"indecision": [
             "m_c comes in to see r_c, tail twitching as {PRONOUN/m_c/subject} consult with {PRONOUN/r_c/object} on how to make decision making easier.",
@@ -521,7 +549,7 @@
 		"understimulation": [
             "r_c talks to m_c, discussing together why {PRONOUN/m_c/subject} {VERB/m_c/have/has} been feeling so listless and uncomfortable around camp recently.",
             "No matter what m_c seems to do it just feels like something is off this moon.",
-            "Frustrated m_c snaps at a clanmate to leave {PRONOUN/m_c/object} alone, only to regret it and apologise heartbeats later. Something is off with {PRONOUN/m_c/object}.",
+            "Frustrated m_c snaps at a Clanmate to leave {PRONOUN/m_c/object} alone, only to regret it and apologise heartbeats later. Something is off with {PRONOUN/m_c/object}.",
 	    "m_c rocks back and forth trying to get rid of this painfully boredness."
 	    ],
 		"shattered soul": [
@@ -544,16 +572,16 @@
 				"m_c has been thinking about this one particular spot in {PRONOUN/m_c/poss} territory for days now, and seems to be constantly going back to that spot. Even sneaking away in the night.",
 				"m_c's collection of shiny objects was found in {PRONOUN/m_c/poss} nest, confronted about it m_c simply states {PRONOUN/m_c/subject} couldn't help it, {PRONOUN/m_c/subject} were shiny! So Shiny.",
 				"m_c has been exploring a really particular part of the territory, explaining everything {PRONOUN/m_c/subject} found and seen with gleeful vigor.",
-				"Some of {PRONOUN/m_c/poss} clanmates are struggling to keep m_c on topic as {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} losing focus when it's not about {PRONOUN/m_c/poss} latest interest.",
+				"Some of {PRONOUN/m_c/poss} Clanmates are struggling to keep m_c on topic as {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} losing focus when it's not about {PRONOUN/m_c/poss} latest interest.",
 				"m_c has been collecting a lot of things recently about one topic. {PRONOUN/m_c/subject/CAP} will eagerly talk a cat's ears off if allowed to.",
 				"Every patrol that m_c has gone on has heard about {PRONOUN/m_c/poss} latest interest, it's nice to see {PRONOUN/m_c/object} so happy about finding something new to enjoy.",
-				"m_c is practically vibrating out of {PRONOUN/m_c/poss} pelt when {PRONOUN/m_c/subject} {VERB/m_c/talk/talks} to {PRONOUN/m_c/poss} clanmates about {PRONOUN/m_c/poss} latest interest.",
+				"m_c is practically vibrating out of {PRONOUN/m_c/poss} pelt when {PRONOUN/m_c/subject} {VERB/m_c/talk/talks} to {PRONOUN/m_c/poss} Clanmates about {PRONOUN/m_c/poss} latest interest.",
 				"It looks like m_c has rediscovered an old special interest and is eagerly bouncing as {PRONOUN/m_c/subject} {VERB/m_c/talk/talks} about it.",
 				"Finding something new to talk about is nice, but for m_c it's something special to return to an old favourite subject."
 		],
 		"hyperfixation": [
 				"m_c has been spinning in circles around r_c as {PRONOUN/m_c/subject} {VERB/m_c/talk/talks} about a new interest that has caught {PRONOUN/m_c/poss} attention.",
-				"While this doesn't feel like it will become part of {PRONOUN/m_c/poss} entire world m_c has spent quite some time talking about a new topic with {PRONOUN/m_c/poss} clanmates.",
+				"While this doesn't feel like it will become part of {PRONOUN/m_c/poss} entire world m_c has spent quite some time talking about a new topic with {PRONOUN/m_c/poss} Clanmates.",
 				"m_c seems to have been doing nothing but training recently, focused on incorporating a new specific set of moves into {PRONOUN/m_c/poss} hunting style.",
 				"In the past few weeks m_c has gotten deeply interested in collecting together feathers and identifying which prey-bird they came from."
 		],
@@ -561,12 +589,12 @@
 				"m_c has been bouncing around the camp flicking {PRONOUN/m_c/poss} tail and ears constantly. r_c watches with a very amused purr at {PRONOUN/m_c/poss} excited stimming.",
 				"It seems like m_c can barely stay still as {PRONOUN/m_c/subject} {VERB/m_c/wriggle/wriggles} {PRONOUN/m_c/poss} whole body in {PRONOUN/m_c/poss} excitement for the day.",
 				"m_c keeps purring to {PRONOUN/m_c/self} as an act of self soothing.",
-				"Some of m_c's clanmates find {PRONOUN/m_c/self} confused at how {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} running around the camp in small circles seemingly chasing {PRONOUN/m_c/poss} tail."
+				"Some of m_c's Clanmates find {PRONOUN/m_c/self} confused at how {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} running around the camp in small circles seemingly chasing {PRONOUN/m_c/poss} tail."
 		],
 		"nonverbal": [
-				"This moon has been overwhelming for everyone r_c observes. {PRONOUN/r_c/subject/CAP} {VERB/m_c/encouge/encourages} the rest of the clan to be understanding of that when m_c goes silent.",
-				"m_c just nods {PRONOUN/m_c/poss} head and uses tail signs to talk with {PRONOUN/m_c/poss} clanmates.",
-				"m_c is so glad {PRONOUN/m_c/poss} clanmates understand that sometimes {PRONOUN/m_c/subject} just {VERB/m_c/need/needs} the quiet when {PRONOUN/m_c/subject} can't speak."
+				"This moon has been overwhelming for everyone r_c observes. {PRONOUN/r_c/subject/CAP} {VERB/m_c/encouge/encourages} the rest of the Clan to be understanding of that when m_c goes silent.",
+				"m_c just nods {PRONOUN/m_c/poss} head and uses tail signs to talk with {PRONOUN/m_c/poss} Clanmates.",
+				"m_c is so glad {PRONOUN/m_c/poss} Clanmates understand that sometimes {PRONOUN/m_c/subject} just {VERB/m_c/need/needs} the quiet when {PRONOUN/m_c/subject} can't speak."
 		],
 		"anxiety attack": [
 				"All that r_c can really do is listen to m_c talking in circles, purring in an attempt to give {PRONOUN/m_c/object} something to steady {PRONOUN/m_c/self} with.",
@@ -598,7 +626,7 @@
 				"m_c keeps running in circles around the camp escaping into {PRONOUN/m_c/poss} head rather than facing reality.",
 				"More and more often m_c retreats into {PRONOUN/m_c/poss} own world in {PRONOUN/m_c/poss} head, tail lashing as {PRONOUN/m_c/subject} {VERB/m_c/envision/envisions} things that only {PRONOUN/m_c/subject} can see.",
 				"Sometimes m_c will narrate events and stories to the kits so fanciful.",
-				"Using daydreaming m_c admits that {PRONOUN/m_c/subject}{VERB/m_c/'ve/ has} been practicing what {PRONOUN/m_c/subject} will talk with {PRONOUN/m_c/poss} clanmates about."
+				"Using daydreaming m_c admits that {PRONOUN/m_c/subject}{VERB/m_c/'ve/ has} been practicing what {PRONOUN/m_c/subject} will talk with {PRONOUN/m_c/poss} Clanmates about."
 		],
 		"kittenspace": [
 				"Sometimes m_c feels younger than the age {PRONOUN/m_c/poss} body is.  {PRONOUN/m_c/subject} talked to r_c about it, worried something is wrong with {PRONOUN/m_c/object}, but {PRONOUN/m_c/subject} assured {PRONOUN/m_c/object} what {PRONOUN/m_c/subject} are feeling is perfectly normal, {PRONOUN/m_c/poss} brain is just in kittenspace",
@@ -618,12 +646,12 @@
 		],
 		"sunblindness": [
 				"Seeing m_c been guided towards the medicine den r_c slips inside to make sure that everything is tucked away safely and neatly in preparation.",
-				"m_c winces at both the pain in {PRONOUN/m_c/poss} eyes as well as the fact that {PRONOUN/m_c/subject} can't really see and can only hear the clammour of {PRONOUN/m_c/poss} clanmates around {PRONOUN/m_c/object}.",
+				"m_c winces at both the pain in {PRONOUN/m_c/poss} eyes as well as the fact that {PRONOUN/m_c/subject} can't really see and can only hear the clammour of {PRONOUN/m_c/poss} Clanmates around {PRONOUN/m_c/object}.",
 				"m_c curses {PRONOUN/m_c/poss} sensitive eyes, now {PRONOUN/m_c/subject} {VERB/m_c/have/has} to spend time recovering from the glare of the sun.",
 				"The light of the sun reflecting off the grass and pools of water on the ground have caused m_c's eyes to ache and {PRONOUN/m_c/poss} vision to become vanish."
 		],
 		"overstimulation": [
-				"r_c helps m_c to calm down, giving {PRONOUN/m_c/object} something smaller to focus on rather than the clan as a whole.",
+				"r_c helps m_c to calm down, giving {PRONOUN/m_c/object} something smaller to focus on rather than the Clan as a whole.",
 				"The world is too much for m_c, overwhelmingly loud, bright and just everything all at once.",
 				"m_c feels frantic, as if {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} drowning in all the overwhelming sensations of the world around {PRONOUN/m_c/object}.",
 				"With a distressed yowl, m_c recoils back into the den, shaking {PRONOUN/m_c/poss} head and complaining that the world is just too much."
@@ -652,7 +680,7 @@
 		"anxiety attack": [
 				"r_c can understand that m_c has more trouble than most keeping calm and talks with {PRONOUN/m_c/object} about why {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} extra anxious when {PRONOUN/m_c/subject} {VERB/m_c/fail/fails} to fully check the camp before doing {PRONOUN/m_c/poss} patrols.",
 				"m_c starts to think about a possibility that scares {PRONOUN/m_c/object} and {PRONOUN/m_c/poss} mind fills with fog and heart beating erratically.{PRONOUN/m_c/subject/CAP} {VERB/m_c/panic/panics} waking up a friend.",
-				"A clanmate sits beside m_c and lets {PRONOUN/m_c/object} ramble on as {PRONOUN/m_c/subject} {VERB/m_c/catastrophize/catastrophizes}.",
+				"A Clanmate sits beside m_c and lets {PRONOUN/m_c/object} ramble on as {PRONOUN/m_c/subject} {VERB/m_c/catastrophize/catastrophizes}.",
 				"m_c starts crying because {PRONOUN/m_c/subject} didn't check the camp fully before leaving that morning."
 		],
 		"indecision": [
@@ -673,7 +701,7 @@
 		"hyperfixation": [
 				"r_c is always grateful for m_c's help sorting through the herbs in the medicine den. {PRONOUN/m_c/subject/CAP} {VERB/m_c/are/is} always a good helper.",
 				"m_c has been really focused on the warrior code recently and keeps parroting the rules at everyone.",
-				"While it's nice that m_c cares so much about the code some of {PRONOUN/m_c/poss} clanmates are getting tired of been pulled up over every little thing.",
+				"While it's nice that m_c cares so much about the code some of {PRONOUN/m_c/poss} Clanmates are getting tired of been pulled up over every little thing.",
 				"m_c has been really focused on catching enough prey to feed everyone.",
 				"m_c has been eagerly practising battle moves every time {PRONOUN/m_c/subject} {VERB/m_c/are/is} awake.",
 				"m_c has been eagerly practising hunting techniques every time {PRONOUN/m_c/subject} {VERB/m_c/are/is} awake."
@@ -682,7 +710,7 @@
 				"r_c gently speaks to m_c. Talking at length with {PRONOUN/m_c/object} about the herbs in the medicine den trying to assure {PRONOUN/m_c/object} that {PRONOUN/m_c/subject} {VERB/m_c/are/is} safe.",
 				"m_c is wandering around the camp somehow convinced that the world will be ending soon and rather listless.",
 				"m_c refuses to eat the prey on the freshkill pile, instead going out each day to catch even fresher prey for {PRONOUN/m_c/self}.",
-				"While the rest of the clan settles down for the night m_c is getting up every few hours to check and make sure that things are still safe and fine.",
+				"While the rest of the Clan settles down for the night m_c is getting up every few hours to check and make sure that things are still safe and fine.",
 				"m_c keeps waking up {PRONOUN/m_c/poss} denmates to get them to check just one more time if {PRONOUN/m_c/subject} is really sure the camp is secure.",
 				"{PRONOUN/m_c/subject/CAP} {VERB/m_c/are/is} not paranoid, m_c insists that it's just the proper level of caution as {PRONOUN/m_c/subject} {VERB/m_c/check/checks} for the third time that afternoon that the nursery is secure."
 		],
@@ -710,7 +738,7 @@
     "anxiety": {
 		"anxiety attack": [
             "It's not uncommon for m_c to come into the medicine den with worries and troubles swirling around {PRONOUN/m_c/poss} head. r_c has a specific pile of herbs set aside just for when {PRONOUN/m_c/subject} {VERB/m_c/need/needs} them. Or simply for when {PRONOUN/m_c/poss} {VERB/m_c/need/needs} to talk.",
-            "m_c's tail lashes, fur standing uncomfortably on end as {PRONOUN/m_c/subject} {VERB/m_c/share/shares} some of the anxieties bothering {PRONOUN/m_c/object} with a clanmate.",
+            "m_c's tail lashes, fur standing uncomfortably on end as {PRONOUN/m_c/subject} {VERB/m_c/share/shares} some of the anxieties bothering {PRONOUN/m_c/object} with a Clanmate.",
             "The sunshine offers no relief to m_c as {PRONOUN/m_c/subject} {VERB/m_c/pace/paces} around the camp entry on edge.",
             "m_c keeps going in circles, worriedly pacing and unable to settle down to sleep properly."
 	],
@@ -719,7 +747,7 @@
             "Nobody is sure what happened, one second m_c is fine the next {PRONOUN/m_c/subject} {VERB/m_c/are/is} darting across the camp ears pressed down and fur all on end.",
             "m_c has been pacing circles around the camp, fur on end and looking as if {PRONOUN/m_c/subject} {VERB/m_c/are/is} going to snap.",
             "Tail lashing and fur on edge m_c reports to the medicine cat for reassurance.",
-            "m_c has been struggling to breathe, some of the clan worried about white cough but it seems to be just a bit of panic."
+            "m_c has been struggling to breathe, some of the Clan worried about white cough but it seems to be just a bit of panic."
 	],
 		"indecision": [
             "r_c gently sits beside m_c as {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} in place eyes wide struggling to decide what {PRONOUN/m_c/subject} {VERB/m_c/want/wants} to do.",
@@ -734,7 +762,7 @@
 		"vivid daydreams": [
             "r_c consults with m_c about {PRONOUN/m_c/poss} daydreaming, reassuring {PRONOUN/m_c/object} that it's a perfectly fine coping mechanism.",
             "m_c babbles into the air paws twitching as if {PRONOUN/m_c/subject} {VERB/m_c/were/was} sleeping with a particularly loud dream.",
-            "Rather than socialising with the rest of the clan, m_c has been withdrawing into {PRONOUN/m_c/self} and {PRONOUN/m_c/poss} head to escape the pressing anxiety.",
+            "Rather than socialising with the rest of the Clan, m_c has been withdrawing into {PRONOUN/m_c/self} and {PRONOUN/m_c/poss} head to escape the pressing anxiety.",
             "m_c sits quietly in the corner of the camp finding happiness in {PRONOUN/m_c/poss} own internal world.",
             "Between bouts of anxiety, m_c is calming {PRONOUN/m_c/self} down by retreating away from the world around {PRONOUN/m_c/object}."
 	],
@@ -742,7 +770,7 @@
             "r_c talks m_c through the things that {PRONOUN/m_c/subject} {VERB/m_c/are/is} seeing and hearing. It helps m_c to more firmly ground {PRONOUN/m_c/self} in reality.",
             "m_c struggles to understand what is really there or not as the shadows seem to hold impossible things.",
             "Sometimes when m_c is half asleep it feels as if there are creatures climbing up over {PRONOUN/m_c/poss} body conspiring to keep {PRONOUN/m_c/object} awake.",
-            "m_c admits to a clanmate that {PRONOUN/m_c/subject} {VERB/m_c/are/is} not sure if {PRONOUN/m_c/subject} can actually trust {PRONOUN/m_c/poss} ears and what {PRONOUN/m_c/subject} {VERB/m_c/are/is} hearing anymore."
+            "m_c admits to a Clanmate that {PRONOUN/m_c/subject} {VERB/m_c/are/is} not sure if {PRONOUN/m_c/subject} can actually trust {PRONOUN/m_c/poss} ears and what {PRONOUN/m_c/subject} {VERB/m_c/are/is} hearing anymore."
 	],
 		"shock": [
             "r_c talks softly with m_c while {PRONOUN/m_c/subject} {VERB/m_c/stare/stares} blankly at the wall shaking.",
@@ -753,9 +781,9 @@
 		"paranoia": [
             "Even with all of r_c's assurances, m_c is certain that there is something out there hunting for {PRONOUN/m_c/object}.",
             "m_c feels frozen, rooted in place as it feels like something large looms in the shadows hunting specifically for {PRONOUN/m_c/object}",
-            "No matter what m_c's clanmates say, {PRONOUN/m_c/subject} {VERB/m_c/refuse/refuses} to let {PRONOUN/m_c/self} calm down. If {PRONOUN/m_c/subject} {VERB/m_c/drop/drops} {PRONOUN/m_c/poss} guard that's when danger will strike.",
+            "No matter what m_c's Clanmates say, {PRONOUN/m_c/subject} {VERB/m_c/refuse/refuses} to let {PRONOUN/m_c/self} calm down. If {PRONOUN/m_c/subject} {VERB/m_c/drop/drops} {PRONOUN/m_c/poss} guard that's when danger will strike.",
             "m_c is convinced that something bad will happen, refusing to stop pacing and checking the camp for anything out of place, even a stray leaf seeming to be a threat.",
-            "With a loud refusal, m_c insists it's not paranoia. {PRONOUN/m_c/subject/CAP} just {VERB/m_c/know/knows} that there is a danger out there after the clan.",
+            "With a loud refusal, m_c insists it's not paranoia. {PRONOUN/m_c/subject/CAP} just {VERB/m_c/know/knows} that there is a danger out there after the Clan.",
             "m_c keeps checking in on the medicine cats, asking over and over about any signs from StarClan this moon."
 	],
 		"kittenspace": [
@@ -776,7 +804,7 @@
 	],
 		"sleep paralysis": [
             "In the early hours of the morning m_c goes to r_c to ask {PRONOUN/r_c/object} if there's anything {PRONOUN/m_c/subject} can do to get rid of the monsters stalking {PRONOUN/m_c/poss} waking up.",
-            "It seems like cats of the Dark Forest have found their way into the camp, m_c's been telling {PRONOUN/m_c/poss} clanmates of them haunting {PRONOUN/m_c/poss} sleep.",
+            "It seems like cats of the Dark Forest have found their way into the camp, m_c's been telling {PRONOUN/m_c/poss} Clanmates of them haunting {PRONOUN/m_c/poss} sleep.",
             "Strange monsters have been stalking around m_c."
 	],
     	"tics": [
@@ -821,12 +849,12 @@
 			"r_c gently scolds m_c when {PRONOUN/m_c/subject} {VERB/m_c/come/comes} into the medicine den, it looks like working too hard without taking breaks has made {PRONOUN/m_c/object} particularly sore.",
 			"After all the effort that {PRONOUN/m_c/subject} put into helping out the elders this moon, m_c has made {PRONOUN/m_c/self} sore. Not that it stops {PRONOUN/m_c/object} from taking pride in the effort.",
 			"m_c doesn't regret the extra work {PRONOUN/m_c/subject} put into helping this moon, even as {PRONOUN/m_c/subject} {VERB/m_c/wince/winces} simply walking back over to {PRONOUN/m_c/poss} nest.",
-			"m_c lazes about in a sunbeam, watching content as {PRONOUN/m_c/poss} clanmates gather together for training that {PRONOUN/m_c/subject} {VERB/m_c/are/is} going to spot for."
+			"m_c lazes about in a sunbeam, watching content as {PRONOUN/m_c/poss} Clanmates gather together for training that {PRONOUN/m_c/subject} {VERB/m_c/are/is} going to spot for."
 		],
 		"acute pain": [
 			"r_c winces at the whimpers and shudders that m_c is doing. {PRONOUN/r_c/subject/CAP} {VERB/r_c/know/knows} that {PRONOUN/m_c/poss} is in a lot of pain and are only able to do so much with the herbs that {PRONOUN/r_c/subject} {VERB/m_c/have/has}.",
 			"m_c whimpers, whole body shaking as {PRONOUN/m_c/subject} {VERB/m_c/try/tries} to take the herbs given to {PRONOUN/m_c/object}. It's hard when the world spins and swims from all the pain.",
-			"A lot of m_c's clanmates are worried about {PRONOUN/m_c/object} due to how m_c refuses to move from the sheer pain of it.",
+			"A lot of m_c's Clanmates are worried about {PRONOUN/m_c/object} due to how m_c refuses to move from the sheer pain of it.",
 			"Simply brushing up against someone makes m_c let out winces and little yowls of pain.",
 			"m_c's curled in {PRONOUN/m_c/poss} nest shaking, unable to move without letting out cries of pain."
 		],
@@ -838,7 +866,7 @@
 			"r_c worriedly comes over to the den when told that nobody's seen m_c out yet. Turns out {PRONOUN/m_c/subject} {VERB/m_c/are/is} curled up tightly in {PRONOUN/m_c/poss} nest whimpering from the pain in {PRONOUN/m_c/poss} head.",
 			"m_c's barely able to make {PRONOUN/m_c/poss} way to the medicine den, the pain throbbing from {PRONOUN/m_c/poss} head throughout {PRONOUN/m_c/poss} whole body making the world spin.",
 			"To the distress of {PRONOUN/m_c/poss} denmates m_c has spent the day silently shaking, barely able to get out the information that {PRONOUN/m_c/poss} head hurts.",
-			"Barely coherent m_c swallows the herbs delivered to {PRONOUN/m_c/object} by {PRONOUN/m_c/poss} clanmates, hopefully this pain will pass soon."
+			"Barely coherent m_c swallows the herbs delivered to {PRONOUN/m_c/object} by {PRONOUN/m_c/poss} Clanmates, hopefully this pain will pass soon."
 		],
 		"paralyzed": [
 			"When r_c comes over to check m_c after complaints of tingling in {PRONOUN/m_c/poss} legs, it's to inform {PRONOUN/m_c/object} it's because {PRONOUN/m_c/poss} legs aren't working properly anymore.",
@@ -881,7 +909,7 @@
 			"m_c feels like {PRONOUN/m_c/subject} {VERB/m_c/are/is} slipping between reality and dreams, not quite awake as {PRONOUN/m_c/subject} {VERB/m_c/go/goes} through {PRONOUN/m_c/poss} day.",
 			"m_c is distracted and everyone knows it, {PRONOUN/m_c/poss} brain in a dream even while {PRONOUN/m_c/subject} {VERB/m_c/look/looks} and seem fully awake.",
 			"It's becoming increasingly harder for m_c to understand where reality starts and ends. Figures and shapes dance around {PRONOUN/m_c/object} just outside {PRONOUN/m_c/poss} vision.",
-			"m_c jumps as a clanmate brushes against {PRONOUN/m_c/object}, fur all on end as {PRONOUN/m_c/subject} {VERB/m_c/admit/admits} surprise that the other cat is actually real."
+			"m_c jumps as a Clanmate brushes against {PRONOUN/m_c/object}, fur all on end as {PRONOUN/m_c/subject} {VERB/m_c/admit/admits} surprise that the other cat is actually real."
 		],
 		"nightmares": [
 			"m_c comes in to see r_c, picking up some poppy seeds in the hope for some temporary completely dream free sleep.",
@@ -970,14 +998,14 @@
     },
     "thunderous spirit": {
 		"strong attachement": [
-				"r_c notices that m_c is becoming more dependent and clingy with one of {PRONOUN/m_c/poss} clanmates, and invites {PRONOUN/m_c/object} to talk about it",
-				"m_c can't stop thinking about one of {PRONOUN/m_c/poss} clanmates and cannot bear the thought of not being near them to the point it is disrupting {PRONOUN/m_c/poss} duties.",
-				"No one understands m_c apart from that one special cat in {PRONOUN/m_c/poss} life, atleast that is what {PRONOUN/m_c/poss} thunderous spirit is making {PRONOUN/m_c/object} think. {PRONOUN/m_c/subject/CAP} {VERB/m_c/refuse/refuses} to be apart from them and will lash out at any clanmate that tries to seperate them."
+				"r_c notices that m_c is becoming more dependent and clingy with one of {PRONOUN/m_c/poss} Clanmates, and invites {PRONOUN/m_c/object} to talk about it",
+				"m_c can't stop thinking about one of {PRONOUN/m_c/poss} Clanmates and cannot bear the thought of not being near them to the point it is disrupting {PRONOUN/m_c/poss} duties.",
+				"No one understands m_c apart from that one special cat in {PRONOUN/m_c/poss} life, atleast that is what {PRONOUN/m_c/poss} thunderous spirit is making {PRONOUN/m_c/object} think. {PRONOUN/m_c/subject/CAP} {VERB/m_c/refuse/refuses} to be apart from them and will lash out at any Clanmate that tries to seperate them."
 		],
 		"black and white cloud": [
 				"r_c notices that m_c cannot think rationally, and is lashing out at every cat around {PRONOUN/m_c/object}.",
 				"m_c thinks that no cat has any flaws and that everycat is perfect, and its affecting {PRONOUN/m_c/poss} relationships. A black and white cloud has covered {PRONOUN/m_c/poss} vision.",
-				"m_c goes around camp saying that {PRONOUN/m_c/subject} hate everything and everyone. {PRONOUN/m_c/poss} clanmates think that a black and white cloud has covered {PRONOUN/m_c/poss} vision."
+				"m_c goes around camp saying that {PRONOUN/m_c/subject} hate everything and everyone. {PRONOUN/m_c/poss} Clanmates think that a black and white cloud has covered {PRONOUN/m_c/poss} vision."
 		],
 		"kittenspace": [
 				"Sometimes m_c feels younger than the age {PRONOUN/m_c/poss} body is.  {PRONOUN/m_c/subject} talked to r_c about it, worried something is wrong with {PRONOUN/m_c/object}, but {PRONOUN/m_c/subject} assured {PRONOUN/m_c/object} what {PRONOUN/m_c/subject} are feeling is perfectly normal, {PRONOUN/m_c/poss} brain is just in kittenspace",
@@ -1065,7 +1093,7 @@
 		"sunblindness": [
 				"m_c loudly complains to r_c about the flares and spots that now take up {PRONOUN/m_c/poss} vision leaving {PRONOUN/m_c/object} unable to properly see at all.",
 				"After waking up and stepping out of the den, m_c is hissing at the light and how it burns in {PRONOUN/m_c/poss} eyes over the snow sparkles.",
-				"m_c talks to a clanmate about how the snow in {PRONOUN/m_c/poss} vision is catching the light too much and turning into flares."
+				"m_c talks to a Clanmate about how the snow in {PRONOUN/m_c/poss} vision is catching the light too much and turning into flares."
 		]
     },
     "longcough": {
@@ -1074,7 +1102,7 @@
 				"m_c always has a cough, it's no wonder that {PRONOUN/m_c/subject} missed when that cough became an illness."
 		],
 		"silvercough": [
-				"It's whitecough season again, and r_c's been checking each clanmate for the illness. m_c's surprised when r_c shakes {PRONOUN/r_c/poss} head and calls {PRONOUN/m_c/object} inot the den, it seems {PRONOUN/m_c/poss} usual cough has masked the silvercough.",
+				"It's whitecough season again, and r_c's been checking each Clanmate for the illness. m_c's surprised when r_c shakes {PRONOUN/r_c/poss} head and calls {PRONOUN/m_c/object} inot the den, it seems {PRONOUN/m_c/poss} usual cough has masked the silvercough.",
 				"m_c's coughing has been a lot worse, a lot more frequent recently. Talking to the medicine cat {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} unsurprised to discover it's compounded by silvercough."
 		],
 		"fatigue": [
@@ -1097,14 +1125,14 @@
 				"m_c ran too quickly and twisted {PRONOUN/m_c/poss} paw! Off to the medicine den again..."
 		],
 		"dislocated joint": [
-				"Crack! m_c sighs, getting help from {PRONOUN/m_c/poss} clanmates to get into the medicine den, to relocate {PRONOUN/m_c/poss} joint.",
-				"As m_c limps to the medicine cat den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woke up the clanmate who slept on {PRONOUN/m_c/poss} leg."
+				"Crack! m_c sighs, getting help from {PRONOUN/m_c/poss} Clanmates to get into the medicine den, to relocate {PRONOUN/m_c/poss} joint.",
+				"As m_c limps to the medicine cat den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woke up the Clanmate who slept on {PRONOUN/m_c/poss} leg."
 		],
 		"subluxated joint": [
-				"m_c lets out a hiss of pain and {PRONOUN/m_c/poss} concerned clanmates help {PRONOUN/m_c/object} to the medicine cat den. While nothing looks wrong, {PRONOUN/m_c/poss} clanmates trust that m_c knows what {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} talking about when {PRONOUN/m_c/subject} say that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} subluxated {PRONOUN/m_c/poss} joint.",
+				"m_c lets out a hiss of pain and {PRONOUN/m_c/poss} concerned Clanmates help {PRONOUN/m_c/object} to the medicine cat den. While nothing looks wrong, {PRONOUN/m_c/poss} Clanmates trust that m_c knows what {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} talking about when {PRONOUN/m_c/subject} say that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} subluxated {PRONOUN/m_c/poss} joint.",
 				"{PRONOUN/m_c/poss} joints have been hurting for a few days now, so m_c decides to go to the medicine cat den. Only for the medicine cat to say that {PRONOUN/m_c/subject} subluxated {PRONOUN/m_c/poss} shoulder. Oops...",
-				"With a startled hiss, m_c staggers back from training. The cat {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} training with pauses, asking about {PRONOUN/m_c/poss} wellbeing. m_c informs them that no, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} not alright and {PRONOUN/m_c/subject}'d like to stop this and go to the medicine den. {PRONOUN/m_c/poss} clanmate nods and helps {PRONOUN/m_c/object} to the medicine den.",
-				"As m_c limps to the medicine cat den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woke up the clanmate who slept on {PRONOUN/m_c/poss} leg."
+				"With a startled hiss, m_c staggers back from training. The cat {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} training with pauses, asking about {PRONOUN/m_c/poss} wellbeing. m_c informs them that no, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} not alright and {PRONOUN/m_c/subject}'d like to stop this and go to the medicine den. {PRONOUN/m_c/poss} Clanmate nods and helps {PRONOUN/m_c/object} to the medicine den.",
+				"As m_c limps to the medicine cat den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woke up the Clanmate who slept on {PRONOUN/m_c/poss} leg."
 		]
     },
     "loose body": {
@@ -1134,7 +1162,7 @@
     "burning light": {
 		"sunblindness": [
 				"Seeing m_c been guided towards the medicine den r_c slips inside to make sure that everything is tucked away safely and neatly in preparation.",
-				"m_c winces at both the pain in {PRONOUN/m_c/poss} eyes as well as the fact that {PRONOUN/m_c/subject} can't really see and can only hear the clammour of {PRONOUN/m_c/poss} clanmates around {PRONOUN/m_c/object}.",
+				"m_c winces at both the pain in {PRONOUN/m_c/poss} eyes as well as the fact that {PRONOUN/m_c/subject} can't really see and can only hear the clammour of {PRONOUN/m_c/poss} Clanmates around {PRONOUN/m_c/object}.",
 				"m_c curses {PRONOUN/m_c/poss} sensitive eyes, now {PRONOUN/m_c/subject} {VERB/m_c/have/has} to spend time recovering from the glare of the sun.",
 				"The light of the sun reflecting off the grass and pools of water on the ground have caused m_c's eyes to ache and {PRONOUN/m_c/poss} vision to vanish."
 		],
@@ -1147,7 +1175,7 @@
 				"Weakly m_c thanks r_c for the herbs, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} only barely able to squint at {PRONOUN/r_c/object}.",
 				"m_c curls up in the very back of the den. {PRONOUN/m_c/poss/CAP} head aches and pounds and even the dim lighting of the den is too much for {PRONOUN/m_c/object} today.",
 				"m_c whimpers in the glare of the sun. {PRONOUN/m_c/subject/CAP} {VERB/m_c/don't/doesn't} know how {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} going to make it to the medicine den between the headache and all the squinting.",
-				"Thankfully for m_c one of {PRONOUN/m_c/poss} clanmates notices how out of it {PRONOUN/m_c/subject} {VERB/m_c/look/looks} and helps {PRONOUN/m_c/object} to the medicine den for some much needed headache relieving herbs."
+				"Thankfully for m_c one of {PRONOUN/m_c/poss} Clanmates notices how out of it {PRONOUN/m_c/subject} {VERB/m_c/look/looks} and helps {PRONOUN/m_c/object} to the medicine den for some much needed headache relieving herbs."
 		]
     },
     "disrupted senses": {
@@ -1165,7 +1193,7 @@
 				"Weakly m_c thanks r_c for the herbs, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} only barely able to squint at {PRONOUN/r_c/object}.",
 				"m_c curls up in the very back of the den. {PRONOUN/m_c/poss/CAP} head aches and pounds and even the dim lighting of the den is too much for {PRONOUN/m_c/object} today.",
 				"m_c whimpers in the glare of the sun. {PRONOUN/m_c/subject/CAP} {VERB/m_c/don't/doesn't} know how {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} going to make it to the medicine den between the headache and all the squinting.",
-				"Thankfully for m_c one of {PRONOUN/m_c/poss} clanmates notices how out of it {PRONOUN/m_c/subject} {VERB/m_c/look/looks} and helps {PRONOUN/m_c/object} to the medicine den for some much needed headache relieving herbs."
+				"Thankfully for m_c one of {PRONOUN/m_c/poss} Clanmates notices how out of it {PRONOUN/m_c/subject} {VERB/m_c/look/looks} and helps {PRONOUN/m_c/object} to the medicine den for some much needed headache relieving herbs."
 		],
 		"ear buzzing": [
 				"r_c lies against m_c purring as much as {PRONOUN/m_c/subject} can in the hopes to drown out the buzzing bothering {PRONOUN/m_c/object}.",
@@ -1184,7 +1212,7 @@
 		],
 		"overstimulation": [
 				"With all m_c's sensitive senses it's no shock to r_c that sometimes the world is just too overwhelming for {PRONOUN/m_c/object}.",
-				"m_c's so thankful that the clan's set aside a quiet space just for {PRONOUN/m_c/object} to use when {PRONOUN/m_c/subject} {VERB/m_c/need/needs} to get away from the world.",
+				"m_c's so thankful that the Clan's set aside a quiet space just for {PRONOUN/m_c/object} to use when {PRONOUN/m_c/subject} {VERB/m_c/need/needs} to get away from the world.",
 				"More than a little frantic m_c's had to find a quiet corner of the camp to try and unwind from all the excess stimulation."
 		],
 		"understimulation": [
@@ -1206,7 +1234,7 @@
 		],
 		"sound headache": [
 			"r_c heads to m_c after hearing that {PRONOUN/m_c/subject} {VERB/m_c/were/was} curled up in {PRONOUN/m_c/poss} nest and hissing at cats who came close to {PRONOUN/m_c/object}.",
-			"m_c lashes out at anybody who tries to talk to {PRONOUN/m_c/object} before stalking off into the clan's territory for some quiet."
+			"m_c lashes out at anybody who tries to talk to {PRONOUN/m_c/object} before stalking off into the Clan's territory for some quiet."
 		],
 		"information loss": [
 			"m_c has to ask for the other cat to repeat their instructions.",
@@ -1239,7 +1267,7 @@
 		],
 		"paranoia": [
 				"r_c is surprised to find m_c in the medicine den watching {PRONOUN/r_c/object} with narrowed eyes full of suspicion.",
-				"On edge from {PRONOUN/m_c/poss} disrupted nighmare full sleep, m_c's certain that something is out there, just waiting for the clan to drop guard.",
+				"On edge from {PRONOUN/m_c/poss} disrupted nighmare full sleep, m_c's certain that something is out there, just waiting for the Clan to drop guard.",
 				"m_c's been insisting on taking every single border patrol possible, antagonizing anyone {PRONOUN/m_c/subject} {VERB/m_c/meet/meets} certain of ill-intent."
 		],
 		"fatigue": [
@@ -1265,9 +1293,9 @@
 				"As whitecough and silvercough season has come around, m_c's gotten a small running nose that {PRONOUN/m_c/subject} {VERB/m_c/hope/hopes} won't become anything worse."
 		],
 		"whitecough": [
-				"As whitecough season comes around again r_c notices that m_c is one of the first in the clan who's unfortunate enough to catch it.",
+				"As whitecough season comes around again r_c notices that m_c is one of the first in the Clan who's unfortunate enough to catch it.",
 				"With a bit of frustration m_c slinks off to the medicine den to get some help with the bout of whitecough that's caught {PRONOUN/m_c/object}.",
-				"Unfortunately due to {PRONOUN/m_c/poss} rash, m_c's a bit more succeptible to whitecough when it comes around the clan."
+				"Unfortunately due to {PRONOUN/m_c/poss} rash, m_c's a bit more succeptible to whitecough when it comes around the Clan."
 		]
     },
     "constant fatigue": {
@@ -1400,7 +1428,7 @@
 		"anxiety attack": [
 				"r_c can understand that m_c has more trouble than most keeping calm and talks with {PRONOUN/m_c/object} about why {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} extra anxious when {PRONOUN/m_c/subject} {VERB/m_c/fail/fails} to fully check the camp before doing {PRONOUN/m_c/poss} patrols.",
 				"m_c starts to think about a possibility that scares {PRONOUN/m_c/object} and {PRONOUN/m_c/poss} mind fills with fog and heart beating erratically.{PRONOUN/m_c/subject/CAP} {VERB/m_c/panic/panics} waking up a friend.",
-				"A clanmate sits beside m_c and lets {PRONOUN/m_c/object} ramble on as {PRONOUN/m_c/subject} {VERB/m_c/catastrophize/catastrophizes}.",
+				"A Clanmate sits beside m_c and lets {PRONOUN/m_c/object} ramble on as {PRONOUN/m_c/subject} {VERB/m_c/catastrophize/catastrophizes}.",
 				"m_c starts crying because {PRONOUN/m_c/subject} didn't check the camp fully before leaving that morning."
 		],
 		"kittenspace": [
@@ -1424,7 +1452,7 @@
 		"anxiety attack": [
 				"r_c can understand that m_c has more trouble than most keeping calm and talks with {PRONOUN/m_c/object} about why {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} extra anxious when {PRONOUN/m_c/subject} {VERB/m_c/fail/fails} to fully check the camp before doing {PRONOUN/m_c/poss} patrols.",
 				"m_c starts to think about a possibility that scares {PRONOUN/m_c/object} and {PRONOUN/m_c/poss} mind fills with fog and heart beating erratically.{PRONOUN/m_c/subject/CAP} {VERB/m_c/panic/panics} waking up a friend.",
-				"A clanmate sits beside m_c and lets {PRONOUN/m_c/object} ramble on as {PRONOUN/m_c/subject} {VERB/m_c/catastrophize/catastrophizes}.",
+				"A Clanmate sits beside m_c and lets {PRONOUN/m_c/object} ramble on as {PRONOUN/m_c/subject} {VERB/m_c/catastrophize/catastrophizes}.",
 				"m_c starts crying because {PRONOUN/m_c/subject} didn't check the camp fully before leaving that morning."
 		],
 		"kittenspace": [
@@ -1482,7 +1510,7 @@
 			"m_c will never have kits by blood but that doesn't seem to bother {PRONOUN/m_c/object} too much."
 		]
 	},
-	" aneuploidy": {
+	"aneuploidy": {
 		"infertile": [
 			"r_c explains to m_c that {PRONOUN/m_c/subject} may be infertile due to {PRONOUN/m_c/poss} anueploidy.",
 			"m_c's tail tip tapped on the ground. {PRONOUN/m_c/subject/CAP} {VERB/m_c/don't/doesn't} know what to think about being infertile.",
