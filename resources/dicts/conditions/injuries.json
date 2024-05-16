@@ -883,16 +883,14 @@
             "ragwort",
             "poppy",
             "moss",
-            "dandelion",
-            "poppy",
             "dandelion"
         ]
     },
 
     "recovering from birth":{
-        "duration": 3,
+        "duration": 1,
         "severity": "major",
-        "medicine_duration": 5,
+        "medicine_duration": 1,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -906,7 +904,7 @@
         "risks": [
             {
                 "name": "an infected wound",
-                "chance": 15
+                "chance": 6
             }
         ],
         "also_got": [
@@ -1352,7 +1350,6 @@
             "poppy"
         ]
     },
-
     "poisoned": {
         "duration": 2,
         "severity": "major",
@@ -1496,7 +1493,38 @@
             "juniper"
         ]
     },
-
+    "sunburn": {
+        "duration": 2,
+        "severity": "minor",
+        "medicine_duration": 1,
+        "mortality": {
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+        ],
+        "also_got": [
+        ],
+        "cause_permanent": [
+        ],
+        "herbs": [
+            "cobwebs",
+            "marigold",
+            "wild_garlic",
+            "oak_leaves",
+            "goldenrod",
+            "juniper",
+            "ragwort",
+            "poppy",
+            "moss"
+        ]
+    },
     "rash":{
         "duration": 3,
         "severity": "minor",
@@ -1527,7 +1555,6 @@
 	        "elder_leaves"
         ]
     },
-
     "acute pain":{
         "duration": 3,
         "severity": "major",
@@ -1554,7 +1581,6 @@
             "poppy"
         ]
     },
-
     "wrenched claws":{
         "duration": 2,
         "severity": "major",
