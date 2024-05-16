@@ -2,24 +2,24 @@
     {
         "camp": "any",
         "tags": [
-            "Newleaf",
-            "Greenleaf",
+            "Newleaf", 
+            "Greenleaf", 
             "Leaf-fall"
         ],
-        "death_text": "m_c had not realized {PRONOUN/m_c/poss} fatal mistake until {PRONOUN/m_c/subject} felt {PRONOUN/m_c/poss} paws get clammy and {PRONOUN/m_c/poss} blood, once burning hot and dry after being out in the sun with no water nor shade, turned cold. As the world turned right-side up and {PRONOUN/m_c/poss} consciousness faded right before {PRONOUN/m_c/poss} eyes, m_c knew {PRONOUN/m_c/subject} {VERB/m_c/were/was}beyond saving, as dehydration and overheating claimed the last bits of {PRONOUN/m_c/poss} strength.",
+        "death_text": "m_c had not realized {PRONOUN/m_c/poss} fatal mistake until {PRONOUN/m_c/subject} felt {PRONOUN/m_c/poss} paws get clammy and {PRONOUN/m_c/poss} blood, once burning hot and dry after being out in the sun with no water nor shade, turned cold. As the world turned right-side up and {PRONOUN/m_c/poss} consciousness faded right before {PRONOUN/m_c/poss} eyes, m_c knew {PRONOUN/m_c/subject} {VERB/m_c/were/was} beyond saving, as dehydration and overheating claimed the last bits of {PRONOUN/m_c/poss} strength.",
         "history_text": {
                         "reg_death": "m_c succumbed to dehydration and overheating."
                         },
         "cat_trait": null,
         "cat_skill": null,
-        "other_cat_trait": null,
+        "other_cat_trait": null,        
         "other_cat_skill": null
      },
      {
         "camp": "any",
         "tags": [
-            "Newleaf",
-            "Greenleaf",
+            "Newleaf", 
+            "Greenleaf", 
             "Leaf-fall",
             "other_cat",
             "other_cat_mentor"
@@ -30,14 +30,14 @@
                         },
         "cat_trait": null,
         "cat_skill": null,
-        "other_cat_trait": null,
-        "other_cat_skill": null
+        "other_cat_trait": null,        
+        "other_cat_skill": null  
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_adult"
@@ -48,14 +48,14 @@
                  },
         "cat_trait": null,
          "cat_skill": null,
-         "other_cat_trait": null,
-         "other_cat_skill": null
+         "other_cat_trait": null,        
+         "other_cat_skill": null 
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_parent"
@@ -66,30 +66,33 @@
                  },
         "cat_trait": null,
         "cat_skill": null,
-        "other_cat_trait": null,
-        "other_cat_skill": null
+        "other_cat_trait": null,        
+        "other_cat_skill": null 
     },
     {
         "camp": "any",
         "tags": [
-            "Newleaf",
-            "Greenleaf",
+            "Newleaf", 
+            "Greenleaf", 
             "Leaf-fall"
         ],
-        "death_text": "m_c couldn't speak, yell for help, or beg StarClan to give {PRONOUN/m_c/subject} a sign they were still with {PRONOUN/m_c/object}, {PRONOUN/m_c/poss}  tongue having swelled up inside {PRONOUN/m_c/poss} dried mouth. As m_c collapses, feeling {PRONOUN/m_c/poss} body internally shut down because of dehydration and heat exhaustion, {PRONOUN/m_c/subject} pray that {PRONOUN/m_c/poss} clanmates locate m_c's body before {PRONOUN/m_c/subject} become unrecognizable under the sun.",
+        "death_text": "m_c couldn't speak, yell for help, or beg StarClan to give {PRONOUN/m_c/subject} a sign they were still with {PRONOUN/m_c/object}, {PRONOUN/m_c/poss} tongue having swelled up inside {PRONOUN/m_c/poss} dried mouth. As m_c collapses, feeling {PRONOUN/m_c/poss} body internally shut down because of dehydration and heat exhaustion, {PRONOUN/m_c/subject} pray that {PRONOUN/m_c/poss} Clanmates locate m_c's body before {PRONOUN/m_c/subject} become unrecognizable under the sun.",
         "history_text": {
                         "reg_death": "m_c was claimed by dehydration and heat exhaustion."
                         },
         "cat_trait": null,
         "cat_skill": null,
-        "other_cat_trait": null,
+        "other_cat_trait": null,        
         "other_cat_skill": null
      },
      {
         "camp": "any",
         "tags": [
-            "Newleaf",
-            "Greenleaf"
+            "Newleaf", 
+            "Greenleaf", 
+            "Leaf-fall",
+            "other_cat",
+            "other_cat_mentor"
         ],
         "death_text": "m_c knew {PRONOUN/m_c/subject} made a mistake, as {PRONOUN/m_c/subject} felt {PRONOUN/m_c/poss} last bits of strength slip away from {PRONOUN/m_c/object} and {PRONOUN/m_c/poss} heart stopped beating. {PRONOUN/m_c/poss/CAP} body only discovered days later, r_c wailing at the shriveled body of {PRONOUN/r_c/poss} apprentice, who succumbed to heat and dehydration.",
         "history_text": {
@@ -97,14 +100,14 @@
                         },
         "cat_trait": null,
         "cat_skill": null,
-        "other_cat_trait": null,
-        "other_cat_skill": null
+        "other_cat_trait": null,        
+        "other_cat_skill": null  
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_adult"
@@ -115,14 +118,14 @@
                  },
         "cat_trait": null,
          "cat_skill": null,
-         "other_cat_trait": null,
-         "other_cat_skill": null
+         "other_cat_trait": null,        
+         "other_cat_skill": null 
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_parent"
@@ -133,14 +136,14 @@
                  },
         "cat_trait": null,
          "cat_skill": null,
-         "other_cat_trait": null,
-         "other_cat_skill": null
+         "other_cat_trait": null,        
+         "other_cat_skill": null 
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_adult"
@@ -151,14 +154,14 @@
                  },
         "cat_trait": null,
          "cat_skill": null,
-         "other_cat_trait": null,
-         "other_cat_skill": null
+         "other_cat_trait": null,        
+         "other_cat_skill": null 
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_app",
@@ -172,22 +175,22 @@
         "cat_trait": null,
          "cat_skill": null,
          "other_cat_trait": [
-                                "ambitious",
-                                "bloodthirsty",
-                                "cold",
-                                "fierce",
-                                "shameless",
-                                "strict",
-                                "troublesome",
+                                "ambitious", 
+                                "bloodthirsty", 
+                                "cold", 
+                                "fierce", 
+                                "shameless", 
+                                "strict", 
+                                "troublesome", 
                                 "vengeful"
-        ],
-         "other_cat_skill": null
+        ],        
+         "other_cat_skill": null 
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_app"
@@ -198,14 +201,14 @@
                  },
         "cat_trait": null,
          "cat_skill": null,
-         "other_cat_trait": null,
-         "other_cat_skill": null
+         "other_cat_trait": null,        
+         "other_cat_skill": null 
      },
      {
         "camp": "any",
         "tags": [
-         "Newleaf",
-         "Greenleaf",
+         "Newleaf", 
+         "Greenleaf", 
          "Leaf-fall",
          "other_cat",
          "other_cat_app"
@@ -216,7 +219,7 @@
                  },
         "cat_trait": null,
          "cat_skill": null,
-         "other_cat_trait": null,
-         "other_cat_skill": null
+         "other_cat_trait": null,        
+         "other_cat_skill": null 
      }
 ]
