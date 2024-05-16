@@ -3,6 +3,7 @@ import random
 from scripts.cat.cats import Cat
 from scripts.cat.history import History
 from scripts.cat.pelts import Pelt
+from scripts.cat_relations.relationship import Relationship
 from scripts.events_module.generate_events import GenerateEvents
 from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values
 from scripts.game_structure.game_essentials import game
@@ -17,7 +18,7 @@ class MiscEvents():
 
     @staticmethod
     def handle_misc_events(cat, other_cat=None, war=False, enemy_clan=None, alive_kits=False, accessory=False, ceremony=False):
-        """
+        """ 
         This function handles the misc events
         """
         involved_cats = [cat.ID]
@@ -25,7 +26,7 @@ class MiscEvents():
             other_clan = enemy_clan
         else:
             other_clan = random.choice(game.clan.all_clans)
-
+        
         other_clan_name = None
         if other_clan:
             other_clan_name = f'{other_clan.name}Clan'
@@ -45,7 +46,7 @@ class MiscEvents():
                     other_cat = None
 
             acc_checked_events.append(event)
-
+            
         reveal = False
         victim = None
         cat_history = History.get_murders(cat)
@@ -106,23 +107,11 @@ class MiscEvents():
 
                 log_text = event_text + effect
 
-                if cat.moons == 1:
-                    cat.relationships[other_cat.ID].log.append(log_text + f" - {cat.name} was {cat.moons} moon old")
-                else:
-                    cat.relationships[other_cat.ID].log.append(log_text + f" - {cat.name} was {cat.moons} moons old")
+                if other_cat.ID not in cat.relationships:
+                    cat.relationships[other_cat.ID] = Relationship(cat, other_cat)
 
-        if event_text:
-            # Add event text to the relationship log if two cats are involved
-            if other_cat:
-                pos_rel_event = ["romantic", "platonic", "neg_dislike", "respect", "comfort", "neg_jealousy", "trust"]
-                neg_rel_event = ["neg_romantic", "neg_platonic", "dislike", "neg_respect", "neg_comfort", "jealousy", "neg_trust"]
-                effect = ""
-                if any(tag in misc_event.tags for tag in pos_rel_event):
-                    effect = " (positive effect)"
-                elif any(tag in misc_event.tags for tag in neg_rel_event):
-                    effect = " (negative effect)"
-
-                log_text = event_text + effect
+                if cat.ID not in other_cat.relationships:
+                    other_cat.relationships[cat.ID] = Relationship(other_cat, cat)
 
                 if cat.moons == 1:
                     cat.relationships[other_cat.ID].log.append(log_text + f" - {cat.name} was {cat.moons} moon old")
@@ -134,10 +123,52 @@ class MiscEvents():
             types.append("other_clans")
         if ceremony:
             types.append("ceremony")
+
+        # to remove double the event
+        # (example which might happen would be: "The tension between c_n and o_c is palpable, with even the smallest actions potentially leading to violence.")
+        same_text_events = [event for event in game.cur_events_list if event.text == event_text]
+        if len(same_text_events) > 0:
+            return
+
         game.cur_events_list.append(Single_Event(event_text, types, involved_cats))
 
         if reveal:
+            # Check if whole clan should replace murder witness
+            if "clan_discovery" in misc_event.tags:
+                History.get_murders(cat)["is_murderer"][murder_index]["clan_discovery"] = True
+            # Reveal murder
             History.reveal_murder(cat, other_cat, Cat, victim, murder_index)
+
+    @staticmethod
+    def handle_colour_changes(cat):
+        involved_cats = [cat.ID]
+        event_text = ""
+
+        if cat.genotype.white[0] == 'W' or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
+            return
+
+        if cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
+            red_colour = "orange"
+        elif cat.genotype.dilute[0] == 'd' and cat.genotype.pinkdilute[0] == 'Dp':
+            red_colour = "cream"
+        elif cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'dp':
+            red_colour = "yellow"
+        else:
+            red_colour = 'creamy white'
+
+        if cat.genotype.ext[0] == 'ec' and cat.genotype.agouti[0] == 'a' and cat.moons == 6:
+            event_text = "Throughout kittenhood m_c has gotten many comments about their unique coat. Well, it looks by now to have turned completely " + red_colour + "."
+        if cat.genotype.ext[0] == 'ea' and ((cat.moons == 12 and cat.genotype.agouti[0] != 'a') or (cat.moons == 24 and cat.genotype.agouti[0] == 'a')):
+            event_text = "m_c has gotten used to the odd comment of 'is your fur more "+ red_colour + " today?', having heard it practically since kithood. But by now, nobody can deny it, there's barely a trace of any other coat colour left."
+        if cat.genotype.ext[0] == 'er' and cat.moons == 12 and cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
+            event_text = "'What an odd cat' many would say, having marveled at how m_c's coat changed with time to be nigh unrecogniseable since kittenhood. The medicine cats couldn't explain it either..."
+        if cat.genotype.ext[0] == 'er' and cat.moons == 24 and cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
+            event_text = "Well what do you know? Full of surprises, m_c's coat has turned a whole new colour - this time "+ red_colour + ", even. Everyone's jokingly asking what colour they're trying out next."
+
+        if event_text:
+            event_text = event_text_adjust(Cat, event_text, cat)
+            types = ["misc"]
+            game.cur_events_list.append(Single_Event(event_text, types, involved_cats))
 
     @staticmethod
     def handle_relationship_changes(cat, misc_event, other_cat):
@@ -209,18 +240,47 @@ class MiscEvents():
             acc_list.extend(Pelt.plant_accessories)
         if "COLLAR" in possible_accs:
             acc_list.extend(Pelt.collars)
+        # ohdan's accessories
+        if "FLOWER" in possible_accs:
+            acc_list.extend(Pelt.flower_accessories)
+        if "PLANT2" in possible_accs:
+            acc_list.extend(Pelt.plant2_accessories)
+        if "SNAKE" in possible_accs:
+            acc_list.extend(Pelt.snake_accessories)
+        if "SMALLANIMAL" in possible_accs:
+            acc_list.extend(Pelt.smallAnimal_accessories)
+        if "DEADINSECT" in possible_accs:
+            acc_list.extend(Pelt.deadInsect_accessories)
+        if "ALIVEINSECT" in possible_accs:
+            acc_list.extend(Pelt.aliveInsect_accessories)
+        if "FRUIT" in possible_accs:
+            acc_list.extend(Pelt.fruit_accessories)
+        if "CRAFTED" in possible_accs:
+            acc_list.extend(Pelt.crafted_accessories)
+        if "TAIL2" in possible_accs:
+            acc_list.extend(Pelt.tail2_accessories)
+        # dad accessories
         if "TOY" in possible_accs:
             acc_list.extend(Pelt.toy_accessories)
         if "BLANKIE" in possible_accs:
             acc_list.extend(Pelt.blankie_accessories)
         if "FLAG" in possible_accs:
             acc_list.extend(Pelt.flag_accessories)
+
         for acc in possible_accs:
-            if acc not in ["WILD", "PLANT", "COLLAR", "TOY", "BLANKIE", "FLAG"]:
+            if acc not in ["WILD", "PLANT", "COLLAR", "FLOWER", "PLANT2", "SNAKE", "SMALLANIMAL", "DEADINSECT",
+                           "ALIVEINSECT", "FRUIT", "CRAFTED", "TAIL2", "TOY", "BLANKIE", "FLAG"]:
                 acc_list.append(acc)
 
-        if "NOTAIL" in cat.pelt.scars or "HALFTAIL" in cat.pelt.scars:
+        if "NOTAIL" in cat.pelt.scars or "HALFTAIL" in cat.pelt.scars or (cat.phenotype.bobtailnr > 0 and cat.phenotype.bobtailnr < 5):
             for acc in Pelt.tail_accessories:
+                try:
+                    acc_list.remove(acc)
+                except ValueError:
+                    print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
+
+        if "NOTAIL" in cat.pelt.scars or "HALFTAIL" in cat.pelt.scars or (cat.phenotype.bobtailnr > 0 and cat.phenotype.bobtailnr < 5):
+            for acc in Pelt.tail2_accessories:
                 try:
                     acc_list.remove(acc)
                 except ValueError:
