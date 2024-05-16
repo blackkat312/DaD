@@ -93,7 +93,7 @@
             "scar",
             "MANLEG"
         ],
-        "event_text": "A horrible battle between c_n and o_c patrols after the two patrols traded insults at the border. m_c is left badly injured.",
+        "event_text": "A horrible battle occurred between c_n and o_c patrols after the two patrols traded insults at the border. m_c is left badly injured.",
         "history_text": {
             "scar": "m_c was scarred after a fight with o_c cats.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with o_c cats."
@@ -368,8 +368,8 @@
         ],
         "event_text": "m_c was injured recklessly fighting a fox that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
         "history_text": {
-            "scar": "m_c was scarred fighting a dog that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
-            "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a dog."
+            "scar": "m_c was scarred fighting a fox that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
+            "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a fox."
         },
         "cat_trait": null,
         "cat_skill": null,
@@ -482,12 +482,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for failing to defend the territory well enough.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for failing to defend the territory well enough."
         },
-        "cat_trait": [
-            "insecure",
-            "nervous",
-            "careful",
-            "loving"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -559,12 +554,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for messing with a Twoleg object.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object."
         },
-        "cat_trait": [
-            "troublesome",
-            "childish",
-            "playful",
-            "adventurous"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -600,11 +590,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for disobeying {PRONOUN/r_c/object}.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}."
         },
-        "cat_trait": [
-            "troublesome",
-            "childish",
-            "playful"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -649,9 +635,7 @@
             "strict",
             "vengeful"
         ],
-        "other_cat_skill": [
-            "FIGHTER,1"
-        ]
+        "other_cat_skill": null
     },
     {
         "injury": "cat bite",
@@ -676,18 +660,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
             "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
         },
-        "cat_trait": [
-            "careful",
-            "compassionate",
-            "childish",
-            "insecure",
-            "lonesome",
-            "loving",
-            "nervous",
-            "playful",
-            "strange",
-            "thoughtful"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -1097,12 +1070,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for failing to defend the territory well enough.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough."
         },
-        "cat_trait": [
-            "insecure",
-            "nervous",
-            "careful",
-            "loving"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -1174,12 +1142,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for messing with a Twoleg object.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object."
         },
-        "cat_trait": [
-            "troublesome",
-            "childish",
-            "playful",
-            "adventurous"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -1227,9 +1190,7 @@
             "daring",
             "bold"
         ],
-        "other_cat_skill": [
-            "FIGHTER,1"
-        ]
+        "other_cat_skill": null
     },
     {
         "injury": "claw-wound",
@@ -1254,11 +1215,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for disobeying {PRONOUN/r_c/object}.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}."
         },
-        "cat_trait": [
-            "troublesome",
-            "childish",
-            "playful"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
@@ -1303,9 +1260,7 @@
             "strict",
             "vengeful"
         ],
-        "other_cat_skill": [
-            "FIGHTER,1"
-        ]
+        "other_cat_skill": null
     },
     {
         "injury": "claw-wound",
@@ -1330,18 +1285,7 @@
             "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
             "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
         },
-        "cat_trait": [
-            "careful",
-            "compassionate",
-            "childish",
-            "insecure",
-            "lonesome",
-            "loving",
-            "nervous",
-            "playful",
-            "strange",
-            "thoughtful"
-        ],
+        "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": [
             "bloodthirsty",
