@@ -15,27 +15,27 @@ class Scar_Events():
 
     # scar pools
     bite_scars = [
-        "CATBITE"
+        "CATBITE", "CATBITETWO"
     ]
     rat_scars = [
-        "RATBITE"
+        "RATBITE", "TOE"
     ]
     beak_scars = [
-        'BEAKCHEEK', 'BEAKLOWER'
+        "BEAKCHEEK", "BEAKLOWER", "BEAKSIDE"
     ]
     canid_scars = [
         "LEGBITE", "NECKBITE", "TAILSCAR", "BRIGHTHEART"
     ]
     snake_scars = [
-        "SNAKE"
+        "SNAKE", "SNAKETWO"
     ]
     claw_scars = [
         "ONE", "TWO", "SNOUT", "TAILSCAR", "CHEEK",
         "SIDE", "THROAT", "TAILBASE", "BELLY", "FACE",
-        "BRIDGE"
+        "BRIDGE", "HINDLEG", "BACK", "SCRATCH"
     ]
     leg_scars = [
-        "NOPAW", "TOETRAP", "MANLEG",
+        "NOPAW", "TOETRAP", "MANLEG", "FOUR"
     ]
     tail_scars = [
         "TAILSCAR", "TAILBASE", "NOTAIL", "HALFTAIL", "MANTAIL"
@@ -54,16 +54,16 @@ class Scar_Events():
         "BRIGHTHEART", "BURNPAWS", "BURNTAIL", "BURNBELLY", "BURNRUMP"
     ]
     quill_scars = [
-        "QUILLCHUNK", "QUILLSCRATCH"
+        "QUILLCHUNK", "QUILLSCRATCH", "QUILLSIDE"
     ]
     head_scars = [
         "SNOUT", "CHEEK", "BRIDGE", "BEAKCHEEK"
     ]
     bone_scars = [
-        "MANLEG",  "TOETRAP"
+        "MANLEG", "TOETRAP", "FOUR"
     ]
     back_scars = [
-        "TWO", "TAILBASE"
+        "TWO", "TAILBASE", "BACK"
     ]
     rash_scars = [
         "RASH"
@@ -71,7 +71,7 @@ class Scar_Events():
     declawed_scars = [
         "DECLAWED"
     ]
-
+    
     scar_allowed = {
         "bite-wound": canid_scars,
         "cat-bite": bite_scars,
@@ -90,7 +90,6 @@ class Scar_Events():
         "broken jaw": head_scars,
         "broken back": back_scars,
         "broken bone": bone_scars,
-        "head damage": head_scars,
         "rash": rash_scars,
         "wrenched claws": declawed_scars
     }
@@ -113,8 +112,8 @@ class Scar_Events():
             chance += 2
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
-            
-        if len(cat.pelt.scars) < 6 and not int(random.random() * chance):
+
+        if len(cat.pelt.scars) < 5 and not int(random.random() * chance):
             
             # move potential scar text into displayed scar text
             
@@ -124,9 +123,9 @@ class Scar_Events():
             scar_pool = [i for i in Scar_Events.scar_allowed[injury_name] if i not in cat.pelt.scars]
             if 'NOPAW' in cat.pelt.scars:
                 scar_pool = [i for i in scar_pool if i not in ['TOETRAP', 'RATBITE', "FROSTSOCK"]]
-            if 'NOTAIL' in cat.pelt.scars:
+            if 'NOTAIL' in cat.pelt.scars or (cat.phenotype.bobtailnr > 0 and cat.phenotype.bobtailnr < 3):
                 scar_pool = [i for i in scar_pool if i not in ["HALFTAIL", "TAILBASE", "TAILSCAR", "MANTAIL", "BURNTAIL", "FROSTTAIL"]]
-            if 'HALFTAIL' in cat.pelt.scars:
+            if 'HALFTAIL' in cat.pelt.scars or (cat.phenotype.bobtailnr > 0 and cat.phenotype.bobtailnr < 5):
                 scar_pool = [i for i in scar_pool if i not in ["TAILSCAR", "MANTAIL", "FROSTTAIL"]]
             if "BRIGHTHEART" in cat.pelt.scars:
                 scar_pool = [i for i in scar_pool if i not in ["RIGHTBLIND", "BOTHBLIND"]]
@@ -169,7 +168,7 @@ class Scar_Events():
 
             specialty = random.choice(scar_pool)
             if specialty in ["NOTAIL", "HALFTAIL"]:
-                if cat.pelt.accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]:
+                if cat.pelt.accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "SEAWEED", "DAISY CORSAGE"]:
                     cat.pelt.accessory = None
 
             # combining left/right variations into the both version
