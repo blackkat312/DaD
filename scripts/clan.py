@@ -74,7 +74,7 @@ class Clan():
 
     with open("resources/placements.json", 'r') as read_file:
         layouts = ujson.loads(read_file.read())
-
+    
     age = 0
     current_season = 'Newleaf'
     all_clans = []
@@ -88,31 +88,22 @@ class Clan():
                  camp_bg=None,
                  game_mode='classic',
                  starting_members=[],
-                 starting_season='Newleaf'):
+                 starting_season='Newleaf',
+                 self_run_init_functions = True):
         self.history = History()
         if name == "":
             return
-
+        
         self.name = name
         self.leader = leader
-        if self.leader:
-            self.leader.status_change('leader')
-            self.clan_cats.append(self.leader.ID)
-        self.leader_lives = 9
+        self.leader_lives = 4
         self.leader_predecessors = 0
         self.deputy = deputy
-        if deputy is not None:
-            self.deputy.status_change('deputy')
-            self.clan_cats.append(self.deputy.ID)
         self.deputy_predecessors = 0
         self.medicine_cat = medicine_cat
         self.med_cat_list = []
         self.med_cat_predecessors = 0
-        if medicine_cat is not None:
-            self.clan_cats.append(self.medicine_cat.ID)
-            self.med_cat_list.append(self.medicine_cat.ID)
-            if medicine_cat.status != 'medicine cat':
-                Cat.all_cats[medicine_cat.ID].status_change('medicine cat')
+        
         self.med_cat_number = len(
             self.med_cat_list
         )  # Must do this after the medicine cat is added to the list.
@@ -127,7 +118,7 @@ class Clan():
         self.game_mode = game_mode
         self.pregnancy_data = {}
         self.inheritance = {}
-
+        
         # Init Settings
         self.clan_settings = {}
         self.setting_lists = {}
@@ -143,18 +134,19 @@ class Clan():
         all_settings.append(_settings['role'])
         all_settings.append(_settings['relation'])
         all_settings.append(_settings['freshkill_tactics'])
+        all_settings.append(_settings['clan_focus'])
 
         for setting in all_settings:  # Add all the settings to the settings dictionary
             for setting_name, inf in setting.items():
                 self.clan_settings[setting_name] = inf[2]
                 self.setting_lists[setting_name] = [inf[2], not inf[2]]
-
-
-        #Reputation is for loners/kittypets/outsiders in general that wish to join the clan.
+        
+        
+        #Reputation is for loners/kittypets/outsiders in general that wish to join the clan. 
         #it's a range from 1-100, with 30-70 being neutral, 71-100 being "welcoming",
         #and 1-29 being "hostile". if you're hostile to outsiders, they will VERY RARELY show up.
         self._reputation = 80
-
+        
         self.starting_members = starting_members
         if game_mode in ['expanded', 'cruel season']:
             self.freshkill_pile = Freshkill_Pile()
@@ -164,19 +156,40 @@ class Clan():
         self.secondary_disaster = None
         self.war = {
             "at_war": False,
-            "enemy": None,
+            "enemy": None, 
             "duration": 0,
         }
+        self.last_focus_change = None
+        self.clans_in_focus = []
 
         self.faded_ids = [
         ]  # Stores ID's of faded cats, to ensure these IDs aren't reused.
+        if (self_run_init_functions):
+            self.post_initialization_functions()
 
+
+    # The clan couldn't save itself in time due to issues arising, for example, from this function: "if deputy is not None: self.deputy.status_change('deputy') -> game.clan.remove_med_cat(self)"
+    def post_initialization_functions(self):
+        if self.deputy is not None:
+            self.deputy.status_change('deputy')
+            self.clan_cats.append(self.deputy.ID)
+
+        if self.leader:
+            self.leader.status_change('leader')
+            self.clan_cats.append(self.leader.ID)
+
+        if self.medicine_cat is not None:
+            self.clan_cats.append(self.medicine_cat.ID)
+            self.med_cat_list.append(self.medicine_cat.ID)
+            if self.medicine_cat.status != 'medicine cat':
+                Cat.all_cats[self.medicine_cat.ID].status_change('medicine cat')
     def create_clan(self):
         """
         This function is only called once a new clan is
         created in the 'clan created' screen, not every time
         the program starts
         """
+
         self.instructor = Cat(status=choice(["apprentice", "mediator apprentice", "medicine cat apprentice", "warrior",
                                              "medicine cat", "leader", "mediator", "deputy", "elder"]),
                               )
@@ -320,7 +333,7 @@ class Clan():
 
         if ID in Cat.all_cats:
             Cat.all_cats.pop(ID)
-
+        
         if ID in self.clan_cats:
             self.clan_cats.remove(ID)
         if ID in self.starclan_cats:
@@ -348,7 +361,7 @@ class Clan():
             self.leader = leader
             Cat.all_cats[leader.ID].status_change('leader')
             self.leader_predecessors += 1
-            self.leader_lives = 9
+            self.leader_lives = 4
         game.switches['new_leader'] = None
 
     def new_deputy(self, deputy):
@@ -409,6 +422,8 @@ class Clan():
             "biome": self.biome,
             "camp_bg": self.camp_bg,
             "gamemode": self.game_mode,
+            "last_focus_change": self.last_focus_change,
+            "clans_in_focus": self.clans_in_focus,
             "instructor": self.instructor.ID,
             "reputation": self.reputation,
             "mediated": game.mediated,
@@ -577,7 +592,8 @@ class Clan():
                              Cat.all_cats.get(med_cat_info[0], None),
                              biome=general[2],
                              camp_bg=general[3],
-                             game_mode=general[7])
+                             game_mode=general[7], self_run_init_functions=False)
+            game.clan.post_initialization_functions()
             game.clan.reputation = general[8]
         elif len(general) == 8:
             if general[3] == 'None':
@@ -594,7 +610,9 @@ class Clan():
                 biome=general[2],
                 camp_bg=general[3],
                 game_mode=general[7],
+                self_run_init_functions=False
             )
+            game.clan.post_initialization_functions()
         elif len(general) == 7:
             if general[4] == 'None':
                 general[4] = 0
@@ -607,16 +625,21 @@ class Clan():
                 Cat.all_cats.get(med_cat_info[0], None),
                 biome=general[2],
                 camp_bg=general[3],
+                self_run_init_functions=False
             )
+            game.clan.post_initialization_functions()
         elif len(general) == 3:
             game.clan = Clan(general[0], Cat.all_cats[leader_info[0]],
                              Cat.all_cats.get(deputy_info[0], None),
                              Cat.all_cats.get(med_cat_info[0], None),
-                             general[2])
+                             general[2], self_run_init_functions=False)
+            game.clan.post_initialization_functions()
         else:
             game.clan = Clan(general[0], Cat.all_cats[leader_info[0]],
                              Cat.all_cats.get(deputy_info[0], None),
-                             Cat.all_cats.get(med_cat_info[0], None))
+                             Cat.all_cats.get(med_cat_info[0], None), 
+                             self_run_init_functions=False)
+            game.clan.post_initialization_functions()
         game.clan.age = int(general[1])
         if not game.config['lock_season']:
             game.clan.current_season = game.clan.seasons[game.clan.age % 12]
@@ -708,7 +731,8 @@ class Clan():
                          med_cat,
                          biome=clan_data["biome"],
                          camp_bg=clan_data["camp_bg"],
-                         game_mode=clan_data["gamemode"])
+                         game_mode=clan_data["gamemode"], self_run_init_functions=False)
+        game.clan.post_initialization_functions()
 
         game.clan.reputation = int(clan_data["reputation"])
 
@@ -757,6 +781,9 @@ class Clan():
                 for cat in clan_data["faded_cats"].split(","):
                     game.clan.faded_ids.append(cat)
 
+        game.clan.last_focus_change = clan_data.get("last_focus_change")
+        game.clan.clans_in_focus = clan_data.get("clans_in_focus", [])
+
         # Patrolled cats
         if "patrolled_cats" in clan_data:
             game.patrolled = clan_data["patrolled_cats"]
@@ -775,7 +802,7 @@ class Clan():
             self.load_freshkill_pile(game.clan)
         game.switches['error_message'] = ''
 
-        # Return Version Info.
+        # Return Version Info. 
         return {
             "version_name": clan_data.get("version_name"),
             "version_commit": clan_data.get("version_commit"),
@@ -787,7 +814,7 @@ class Clan():
             with open(get_save_dir() + f'/{game.switches["clan_list"][0]}/clan_settings.json', 'r',
                       encoding='utf-8') as write_file:
                 _load_settings = ujson.loads(write_file.read())
-
+                
         for key, value in _load_settings.items():
             if key in self.clan_settings:
                 self.clan_settings[key] = value
@@ -1017,21 +1044,21 @@ class Clan():
             self._reputation = 100
         elif self._reputation < 0:
             self._reputation = 0
-
+            
     @property
     def temperament(self):
-        """Temperment is determined whenever it's accessed. This makes sure it's always accurate to the
-            current cats in the Clan. However, determining Clan temperment is slow!
+        """Temperment is determined whenever it's accessed. This makes sure it's always accurate to the 
+            current cats in the Clan. However, determining Clan temperment is slow! 
             Clan temperment should be used as sparcely as possible, since
             it's pretty resource-intensive to determine it. """
-
-        all_cats = [i for i in Cat.all_cats_list if
+        
+        all_cats = [i for i in Cat.all_cats_list if 
                     i.status not in ["leader", "deputy"] and
-                    not i.dead and
+                    not i.dead and 
                     not i.outside]
-        leader = Cat.fetch_cat(self.leader) if isinstance(Cat.fetch_cat(self.leader), Cat) else None
+        leader = Cat.fetch_cat(self.leader) if isinstance(Cat.fetch_cat(self.leader), Cat) else None 
         deputy = Cat.fetch_cat(self.deputy) if isinstance(Cat.fetch_cat(self.deputy), Cat) else None
-
+        
         weight = 0.3
 
         if (leader or deputy) and all_cats:
@@ -1047,7 +1074,7 @@ class Clan():
             clan_aggression = round(statistics.median([i.personality.aggression for i in all_cats]))
         else:
             return "stoic"
-
+        
         # temperment = ['high_agress', 'med_agress', 'low agress' ]
         if 12 <= clan_sociability:
             _temperament = ['gracious', 'mellow', 'logical']
@@ -1055,21 +1082,21 @@ class Clan():
             _temperament = ['amiable', 'stoic', 'wary']
         else:
             _temperament = ['cunning', 'proud', 'bloodthirsty']
-
+            
         if 12 <= clan_aggression:
             _temperament = _temperament[2]
         elif 5 <= clan_aggression:
-            _temperament = _temperament[1]
+            _temperament = _temperament[1] 
         else:
-            _temperament = _temperament[0]
-
+            _temperament = _temperament[0] 
+        
         return _temperament
-
+    
     @temperament.setter
     def temperament(self, val):
         #print("Clan temperment set by member personality --> you can not set it externally.", val)
         return
-
+            
 
 
 class OtherClan():
