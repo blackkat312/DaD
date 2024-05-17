@@ -195,6 +195,7 @@ class Cat():
 
         self.adoptive_parents = []
         self.genotype = Genotype(game.config['genetic_chances'])
+        #print(genotype)
         if genotype:
             self.genotype.fromJSON(genotype)
         elif parent1 or parent2:
@@ -203,7 +204,8 @@ class Cat():
             else:
                 try:
                     self.genotype.KitGenerator(Cat.all_cats[parent1].genotype, Cat.all_cats.get(parent2, extrapar))
-                except:
+                except Exception as e:
+                    print(e)
                     self.genotype.Generator()
 
             if(randint(1, game.config['genetic_chances']['intersex']) == 1):
@@ -782,7 +784,7 @@ class Cat():
 
             elif white_pattern is None and vit:
                 white_pattern = [choice(vitiligo)]
-            if white_pattern == [] or white_pattern is None:
+            if white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit):
                 white_pattern = "No"
             return white_pattern
 
@@ -888,8 +890,8 @@ class Cat():
             '''
 
             # trans cat chances
-            trans_chance = randint(0, 35)
-            nb_chance = randint(0, 45)
+            trans_chance = randint(0, 30)
+            nb_chance = randint(0, 35)
             if self.gender == "molly" and not self.status in ['newborn']:
                 if trans_chance == 1:
                     self.genderalign = "trans tom"
@@ -956,6 +958,9 @@ class Cat():
             if not skill_dict:
                 self.skills = CatSkills.generate_new_catskills(self.status, self.moons)
 
+            if game.clan and game.clan.game_mode != "classic":
+                self.genetic_conditions()
+
         # In camp status
         self.in_camp = 1
         if "biome" in kwargs:
@@ -983,25 +988,6 @@ class Cat():
             self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
                              load_existing_name = loading_cat)
 
-
-        if game.clan and game.clan.game_mode != 'classic':
-            if self.genotype.deaf:
-                if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
-                    self.get_permanent_condition('partial hearing loss', born_with=True)
-                elif 'partial hearing loss' not in self.permanent_condition:
-                    self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True)
-
-            if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
-                self.get_permanent_condition('born without a tail', born_with=True)
-
-            if self.genotype.fold[0] == 'Fd' or (self.genotype.munch[0] == 'Mk'):
-                self.get_permanent_condition('constant joint pain', born_with=True)
-
-            if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
-                self.get_permanent_condition('albinism', born_with=True)
-            elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
-                self.get_permanent_condition('ocular albinism', born_with=True)
-
         # Private Sprite
         self._sprite = None
 
@@ -1022,6 +1008,24 @@ class Cat():
 
     def __hash__(self):
         return hash(self.ID)
+
+    def genetic_conditions(self):
+        if self.genotype.deaf:
+            if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
+                self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
+            elif 'partial hearing loss' not in self.permanent_condition:
+                self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
+
+        if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
+            self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
+
+        if self.genotype.fold[0] == 'Fd' or (self.genotype.munch[0] == 'Mk'):
+            self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
+
+        if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
+            self.get_permanent_condition('albinism', born_with=True, genetic=True)
+        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
+            self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
 
     @property
     def mentor(self):
@@ -2157,6 +2161,9 @@ class Cat():
             if self.status == 'leader':
                 game.clan.leader_lives -= 1
             self.die()
+            return "died"
+
+        if not mortality:
             return "continue"
 
     # ---------------------------------------------------------------------------- #
@@ -2411,6 +2418,7 @@ class Cat():
         self.get_injured(injury, event_triggered=True)
 
     def congenital_condition(self, cat):
+        self.genetic_conditions()
         possible_conditions = []
         genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism",
                               "albinism", "ocular albinism"]
@@ -2429,7 +2437,7 @@ class Cat():
 
         self.get_permanent_condition(new_condition, born_with=True)
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
             PERMANENT = ujson.loads(read_file.read())
         if name not in PERMANENT:
@@ -2438,7 +2446,7 @@ class Cat():
 
         if name in ["shattered soul", "budding spirit"]:
             if self.is_plural():
-                print ("cat is already plural!")
+                print("cat is already plural!")
                 return
 
         intersex_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
@@ -2479,9 +2487,9 @@ class Cat():
                 moons_until = randint(moons_until - 1, moons_until + 5)
             if name == "body biter":
                 moons_until = randint(moons_until - 1, moons_until + 4)
-            if name == "strong soul":
+            if name == "thunderous spirit":
                 moons_until = randint(moons_until - 1, moons_until + 4)
-            if name == "otherwordly mind":
+            if name == "otherworldly mind":
                 moons_until = randint(moons_until - 1, moons_until + 4)
             if name == "ocd":
                 moons_until = randint(moons_until - 1, moons_until + 3)
@@ -3944,6 +3952,7 @@ def create_example_cats():
         for scar in game.choose_cats[a].pelt.scars:
             if scar in not_allowed:
                 game.choose_cats[a].pelt.scars.remove(scar)
+        game.choose_cats[a].genetic_conditions()
 
 
 
