@@ -326,7 +326,7 @@ class Pregnancy_Events():
                 kits = Pregnancy_Events.get_kits(amount, cat, outside_parent, clan, backkit=backkit)
 
                 for kit in kits:
-                    if random.random() < stillborn_chance:
+                    if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk":
                         kit.dead = True
                         History.add_death(kit, str(kit.name) + " was stillborn.")
                         kits.remove(kit)
@@ -336,14 +336,13 @@ class Pregnancy_Events():
                     insert = 'a single kitten'
                 if len(kits) > 1:
                     insert = f'a litter of {len(kits)} kits'
-                print_event = f"{cat.name} brought {insert} back to camp, but refused to talk about their origin."
-                cats_involved = [cat.ID]
-                for kit in kits:
-                    cats_involved.append(kit.ID)
-                game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved))
+                if len(kits) > 0:
+                    print_event = f"{cat.name} brought {insert} back to camp, but refused to talk about their origin."
+                    cats_involved = [cat.ID]
+                    for kit in kits:
+                        cats_involved.append(kit.ID)
+                    game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved))
                 return
-
-
 
             # if the other cat is a molly and the current cat is a tom, make the female cat pregnant
             pregnant_cat = cat
@@ -478,7 +477,7 @@ class Pregnancy_Events():
                                     i.is_potential_mate(cat, for_love_interest=True, outsider=True)
                                     and (clan.clan_settings['same sex birth'] or (xor(i.gender == 'tom', cat.gender == 'tom') or xor(i.gender == 'intersex', cat.gender == 'intersex')))
                                     and len(i.mate) == 0]
-            if(random.random() < 0.5 or len(possible_affair_partners) < 1):
+            if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                 if(randint(1, 4) > 1):
                     cat_type = choice(['loner', 'rogue', 'kittypet'])
 
@@ -539,7 +538,7 @@ class Pregnancy_Events():
         kits_amount = len(kits)
 
         for kit in kits:
-            if random.random() < stillborn_chance:
+            if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk":
                 kit.dead = True
                 History.add_death(kit, str(kit.name) + " was stillborn.")
         Pregnancy_Events.set_biggest_family()
@@ -611,8 +610,9 @@ class Pregnancy_Events():
             involved_cats.append(RandomChoice.ID)
             event_list.append(choice(events["birth"]["two_parents"]))
         elif not Affair and Dead_Mate or All_Mates_Outside:
-            involved_cats.append(WhoDied.ID)
-            RandomChoice = WhoDied
+            if WhoDied != 0:
+                involved_cats.append(WhoDied.ID)
+                RandomChoice = WhoDied
             event_list.append(choice(events["birth"]["dead_mate"]))
         elif len(cat.mate) < 1 and not Both_Unmated and not Dead_Mate:
             involved_cats.append(RandomChoice.ID)
@@ -1047,7 +1047,7 @@ class Pregnancy_Events():
             par2geno.Generator('fem')
         elif cat and cat.gender == 'molly':
             par2geno.Generator('masc')
-        else:
+        elif cat:
             par2geno.Generator(fem_masc)
         ##### SELECT BACKSTORY #####
         if backkit:
@@ -1152,8 +1152,10 @@ class Pregnancy_Events():
                 
             #kit.adoptive_parents = all_adoptive_parents  # Add the adoptive parents.
             # Prevent duplicate prefixes in Clan
-            while kit.name.prefix in [kitty.name.prefix for kitty in Cat.all_cats.values() if not kitty.dead and not kitty.outside and kitty.ID != kit.ID]:
+            tries = 0
+            while tries < 25 and kit.name.prefix in [kitty.name.prefix for kitty in Cat.all_cats.values() if not kitty.dead and not kitty.outside and kitty.ID != kit.ID]:
                 kit.name = Name("newborn")
+                tries += 1
 
             all_kitten.append(kit)
             # adoptive parents are set at the end, when everything else is decided
@@ -1241,8 +1243,8 @@ class Pregnancy_Events():
             kit.adoptive_parents = final_adoptive_parents
             if blood_parent2:
                 for birth_p in blood_parent2:
-                    if birth_p.ID != kit.parent2 and birth_p not in kit.adoptive_parents:
-                        kit.adoptive_parents.append(birth_p)
+                    if birth_p.ID != kit.parent2 and birth_p.ID not in kit.adoptive_parents:
+                        kit.adoptive_parents.append(birth_p.ID)
             kit.inheritance.update_inheritance()
             kit.inheritance.update_all_related_inheritance()
 
