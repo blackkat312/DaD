@@ -9,6 +9,7 @@ from scripts.game_structure import image_cache
 from scripts.game_structure.image_button import UIImageButton, UISpriteButton
 from scripts.game_structure.game_essentials import game, screen, screen_x, screen_y, MANAGER
 
+from operator import xor
 
 class ChooseMateScreen(Screens):
     list_frame = pygame.transform.scale(image_cache.load_image("resources/images/choosing_frame.png").convert_alpha(),
@@ -815,7 +816,7 @@ class ChooseMateScreen(Screens):
                                                                    )
 
 
-        if not game.clan.clan_settings["same sex birth"] and self.the_cat.gender == self.selected_cat.gender:
+        if (game.clan.clan_settings["same sex birth"] == False and (self.the_cat.gender == self.selected_cat.gender) or (self.the_cat.gender == 'intersex' or self.selected_cat.gender == 'intersex')) or ('infertile' in self.the_cat.permanent_condition or 'infertile' in self.selected_cat.permanent_condition):
             self.selected_cat_elements["no kit warning"] = pygame_gui.elements.UITextBox(
                 f"<font pixel_size={int(22 / 1400 * screen_y)}> This pair can't have biological kittens </font>",
                 scale(pygame.Rect((550, 250), (498, 50))),
@@ -971,7 +972,8 @@ class ChooseMateScreen(Screens):
                        and (not self.single_only or not i.mate)
                        and (not self.have_kits_only
                             or game.clan.clan_settings["same sex birth"]
-                            or i.gender != self.the_cat.gender)]
+                            or i.gender != self.the_cat.gender)
+                            or (('infertile' not in i.permanent_condition) and ('infertile' not in self.the_cat.permanent_condition))]
 
         return valid_mates
 
