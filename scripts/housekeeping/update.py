@@ -61,7 +61,7 @@ def download_file(url: str):
 
 def get_update_url():
     if get_update_url.value is None:
-        fetch_url = "https://raw.githubusercontent.com/ClanGenOfficial/clangen/development/verification/update_api_url.txt"
+        fetch_url = "https://raw.githubusercontent.com/Thlumyn/clangen/development/verification/update_api_url.txt"
         result = configured_get_request(fetch_url)
         get_update_url.value = result.text
     return get_update_url.value
@@ -155,7 +155,7 @@ def self_update(
     better_signature = better_signature.replace("-----END+PGP+SIGNATURE-----", "-----END PGP SIGNATURE-----")
     progress_bar.advance()
 
-    download_file("https://raw.githubusercontent.com/ClanGenOfficial/clangen/development/verification/update_pubkey.asc")
+    download_file("https://raw.githubusercontent.com/Thlumyn/clangen/development/verification/update_pubkey.asc")
     progress_bar.advance()
 
     key, _ = pgpy.PGPKey.from_file("./Downloads/update_pubkey.asc")
@@ -184,7 +184,7 @@ def self_update(
         with zipfile.ZipFile("download.tmp") as zip_ref:
             zip_ref.extractall('Downloads')
         os.remove("download.tmp")
-        shutil.copy("./Downloads/Clangen/resources/self_updater.exe", "./Downloads/self_updater.exe")
+        shutil.copy("./Downloads/Clangen/_internal/resources/self_updater.exe", "./Downloads/self_updater.exe")
         announce_restart_callback()
         time.sleep(3)
         subprocess.Popen(
