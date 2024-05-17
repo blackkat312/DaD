@@ -32,7 +32,7 @@ class Scar_Events():
     claw_scars = [
         "ONE", "TWO", "SNOUT", "TAILSCAR", "CHEEK",
         "SIDE", "THROAT", "TAILBASE", "BELLY", "FACE",
-        "BRIDGE", "HINDLEG", "BACK", "SCRATCH"
+        "BRIDGE", "HINDLEG", "BACK", "SCRATCHSIDE"
     ]
     leg_scars = [
         "NOPAW", "TOETRAP", "MANLEG", "FOUR"
@@ -113,10 +113,9 @@ class Scar_Events():
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
 
-        if len(cat.pelt.scars) < 5 and not int(random.random() * chance):
+        if len(cat.pelt.scars) < 5 and random.randint(1, 2) == 1:
             
             # move potential scar text into displayed scar text
-            
 
             specialty = None  # Scar to be set
 
