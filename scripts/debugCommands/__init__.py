@@ -1,10 +1,9 @@
-from scripts.debugCommands.command import Command
-from scripts.debugCommands.help import HelpCommand
-from scripts.debugCommands.settings import ToggleCommand, SetCommand, GetCommand
-from scripts.debugCommands.eval import EvalCommand, UnderstandRisksCommand
-from scripts.debugCommands.clear import ClearCommand
-from scripts.debugCommands.fps import FpsCommand
-from scripts.debugCommands.cat import CatsCommand
+from scripts.debug_commands.command import Command
+from scripts.debug_commands.help import HelpCommand
+from scripts.debug_commands.settings import ToggleCommand, SetCommand, GetCommand
+from scripts.debug_commands.eval import EvalCommand
+from scripts.debug_commands.fps import FpsCommand
+from scripts.debug_commands.cat import CatsCommand
 from typing import List
 
 commandList: List[Command] = [
@@ -12,8 +11,6 @@ commandList: List[Command] = [
     SetCommand(),
     GetCommand(),
     EvalCommand(),
-    UnderstandRisksCommand(),
-    ClearCommand(),
     FpsCommand(),
     CatsCommand()
 ]
