@@ -480,15 +480,42 @@ class Condition_Events():
         cat.healed_condition = False
         event_list = []
         base_illness = [
-            "running nose", "kittencough", "whitecough", "silvercough", "greencough", "yellowcough",
-            "an infected wound", "heat exhaustion", "stomachache", "nightmares", "anxiety attack", "panic attack",
-            "sleeplessness", "ticks", "nest wetting", "nonverbal", "tics"
+            "running nose",
+            "kittencough",
+            "whitecough",
+            "silvercough",
+            "greencough",
+            "yellowcough",
+            "an infected wound",
+            "heat exhaustion",
+            "stomachache",
+            "nightmares",
+            "anxiety attack",
+            "panic attack",
+            "sleeplessness",
+            "ticks",
+            "nest wetting",
+            "nonverbal",
+            "tics"
         ]
         progression = [
-            ["whitecough", "silvercough"], "silvercough", ["silvercough", "greencough"], "greencough", "yellowcough",
-            "redcough", "a festering wound", "heat stroke", ["diarrhea", "constipation"], "constant nightmares",
-            "panic attack", ["shock", "paranoia"], "ongoing sleeplessness", ["tick bites", "severe tick bites"],
-            "night dirtmaking", "mute", ["tics, tic attack"]
+            ["whitecough", "silvercough"],
+            "silvercough",
+            ["silvercough", "greencough"],
+            "greencough",
+            "yellowcough",
+            "redcough",
+            "a festering wound",
+            "heat stroke",
+            ["diarrhea", "constipation"],
+            "constant nightmares",
+            "panic attack",
+            ["shock", "paranoia"],
+            "ongoing sleeplessness",
+            ["tick bites", "severe tick bites"],
+            "night dirtmaking",
+            "mute",
+            ["tics, tic attack"]
         ]
         illness_progression = dict(zip(base_illness, progression))
         # ---------------------------------------------------------------------------- #
@@ -696,12 +723,23 @@ class Condition_Events():
         event_list = []
 
         base_condition = [
-            "one bad eye", "failing eyesight", "partial hearing loss", "lasting grief", "recurring shock",
-            "echoing shock", "burning light"
+            "one bad eye",
+            "failing eyesight",
+            "partial hearing loss",
+            "lasting grief",
+            "recurring shock",
+            "echoing shock",
+            "burning light"
         ]
         progression = [
-            ["failing eyesight", "lazy eye"], "blind", "deaf", "heavy soul", "echoing shock", "recurring shock",
-            "blind"]
+            ["failing eyesight", "lazy eye"],
+            "blind",
+            "deaf",
+            "heavy soul",
+            "echoing shock",
+            "recurring shock",
+            "blind"
+        ]
         condition_progression = dict(zip(base_condition, progression))
 
         conditions = deepcopy(cat.permanent_condition)
@@ -711,7 +749,7 @@ class Condition_Events():
             status = cat.moon_skip_permanent_condition(condition)
 
             # if cat is dead, break
-            if cat.dead or cat.status == 'leader':
+            if not status == "continue" and (cat.dead or cat.status == 'leader'):
                 triggered = True
                 event_types.append("birth_death")
                 event = f"{cat.name} died from complications caused by {condition}."
