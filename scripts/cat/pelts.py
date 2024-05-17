@@ -566,8 +566,8 @@ class Pelt():
         #   PELT LENGTH
         # ------------------------------------------------------------------------------------------------------------#
 
-        weights = [0, 0, 0]  # Weights for each length. It goes (short, medium, long)
         '''
+        weights = [0, 0, 0]  # Weights for each length. It goes (short, medium, long)
         for p_ in par_peltlength:
             if p_ == "short":
                 add_weight = (50, 10, 2)
@@ -583,7 +583,7 @@ class Pelt():
             for x in range(0, len(weights)):
                 weights[x] += add_weight[x]
 
-         A quick check to make sure all the weights aren't 0
+        # A quick check to make sure all the weights aren't 0
         if all([x == 0 for x in weights]):
             weights = [1, 1, 1]
 
@@ -1063,3 +1063,4 @@ class Pelt():
 
     def get_sprites_name(self):
         return Pelt.sprites_names[self.name]
+    
