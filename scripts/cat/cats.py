@@ -270,41 +270,34 @@ class Cat():
                       'HONEY', 'TOESTAIL', 'RAVENPAW', 'LILTWO', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE',
                       'REVERSEEYE', 'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS',
                       # Mink's torties
-                      'MINKCHEST', 'MINKDAPPLENIGHT', 'MINKFRECKLED', 'MINKMASK', 'MINKMINIMALONE',
-                      'MINKMINIMALTWO', 'MINKMINIMALTHREE', 'MINKMINIMALFOUR', 'MINKORIOLE', 'MINKROSETAIL',
-                      'MINKSAFI', 'MINKSMUDGED'],
+                      'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE'],
 
                 '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
                       'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
                       'DAPPLEPAW'
                       # Mink's torties
-                      'MINKONE', 'MINKBELOVED', 'MINKBLANKET', 'MINKCHEST', 'MINKDAPPLENIGHT', 'MINKEYEDOT',
-                      'MINKHEARTBEAT', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTWO', 'MINKMINIMALFOUR',
-                      'MINKREDTAIL', 'MINKROBIN', 'MINKSHILOH', 'MINKSIDEMASK', 'MINKSMUDGED', 'MINKSTREAK',
-                      'MINKSTREAMSTRIKE'],
+                      'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE'],
 
                 '4': ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
                       'HAWKBLAZE', 'TOPCOVER',
                       # Mink's torties
-                      'MINKTWO', 'MINKFOUR', 'MINKARMTAIL', 'MINKBLANKET', 'MINKBRIE', 'MINKBRINDLE', 'MINKCHIMERA',
-                      'MINKDAUB', 'MINKDELILAH', 'MINKEYEDOT', 'MINKGRUMPYFACE', 'MINKMOTTLED', 'MINKPACMAN',
-                      'MINKPAIGE', 'MINKREDTAIL', 'MINKSTREAK'],
+                      'MINKEYEDOT'],
 
                 '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'PANTS', 'REVERSEPANTS', 'PANTSTWO', 'TRIXIE', 'WINGS',
                       # Mink's torties
-                      'MINKTHREE', 'MINKHALF', 'MINKOREO', 'MINKPAIGE', 'MINKSWOOP']
+                      'MINKOREO']
             },
             'high':{
                 '1': ['ANY', 'SHIBAINU', 'PANTSTWO', 'MAO', 'TRIXIE', 'WINGS',
                       # Mink's torties
-                      'MINKTHREE', 'MINKHALF', 'MINKOREO', 'MINKPAIGE', 'MINKSWOOP'],
+                      'MINKOREO'],
 
                 '2': ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR'],
 
                 '3': ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
                       'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE',
                       # Mink's torties
-                      'MINKBODY', 'MINKBANDANA'],
+                      'MINKBODY'],
 
                 '4': ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
                       'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA'],
@@ -328,31 +321,25 @@ class Cat():
 
             low2 = ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'PAWS', 'BROKENBLAZE', 'BEARD', 'BIB', 'VEE',
                     'HONEY', 'TOESTAIL', 'RAVENPAW', 'LILTWO', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE', 'REVERSEEYE',
-                    'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS', 'MINKCHEST', 'MINKDAPPLENIGHT', 'MINKFRECKLED',
-                    'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTWO', 'MINKMINIMALTHREE', 'MINKMINIMALFOUR', 'MINKORIOLE',
-                    'MINKROSETAIL', 'MINKSAFI', 'MINKSMUDGED']
+                    'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS', 'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE',
+                    'MINKMINIMALTHREE']
 
             low3 = ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
                     'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                    'DAPPLEPAW', 'MINKONE', 'MINKBELOVED', 'MINKBLANKET', 'MINKCHEST', 'MINKDAPPLENIGHT', 'MINKEYEDOT',
-                    'MINKHEARTBEAT', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTWO', 'MINKMINIMALFOUR', 'MINKREDTAIL',
-                    'MINKROBIN', 'MINKSHILOH', 'MINKSIDEMASK', 'MINKSMUDGED', 'MINKSTREAK', 'MINKSTREAMSTRIKE']
+                    'DAPPLEPAW' 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
 
             low4 = ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
-                    'HAWKBLAZE', 'TOPCOVER', 'MINKTWO', 'MINKFOUR', 'MINKARMTAIL', 'MINKBLANKET', 'MINKBRIE',
-                    'MINKBRINDLE', 'MINKCHIMERA', 'MINKDAUB', 'MINKDELILAH', 'MINKEYEDOT', 'MINKGRUMPYFACE',
-                    'MINKMOTTLED', 'MINKPACMAN', 'MINKPAIGE', 'MINKREDTAIL', 'MINKSTREAK']
+                    'HAWKBLAZE', 'TOPCOVER', 'MINKEYEDOT']
 
             low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'PANTS', 'REVERSEPANTS', 'PANTSTWO', 'TRIXIE', 'WINGS',
-                    'MINKTHREE', 'MINKHALF', 'MINKOREO', 'MINKPAIGE', 'MINKSWOOP']
+                    'MINKOREO']
 
-            high1 = ['ANY', 'SHIBAINU', 'PANTSTWO', 'MAO', 'TRIXIE', 'WINGS', 'MINKTHREE', 'MINKHALF', 'MINKOREO',
-                     'MINKPAIGE', 'MINKSWOOP']
+            high1 = ['ANY', 'SHIBAINU', 'PANTSTWO', 'MAO', 'TRIXIE', 'WINGS', 'MINKOREO']
 
             high2 = ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR']
 
             high3 = ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
-                     'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE', 'MINKBODY', 'MINKBANDANA']
+                     'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE', 'MINKBODY']
 
             high4 = ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
                      'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA']
