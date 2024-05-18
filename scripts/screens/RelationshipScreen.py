@@ -382,9 +382,9 @@ class RelationshipScreen(Screens):
                             (36, 36)))
 
             # Gender
-            if self.inspect_cat.genderalign == 'molly' or (cat.gender == 'intersex' and cat.genderalign == 'trans molly'):
+            if self.inspect_cat.genderalign == 'molly' or (self.inspect_cat.gender == 'intersex' and self.inspect_cat.genderalign == 'trans molly'):
                 gender_icon = image_cache.load_image("resources/images/female_big.png").convert_alpha()
-            elif self.inspect_cat.genderalign == 'tom' or (cat.gender == 'intersex' and cat.genderalign == 'trans tom'):
+            elif self.inspect_cat.genderalign == 'tom' or (self.inspect_cat.gender == 'intersex' and self.inspect_cat.genderalign == 'trans tom'):
                 gender_icon = image_cache.load_image("resources/images/male_big.png").convert_alpha()
             elif self.inspect_cat.genderalign == 'trans molly':
                 gender_icon = image_cache.load_image("resources/images/transfem_big.png").convert_alpha()
@@ -563,9 +563,9 @@ class RelationshipScreen(Screens):
                                                                                      object_id="#text_box_26_horizcenter")
 
         # Gender alignment
-        if the_relationship.cat_to.genderalign == 'molly' or (cat.gender == 'intersex' and cat.genderalign == 'trans molly'):
+        if the_relationship.cat_to.genderalign == 'molly' or (the_relationship.cat_to.gender == 'intersex' and the_relationship.cat_to.genderalign == 'trans molly'):
             gender_icon = image_cache.load_image("resources/images/female_big.png").convert_alpha()
-        elif the_relationship.cat_to.genderalign == 'tom' or (cat.gender == 'intersex' and cat.genderalign == 'trans tom'):
+        elif the_relationship.cat_to.genderalign == 'tom' or (the_relationship.cat_to.gender == 'intersex' and the_relationship.cat_to.genderalign == 'trans tom'):
             gender_icon = image_cache.load_image("resources/images/male_big.png").convert_alpha()
         elif the_relationship.cat_to.genderalign == 'trans molly':
             gender_icon = image_cache.load_image("resources/images/transfem_big.png").convert_alpha()
