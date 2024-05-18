@@ -149,7 +149,7 @@ class MiscEvents():
         if cat.genotype.white[0] == 'W' or (cat.genotype.white[0] == 'ws' and cat.genotype.whitegrade > 4) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
             return
 
-        if 'ws' in cat.genotype.white and cat.white_pattern != "No":
+        if 'ws' in cat.genotype.white:
             white_text1 = ", apart from the white"
             white_text2 = " the colored part of "
         if cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
