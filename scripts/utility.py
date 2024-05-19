@@ -1674,7 +1674,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                                 ghostingbase.set_alpha(150)
                             
                             whichmain.blit(ghostingbase, (0, 0))
-                        if (genotype.silver[0] == 'I' and genotype.furLength[0] != 'l'):
+                        if (genotype.silver[0] == 'I'):
                             whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
                             if(phenotype.silvergold == ' light smoke '):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
@@ -1693,14 +1693,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                             whichmain.blit(sprites.sprites['lightbasecolours2'], (0, 0)) 
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                     whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
 
@@ -1718,14 +1718,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                                     colour = 'lightbasecolours2'
                                     if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                         whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                         ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                         ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                         if(cat.moons < 4):
                                             ghostingbase.set_alpha(150)
                                         
                                         whichmain.blit(ghostingbase, (0, 0))
-                                    if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                                    if (genotype.silver[0] == 'I'):
                                         whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
                                 elif((whichcolour == "chocolate" and cat_sprite != "20") or whichcolour == "black"):
@@ -1734,14 +1734,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                                     if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                         whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                         ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                         ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                         if(cat.moons < 4):
                                             ghostingbase.set_alpha(150)
                                         
                                         whichmain.blit(ghostingbase, (0, 0))
-                                    if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                                    if (genotype.silver[0] == 'I'):
                                         whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
                                 elif(whichcolour == "cinnamon" or whichcolour == "chocolate"):
                                     whichmain.blit(sprites.sprites['lightbasecolours0'], (0, 0))
@@ -1761,14 +1761,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                                     if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                         whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                         ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                         ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                         if(cat.moons < 4):
                                             ghostingbase.set_alpha(150)
                                         
                                         whichmain.blit(ghostingbase, (0, 0))
-                                    if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                                    if (genotype.silver[0] == 'I'):
                                         whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
                             else:
                                 if(whichcolour == "black" and cat_sprite != "20"):
@@ -1777,14 +1777,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                                     if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                         whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                                    if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                         ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                         ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                         if(cat.moons < 4):
                                             ghostingbase.set_alpha(150)
                                         
                                         whichmain.blit(ghostingbase, (0, 0))
-                                    if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                                    if (genotype.silver[0] == 'I'):
                                         whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
                                 else:
                                     whichmain.blit(sprites.sprites['lightbasecolours0'], (0, 0))
@@ -1803,14 +1803,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                                     
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                 whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
 
@@ -1844,14 +1844,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                 whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
 
@@ -1861,14 +1861,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                 whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
                         elif(((whichcolour == "cinnamon" and genotype.pointgene == ["cb", "cb"]) or (whichcolour == "chocolate" and "cb" in genotype.pointgene) or (whichcolour == "black" and genotype.pointgene == ["cs", "cs"])) and cat_sprite != "20" or ((whichcolour == "chocolate" and genotype.pointgene == ["cb", "cb"]) or (whichcolour == "black" and "cb" in genotype.pointgene))):
@@ -1877,14 +1877,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                 whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
                         elif(genotype.pointgene == ["cb", "cb"]):
@@ -1901,14 +1901,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                 whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
                         elif("cb" in genotype.pointgene):
@@ -1928,14 +1928,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                             if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                                 whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                            if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                                 ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                                 ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                                 if(cat.moons < 4):
                                     ghostingbase.set_alpha(150)
                                 
                                 whichmain.blit(ghostingbase, (0, 0))
-                            if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                            if (genotype.silver[0] == 'I'):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
                         else:
@@ -1956,14 +1956,14 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                             
                         if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                             whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                        if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
+                        if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
                             ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                             ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                             if(cat.moons < 4):
                                 ghostingbase.set_alpha(150)
                             
                             whichmain.blit(ghostingbase, (0, 0))
-                        if (genotype.silver[0] == 'I' and cat.pelt.length != 'long'):
+                        if (genotype.silver[0] == 'I'):
                             whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
                             if(phenotype.silvergold == ' light smoke '):
                                 whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
