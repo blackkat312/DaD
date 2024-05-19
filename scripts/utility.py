@@ -1549,7 +1549,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                         if(whichcolour == "black" and genotype.pointgene[0] == "cm"):
                             colourbase2 = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                             colourbase.blit(sprites.sprites['lightbasecolours0'], (0, 0))
-                            colourbase2.blit(sprites.sprites[whichbase.replace("black", "lightbasecolours3") + cat_sprite], (0, 0))
+                            colourbase2.blit(sprites.sprites[whichbase.replace("black", "cinnamon") + cat_sprite], (0, 0))
                             colourbase2.set_alpha(150)
                             colourbase.blit(colourbase2, (0, 0))
                         else:
@@ -1645,7 +1645,6 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 
                         stripebase.blit(CreateStripes(colour, whichbase), (0, 0))
 
-                        
                         if(get_current_season() == "Greenleaf"):
                             stripebase2.blit(sprites.sprites['mochal' + cat_sprite], (0, 0))
                             stripebase2.blit(stripebase, (0, 0), 
