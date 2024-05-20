@@ -2419,7 +2419,7 @@ class Cat():
             if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
-        while conditions <= max_conditions:
+        while count <= max_conditions:
             if randint(1, multiple_condition_chance) == 1:
                 conditions += 1
             count += 1
