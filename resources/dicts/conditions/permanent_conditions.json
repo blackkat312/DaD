@@ -806,6 +806,86 @@
             "juniper"
         ]
     },
+    "albinism": {
+        "severity": "minor",
+        "congenital": "always",
+        "moons_until": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+                "name": "persistent headaches",
+                "chance": 80
+            },
+            {
+                "name": "severe headache",
+                "chance": 60
+            },
+            {
+                "name": "headache",
+                "chance": 40
+            },
+            {
+                "name": "sunburn",
+                "chance": 5
+            },
+            {
+                "name" : "failing eyesight",
+                "chance": 80
+            }
+        ],
+        "herbs": [
+            "poppy",
+            "juniper"
+        ]
+    },
+    "ocular albinism": {
+        "severity": "minor",
+        "congenital": "always",
+        "moons_until": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+                "name": "persistent headaches",
+                "chance": 80
+            },
+            {
+                "name": "severe headache",
+                "chance": 60
+            },
+            {
+                "name": "headache",
+                "chance": 40
+            },
+            {
+                "name" : "failing eyesight",
+                "chance": 80
+            }
+        ],
+        "herbs": [
+            "poppy",
+            "juniper"
+        ]
+    },
     "starwalker": {
         "severity": "minor",
         "congenital": "always",
@@ -1364,7 +1444,7 @@
             "young adult": 0,
             "adult": 0,
             "senior adult": 0,
-            "senior": 0 
+            "senior": 0
         },
         "illness_infectiousness": [
         ],
