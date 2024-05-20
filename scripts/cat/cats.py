@@ -2408,6 +2408,7 @@ class Cat():
         self.genetic_conditions()
         possible_conditions = []
         multiple_condition_chance = game.config["cat_generation"]["multiple_permanent_conditions"]
+        max_conditions = game.config["cat_generation"]["max_conditions_born_with"]
         conditions = 1
         count = 1
         genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism",
@@ -2418,7 +2419,7 @@ class Cat():
             if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
-        while conditions <= 3:
+        while conditions <= max_conditions:
             if randint(1, multiple_condition_chance) == 1:
                 conditions += 1
             count += 1
