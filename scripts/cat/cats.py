@@ -1484,7 +1484,7 @@ class Cat():
         template[name] = str(self.name)
         template[gender] = self.genderalign
         self.alters.append(template)
-    
+    '''
     def new_alter(self):
         template = {
             "ID": "",
