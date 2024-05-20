@@ -2,7 +2,7 @@
     "claw-wound": {
 		"recurring shock": [
 			"After m_c recovers from {PRONOUN/m_c/poss} claw-wound {PRONOUN/m_c/subject} still {VERB/m_c/seem/seems} to be on edge. After talking with r_c it's determined that the experience has left {PRONOUN/m_c/object} with some form of echoing shock.",
-			"Despite knowing that {PRONOUN/m_c/poss} Clanmates would never hurt {PRONOUN/m_c/object}, m_c quietly admits to r_c that {PRONOUN/m_c/subject} can't help but find {PRONOUN/m_c/self} on edge just... waiting.",
+			"Despite knowing that {PRONOUN/m_c/poss} clanmates would never hurt {PRONOUN/m_c/object}, m_c quietly admits to r_c that {PRONOUN/m_c/subject} can't help but find {PRONOUN/m_c/self} on edge just... waiting.",
 			"Even fully recovered from {PRONOUN/m_c/poss} claw-wound something still seems to be a bit off with m_c, something lingering over {PRONOUN/m_c/object}."
 		]
 	},
@@ -123,7 +123,7 @@
         "lost their tail": [
             "m_c sighs sadly as r_c suggests that it's time to take {PRONOUN/m_c/poss} tail off. The flesh is blackened from frostbite and is obviously dead - there's no use in leaving it attached. m_c agrees.",
             "m_c's tail can hardly even move and r_c tells {PRONOUN/m_c/object} that the frostbite has progressed too far. If m_c is to survive then the tail will have to be removed.",
-            "m_c's tail is finally gone. It was more of a relief than anything. The frostbitten flesh was already dead and blackened, so {PRONOUN/m_c/subject} had no issue with taking it off before it fell off on its own."
+            "m_c's tail is finally gone. It was more of a relief than anything. The frostbitten flesh was already dead and blackened, so {PRONOUN/m_c/object} had no issue with taking it off before it fell off on its own."
         ],
         "partial hearing loss": [
             "r_c tells m_c that the frostbite had simply progressed too far into {PRONOUN/m_c/poss} ear; {PRONOUN/m_c/poss} hearing is permanently damaged.",
@@ -136,7 +136,7 @@
             "m_c sits and watches the Clan going about their business and tries to get used to the stark silence. {PRONOUN/m_c/subject/CAP} {VERB/m_c/know/knows}, instinctively, that {PRONOUN/m_c/poss} hearing is never coming back. The frostbite must have scarred something deep within {PRONOUN/m_c/poss} ears."
         ],
         "recurring shock":[
-            "m_c feels the prickles of cold on {PRONOUN/m_c/poss} skin despite being warm in the Clan's camp.",
+            "m_c feels the prickles of cold on {PRONOUN/m_c/poss} skin despite being warm in the clan's camp.",
             "m_c has to hide in Warrior's den when {PRONOUN/m_c/subject} see snow again."
         ]
     },
@@ -148,7 +148,7 @@
         ],
         "recurring shock": [
             "r_c has to remind m_c that {PRONOUN/m_c/subject} can breathe when water touches {PRONOUN/m_c/poss} fur.",
-            "When m_c goes swimming, {PRONOUN/m_c/subject} get hauled out by {PRONOUN/m_c/poss} Clanmates despite not even dipping {PRONOUN/m_c/poss} head under water.",
+            "When m_c goes swimming, {PRONOUN/m_c/subject} get hauled out by {PRONOUN/m_c/poss} clanmates despite not even dipping {PRONOUN/m_c/poss} head under water.",
             "When water touches m_c's tail {PRONOUN/m_c/subject} fluff up and start gasping and coughing to get the phantom water out of {PRONOUN/m_c/poss} lungs."
         ]
     },
@@ -181,7 +181,7 @@
 		"echoing shock": [
 			"m_c stalks around the medicine den asking r_c why the world still feels dangerous, why {PRONOUN/m_c/subject} can't seem to just feel comfortable anymore.",
 			"Despite the shock having passed something still sits tightly bound up in m_c's chest and {PRONOUN/m_c/subject} {VERB/m_c/struggle/struggles} to explain it clearly to r_c.",
-			"m_c feels like {PRONOUN/m_c/subject} no longer quite {VERB/m_c/belong/belongs} in the Clan, changed in some way that {PRONOUN/m_c/poss} Clanmates could never understand."
+			"m_c feels like {PRONOUN/m_c/subject} no longer quite {VERB/m_c/belong/belongs} in the clan, changed in some way that {PRONOUN/m_c/poss} clanmates could never understand."
 		],
 		"anxiety": [
 			"r_c has noticed that while the shock has gone it's replaced in m_c with a certain kind of worry that {PRONOUN/m_c/subject} {VERB/m_c/wear/wears} like a cloud of dust on {PRONOUN/m_c/poss} pelt.",
@@ -206,7 +206,7 @@
         ],
         "constantly dizzy": [
             "m_c stumbles through the medicine den, trying to walk a straight line as r_c instructed. r_c tells {PRONOUN/m_c/object} that the newfound lack of balance might be a permanent result of {PRONOUN/m_c/poss} head injury.",
-            "m_c finds that {PRONOUN/m_c/subject} {VERB/m_c/have/has} to concentrate to stay upright while standing and the newfound loss of balance is endlessly frustrating to {PRONOUN/m_c/object}. {PRONOUN/m_c/subject/CAP} {VERB/m_c/surmise/surmises} that it's likely been caused by {PRONOUN/m_c/poss} head injury.",
+            "m_c finds that {PRONOUN/m_c/subject} {VERB/m_c/have/has} to concentrate to stay upright while standing and the newfound loss of balance is endlessly frustrating to {PRONOUN/m_c/subject}. {PRONOUN/m_c/subject/CAP} {VERB/m_c/surmise/surmises} that it's likely been caused by {PRONOUN/m_c/poss} head injury.",
 			"Ever since m_c had that head injury {PRONOUN/m_c/subject} {VERB/m_c/have/has} found that the world seems to constantly sway and rock around {PRONOUN/m_c/object}. It leaves {PRONOUN/m_c/object} dizzy and disorientated.",
             "Though {PRONOUN/m_c/poss} head injury has healed, m_c feels like a newborn kitten on {PRONOUN/m_c/poss} legs as {PRONOUN/m_c/subject} {VERB/m_c/stumble/stumbles} around the medicine den. {PRONOUN/m_c/subject/CAP} {VERB/m_c/sigh/sighs} and {VERB/m_c/accept/accepts} the fact that {PRONOUN/m_c/poss} balance will likely never be the same."
         ],
@@ -234,7 +234,7 @@
         ],
 		"lazy eye": [
 			"While it's relieving that m_c's head damage has left minimal damage, r_c is still worried about {PRONOUN/m_c/poss} new lazy eye.",
-			"m_c's a bit annoyed by the fuss that {PRONOUN/m_c/poss} Clanmates are making about {PRONOUN/m_c/poss} eye, it's not hurting or anything so {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} see why it should be a problem."
+			"m_c's a bit annoyed by the fuss that {PRONOUN/m_c/poss} clanmates are making about {PRONOUN/m_c/poss} eye, it's not hurting or anything so {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} see why it should be a problem."
 		]
     },
     "damaged eyes": {
@@ -308,18 +308,6 @@
             "m_c shudders, {PRONOUN/m_c/poss} mind putting what happened to {PRONOUN/m_c/object} on replay."
         ]
     },
-    "albinism" : {
-        "persistent headaches" : [
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent.",
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
-        ]
-    },
-    "ocular albinism" : {
-        "persistent headaches" : [
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent.",
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
-        ]
-    },
     "poisoned": {
         "recurring shock": [
             "r_c has to reassure m_c that nobody poisoned {PRONOUN/m_c/poss} prey.",
@@ -359,9 +347,9 @@
 	},
 	"earache": {
 		"partial hearing loss": [
-			"Ever since m_c's earache r_c has noticed that m_c's been struggling to properly hear {PRONOUN/m_c/poss} Clanmates. After a few short talks it's determined that something deep in {PRONOUN/m_c/poss} ears must have gotten damaged.",
+			"Ever since m_c's earache r_c has noticed that m_c's been struggling to properly hear {PRONOUN/m_c/poss} clanmates. After a few short talks it's determined that something deep in {PRONOUN/m_c/poss} ears must have gotten damaged.",
 			"As m_c recovers r_c talks with {PRONOUN/m_c/object} about the damage that the earache might have caused {PRONOUN/m_c/poss} ears.",
-			"m_c's noticed that after {PRONOUN/m_c/poss} earache {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} had a bit of trouble hearing {PRONOUN/m_c/poss} Clanmates clearly."
+			"m_c's noticed that after {PRONOUN/m_c/poss} earache {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} had a bit of trouble hearing {PRONOUN/m_c/poss} clanmates clearly."
 		]
 	},
 	"overstimulation": {
@@ -373,7 +361,7 @@
 	"disrupted senses": [
 			"After m_c's bout of overstimulation r_c has a long chat with {PRONOUN/m_c/object} about setting up some proper accomodations around the camp for {PRONOUN/m_c/poss} disrupted senses.",
 			"m_c feels so relieved when r_c talks with {PRONOUN/m_c/object} about if {PRONOUN/m_c/subject} {VERB/m_c/need/needs} any other kind of accomodations after been overstimulated.",
-			"Quietly m_c goes to talk with {PRONOUN/m_c/poss} Clanmates about strategies to avoid getting too disruptively overstimulated in the future.",
+			"Quietly m_c goes to talk with {PRONOUN/m_c/poss} clanmates about strategies to avoid getting too disruptively overstimulated in the future.",
 			"Even with the most annoying sources of overstimulation gone, m_c still feels on edge and knows that there's only so much {PRONOUN/m_c/subject} can do on {PRONOUN/m_c/poss} own about avoiding it."
 		]
 	},
@@ -431,4 +419,5 @@
             "Being a comet spirit affects how m_c processes numbers. r_c assures {PRONOUN/m_c/object} that it's okay, m_c just has counting fog."
         ]
     }
+        
 }
