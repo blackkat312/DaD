@@ -145,7 +145,7 @@ class Condition_Events():
                     event_string = f"{cat.name} has worked up into an {chosen_illness}."
                 elif chosen_illness == "seasonal lethargy":
                     event_string = f"{cat.name} is experiencing some {chosen_illness}."
-                elif chosen_illness in ['night dirtmaking']:
+                elif chosen_illness in ['nest wetting', 'night dirtmaking']:
                     event_string = f"{cat.name} is experiencing {chosen_illness}."
                 elif chosen_illness == "nightmares":
                     event_string = f"{cat.name} has been struggling recently with nightmares."
@@ -173,7 +173,7 @@ class Condition_Events():
 
     @staticmethod
     def handle_injuries(cat, other_cat=None, alive_kits=None, war=None, enemy_clan=None, season=None):
-        """ 
+        """
         This function handles overall the injuries in 'expanded' (or 'cruel season') game mode.
         Returns: boolean - if an event was triggered
         """
@@ -291,7 +291,7 @@ class Condition_Events():
                                                                     other_clan_name, game.clan, other_cat_rc = other_cat)
 
                             if possible_scar or possible_death:
-                                History.add_possible_history(cat, injury_event.injury, scar_text=possible_scar, 
+                                History.add_possible_history(cat, injury_event.injury, scar_text=possible_scar,
                                                              death_text=possible_death, other_cat=other_cat)
                             
                         cat.get_injured(injury_event.injury)
@@ -426,12 +426,13 @@ class Condition_Events():
         scarless_conditions = [
             "weak leg", "paralyzed", "raspy lungs", "wasting disease", "blind", "failing eyesight", "one bad eye",
             "partial hearing loss", "deaf", "constant joint pain", "constantly dizzy", "recurring shock",
-            "lasting grief", "persistent headaches", "adhd", "heavy soul", "starwalker", "ocd", "antisocial", "anxiety",
-            "constant roaming pain", "thunderous spirit", "otherworldly mind", "kitten regressor", "puppy regressor",
-            "snow vision", "echoing shock", "irritable bowels", "loose body", "longcough", "burning light",
-            "disrupted senses", "constant nightmares", "constant rash", "jellyfish joints", "lazy eye",
-            "shattered soul", "budding spirit", "pcos", "infertile", "excess testosterone", "aneuploidy",
-            "testosterone deficiency", "chimerism", "mosaicism"
+            "lasting grief", "persistent headaches", "comet spirit", "heavy soul", "starwalker", "obsessive mind",
+            "antisocial", "anxiety", "constant roaming pain", "thunderous spirit", "otherworldly mind",
+            "kitten regressor", "puppy regressor", "snow vision", "echoing shock", "irritable bowels", "loose body",
+            "longcough", "burning light", "disrupted senses", "constant nightmares", "constant rash",
+            "jellyfish joints", "lazy eye", "shattered soul", "budding spirit", "pcos", "infertile",
+            "excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism", "curved spine",
+            "jumbled mind", "counting fog"
 
         ]
 
@@ -760,7 +761,7 @@ class Condition_Events():
                 if cat.status != 'leader':
                     History.add_death(cat, death_text=event)
                 else:
-                    History.add_death(cat, death_text=f"died to {condition}")
+                    History.add_death(cat, death_text=f"killed by complications caused by {condition}")
 
                 game.herb_events_list.append(event)
                 break
