@@ -2094,32 +2094,32 @@ class Cat():
             canon_chance = randint(1, 3)
             if canon_chance == 2:
                 alter_name = choice(
-                    ["Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
-                     "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
-                     "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
-                     "Crowfeather", "Nightheart", "Willowpelt", "Shadowsight", "Tigerheart", "Grey Wing", "River",
-                     "Night", "Violetshine", "Twigbranch", "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
-                     "Tall Shadow",
-                     "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart", "Briarlight",
-                     "Cloudtail",
-                     "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe", "Poppyfrost", "Stormfur",
-                     "Mistyfoot",
-                     "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt", "Webfoot"])
+                    [
+                        "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
+                        "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
+                        "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
+                        "Crowfeather", "Nightheart", "Willowpelt", "Shadowsight", "Tigerheart", "Grey Wing", "River",
+                        "Night", "Violetshine", "Twigbranch", "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
+                        "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
+                        "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe",
+                        "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt",
+                        "Webfoot"
+                    ]
+                )
             else:
                 alter_name = choice(names_dict["normal_prefixes"])
         else:
             alter_name = choice(names_dict["normal_prefixes"])
 
         if template["role"] == "little":
-            if template["other"] == "fictive" or template["other"] == "fuzztive"
+            if template["other"] == "fictive" or template["other"] == "fuzztive":
                 canon_chance = randint(1, 50)
                 if canon_chance == 2:
                     alter_name = choice(["Snowkit", "Mosskit"])
-        else:
-            alter_name = choice(names_dict["normal_prefixes"])
-            alter_name += choice(["kit", "paw"])
-
-        if (template["other"] == "cat" or template["other"] == "otherclan") and template["role"] != "little":
+            else:
+                alter_name = choice(names_dict["normal_prefixes"])
+                alter_name += choice(["kit", "paw"])
+        elif template["other"] == "cat" or template["other"] == "otherclan":
             alter_name += choice(names_dict["normal_suffixes"])
         template["name"] = alter_name
         # print(template)
