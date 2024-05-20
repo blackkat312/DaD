@@ -206,6 +206,7 @@
 	},
 	"cat_generation": {
 		"base_permanent_condition": 15,
+	       "multiple_permanent_conditions": 1,
 		"base_male_tortie": 13,
 		"base_female_tortie": 4,
 		"base_heterochromia": 60,
