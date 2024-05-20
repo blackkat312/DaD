@@ -2407,6 +2407,9 @@ class Cat():
     def congenital_condition(self, cat):
         self.genetic_conditions()
         possible_conditions = []
+        multiple_condition_chance = game.config["cat_generation"]["multiple_permanent_conditions"]
+        conditions = 1
+        count = 1
         genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism",
                               "albinism", "ocular albinism"]
 
@@ -2415,14 +2418,23 @@ class Cat():
             if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
-        new_condition = choice(possible_conditions)
+        while conditions <= 3:
+            if randint(1, multiple_condition_chance) == 1:
+                conditions += 1
+            count += 1
 
-        if new_condition == "born without a leg":
-            cat.pelt.scars.append('NOPAW')
-        elif new_condition == "born without a tail":
-            cat.pelt.scars.append('NOTAIL')
+        while conditions:
+            new_condition = choice(possible_conditions)
+            while new_condition in cat.permanent_condition:
+                new_condition = choice(possible_conditions)
 
-        self.get_permanent_condition(new_condition, born_with=True)
+            if new_condition == "born without a leg":
+                cat.pelt.scars.append('NOPAW')
+            elif new_condition == "born without a tail":
+                cat.pelt.scars.append('NOTAIL')
+
+            self.get_permanent_condition(new_condition, born_with=True)
+            conditions -= 1
 
     def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
@@ -2439,12 +2451,15 @@ class Cat():
         intersex_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
         if self.gender != "intersex":
             if name in intersex_exclusive:
+                print("cat isn't intersex!")
                 return
         if not (self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
             if name == "albinism":
+                print("cat isn't cc!")
                 return
         elif not (('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype))):
             if name == "ocular albinism":
+                print("cat isn't -c!")
                 return
 
         # remove accessories if need be
