@@ -1044,6 +1044,10 @@
             {
                 "name": "body biter",
                 "chance": 70
+            },
+            {
+                "name": "cracked pads",
+                "chance": 10
             }
         ],
         "herbs":[
