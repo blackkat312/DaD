@@ -373,16 +373,16 @@
             "m_c wakes and nearly wails at the wave of grief that hits {PRONOUN/m_c/object}. Today isn't starting well."
         ],
 		"heavy soul": [
-				"r_c helps m_c groom, purring all the while as comfortingly as {PRONOUN/m_c/subject} can. m_c just stares off into the distance, eyes almost seeming empty.",
-				"m_c's sadness has gone into numbness, something heavy weighs {PRONOUN/m_c/object} down as {PRONOUN/m_c/subject} {VERB/m_c/wander/wanders} listlessly around the camp.",
-				"The grief becomes something numb, empty almost as m_c stares at the walls of {PRONOUN/m_c/poss} den. {PRONOUN/m_c/subject/CAP} {VERB/m_c/don't/doesn't} know how {PRONOUN/m_c/subject} {VERB/m_c/are/is} supposed to get up after this.",
+				"r_c helps m_c groom, purring all the while as comfortingly as {PRONOUN/r_c/subject} can. m_c just stares off into the distance, eyes almost seeming empty.",
+				"m_c's sadness has gone into numbness - something heavy weighs {PRONOUN/m_c/object} down as {PRONOUN/m_c/subject} {VERB/m_c/wander/wanders} listlessly around the camp.",
+				"The grief has become something numb, empty almost, as m_c stares at the walls of {PRONOUN/m_c/poss} den. {PRONOUN/m_c/subject/CAP} {VERB/m_c/don't/doesn't} know how {PRONOUN/m_c/subject} {VERB/m_c/are/is} supposed to get up after this.",
 				"m_c stared blankly up at the sky, feeling less motivated to do anything, {PRONOUN/m_c/poss} mind fogged with grief and despair.",
 				"m_c stalked out of camp, clawing at the ground as {PRONOUN/m_c/subject} went. It was so unfair, all of it, why did StarClan take them away? Why curse {PRONOUN/m_c/object} with this darkness inside?"
 		],
 		"fatigue": [
-				"Quietly m_c talks to r_c about how tired {PRONOUN/m_c/subject} {VERB/m_c/are/is}. No matter how much {PRONOUN/m_c/subject} {VERB/m_c/sleep/sleeps} it doesn't seem to get any better.",
-				"m_c just feels exhausted recently, no matter how much sleep {PRONOUN/m_c/subject} {VERB/m_c/are/is} or {VERB/m_c/aren't/isn't} getting.",
-				"No matter how much sleep m_c gets a night {PRONOUN/m_c/subject} {VERB/m_c/aren't/isn't} able to feel any less exhausted."
+				"Quietly, m_c talks to r_c about how tired {PRONOUN/m_c/subject} {VERB/m_c/are/is}. No matter how much {PRONOUN/m_c/subject} {VERB/m_c/sleep/sleeps}, it doesn't seem to get any better.",
+				"m_c has just been feeling exhausted recently, no matter how much sleep {PRONOUN/m_c/subject} {VERB/m_c/are/is} or {VERB/m_c/are/is}n't getting.",
+				"No matter how much sleep m_c gets a night, {PRONOUN/m_c/subject} {VERB/m_c/are/is}n't able to feel any less exhausted."
 		]
     },
     "persistent headaches": {
@@ -395,8 +395,8 @@
             "m_c wakes up with pounding head pain and horrible light sensitivity. {PRONOUN/m_c/subject/CAP} {VERB/m_c/curl/curls} up as tightly in {PRONOUN/m_c/poss} nest as {PRONOUN/m_c/subject} can, screwing {PRONOUN/m_c/poss} eyes shut and flattening {PRONOUN/m_c/poss} ears. There's no way {PRONOUN/m_c/subject}'ll get work done today."
         ],
 		"ear buzzing": [
-				"r_c keeps rolling some stones over and over in the den beside m_c hoping that the sound will cancel out the buzzing that {PRONOUN/m_c/subject} {VERB/m_c/complain/complains} about.",
-				"As if m_c doesn't have enough issues with {PRONOUN/m_c/poss} headaches, now {PRONOUN/m_c/poss} ears are buzzing and no matter how much they shake {PRONOUN/m_c/poss} head or hide it doesn't go away."
+				"r_c keeps rolling some stones over and over in the medicine den beside m_c, hoping that the sound will cancel out all of the buzzing that {PRONOUN/m_c/subject} {VERB/m_c/are/is} complaining about.",
+				"As if m_c doesn't have enough issues with {PRONOUN/m_c/poss} headaches, now {PRONOUN/m_c/poss} ears are buzzing and no matter how much they shake {PRONOUN/m_c/poss} head or hide, it doesn't go away."
 		]
     },
     "albinism" : {
@@ -441,29 +441,29 @@
     },
     "heavy soul": {
         "lasting grief": [
-            "r_c lays comfortingly beside m_c, purring as {PRONOUN/r_c/subject} {VERB/m_c/try/tries} to comfort {PRONOUN/m_c/object}. {PRONOUN/m_c/poss/CAP} grief seems worse then normal, to a place not even herbs or words can fix.",
-            "m_c walks out of camp, alone, wailing into the sky of everything thats ever hurt {PRONOUN/m_c/object}. {PRONOUN/m_c/poss/CAP} heart hurt too much, too bad, for {PRONOUN/m_c/object} to keep it inside.",
+            "r_c lays comfortingly beside m_c, purring as {PRONOUN/r_c/subject} {VERB/r_c/try/tries} to comfort {PRONOUN/m_c/object}. {PRONOUN/m_c/poss/CAP} grief seems worse then normal, to a place not even herbs or words can fix.",
+            "m_c walks out of camp alone, wailing into the sky because of everything that's ever hurt {PRONOUN/m_c/object}. {PRONOUN/m_c/poss/CAP} heart hurts too much, too bad, for {PRONOUN/m_c/object} to keep it inside.",
             "m_c heads behind {PRONOUN/m_c/poss} den, scratching out another mark in the ground. Another day lived without the one {PRONOUN/m_c/subject} {VERB/m_c/grieve/grieves}. {PRONOUN/m_c/subject/CAP} had to keep going, but it hurts every day.",
-            "m_c curls up in {PRONOUN/m_c/poss} den, alone, crying softly. Everything reminds {PRONOUN/m_c/object} of the one {PRONOUN/m_c/subject} {VERB/m_c/grieve/grieves}, and it made the grief so much worse. Today was another day."
+            "m_c curls up in {PRONOUN/m_c/poss} nest alone, crying softly. Everything reminds {PRONOUN/m_c/object} of the one {PRONOUN/m_c/subject} {VERB/m_c/grieve/grieves}, and it makes the grief so much worse. Today was another day."
         ],
 		"grief stricken": [
-				"m_c wanders into the medicine den, a fresh ache in {PRONOUN/m_c/poss} chest just looking for r_c for some comfort",
+				"m_c wanders into the medicine den with a fresh ache in {PRONOUN/m_c/poss} chest, just looking for r_c for some comfort",
 				"There's no reason for this, nothing has happened recently. Yet m_c wakes with a wail, the weight of grief holding {PRONOUN/m_c/object} down and aching as sharply as if someone had newly passed.",
-				"By StarClan m_c wishes that {PRONOUN/m_c/subject} could hold onto the small things. Instead of feeling this heavy blanket weight of sadness and longing for things gone.",
+				"By StarClan, m_c wishes that {PRONOUN/m_c/subject} could hold onto the small things, instead of feeling this heavy blanket weight of sadness and longing for things gone.",
 				"m_c wanders listlessly around camp, looking for someone or something that is no longer there."
 		],
 		"seasonal lethargy": [
-				"As the season changes so does m_c's mood. {PRONOUN/m_c/subject/CAP} {VERB/m_c/get/gets} more and more tired looking and r_c invites {PRONOUN/m_c/object} into the medicine den, quietly sitting beside m_c and assuring {PRONOUN/m_c/object} it's okay if {PRONOUN/m_c/subject} {VERB/m_c/are/is} tired and don't feel able to work.",
-				"m_c watches the season change around {PRONOUN/m_c/object}, digging {PRONOUN/m_c/poss} paws into the nest around {PRONOUN/m_c/object}. {PRONOUN/m_c/subject/CAP} really {VERB/m_c/hate/hates} how this change makes {PRONOUN/m_c/object} feel lost and small.",
-				"While the camp moves about, cats speaking with one another about chores and jobs for the season m_c remains tightly curled up in {PRONOUN/m_c/poss} den just too tired.",
-				"With only half of {PRONOUN/m_c/poss} mind on the task m_c listlessly wanders around the camp."
+				"As the seasons change, so does m_c's mood. {PRONOUN/m_c/subject/CAP} {VERB/m_c/get/gets} more and more tired looking and r_c invites {PRONOUN/m_c/object} into the medicine den, quietly sitting beside m_c and assuring {PRONOUN/m_c/object} that it's okay if {PRONOUN/m_c/subject} {VERB/m_c/are/is} tired and {VERB/m_c/do/does}n't feel able to work.",
+				"m_c watches the seasons change around {PRONOUN/m_c/object}, digging {PRONOUN/m_c/poss} paws into the nest around {PRONOUN/m_c/object}. {PRONOUN/m_c/subject/CAP} really {VERB/m_c/hate/hates} how this change makes {PRONOUN/m_c/object} feel lost and small.",
+				"While the camp moves about, cats speaking with one another about chores and jobs for the season, m_c remains tightly curled up in {PRONOUN/m_c/poss} den, just too tired.",
+				"With only half of {PRONOUN/m_c/poss} mind on the task, m_c listlessly wanders around the camp."
 		],
 		"lethargy": [
-				"r_c goes on a den visit to check in on m_c. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'ve/ has} been blankly staring at the den wall for most of the afternoon.",
-				"m_c comes into the medicine den looking barely able to carry {PRONOUN/m_c/self} on {PRONOUN/m_c/poss} paws.",
-				"{PRONOUN/m_c/poss/CAP} Clanmates bring {PRONOUN/m_c/object} a little bit of extra prey and bedding while m_c lays in {PRONOUN/m_c/poss} nest weighed down and exhausted.",
-				"Part of them wishes it were raining, m_c likes the rain the sound like a lullabye to take {PRONOUN/m_c/object} away from the deep bone seated exhaustion.",
-				"m_c feels barely able to do {PRONOUN/m_c/poss} in camp jobs this moon."
+				"r_c goes on a den visit to check in on m_c. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'ve/'s} been blankly staring at the den wall for most of the afternoon.",
+				"m_c comes into the medicine den, looking barely able to carry {PRONOUN/m_c/self} on {PRONOUN/m_c/poss} paws.",
+				"m_c's Clanmates bring {PRONOUN/m_c/object} a little bit of extra prey and bedding while {PRONOUN/m_c/subject} {VERB/m_c/lay/lays} in {PRONOUN/m_c/poss} nest, weighed down and exhausted.",
+				"Part of {PRONOUN/m_c/object} wishes it were raining, as m_c likes the sound, which is like a lullaby to take {PRONOUN/m_c/object} away from the deep bone seated exhaustion.",
+				"m_c feels barely able to do {PRONOUN/m_c/poss} in-camp jobs this moon."
 		],
 		"anxiety attack": [
 				"m_c pads into r_c's den with wide eyes and a shaking chest. Softly {PRONOUN/m_c/subject} just {VERB/m_c/explain/explains} {PRONOUN/m_c/subject} wanted to check that r_c was still there.",
