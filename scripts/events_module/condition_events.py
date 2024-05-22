@@ -103,6 +103,7 @@ class Condition_Events():
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
+            chosen_illness = ""
             random_number = int(
                 random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
             if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
@@ -121,14 +122,16 @@ class Condition_Events():
                 for illness_name in season_dict:
                     possible_illnesses += [illness_name] * season_dict[illness_name]
 
-                # pick a random illness from those possible
-                random_index = int(random.random() * len(possible_illnesses))
-                chosen_illness = possible_illnesses[random_index]
-                # if a non-kitten got kittencough, switch it to whitecough instead
-                if chosen_illness == 'kittencough' and cat.status != 'kitten':
-                    chosen_illness = 'whitecough'
-                elif chosen_illness == 'nest wetting':
-                    chosen_illness = 'night dirtmaking'
+                while chosen_illness == 'night dirtmaking' and cat.status == 'kitten':
+                    # pick a random illness from those possible
+                    random_index = int(random.random() * len(possible_illnesses))
+                    chosen_illness = possible_illnesses[random_index]
+                    # if a non-kitten got kittencough, switch it to whitecough instead
+                    if chosen_illness == 'kittencough' and cat.status != 'kitten':
+                        chosen_illness = 'whitecough'
+                    elif chosen_illness == 'nest wetting':
+                        chosen_illness = 'night dirtmaking'
+
                 # make em sick
                 cat.get_ill(chosen_illness)
 
