@@ -136,8 +136,10 @@ class Condition_Events():
                 cat.get_ill(chosen_illness)
 
                 # create event text
-                if chosen_illness in ["running nose", "stomachache"]:
+                if chosen_illness == "stomachache":
                     event_string = f"{cat.name} has gotten a {chosen_illness}."
+                elif chosen_illness == "running nose":
+                    event_string = f"{cat.name}'s nose has started running."
                 elif chosen_illness == "zoomies":
                     event_string = f"{cat.name} has gotten the {chosen_illness}!"
                 elif chosen_illness == "sleeplessness":
@@ -145,7 +147,7 @@ class Condition_Events():
                 elif chosen_illness == "burn out":
                     event_string = f"{cat.name} has gotten burnt out."
                 elif chosen_illness == "anxiety attack":
-                    event_string = f"{cat.name} has worked up into an {chosen_illness}."
+                    event_string = f"{cat.name} has gotten worked up into an {chosen_illness}."
                 elif chosen_illness == "seasonal lethargy":
                     event_string = f"{cat.name} is experiencing some {chosen_illness}."
                 elif chosen_illness in ['nest wetting', 'night dirtmaking']:
@@ -758,13 +760,13 @@ class Condition_Events():
                 event_types.append("birth_death")
                 event = f"{cat.name} died from complications caused by {condition}."
                 if cat.status == "leader" and not cat.dead:
-                    event = f"{cat.name} lost a live to {condition}."
+                    event = f"{cat.name} lost a life from complications caused by {condition}."
                 event_list.append(event)
 
                 if cat.status != 'leader':
-                    History.add_death(cat, death_text=event)
+                    History.add_death(cat, death_text=f"complications caused by {condition}")
                 else:
-                    History.add_death(cat, death_text=f"killed by complications caused by {condition}")
+                    History.add_death(cat, death_text=f"died from complications caused by {condition}")
 
                 game.herb_events_list.append(event)
                 break
@@ -982,7 +984,7 @@ class Condition_Events():
                     event = possible_string_list[random_index]
                 except KeyError:
                     print(f"WARNING: {condition} couldn't be found in the risk strings! placeholder string was used")
-                    event = "m_c's condition has gotten worse."
+                    event = f"m_c has gained {condition}"
 
                 event = event_text_adjust(Cat, event, cat, other_cat=med_cat)  # adjust the text
                 event_list.append(event)
