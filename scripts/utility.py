@@ -388,8 +388,10 @@ def create_new_cat(Cat,
                 chance = game.config["cat_generation"]["base_permanent_condition"] + 10
             if not int(random() * chance):
                 possible_conditions = []
+                genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism",
+                                      "mosaicism", "albinism", "ocular albinism"]
                 for condition in PERMANENT:
-                    if (kit or litter) and PERMANENT[condition]['congenital'] not in ['always', 'sometimes']:
+                    if (kit or litter) and (PERMANENT[condition]['congenital'] not in ['always', 'sometimes']) or (condition in genetics_exclusive):
                         continue
                     # next part ensures that a kit won't get a condition that takes too long to reveal
                     age = new_cat.moons
@@ -1645,6 +1647,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 
                         stripebase.blit(CreateStripes(colour, whichbase), (0, 0))
 
+
                         if(get_current_season() == "Greenleaf"):
                             stripebase2.blit(sprites.sprites['mochal' + cat_sprite], (0, 0))
                             stripebase2.blit(stripebase, (0, 0), 
@@ -1711,7 +1714,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                         
                             stripebase.blit(CreateStripes('cinnamon', 'solid', pattern="fullbar"), (0, 0))
                             stripebase.set_alpha(150)
-                            
+
                             whichmain.blit(stripebase, (0, 0))
                         else:
                             stripebase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
