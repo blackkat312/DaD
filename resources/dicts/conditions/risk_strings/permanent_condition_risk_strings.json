@@ -1118,7 +1118,7 @@
 		],
 		"fatigue": [
 				"With all of the coughing that m_c is doing, r_c worries that it might be causing {PRONOUN/m_c/object} fatigue.",
-				"m_c just feels so tired all of the time from {PRONOUN/m_c/poss} persistent cough."
+				"m_c just feels so tired all of the time because of {PRONOUN/m_c/poss} persistent cough."
 		]
     },
     "jellyfish joints": {
