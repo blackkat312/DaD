@@ -450,7 +450,7 @@ class Phenotype():
         if(self.genotype.lefteye == self.genotype.righteye):
             eyes = self.genotype.lefteye + " eyes"
         else:
-            eyes = "one " + self.genotype.lefteye + " eye, one " + self.genotype.righteye + " eye"
+            eyes = "one " + self.genotype.lefteye + " eye, and one " + self.genotype.righteye + " eye"
 
         if(self.genotype.extraeye):
             eyes += " and sectoral heterochromia"
@@ -469,7 +469,18 @@ class Phenotype():
                     nochange = True
 
         if(withword != ""):
-            withword += " and "
+            if ", " in withword:
+                if "one" in eyes:
+                    withword += ", "
+                else:
+                    withword += ", and "
+            else:
+                if "one" in eyes:
+                    withword += ", "
+                else:
+                    withword += " and "
+        else:
+            eyes = eyes.replace(" eye, and one ", " eye and one ")
 
         withword = " with " + withword + eyes.lower()
 
