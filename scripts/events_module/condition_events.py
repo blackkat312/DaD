@@ -103,7 +103,6 @@ class Condition_Events():
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
-
             random_number = int(
                 random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
             if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
@@ -483,45 +482,26 @@ class Condition_Events():
         starting_life_count = game.clan.leader_lives
         cat.healed_condition = False
         event_list = []
-        base_illness = [
-            "running nose",
-            "kittencough",
-            "whitecough",
-            "silvercough",
-            "greencough",
-            "yellowcough",
-            "an infected wound",
-            "heat exhaustion",
-            "stomachache",
-            "nightmares",
-            "anxiety attack",
-            "panic attack",
-            "sleeplessness",
-            "ticks",
-            "nest wetting",
-            "nonverbal",
-            "tics"
-        ]
-        progression = [
-            ["whitecough", "silvercough"],
-            "silvercough",
-            ["silvercough", "greencough"],
-            "greencough",
-            "yellowcough",
-            "redcough",
-            "a festering wound",
-            "heat stroke",
-            ["diarrhea", "constipation"],
-            "constant nightmares",
-            "panic attack",
-            ["shock", "paranoia"],
-            "ongoing sleeplessness",
-            ["tick bites", "severe tick bites"],
-            "night dirtmaking",
-            "mute",
-            ["tics, tic attack"]
-        ]
-        illness_progression = dict(zip(base_illness, progression))
+        illness_progression = {
+            "running nose": ["whitecough", "silvercough"],
+            "kittencough": "silvercough",
+            "whitecough": ["silvercough", "greencough"],
+            "silvercough": "greencough",
+            "greencough": "yellowcough",
+            "yellowcough": "redcough",
+            "an infected wound": "a festering wound",
+            "heat exhaustion": "heat stroke",
+            "stomachache": ["diarrhea", "constipation"],
+            "grief stricken": "lasting grief",
+            "nightmares": "constant nightmares",
+            "anxiety attack": "panic attack",
+            "panic attack": ["shock", "paranoia"],
+            "sleeplessness": "ongoing sleeplessness",
+            "ticks": ["tick bites", "severe tick bites"],
+            "nest wetting": "night dirtmaking",
+            "nonverbal": "mute",
+            "tics": ["tics, tic attack"]
+        }
         # ---------------------------------------------------------------------------- #
         #                         handle currently sick cats                           #
         # ---------------------------------------------------------------------------- #
@@ -726,25 +706,15 @@ class Condition_Events():
 
         event_list = []
 
-        base_condition = [
-            "one bad eye",
-            "failing eyesight",
-            "partial hearing loss",
-            "lasting grief",
-            "recurring shock",
-            "echoing shock",
-            "burning light"
-        ]
-        progression = [
-            ["failing eyesight", "lazy eye"],
-            "blind",
-            "deaf",
-            "heavy soul",
-            "echoing shock",
-            "recurring shock",
-            "blind"
-        ]
-        condition_progression = dict(zip(base_condition, progression))
+        condition_progression = {
+            "one bad eye": ["failing eyesight", "lazy eye"],
+            "failing eyesight": "blind",
+            "partial hearing loss": "deaf",
+            "lasting grief": "heavy soul",
+            "recurring shock": "echoing shock",
+            "echoing shock": "recurring shock",
+            "burning light": "blind"
+        }
 
         conditions = deepcopy(cat.permanent_condition)
         for condition in conditions:
@@ -982,7 +952,7 @@ class Condition_Events():
                     event = possible_string_list[random_index]
                 except KeyError:
                     print(f"WARNING: {condition} couldn't be found in the risk strings! placeholder string was used")
-                    event = f"m_c has gained {condition}"
+                    event = f"m_c has gotten {condition}"
 
                 event = event_text_adjust(Cat, event, cat, other_cat=med_cat)  # adjust the text
                 event_list.append(event)
