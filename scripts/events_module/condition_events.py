@@ -103,7 +103,7 @@ class Condition_Events():
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
-            chosen_illness = ""
+
             random_number = int(
                 random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
             if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
@@ -130,11 +130,6 @@ class Condition_Events():
                     chosen_illness = 'whitecough'
                 elif chosen_illness == 'nest wetting':
                     chosen_illness = 'night dirtmaking'
-
-                if chosen_illness == 'night dirtmaking' and cat.status == 'kitten':
-                    # just make it a generic illness
-                    chosen_illness = random.choice("running nose", "stomachache")
-
                 # make em sick
                 cat.get_ill(chosen_illness)
 
