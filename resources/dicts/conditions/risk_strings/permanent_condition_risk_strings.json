@@ -49,7 +49,7 @@
     },
     "lost their tail": {
         "an infected wound": [
-            "r_c drags m_c into the medicine cat den, to apply a herbal salve despite m_c's protests - {PRONOUN/r_c/subject}{VERB/r_c/'ve/'s} begun to smell infection in the tail stump.",
+            "r_c drags m_c into the medicine den, to apply a herbal salve despite m_c's protests - {PRONOUN/r_c/subject}{VERB/r_c/'ve/'s} begun to smell infection in the tail stump.",
             "The stump where m_c's tail used to be has become infected."
         ],
         "phantom pain": [
@@ -65,7 +65,7 @@
     },
     "paralyzed": {
         "an infected wound": [
-            "r_c brings m_c into the medicine cat den and starts searching - the sick stink of infection is coming from {PRONOUN/m_c/object}, but m_c hasn't noticed anything that could cause it.",
+            "r_c brings m_c into the medicine den and starts searching - the sick stink of infection is coming from {PRONOUN/m_c/object}, but m_c hasn't noticed anything that could cause it.",
             "It seems that m_c has gotten a scratch on the part of {PRONOUN/m_c/poss} body {PRONOUN/m_c/subject} can't feel. The wound went unnoticed until the stench of infection began to waft from it."
         ],
         "joint pain": [
@@ -391,7 +391,7 @@
             "m_c growls as another wave of head pain hits {PRONOUN/m_c/object}. It's on-and-off, and herbs have been helping, but StarClan help {PRONOUN/m_c/object}, having so many headaches gets annoying."
         ],
         "severe headache": [
-            "r_c sees m_c headed towards the medicine cat den, wincing with every step, and ducks inside to prepare a nest for {PRONOUN/m_c/object} in the darkest, quietest corner possible.",
+            "r_c sees m_c headed towards the medicine den, wincing with every step, and ducks inside to prepare a nest for {PRONOUN/m_c/object} in the darkest, quietest corner possible.",
             "m_c wakes up with pounding head pain and horrible light sensitivity. {PRONOUN/m_c/subject/CAP} {VERB/m_c/curl/curls} up as tightly in {PRONOUN/m_c/poss} nest as {PRONOUN/m_c/subject} can, screwing {PRONOUN/m_c/poss} eyes shut and flattening {PRONOUN/m_c/poss} ears. There's no way {PRONOUN/m_c/subject}'ll get work done today."
         ],
 		"ear buzzing": [
@@ -1123,45 +1123,45 @@
     },
     "jellyfish joints": {
 		"joint pain": [
-				"m_c smiles softly at the pile of moss before {PRONOUN/m_c/object}. {PRONOUN/m_c/poss} joints may ache, but m_c is happy that the Queens and Elders will have fresh moss from the highest spots to sleep in.",
-				"m_c is beginning to regret showing off how far {PRONOUN/m_c/subject} can stretch. {PRONOUN/m_c/poss} joints didn't like it that's for sure...",
-				"m_c softly hisses in pain. {PRONOUN/m_c/poss} joints are screaming at {PRONOUN/m_c/object} again."
+				"m_c smiles softly at the pile of moss before {PRONOUN/m_c/object}. {PRONOUN/m_c/poss/CAP} joints may ache, but m_c is happy that the queens and elders will have fresh moss from the highest spots to sleep in.",
+				"m_c is beginning to regret showing off how far {PRONOUN/m_c/subject} can stretch. {PRONOUN/m_c/poss/CAP} joints didn't like it, that's for sure...",
+				"m_c softly hisses in pain. {PRONOUN/m_c/poss/CAP} joints are screaming at {PRONOUN/m_c/object} again."
 		],
 		"sore": [
-				"After going on a long walk, m_c's muscles protest. m_c makes the slow trudge to the medicine cat den. Seems like it's going to be a long moon.",
-				"m_c winces, it's been a few days and {PRONOUN/m_c/subject} still ache all over. {PRONOUN/m_c/subject} {VERB/m_c/sigh/sighs} and pad over to the medicine den for some herbs to help with the pain."
+				"After going on a long walk, m_c's muscles protest. {PRONOUN/m_c/subject/CAP} {VERB/m_c/make/makes} the slow trudge to r_c's den - seems like it's going to be a long moon.",
+				"m_c winces, it's been a few days and {PRONOUN/m_c/subject} still ache all over. {PRONOUN/m_c/subject/CAP} {VERB/m_c/sigh/sighs} and pad over to the medicine den for some herbs to help with the pain."
 		],
 		"sprain": [
-				"Mousedung! m_c tripped and where most cats would just fall on {PRONOUN/m_c/poss} chest, m_c fell on {PRONOUN/m_c/poss} paw, and then {PRONOUN/m_c/poss} shoulder and then sprained {PRONOUN/m_c/poss} paw in the process.",
+				"Mousedung! m_c tripped, and where most cats would just fall on {PRONOUN/m_c/poss} chest, m_c fell on {PRONOUN/m_c/poss} paw - spraining it in the process.",
 				"m_c ran too quickly and twisted {PRONOUN/m_c/poss} paw! Off to the medicine den again..."
 		],
 		"dislocated joint": [
-				"Crack! m_c sighs, getting help from {PRONOUN/m_c/poss} Clanmates to get into the medicine den, to relocate {PRONOUN/m_c/poss} joint.",
-				"As m_c limps to the medicine cat den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woke up the Clanmate who slept on {PRONOUN/m_c/poss} leg."
+				"Crack! m_c sighs, getting help from {PRONOUN/m_c/poss} Clanmates to get into r_c's den, to relocate {PRONOUN/m_c/poss} joint.",
+				"As m_c limps to the medicine den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woken up the Clanmate who slept on {PRONOUN/m_c/poss} leg."
 		],
 		"subluxated joint": [
-				"m_c lets out a hiss of pain and {PRONOUN/m_c/poss} concerned Clanmates help {PRONOUN/m_c/object} to the medicine cat den. While nothing looks wrong, {PRONOUN/m_c/poss} Clanmates trust that m_c knows what {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} talking about when {PRONOUN/m_c/subject} say that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} subluxated {PRONOUN/m_c/poss} joint.",
-				"{PRONOUN/m_c/poss} joints have been hurting for a few days now, so m_c decides to go to the medicine cat den. Only for the medicine cat to say that {PRONOUN/m_c/subject} subluxated {PRONOUN/m_c/poss} shoulder. Oops...",
-				"With a startled hiss, m_c staggers back from training. The cat {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} training with pauses, asking about {PRONOUN/m_c/poss} wellbeing. m_c informs them that no, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} not alright and {PRONOUN/m_c/subject}'d like to stop this and go to the medicine den. {PRONOUN/m_c/poss} Clanmate nods and helps {PRONOUN/m_c/object} to the medicine den.",
-				"As m_c limps to the medicine cat den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woke up the Clanmate who slept on {PRONOUN/m_c/poss} leg."
+				"When m_c suddenly lets out a hiss of pain, {PRONOUN/m_c/poss} concerned Clanmates help {PRONOUN/m_c/object} to r_c's den. While nothing looks wrong, {PRONOUN/m_c/poss} Clanmates trust that m_c knows what {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} talking about when {PRONOUN/m_c/subject} say that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} subluxated {PRONOUN/m_c/poss} joint.",
+				"{PRONOUN/m_c/poss/CAP} joints have been hurting for a few days now, so m_c decides to go to the medicine den - only for the medicine cat to say that {PRONOUN/m_c/subject} subluxated {PRONOUN/m_c/poss} shoulder. Oops...",
+				"With a startled hiss, m_c staggers back from training. The cat {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} training with pauses, asking about {PRONOUN/m_c/poss} well-being. m_c informs them that no, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} not alright and {PRONOUN/m_c/subject}'d like to pause this and go to the medicine den. {PRONOUN/m_c/poss/CAP} Clanmate nods and helps {PRONOUN/m_c/object} there.",
+				"As m_c limps to the medicine den, {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that maybe {PRONOUN/m_c/subject} should have woken up the Clanmate who slept on {PRONOUN/m_c/poss} leg."
 		]
     },
     "loose body": {
 		"dislocated joint": [
-				"m_c has to go to r_c's den again after aother of {PRONOUN/m_c/poss} joints slips out of place.",
+				"m_c has to go to r_c's den again after another one of {PRONOUN/m_c/poss} joints slips out of place.",
 				"m_c dislocated {PRONOUN/m_c/poss} elbow, again."
 		],
 		"constipation": [
-				"r_c chuckles as m_c shuffles into {PRONOUN/r_c/poss} den asking for some herbs to help with dirtmaking.",
-				"m_c is very fustrated after {PRONOUN/m_c/subject} {VERB/m_c/discover/discovers} {PRONOUN/m_c/subject} {VERB/m_c/are/is} having a bit of dirtmaking trouble."
+				"r_c chuckles as m_c shuffles into {PRONOUN/r_c/poss} den, asking for some herbs to help with dirtmaking.",
+				"m_c is very frustrated after {PRONOUN/m_c/subject} {VERB/m_c/discover/discovers} that {PRONOUN/m_c/subject} {VERB/m_c/are/is} having a bit of dirtmaking trouble."
 		],
 		"severe headache": [
-				"r_c has to rush to m_c's den to give them some herbs as m_c's headache is so painful {PRONOUN/m_c/subject} cannot move.",
-				"m_c lies in {PRONOUN/m_c/poss} nest clutching {PRONOUN/m_c/poss} head in pain."
+				"r_c has to rush to m_c's den to give them some herbs because {PRONOUN/m_c/poss} headache is so painful that {PRONOUN/m_c/subject} can't move.",
+				"m_c lies in {PRONOUN/m_c/poss} nest, clutching {PRONOUN/m_c/poss} head in pain."
 		],
 		"headache": [
-				"m_c goes to r_c and asks if {PRONOUN/r_c/subject} {VERB/m_c/have/has} any herbs for {PRONOUN/m_c/poss} banging headache.",
-				"m_c's mind is clouded by a dull ache that wont go away.",
+				"m_c goes to r_c and asks if {PRONOUN/r_c/subject} {VERB/r_c/have/has} any herbs for {PRONOUN/m_c/poss} headache.",
+				"m_c's mind is clouded by a dull ache that won't go away.",
 				"m_c sighs when {PRONOUN/m_c/subject} {VERB/m_c/wake/wakes} up and realise that {PRONOUN/m_c/subject} {VERB/m_c/are/is} in pain again."
 		],
 		"sore": [
