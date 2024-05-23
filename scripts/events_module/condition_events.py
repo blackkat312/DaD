@@ -122,15 +122,18 @@ class Condition_Events():
                 for illness_name in season_dict:
                     possible_illnesses += [illness_name] * season_dict[illness_name]
 
-                while chosen_illness == 'night dirtmaking' and cat.status == 'kitten':
-                    # pick a random illness from those possible
-                    random_index = int(random.random() * len(possible_illnesses))
-                    chosen_illness = possible_illnesses[random_index]
-                    # if a non-kitten got kittencough, switch it to whitecough instead
-                    if chosen_illness == 'kittencough' and cat.status != 'kitten':
-                        chosen_illness = 'whitecough'
-                    elif chosen_illness == 'nest wetting':
-                        chosen_illness = 'night dirtmaking'
+                # pick a random illness from those possible
+                random_index = int(random.random() * len(possible_illnesses))
+                chosen_illness = possible_illnesses[random_index]
+                # if a non-kitten got kittencough, switch it to whitecough instead
+                if chosen_illness == 'kittencough' and cat.status != 'kitten':
+                    chosen_illness = 'whitecough'
+                elif chosen_illness == 'nest wetting':
+                    chosen_illness = 'night dirtmaking'
+
+                if chosen_illness == 'night dirtmaking' and cat.status == 'kitten':
+                    # just make it a generic illness
+                    chosen_illness = random.choice("running nose", "stomachache")
 
                 # make em sick
                 cat.get_ill(chosen_illness)
