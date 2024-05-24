@@ -389,7 +389,7 @@ def create_new_cat(Cat,
             if not int(random() * chance):
                 possible_conditions = []
                 genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism",
-                                      "mosaicism", "albinism", "ocular albinism"]
+                                      "mosaicism", "albinism", "ocular albinism", "manx syndrome"]
                 for condition in PERMANENT:
                     if (kit or litter) and (PERMANENT[condition]['congenital'] not in ['always', 'sometimes']) or (condition in genetics_exclusive):
                         continue
