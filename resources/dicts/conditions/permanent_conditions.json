@@ -806,6 +806,38 @@
             "juniper"
         ]
     },
+    "manx syndrome": {
+        "severity": "minor",
+        "congenital": "always",
+        "moons_until": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+                "name": "paralyzed",
+                "chance": 80
+            },
+            {
+                "name": "constant joint pain",
+                "chance": 35
+            },
+            {
+                "name": "irritable bowels",
+                "chance": 35
+            }
+        ],
+        "herbs": [
+        ]
+    },
     "albinism": {
         "severity": "minor",
         "congenital": "always",
@@ -1536,7 +1568,7 @@
         ],
         "risks": [
             {
-                "name": "strong attachement",
+                "name": "strong attachment",
                 "chance": 10
             },
             {
@@ -1712,7 +1744,7 @@
 				"chance": 15
 			},
 			{
-				"name": "nest wetting",
+				"name": "night dirtmaking",
 				"chance": 25
 			}
         ],
