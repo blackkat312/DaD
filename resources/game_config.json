@@ -161,7 +161,7 @@
 		"birth_cooldown": 1,
 		"primary_chance_mated": 100,
 		"primary_chance_unmated": 80,
-		"random_affair_chance": 40,
+		"random_affair_chance": 35,
 		"unmated_random_affair_chance": 1,
 		"one_kit_possibility": {"young adult": 8, "adult": 9, "senior adult": 10, "senior": 25},
         "two_kit_possibility": {"young adult": 30, "adult": 20, "senior adult": 50, "senior": 40},
@@ -206,8 +206,8 @@
 	},
 	"cat_generation": {
 		"base_permanent_condition": 15,
-		"multiple_permanent_conditions": 20,
-		"max_conditions_born_with": 3,
+		"multiple_permanent_conditions": 15,
+		"max_conditions_born_with": 4,
 		"base_male_tortie": 13,
 		"base_female_tortie": 4,
 		"base_heterochromia": 60,
@@ -232,7 +232,7 @@
 		]
 	},
 	"accessory_generation": {
-		"base_acc_chance": 35,
+		"base_acc_chance": 30,
 		"med_modifier": -10,
 		"baby_modifier": 0,
 		"elder_modifier": -5,
@@ -290,9 +290,9 @@
 		]
 	},
 	"death_related": {
-		"leader_death_chance": 125,
+		"leader_death_chance": 100,
 		"classic_death_chance": 500,
-		"expanded_death_chance": 250,
+		"expanded_death_chance": 270,
 		"cruel season_death_chance": 300,
 		"war_death_modifier_leader": 95,
 		"war_death_modifier": 200,
@@ -311,7 +311,7 @@
 		"expanded_illness_chance": 190,
 		"cruel season_illness_chance": 200,
 		"classic_injury_chance": 250,
-		"expanded_injury_chance": 150,
+		"expanded_injury_chance": 130,
 		"cruel season_injury_chance": 150,
 		"permanent_condition_chance": 3,
 		"war_injury_modifier": 80
@@ -321,15 +321,15 @@
 		"comment": "Set this to -1 for it to be infinite"
 	},
 	"genetic_chances": {
-		"chimera" : 500,
-		"intersex" : 100,
-		"XXX/XXY" : 500,
-		"brindled_bicolour" : 200,
-		"vitiligo" : 80,
-		"random_mutation" : 100,
-		"kittypet_breed" : 75,
-		"other_breed" : 1000,
-		"purebred_min" : 75,
+		"chimera" : 250,
+		"intersex" : 80,
+		"XXX/XXY" : 150,
+		"brindled_bicolour" : 150,
+		"vitiligo" : 60,
+		"random_mutation" : 80,
+		"kittypet_breed" : 65,
+		"other_breed" : 150,
+		"purebred_min" : 80,
 		"mix_min" : 12.5
 	},
 	"graduation": {
