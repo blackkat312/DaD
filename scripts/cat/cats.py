@@ -1002,15 +1002,25 @@ class Cat():
             elif 'partial hearing loss' not in self.permanent_condition:
                 self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
 
+        if 'M' in self.genotype.manx:
+            if random() > ((self.phenotype.bobtailnr + 1) * 0.2):
+                self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
+
         if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
             self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
 
-        if self.genotype.fold[0] == 'Fd' or (self.genotype.munch[0] == 'Mk'):
+        if self.genotype.fold[0] == 'Fd' or self.genotype.munch[0] == 'Mk' or ('manx syndrome' in self.permanent_condition and ('M' in self.genotype.manx and self.phenotype.bobtailnr < 4 and self.phenotype.bobtailnr > 1 and random() < 0.05)):
             self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
 
-        if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.25) or (self.phenotype.bobtailnr > 1 and random() > 0.4)):
+            self.get_permanent_condition('irritable bowels', born_with=True, genetic=True)
+
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.05) or (self.phenotype.bobtailnr > 1 and random() > 0.15)):
+            self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
+
+        if self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c'):
             self.get_permanent_condition('albinism', born_with=True, genetic=True)
-        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
+        elif ('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
             self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
 
     @property
@@ -2037,6 +2047,7 @@ class Cat():
         if not self.injuries[injury]["complication"] and self.injuries[injury]["duration"] - moons_with <= 0:
             self.healed_condition = True
             return False
+
         # CLAN FOCUS! - if the focus 'rest and recover' is selected
         elif not self.injuries[injury]["complication"] and \
             game.clan.clan_settings.get("rest and recover") and\
@@ -2438,7 +2449,7 @@ class Cat():
         conditions = 1
         count = 1
         genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism",
-                              "albinism", "ocular albinism"]
+                              "albinism", "ocular albinism", "manx syndrome"]
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
@@ -2487,6 +2498,10 @@ class Cat():
         elif not (('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype))):
             if name == "ocular albinism":
                 print("cat isn't -c!")
+                return
+        if 'M' not in self.genotype.manx:
+            if name == "manx syndrome":
+                print("cat isn't a manx!")
                 return
 
         # remove accessories if need be
