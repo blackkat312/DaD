@@ -434,7 +434,7 @@ class Condition_Events():
             "longcough", "burning light", "disrupted senses", "constant nightmares", "constant rash",
             "jellyfish joints", "lazy eye", "shattered soul", "budding spirit", "pcos", "infertile",
             "excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism", "curved spine",
-            "jumbled mind", "counting fog"
+            "jumbled mind", "counting fog", "albinism", "ocular albinism", "manx syndrome"
 
         ]
 
@@ -744,7 +744,7 @@ class Condition_Events():
                 continue
 
             # revealing perm condition
-            if status == 'reveal':
+            if status == 'reveal' and condition not in ['manx syndrome']:
                 # gather potential event strings for gotten risk
                 possible_string_list = Condition_Events.CONGENITAL_CONDITION_GOT_STRINGS[condition]
 
