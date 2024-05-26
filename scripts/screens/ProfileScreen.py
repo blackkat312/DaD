@@ -1003,9 +1003,15 @@ class ProfileScreen(Screens):
             elif "fleas" in the_cat.illnesses:
                 output += 'flea-ridden!'
             elif "puppyspace" in the_cat.illnesses:
-                output += 'in puppyspace'
+                if game.settings['warriorified names']:
+                    output += 'in puppyspace'
+                else:
+                    output += 'in petspace'
             elif "kittenspace" in the_cat.illnesses:
-                output += 'in kittenspace'
+                if game.settings['warriorified names']:
+                    output += 'in kittenspace'
+                else:
+                    output += 'in littlespace'
             elif the_cat.illnesses in ["lethargy", "seasonal lethargy"]:
                 output += 'experiencing lethargy'
             elif "indecision" in the_cat.illnesses:
@@ -1651,7 +1657,7 @@ class ProfileScreen(Screens):
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.illnesses if
                                      i not in ("an infected wound", "a festering wound")])
         all_illness_injuries = chunks(all_illness_injuries, 4)
-        
+
         if not all_illness_injuries:
             self.conditions_page = 0
             self.right_conditions_arrow.disable()
@@ -1677,6 +1683,7 @@ class ProfileScreen(Screens):
 
         x_pos = 30
         for con in all_illness_injuries[self.conditions_page]:
+            condition_name = self.change_condition_name(con[0])
             # Background Box
             pygame_gui.elements.UIImage(
                 scale(pygame.Rect((x_pos, 25), (280, 276))),
@@ -1684,9 +1691,9 @@ class ProfileScreen(Screens):
                 container=self.condition_container)
 
             y_adjust = 60
-            
+
             name = UITextBoxTweaked(
-                con[0],
+                condition_name,
                 scale(pygame.Rect((x_pos, 26), (272, -1))),
                 line_spacing=.90,
                 object_id="#text_box_30_horizcenter",
@@ -1706,6 +1713,52 @@ class ProfileScreen(Screens):
             x_pos += 304
         
         return
+
+    def change_condition_name(self, condition):
+        dad_names = {
+            "echoing shock": "C-PTSD",
+            "starwalker": "autism",
+            "obsessive mind": "OCD",
+            "heavy soul": "chronic depression",
+            "comet spirit": "ADHD",
+            "antisocial": "ASPD",
+            "constant roaming pain": "fibromyalgia",
+            "ongoing sleeplessness": "chronic insomnia",
+            "body biter": "BFRD",
+            "thunderous spirit": "BPD",
+            "otherworldly mind": "schizophrenia",
+            "snow vision": "visual snow",
+            "kitten regressor": "age regressor",
+            "puppy regressor": "pet regressor",
+            "irritable bowels": "IBS",
+            "jellyfish joints": "HSD",
+            "loose body": "hEDS",
+            "burning light": "chronic light sensitivity",
+            "jumbled noise": "APD",
+            "disrupted senses": "SPD",
+            "constant rash": "eczema",
+            "chattering tongue": "tourette's",
+            "falling paws": "orthostatic hypotension",
+            "shattered soul": "DID",
+            "budding spirit": "OSDD",
+            "curved spine": "scoliosis",
+            "jumbled mind": "WiP",
+            "counting fog": "dyscalculia",
+
+            "sunblindness": "light sensitivity",
+
+            "seasonal lethargy": "seasonal depression",
+            "lethargy": "depression",
+            "sleeplessness": "insomnia",
+            "ear buzzing": "tinnitus",
+            "kittenspace": "littlespace",
+            "puppyspace": "petspace"
+        }
+        if not game.settings['warriorified names']:
+            if condition in dad_names:
+                condition = condition.replace(condition, dad_names.get(condition))
+
+        return condition
 
     def get_alter_details(self, alter):
         text_list = []
@@ -1784,9 +1837,15 @@ class ProfileScreen(Screens):
             if name == 'grief stricken':
                 insert = 'has been grieving for'
             if name in 'kittenspace':
-                insert = 'has been in kittenspace for'
+                if game.settings['warriorified names']:
+                    insert = 'has been in kittenspace for'
+                else:
+                    insert = 'has been in littlespace for'
             if name in 'puppyspace':
-                insert = 'has been in puppyspace for'
+                if game.settings['warriorified names']:
+                    insert = 'has been in puppyspace for'
+                else:
+                    insert = 'has been in petspace for'
             if moons_with != 1:
                 text_list.append(f"{insert} {moons_with} moons")
             else:
