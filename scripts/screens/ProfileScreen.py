@@ -988,36 +988,119 @@ class ProfileScreen(Screens):
                 '''
                 output += "\n"
 
-
-
         if the_cat.is_injured():
+            special_conditions = [
+                "overstimulation", "understimulation", "fatigue", "fainting"
+            ]
+            all_special = True
+            for condition in special_conditions:
+                if condition not in the_cat.illnesses:
+                    all_special = False
+                if not all_special:
+                    break
+
+            if not all_special:
+                output += "injured!"
+
             if "recovering from birth" in the_cat.injuries:
                 output += 'recovering from birth!'
-            elif "pregnant" in the_cat.injuries:
+
+            if "overstimulation" in the_cat.injuries:
+                output += 'overstimulated!'
+
+            if "understimulation" in the_cat.injuries:
+                output += 'understimulated!'
+
+            if "fatigue" in the_cat.injuries:
+                output += 'fatigued!'
+
+            if "fainting" in the_cat.injuries:
+                output += 'fainted!'
+
+            if "pregnant" in the_cat.injuries:
                 output += 'pregnant!'
-            else:
-                output += "injured!"
-        elif the_cat.is_ill():
+
+        if the_cat.is_ill():
+            special_conditions = [
+                "grief stricken", "fleas", "malnourished", "starving", "paranoia", "seasonal lethargy", "lethargy",
+                "special interest", "hyperfixation", "stimming", "indecision", "impulsivity", "zoomies",
+                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness"
+            ]
+            all_special = True
+            for condition in special_conditions:
+                if condition not in the_cat.illnesses:
+                    all_special = False
+                if not all_special:
+                    break
+
+            if not all_special:
+                output += 'sick!'
+
             if "grief stricken" in the_cat.illnesses:
                 output += 'grieving!'
-            elif "fleas" in the_cat.illnesses:
+
+            if "fleas" in the_cat.illnesses:
                 output += 'flea-ridden!'
-            elif "puppyspace" in the_cat.illnesses:
+
+            if "malnourished" in the_cat.illnesses:
+                output += 'malnourished!'
+
+            if "starving" in the_cat.illnesses:
+                output += 'starving!'
+
+            if "paranoia" in the_cat.illnesses:
+                output += 'paranoid!'
+
+            if ("lethargy" or "seasonal lethargy") in the_cat.illnesses:
+                if game.settings['warriorified names']:
+                    output += 'lethargic!'
+                else:
+                    output += 'depressed!'
+
+            if "special interest" in the_cat.illnesses:
+                output += 'has a special interest'
+
+            if "hyperfixation" in the_cat.illnesses:
+                output += 'has a hyperfixation'
+
+            if "stimming" in the_cat.illnesses:
+                output += 'stimming'
+
+            if "indecision" in the_cat.illnesses:
+                output += 'indecisive!'
+
+            if "impulsivity" in the_cat.illnesses:
+                output += 'impulsive!'
+
+            if "zoomies" in the_cat.illnesses:
+                output += 'zoomin\''
+
+            if "sleeplessness" in the_cat.illnesses:
+                if game.settings['warriorified names']:
+                    output += 'sleepless!'
+                else:
+                    output += 'insomniac!'
+
+            if "burn out" in the_cat.illnesses:
+                output += 'burnt out!'
+
+            if "puppyspace" in the_cat.illnesses:
                 if game.settings['warriorified names']:
                     output += 'in puppyspace'
                 else:
                     output += 'in petspace'
-            elif "kittenspace" in the_cat.illnesses:
+
+            if "kittenspace" in the_cat.illnesses:
                 if game.settings['warriorified names']:
                     output += 'in kittenspace'
                 else:
                     output += 'in littlespace'
-            elif the_cat.illnesses in ["lethargy", "seasonal lethargy"]:
-                output += 'experiencing lethargy'
-            elif "indecision" in the_cat.illnesses:
-                output += 'indecisive'
-            else:
-                output += 'sick!'
+
+            if ("tics" or "tic attack") in the_cat.illnesses:
+                output += 'ticing!'
+
+            if "dizziness" in the_cat.illnesses:
+                output += 'dizzy!'
 
         return output
 
@@ -1714,9 +1797,9 @@ class ProfileScreen(Screens):
         
         return
 
-    def change_condition_name(self, condition):
+    @staticmethod
+    def change_condition_name(condition):
         dad_names = {
-            "echoing shock": "C-PTSD",
             "starwalker": "autism",
             "obsessive mind": "OCD",
             "heavy soul": "chronic depression",
@@ -1742,7 +1825,7 @@ class ProfileScreen(Screens):
             "shattered soul": "DID",
             "budding spirit": "OSDD",
             "curved spine": "scoliosis",
-            "jumbled mind": "WiP",
+            "jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
 
             "sunblindness": "light sensitivity",
@@ -1808,7 +1891,20 @@ class ProfileScreen(Screens):
             
             if name == 'recovering from birth':
                 insert = 'has been recovering for'
-            elif name == 'pregnant':
+
+            if name == 'overstimulation':
+                insert = 'has been overstimulated for'
+
+            if name == 'understimulation':
+                insert = 'has been understimulated for'
+
+            if name == 'fatigue':
+                insert = 'has been fatigued for'
+
+            if name == 'fainting':
+                insert = 'has been fainted for'
+
+            if name == 'pregnant':
                 insert = 'has been pregnant for'
             
             if moons_with != 1:
@@ -1836,16 +1932,67 @@ class ProfileScreen(Screens):
             
             if name == 'grief stricken':
                 insert = 'has been grieving for'
-            if name in 'kittenspace':
+
+            if name == 'malnourished':
+                insert = 'has been malnourished for'
+
+            if name == 'starving':
+                insert = 'has been starving for'
+
+            if name == 'paranoia':
+                insert = 'has been paranoid for'
+
+            if name in ['seasonal lethargy', 'lethargy']:
+                if game.settings['warriorified names']:
+                    insert = 'has been lethargic for'
+                else:
+                    insert = 'has been depressed for'
+
+            if name == 'special interest':
+                insert = 'has been interested for'
+
+            if name == 'hyperfixation':
+                insert = 'has been fixated for'
+
+            if name == 'stimming':
+                insert = 'has been stimming for'
+
+            if name == 'indecision':
+                insert = 'has been indecisive for'
+
+            if name == 'impulsivity':
+                insert = 'has been impulsive for'
+
+            if name == 'zoomies':
+                insert = 'has been zooming for'
+
+            if name == 'sleeplessness':
+                if game.settings['warriorified names']:
+                    insert = 'has been sleepless for'
+                else:
+                    insert = 'has been insomniac for'
+
+            if name == 'burn out':
+                insert = 'has been burnt out for'
+
+            if name == 'kittenspace':
                 if game.settings['warriorified names']:
                     insert = 'has been in kittenspace for'
                 else:
                     insert = 'has been in littlespace for'
-            if name in 'puppyspace':
+
+            if name == 'puppyspace':
                 if game.settings['warriorified names']:
                     insert = 'has been in puppyspace for'
                 else:
                     insert = 'has been in petspace for'
+
+            if name in ['tics', 'tic attack']:
+                insert = 'has been ticing for'
+
+            if name == 'dizziness':
+                insert = 'has been dizzy for'
+
             if moons_with != 1:
                 text_list.append(f"{insert} {moons_with} moons")
             else:
