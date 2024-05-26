@@ -988,37 +988,63 @@ class ProfileScreen(Screens):
                 '''
                 output += "\n"
 
+        already_sick_injured = False
         if the_cat.is_injured():
             special_conditions = [
                 "overstimulation", "understimulation", "fatigue", "fainting"
             ]
             all_special = True
-            for condition in special_conditions:
-                if condition not in the_cat.illnesses:
+            for condition in the_cat.injuries:
+                if condition not in special_conditions:
                     all_special = False
                 if not all_special:
                     break
 
             if not all_special:
                 output += "injured!"
+                already_sick_injured = True
 
             if "recovering from birth" in the_cat.injuries:
-                output += 'recovering from birth!'
+                if already_sick_injured:
+                    output += '\nrecovering from birth!'
+                else:
+                    output += 'recovering from birth!'
+                    already_sick_injured = True
 
             if "overstimulation" in the_cat.injuries:
-                output += 'overstimulated!'
+                if already_sick_injured:
+                    output += '\noverstimulated!'
+                else:
+                    output += 'overstimulated!'
+                    already_sick_injured = True
 
             if "understimulation" in the_cat.injuries:
-                output += 'understimulated!'
+                if already_sick_injured:
+                    output += '\nunderstimulated!'
+                else:
+                    output += 'understimulated!'
+                    already_sick_injured = True
 
             if "fatigue" in the_cat.injuries:
-                output += 'fatigued!'
+                if already_sick_injured:
+                    output += '\nfatigued!'
+                else:
+                    output += 'fatigued!'
+                    already_sick_injured = True
 
             if "fainting" in the_cat.injuries:
-                output += 'fainted!'
+                if already_sick_injured:
+                    output += '\nfainted!'
+                else:
+                    output += 'fainted!'
+                    already_sick_injured = True
 
             if "pregnant" in the_cat.injuries:
-                output += 'pregnant!'
+                if already_sick_injured:
+                    output += '\npregnant!'
+                else:
+                    output += 'pregnant!'
+                    already_sick_injured = True
 
         if the_cat.is_ill():
             special_conditions = [
@@ -1027,77 +1053,95 @@ class ProfileScreen(Screens):
                 "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness"
             ]
             all_special = True
-            for condition in special_conditions:
-                if condition not in the_cat.illnesses:
+            for condition in the_cat.illnesses:
+                if condition not in special_conditions:
                     all_special = False
                 if not all_special:
                     break
 
             if not all_special:
                 output += 'sick!'
+                already_sick_injured = True
 
             if "grief stricken" in the_cat.illnesses:
                 output += 'grieving!'
+                already_sick_injured = True
 
             if "fleas" in the_cat.illnesses:
                 output += 'flea-ridden!'
+                already_sick_injured = True
 
             if "malnourished" in the_cat.illnesses:
                 output += 'malnourished!'
+                already_sick_injured = True
 
             if "starving" in the_cat.illnesses:
                 output += 'starving!'
+                already_sick_injured = True
 
             if "paranoia" in the_cat.illnesses:
                 output += 'paranoid!'
+                already_sick_injured = True
 
             if ("lethargy" or "seasonal lethargy") in the_cat.illnesses:
                 if game.settings['warriorified names']:
                     output += 'lethargic!'
                 else:
                     output += 'depressed!'
+                already_sick_injured = True
 
             if "special interest" in the_cat.illnesses:
                 output += 'has a special interest'
+                already_sick_injured = True
 
             if "hyperfixation" in the_cat.illnesses:
                 output += 'has a hyperfixation'
+                already_sick_injured = True
 
             if "stimming" in the_cat.illnesses:
                 output += 'stimming'
+                already_sick_injured = True
 
             if "indecision" in the_cat.illnesses:
                 output += 'indecisive!'
+                already_sick_injured = True
 
             if "impulsivity" in the_cat.illnesses:
                 output += 'impulsive!'
+                already_sick_injured = True
 
             if "zoomies" in the_cat.illnesses:
                 output += 'zoomin\''
+                already_sick_injured = True
 
             if "sleeplessness" in the_cat.illnesses:
                 if game.settings['warriorified names']:
                     output += 'sleepless!'
                 else:
                     output += 'insomniac!'
+                already_sick_injured = True
 
             if "burn out" in the_cat.illnesses:
                 output += 'burnt out!'
+                already_sick_injured = True
 
             if "puppyspace" in the_cat.illnesses:
                 if game.settings['warriorified names']:
                     output += 'in puppyspace'
                 else:
                     output += 'in petspace'
+                already_sick_injured = True
 
             if "kittenspace" in the_cat.illnesses:
                 if game.settings['warriorified names']:
                     output += 'in kittenspace'
                 else:
                     output += 'in littlespace'
+                already_sick_injured = True
 
             if ("tics" or "tic attack") in the_cat.illnesses:
                 output += 'ticing!'
+                already_sick_injured = True
 
             if "dizziness" in the_cat.illnesses:
                 output += 'dizzy!'
