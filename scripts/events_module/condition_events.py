@@ -819,7 +819,6 @@ class Condition_Events():
     @staticmethod
     def change_condition_name(text):
         dad_names = {
-            "echoing shock": "C-PTSD",
             "a starwalker": "autistic",
             "starwalker traits": "autistic traits",
             "an obsessive mind": "OCD",
@@ -847,7 +846,7 @@ class Condition_Events():
             "shattered soul": "system",
             "budding spirit": "system",
             "a curved spine": "scoliosis",
-            "jumbled mind": "WiP",
+            "a jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
 
             "sunblindness": "light sensitivity",
