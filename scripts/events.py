@@ -2397,9 +2397,9 @@ class Events:
                 else:
                     cat.genderalign = random.choice(["trans molly", "trans tom"])
             elif cat.gender == "intersex":
-                amalgagenderchance = random.randint(1, 2)
-                if amalgagenderchance == 1:
-                    cat.genderalign = "amalgagender"
+                intergenderchance = random.randint(1, 2)
+                if intergenderchance == 1:
+                    cat.genderalign = "intergender"
                 else:
                     cat.genderalign = random.choice(genderqueer_list)
             else:
@@ -2424,7 +2424,7 @@ class Events:
             elif cat.genderalign == "demitom":
                 trans += "a demitom"
             else:
-                trans += str(cat.genderalign)
+                trans += cat.genderalign
             text = f"{cat.name} has been mulling over this for moons, but now they feel comfortable enough to tell the Clan: they aren't {gender}, they're {trans}."
             game.cur_events_list.append(
                 Single_Event(text, "misc", involved_cats))
