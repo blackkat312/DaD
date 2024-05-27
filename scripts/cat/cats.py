@@ -896,9 +896,9 @@ class Cat():
                 if trans_chance == 1:
                     self.genderalign = choice(["trans tom", "trans molly"])
                 elif nb_chance == 1:
-                    amalgagenderchance = randint(1, 2)
-                    if amalgagenderchance == 1:
-                        self.genderalign = "amalgagender"
+                    intergenderchance = randint(1, 2)
+                    if intergenderchance == 1:
+                        self.genderalign = "intergender"
                     else:
                         self.genderalign = choice(genderqueer_list)
                 else:
