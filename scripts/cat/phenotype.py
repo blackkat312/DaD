@@ -221,13 +221,15 @@ class Phenotype():
 
         if(self.genotype.karp[0] == 'K'):
             self.karpati = "karpati "
+        if(self.genotype.white[0] == 'wsal'):
+            self.karpati += "salmiak "
 
         if(self.genotype.bleach[0] == "lb"):
             self.fade = "bleached "
         elif(self.genotype.ghosting[0] == "Gh"):
             self.fade = "faded "
     def SolidWhite(self, pattern=None):
-        if(self.genotype.white[0] == "W" or self.genotype.pointgene[0] == "c" or pattern == ["full white"]):
+        if(self.genotype.white[0] == "W" or self.genotype.pointgene[0] == "c" or (self.genotype.white[1] in ['wt', 'ws'] and self.genotype.whitegrade == 5) or (self.genotype.brindledbi and 'o' not in self.genotype.sexgene)):
             self.highwhite = ""
             self.fade = ""
             if(self.genotype.pointgene[0] == "c"):
@@ -240,8 +242,10 @@ class Phenotype():
             self.tortie = ""
             self.point = ""
             self.lowwhite = ""
+            self.highwhite = ""
             self.karpati = ""
             self.specwhite = ""
+            self.vitiligo = ""
     def SilverGoldFinder(self):
         self.silvergold = ""
 
@@ -336,7 +340,7 @@ class Phenotype():
         if('o' not in self.genotype.sexgene or self.genotype.agouti[0] != 'a' or self.tabtype != '' or ('smoke' in self.silvergold and self.length == 'shorthaired') or self.genotype.ext[0] not in ['Eg', 'E']):
             FindPattern()
 
-        if(self.tortie != '' and self.tabby != '' and self.tortie != ' brindled bicolour '):
+        if(self.tortie != '' and self.tabby != '' and self.tortie != 'brindled bicolour '):
             if(self.tortie == 'calico '):
                 self.tortie = ' caliby '
             else:
@@ -421,15 +425,12 @@ class Phenotype():
     def PhenotypeOutput(self, gender=None, pattern=None):
         self.FurtypeFinder()
         self.MainColourFinder()
-        self.WhiteFinder()
         self.PointFinder()
         self.ExtFinder()
         self.KarpFadeFinder()
-
+        self.WhiteFinder()
         self.SilverGoldFinder()
         self.TabbyFinder()
-
-        self.SolidWhite(pattern=pattern)
 
         self.EarFinder()
         self.TailFinder()
@@ -437,6 +438,7 @@ class Phenotype():
 
         if (self.genotype.vitiligo):
             self.vitiligo = 'vitiligo'
+        self.SolidWhite(pattern=pattern)
 
         if(self.genotype.chimera and not self.genotype.chimerapattern):
             self.genotype.chimerapattern = self.ChooseTortiePattern('chim')
