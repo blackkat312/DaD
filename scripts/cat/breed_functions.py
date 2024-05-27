@@ -249,7 +249,9 @@ class Breed_generator:
     @staticmethod
     def Aby(genoclass, special):
         # FUR LENGTH
-        
+
+        genoclass.longtype = 'long'
+
         if random() < 0.01:
             genoclass.furLength = ["L", "l"]
         elif random() < 0.25:
@@ -463,7 +465,7 @@ class Breed_generator:
         else:
             genoclass.soktype = soktypes[2]
 
-        genoclass.breeds["Abyssinian/Somali"] = 100
+        genoclass.breeds["Abyssinian"] = 100
         return genoclass
     
     @staticmethod
@@ -1384,6 +1386,7 @@ class Breed_generator:
     def Birman(genoclass, special):
         # FUR LENGTH
         
+        genoclass.longtype = 'long'
         if random() < 0.125:
             genoclass.furLength = ["L", choice(["L", "l"])]
         else:
@@ -3524,6 +3527,8 @@ class Breed_generator:
         genoclass.furLength = ["L", "L"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
+
+        genoclass.white = ['w', 'w']
 
         # ALBINO
 
@@ -7884,7 +7889,7 @@ def find_my_breed(genotype, phenotype, config):
             return "Lambkin"
         elif breed == "Napoleon" and phenotype.length != "hairless" and genotype.lykoi[0] == "Ly" and genotype.breeds.get("Persian/Exotic", 0) and genotype.breeds.get("Munchkin", 0):
             return "Napoleon"
-        elif breed == "Peterbald" and genotype.ruhr[0] == "Hrbd" and genotype.breeds.get("Oriental/Siamese", 0) and genotype.breeds.get("Donskoy", 0):
+        elif breed == "Peterbald" and genotype.breeds.get("Oriental/Siamese", 0) and genotype.breeds.get("Donskoy", 0):
             return "Peterbald"
         elif breed == "Serengeti" and Breed_checker.Serengeti(genotype, phenotype) and genotype.breeds.get("Oriental/Siamese", 0) and genotype.breeds.get("Bengal", 0):
             return "Serengeti"
@@ -7918,7 +7923,7 @@ def find_my_breed(genotype, phenotype, config):
 
 breed_functions = {
     "generator" : {
-        "Abyssinian/Somali" : Breed_generator.Aby,
+        "Abyssinian" : Breed_generator.Aby,
         "American Bobtail" : Breed_generator.AmBob,
         "American Curl" : Breed_generator.AmCurl,
         "American Shorthair" : Breed_generator.AmSH,
@@ -7993,7 +7998,7 @@ breed_functions = {
         "Skookum" : Breed_generator.Skookum
     },
     "checker": {
-        "Abyssinian/Somali" : Breed_checker.Aby,
+        "Abyssinian" : Breed_checker.Aby,
         "American Bobtail" : Breed_checker.AmBob,
         "American Curl" : Breed_checker.AmCurl,
         "American Shorthair" : Breed_checker.AmSH,
