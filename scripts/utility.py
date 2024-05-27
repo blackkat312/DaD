@@ -2007,7 +2007,9 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                         whichmain.blit(sprites.sprites['homokarpati'+ seasondict.get(get_current_season(), "spring") + cat_sprite], (0, 0))
                     else:
                         whichmain.blit(sprites.sprites['hetkarpati'+ seasondict.get(get_current_season(), "spring") + cat_sprite], (0, 0))
-                
+                if(genotype.white[0] == 'wsal'):
+                    whichmain.blit(sprites.sprites['salmiak' + cat_sprite], (0, 0))
+
 
 
                 pads = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
@@ -2179,7 +2181,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                     gensprite.blit(sprites.sprites['dorsal2' + cat_sprite], (0, 0))
 
 
-            if(cat.genotype.sedesp == ['hr', 're']):
+            if(cat.genotype.sedesp == ['hr', 're'] or (cat.genotype.sedesp[0] == 're' and cat.moons < 12)):
                 gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
                 gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
             elif(cat.pelt.length == 'hairless'):
