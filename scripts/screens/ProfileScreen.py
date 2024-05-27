@@ -300,7 +300,7 @@ class ProfileScreen(Screens):
                 #if the cat is trans then set them to nonbinary
                 elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
                     if self.the_cat.gender == "intersex":
-                        amalgagenderchance = randint(1, 2)
+                        amalgagenderchance = random.randint(1, 2)
                         if amalgagenderchance == 1:
                             self.the_cat.genderalign = "amalgagender"
                         else:
@@ -2278,7 +2278,7 @@ class ProfileScreen(Screens):
                                                       manager=MANAGER)
             elif self.the_cat.gender == "intersex" and self.the_cat.genderalign == "intersex":
                 self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_trans_female_button",
+                                                      starting_height=2, object_id="#change_trans_button",
                                                       manager=MANAGER)
             elif self.the_cat.genderalign in ['trans molly', 'trans tom']:
                 self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
