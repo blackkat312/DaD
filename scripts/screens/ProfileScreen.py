@@ -1060,91 +1060,164 @@ class ProfileScreen(Screens):
                     break
 
             if not all_special:
-                output += 'sick!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nsick!'
+                else:
+                    output += 'sick!'
+                    already_sick_injured = True
 
             if "grief stricken" in the_cat.illnesses:
-                output += 'grieving!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\ngrieving!'
+                else:
+                    output += 'grieving!'
+                    already_sick_injured = True
 
             if "fleas" in the_cat.illnesses:
-                output += 'flea-ridden!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nflea-ridden!'
+                else:
+                    output += 'flea-ridden!'
+                    already_sick_injured = True
 
             if "malnourished" in the_cat.illnesses:
-                output += 'malnourished!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nmalnourished!'
+                else:
+                    output += 'malnourished!'
+                    already_sick_injured = True
 
             if "starving" in the_cat.illnesses:
-                output += 'starving!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    # I don't think cats can be malnourished and starving at the same time, but jic
+                    if "malnourished!" in output:
+                        output = output.replace('malnourished!', 'starving!')
+                    else:
+                        output += '\nstarving!'
+                else:
+                    output += 'starving!'
+                    already_sick_injured = True
 
             if "paranoia" in the_cat.illnesses:
-                output += 'paranoid!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nparanoid!'
+                else:
+                    output += 'paranoid!'
+                    already_sick_injured = True
 
             if ("lethargy" or "seasonal lethargy") in the_cat.illnesses:
-                if game.settings['warriorified names']:
-                    output += 'lethargic!'
+                if already_sick_injured:
+                    if game.settings['warriorified names']:
+                        output += '\nlethargic!'
+                    else:
+                        output += '\ndepressed!'
                 else:
-                    output += 'depressed!'
-                already_sick_injured = True
+                    if game.settings['warriorified names']:
+                        output += 'lethargic!'
+                    else:
+                        output += 'depressed!'
+                    already_sick_injured = True
 
             if "special interest" in the_cat.illnesses:
-                output += 'has a special interest'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nhas a special interest'
+                else:
+                    output += 'has a special interest'
+                    already_sick_injured = True
 
             if "hyperfixation" in the_cat.illnesses:
-                output += 'has a hyperfixation'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nhas a hyperfixation'
+                else:
+                    output += 'has a hyperfixation'
+                    already_sick_injured = True
 
             if "stimming" in the_cat.illnesses:
-                output += 'stimming'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nstimming'
+                else:
+                    output += 'stimming'
+                    already_sick_injured = True
 
             if "indecision" in the_cat.illnesses:
-                output += 'indecisive!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nindecisive!'
+                else:
+                    output += 'indecisive!'
+                    already_sick_injured = True
 
             if "impulsivity" in the_cat.illnesses:
-                output += 'impulsive!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nimpulsive!'
+                else:
+                    output += 'impulsive!'
+                    already_sick_injured = True
 
             if "zoomies" in the_cat.illnesses:
-                output += 'zoomin\''
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nzoomin\''
+                else:
+                    output += 'zoomin\''
+                    already_sick_injured = True
 
             if "sleeplessness" in the_cat.illnesses:
-                if game.settings['warriorified names']:
-                    output += 'sleepless!'
+                if already_sick_injured:
+                    if game.settings['warriorified names']:
+                        output += '\nsleepless!'
+                    else:
+                        output += '\ninsomniac!'
                 else:
-                    output += 'insomniac!'
-                already_sick_injured = True
+                    if game.settings['warriorified names']:
+                        output += 'sleepless!'
+                    else:
+                        output += 'insomniac!'
+                    already_sick_injured = True
 
             if "burn out" in the_cat.illnesses:
-                output += 'burnt out!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nburnt out!'
+                else:
+                    output += 'burnt out!'
+                    already_sick_injured = True
 
             if "puppyspace" in the_cat.illnesses:
-                if game.settings['warriorified names']:
-                    output += 'in puppyspace'
+                if already_sick_injured:
+                    if game.settings['warriorified names']:
+                        output += '\nin puppyspace'
+                    else:
+                        output += '\nin petspace'
                 else:
-                    output += 'in petspace'
-                already_sick_injured = True
+                    if game.settings['warriorified names']:
+                        output += 'in puppyspace'
+                    else:
+                        output += 'in petspace'
+                    already_sick_injured = True
 
             if "kittenspace" in the_cat.illnesses:
-                if game.settings['warriorified names']:
-                    output += 'in kittenspace'
+                if already_sick_injured:
+                    if game.settings['warriorified names']:
+                        output += '\nin kittenspace'
+                    else:
+                        output += '\nin littlespace'
                 else:
-                    output += 'in littlespace'
-                already_sick_injured = True
+                    if game.settings['warriorified names']:
+                        output += 'in kittenspace'
+                    else:
+                        output += 'in littlespace'
+                    already_sick_injured = True
 
             if ("tics" or "tic attack") in the_cat.illnesses:
-                output += 'ticing!'
-                already_sick_injured = True
+                if already_sick_injured:
+                    output += '\nticing!'
+                else:
+                    output += 'ticing!'
+                    already_sick_injured = True
 
             if "dizziness" in the_cat.illnesses:
-                output += 'dizzy!'
+                if already_sick_injured:
+                    output += '\ndizzy!'
+                else:
+                    output += 'dizzy!'
 
         return output
 
