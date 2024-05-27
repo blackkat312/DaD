@@ -382,6 +382,7 @@ def create_new_cat(Cat,
 
         # chance to give the new cat a permanent condition, higher chance for found kits and litters
         if game.clan.game_mode != 'classic':
+            chance = 1
             if kit or litter:
                 chance = int(game.config["cat_generation"]["base_permanent_condition"] / 11.25)
             else:
@@ -391,7 +392,9 @@ def create_new_cat(Cat,
                 genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism",
                                       "mosaicism", "albinism", "ocular albinism", "manx syndrome"]
                 for condition in PERMANENT:
-                    if (kit or litter) and (PERMANENT[condition]['congenital'] not in ['always', 'sometimes']) or (condition in genetics_exclusive):
+                    if (kit or litter) and PERMANENT[condition]['congenital'] not in ['always', 'sometimes']:
+                        continue
+                    if condition in genetics_exclusive:
                         continue
                     # next part ensures that a kit won't get a condition that takes too long to reveal
                     age = new_cat.moons
