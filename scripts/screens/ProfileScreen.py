@@ -300,9 +300,9 @@ class ProfileScreen(Screens):
                 #if the cat is trans then set them to nonbinary
                 elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
                     if self.the_cat.gender == "intersex":
-                        amalgagenderchance = random.randint(1, 2)
-                        if amalgagenderchance == 1:
-                            self.the_cat.genderalign = "amalgagender"
+                        intergenderchance = random.randint(1, 2)
+                        if intergenderchance == 1:
+                            self.the_cat.genderalign = "intergender"
                         else:
                             self.the_cat.genderalign = random.choice(genderqueer_list)
                     else:
