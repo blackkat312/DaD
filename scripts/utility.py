@@ -2374,11 +2374,11 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 new_sprite.blit(sprites.sprites['acc_tail2' + cat.pelt.accessory + cat_sprite], (0, 0))
 
             elif cat.pelt.accessory in cat.pelt.toy_accessories:
-                new_sprite.blit(sprites.sprites['acc_toy' + cat.pelt.accessory + cat_sprite], (0, 0))
+                new_sprite.blit(sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0))
             elif cat.pelt.accessory in cat.pelt.blankie_accessories:
-                new_sprite.blit(sprites.sprites['acc_blankie' + cat.pelt.accessory + cat_sprite], (0, 0))
+                new_sprite.blit(sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0))
             elif cat.pelt.accessory in cat.pelt.flag_accessories:
-                new_sprite.blit(sprites.sprites['acc_flag' + cat.pelt.accessory + cat_sprite], (0, 0))
+                new_sprite.blit(sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0))
 
         # Apply fading fog
         if cat.pelt.opacity <= 97 and not cat.prevent_fading and game.clan.clan_settings["fading"] and dead:
