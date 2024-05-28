@@ -2080,11 +2080,11 @@ class Cat():
         #print(self.ID)
         template["ID"] = str(len(self.alters) + 1)
         template["role"] = choice(["co-host", "caregiver", "little", "protecter", "trauma holder", "persecutor"])
-        extra = randint(1, 5)
+        extra = randint(1,5)
         if extra < 5:
             template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
-        rng = randint(1, 20)
-        gender = "???"
+        rng = randint(1,20)
+        gender="???"
         if rng <= 2:
             genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
                                 "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
@@ -2096,26 +2096,21 @@ class Cat():
         template["gender"] = gender
         alter_name = ""
 
-        # naming without making a whole new cat....yikers TT
+        #naming without making a whole new cat....yikers TT
         if os.path.exists('resources/dicts/names/names.json'):
             with open('resources/dicts/names/names.json') as read_file:
                 names_dict = ujson.loads(read_file.read())
         if template["other"] == "fictive" or template["other"] == "fuzztive":
-            canon_chance = randint(1, 3)
+            canon_chance = randint(1,5)
             if canon_chance == 2:
-                alter_name = choice(
-                    [
-                        "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
-                        "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
-                        "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
-                        "Crowfeather", "Nightheart", "Willowpelt", "Shadowsight", "Tigerheart", "Grey Wing", "River",
-                        "Night", "Violetshine", "Twigbranch", "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
-                        "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
-                        "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe",
-                        "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt",
-                        "Webfoot"
-                    ]
-                )
+                alter_name = choice(["Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
+                                    "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
+                                    "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
+                                    "Crowfeather", "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River",
+                                    "Night", "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart", "Tall Shadow",
+                                    "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart", "Briarlight", "Cloudtail",
+                                    "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe", "Poppyfrost", "Stormfur", "Mistyfoot",
+                                    "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt", "Webfoot", "Jake", "Sparkpelt", "Rootspring", "Nightcloud"])
             else:
                 alter_name = choice(names_dict["normal_prefixes"])
         else:
@@ -2123,16 +2118,19 @@ class Cat():
 
         if template["role"] == "little":
             if template["other"] == "fictive" or template["other"] == "fuzztive":
-                canon_chance = randint(1, 50)
+                canon_chance = randint(1,50)
                 if canon_chance == 2:
                     alter_name = choice(["Snowkit", "Mosskit"])
+                else:
+                    alter_name = choice(names_dict["normal_prefixes"])
+                    alter_name += choice(["kit","paw"])
             else:
                 alter_name = choice(names_dict["normal_prefixes"])
-                alter_name += choice(["kit", "paw"])
+                alter_name += choice(["kit","paw"])
         elif template["other"] == "cat" or template["other"] == "otherclan":
             alter_name += choice(names_dict["normal_suffixes"])
         template["name"] = alter_name
-        # print(template)
+        #print(template)
         self.alters.append(template)
 
     def moon_skip_permanent_condition(self, condition):
@@ -2144,14 +2142,14 @@ class Cat():
             self.permanent_condition[condition]["event_triggered"] = False
             return "skip"
 
-        # chance of splitting if plural
+        #chance of splitting if plural
         if self.is_plural():
-            splitting = randint(1, 100)
+            splitting = randint(1,100)
             if len(self.alters) < 1:
                 self.new_alter()
             if splitting < 15:
                 if len(self.alters) < 100:
-                    num_splits = randint(1, 3)
+                    num_splits = randint(1,3)
                     for i in range(num_splits):
                         self.new_alter()
             can_front = [str(self.name)]
