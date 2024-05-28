@@ -1823,19 +1823,9 @@ class ProfileScreen(Screens):
         
         # gather a list of all the conditions and info needed.
         all_illness_injuries = []
-        '''
-        if self.the_cat.is_plural():
-            alter_info = []
-            for alter in self.the_cat.alters:
-                print(alter)
-                print(alter['name'])
-                alter_info.extend(['alter', 'test'])
-            all_illness_injuries.extend(alter_info)
-        for i in all_illness_injuries:
-            print(i)
-            '''
 
-        all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.permanent_condition if not (self.the_cat.permanent_condition[i]['born_with'] and self.the_cat.permanent_condition[i]["moons_until"] != -2)])
+        all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.permanent_condition if
+                                not (self.the_cat.permanent_condition[i]['born_with'] and self.the_cat.permanent_condition[i]["moons_until"] != -2)])
         if self.the_cat.is_plural:
             if "shattered soul" in self.the_cat.permanent_condition:
                 con = "shattered soul"
@@ -1855,7 +1845,9 @@ class ProfileScreen(Screens):
                     all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.injuries])
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.illnesses if
-                                     i not in ("an infected wound", "a festering wound")])
+                                    i not in ("an infected wound", "a festering wound")])
+        #for i in all_illness_injuries:
+            #print(i)
         all_illness_injuries = chunks(all_illness_injuries, 4)
 
         if not all_illness_injuries:
@@ -1968,7 +1960,7 @@ class ProfileScreen(Screens):
         if alter["other"] != "cat":
             text_list.append(alter["other"])
         text = "<br>".join(text_list)
-        # print(text)
+        #print(text)
         return text
 
     def get_condition_details(self, name):
@@ -1980,7 +1972,10 @@ class ProfileScreen(Screens):
         if name in self.the_cat.permanent_condition:
             # display if the cat was born with it
             if self.the_cat.permanent_condition[name]["born_with"] is True:
-                text_list.append(f"born with this condition")
+                if name not in ["shattered soul", "budding spirit"]:
+                    text_list.append(f"born with this condition")
+                else:
+                    text_list.append(f"split in early kithood")
             else:
                 # moons with the condition if not born with condition
                 moons_with = game.clan.age - self.the_cat.permanent_condition[name]["moon_start"]
