@@ -322,15 +322,15 @@
 	},
 	"genetic_chances": {
 		"chimera" : 250,
-		"intersex" : 80,
-		"XXX/XXY" : 150,
-		"brindled_bicolour" : 150,
-		"vitiligo" : 60,
-		"random_mutation" : 80,
-		"kittypet_breed" : 65,
-		"other_breed" : 150,
-		"purebred_min" : 80,
-		"mix_min" : 12.5
+		"intersex" : 65,
+		"XXX/XXY" : 90,
+		"brindled_bicolour" : 100,
+		"vitiligo" : 50,
+		"random_mutation" : 100,
+		"kittypet_breed" : 60,
+		"other_breed" : 100,
+		"purebred_min" : 95,
+		"mix_min" : 25
 	},
 	"graduation": {
 		"base_app_timeskip_ex": [[3, 12],[5, 6]],
