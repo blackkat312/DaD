@@ -1,5 +1,5 @@
 from __future__ import annotations
-from random import choice, randint, sample, random, choices, getrandbits, randrange, shuffle
+from random import choice, randint, sample, random, choices, getrandbits, randrange
 from typing import Dict, List, Any
 import os.path
 import itertools
@@ -14,12 +14,10 @@ import ujson
 
 from .names import Name
 from .pelts import Pelt
-from .genotype import Genotype
-from .phenotype import Phenotype
 from scripts.conditions import Illness, Injury, PermanentCondition, get_amount_cat_for_one_medic, \
     medical_cats_condition_fulfilled
 import bisect
-#from scripts.events_module.condition_events import Condition_Events
+
 from scripts.utility import get_med_cats, get_personality_compatibility, event_text_adjust, update_sprite, \
     leader_ceremony_text_adjust
 from scripts.game_structure.game_essentials import game, screen
@@ -33,7 +31,7 @@ from scripts.cat_relations.inheritance import Inheritance
 class Cat():
     dead_cats = []
     used_screen = screen
-
+    
     ages = [
         'newborn', 'kitten', 'adolescent', 'young adult', 'adult', 'senior adult',
         'senior'
@@ -63,7 +61,7 @@ class Cat():
         "leader"
     ]
 
-    gender_tags = {'molly': 'F', 'tom': 'M', 'intersex': 'I'}
+    gender_tags = {'female': 'F', 'male': 'M', 'intersex' : 'I'}
 
     # EX levels and ranges.
     # Ranges are inclusive to both bounds
@@ -109,7 +107,6 @@ class Cat():
     id_iter = itertools.count()
 
     all_cats_list: List[Cat] = []
-    ordered_cat_list: List[Cat] = []
 
     grief_strings = {}
 
@@ -120,8 +117,6 @@ class Cat():
                  backstory="clanborn",
                  parent1=None,
                  parent2=None,
-                 extrapar=None,
-                 kittypet=False,
                  suffix=None,
                  specsuffix_hidden=False,
                  ID=None,
@@ -130,9 +125,6 @@ class Cat():
                  faded=False,
                  skill_dict=None,
                  pelt:Pelt=None,
-                 genotype:Genotype=None,
-                 white_patterns=None,
-                 chim_white=None,
                  loading_cat=False,  # Set to true if you are loading a cat at start-up.
                  **kwargs
                  ):
@@ -180,10 +172,6 @@ class Cat():
 
         # Public attributes
         self.gender = gender
-        if self.gender == 'molly':
-            self.gender = 'fem'
-        elif self.gender == 'tom':
-            self.gender = 'masc'
         self.status = status
         self.backstory = backstory
         self.age = None
@@ -192,44 +180,8 @@ class Cat():
                                        stable=0, social=0)
         self.parent1 = parent1
         self.parent2 = parent2
-
         self.adoptive_parents = []
-        self.genotype = Genotype(game.config['genetic_chances'])
-        #print(genotype)
-        if genotype:
-            self.genotype.fromJSON(genotype)
-        elif parent1 or parent2:
-            if not parent1:
-                self.genotype.KitGenerator(Cat.all_cats[parent2].genotype, extrapar)
-            else:
-                try:
-                    self.genotype.KitGenerator(Cat.all_cats[parent1].genotype, Cat.all_cats.get(parent2, extrapar))
-                except Exception as e:
-                    print(e)
-                    self.genotype.Generator()
-
-            if(randint(1, game.config['genetic_chances']['intersex']) == 1):
-                self.genotype.gender = "intersex"
-                if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
-                    self.genotype.gender = 'molly'
-        elif kittypet or status == 'kittypet':
-            self.genotype.AltGenerator(special=self.gender)
-            if(randint(1, game.config['genetic_chances']['intersex']) == 1):
-                self.genotype.gender = "intersex"
-                if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
-                    self.genotype.gender = 'molly'
-        else:
-            self.genotype.Generator(special=self.gender)
-            if(randint(1, game.config['genetic_chances']['intersex']) == 1):
-                self.genotype.gender = "intersex"
-                if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
-                    self.genotype.gender = 'molly'
-
-        self.phenotype = Phenotype(self.genotype)
-
-        self.phenotype.PhenotypeOutput(self.genotype.gender)
-        self.pelt = pelt if pelt else Pelt(self.genotype, self.phenotype)
-
+        self.pelt = pelt if pelt else Pelt()
         self.former_mentor = []
         self.patrol_with_mentor = 0
         self.apprentice = []
@@ -257,545 +209,17 @@ class Cat():
         self.front = None
         self.df = False
         self.experience_level = None
-
-        white_pattern = white_patterns
-
-        maingame_white = {
-            'low':{
-                '1': [None, 'SCOURGE', 'BLAZE', 'TAILTIP', 'TOES', 'LUNA', 'LOCKET', 'ESTRELLA', 'LEFTEAR', 'RIGHTEAR',
-                      # Mink's torties
-                      'MINKEMBER'],
-
-                '2': ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'PAWS', 'BROKENBLAZE', 'BEARD', 'BIB', 'VEE',
-                      'HONEY', 'TOESTAIL', 'RAVENPAW', 'LILTWO', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE',
-                      'REVERSEEYE', 'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS',
-                      # Mink's torties
-                      'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE'],
-
-                '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
-                      'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                      'DAPPLEPAW'
-                      # Mink's torties
-                      'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE'],
-
-                '4': ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
-                      'HAWKBLAZE', 'TOPCOVER',
-                      # Mink's torties
-                      'MINKEYEDOT'],
-
-                '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS',
-                      # Mink's torties
-                      'MINKOREO']
-            },
-            'high':{
-                '1': ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS',
-                      # Mink's torties
-                      'MINKOREO'],
-
-                '2': ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR'],
-
-                '3': ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
-                      'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE',
-                      # Mink's torties
-                      'MINKBODY'],
-
-                '4': ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
-                      'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA'],
-
-                '5': ['ONEEAR', 'LIGHTSONG', 'BLACKSTAR', 'PETAL', 'CHESTSPECK', 'HEARTTWO', 'BOOTS', 'SHOOTINGSTAR',
-                      'EYESPOT', 'KROPKA']
-            }
-        }
-
-        vitiligo = ['MOON', 'PHANTOM', 'POWDER', 'BLEACHED', 'VITILIGO', 'VITILIGOTWO', 'SMOKEY']
-
-        #white patterns
-
-        def GenerateWhite(KIT, KITgrade, vit, white_pattern):
-            def clean_white():
-                while None in white_pattern:
-                    white_pattern.remove(None)
-
-            low1 = ['SCOURGE', 'BLAZE', 'TAILTIP', 'TOES', 'LUNA', 'LOCKET', 'ESTRELLA', 'LEFTEAR', 'RIGHTEAR',
-                    'MINKEMBER']
-
-            low2 = ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'PAWS', 'BROKENBLAZE', 'BEARD', 'BIB', 'VEE',
-                    'HONEY', 'TOESTAIL', 'RAVENPAW', 'LILTWO', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE', 'REVERSEEYE',
-                    'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS', 'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE',
-                    'MINKMINIMALTHREE']
-
-            low3 = ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
-                    'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                    'DAPPLEPAW' 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
-
-            low4 = ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
-                    'HAWKBLAZE', 'TOPCOVER', 'MINKEYEDOT']
-
-            low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS', 'MINKOREO']
-
-            high1 = ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS', 'MINKOREO']
-
-            high2 = ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR']
-
-            high3 = ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
-                     'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE', 'MINKBODY']
-
-            high4 = ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
-                     'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA']
-
-            high5 = ['ONEEAR', 'LIGHTSONG', 'BLACKSTAR', 'PETAL', 'CHESTSPECK', 'HEARTTWO', 'BOOTS', 'SHOOTINGSTAR',
-                     'EYESPOT', 'KROPKA']
-
-            rand_kit_1 = randint(1, KITgrade)
-            rand_kit_2 = randint(1, KITgrade)
-            rand_kit_3 = randint(1, KITgrade)
-            rand_kit_4 = randint(1, KITgrade)
-            rand_kit_5 = randint(1, KITgrade)
-            kit_addition = 0
-            low_high = ["low", "low", "low", "high"]
-
-            if white_pattern is None and (KIT[0] != "W" and KIT[0] != "w"):
-                white_pattern = []
-                if(vit):
-                    white_pattern.append(choice(vitiligo))
-                if KIT[0] == 'wt' or KIT[1] == 'wt':
-                    if KIT[1] not in ['ws', 'wt'] and KITgrade < 3:
-                        white_pattern.append("dorsal1")
-                    elif KIT[1] not in ['ws', 'wt'] and KITgrade < 5:
-                        white_pattern.append(choice(["dorsal1", "dorsal2"]))
-                    else:
-                        white_pattern.append("dorsal2")
-
-                if KIT[0] == "wg":
-                    for mark in ["left front mitten", "left back mitten", "right front mitten", "right back mitten"]:
-                        white_pattern.append(mark)
-                elif KIT[0] in ["ws", "wt"] and KIT[1] not in ["ws", "wt"]:
-                    if(randint(1, 4) >= 3):
-                        white_pattern.append(choice(maingame_white["low"].get(str(KITgrade))))
-
-                        # First extra patch
-                        if randint(1, 4) == 1:
-                            print("First extra patch!")
-                            chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
-                            while chosen_white_1 in white_pattern:
-                                chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
-
-                            if chosen_white_1 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_1 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_1 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_1 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_1 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_1)
-
-                        # Second extra patch
-                        if randint(1, 8) == 1:
-                            print("Second extra patch!")
-                            chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
-                            while chosen_white_2 in white_pattern:
-                                chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
-
-                            if chosen_white_2 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_2 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_2 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_2 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_2 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_2)
-
-                        # Third extra patch
-                        if randint(1, 12) == 1:
-                            print("Third extra patch!")
-                            chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
-                            while chosen_white_3 in white_pattern:
-                                chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
-
-                            if chosen_white_3 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_3 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_3 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_3 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_3 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_3)
-
-                        # Forth extra patch
-                        if randint(1, 16) == 1:
-                            print("Forth extra patch!")
-                            chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
-                            while chosen_white_4 in white_pattern:
-                                chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
-
-                            if chosen_white_4 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_4 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_4 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_4 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_4 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_4)
-
-                        # Fifth extra patch
-                        if randint(1, 20) == 1:
-                            print("Fifth extra patch!")
-                            chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
-                            while chosen_white_5 in white_pattern:
-                                chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
-
-                            if chosen_white_5 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_5 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_5 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_5 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_5 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_5)
-
-                        KITgrade = int(KITgrade)
-                        if KITgrade > 5:
-                            KITgrade = 5
-
-                        clean_white()
-                    elif KITgrade == 1:
-                        grade1list = ['chest tuft', 'belly tuft', 'chest tuft', 'belly tuft', None]
-                        white_pattern.append(choice(grade1list))
-                        clean_white()
-                    elif KITgrade == 2:
-                        while len(white_pattern) == 0:
-                            #chest
-                            white_pattern.append(choice(['chest tuft', 'locket', None, 'chest tuft', 'locket', None, 'bib']))
-                            #belly
-                            white_pattern.append(choice(['belly tuft', 'belly spot', None, 'belly tuft', 'belly spot', None, 'belly']))
-
-                            #toes
-                            nropaws = choice([4, 3, 2, 1, 0, 0])
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-
-                            for i in range(nropaws):
-                                white_pattern.append(order[i] + choice([' toes', ' toes', ' toes', ' mitten']))
-                        clean_white()
-                    elif KITgrade == 3:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append(choice(['chest', 'beard', 'chest', 'bib', None]))
-
-                            #belly
-                            white_pattern.append(choice(['belly spot', 'belly', 'belly spot', 'belly', 'belly spot', 'belly', None]))
-
-                            #paws
-                            nropaws = choice([4, 4, 3, 2, 1, 0])
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' toes', ' mitten', ' mitten', ' mitten', ' low sock'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' toes', ' mitten', ' mitten', ' low sock']))
-
-                            #face
-                            if 'beard' in white_pattern:
-                                white_pattern.append(choice(['chin', 'mustache', 'chin', 'chin', None, None, None, None]))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
-
-                            clean_white()
-                    elif KITgrade == 4:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append(choice(['underbelly1', 'beard', 'chest', 'underbelly1']))
-
-                            #belly
-                            if 'underbelly1' not in white_pattern:
-                                white_pattern.append('belly')
-
-                            #paws
-                            nropaws = choice([4, 4, 4, 4, 3, 3, 2, 2, 1, 0])
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' mitten', ' low sock', ' low sock', ' high sock'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' mitten', ' low sock', ' high sock']))
-
-                            #face
-                            if 'beard' or 'underbelly1' in white_pattern:
-                                white_pattern.append(choice(['chin', 'chin', 'muzzle', 'muzzle', 'blaze', None, None]))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
-
-                            clean_white()
-                    else:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append('underbelly1')
-
-                            #paws
-                            nropaws = 4
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2']))
-
-                            #face
-                            white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze']))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
-
-                            clean_white()
-                else:
-                    if(randint(1, 4) >= 3):
-                        white_pattern.append(choice(maingame_white["high"].get(str(KITgrade))))
-
-                        # First extra patch
-                        if randint(1, 4) == 1:
-                            print("First extra patch!")
-                            chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
-                            while chosen_white_1 in white_pattern:
-                                chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
-
-                            if chosen_white_1 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_1 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_1 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_1 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_1 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_1)
-
-                        # Second extra patch
-                        if randint(1, 8) == 1:
-                            print("Second extra patch!")
-                            chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
-                            while chosen_white_2 in white_pattern:
-                                chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
-
-                            if chosen_white_2 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_2 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_2 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_2 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_2 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_2)
-
-                        # Third extra patch
-                        if randint(1, 12) == 1:
-                            print("Third extra patch!")
-                            chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
-                            while chosen_white_3 in white_pattern:
-                                chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
-
-                            if chosen_white_3 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_3 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_3 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_3 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_3 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_3)
-
-                        # Forth extra patch
-                        if randint(1, 16) == 1:
-                            print("Forth extra patch!")
-                            chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
-                            while chosen_white_4 in white_pattern:
-                                chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
-
-                            if chosen_white_4 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_4 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_4 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_4 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_4 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_4)
-
-                        # Fifth extra patch
-                        if randint(1, 20) == 1:
-                            print("Fifth extra patch!")
-                            chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
-                            while chosen_white_5 in white_pattern:
-                                chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
-
-                            if chosen_white_5 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_5 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_5 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_5 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_5 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
-
-                            white_pattern.append(chosen_white_5)
-
-                        KITgrade = int(KITgrade)
-                        if KITgrade > 5:
-                            KITgrade = 5
-
-                        clean_white()
-                    elif KITgrade == 1:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append('underbelly1')
-
-                            #paws
-                            nropaws = 4
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' bicolour1', ' bicolour2', ' bicolour2'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' bicolour1', ' bicolour2', ' bicolour2']))
-
-                            #face
-                            white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze', 'blaze']))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
-
-                            clean_white()
-                    elif KITgrade == 2:
-                        #chest
-                        white_pattern.append(choice(['underbelly1', 'mask n mantle']))
-
-                        #paws
-                        nropaws = 4
-                        order = ['right front', 'left front', 'right back', 'left back']
-                        shuffle(order)
-                        pawtype = choice(['same', 'mixed'])
-
-                        for i in range(nropaws):
-                            white_pattern.append(order[i] + ' bicolour2')
-
-                        #face
-                        white_pattern.append(choice(['muzzle', 'muzzle', 'blaze', 'blaze']))
-
-                        #tail
-                        white_pattern.append(choice(['tail tip', None, None, None, None]))
-                        white_pattern.append(choice([None, None, None, 'break/nose1']))
-                        clean_white()
-                    elif KITgrade == 3:
-                        white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'full white']))
-                        white_pattern.append(choice(['break/piebald1', 'break/piebald2']))
-                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/tail rings', 'break/left face', 'break/right face']))
-                        clean_white()
-                    elif KITgrade == 4:
-                        white_pattern.append(choice(['van1', 'van2', 'van3']))
-                        white_pattern.append(choice([None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
-                        white_pattern.append(choice([None, None, None, None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
-
-                        clean_white()
-                    else:
-                        white_pattern.append(choice(["full white", 'van3']))
-
-                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face']))
-                        white_pattern.append(choice([None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
-
-                        clean_white()
-
-            elif white_pattern is None and vit:
-                white_pattern = [choice(vitiligo)]
-            if white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit):
-                white_pattern = "No"
-            return white_pattern
-
-        self.genotype.white_pattern = GenerateWhite(self.genotype.white, self.genotype.whitegrade, self.genotype.vitiligo, white_pattern)
-
-        white_pattern = chim_white
-        if self.genotype.chimera:
-            self.genotype.chimerageno.white_pattern = GenerateWhite(self.genotype.chimerageno.white, self.genotype.chimerageno.whitegrade, self.genotype.chimerageno.vitiligo, white_pattern)
-
-        #elif white_pattern == "No":
-        #    white_pattern = None
-
+        
         # Various behavior toggles
         self.no_kits = False
         self.no_mates = False
         self.no_retire = False
         self.prevent_fading = False  # Prevents a cat from fading.
-
+        
         self.faded_offspring = []  # Stores of a list of faded offspring, for relation tracking purposes
 
         self.faded = faded  # This is only used to flag cat that are faded, but won't be added to the faded list until
         # the next save.
-
-        if (self.genotype.munch[1] == "Mk" or self.genotype.fold[1] == "Fd" or (self.genotype.manx[1] == "Ab" or self.genotype.manx[1] == "M")):
-            self.dead = True
 
         self.favourite = False
 
@@ -847,56 +271,60 @@ class Cat():
                 self.age = choice(['young adult', 'adult', 'adult', 'senior adult'])
             self.moons = randint(self.age_moons[self.age][0], self.age_moons[self.age][1])
 
-
         # backstory
         if self.backstory is None:
             self.backstory = 'clanborn'
         else:
             self.backstory = self.backstory
 
-        genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
+        genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
                             "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
 
         # sex!?!??!?!?!??!?!?!?!??
-        if self.gender == "intersex":
-            intersex_condition = choice(["excess testosterone", "testosterone deficiency", "aneuploidy", "mosaicism", "chimerism"])
-            self.get_permanent_condition(intersex_condition, born_with=True)
-
-        self.gender = self.genotype.gender
+        if self.gender is None:
+            intersexchance = randint(1,100)
+            #probability that the cat will be intersex.. base chance around 5%
+            if intersexchance < 6 and example is False:
+                self.gender = "intersex"
+                intersex_condition = choice (["excess testosterone", "testosterone deficiency", "aneuploidy", "mosaicism", "chimerism"])
+                self.get_permanent_condition(intersex_condition, born_with=True)
+            else:
+                self.gender = choice(["female", "male"])
         self.g_tag = self.gender_tags[self.gender]
 
         # These things should only run when generating a new cat, rather than loading one in.
         if not loading_cat:
-
+            
             # everyone is plural :3
             '''
             if game.clan:
                 new_condition=choice(["shattered soul", "budding spirit"])
                 self.get_permanent_condition(new_condition, born_with=True)
             '''
-
+            
+            
             # trans cat chances
-            trans_chance = randint(0, 30)
-            nb_chance = randint(0, 35)
-            if self.gender == "molly" and not self.status in ['newborn']:
+            trans_chance = randint(0, 50)
+            nb_chance = randint(0, 75)
+            if self.gender == "female" and not self.status in ['newborn']:
                 if trans_chance == 1:
-                    self.genderalign = "trans tom"
+                    self.genderalign = "trans male"
                 elif nb_chance == 1:
                     self.genderalign = choice(genderqueer_list)
                 else:
                     self.genderalign = self.gender
-            elif self.gender == "tom" and not self.status in ['newborn']:
+            elif self.gender == "male" and not self.status in ['newborn']:
                 if trans_chance == 1:
-                    self.genderalign = "trans molly"
+                    self.genderalign = "trans female"
                 elif nb_chance == 1:
                     self.genderalign = choice(genderqueer_list)
                 else:
                     self.genderalign = self.gender
             elif self.gender == "intersex" and not self.status in ['newborn']:
                 if trans_chance == 1:
-                    self.genderalign = choice(["trans tom", "trans molly"])
+                    self.genderalign = choice(["trans male", "trans female"])
                 elif nb_chance == 1:
-                    intergenderchance = randint(1, 2)
+                    intergenderchance = randint(1,2)
                     if intergenderchance == 1:
                         self.genderalign = "intergender"
                     else:
@@ -906,14 +334,14 @@ class Cat():
             else:
                 self.genderalign = self.gender
 
-            """if self.genderalign in ["molly", "trans molly"]:
+            """if self.genderalign in ["female", "trans female"]:
                 self.pronouns = [self.default_pronouns[1].copy()]
-            elif self.genderalign in ["tom", "trans tom"]:
+            elif self.genderalign in ["male", "trans male"]:
                 self.pronouns = [self.default_pronouns[2].copy()]"""
 
             # APPEARANCE
-            self.pelt = Pelt.generate_new_pelt(self.genotype, self.phenotype, self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
-
+            self.pelt = Pelt.generate_new_pelt(self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
+            
             #Personality
             self.personality = Personality(kit_trait=self.is_baby())
 
@@ -940,12 +368,9 @@ class Cat():
                                           Cat.experience_levels_range["master"][1])
             else:
                 self.experience = 0
-
+                
             if not skill_dict:
                 self.skills = CatSkills.generate_new_catskills(self.status, self.moons)
-
-            if game.clan and game.clan.game_mode != "classic":
-                self.genetic_conditions()
 
         # In camp status
         self.in_camp = 1
@@ -955,7 +380,6 @@ class Cat():
             biome = game.clan.biome
         else:
             biome = None
-
         # NAME
         # load_existing_name is needed so existing cats don't get their names changed/fixed for no reason
         if self.pelt is not None:
@@ -968,8 +392,7 @@ class Cat():
                              self.pelt.tortiepattern,
                              biome=biome,
                              specsuffix_hidden=self.specsuffix_hidden,
-                             load_existing_name=loading_cat,
-                             )
+                             load_existing_name=loading_cat)
         else:
             self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
                              load_existing_name = loading_cat)
@@ -985,43 +408,15 @@ class Cat():
 
     def __repr__(self):
         return "CAT OBJECT:" + self.ID
-
+    
     def __eq__(self, other):
         if not isinstance(other, Cat):
             return False
-
+        
         return self.ID == other.ID
-
+    
     def __hash__(self):
         return hash(self.ID)
-
-    def genetic_conditions(self):
-        if self.genotype.deaf:
-            if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
-                self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
-            elif 'partial hearing loss' not in self.permanent_condition:
-                self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
-
-        if 'M' in self.genotype.manx:
-            if random() > ((self.phenotype.bobtailnr + 1) * 0.2):
-                self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
-
-        if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
-            self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
-
-        if self.genotype.fold[0] == 'Fd' or self.genotype.munch[0] == 'Mk' or ('manx syndrome' in self.permanent_condition and ('M' in self.genotype.manx and self.phenotype.bobtailnr < 4 and self.phenotype.bobtailnr > 1 and random() < 0.05)):
-            self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
-
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.25) or (self.phenotype.bobtailnr > 1 and random() > 0.4)):
-            self.get_permanent_condition('irritable bowels', born_with=True, genetic=True)
-
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.05) or (self.phenotype.bobtailnr > 1 and random() > 0.15)):
-            self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
-
-        if self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c'):
-            self.get_permanent_condition('albinism', born_with=True, genetic=True)
-        elif ('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
-            self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
 
     @property
     def mentor(self):
@@ -1045,8 +440,7 @@ class Cat():
         This is used to kill a cat.
 
         body - defaults to True, use this to mark if the body was recovered so
-        that grief messages will align with body status 
-        - if it is None, a lost cat died and therefore not trigger grief, since the clan does not know
+        that grief messages will align with body status
 
         May return some additional text to add to the death event.
         """
@@ -1056,7 +450,7 @@ class Cat():
         else:
             self.injuries.clear()
             self.illnesses.clear()
-
+        
         # Deal with leader death
         text = ""
         if self.status == 'leader':
@@ -1119,7 +513,7 @@ class Cat():
             if fetched_cat:
                 fetched_cat.update_mentor()
         self.update_mentor()
-
+    
     def grief(self, body: bool):
         """
         compiles grief moon event text
@@ -1128,101 +522,101 @@ class Cat():
             body_status = 'body'
         else:
             body_status = 'no_body'
-
+    
         # Keep track is the body was treated with rosemary. 
         body_treated = False
-
+    
         # apply grief to cats with high positive relationships to dead cat
         for cat in Cat.all_cats.values():
             if cat.dead or cat.outside or cat.moons < 1:
                 continue
-
+            
             to_self = cat.relationships.get(self.ID)
             if not isinstance(to_self, Relationship):
                 continue
-
+            
             family_relation = self.familial_grief(living_cat=cat)
             very_high_values = []
             high_values = []
-
+            
             if to_self.romantic_love > 55:
                 very_high_values.append("romantic")
             if to_self.romantic_love > 40:
                 high_values.append("romantic")
-
+            
             if to_self.platonic_like > 50:
                 very_high_values.append("platonic")
             if to_self.platonic_like > 30:
                 high_values.append("platonic")
-
+            
             if to_self.admiration > 70:
                 very_high_values.append("admiration")
             if to_self.admiration > 50:
                 high_values.append("admiration")
-
+                
             if to_self.comfortable > 60:
                 very_high_values.append("comfort")
             if to_self.comfortable > 40:
                 high_values.append("comfort")
-
+                
             if to_self.trust > 70:
                 very_high_values.append("trust")
             if to_self.trust > 50:
                 high_values.append("trust")
-
-
+            
+            
             major_chance = 0
             if very_high_values:
                 # major grief eligible cats. 
-
+                
                 major_chance = 3
                 if cat.personality.stability < 5:
                     major_chance -= 1
-
+                
                 # decrease major grief chance if grave herbs are used
-                if not body_treated and "rosemary" in game.clan.herbs:
+                if not body_treated and "rosemary" in game.clan.herbs:  
                     body_treated = True
                     game.clan.herbs["rosemary"] -= 1
                     if game.clan.herbs["rosemary"] <= 0:
                         game.clan.herbs.pop("rosemary")
                     game.herb_events_list.append(f"Rosemary was used for {self.name}'s body.")
-
+                
                 if body_treated:
                     major_chance -= 1
-
-
+                
+            
             # If major_chance is not 0, there is a chance for major grief
             grief_type = None
             if major_chance and not int(random() * major_chance):
-
+                
                 grief_type = "major"
-
+                
                 possible_strings = []
                 for x in very_high_values:
                     possible_strings.extend(
                         self.generate_events.possible_death_reactions(family_relation, x, cat.personality.trait,
                                                                 body_status)
                     )
-
+                
                 if not possible_strings:
                     print("No grief strings")
                     continue
-
+                
                 text = choice(possible_strings)
                 text += ' ' + choice(MINOR_MAJOR_REACTION["major"])
                 text = event_text_adjust(Cat, text, self, cat)
-
+                
                 # grief the cat
                 if game.clan.game_mode != 'classic':
                     cat.get_ill("grief stricken", event_triggered=True, severity="major")
-
+            
             # If major grief fails, but there are still very_high or high values, 
             # it can fail to to minor grief. If they have a family relation, bypass the roll. 
             elif (very_high_values or high_values) and \
                     (family_relation != "general" or not int(random() * 5)):
-
+            
                 grief_type = "minor"
-
+                
                 # These minor grief message will be applied as thoughts. 
                 minor_grief_messages = (
                             "Told a fond story at r_c's vigil",
@@ -1233,34 +627,34 @@ class Cat():
                             "Misses the warmth that r_c brought to {PRONOUN/m_c/poss} life",
                             "Is mourning r_c"
                         )
-
-                if body:
+                
+                if body: 
                     minor_grief_messages += (
                         "Helped bury r_c, leaving {PRONOUN/r_c/poss} favorite prey at the grave",
                         "Slips out of camp to visit r_c's grave"
                     )
 
-
+                
                 text = choice(minor_grief_messages)
-
+                
             if grief_type:
                 #Generate the event:
                 if cat.ID not in Cat.grief_strings:
                     Cat.grief_strings[cat.ID] = []
-
+                
                 Cat.grief_strings[cat.ID].append((text, (self.ID, cat.ID), grief_type))
                 continue
-
-
+            
+            
             # Negative "grief" messages are just for flavor. 
             high_values = []
             very_high_values = []
             if to_self.dislike > 50:
                 high_values.append("dislike")
-
+                
             if to_self.jealousy > 50:
                 high_values.append("jealousy")
-
+            
             if high_values:
                 #Generate the event:
                 possible_strings = []
@@ -1269,12 +663,13 @@ class Cat():
                         self.generate_events.possible_death_reactions(family_relation, x, cat.personality.trait,
                                                                 body_status)
                     )
-
+                
                 text = event_text_adjust(Cat, choice(possible_strings), self, cat)
                 if cat.ID not in Cat.grief_strings:
                     Cat.grief_strings[cat.ID] = []
-
+                
                 Cat.grief_strings[cat.ID].append((text, (self.ID, cat.ID), "negative"))
+                
 
     def familial_grief(self, living_cat: Cat):
         """
@@ -1295,7 +690,7 @@ class Cat():
         """ Makes a Clan cat an "outside" cat. Handles removing them from special positions, and removing
         mentors and apprentices. """
         self.outside = True
-
+        
         if self.status in ['leader', 'warrior']:
             self.status_change("warrior")
 
@@ -1319,15 +714,11 @@ class Cat():
         children = self.get_children()
         ids = []
         for child_id in children:
-            if Cat.all_cats.get(child_id, None):
-                child = Cat.all_cats[child_id]
-                if child.outside and not child.exiled and child.moons < 12:
-                    child.add_to_clan()
-                    ids.append(child_id)
-            else:
-                self.inheritance.update_inheritance()
-
-
+            child = Cat.all_cats[child_id]
+            if child.outside and not child.exiled and child.moons < 12:
+                child.add_to_clan()
+                ids.append(child_id)
+        
         return ids
 
     def status_change(self, new_status, resort=False):
@@ -1399,8 +790,9 @@ class Cat():
         if game.sort_type == "rank" and resort:
             Cat.sort_cats()
 
+    
     def rank_change_traits_skill(self, mentor):
-        """Updates trait and skill upon ceremony"""
+        """Updates trait and skill upon ceremony"""  
 
         if self.status in ["warrior", "medicine cat", "mediator"]:
             # Give a couple doses of mentor influence:
@@ -1415,7 +807,7 @@ class Cat():
                         History.add_facet_mentor_influence(self, affect_personality[0], affect_personality[1], affect_personality[2])
                     if affect_skills:
                         History.add_skill_mentor_influence(self, affect_skills[0], affect_skills[1], affect_skills[2])
-
+            
             History.add_mentor_skill_influence_strings(self)
             History.add_mentor_facet_influence_strings(self)
         return
@@ -1425,20 +817,58 @@ class Cat():
             to keep trait and skills making sense."""
         if not (self.outside or self.exiled):
             return
-
+        
         self.personality.set_kit(self.is_baby()) #Update kit trait stuff
+        
 
     def describe_cat(self, short=False):
         """ Generates a string describing the cat's appearance and gender. Mainly used for generating
         the allegiances. If short is true, it will generate a very short one, with the minimal amount of information. """
-        return Pelt.describe_appearance(self, short)
+        output = Pelt.describe_appearance(self, short)
+        # Add "a" or "an"
+        if output[0].lower() in "aiou":
+            output = f"an {output}"
+        else:
+            output = f"a {output}"
+
+        return output
 
     def describe_eyes(self):
-        if(self.genotype.lefteye == self.genotype.righteye):
-            colour = self.genotype.lefteye.lower()
-        else:
-            colour = self.genotype.righteye.lower() + " & " + self.genotype.lefteye.lower()
+        colour = str(self.pelt.eye_colour).lower()
+        colour2 = str(self.pelt.eye_colour2).lower()
 
+        if colour == 'palegreen':
+            colour = 'pale green'
+        elif colour == 'darkblue':
+            colour = 'dark blue'
+        elif colour == 'paleblue':
+            colour = 'pale blue'
+        elif colour == 'paleyellow':
+            colour = 'pale yellow'
+        elif colour == 'heatherblue':
+            colour = 'heather blue'
+        elif colour == 'blue2':
+            colour = 'blue'
+        elif colour == 'sunlitice':
+            colour = 'sunlit ice'
+        elif colour == 'greenyellow':
+            colour = 'green-yellow'
+        if self.pelt.eye_colour2:
+            if colour2 == 'palegreen':
+                colour2 = 'pale green'
+            if colour2 == 'darkblue':
+                colour2 = 'dark blue'
+            if colour2 == 'paleblue':
+                colour2 = 'pale blue'
+            if colour2 == 'paleyellow':
+                colour2 = 'pale yellow'
+            if colour2 == 'heatherblue':
+                colour2 = 'heather blue'
+            if colour2 == 'sunlitice':
+                colour2 = 'sunlit ice'
+            if colour2 == 'greenyellow':
+                colour2 = 'green-yellow'
+            colour = colour + ' and ' + colour2
         return colour
 
     def convert_history(self, died_by, scar_events):
@@ -1535,6 +965,7 @@ class Cat():
             )
 
             print(f"WARNING: saving history of cat #{self.ID} didn't work")
+            
 
     def generate_lead_ceremony(self):
         """
@@ -1615,7 +1046,7 @@ class Cat():
         if dead_relations:
             i = 0
             for rel in dead_relations:
-                if i == 3:
+                if i == 8:
                     break
                 if rel.cat_to.status == 'leader':
                     life_giving_leader = rel.cat_to
@@ -1623,8 +1054,8 @@ class Cat():
                 life_givers.append(rel.cat_to.ID)
                 i += 1
         # check amount of life givers, if we need more, then grab from the other dead cats
-        if len(life_givers) < 3:
-            amount = 3 - len(life_givers)
+        if len(life_givers) < 8:
+            amount = 8 - len(life_givers)
 
             if starclan:
                 # this part just checks how many SC cats are available, if there aren't enough to fill all the slots,
@@ -1691,12 +1122,12 @@ class Cat():
             life_givers.append(life_giving_leader)
 
         # check amount again, if more are needed then we'll add the ghost-y cats at the end
-        if len(life_givers) < 4:
+        if len(life_givers) < 9:
             unknown_blessing = True
-            extra_lives = str(4 - len(life_givers))
+            extra_lives = str(9 - len(life_givers))
         else:
             unknown_blessing = False
-            extra_lives = str(4 - len(life_givers))
+            extra_lives = str(9 - len(life_givers))
 
         possible_lives = ceremony_dict["lives"]
         lives = []
@@ -1749,7 +1180,7 @@ class Cat():
 
             i = 0
             chosen_life = {}
-            while i < 5:
+            while i < 10:
                 attempted = []
                 if life_list:
                     chosen_life = choice(life_list)
@@ -1763,8 +1194,8 @@ class Cat():
                         f'WARNING: life list had no items for giver #{giver_cat.ID}. Using default life. If you are a beta tester, please report and ping scribble along with all the info you can about the giver cat mentioned in this warning.')
                     chosen_life = ceremony_dict["default_life"]
                     break
-
-
+                
+            
             used_lives.append(chosen_life)
             if "virtue" in chosen_life:
                 poss_virtues = [i for i in chosen_life["virtue"] if i not in used_virtues]
@@ -1849,12 +1280,14 @@ class Cat():
 
     def one_moon(self):
         """Handles a moon skip for an alive cat. """
+        
+        
         old_age = self.age
         self.moons += 1
         if self.moons == 1 and self.status == "newborn":
             self.status = 'kitten'
         self.in_camp = 1
-
+        
         if self.exiled or self.outside:
             # this is handled in events.py
             self.personality.set_kit(self.is_baby())
@@ -1864,11 +1297,11 @@ class Cat():
         if self.dead:
             self.thoughts()
             return
-
+        
         if old_age != self.age:
             # Things to do if the age changes
             self.personality.facet_wobble(max=2)
-
+        
         # Set personality to correct type
         self.personality.set_kit(self.is_baby())
         # Upon age-change
@@ -1945,6 +1378,10 @@ class Cat():
 
     def relationship_interaction(self):
         """Randomly choose a cat of the Clan and have a interaction with them."""
+        # if the cat has no relationships, skip
+        #if not self.relationships or len(self.relationships) < 1:
+        #    return
+
         cats_to_choose = [iter_cat for iter_cat in Cat.all_cats.values() if iter_cat.ID != self.ID and \
                           not iter_cat.outside and not iter_cat.exiled and not iter_cat.dead]
         # if there are not cats to interact, stop
@@ -2001,17 +1438,7 @@ class Cat():
 
         moons_with = game.clan.age - self.illnesses[illness]["moon_start"]
 
-        # focus buff
-        moons_prior = game.config["focus"]["rest and recover"]["moons_earlier_healed"]
-
         if self.illnesses[illness]["duration"] - moons_with <= 0:
-            self.healed_condition = True
-            return False
-
-        # CLAN FOCUS! - if the focus 'rest and recover' is selected
-        elif game.clan.clan_settings.get("rest and recover") and\
-            self.illnesses[illness]["duration"] + moons_prior - moons_with <= 0:
-            # print(f"rest and recover - illness {illness} of {self.name} healed earlier")
             self.healed_condition = True
             return False
 
@@ -2040,19 +1467,8 @@ class Cat():
 
         moons_with = game.clan.age - self.injuries[injury]["moon_start"]
 
-        # focus buff
-        moons_prior = game.config["focus"]["rest and recover"]["moons_earlier_healed"]
-
         # if the cat has an infected wound, the wound shouldn't heal till the illness is cured
         if not self.injuries[injury]["complication"] and self.injuries[injury]["duration"] - moons_with <= 0:
-            self.healed_condition = True
-            return False
-
-        # CLAN FOCUS! - if the focus 'rest and recover' is selected
-        elif not self.injuries[injury]["complication"] and \
-            game.clan.clan_settings.get("rest and recover") and\
-            self.injuries[injury]["duration"] + moons_prior - moons_with <= 0:
-            print(f"rest and recover - injury {injury} of {self.name} healed earlier")
             self.healed_condition = True
             return False
     '''
@@ -2064,16 +1480,16 @@ class Cat():
             "role": "host",
             "other": "cat"
             }
-        if self.pelt is not None:
+        #if self.pelt is not None:
         template[name] = str(self.name)
         template[gender] = self.genderalign
         self.alters.append(template)
     '''
-
+    
     def add_split(self, new_alter, origin):
         if self.alters[new_alter]:
             self.alters[new_alter]["splits"].append(origin)
-
+    
     def new_alter(self):
         template = {
             "ID": "",
@@ -2086,23 +1502,23 @@ class Cat():
             }
         #print(self.ID)
         template["ID"] = str(len(self.alters) + 1)
-        template["role"] = choice(["co-host", "caregiver", "little", "protecter", "trauma holder", "persecutor"])
+        template["role"] = choice(["co-host","caregiver","little","protecter","trauma holder","persecutor"])
         extra = randint(1,5)
         if extra < 5:
-            template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
+            template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive",  "factive", "fuzztive"])
         rng = randint(1,20)
         gender="???"
         if rng <= 2:
-            genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
+            genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
                                 "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
             gender = choice(genderqueer_list)
         elif rng <= 6:
-            gender = "tom"
+            gender = "male"
         else:
-            gender = "molly"
+            gender = "female"
         template["gender"] = gender
         alter_name = ""
-
+        
         #naming without making a whole new cat....yikers TT
         if os.path.exists('resources/dicts/names/names.json'):
             with open('resources/dicts/names/names.json') as read_file:
@@ -2122,7 +1538,7 @@ class Cat():
                 alter_name = choice(names_dict["normal_prefixes"])
         else:
             alter_name = choice(names_dict["normal_prefixes"])
-
+            
         if template["role"] == "little":
             if template["other"] == "fictive" or template["other"] == "fuzztive":
                 canon_chance = randint(1,50)
@@ -2153,7 +1569,7 @@ class Cat():
         if self.permanent_condition[condition]["event_triggered"]:
             self.permanent_condition[condition]["event_triggered"] = False
             return "skip"
-
+        
         #chance of splitting if plural
         if self.is_plural():
             splitting = randint(1,100)
@@ -2195,9 +1611,6 @@ class Cat():
             if self.status == 'leader':
                 game.clan.leader_lives -= 1
             self.die()
-            return "died"
-
-        if not mortality:
             return "continue"
 
     # ---------------------------------------------------------------------------- #
@@ -2290,7 +1703,7 @@ class Cat():
         """
         if game.clan.game_mode == "classic":
             return
-
+        
         if name not in ILLNESSES:
             print(f"WARNING: {name} is not in the illnesses collection.")
             return
@@ -2317,7 +1730,7 @@ class Cat():
         if duration == 0:
             duration = 1
 
-        if game.clan and game.clan.game_mode == "cruel season":
+        if game.clan.game_mode == "cruel season":
             if mortality != 0:
                 mortality = int(mortality * 0.5)
                 med_mortality = int(med_mortality * 0.5)
@@ -2352,10 +1765,10 @@ class Cat():
                 "event_triggered": new_illness.new
             }
 
-    def get_injured(self, name, event_triggered=False, lethal=True, severity='default'):
-        if game.clan and game.clan.game_mode == "classic":
+    def _injured(self, name, event_triggered=False, lethal=True, severity='default'):
+        if game.clan.game_mode == "classic":
             return
-
+        
         if name not in INJURIES:
             if name not in INJURIES:
                 print(f"WARNING: {name} is not in the injuries collection.")
@@ -2376,7 +1789,7 @@ class Cat():
         else:
             injury_severity = severity
 
-        if medical_cats_condition_fulfilled(Cat.all_cats.values(), get_amount_cat_for_one_medic(game.clan)):
+        if medical_cats_condition_fulfilled(Cat.all_cats.values(), _amount_cat_for_one_medic(game.clan)):
             duration = med_duration
         if severity != 'minor':
             duration += randrange(-1, 1)
@@ -2384,7 +1797,7 @@ class Cat():
             duration = 1
 
         if mortality != 0:
-            if game.clan and game.clan.game_mode == "cruel season":
+            if game.clan.game_mode == "cruel season":
                 mortality = int(mortality * 0.5)
 
                 if mortality == 0:
@@ -2452,14 +1865,12 @@ class Cat():
         self.get_injured(injury, event_triggered=True)
 
     def congenital_condition(self, cat):
-        self.genetic_conditions()
         possible_conditions = []
         multiple_condition_chance = game.config["cat_generation"]["multiple_permanent_conditions"]
         max_conditions = game.config["cat_generation"]["max_conditions_born_with"]
         conditions = 1
         count = 1
-        genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism",
-                              "albinism", "ocular albinism", "manx syndrome"]
+        genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
@@ -2480,10 +1891,14 @@ class Cat():
                 cat.pelt.scars.append('NOPAW')
             elif new_condition == "born without a tail":
                 cat.pelt.scars.append('NOTAIL')
+            elif new_condition == "lazy eye":
+                cat.pelt.lazy_eye = cat.pelt.eye_colour
+                if cat.pelt.eye_colour2 != None:
+                    cat.pelt.lazy_eye = cat.pelt.eye_colour2
 
             self.get_permanent_condition(new_condition, born_with=True)
             conditions -= 1
-
+    
     def update_alters(self):
         if self.alters:
             for alter in self.alters:
@@ -2491,42 +1906,29 @@ class Cat():
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False):
-        with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
-            PERMANENT = ujson.loads(read_file.read())
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False):
         if name not in PERMANENT:
             print(str(self.name), f"WARNING: {name} is not in the permanent conditions collection.")
             return
-
+        
         if name in ["shattered soul", "budding spirit"]:
             if self.is_plural():
-                print("cat is already plural!")
+                print ("cat is already plural!")
                 return
-
+        
         intersex_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
         if self.gender != "intersex":
             if name in intersex_exclusive:
                 print("cat isn't intersex!")
                 return
-        if not (self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
-            if name == "albinism":
-                print("cat isn't cc!")
-                return
-        elif not (('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype))):
-            if name == "ocular albinism":
-                print("cat isn't -c!")
-                return
-        if 'M' not in self.genotype.manx:
-            if name == "manx syndrome":
-                print("cat isn't a manx!")
-                return
+            
 
         # remove accessories if need be
-        if ('NOTAIL' in self.pelt.scars or (self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5)) and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'SEAWEED', 'DAISY CORSAGE']:
+        if 'NOTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS']:
             self.pelt.accessory = None
-        if 'HALFTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'SEAWEED', 'DAISY CORSAGE']:
+        if 'HALFTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS']:
             self.pelt.accessory = None
-
+        
         condition = PERMANENT[name]
         new_condition = False
         mortality = condition["mortality"][self.age]
@@ -2607,36 +2009,29 @@ class Cat():
 
     def not_working(self):
         """returns True if the cat cannot work, False if the cat can work"""
+        not_working = False
         for illness in self.illnesses:
             if self.illnesses[illness]['severity'] != 'minor':
-                return True
+                not_working = True
+                break
         for injury in self.injuries:
             if self.injuries[injury]['severity'] != 'minor':
-                return True
-        return False
+                not_working = True
+                break
+        return not_working
 
-    def not_work_because_hunger(self):
-        """returns True if the only condition, why the cat cannot work is because of starvation"""
-        non_minor_injuries = [injury for injury in self.injuries if self.injuries[injury]['severity'] != 'minor']
-        if len(non_minor_injuries) > 0:
-            return False
-        non_minor_illnesses = [illness for illness in self.illnesses if self.illnesses[illness]['severity'] != 'minor']
-        if "starving" in non_minor_illnesses and len(non_minor_illnesses) == 1:
-            return True
-        else:
-            return False
-
+    
     def retire_cat(self):
         """This is only for cats that retire due to health condition"""
-
+        
         #There are some special tasks we need to do for apprentice
         # Note that although you can unretire cats, they will be a full warrior/med_cat/mediator
         if self.moons > 6 and self.status in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
             _ment = Cat.fetch_cat(self.mentor) if self.mentor else None
             self.status_change("warrior") # Temp switch them to warrior, so the following step will work
             self.rank_change_traits_skill(_ment)
-
-
+            
+        
         self.status_change("elder")
         return
 
@@ -2657,15 +2052,18 @@ class Cat():
         if len(self.permanent_condition) <= 0:
             is_disabled = False
         return is_disabled is not False
-
+    
     def is_plural(self):
         is_plural = False
         if "budding spirit" in self.permanent_condition or "shattered soul" in self.permanent_condition:
             is_plural = True
         return is_plural
-
-    # def is_split(self)
-        # if self.is_plural:
+    
+    #def is_split(self)
+        #if self.is_plural:
+        
+        
+        
 
     def contact_with_ill_cat(self, cat: Cat):
         """handles if one cat had contact with an ill cat"""
@@ -2716,11 +2114,10 @@ class Cat():
         condition_directory = get_save_dir() + '/' + clanname + '/conditions'
         condition_file_path = condition_directory + '/' + self.ID + '_conditions.json'
 
-        if not self.is_ill() and not self.is_injured() and not self.is_disabled():
+        if (not self.is_ill() and not self.is_injured() and not self.is_disabled()):
             if os.path.exists(condition_file_path):
                 os.remove(condition_file_path)
             return
-
         if self.outside or self.dead:
             if not self.is_disabled():
                 if os.path.exists(condition_file_path):
@@ -2737,10 +2134,11 @@ class Cat():
 
         if self.is_disabled():
             conditions["permanent conditions"] = self.permanent_condition
-
+        
         if self.is_plural():
             self.update_alters()
             conditions["alters"] = self.alters
+            
 
         game.safe_save(condition_file_path, conditions)
 
@@ -2854,7 +2252,7 @@ class Cat():
             for cat in self.all_cats.values():
                 if self.is_valid_mentor(cat):
                     potential_mentors.append(cat)
-                    if not cat.apprentice and not cat.not_working():
+                    if not cat.apprentice and not cat.not_working(): 
                         priority_mentors.append(cat)
             # First try for a cat who currently has no apprentices and is working
             if priority_mentors:  # length of list > 0
@@ -2872,24 +2270,23 @@ class Cat():
                           for_love_interest: bool = False,
                           age_restriction: bool = True,
                           first_cousin_mates:bool = False,
-                          ignore_no_mates:bool=False,
-                          outsider= False):
+                          ignore_no_mates:bool=False):
         """
             Checks if this cat is potential mate for the other cat.
             There are no restrictions if the current cat already has a mate or not (this allows poly-mates).
         """
-
+        
         try:
             first_cousin_mates = game.clan.clan_settings["first cousin mates"]
         except:
             if 'unittest' not in sys.modules:
                 raise
-
-
+                
+        
         # just to be sure, check if it is not the same cat
         if self.ID == other_cat.ID:
             return False
-
+        
         #No Mates Check
         if not ignore_no_mates and (self.no_mates or other_cat.no_mates):
             return False
@@ -2898,9 +2295,8 @@ class Cat():
         if self.is_related(other_cat, first_cousin_mates):
             return False
 
-
         # check exiled, outside, and dead cats
-        if (self.dead != other_cat.dead) or (self.outside and not outsider) or other_cat.outside:
+        if (self.dead != other_cat.dead) or self.outside or other_cat.outside:
             return False
 
         # check for age
@@ -2921,18 +2317,14 @@ class Cat():
                 return False
 
         # check for mentor
-
+        
         # Current mentor
         if other_cat.ID in self.apprentice or self.ID in other_cat.apprentice:
             return False
-
+        
         #Former mentor
         is_former_mentor = (other_cat.ID in self.former_apprentices or self.ID in other_cat.former_apprentices)
         if is_former_mentor and not game.clan.clan_settings['romantic with former mentor']:
-            return False
-
-        #current mentor
-        if other_cat.ID in self.apprentice or self.ID in other_cat.apprentice:
             return False
 
         return True
@@ -3039,18 +2431,13 @@ class Cat():
 
     def create_one_relationship(self, other_cat: Cat):
         """Create a new relationship between current cat and other cat. Returns: Relationship"""
-        try:
-            if not self.relationships:
-                self.relationships = {}
-        except:
-            self.relationships = {}
         if other_cat.ID in self.relationships:
             return self.relationships[other_cat.ID]
-
+        
         if other_cat.ID == self.ID:
             print(f"Attempted to create a relationship with self: {self.name}. Please report as a bug!")
             return None
-
+        
         self.relationships[other_cat.ID] = Relationship(self, other_cat)
         return self.relationships[other_cat.ID]
 
@@ -3309,7 +2696,7 @@ class Cat():
             mates = True
         else:
             mates = False
-
+        
         pos_traits = ["platonic", "respect", "comfortable", "trust"]
         if allow_romantic and (mates or cat1.is_potential_mate(cat2)):
             pos_traits.append("romantic")
@@ -3521,13 +2908,9 @@ class Cat():
     def load_faded_cat(cat: str):
         """Loads a faded cat, returning the cat object. This object is saved nowhere else. """
         try:
-            if game.clan == None: clan = game.switches['clan_list'][0]
-            if game.clan != None: clan = game.clan.name
-
-            with open(get_save_dir() + '/' + clan + '/faded_cats/' + cat + ".json", 'r') as read_file:
+            with open(get_save_dir() + '/' + game.clan.name + '/faded_cats/' + cat + ".json", 'r') as read_file:
                 cat_info = ujson.loads(read_file.read())
-                                # If loading cats is attempted before the Clan is loaded, we would need to use this.
-        except AttributeError:  # NOPE, cats are always loaded before the Clan, so doesnt make sense to throw an error
+        except AttributeError:  # If loading cats is attempted before the Clan is loaded, we would need to use this.
             with open(get_save_dir() + '/' + game.switches['clan_list'][0] + '/faded_cats/' + cat + ".json",
                       'r') as read_file:
                 cat_info = ujson.loads(read_file.read())
@@ -3554,23 +2937,21 @@ class Cat():
     # ---------------------------------------------------------------------------- #
 
     @staticmethod
-    def sort_cats(given_list=[]):
-        if not given_list:
-            given_list = Cat.all_cats_list
+    def sort_cats():
         if game.sort_type == "age":
-            given_list.sort(key=lambda x: Cat.get_adjusted_age(x))
+            Cat.all_cats_list.sort(key=lambda x: Cat.get_adjusted_age(x))
         elif game.sort_type == "reverse_age":
-            given_list.sort(key=lambda x: Cat.get_adjusted_age(x), reverse=True)
+            Cat.all_cats_list.sort(key=lambda x: Cat.get_adjusted_age(x), reverse=True)
         elif game.sort_type == "id":
-            given_list.sort(key=lambda x: int(x.ID))
+            Cat.all_cats_list.sort(key=lambda x: int(x.ID))
         elif game.sort_type == "reverse_id":
-            given_list.sort(key=lambda x: int(x.ID), reverse=True)
+            Cat.all_cats_list.sort(key=lambda x: int(x.ID), reverse=True)
         elif game.sort_type == "rank":
-            given_list.sort(key=lambda x: (Cat.rank_order(x), Cat.get_adjusted_age(x)), reverse=True)
+            Cat.all_cats_list.sort(key=lambda x: (Cat.rank_order(x), Cat.get_adjusted_age(x)), reverse=True)
         elif game.sort_type == "exp":
-            given_list.sort(key=lambda x: x.experience, reverse=True)
+            Cat.all_cats_list.sort(key=lambda x: x.experience, reverse=True)
         elif game.sort_type == "death":
-            given_list.sort(key=lambda x: -1 * int(x.dead_for))
+            Cat.all_cats_list.sort(key=lambda x: -1 * int(x.dead_for))
 
         return
 
@@ -3625,7 +3006,7 @@ class Cat():
                     return cat.moons
         else:
             return cat.moons
-
+        
     # ---------------------------------------------------------------------------- #
     #                                  properties                                  #
     # ---------------------------------------------------------------------------- #
@@ -3652,7 +3033,7 @@ class Cat():
     @moons.setter
     def moons(self, value: int):
         self._moons = value
-
+        
         updated_age = False
         for key_age in self.age_moons.keys():
             if self._moons in range(self.age_moons[key_age][0], self.age_moons[key_age][1] + 1):
@@ -3663,7 +3044,7 @@ class Cat():
                 self.age = "senior"
         except AttributeError:
             print("ERROR: cat has no age attribute! Cat ID: " + self.ID)
-
+        
     @property
     def sprite(self):
         # Update the sprite
@@ -3673,14 +3054,14 @@ class Cat():
     @sprite.setter
     def sprite(self, new_sprite):
         self._sprite = new_sprite
-
+        
     # ---------------------------------------------------------------------------- #
     #                                  other                                       #
     # ---------------------------------------------------------------------------- #
-
+    
     def is_baby(self):
         return self.age in ["kitten", "newborn"]
-
+    
     def get_save_dict(self, faded=False):
         if faded:
             return {
@@ -3725,15 +3106,28 @@ class Cat():
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
                 "exiled": self.exiled,
-                "genotype": self.genotype.toJSON(),
-                "white_pattern" : self.genotype.white_pattern,
-                "chim_white" : self.genotype.chimerageno.white_pattern if self.genotype.chimerageno else "No",
+                "pelt_name": self.pelt.name,
+                "pelt_color": self.pelt.colour,
+                "pelt_length": self.pelt.length,
                 "sprite_kitten": self.pelt.cat_sprites['kitten'],
                 "sprite_adolescent": self.pelt.cat_sprites['adolescent'],
                 "sprite_adult": self.pelt.cat_sprites['adult'],
                 "sprite_senior": self.pelt.cat_sprites['senior'],
                 "sprite_para_adult": self.pelt.cat_sprites['para_adult'],
+                "eye_colour": self.pelt.eye_colour,
+                "eye_colour2": self.pelt.eye_colour2 if self.pelt.eye_colour2 else None,
+                "lazy_eye": self.pelt.lazy_eye if self.pelt.lazy_eye else None,
                 "reverse": self.pelt.reverse,
+                "white_patches": self.pelt.white_patches,
+                "vitiligo": self.pelt.vitiligo,
+                "points": self.pelt.points,
+                "white_patches_tint": self.pelt.white_patches_tint,
+                "pattern": self.pelt.pattern,
+                "tortie_base": self.pelt.tortiebase,
+                "tortie_color": self.pelt.tortiecolour,
+                "tortie_pattern": self.pelt.tortiepattern,
+                "skin": self.pelt.skin,
+                "tint": self.pelt.tint,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
                 "accessory": self.pelt.accessory,
@@ -3750,7 +3144,7 @@ class Cat():
             }
 
 
-
+        
 # ---------------------------------------------------------------------------- #
 #                               END OF CAT CLASS                               #
 # ---------------------------------------------------------------------------- #
@@ -3763,11 +3157,11 @@ class Personality():
     """Hold personality information for a cat, and functions to deal with it """
     facet_types = ["lawfulness", "sociability", "aggression", "stability"]
     facet_range = [0, 16]
-
+    
     with open("resources/dicts/traits/trait_ranges.json", "r") as read_file:
         trait_ranges = ujson.loads(read_file.read())
-
-    def __init__(self, trait:str=None, kit_trait:bool=False, lawful:int=None, social:int=None, aggress:int=None,
+    
+    def __init__(self, trait:str=None, kit_trait:bool=False, lawful:int=None, social:int=None, aggress:int=None, 
                  stable:int=None) -> Personality:
         """If trait is given, it will randomize facets within the range of the trait. It will ignore any facets given. 
             If facets are given and no trait, it will find a trait that matches the facets. NOTE: you can give
@@ -3779,19 +3173,19 @@ class Personality():
         self._aggress = 0
         self._stable = 0
         self.trait = None
-        self.kit = kit_trait #If true, use kit trait. If False, use normal traits.
-
+        self.kit = kit_trait #If true, use kit trait. If False, use normal traits. 
+        
         if self.kit:
             trait_type_dict = Personality.trait_ranges["kit_traits"]
         else:
             trait_type_dict = Personality.trait_ranges["normal_traits"]
-
+        
         _tr = None
         if trait and trait in trait_type_dict:
             # Trait-given init
             self.trait = trait
             _tr = trait_type_dict[self.trait]
-
+        
         # Set Facet Values
         # The priority of is: 
         # (1) Given value, from parameter. 
@@ -3803,44 +3197,44 @@ class Personality():
             self._law = randint(_tr["lawfulness"][0], _tr["lawfulness"][1])
         else:
             self._law = randint(Personality.facet_range[0], Personality.facet_range[1])
-
+            
         if social is not None:
             self._social = Personality.adjust_to_range(social)
         elif _tr:
             self._social = randint(_tr["sociability"][0], _tr["sociability"][1])
         else:
             self._social = randint(Personality.facet_range[0], Personality.facet_range[1])
-
+            
         if aggress is not None:
             self._aggress = Personality.adjust_to_range(aggress)
         elif _tr:
             self._aggress = randint(_tr["aggression"][0], _tr["aggression"][1])
         else:
             self._aggress = randint(Personality.facet_range[0], Personality.facet_range[1])
-
+            
         if stable is not None:
             self._stable = Personality.adjust_to_range(stable)
         elif _tr:
             self._stable = randint(_tr["stability"][0], _tr["stability"][1])
         else:
             self._stable = randint(Personality.facet_range[0], Personality.facet_range[1])
-
+                
         # If trait is still empty, or if the trait is not valid with the facets, change it. 
         if not self.trait or not self.is_trait_valid():
             self.choose_trait()
-
+                
     def __repr__(self) -> str:
         """For debugging"""
         return f"{self.trait}: lawfulness {self.lawfulness}, aggression {self.aggression}, sociability {self.sociability}, stablity {self.stability}"
-
+    
     def get_facet_string(self):
         """For saving the facets to file."""
         return f"{self.lawfulness},{self.sociability},{self.aggression},{self.stability}"
-
+    
     def __getitem__(self, key):
         """Alongside __setitem__, Allows you to treat this like a dictionary if you want. """
         return getattr(self, key)
-
+    
     def __setitem__(self, key, newval):
         """Alongside __getitem__, Allows you to treat this like a dictionary if you want. """
         setattr(self, key, newval)
@@ -3848,51 +3242,51 @@ class Personality():
     # ---------------------------------------------------------------------------- #
     #                               PROPERTIES                                     #
     # ---------------------------------------------------------------------------- #
-
+    
     @property
     def lawfulness(self):
         return self._law
-
+    
     @lawfulness.setter
     def lawfulness(self, new_val):
         """Do not use property in init"""
         self._law = Personality.adjust_to_range(new_val)
         if not self.is_trait_valid():
             self.choose_trait()
-
+            
     @property
     def sociability(self):
         return self._social
-
+    
     @sociability.setter
     def sociability(self, new_val):
         """Do not use property in init"""
         self._social = Personality.adjust_to_range(new_val)
         if not self.is_trait_valid():
             self.choose_trait()
-
+            
     @property
     def aggression(self):
         return self._aggress
-
+    
     @aggression.setter
     def aggression(self, new_val):
         """Do not use property in init"""
         self._aggress = Personality.adjust_to_range(new_val)
         if not self.is_trait_valid():
             self.choose_trait()
-
+            
     @property
     def stability(self):
         return self._stable
-
+    
     @stability.setter
     def stability(self, new_val):
         """Do not use property in init"""
         self._stable = Personality.adjust_to_range(new_val)
         if not self.is_trait_valid():
             self.choose_trait()
-
+            
 
     # ---------------------------------------------------------------------------- #
     #                               METHODS                                        #
@@ -3901,57 +3295,57 @@ class Personality():
     @staticmethod
     def adjust_to_range(val:int) -> int:
         """Take an integer and adjust it to be in the trait-range """
-
+        
         if val < Personality.facet_range[0]:
             val = Personality.facet_range[0]
         elif val > Personality.facet_range[1]:
             val = Personality.facet_range[1]
-
+        
         return val
-
+    
     def set_kit(self, kit:bool):
         """Switch the trait-type. True for kit, False for normal"""
         self.kit = kit
         if not self.is_trait_valid():
             self.choose_trait()
-
+        
     def is_trait_valid(self) -> bool:
         """Return True if the current facets fit the trait ranges, false
         if it doesn't. Also returns false if the trait is not in the trait dict.  """
-
+        
         if self.kit:
             trait_type_dict = Personality.trait_ranges["kit_traits"]
         else:
             trait_type_dict = Personality.trait_ranges["normal_traits"]
-
+        
         if self.trait not in trait_type_dict:
             return False
-
+        
         trait_range = trait_type_dict[self.trait]
-
-        if not (trait_range["lawfulness"][0] <= self.lawfulness
+        
+        if not (trait_range["lawfulness"][0] <= self.lawfulness 
                 <= trait_range["lawfulness"][1]):
             return False
-        if not (trait_range["sociability"][0] <= self.sociability
+        if not (trait_range["sociability"][0] <= self.sociability 
                 <= trait_range["sociability"][1]):
             return False
-        if not (trait_range["aggression"][0] <= self.aggression
+        if not (trait_range["aggression"][0] <= self.aggression 
                 <= trait_range["aggression"][1]):
             return False
-        if not (trait_range["stability"][0] <= self.stability
+        if not (trait_range["stability"][0] <= self.stability 
                 <= trait_range["stability"][1]):
             return False
-
+        
         return True
-
+    
     def choose_trait(self):
         """Chooses trait based on the facets """
-
+        
         if self.kit:
             trait_type_dict = Personality.trait_ranges["kit_traits"]
         else:
             trait_type_dict = Personality.trait_ranges["normal_traits"]
-
+        
         possible_traits = []
         for trait, fac in trait_type_dict.items():
             if not (fac["lawfulness"][0] <= self.lawfulness <= fac["lawfulness"][1]):
@@ -3962,31 +3356,31 @@ class Personality():
                 continue
             if not (fac["stability"][0] <= self.stability <= fac["stability"][1]):
                 continue
-
+            
             possible_traits.append(trait)
-
+            
         if possible_traits:
             self.trait = choice(possible_traits)
         else:
             print("No possible traits! Using 'strange'")
             self.trait = "strange"
-
+            
     def facet_wobble(self, max=5):
-        """Makes a small adjustment to all the facets, and redetermines trait if needed."""
+        """Makes a small adjustment to all the facets, and redetermines trait if needed."""        
         self.lawfulness += randint(-max, max)
         self.stability += randint(-max, max)
         self.aggression += randint(-max, max)
         self.sociability += randint(-max, max)
-
+        
     def mentor_influence(self, mentor:Cat):
         """applies mentor influence after the pair go on a patrol together 
             returns history information in the form (mentor_id, facet_affected, amount_affected)"""
         mentor_personality = mentor.personality
-
+        
         #Get possible facet values
-        possible_facets = {i: mentor_personality[i] - self[i] for i in
+        possible_facets = {i: mentor_personality[i] - self[i] for i in 
                            Personality.facet_types if mentor_personality[i] - self[i] != 0}
-
+        
         if possible_facets:
             # Choice trait to effect, weighted by the abs of the difference (higher difference = more likely to effect)
             facet_affected = choices([i for i in possible_facets], weights=[abs(i) for i in possible_facets.values()], k=1)[0]
@@ -3995,13 +3389,14 @@ class Personality():
             self[facet_affected] += amount_affected
             return (mentor.ID, facet_affected, amount_affected)
         else:
-            #This will only trigger if they have the same personality.
+            #This will only trigger if they have the same personality. 
             return None
 
 # Twelve example cats
 def create_example_cats():
     e = sample(range(12), 3)
-    not_allowed = []
+    not_allowed = ['NOPAW', 'NOTAIL', 'HALFTAIL', 'NOEAR', 'BOTHBLIND', 'RIGHTBLIND', 'LEFTBLIND', 'BRIGHTHEART',
+                   'NOLEFTEAR', 'NORIGHTEAR', 'MANLEG']
     for a in range(12):
         if a in e:
             game.choose_cats[a] = Cat(status='warrior', biome=None)
@@ -4015,10 +3410,9 @@ def create_example_cats():
         for scar in game.choose_cats[a].pelt.scars:
             if scar in not_allowed:
                 game.choose_cats[a].pelt.scars.remove(scar)
-        game.choose_cats[a].genetic_conditions()
-
-
-
+    
+        #update_sprite(game.choose_cats[a])
+    
 
 # CAT CLASS ITEMS
 cat_class = Cat(example=True)
