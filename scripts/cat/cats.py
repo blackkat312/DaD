@@ -2069,13 +2069,20 @@ class Cat():
         template[gender] = self.genderalign
         self.alters.append(template)
     '''
+
+    def add_split(self, new_alter, origin):
+        if self.alters[new_alter]:
+            self.alters[new_alter]["splits"].append(origin)
+
     def new_alter(self):
         template = {
             "ID": "",
             "name": "",
             "gender": "",
             "role": "",
-            "other": "cat"
+            "other": "cat",
+            "origin": "core",
+            "splits": []
             }
         #print(self.ID)
         template["ID"] = str(len(self.alters) + 1)
@@ -2130,6 +2137,11 @@ class Cat():
         elif template["other"] == "cat" or template["other"] == "otherclan":
             alter_name += choice(names_dict["normal_suffixes"])
         template["name"] = alter_name
+        if template["ID"] != "1":
+            splitrng = randint(1, (len(self.alters)+1))
+            if splitrng < (len(self.alters)+1):
+                template["origin"] = self.alters[splitrng]['name']
+                self.add_split(splitrng, template["name"])
         #print(template)
         self.alters.append(template)
 
@@ -2472,6 +2484,13 @@ class Cat():
             self.get_permanent_condition(new_condition, born_with=True)
             conditions -= 1
 
+    def update_alters(self):
+        if self.alters:
+            for alter in self.alters:
+                if not "origin" in alter:
+                    alter["origin"] = "core"
+                    alter["splits"] = []
+
     def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
             PERMANENT = ujson.loads(read_file.read())
@@ -2580,7 +2599,7 @@ class Cat():
                 "event_triggered": new_perm_condition.new
             }
             if self.is_plural():
-                # self.system_core()
+                #self.system_core()
                 if len(self.alters) < 1:
                     self.new_alter()
             new_condition = True
@@ -2720,6 +2739,7 @@ class Cat():
             conditions["permanent conditions"] = self.permanent_condition
 
         if self.is_plural():
+            self.update_alters()
             conditions["alters"] = self.alters
 
         game.safe_save(condition_file_path, conditions)
@@ -2743,6 +2763,7 @@ class Cat():
                 self.permanent_condition = rel_data.get("permanent conditions", {})
                 if self.is_plural():
                     self.alters = rel_data["alters"]
+                    self.update_alters()
 
             if "paralyzed" in self.permanent_condition and not self.pelt.paralyzed:
                 self.pelt.paralyzed = True
