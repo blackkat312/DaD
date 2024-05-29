@@ -194,7 +194,7 @@ class Cat():
         self.parent2 = parent2
 
         self.adoptive_parents = []
-        self.genotype = Genotype(game.config['genetic_chances'])
+        self.genotype = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
         #print(genotype)
         if genotype:
             self.genotype.fromJSON(genotype)
@@ -1001,9 +1001,8 @@ class Cat():
                 self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
             elif 'partial hearing loss' not in self.permanent_condition:
                 self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
-
-        if 'M' in self.genotype.manx:
-            if random() > ((self.phenotype.bobtailnr + 1) * 0.2):
+        if ('M' in self.genotype.manx):
+            if(random() > ((self.phenotype.bobtailnr + 1) * 0.2)):
                 self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
 
         if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
@@ -1018,9 +1017,9 @@ class Cat():
         if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.05) or (self.phenotype.bobtailnr > 1 and random() > 0.15)):
             self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
 
-        if self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c'):
+        if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
             self.get_permanent_condition('albinism', born_with=True, genetic=True)
-        elif ('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
+        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
             self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
 
     @property
