@@ -114,15 +114,15 @@ class Pregnancy_Events():
 
         chance = Pregnancy_Events.get_balanced_kit_chance(cat, second_parent if second_parent else None, is_affair, clan)
 
-        all_intersex = True
+        All_Infertile = True
         if second_parent:
             for x in second_parent:
-                if x.gender != "intersex":
-                    all_intersex = False
+                if 'infertile' not in x.permanent_condition:
+                    All_Infertile = False
 
         if not int(random.random() * chance):
             # If you've reached here - congrats, kits!
-            if kits_are_adopted or cat.gender == "intersex" or (second_parent and all_intersex):
+            if kits_are_adopted or 'infertile' in cat.permanent_condition or (second_parent and All_Infertile):
                 Pregnancy_Events.handle_adoption(cat, second_parent, clan)
             else:
                 Pregnancy_Events.handle_zero_moon_pregnant(cat, second_parent, clan)
@@ -280,10 +280,10 @@ class Pregnancy_Events():
                         unknowns.append(outcat)
 
                 possible_affair_partners = [i for i in unknowns if
-                                            i.is_potential_mate(cat, for_love_interest=True, outsider=True)
-                                            and (clan.clan_settings['same sex birth'] or (xor(i.gender == 'tom', cat.gender == 'tom') or xor(i.gender == 'intersex', cat.gender == 'intersex')))
-                                            and len(i.mate) == 0]
-                if(random.random() < 0.5 or len(possible_affair_partners) < 1):
+                                        i.is_potential_mate(cat, for_love_interest=True, outsider=True)
+                                        and (clan.clan_settings['same sex birth'] or (xor(i.gender == 'tom', cat.gender == 'tom') or i.gender == 'intersex' or cat.gender == 'intersex'))
+                                        and len(i.mate) == 0]
+                if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                     if(randint(1, 4) > 1):
                         cat_type = choice(['loner', 'rogue', 'kittypet'])
                         backstories = {
@@ -344,7 +344,7 @@ class Pregnancy_Events():
                     game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved))
                 return
 
-            # if the other cat is a molly and the current cat is a tom, make the female cat pregnant
+            # if the other cat is a molly and the current cat is a tom, make the molly cat pregnant
             pregnant_cat = cat
             second_parent = other_cat
             if second_parent:
@@ -475,7 +475,7 @@ class Pregnancy_Events():
 
             possible_affair_partners = [i for i in unknowns if
                                     i.is_potential_mate(cat, for_love_interest=True, outsider=True)
-                                    and (clan.clan_settings['same sex birth'] or (xor(i.gender == 'tom', cat.gender == 'tom') or xor(i.gender == 'intersex', cat.gender == 'intersex')))
+                                    and (clan.clan_settings['same sex birth'] or (xor(i.gender == 'tom', cat.gender == 'tom') or i.gender == 'intersex' or cat.gender == 'intersex'))
                                     and len(i.mate) == 0]
             if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                 if(randint(1, 4) > 1):
@@ -500,7 +500,7 @@ class Pregnancy_Events():
                     mate_age = cat.moons + randint(0, 24)-12
                     if cat_type != 'Clancat':
                         out_par = None
-                        while not out_par or out_par.gender == 'intersex':
+                        while not out_par or 'infertile' in out_par.permanent_condition:
                             if(out_par):
                                 del Cat.all_cats[out_par]
                             out_par = create_new_cat(Cat, Relationship,
@@ -848,7 +848,7 @@ class Pregnancy_Events():
                 return False, False, second_parent
 
             # Check to see if the pair can have kits.
-            if not xor(cat.gender == 'tom', second_parent[0].gender == 'tom') or xor(cat.gender == 'intersex', second_parent[0].gender == 'intersex'):
+            if not xor(cat.gender == 'tom', second_parent[0].gender == 'tom') or second_parent[0].gender == 'intersex':
                 if same_sex_birth:
                     return True, False, second_parent
                 elif not same_sex_adoption:
@@ -868,7 +868,7 @@ class Pregnancy_Events():
             second_parent_copy = second_parent
 
             for x in second_parent:
-                if not xor(cat.gender == 'tom', x.gender == 'tom') or xor(cat.gender == 'intersex', x.gender == 'intersex'):
+                if not xor(cat.gender == 'tom', x.gender == 'tom') or x.gender == 'intersex':
                     if not same_sex_birth:
                         second_parent.remove(x)
 
@@ -909,11 +909,11 @@ class Pregnancy_Events():
 
         # if the sex does matter, choose the best solution to allow kits
         if not samesex and mate and (cat.gender != 'tom' and cat.gender != 'intersex') and clan.clan_settings['multisire']:
-            opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == 'tom', cat.gender == 'tom')]
+            opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if (xor(cat.fetch_cat(mate_id).gender == 'tom', cat.gender == 'tom') or xor(cat.fetch_cat(mate_id).gender == 'intersex', cat.gender == 'intersex'))]
             if len(opposite_mate) > 0:
                 mate = opposite_mate
-        elif not samesex and mate and cat.gender == 'tom':
-            opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == 'tom', cat.gender == 'tom')]
+        elif not samesex and mate and (cat.gender == 'tom' or cat.gender == 'intersex'):
+            opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if (xor(cat.fetch_cat(mate_id).gender == 'tom', cat.gender == 'tom') or xor(cat.fetch_cat(mate_id).gender == 'intersex', cat.gender == 'intersex'))]
             if len(opposite_mate) > 0:
                 mate = [choice(opposite_mate)]
 
@@ -1042,7 +1042,7 @@ class Pregnancy_Events():
         blood_parent = None
         blood_parent2 = None
          
-        par2geno = Genotype(game.config['genetic_chances'])
+        par2geno = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
         if cat and cat.gender == 'tom':
             par2geno.Generator('fem')
         elif cat and cat.gender == 'molly':
@@ -1115,9 +1115,9 @@ class Pregnancy_Events():
                     for i in range(0, nr_of_parents):
                         blood_par2 = None
                         parage = parage + randint(0, 24) - 12
-                        while not blood_par2 or blood_par2.gender == 'intersex':
+                        while not blood_par2 or 'infertile' in blood_par2.permanent_condition:
                             if(blood_par2):
-                                Cat.all_cats.remove(blood_par2)
+                                del Cat.all_cats[blood_par2.ID]
                             blood_par2 = create_new_cat(Cat, Relationship,
                                                         status=random.choice(["loner", "kittypet"]),
                                                         gender='masc',
