@@ -165,7 +165,7 @@ class NewCatEvents:
                                             gender='fem',
                                             outside=True)[0]
             else:
-                par2geno = Genotype(game.config['genetic_chances'])
+                par2geno = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
                 par2geno.Generator('fem')
 
         created_cats = create_new_cat(Cat,
