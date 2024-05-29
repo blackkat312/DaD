@@ -16,21 +16,16 @@
         }
     ],
     "general": {
-
         "allow shell farm": [
             "Allow triggering topics (hover)",
             "Triggering topics such as self harm and suicidal thoughts will be allowed.",
             false
         ],
-
         "warriorified names": [
             "Use warriors names for the new conditions",
             "IE: use starwalker instead of autism",
             true
         ],
-
-
-        
         "dark mode": [
             "Dark mode",
             "Camp backgrounds will match with the mode: nighttime for dark mode and daytime for light mode.",
@@ -80,6 +75,11 @@
             "Randomize relationship values when creating Clan",
             "Clan founder cats will start the game with established relationships.",
             true
+        ],
+        "ban problem genes": [
+            "Hide genes directly associated with health issues.",
+            "Newly generated cats will not have genes that are directly correlated with permanent conditions.",
+            false
         ]
     },
     "..": "these are special. they do not have a display name or a tooltip",
