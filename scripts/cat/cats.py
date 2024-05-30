@@ -1320,11 +1320,9 @@ class Cat():
         for child_id in children:
             if Cat.all_cats.get(child_id, None):
                 child = Cat.all_cats[child_id]
-                if child.outside and not child.exiled and child.moons < 12:
+                if child.outside and not child.exiled and not child.dead and child.moons < 12:
                     child.add_to_clan()
                     ids.append(child_id)
-            else:
-                self.inheritance.update_inheritance()
 
 
         return ids
@@ -2519,6 +2517,10 @@ class Cat():
             if name == "manx syndrome":
                 print("cat isn't a manx!")
                 return
+        if "blind" in self.permanent_condition and name == "failing eyesight":
+            return
+        if "deaf" in self.permanent_condition and name == "partial hearing loss":
+            return
 
         # remove accessories if need be
         if ('NOTAIL' in self.pelt.scars or (self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5)) and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'SEAWEED', 'DAISY CORSAGE']:
