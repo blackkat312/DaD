@@ -1025,7 +1025,6 @@ class Pregnancy_Events():
            No parents are specifed, it will create a blood parents for all the 
            kits to be related to. They may be dead or alive, but will always be outside 
            the clan. """
-        fem_masc = random.choice(['fem', 'masc'])
         all_kitten = []
         if not adoptive_parents: 
             adoptive_parents = []
@@ -1048,7 +1047,7 @@ class Pregnancy_Events():
         elif cat and cat.gender == 'molly':
             par2geno.Generator('masc')
         elif cat:
-            par2geno.Generator(fem_masc)
+            par2geno.Generator(random.choice(['fem', 'masc']))
         ##### SELECT BACKSTORY #####
         if backkit:
             backstory = backkit
