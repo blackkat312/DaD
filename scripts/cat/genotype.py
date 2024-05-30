@@ -2671,78 +2671,109 @@ class Genotype:
         which = choice(whichgene)
 
         if(which == 'wirehair'):
+            # Gains the gene
             if(self.wirehair[0] == 'wh'):
                 self.wirehair[0] = 'Wh'
             elif(self.wirehair[1] == 'wh'):
                 self.wirehair[1] = 'Wh'
+            # Loses the gene
+            elif(self.wirehair[1] == 'Wh'):
+                self.wirehair[1] = 'wh'
+            elif(self.wirehair[0] == 'Wh'):
+                self.wirehair[0] = 'wh'
             else:
                 self.Mutate()
         elif(which == 'laperm'):
+            # Gains the gene
             if(self.laperm[0] == 'lp'):
                 self.laperm[0] = 'Lp'
             elif(self.laperm[1] == 'lp'):
                 self.laperm[1] = 'Lp'
+            # Loses the gene
+            elif(self.laperm[1] == 'Lp'):
+                self.laperm[1] = 'lp'
+            elif(self.laperm[0] == 'Lp'):
+                self.laperm[0] = 'lp'
             else:
                 self.Mutate()
         elif(which == 'cornish'):
+            # Gains the gene
             if(self.cornish[1] == 'R'):
                 self.cornish[1] = 'r'
             elif(self.cornish[0] == 'R'):
                 self.cornish[0] = 'r'
+            # Loses the gene
+            elif(self.cornish[0] == 'r'):
+                self.cornish[0] = 'R'
+            elif(self.cornish[1] == 'r'):
+                self.cornish[1] = 'R'
             else:
                 self.Mutate()
         elif(which == 'urals'):
+            # Gains the gene
             if(self.urals[1] == 'Ru'):
                 self.urals[1] = 'ru'
             elif(self.urals[0] == 'Ru'):
                 self.urals[0] = 'ru'
+            # Loses the gene
+            elif(self.urals[0] == 'ru'):
+                self.urals[0] = 'Ru'
+            elif(self.urals[1] == 'ru'):
+                self.urals[1] = 'Ru'
             else:
                 self.Mutate()
         elif(which == 'tennessee'):
+            # Gains the gene
             if(self.tenn[1] == 'Tr'):
                 self.tenn[1] = 'tr'
             elif(self.tenn[0] == 'Tr'):
                 self.tenn[0] = 'tr'
+            # Loses the gene
+            elif(self.tenn[0] == 'tr'):
+                self.tenn[0] = 'Tr'
+            elif(self.tenn[1] == 'tr'):
+                self.tenn[1] = 'Tr'
             else:
                 self.Mutate()
         elif(which == 'fleecy'):
+            # Gains the gene
             if(self.fleece[1] == 'Fc'):
                 self.fleece[1] = 'fc'
             elif(self.fleece[0] == 'Fc'):
                 self.fleece[0] = 'fc'
+            # Loses the gene
+            elif(self.fleece[0] == 'fc'):
+                self.fleece[0] = 'Fc'
+            elif(self.fleece[1] == 'fc'):
+                self.fleece[1] = 'Fc'
             else:
                 self.Mutate()
         elif(which == 'sedesp'):
-            if('Hr' not in self.sedesp):
-                self.Mutate()
-            if(random() < 0.34):
-                if(self.sedesp[0] == 'Hr'):
-                    self.sedesp[0] = 'Se'
-                else:
-                    self.sedesp[1] = 'Se'
-            else:
-                if(self.sedesp[1] == 'Hr'):
-                    if(random() < 0.25) and not self.ban_genes:
-                        self.sedesp[1] = 'hr'
-                    else:
-                        self.sedesp[1] = 're'
-                else:
-                    if(random() < 0.25) and not self.ban_genes:
-                        self.sedesp[0] = 'hr'
-                    else:
-                        self.sedesp[0] = 're'
+            self.Mutate()
         elif(which == 'lykoi'):
+            # Gains the gene
             if(self.lykoi[1] == 'Ly'):
                 self.lykoi[1] = 'ly'
             elif(self.lykoi[0] == 'Ly'):
                 self.lykoi[0] = 'ly'
+            # Loses the gene
+            elif(self.lykoi[0] == 'ly'):
+                self.lykoi[0] = 'Ly'
+            elif(self.lykoi[1] == 'ly'):
+                self.lykoi[1] = 'Ly'
             else:
                 self.Mutate()
         else:
-            if(self.ruhr[0] == 'Hr'):
+            # Gains the gene
+            if(self.ruhr[0] == 'hrbd'):
                 self.ruhr[0] = 'Hrbd'
-            elif(self.ruhr[1] == 'Hr'):
+            elif(self.ruhr[1] == 'hrbd'):
                 self.ruhr[1] = 'Hrbd'
+            # Loses the gene
+            elif(self.ruhr[1] == 'Hrbd'):
+                self.ruhr[1] = 'hrbd'
+            elif(self.ruhr[0] == 'Hrbd'):
+                self.ruhr[0] = 'hrbd'
             else:
                 self.Mutate()
         print(which)
