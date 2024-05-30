@@ -2749,9 +2749,9 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'sedesp'):
-            # hell
+            hell = randint(1, 2)
             ###### Gains the gene ######
-            if randint(1, 2) == 1:
+            if('re' not in self.sedesp and hell == 1):
                 ### Selkirk ###
                 if(self.sedesp[1] == 'Se'):
                     self.sedesp[1] = choice(['Hr', 'hr', 're'])
@@ -2782,7 +2782,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            else:
+            elif('re' in self.sedesp or hell == 2):
                 ### Devon ###
                 if(self.sedesp[0] == 're'):
                     self.sedesp[0] = choice(['Se', 'Hr', 'hr'])
@@ -2796,8 +2796,24 @@ class Genotype:
                     else:
                         self.Mutate()
                 ### Hairless ###
+                elif (self.sedesp[0] == 'hr'):
+                    self.sedesp[0] = choice(['Se', 'Hr'])
+                elif (self.sedesp[1] == 'hr'):
+                    if (self.sedesp[0] == 'Se'):
+                        self.sedesp[1] = choice(['Se', 'Hr'])
+                    elif (self.sedesp[0] == 'Hr'):
+                        self.sedesp[1] = 'Hr'
+                    else:
+                        self.Mutate()
+                ### Normal Coat ###
+                elif (self.sedesp[0] == 'Hr'):
+                    self.sedesp[0] = 'Se'
+                elif (self.sedesp[1] == 'Hr'):
+                    self.sedesp[1] = 'Se'
                 else:
                     self.Mutate()
+            else:
+                self.Mutate()
         elif(which == 'lykoi'):
             # Gains the gene
             if(self.lykoi[1] == 'Ly'):
