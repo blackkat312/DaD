@@ -2749,7 +2749,55 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'sedesp'):
-            self.Mutate()
+            # hell
+            ###### Gains the gene ######
+            if randint(1, 2) == 1:
+                ### Selkirk ###
+                if(self.sedesp[1] == 'Se'):
+                    self.sedesp[1] = choice(['Hr', 'hr', 're'])
+                elif(self.sedesp[0] == 'Se'):
+                    if(self.sedesp[1] == 'Hr'):
+                        self.sedesp[0] = 'Hr'
+                    elif(self.sedesp[1] == 'hr'):
+                        self.sedesp[0] = choice(['Hr', 'hr'])
+                    elif(self.sedesp[1] == 're'):
+                        self.sedesp[0] = choice(['Hr', 'hr', 're'])
+                    else:
+                        self.Mutate()
+                ### Normal Coat ###
+                elif(self.sedesp[1] == 'Hr'):
+                    self.sedesp[1] = choice(['hr', 're'])
+                elif(self.sedesp[0] == 'Hr'):
+                    if(self.sedesp[1] == 'hr'):
+                        self.sedesp[0] = 'hr'
+                    elif(self.sedesp[1] == 're'):
+                        self.sedesp[0] = choice(['hr', 're'])
+                    else:
+                        self.Mutate()
+                ### Hairless ###
+                elif(self.sedesp[1] == 'hr'):
+                    self.sedesp[1] = 're'
+                elif(self.sedesp[0] == 'hr'):
+                    self.sedesp[0] = 're'
+                else:
+                    self.Mutate()
+            ###### Loses the gene ######
+            else:
+                ### Devon ###
+                if(self.sedesp[0] == 're'):
+                    self.sedesp[0] = choice(['Se', 'Hr', 'hr'])
+                elif(self.sedesp[1] == 're'):
+                    if (self.sedesp[0] == 'Se'):
+                        self.sedesp[1] = choice(['Se', 'Hr', 'hr'])
+                    elif (self.sedesp[0] == 'Hr'):
+                        self.sedesp[1] = choice(['Hr', 'hr'])
+                    elif (self.sedesp[0] == 'hr'):
+                        self.sedesp[1] = 'hr'
+                    else:
+                        self.Mutate()
+                ### Hairless ###
+                else:
+                    self.Mutate()
         elif(which == 'lykoi'):
             # Gains the gene
             if(self.lykoi[1] == 'Ly'):
