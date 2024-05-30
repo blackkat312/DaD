@@ -2513,44 +2513,84 @@ class Genotype:
         which = choice(whichgene)
 
         if(which == "curl"):
+            # Gains the gene
             if(self.curl[0] == 'cu'):
                 self.curl[0] = 'Cu'
             elif(self.curl[1] == 'cu'):
                 self.curl[1] = 'Cu'
+            # Loses the gene
+            elif (self.curl[1] == 'Cu'):
+                self.curl[1] = 'cu'
+            elif (self.curl[0] == 'Cu'):
+                self.curl[0] = 'cu'
             else:
                 self.Mutate()
         elif(which == 'fold'):
+            # Gains the gene
             if(self.fold[0] == 'fd'):
                 self.fold[0] = 'Fd'
             elif(self.fold[1] == 'fd'):
                 self.fold[1] = 'Fd'
+            # Loses the gene
+            elif (self.fold[1] == 'Fd'):
+                self.fold[1] = 'fd'
+            elif (self.fold[0] == 'Fd'):
+                self.fold[0] = 'fd'
             else:
                 self.Mutate()
         elif(which == 'manx'):
-            if(self.manx[0] == 'm' or self.manx[0] == 'ab'):
-                if(random() < 0.34) and not self.ban_genes:
-                    self.manx[0] = 'M'
-                else:
+            if self.manx[0].lower() == "ab":
+                # Gains the gene
+                if (self.manx[0] == 'ab'):
                     self.manx[0] = 'Ab'
-            if(self.manx[1] == 'm' or self.manx[1] == 'ab'):
-                if(random() < 0.34) and not self.ban_genes:
-                    self.manx[1] = 'M'
-                else:
+                elif (self.manx[1] == 'ab'):
                     self.manx[1] = 'Ab'
+                # Loses the gene
+                elif (self.manx[1] == 'Ab'):
+                    self.manx[1] = 'ab'
+                elif (self.manx[0] == 'Ab'):
+                    self.manx[0] = 'ab'
+                else:
+                    self.Mutate()
+            elif self.manx[0].lower() == "m" and not self.ban_genes:
+                # Gains the gene
+                if (self.manx[0] == 'm'):
+                    self.manx[0] = 'M'
+                elif (self.manx[1] == 'm'):
+                    self.manx[1] = 'M'
+                # Loses the gene
+                elif (self.manx[1] == 'M'):
+                    self.manx[1] = 'm'
+                elif (self.manx[0] == 'M'):
+                    self.manx[0] = 'm'
+                else:
+                    self.Mutate()
             else:
                 self.Mutate()
         elif(which == 'japanese'):
+            # Gains the gene
             if(self.jbob[1] == 'Jb'):
                 self.jbob[1] = 'jb'
             elif(self.jbob[0] == 'Jb'):
-                self.jbob[0] = 'jb' 
+                self.jbob[0] = 'jb'
+            # Loses the gene
+            elif (self.jbob[0] == 'jb'):
+                self.jbob[0] = 'Jb'
+            elif (self.jbob[1] == 'jb'):
+                self.jbob[1] = 'Jb'
             else:
                 self.Mutate()
         elif(which == 'toybob'):
-            if(self.toybob[0] == 'tb'):
+            # Gains the gene
+            if (self.toybob[0] == 'tb'):
                 self.toybob[0] = 'Tb'
-            elif(self.toybob[1] == 'tb'):
+            elif (self.toybob[1] == 'tb'):
                 self.toybob[1] = 'Tb'
+            # Loses the gene
+            elif (self.toybob[1] == 'Tb'):
+                self.toybob[1] = 'tb'
+            elif (self.toybob[0] == 'Tb'):
+                self.toybob[0] = 'tb'
             else:
                 self.Mutate()
         elif(which == 'karel'):
