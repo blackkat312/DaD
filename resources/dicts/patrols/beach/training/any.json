@@ -220,7 +220,7 @@
                 }
             },
             {
-                "text": "Even though s_c made it out, {PRONOUN/s_c/subject} {VERB/s_c/swear/swears} someone pushed {PRONOUN/s_c/object}, and {VERB/s_c/blame/blames} r_c. r_c denies it and says they should get s_c back to camp to get {PRONOUN/s_c/poss} injury looked at.",
+                "text": "Even though r_c made it out, {PRONOUN/r_c/subject} {VERB/r_c/swear/swears} someone pushed {PRONOUN/r_c/object}, and {VERB/r_c/blame/blames} s_c. s_c denies it and says they should get r_c back to camp to get {PRONOUN/r_c/poss} injury looked at.",
                 "exp": 0,
                 "weight": 10,
                 "stat_trait": [
@@ -235,7 +235,7 @@
                 ],
                 "injury": [
                     {
-                        "cats": ["s_c"],
+                        "cats": ["r_c"],
                         "injuries": ["blunt_force_injury"],
                         "scars": ["CHEEK"]
                     }
@@ -716,7 +716,7 @@
                 "can_have_stat": ["app"]
             },
             {
-                "text": "The apprentice wanders along obliviously and slips, tumbling right down into a rocky pool. Bruised and sore, r_c has to report to the medicine cat den when {PRONOUN/r_c/subject} {VERB/r_c/return/returns} to camp.",
+                "text": "The apprentice wanders along obliviously and slips, tumbling right down into a rocky pool. Bruised and sore, r_c has to report to the healer den when {PRONOUN/r_c/subject} {VERB/r_c/return/returns} to camp.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -1844,7 +1844,7 @@
         },
         "weight": 20,
         "intro_text": "As p_l and r_c wander across the beach with only the stars to light their way, they notice sparkles of light where the waves break upon the shore.",
-        "decline_text": "A little freaked out, the warriors go to fetch a medicine cat to interpret this omen for them.",
+        "decline_text": "A little freaked out, the warriors go to fetch a healer to interpret this omen for them.",
         "chance_of_success": 60,
         "success_outcomes": [
             {
