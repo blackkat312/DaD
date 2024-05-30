@@ -2519,9 +2519,9 @@ class Genotype:
             elif(self.curl[1] == 'cu'):
                 self.curl[1] = 'Cu'
             # Loses the gene
-            elif (self.curl[1] == 'Cu'):
+            elif(self.curl[1] == 'Cu'):
                 self.curl[1] = 'cu'
-            elif (self.curl[0] == 'Cu'):
+            elif(self.curl[0] == 'Cu'):
                 self.curl[0] = 'cu'
             else:
                 self.Mutate()
@@ -2532,36 +2532,36 @@ class Genotype:
             elif(self.fold[1] == 'fd'):
                 self.fold[1] = 'Fd'
             # Loses the gene
-            elif (self.fold[1] == 'Fd'):
+            elif(self.fold[1] == 'Fd'):
                 self.fold[1] = 'fd'
-            elif (self.fold[0] == 'Fd'):
+            elif(self.fold[0] == 'Fd'):
                 self.fold[0] = 'fd'
             else:
                 self.Mutate()
         elif(which == 'manx'):
             if self.manx[0].lower() == "ab":
                 # Gains the gene
-                if (self.manx[0] == 'ab'):
+                if(self.manx[0] == 'ab'):
                     self.manx[0] = 'Ab'
-                elif (self.manx[1] == 'ab'):
+                elif(self.manx[1] == 'ab'):
                     self.manx[1] = 'Ab'
                 # Loses the gene
-                elif (self.manx[1] == 'Ab'):
+                elif(self.manx[1] == 'Ab'):
                     self.manx[1] = 'ab'
-                elif (self.manx[0] == 'Ab'):
+                elif(self.manx[0] == 'Ab'):
                     self.manx[0] = 'ab'
                 else:
                     self.Mutate()
             elif self.manx[0].lower() == "m" and not self.ban_genes:
                 # Gains the gene
-                if (self.manx[0] == 'm'):
+                if(self.manx[0] == 'm'):
                     self.manx[0] = 'M'
-                elif (self.manx[1] == 'm'):
+                elif(self.manx[1] == 'm'):
                     self.manx[1] = 'M'
                 # Loses the gene
-                elif (self.manx[1] == 'M'):
+                elif(self.manx[1] == 'M'):
                     self.manx[1] = 'm'
-                elif (self.manx[0] == 'M'):
+                elif(self.manx[0] == 'M'):
                     self.manx[0] = 'm'
                 else:
                     self.Mutate()
@@ -2574,58 +2574,88 @@ class Genotype:
             elif(self.jbob[0] == 'Jb'):
                 self.jbob[0] = 'jb'
             # Loses the gene
-            elif (self.jbob[0] == 'jb'):
+            elif(self.jbob[0] == 'jb'):
                 self.jbob[0] = 'Jb'
-            elif (self.jbob[1] == 'jb'):
+            elif(self.jbob[1] == 'jb'):
                 self.jbob[1] = 'Jb'
             else:
                 self.Mutate()
         elif(which == 'toybob'):
             # Gains the gene
-            if (self.toybob[0] == 'tb'):
+            if(self.toybob[0] == 'tb'):
                 self.toybob[0] = 'Tb'
-            elif (self.toybob[1] == 'tb'):
+            elif(self.toybob[1] == 'tb'):
                 self.toybob[1] = 'Tb'
             # Loses the gene
-            elif (self.toybob[1] == 'Tb'):
+            elif(self.toybob[1] == 'Tb'):
                 self.toybob[1] = 'tb'
-            elif (self.toybob[0] == 'Tb'):
+            elif(self.toybob[0] == 'Tb'):
                 self.toybob[0] = 'tb'
             else:
                 self.Mutate()
         elif(which == 'karel'):
+            # Gains the gene
             if(self.kab[1] == 'Kab'):
                 self.kab[1] = 'kab'
             elif(self.kab[0] == 'Kab'):
                 self.kab[0] = 'kab'
+            # Loses the gene
+            elif(self.kab[0] == 'kab'):
+                self.kab[0] = 'Kab'
+            elif(self.kab[1] == 'kab'):
+                self.kab[1] = 'Kab'
             else:
                 self.Mutate()
         elif(which == 'kuril'):
+            # Gains the gene
             if(self.kub[0] == 'kub'):
                 self.kub[0] = 'Kub'
             elif(self.kub[1] == 'kub'):
                 self.kub[1] = 'Kub'
+            # Loses the gene
+            elif(self.kub[1] == 'Kub'):
+                self.kub[1] = 'kub'
+            elif(self.kub[0] == 'Kub'):
+                self.kub[0] = 'kub'
             else:
                 self.Mutate()
         elif(which == 'ringtail'):
+            # Gains the gene
             if(self.ring[1] == 'Rt'):
                 self.ring[1] = 'rt'
             elif(self.ring[0] == 'Rt'):
                 self.ring[0] = 'rt'
+            # Loses the gene
+            elif(self.ring[0] == 'rt'):
+                self.ring[0] = 'Rt'
+            elif(self.ring[1] == 'rt'):
+                self.ring[1] = 'Rt'
             else:
                 self.Mutate()
         elif(which == 'munchkin'):
+            # Gains the gene
             if(self.munch[0] == 'mk'):
                 self.munch[0] = 'Mk'
             elif(self.munch[1] == 'mk'):
                 self.munch[1] = 'Mk'
+            # Loses the gene
+            elif(self.munch[1] == 'Mk'):
+                self.munch[1] = 'mk'
+            elif(self.munch[0] == 'Mk'):
+                self.munch[0] = 'mk'
             else:
                 self.Mutate()
         else:
+            # Gains the gene
             if(self.poly[0] == 'pd'):
                 self.poly[0] = 'Pd'
             elif(self.poly[1] == 'pd'):
                 self.poly[1] = 'Pd'
+            # Loses the gene
+            elif(self.poly[1] == 'Pd'):
+                self.poly[1] = 'pd'
+            elif(self.poly[0] == 'Pd'):
+                self.poly[0] = 'pd'
             else:
                 self.Mutate()
         
