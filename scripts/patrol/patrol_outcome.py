@@ -176,11 +176,13 @@ class PatrolOutcome():
         format: (Outcome text, results text, outcome art (might be None))
         """
         results = []
+        # This must be done before text processing so that the new cat's pronouns are generated first
+        results.append(self._handle_new_cats(patrol))
+
         # the text has to be processed before - otherwise leader might be referenced with their warrior name
         processed_text = patrol.process_text(self.text, self.stat_cat)
 
         # This order is important.
-        results.append(self._handle_new_cats(patrol))
         results.append(self._handle_death(patrol))
         results.append(self._handle_lost(patrol))
         results.append(self._handle_condition_and_scars(patrol))
@@ -464,7 +466,7 @@ class PatrolOutcome():
             "small_bite_injury": ["bite-wound", "torn ear", "torn pelt", "scrapes"],
             "beak_bite": ["beak bite", "torn ear", "scrapes"],
             "rat_bite": ["rat bite", "torn ear", "torn pelt"],
-            "sickness": ["greencough", "redcough", "whitecough", "yellowcough"],
+            "sickness": ["greencough", "redcough", "whitecough", "yellowcough", "silvercough"],
             "regressed": ["kittenspace", "puppyspace"]
         }
 
@@ -878,6 +880,33 @@ class PatrolOutcome():
 
                 give_mates.extend(patrol.new_cats[index])
 
+        give_romance = []
+        for tag in attribute_list:
+            match = re.match(r"romance:([_,0-9a-zA-Z]+)", tag)
+            if not match:
+                continue
+
+            romance_indexes = match.group(1).split(",")
+
+            # TODO: make this less ugly
+            for index in romance_indexes:
+                if index in in_patrol_cats:
+                    if in_patrol_cats[index] in ("apprentice", "medicine cat apprentice"):
+                        print("Can't romance apprentices")
+                        continue
+
+                    give_romance.append(in_patrol_cats[index])
+
+                try:
+                    index = int(index)
+                except ValueError:
+                    print(f"romance-index not correct: {index}")
+                    continue
+
+                if index >= i:
+                    continue
+
+                give_romance.extend(patrol.new_cats[index])
 
         # DETERMINE GENDER
         if "male" in attribute_list:
@@ -925,6 +954,11 @@ class PatrolOutcome():
             if match.group(1) == "mate" and give_mates:
                 age = randint(Cat.age_moons[give_mates[0].age][0],
                               Cat.age_moons[give_mates[0].age][1])
+                break
+
+            if match.group(1) == "romance" and give_romance:
+                age = randint(Cat.age_moons[give_romance[0].age][0],
+                              Cat.age_moons[give_romance[0].age][1])
                 break
 
             if match.group(1) == "has_kits":
@@ -1020,7 +1054,7 @@ class PatrolOutcome():
         # Now, it's time to generate the new cat
         # This is a bit of a pain, but I can't re-write this function
         adoptive = None
-        if parent1 and ('infertile' in parent1.permanent_condition or parent1.gender == 'intersex'):
+        if parent1 and 'infertile' in parent1.permanent_condition:
             adoptive = parent1.ID
             parent1 = parent2
             parent2 = None
