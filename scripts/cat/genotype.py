@@ -30,7 +30,6 @@ class Genotype:
         self.specialred = None
         self.tortiepattern = None
         self.brindledbi = False
-        self.mutation = "No"
         self.gender = ""
         self.dilute = ""
         self.white = ["", ""]
@@ -131,7 +130,6 @@ class Genotype:
         self.sexgene = jsonstring["sexgene"]
         self.tortiepattern = jsonstring["tortiepattern"]
         self.brindledbi = jsonstring["brindledbi"]
-        self.mutation = jsonstring["mutation"]
 
         self.specialred = jsonstring['specialred']
         self.chimera = jsonstring['chimera']
@@ -258,7 +256,6 @@ class Genotype:
             "specialred" : self.specialred,
             "tortiepattern" : self.tortiepattern,
             "brindledbi" : self.brindledbi,
-            "mutation" : self.mutation,
 
             "chimera" : self.chimera,
             "chimerapattern" : self.chimerapattern,
@@ -2059,7 +2056,6 @@ class Genotype:
 
 
         if(randint(1, self.odds['random_mutation']) == 1):
-            self.mutation = "Yes"
             self.Mutate()
 
         self.GeneSort()
@@ -2520,27 +2516,21 @@ class Genotype:
             # Gains the gene
             if(self.curl[0] == 'cu'):
                 self.curl[0] = 'Cu'
-                self.mutation += ' | cu/cu -> Cu/cu'
             elif(self.curl[1] == 'cu'):
                 self.curl[1] = 'Cu'
-                self.mutation += ' | Cu/cu -> Cu/Cu'
             # Loses the gene
             elif(self.curl[1] == 'Cu'):
                 self.curl[1] = 'cu'
-                self.mutation += ' | Cu/Cu -> Cu/cu'
             elif(self.curl[0] == 'Cu'):
                 self.curl[0] = 'cu'
-                self.mutation += ' | Cu/cu -> cu/cu'
             else:
                 self.Mutate()
         elif(which == 'fold'):
             # Gains the gene
             if(self.fold[0] == 'fd'):
                 self.fold[0] = 'Fd'
-                self.mutation += ' | fd/fd -> Fd/fd'
             elif(self.fold[1] == 'fd'):
                 self.fold[1] = 'Fd'
-                self.mutation += ' | Fd/fd -> Fd/Fd'
             # Loses the gene
             elif(self.fold[1] == 'Fd'):
                 self.fold[1] = 'fd'
