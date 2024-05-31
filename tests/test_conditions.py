@@ -1,13 +1,13 @@
 import unittest
+import ujson
+
+from scripts.cat.cats import Cat
+from scripts.conditions import medical_cats_condition_fulfilled
 
 import os
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
-import ujson
-
-from scripts.cat.cats import Cat
-from scripts.conditions import medical_cats_condition_fulfilled
 
 class TestsMedCondition(unittest.TestCase):
     def test_fulfilled(self):
@@ -15,7 +15,7 @@ class TestsMedCondition(unittest.TestCase):
         cat1.status = "warrior"
 
         med = Cat(moons=20)
-        med.status = "medicine cat"
+        med.status = "healer"
 
         all_cats = [cat1, med]
         self.assertTrue(medical_cats_condition_fulfilled(all_cats, 15))
@@ -31,9 +31,9 @@ class TestsMedCondition(unittest.TestCase):
         cat4.status = "warrior"
 
         med1 = Cat(moons=20)
-        med1.status = "medicine cat"
+        med1.status = "healer"
         med2 = Cat(moons=20)
-        med2.status = "medicine cat"
+        med2.status = "healer"
 
         all_cats = [cat1, cat2, cat3, cat4, med1, med2]
         self.assertTrue(medical_cats_condition_fulfilled(all_cats, 2))
@@ -43,7 +43,7 @@ class TestsMedCondition(unittest.TestCase):
         cat1.status = "warrior"
 
         med = Cat(moons=20)
-        med.status = "medicine cat"
+        med.status = "healer"
         med.injuries["small cut"] = {"severity": "minor"}
 
         all_cats = [cat1, med]
@@ -54,30 +54,29 @@ class TestsMedCondition(unittest.TestCase):
         cat1.status = "warrior"
 
         med = Cat(moons=20)
-        med.status = "medicine cat"
+        med.status = "healer"
         med.illnesses["running nose"] = {"severity": "minor"}
 
         all_cats = [cat1, med]
         self.assertTrue(medical_cats_condition_fulfilled(all_cats, 15))
 
 
-
 class TestsIllnesses(unittest.TestCase):
     def load_resources(self):
         resource_directory = "resources/dicts/conditions/"
 
-        ILLNESSES = None
+        illnesses = None
         with open(f"{resource_directory}Illnesses.json", 'r') as read_file:
-            ILLNESSES = ujson.loads(read_file.read())
-        return ILLNESSES
+            illnesses = ujson.loads(read_file.read())
+        return illnesses
 
 
 class TestInjury(unittest.TestCase):
     def load_resources(self):
         resource_directory = "resources/dicts/conditions/"
 
-        INJURIES = None
+        injuries = None
         with open(f"{resource_directory}Injuries.json", 'r') as read_file:
-            INJURIES = ujson.loads(read_file.read())
-        return INJURIES
+            injuries = ujson.loads(read_file.read())
+        return injuries
     
