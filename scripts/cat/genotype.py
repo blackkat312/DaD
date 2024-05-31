@@ -2892,92 +2892,92 @@ class Genotype:
         elif(which == 'extention'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if ('ec' not in self.ext and hell == 1):
+            if('ec' not in self.ext and hell == 1):
                 ### Chausie Grizzle ###
-                if (self.ext[1] == 'Eg'):
+                if(self.ext[1] == 'Eg'):
                     self.ext[1] = choice(['E', 'ea', 'er', 'ec'])
-                elif (self.ext[0] == 'Eg'):
-                    if (self.ext[1] == 'E'):
+                elif(self.ext[0] == 'Eg'):
+                    if(self.ext[1] == 'E'):
                         self.ext[0] = 'E'
-                    elif (self.ext[1] == 'ea'):
+                    elif(self.ext[1] == 'ea'):
                         self.ext[0] = choice(['E', 'ea'])
-                    elif (self.ext[1] == 'er'):
+                    elif(self.ext[1] == 'er'):
                         self.ext[0] = choice(['E', 'ea', 'er'])
-                    elif (self.ext[1] == 'ec'):
+                    elif(self.ext[1] == 'ec'):
                         self.ext[0] = choice(['E', 'ea', 'er', 'ec'])
                     else:
                         self.Mutate()
                 ### Normal Coloration ###
-                elif (self.ext[1] == 'E'):
+                elif(self.ext[1] == 'E'):
                     self.ext[1] = choice(['ea', 'er', 'ec'])
-                elif (self.ext[0] == 'E'):
-                    if (self.ext[1] == 'ea'):
+                elif(self.ext[0] == 'E'):
+                    if(self.ext[1] == 'ea'):
                         self.ext[0] = 'ea'
-                    elif (self.ext[1] == 'er'):
+                    elif(self.ext[1] == 'er'):
                         self.ext[0] = choice(['ea', 'er'])
-                    elif (self.ext[1] == 'ec'):
+                    elif(self.ext[1] == 'ec'):
                         self.ext[0] = choice(['ea', 'er', 'ec'])
                     else:
                         self.Mutate()
                 ### Amber ###
-                elif (self.ext[1] == 'ea'):
+                elif(self.ext[1] == 'ea'):
                     self.ext[1] = choice(['er', 'ec'])
-                elif (self.ext[0] == 'ea'):
-                    if (self.ext[1] == 'er'):
+                elif(self.ext[0] == 'ea'):
+                    if(self.ext[1] == 'er'):
                         self.ext[0] = 'er'
-                    elif (self.ext[1] == 'ec'):
+                    elif(self.ext[1] == 'ec'):
                         self.ext[0] = choice(['er', 'ec'])
                     else:
                         self.Mutate()
                 ### Russet ###
-                elif (self.ext[1] == 'er'):
+                elif(self.ext[1] == 'er'):
                     self.ext[1] = 'ec'
-                elif (self.ext[0] == 'er'):
+                elif(self.ext[0] == 'er'):
                     self.ext[0] = 'ec'
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif ('ec' in self.ext or hell == 2):
+            elif('ec' in self.ext or hell == 2):
                 ### Carnelian ###
-                if (self.ext[0] == 'ec'):
+                if(self.ext[0] == 'ec'):
                     self.ext[0] = choice(['Eg', 'E', 'ea', 'er'])
-                elif (self.ext[1] == 'ec'):
-                    if (self.ext[0] == 'Eg'):
+                elif(self.ext[1] == 'ec'):
+                    if(self.ext[0] == 'Eg'):
                         self.ext[1] = choice(['Eg', 'E', 'ea', 'er'])
-                    elif (self.ext[0] == 'E'):
+                    elif(self.ext[0] == 'E'):
                         self.ext[1] = choice(['E', 'ea', 'er'])
-                    elif (self.ext[0] == 'ea'):
+                    elif(self.ext[0] == 'ea'):
                         self.ext[1] = choice(['ea', 'er'])
-                    elif (self.ext[0] == 'er'):
+                    elif(self.ext[0] == 'er'):
                         self.ext[1] = 'er'
                     else:
                         self.Mutate()
                 ### Russet ###
-                elif (self.ext[0] == 'er'):
+                elif(self.ext[0] == 'er'):
                     self.ext[0] = choice(['Eg', 'E', 'ea'])
-                elif (self.ext[1] == 'er'):
-                    if (self.ext[0] == 'Eg'):
+                elif(self.ext[1] == 'er'):
+                    if(self.ext[0] == 'Eg'):
                         self.ext[1] = choice(['Eg', 'E', 'ea'])
-                    elif (self.ext[0] == 'E'):
+                    elif(self.ext[0] == 'E'):
                         self.ext[1] = choice(['E', 'ea'])
-                    elif (self.ext[0] == 'ea'):
+                    elif(self.ext[0] == 'ea'):
                         self.ext[1] = 'ea'
                     else:
                         self.Mutate()
                 ### Amber ###
-                elif (self.ext[0] == 'ea'):
+                elif(self.ext[0] == 'ea'):
                     self.ext[0] = choice(['Eg', 'E'])
-                elif (self.ext[1] == 'ea'):
-                    if (self.ext[0] == 'Eg'):
+                elif(self.ext[1] == 'ea'):
+                    if(self.ext[0] == 'Eg'):
                         self.ext[1] = choice(['Eg', 'E'])
-                    elif (self.ext[0] == 'E'):
+                    elif(self.ext[0] == 'E'):
                         self.ext[1] = 'E'
                     else:
                         self.Mutate()
                 ### Normal Coloration ###
-                elif (self.ext[0] == 'E'):
+                elif(self.ext[0] == 'E'):
                     self.ext[0] = 'Eg'
-                elif (self.ext[1] == 'E'):
+                elif(self.ext[1] == 'E'):
                     self.ext[1] = 'Eg'
                 else:
                     self.Mutate()
@@ -2986,64 +2986,64 @@ class Genotype:
         elif(which == 'corin'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if ('fg' not in self.sunshine and hell == 1):
+            if('fg' not in self.sunshine and hell == 1):
                 ### Normal Coloration ###
-                if (self.sunshine[1] == 'N'):
+                if(self.sunshine[1] == 'N'):
                     self.sunshine[1] = choice(['sg', 'sh', 'fg'])
-                elif (self.sunshine[0] == 'N'):
-                    if (self.sunshine[1] == 'sg'):
+                elif(self.sunshine[0] == 'N'):
+                    if(self.sunshine[1] == 'sg'):
                         self.sunshine[0] = 'sg'
-                    elif (self.sunshine[1] == 'sh'):
+                    elif(self.sunshine[1] == 'sh'):
                         self.sunshine[0] = choice(['sg', 'sh'])
-                    elif (self.sunshine[1] == 'fg'):
+                    elif(self.sunshine[1] == 'fg'):
                         self.sunshine[0] = choice(['sg', 'sh', 'fg'])
                     else:
                         self.Mutate()
                 ### Siberian Gold ###
-                elif (self.sunshine[1] == 'sg'):
+                elif(self.sunshine[1] == 'sg'):
                     self.sunshine[1] = choice(['sh', 'fg'])
-                elif (self.sunshine[0] == 'sg'):
-                    if (self.sunshine[1] == 'sh'):
+                elif(self.sunshine[0] == 'sg'):
+                    if(self.sunshine[1] == 'sh'):
                         self.sunshine[0] = 'sh'
-                    elif (self.sunshine[1] == 'fg'):
+                    elif(self.sunshine[1] == 'fg'):
                         self.sunshine[0] = choice(['sh', 'fg'])
                     else:
                         self.Mutate()
                 ### Sunshine ###
-                elif (self.sunshine[1] == 'sh'):
+                elif(self.sunshine[1] == 'sh'):
                     self.sunshine[1] = 'fg'
-                elif (self.sunshine[0] == 'sh'):
+                elif(self.sunshine[0] == 'sh'):
                     self.sunshine[0] = 'fg'
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif ('fg' in self.sunshine or hell == 2):
+            elif('fg' in self.sunshine or hell == 2):
                 ### Flaxen Gold ###
-                if (self.sunshine[0] == 'fg'):
+                if(self.sunshine[0] == 'fg'):
                     self.sunshine[0] = choice(['N', 'sg', 'sh'])
-                elif (self.sunshine[1] == 'fg'):
-                    if (self.sunshine[0] == 'N'):
+                elif(self.sunshine[1] == 'fg'):
+                    if(self.sunshine[0] == 'N'):
                         self.sunshine[1] = choice(['N', 'sg', 'sh'])
-                    elif (self.sunshine[0] == 'sg'):
+                    elif(self.sunshine[0] == 'sg'):
                         self.sunshine[1] = choice(['sg', 'sh'])
-                    elif (self.sunshine[0] == 'sh'):
+                    elif(self.sunshine[0] == 'sh'):
                         self.sunshine[1] = 'sh'
                     else:
                         self.Mutate()
                 ### Sunshine ###
-                elif (self.sunshine[0] == 'sh'):
+                elif(self.sunshine[0] == 'sh'):
                     self.sunshine[0] = choice(['N', 'sg'])
-                elif (self.sunshine[1] == 'sh'):
-                    if (self.sunshine[0] == 'N'):
+                elif(self.sunshine[1] == 'sh'):
+                    if(self.sunshine[0] == 'N'):
                         self.sunshine[1] = choice(['N', 'sg'])
-                    elif (self.sunshine[0] == 'sg'):
+                    elif(self.sunshine[0] == 'sg'):
                         self.sunshine[1] = 'sg'
                     else:
                         self.Mutate()
                 ### Siberian Gold ###
-                elif (self.sunshine[0] == 'sg'):
+                elif(self.sunshine[0] == 'sg'):
                     self.sunshine[0] = 'N'
-                elif (self.sunshine[1] == 'sg'):
+                elif(self.sunshine[1] == 'sg'):
                     self.sunshine[1] = 'N'
                 else:
                     self.Mutate()
@@ -3121,10 +3121,16 @@ class Genotype:
         which = choice(whichgene)
 
         if(which == 'furlength'):
+            # Gains the gene
             if(self.furLength[1] == 'L'):
                 self.furLength[1] = 'l'
             elif(self.furLength[0] == 'L'):
                 self.furLength[0] = 'l'
+            # Loses the gene
+            elif(self.furLength[0] == 'l'):
+                self.furLength[0] = 'L'
+            elif(self.furLength[1] == 'l'):
+                self.furLength[1] = 'L'
             else:
                 self.Mutate()
         elif(which == 'black'):
@@ -3153,10 +3159,16 @@ class Genotype:
             else:
                 self.sexgene[2] = 'O'
         elif(which == 'dilute'):
+            # Gains the gene
             if(self.dilute[1] == 'D'):
                 self.dilute[1] = 'd'
             elif(self.dilute[0] == 'D'):
                 self.dilute[0] = 'd'
+            # Loses the gene
+            elif(self.dilute[0] == 'd'):
+                self.dilute[0] = 'D'
+            elif(self.dilute[1] == 'd'):
+                self.dilute[1] = 'D'
             else:
                 self.Mutate()
         elif(which == 'KIT'):
@@ -3189,10 +3201,16 @@ class Genotype:
                 if self.ban_genes:
                     self.pointgene[0] = choice(['cm', choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb'])])
         elif(which == 'silver'):
+            # Gains the gene
             if(self.silver[0] == 'i'):
                 self.silver[0] = 'I'
             elif(self.silver[1] == 'i'):
                 self.silver[1] = 'I'
+            # Loses the gene
+            elif(self.silver[1] == 'I'):
+                self.silver[1] = 'i'
+            elif(self.silver[0] == 'I'):
+                self.silver[0] = 'i'
             else:
                 self.Mutate()
         elif(which == 'agouti'):
@@ -3203,24 +3221,42 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'mackerel'):
+            # Gains the gene
             if(self.mack[1] == 'Mc'):
                 self.mack[1] = 'mc'
             elif(self.mack[0] == 'Mc'):
                 self.mack[0] = 'mc'
+            # Loses the gene
+            elif(self.mack[0] == 'mc'):
+                self.mack[0] = 'Mc'
+            elif(self.mack[1] == 'mc'):
+                self.mack[1] = 'Mc'
             else:
                 self.Mutate()
         elif(which == 'ticked'):
+            # Gains the gene
             if(self.ticked[0] == 'ta'):
                 self.ticked[0] = 'Ta'
             elif(self.ticked[1] == 'ta'):
                 self.ticked[1] = 'Ta'
+            # Loses the gene
+            elif(self.ticked[1] == 'Ta'):
+                self.ticked[1] = 'ta'
+            elif(self.ticked[0] == 'Ta'):
+                self.ticked[0] = 'ta'
             else:
                 self.Mutate()
         else:
+            # Gains the gene
             if(self.altai[0] == 'al'):
                 self.altai[0] = 'Al'
             elif(self.altai[1] == 'al'):
                 self.altai[1] = 'Al'
+            # Loses the gene
+            elif(self.altai[1] == 'Al'):
+                self.altai[1] = 'al'
+            elif(self.altai[0] == 'Al'):
+                self.altai[0] = 'al'
             else:
                 self.Mutate()
         print(which)
