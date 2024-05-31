@@ -2787,28 +2787,28 @@ class Genotype:
                 if(self.sedesp[0] == 're'):
                     self.sedesp[0] = choice(['Se', 'Hr', 'hr'])
                 elif(self.sedesp[1] == 're'):
-                    if (self.sedesp[0] == 'Se'):
+                    if(self.sedesp[0] == 'Se'):
                         self.sedesp[1] = choice(['Se', 'Hr', 'hr'])
-                    elif (self.sedesp[0] == 'Hr'):
+                    elif(self.sedesp[0] == 'Hr'):
                         self.sedesp[1] = choice(['Hr', 'hr'])
-                    elif (self.sedesp[0] == 'hr'):
+                    elif(self.sedesp[0] == 'hr'):
                         self.sedesp[1] = 'hr'
                     else:
                         self.Mutate()
                 ### Hairless ###
-                elif (self.sedesp[0] == 'hr'):
+                elif(self.sedesp[0] == 'hr'):
                     self.sedesp[0] = choice(['Se', 'Hr'])
-                elif (self.sedesp[1] == 'hr'):
-                    if (self.sedesp[0] == 'Se'):
+                elif(self.sedesp[1] == 'hr'):
+                    if(self.sedesp[0] == 'Se'):
                         self.sedesp[1] = choice(['Se', 'Hr'])
-                    elif (self.sedesp[0] == 'Hr'):
+                    elif(self.sedesp[0] == 'Hr'):
                         self.sedesp[1] = 'Hr'
                     else:
                         self.Mutate()
                 ### Normal Coat ###
-                elif (self.sedesp[0] == 'Hr'):
+                elif(self.sedesp[0] == 'Hr'):
                     self.sedesp[0] = 'Se'
-                elif (self.sedesp[1] == 'Hr'):
+                elif(self.sedesp[1] == 'Hr'):
                     self.sedesp[1] = 'Se'
                 else:
                     self.Mutate()
@@ -2851,59 +2851,85 @@ class Genotype:
         which = choice(whichgene)
 
         if(which == 'pinkdilute'):
+            # Gains the gene
             if(self.pinkdilute[1] == 'Dp'):
                 self.pinkdilute[1] = 'dp'
             elif(self.pinkdilute[0] == 'Dp'):
                 self.pinkdilute[0] = 'dp'
+            # Loses the gene
+            elif(self.pinkdilute[0] == 'dp'):
+                self.pinkdilute[0] = 'Dp'
+            elif(self.pinkdilute[1] == 'dp'):
+                self.pinkdilute[1] = 'Dp'
             else:
                 self.Mutate()
         elif(which == 'dilute mod'):
+            # Gains the gene
             if(self.dilutemd[0] == 'dm'):
                 self.dilutemd[0] = 'Dm'
             elif(self.dilutemd[1] == 'dm'):
                 self.dilutemd[1] = 'Dm'
+            # Loses the gene
+            elif(self.dilutemd[1] == 'Dm'):
+                self.dilutemd[1] = 'dm'
+            elif(self.dilutemd[0] == 'Dm'):
+                self.dilutemd[0] = 'dm'
             else:
                 self.Mutate()
         elif(which == 'extention'):
-            if('E' not in self.ext):
-                self.Mutate()
-            elif(self.ext[1] == 'E'):
-                self.ext[1] = choice(['ea', 'er', 'ec'])
-            else:
-                self.ext[0] = choice(['ea', 'er', 'ec'])
+            self.Mutate()
         elif(which == 'corin'):
-            if(self.sunshine[1] == 'N'):
-                self.sunshine[1] = choice(['sh', 'sg', 'fg'])
-            elif(self.sunshine[0] == 'N'):
-                self.sunshine[0] = choice(['sh', 'sg', 'fg'])
-            else:
-                self.Mutate()
+            self.Mutate()
         elif(which == 'karpati'):
+            # Gains the gene
             if(self.karp[0] == 'k'):
                 self.karp[0] = 'K'
             elif(self.karp[1] == 'k'):
                 self.karp[1] = 'K'
+            # Loses the gene
+            elif(self.karp[1] == 'K'):
+                self.karp[1] = 'k'
+            elif(self.karp[0] == 'K'):
+                self.karp[0] = 'k'
             else:
                 self.Mutate()
         elif(which == 'bleaching'):
+            # Gains the gene
             if(self.bleach[1] == 'Lb'):
                 self.bleach[1] = 'lb'
             elif(self.bleach[0] == 'Lb'):
                 self.bleach[0] = 'lb'
+            # Loses the gene
+            elif(self.bleach[0] == 'lb'):
+                self.bleach[0] = 'Lb'
+            elif(self.bleach[1] == 'lb'):
+                self.bleach[1] = 'Lb'
             else:
                 self.Mutate()
         elif(which == 'ghosting'):
+            # Gains the gene
             if(self.ghosting[0] == 'gh'):
                 self.ghosting[0] = 'Gh'
             elif(self.ghosting[1] == 'gh'):
                 self.ghosting[1] = 'Gh'
+            # Loses the gene
+            elif(self.ghosting[1] == 'Gh'):
+                self.ghosting[1] = 'gh'
+            elif(self.ghosting[0] == 'Gh'):
+                self.ghosting[0] = 'gh'
             else:
                 self.Mutate()
         elif(which == 'satin'):
+            # Gains the gene
             if(self.satin[1] == 'St'):
                 self.satin[1] = 'st'
             elif(self.satin[0] == 'St'):
                 self.satin[0] = 'st'
+            # Loses the gene
+            elif(self.satin[0] == 'st'):
+                self.satin[0] = 'St'
+            elif(self.satin[1] == 'st'):
+                self.satin[1] = 'St'
             else:
                 self.Mutate()
         elif(which == 'glitter'):
@@ -2911,6 +2937,11 @@ class Genotype:
                 self.glitter[1] = 'gl'
             elif(self.glitter[0] == 'Gl'):
                 self.glitter[0] = 'gl'
+            # Loses the gene
+            elif(self.glitter[0] == 'gl'):
+                self.glitter[0] = 'Gl'
+            elif(self.glitter[1] == 'gl'):
+                self.glitter[1] = 'Gl'
             else:
                 self.Mutate()
         print(which)
