@@ -3134,21 +3134,47 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'black'):
-            if(self.eumelanin[0] == 'bl'):
-                self.Mutate()
-            elif(self.eumelanin[1] == 'B'):
-                self.eumelanin[1] = 'b'
-            elif(self.eumelanin == ['b', 'bl']):
-                self.eumelanin[0] = 'bl'
-            elif(self.eumelanin == ['b', 'b']):
-                self.eumelanin[1] = 'bl'
-            elif(self.eumelanin == ['B', 'bl']):
-                self.eumelanin[0] = 'b'
-            else:
-                if(random() < 0.5):
-                    self.eumelanin[0] = 'b'
-                else:
+            hell = randint(1, 2)
+            ###### Gains the gene ######
+            if('bl' not in self.eumelanin and hell == 1):
+                ### Black ###
+                if(self.eumelanin[1] == 'B'):
+                    self.eumelanin[1] = choice(['b', 'bl'])
+                elif(self.eumelanin[0] == 'B'):
+                    if(self.eumelanin[1] == 'b'):
+                        self.eumelanin[0] = 'b'
+                    elif(self.eumelanin[1] == 'bl'):
+                        self.eumelanin[0] = choice(['b', 'bl'])
+                    else:
+                        self.Mutate()
+                ### Chocolate ###
+                elif(self.eumelanin[1] == 'b'):
                     self.eumelanin[1] = 'bl'
+                elif(self.eumelanin[0] == 'b'):
+                    self.eumelanin[0] = 'bl'
+                else:
+                    self.Mutate()
+            ###### Loses the gene ######
+            elif('bl' in self.eumelanin or hell == 2):
+                ### Cinnamon ###
+                if(self.eumelanin[0] == 'bl'):
+                    self.eumelanin[0] = choice(['B', 'b'])
+                elif(self.eumelanin[1] == 'bl'):
+                    if(self.eumelanin[0] == 'B'):
+                        self.eumelanin[1] = choice(['B', 'b'])
+                    elif(self.eumelanin[0] == 'b'):
+                        self.eumelanin[1] = 'b'
+                    else:
+                        self.Mutate()
+                ### Chocolate ###
+                elif(self.eumelanin[0] == 'b'):
+                    self.eumelanin[0] = 'B'
+                elif(self.eumelanin[1] == 'b'):
+                    self.eumelanin[1] = 'B'
+                else:
+                    self.Mutate()
+            else:
+                self.Mutate()
         elif(which == 'red'):
             if('o' not in self.sexgene):
                 self.Mutate()
