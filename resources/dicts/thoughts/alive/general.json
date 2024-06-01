@@ -224,7 +224,7 @@
     {
         "id": "gen_to_alive_med_cat_app",
         "thoughts": [
-            "Is grateful to r_c for {PRONOUN/m_c/poss} treatment",
+            "Is grateful for the treatment r_c gave {PRONOUN/m_c/object}",
             "Is in awe of r_c's growth as a medicine cat apprentice",
             "Thinks r_c will make a good medicine cat",
             "Has doubts about r_c's abilities",
@@ -1456,7 +1456,7 @@
     {
         "id": "childish_apprentice_to_apprentice",
         "thoughts": [
-            "Managed to convince another apprentice to play moss-ball instead of finishing {PRONOUN/r_c/poss} duties"
+            "Managed to convince another apprentice to play moss-ball instead of finishing {PRONOUN/m_c/poss} duties"
         ],
         "main_status_constraint": [
             "apprentice",
