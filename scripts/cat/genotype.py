@@ -3507,7 +3507,7 @@ class Genotype:
             # Gains the gene
             if(self.altai[0] == 'al'):
                 self.altai[0] = 'Al'
-            elif(self.altai[1] == 'al'):
+            elif(self.altai[1] == 'al' and not self.ban_genes):
                 self.altai[1] = 'Al'
             # Loses the gene
             elif(self.altai[1] == 'Al'):
