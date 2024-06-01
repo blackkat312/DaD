@@ -320,7 +320,7 @@ class GenerateEvents:
                 continue
 
             if "low_lives" in event.tags:
-                if game.clan.leader_lives > 3:
+                if game.clan.leader_lives > 2:
                     continue
 
             # check season
