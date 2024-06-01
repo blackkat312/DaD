@@ -21,6 +21,7 @@ from .FamilyTreeScreen import FamilyTreeScreen
 from .MediationScreen import MediationScreen
 from .ClanSettingsScreen import ClanSettingsScreen
 from .ClearingScreen import ClearingScreen
+from .ChangeGenderScreen import ChangeGenderScreen
 from .WarriorDenScreen import WarriorDenScreen
 
 # ---------------------------------------------------------------------------- #
