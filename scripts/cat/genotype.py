@@ -3198,23 +3198,131 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'KIT'):
-            if('w' not in self.white):
-                self.Mutate()
-            elif(random() < 0.34):
-                if(self.white[0] == 'w'):
-                    self.white[0] = 'W'
-                else:
-                    self.white[1] = 'W'
-            elif(random() < 0.2):
-                if(self.white[1] == 'w'):
+            hell = randint(1, 2)
+            ###### Gains the gene ######
+            if('wsal' not in self.white and hell == 1):
+                ### Dominant White ###
+                if(self.white[1] == 'W'):
+                    self.white[1] = choice(['ws', 'wt', 'w', 'wg', 'wsal'])
+                elif(self.white[0] == 'W'):
+                    if(self.white[1] == 'ws'):
+                        self.white[0] = 'ws'
+                    elif(self.white[1] == 'wt'):
+                        self.white[0] = choice(['ws', 'wt'])
+                    elif(self.white[1] == 'w'):
+                        self.white[0] = choice(['ws', 'wt', 'w'])
+                    elif(self.white[1] == 'wg'):
+                        self.white[0] = choice(['ws', 'wt', 'w', 'wg'])
+                    elif(self.white[1] == 'wsal'):
+                        self.white[0] = choice(['ws', 'wt', 'w', 'wg', 'wsal'])
+                    else:
+                        self.Mutate()
+                ### White Spotting ###
+                elif(self.white[1] == 'ws'):
+                    self.white[1] = choice(['wt', 'w', 'wg', 'wsal'])
+                elif(self.white[0] == 'ws'):
+                    if(self.white[1] == 'wt'):
+                        self.white[0] = 'wt'
+                    elif(self.white[1] == 'w'):
+                        self.white[0] = choice(['wt', 'w'])
+                    elif(self.white[1] == 'wg'):
+                        self.white[0] = choice(['wt', 'w', 'wg'])
+                    elif(self.white[1] == 'wsal'):
+                        self.white[0] = choice(['wt', 'w', 'wg', 'wsal'])
+                    else:
+                        self.Mutate()
+                ### Thai White ###
+                elif(self.white[1] == 'wt'):
+                    self.white[1] = choice(['w', 'wg', 'wsal'])
+                elif(self.white[0] == 'wt'):
+                    if(self.white[1] == 'w'):
+                        self.white[0] = 'w'
+                    elif(self.white[1] == 'wg'):
+                        self.white[0] = choice(['w', 'wg'])
+                    elif(self.white[1] == 'wsal'):
+                        self.white[0] = choice(['w', 'wg', 'wsal'])
+                    else:
+                        self.Mutate()
+                ### No White ###
+                elif(self.white[1] == 'w'):
                     self.white[1] = choice(['wg', 'wsal'])
+                elif(self.white[0] == 'w'):
+                    if(self.white[1] == 'wg'):
+                        self.white[0] = 'wg'
+                    elif(self.white[1] == 'wsal'):
+                        self.white[0] = choice(['wg', 'wsal'])
+                    else:
+                        self.Mutate()
+                ### Birman Gloving ###
+                elif(self.white[1] == 'wg'):
+                    self.white[1] = 'wsal'
+                elif(self.white[0] == 'wg'):
+                    self.white[0] = 'wsal'
                 else:
-                    self.white[0] = choice(['wg', 'wsal'])
+                    self.Mutate()
+            ###### Loses the gene ######
+            elif('wsal' in self.white or hell == 2):
+                ### Salmiak ###
+                if(self.white[0] == 'wsal'):
+                    self.white[0] = choice(['W', 'ws', 'wt', 'w', 'wg'])
+                elif(self.white[1] == 'wsal'):
+                    if(self.white[0] == 'W'):
+                        self.white[1] = choice(['W', 'ws', 'wt', 'w', 'wg'])
+                    elif(self.white[0] == 'ws'):
+                        self.white[1] = choice(['ws', 'wt', 'w', 'wg'])
+                    elif(self.white[0] == 'wt'):
+                        self.white[1] = choice(['wt', 'w', 'wg'])
+                    elif(self.white[0] == 'w'):
+                        self.white[1] = choice(['w', 'wg'])
+                    elif(self.white[0] == 'wg'):
+                        self.white[1] = 'wg'
+                    else:
+                        self.Mutate()
+                ### Birman Gloving ###
+                elif(self.white[0] == 'wg'):
+                    self.white[0] = choice(['W', 'ws', 'wt', 'w'])
+                elif(self.white[1] == 'wg'):
+                    if(self.white[0] == 'W'):
+                        self.white[1] = choice(['W', 'ws', 'wt', 'w'])
+                    elif(self.white[0] == 'ws'):
+                        self.white[1] = choice(['ws', 'wt', 'w'])
+                    elif(self.white[0] == 'wt'):
+                        self.white[1] = choice(['wt', 'w'])
+                    elif(self.white[0] == 'w'):
+                        self.white[1] = 'w'
+                    else:
+                        self.Mutate()
+                ### No White ###
+                elif(self.white[0] == 'w'):
+                    self.white[0] = choice(['W', 'ws', 'wt'])
+                elif(self.white[1] == 'w'):
+                    if(self.white[0] == 'W'):
+                        self.white[1] = choice(['W', 'ws', 'wt'])
+                    elif(self.white[0] == 'ws'):
+                        self.white[1] = choice(['ws', 'wt'])
+                    elif(self.white[0] == 'wt'):
+                        self.white[1] = 'wt'
+                    else:
+                        self.Mutate()
+                ### Thai White ###
+                elif(self.white[0] == 'wt'):
+                    self.white[0] = choice(['W', 'ws'])
+                elif(self.white[1] == 'wt'):
+                    if(self.white[0] == 'W'):
+                        self.white[1] = choice(['W', 'ws'])
+                    elif(self.white[0] == 'ws'):
+                        self.white[1] = 'ws'
+                    else:
+                        self.Mutate()
+                ### White Spotting ###
+                elif(self.white[0] == 'ws'):
+                    self.white[0] = 'W'
+                elif(self.white[1] == 'ws'):
+                    self.white[1] = 'W'
+                else:
+                    self.Mutate()
             else:
-                if(self.white[0] == 'w'):
-                    self.white[0] = choice(['wt', 'ws', 'ws', 'ws', 'ws'])
-                else:
-                    self.white[1] = choice(['wt', 'ws', 'ws', 'ws', 'ws'])
+                self.Mutate()
         elif(which == 'albino'):
             hell = randint(1, 2)
             ###### Gains the gene ######
