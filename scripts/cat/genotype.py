@@ -3216,16 +3216,104 @@ class Genotype:
                 else:
                     self.white[1] = choice(['wt', 'ws', 'ws', 'ws', 'ws'])
         elif(which == 'albino'):
-            if('C' not in self.pointgene):
-                self.Mutate()
-            elif(self.pointgene[1] == 'C'):
-                self.pointgene[1] = choice([choice(['c', 'cm']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb'])])
-                if self.ban_genes:
-                    self.pointgene[1] = choice(['cm', choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb'])])
+            hell = randint(1, 2)
+            ###### Gains the gene ######
+            if('c' not in self.pointgene and hell == 1):
+                ### Normal Coloration ###
+                if(self.pointgene[1] == 'C'):
+                    self.pointgene[1] = choice(['cb', 'cs', 'cm', 'c'])
+                elif(self.pointgene[0] == 'C'):
+                    if(self.pointgene[1] == 'cb'):
+                        self.pointgene[0] = 'cb'
+                    elif(self.pointgene[1] == 'cs'):
+                        self.pointgene[0] = choice(['cb', 'cs'])
+                    elif(self.pointgene[1] == 'cm'):
+                        self.pointgene[0] = choice(['cb', 'cs', 'cm'])
+                    elif(self.pointgene[1] == 'c'):
+                        self.pointgene[0] = choice(['cb', 'cs', 'cm', 'c'])
+                    else:
+                        self.Mutate()
+                ### Sepia ###
+                elif(self.pointgene[1] == 'cb'):
+                    self.pointgene[1] = choice(['cs', 'cm', 'c'])
+                elif(self.pointgene[0] == 'cb'):
+                    if(self.pointgene[1] == 'cs'):
+                        self.pointgene[0] = 'cs'
+                    elif(self.pointgene[1] == 'cm'):
+                        self.pointgene[0] = choice(['cs', 'cm'])
+                    elif(self.pointgene[1] == 'c'):
+                        self.pointgene[0] = choice(['cs', 'cm', 'c'])
+                    else:
+                        self.Mutate()
+                ### Colorpoint ###
+                elif(self.pointgene[1] == 'cs'):
+                    self.pointgene[1] = choice(['cm', 'c'])
+                elif(self.pointgene[0] == 'cs'):
+                    if(self.pointgene[1] == 'cm'):
+                        self.pointgene[0] = 'cm'
+                    elif(self.pointgene[1] == 'c'):
+                        self.pointgene[0] = choice(['cm', 'c'])
+                    else:
+                        self.Mutate()
+                ### Mocha ###
+                elif(self.pointgene[1] == 'cm'):
+                    self.pointgene[1] = 'c'
+                elif(self.pointgene[0] == 'cm'):
+                    self.pointgene[0] = 'c'
+                else:
+                    self.Mutate()
+            ###### Loses the gene ######
+            elif('c' in self.pointgene or hell == 2):
+                ### Albino ###
+                if(self.pointgene[0] == 'c'):
+                    self.pointgene[0] = choice(['C', 'cb', 'cs', 'cm'])
+                elif(self.pointgene[1] == 'c'):
+                    if(self.pointgene[0] == 'C'):
+                        self.pointgene[1] = choice(['C', 'cb', 'cs', 'cm'])
+                    elif(self.pointgene[0] == 'cb'):
+                        self.pointgene[1] = choice(['cb', 'cs', 'cm'])
+                    elif(self.pointgene[0] == 'cs'):
+                        self.pointgene[1] = choice(['cs', 'cm'])
+                    elif(self.pointgene[0] == 'cm'):
+                        self.pointgene[1] = 'cm'
+                    else:
+                        self.Mutate()
+                ### Mocha ###
+                elif(self.pointgene[0] == 'cm'):
+                    self.pointgene[0] = choice(['C', 'cb', 'cs'])
+                elif(self.pointgene[1] == 'cm'):
+                    if(self.pointgene[0] == 'C'):
+                        self.pointgene[1] = choice(['C', 'cb', 'cs'])
+                    elif(self.pointgene[0] == 'cb'):
+                        self.pointgene[1] = choice(['cb', 'cs'])
+                    elif(self.pointgene[0] == 'cs'):
+                        self.pointgene[1] = 'cs'
+                    else:
+                        self.Mutate()
+                ### Colorpoint ###
+                elif(self.pointgene[0] == 'cs'):
+                    self.pointgene[0] = choice(['C', 'cb'])
+                elif(self.pointgene[1] == 'cs'):
+                    if(self.pointgene[0] == 'C'):
+                        self.pointgene[1] = choice(['C', 'cb'])
+                    elif(self.pointgene[0] == 'cb'):
+                        self.pointgene[1] = 'cb'
+                    else:
+                        self.Mutate()
+                ### Sepia ###
+                elif(self.pointgene[0] == 'cb'):
+                    self.pointgene[0] = 'C'
+                elif(self.pointgene[1] == 'cb'):
+                    self.pointgene[1] = 'C'
+                else:
+                    self.Mutate()
             else:
-                self.pointgene[0] = choice([choice(['c', 'cm']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb'])])
-                if self.ban_genes:
-                    self.pointgene[0] = choice(['cm', choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb']), choice(['cs', 'cb'])])
+                self.Mutate()
+            if self.ban_genes:
+                if self.pointgene[0] == 'c':
+                    self.pointgene[0] = 'cm'
+                if self.pointgene[1] == 'c':
+                    self.pointgene[1] = 'cm'
         elif(which == 'silver'):
             # Gains the gene
             if(self.silver[0] == 'i'):
@@ -3240,10 +3328,45 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'agouti'):
-            if(self.agouti[0] == 'A'):
-                self.agouti[0] = 'a'
-            elif(self.agouti[1] == 'A'):
-                self.agouti[1] = 'a'
+            hell = randint(1, 2)
+            ###### Gains the gene ######
+            if('a' not in self.agouti and hell == 1):
+                ### Agouti ###
+                if(self.agouti[1] == 'A'):
+                    self.agouti[1] = choice(['Apb', 'a'])
+                elif(self.agouti[0] == 'A'):
+                    if(self.agouti[1] == 'Apb'):
+                        self.agouti[0] = 'Apb'
+                    elif(self.agouti[1] == 'a'):
+                        self.agouti[0] = choice(['Apb', 'a'])
+                    else:
+                        self.Mutate()
+                ### Charcoal ###
+                elif(self.agouti[1] == 'Apb'):
+                    self.agouti[1] = 'a'
+                elif(self.agouti[0] == 'Apb'):
+                    self.agouti[0] = 'a'
+                else:
+                    self.Mutate()
+            ###### Loses the gene ######
+            elif('a' in self.agouti or hell == 2):
+                ### Solid ###
+                if(self.agouti[0] == 'a'):
+                    self.agouti[0] = choice(['A', 'Apb'])
+                elif(self.agouti[1] == 'a'):
+                    if(self.agouti[0] == 'A'):
+                        self.agouti[1] = choice(['A', 'Apb'])
+                    elif(self.agouti[0] == 'Apb'):
+                        self.agouti[1] = 'Apb'
+                    else:
+                        self.Mutate()
+                ### Charcoal ###
+                elif(self.agouti[0] == 'Apb'):
+                    self.agouti[0] = 'A'
+                elif(self.agouti[1] == 'Apb'):
+                    self.agouti[1] = 'A'
+                else:
+                    self.Mutate()
             else:
                 self.Mutate()
         elif(which == 'mackerel'):
