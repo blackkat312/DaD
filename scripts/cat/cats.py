@@ -147,7 +147,7 @@ class Cat():
             self.adoptive_parents = []
             self.mate = []
             self.status = status
-            self.pronouns = [self.default_pronouns[0].copy()]
+            self.pronouns = [] #Needs to be set as a list
             self.moons = moons
             self.dead_for = 0
             self.dead = True
@@ -876,23 +876,29 @@ class Cat():
             '''
 
             # trans cat chances
+            theythemdefault = game.settings["they them default"]
+            self.genderalign = self.gender
             trans_chance = randint(0, 30)
             nb_chance = randint(0, 35)
-            if self.gender == "molly" and not self.status in ['newborn']:
+            if self.status == 'newborn':
+                trans_chance = 0
+                nb_chance = 0
+            self.genderalign = ""
+            if self.gender == "molly":
                 if trans_chance == 1:
                     self.genderalign = "trans tom"
                 elif nb_chance == 1:
                     self.genderalign = choice(genderqueer_list)
                 else:
                     self.genderalign = self.gender
-            elif self.gender == "tom" and not self.status in ['newborn']:
+            elif self.gender == "tom":
                 if trans_chance == 1:
                     self.genderalign = "trans molly"
                 elif nb_chance == 1:
                     self.genderalign = choice(genderqueer_list)
                 else:
                     self.genderalign = self.gender
-            elif self.gender == "intersex" and not self.status in ['newborn']:
+            elif self.gender == "intersex":
                 if trans_chance == 1:
                     self.genderalign = choice(["trans tom", "trans molly"])
                 elif nb_chance == 1:
@@ -906,10 +912,14 @@ class Cat():
             else:
                 self.genderalign = self.gender
 
-            """if self.genderalign in ["molly", "trans molly"]:
+            if theythemdefault is True:
+                self.pronouns = [self.default_pronouns[0].copy()]
+            elif 'molly' in self.genderalign:
                 self.pronouns = [self.default_pronouns[1].copy()]
-            elif self.genderalign in ["tom", "trans tom"]:
-                self.pronouns = [self.default_pronouns[2].copy()]"""
+            elif 'tom' in self.genderalign:
+                self.pronouns = [self.default_pronouns[2].copy()]
+            else:
+                self.pronouns = [self.default_pronouns[0].copy()]
 
             # APPEARANCE
             self.pelt = Pelt.generate_new_pelt(self.genotype, self.phenotype, self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
@@ -3713,7 +3723,7 @@ class Cat():
                 "specsuffix_hidden": self.name.specsuffix_hidden,
                 "gender": self.gender,
                 "gender_align": self.genderalign,
-                #"pronouns": self.pronouns,
+                "pronouns": self.pronouns,
                 "birth_cooldown": self.birth_cooldown,
                 "status": self.status,
                 "backstory": self.backstory if self.backstory else None,
