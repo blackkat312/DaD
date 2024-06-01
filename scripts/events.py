@@ -2390,10 +2390,10 @@ class Events:
             if random.getrandbits(1):  # 50/50
                 if cat.gender == "tom":
                     cat.genderalign = "trans molly"
-                    # cat.pronouns = [cat.default_pronouns[1].copy()]
+                    cat.pronouns = [cat.default_pronouns[1].copy()]
                 elif cat.gender == "molly":
                     cat.genderalign = "trans tom"
-                    # cat.pronouns = [cat.default_pronouns[2].copy()]
+                    cat.pronouns = [cat.default_pronouns[2].copy()]
                 else:
                     cat.genderalign = random.choice(["trans molly", "trans tom"])
             elif cat.gender == "intersex":
@@ -2402,9 +2402,10 @@ class Events:
                     cat.genderalign = "intergender"
                 else:
                     cat.genderalign = random.choice(genderqueer_list)
+                cat.pronouns = [cat.default_pronouns[0].copy()]
             else:
                 cat.genderalign = random.choice(genderqueer_list)
-                # cat.pronouns = [cat.default_pronouns[0].copy()]
+                cat.pronouns = [cat.default_pronouns[0].copy()]
 
             trans = ''
             if cat.gender == 'tom':
