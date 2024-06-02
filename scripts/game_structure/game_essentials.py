@@ -47,6 +47,7 @@ class Game():
     # Keeping track of various last screen for various purposes
     last_screen_forupdate = 'start screen'
     last_screen_forProfile = 'list screen'
+    last_list_forProfile = None
 
     # down = pygame.image.load("resources/images/buttons/arrow_down.png").convert_alpha()
     # up = pygame.image.load("resources/images/buttons/arrow_up.png").convert_alpha()
@@ -133,7 +134,8 @@ class Game():
         'window_open': False,
         'skip_conditions': [],
         'show_history_moons': False,
-        'fps': 30
+        'fps': 30,
+        'disallowed_symbol_tags': []
     }
     all_screens = {}
     cur_events = {}
@@ -209,12 +211,13 @@ class Game():
     def safe_save(path: str, write_data, check_integrity=False, max_attempts: int = 15):
         """ If write_data is not a string, assumes you want this
             in json format. If check_integrity is true, it will read back the file
-            to check that the correct data has been written to the file.
+            to check that the correct data has been written to the file. 
             If not, it will simply write the data to the file with no other
             checks. """
 
         # If write_data is not a string,
         if type(write_data) is not str:
+            print(write_data)
             _data = ujson.dumps(write_data, indent=4)
         else:
             _data = write_data
@@ -342,13 +345,13 @@ class Game():
         """ Save user settings for later use """
         if os.path.exists(get_save_dir() + "/settings.txt"):
             os.remove(get_save_dir() + "/settings.txt")
-
+        
         self.settings_changed = False
         game.safe_save(get_save_dir() + '/settings.json', self.settings)
 
     def load_settings(self):
         """ Load settings that user has saved from previous use """
-
+        
         try:
             with open(get_save_dir() + '/settings.json', 'r') as read_file:
                 settings_data = ujson.loads(read_file.read())
@@ -540,9 +543,9 @@ class Game():
             pass
 
     def get_config_value(self, *args):
-        """Fetches a value from the self.config dictionary. Pass each key as a
-        seperate arugment, in the same order you would access the dictionary.
-        This function will apply war modifers if the clan is currently at war. """
+        """Fetches a value from the self.config dictionary. Pass each key as a 
+        separate argument, in the same order you would access the dictionary.
+        This function will apply war modifiers if the clan is currently at war. """
 
         war_effected = {
             ("death_related", "leader_death_chance"): ("death_related", "war_death_modifier_leader"),
@@ -601,7 +604,7 @@ def load_manager(res: tuple):
         italic_path='resources/fonts/NotoSans-MediumItalic.ttf',
         bold_italic_path='resources/fonts/NotoSans-ExtraBoldItalic.ttf'
     )
-
+    
 
     if res[0] > 800:
         manager.get_theme().load_theme('resources/theme/defaults.json')
@@ -636,7 +639,7 @@ def load_manager(res: tuple):
             {'name': 'notosans', 'point_size': 13, 'style': 'italic'},
             {'name': 'notosans', 'point_size': 15, 'style': 'italic'}
         ])
-
+        
     manager.get_theme().load_theme('resources/theme/windows.json')
     manager.get_theme().load_theme('resources/theme/image_buttons.json')
 
