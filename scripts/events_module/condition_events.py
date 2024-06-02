@@ -1,7 +1,4 @@
-try:
-    import ujson
-except ImportError:
-    import json as ujson
+import ujson
 import random
 from copy import deepcopy
 
@@ -88,7 +85,8 @@ class Condition_Events():
     @staticmethod
     def handle_illnesses(cat, season=None):
         """
-        This function handles overall the illnesses in 'expanded' (or 'cruel season') game mode
+        This function handles overall the illnesses in 'expanded' (or 'cruel season') game mode.
+        It will return a bool to indicate if the cat is dead.
         """
         # return immediately if they're already dead or in the wrong game-mode
         triggered = False
@@ -105,10 +103,17 @@ class Condition_Events():
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
-
             random_number = int(
                 random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
             if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
+
+                # CLAN FOCUS!
+                if game.clan.clan_settings.get("rest and recover"):
+                    stopping_chance = game.config["focus"]["rest and recover"]["illness_prevent"]
+                    if not int(random.random() * stopping_chance):
+                        # print(f"rest and recover - illness prevented for {cat.name}")
+                        return triggered
+
                 season_dict = Condition_Events.ILLNESSES_SEASON_LIST[season]
                 possible_illnesses = []
 
@@ -189,7 +194,11 @@ class Condition_Events():
         # handle if the current cat is already injured
         if cat.is_injured() and game.clan.game_mode != 'classic':
             for injury in cat.injuries:
-                if injury == 'pregnant':
+                if injury == "pregnant" and cat.ID not in game.clan.pregnancy_data:
+                    print(f"INFO: deleted pregnancy condition of {cat.ID} due no pregnancy data in the clan.")
+                    del cat.injuries[injury]
+                    return triggered
+                elif injury == 'pregnant':
                     return triggered
             triggered, event_string = Condition_Events.handle_already_injured(cat)
             text = event_string
@@ -213,6 +222,13 @@ class Condition_Events():
                 triggered = True
 
             if triggered:
+                # CLAN FOCUS!
+                if game.clan.clan_settings.get("rest and recover"):
+                    stopping_chance = game.config["focus"]["rest and recover"]["injury_prevent"]
+                    if not int(random.random() * stopping_chance):
+                        # print(f"rest and recover - injury prevented for {cat.name}")
+                        return False
+
                 if war:
                     other_clan = enemy_clan
                 else:
@@ -320,7 +336,7 @@ class Condition_Events():
     def handle_relationship_changes(cat, injury_event, other_cat):
         cat_to = None
         cat_from = None
-        n = 20
+        n = game.config["relationship"]["influence_condition_events"]
         romantic = 0
         platonic = 0
         dislike = 0
@@ -436,8 +452,7 @@ class Condition_Events():
                         for x in conditions:
                             if x in scarless_conditions:
                                 possible_conditions.append(x)
-
-                        if len(possible_conditions) > 0 and not int(random.random() * 40):
+                        if len(possible_conditions) > 0 and not int(random.random() * game.config["condition_related"]["permanent_condition_chance"]):
                             perm_condition = random.choice(possible_conditions)
                             if perm_condition == 'lazy eye':
                                 cat.pelt.lazy_eye = cat.pelt.eye_colour
@@ -446,8 +461,10 @@ class Condition_Events():
                         else:
                             return perm_condition
                 except KeyError:
-                    print(f"WARNING: {injury_name} couldn't be found in injury dict! no scar was given")
+                    print(f"WARNING: {injury_name} couldn't be found in injury dict! no permanent condition was given")
                     return perm_condition
+            else:
+                print(f"WARNING: {scar} for {injury_name} is either None or is not in scar_to_condition dict.")
 
         elif condition is not None:
             perm_condition = condition
@@ -468,15 +485,26 @@ class Condition_Events():
         starting_life_count = game.clan.leader_lives
         cat.healed_condition = False
         event_list = []
-        base_illness = ["running nose", "kittencough", "whitecough", "silvercough", "greencough",
-                        "yellowcough", "an infected wound", "heat exhaustion", "stomachache",
-                        "nightmares", "anxiety attack", "panic attack", "sleeplessness",
-                        "ticks", "nest wetting", "nonverbal", "tics"]
-        progression = [["whitecough", "silvercough"], "silvercough", ["silvercough", "greencough"], "greencough",
-                        "yellowcough", "redcough", "a festering wound", "heat stroke", ["diarrhea", "constipation"],
-                        "constant nightmares", "panic attack", ["shock", "paranoia"], "ongoing sleeplessness",
-                        ["tick bites", "severe tick bites"], "night dirtmaking", "mute", ["tics, tic attack"]]
-        illness_progression = dict(zip(base_illness, progression))
+        illness_progression = {
+            "running nose": ["whitecough", "silvercough"],
+            "kittencough": "silvercough",
+            "whitecough": ["silvercough", "greencough"],
+            "silvercough": "greencough",
+            "greencough": "yellowcough",
+            "yellowcough": "redcough",
+            "an infected wound": "a festering wound",
+            "heat exhaustion": "heat stroke",
+            "stomachache": ["diarrhea", "constipation"],
+            "grief stricken": "lasting grief",
+            "nightmares": "constant nightmares",
+            "anxiety attack": "panic attack",
+            "panic attack": ["shock", "paranoia"],
+            "sleeplessness": "ongoing sleeplessness",
+            "ticks": ["tick bites", "severe tick bites"],
+            "nest wetting": "night dirtmaking",
+            "nonverbal": "mute",
+            "tics": "tic attack"
+        }
         # ---------------------------------------------------------------------------- #
         #                         handle currently sick cats                           #
         # ---------------------------------------------------------------------------- #
@@ -685,24 +713,29 @@ class Condition_Events():
 
         event_list = []
 
-        base_condition = ["one bad eye", "failing eyesight", "partial hearing loss", "lasting grief",
-                            "recurring shock", "echoing shock", "burning light"]
-        progression = [["failing eyesight", "lazy eye"], "blind", "deaf", "heavy soul", "echoing shock",
-                            "recurring shock", "blind"]
-        condition_progression = dict(zip(base_condition, progression))
+        condition_progression = {
+            "one bad eye": ["failing eyesight", "lazy eye"],
+            "failing eyesight": "blind",
+            "partial hearing loss": "deaf",
+            "lasting grief": "heavy soul",
+            "recurring shock": "echoing shock",
+            "echoing shock": "recurring shock",
+            "burning light": "blind"
+        }
 
         conditions = deepcopy(cat.permanent_condition)
         for condition in conditions:
 
             # checking if the cat has a congenital condition to reveal and handling duration and death
+            prev_lives = game.clan.leader_lives
             status = cat.moon_skip_permanent_condition(condition)
 
             # if cat is dead, break
-            if cat.dead:
+            if cat.dead or game.clan.leader_lives < prev_lives:
                 triggered = True
                 event_types.append("birth_death")
                 event = f"{cat.name} died from complications caused by {condition}."
-                if cat.status == "leader" and not cat.dead:
+                if cat.status == "leader" and game.clan.leader_lives >= 1:
                     event = f"{cat.name} lost a life from complications caused by {condition}."
                 event_list.append(event)
 
