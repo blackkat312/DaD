@@ -107,6 +107,7 @@ class Cat():
     id_iter = itertools.count()
 
     all_cats_list: List[Cat] = []
+    ordered_cat_list: List[Cat] = []
 
     grief_strings = {}
 
@@ -139,7 +140,7 @@ class Cat():
             self.adoptive_parents = []
             self.mate = []
             self.status = status
-            self.pronouns = [self.default_pronouns[0].copy()]
+            self.pronouns = [] #Needs to be set as a list
             self.moons = moons
             self.dead_for = 0
             self.dead = True
@@ -195,6 +196,7 @@ class Cat():
         self.dead = False
         self.exiled = False
         self.outside = False
+        self.driven_out = False
         self.dead_for = 0  # moons
         self.thought = ''
         self.genderalign = None
@@ -292,7 +294,10 @@ class Cat():
                 self.gender = choice(["female", "male"])
         self.g_tag = self.gender_tags[self.gender]
 
-        # These things should only run when generating a new cat, rather than loading one in.
+        '''if self.genderalign == "":
+            self.genderalign = self.gender'''
+
+         # These things should only run when generating a new cat, rather than loading one in.
         if not loading_cat:
             
             # everyone is plural :3
@@ -304,44 +309,40 @@ class Cat():
             
             
             # trans cat chances
+            theythemdefault = game.settings["they them default"]
+            self.genderalign = self.gender
             trans_chance = randint(0, 50)
             nb_chance = randint(0, 75)
-            if self.gender == "female" and not self.status in ['newborn']:
-                if trans_chance == 1:
+            #newborns can't be trans, sorry babies
+            if self.age in ['newborn']:
+                trans_chance = 0
+                nb_chance = 0
+            if nb_chance == 1:
+                if randint(1, 2) == 1 and self.gender == "intersex":
+                    self.genderalign = "intergender"
+                else:
+                    self.genderalign = choice(genderqueer_list)
+            elif trans_chance == 1:
+                if self.gender == "female":
                     self.genderalign = "trans male"
-                elif nb_chance == 1:
-                    self.genderalign = choice(genderqueer_list)
-                else:
-                    self.genderalign = self.gender
-            elif self.gender == "male" and not self.status in ['newborn']:
-                if trans_chance == 1:
+                elif self.gender == "male":
                     self.genderalign = "trans female"
-                elif nb_chance == 1:
-                    self.genderalign = choice(genderqueer_list)
                 else:
-                    self.genderalign = self.gender
-            elif self.gender == "intersex" and not self.status in ['newborn']:
-                if trans_chance == 1:
-                    self.genderalign = choice(["trans male", "trans female"])
-                elif nb_chance == 1:
-                    intergenderchance = randint(1,2)
-                    if intergenderchance == 1:
-                        self.genderalign = "intergender"
-                    else:
-                        self.genderalign = choice(genderqueer_list)
-                else:
-                    self.genderalign = self.gender
+                    choice(["trans male", "trans female"])
+            if theythemdefault is True:
+                self.pronouns = [self.default_pronouns[0].copy()]
             else:
-                self.genderalign = self.gender
-
-            """if self.genderalign in ["female", "trans female"]:
-                self.pronouns = [self.default_pronouns[1].copy()]
-            elif self.genderalign in ["male", "trans male"]:
-                self.pronouns = [self.default_pronouns[2].copy()]"""
+                # Assigning pronouns based on gender and chance
+                if self.genderalign in ["female", "trans female"]:
+                    self.pronouns = [self.default_pronouns[1].copy()]
+                elif self.genderalign in ["male", "trans male"]:
+                    self.pronouns = [self.default_pronouns[2].copy()]
+                else:
+                    self.pronouns = [self.default_pronouns[0].copy()]
 
             # APPEARANCE
             self.pelt = Pelt.generate_new_pelt(self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
-            
+
             #Personality
             self.personality = Personality(kit_trait=self.is_baby())
 
@@ -359,16 +360,16 @@ class Cat():
                     m -= 1
             elif self.age in ['young adult', 'adult']:
                 self.experience = randint(Cat.experience_levels_range["prepared"][0],
-                                          Cat.experience_levels_range["proficient"][1])
+                                        Cat.experience_levels_range["proficient"][1])
             elif self.age in ['senior adult']:
                 self.experience = randint(Cat.experience_levels_range["competent"][0],
-                                          Cat.experience_levels_range["expert"][1])
+                                        Cat.experience_levels_range["expert"][1])
             elif self.age in ['senior']:
                 self.experience = randint(Cat.experience_levels_range["competent"][0],
-                                          Cat.experience_levels_range["master"][1])
+                                        Cat.experience_levels_range["master"][1])
             else:
                 self.experience = 0
-                
+
             if not skill_dict:
                 self.skills = CatSkills.generate_new_catskills(self.status, self.moons)
 
@@ -392,7 +393,8 @@ class Cat():
                              self.pelt.tortiepattern,
                              biome=biome,
                              specsuffix_hidden=self.specsuffix_hidden,
-                             load_existing_name=loading_cat)
+                             load_existing_name=loading_cat,
+                             )
         else:
             self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
                              load_existing_name = loading_cat)
@@ -441,6 +443,7 @@ class Cat():
 
         body - defaults to True, use this to mark if the body was recovered so
         that grief messages will align with body status
+        - if it is None, a lost cat died and therefore not trigger grief, since the clan does not know
 
         May return some additional text to add to the death event.
         """
@@ -480,7 +483,7 @@ class Cat():
                 fetched_cat.update_mentor()
         self.update_mentor()
 
-        if game.clan and game.clan.game_mode != 'classic' and not (self.outside or self.exiled) and body != None:
+        if game.clan and game.clan.game_mode != 'classic' and not self.outside and not self.exiled:
             self.grief(body)
 
         if not self.outside:
@@ -669,7 +672,6 @@ class Cat():
                     Cat.grief_strings[cat.ID] = []
                 
                 Cat.grief_strings[cat.ID].append((text, (self.ID, cat.ID), "negative"))
-                
 
     def familial_grief(self, living_cat: Cat):
         """
@@ -704,10 +706,12 @@ class Cat():
         game.clan.add_to_outside(self)
 
     def add_to_clan(self) -> list:
-        """ Makes a "outside cat" a Clan cat. Returns a list of any additional cats that
+        """ Makes an "outside cat" a Clan cat. Returns a list of IDs for any additional cats that
             are coming with them. """
         self.outside = False
-
+        if not self.exiled:
+            History.add_beginning(self)
+        self.exiled = False
         game.clan.add_to_clan(self)
 
         # check if there are kits under 12 moons with this cat and also add them to the clan
@@ -715,8 +719,9 @@ class Cat():
         ids = []
         for child_id in children:
             child = Cat.all_cats[child_id]
-            if child.outside and not child.exiled and child.moons < 12:
+            if child.outside and not child.exiled and not child.dead and child.moons < 12:
                 child.add_to_clan()
+                History.add_beginning(child)
                 ids.append(child_id)
         
         return ids
@@ -790,7 +795,6 @@ class Cat():
         if game.sort_type == "rank" and resort:
             Cat.sort_cats()
 
-    
     def rank_change_traits_skill(self, mentor):
         """Updates trait and skill upon ceremony"""  
 
@@ -819,14 +823,13 @@ class Cat():
             return
         
         self.personality.set_kit(self.is_baby()) #Update kit trait stuff
-        
 
     def describe_cat(self, short=False):
         """ Generates a string describing the cat's appearance and gender. Mainly used for generating
         the allegiances. If short is true, it will generate a very short one, with the minimal amount of information. """
         output = Pelt.describe_appearance(self, short)
         # Add "a" or "an"
-        if output[0].lower() in "aiou":
+        if output[0].lower() in "aeiou":
             output = f"an {output}"
         else:
             output = f"a {output}"
@@ -965,7 +968,6 @@ class Cat():
             )
 
             print(f"WARNING: saving history of cat #{self.ID} didn't work")
-            
 
     def generate_lead_ceremony(self):
         """
@@ -1280,8 +1282,6 @@ class Cat():
 
     def one_moon(self):
         """Handles a moon skip for an alive cat. """
-        
-        
         old_age = self.age
         self.moons += 1
         if self.moons == 1 and self.status == "newborn":
@@ -1378,10 +1378,6 @@ class Cat():
 
     def relationship_interaction(self):
         """Randomly choose a cat of the Clan and have a interaction with them."""
-        # if the cat has no relationships, skip
-        #if not self.relationships or len(self.relationships) < 1:
-        #    return
-
         cats_to_choose = [iter_cat for iter_cat in Cat.all_cats.values() if iter_cat.ID != self.ID and \
                           not iter_cat.outside and not iter_cat.exiled and not iter_cat.dead]
         # if there are not cats to interact, stop
@@ -1438,7 +1434,17 @@ class Cat():
 
         moons_with = game.clan.age - self.illnesses[illness]["moon_start"]
 
+        # focus buff
+        moons_prior = game.config["focus"]["rest and recover"]["moons_earlier_healed"]
+
         if self.illnesses[illness]["duration"] - moons_with <= 0:
+            self.healed_condition = True
+            return False
+
+        # CLAN FOCUS! - if the focus 'rest and recover' is selected
+        elif game.clan.clan_settings.get("rest and recover") and\
+            self.illnesses[illness]["duration"] + moons_prior - moons_with <= 0:
+            # print(f"rest and recover - illness {illness} of {self.name} healed earlier")
             self.healed_condition = True
             return False
 
@@ -1467,10 +1473,22 @@ class Cat():
 
         moons_with = game.clan.age - self.injuries[injury]["moon_start"]
 
+        # focus buff
+        moons_prior = game.config["focus"]["rest and recover"]["moons_earlier_healed"]
+
         # if the cat has an infected wound, the wound shouldn't heal till the illness is cured
         if not self.injuries[injury]["complication"] and self.injuries[injury]["duration"] - moons_with <= 0:
             self.healed_condition = True
             return False
+
+        # CLAN FOCUS! - if the focus 'rest and recover' is selected
+        elif not self.injuries[injury]["complication"] and \
+            game.clan.clan_settings.get("rest and recover") and\
+            self.injuries[injury]["duration"] + moons_prior - moons_with <= 0:
+            # print(f"rest and recover - injury {injury} of {self.name} healed earlier")
+            self.healed_condition = True
+            return False
+
     '''
     def system_core(self):
         template = {
@@ -1730,7 +1748,7 @@ class Cat():
         if duration == 0:
             duration = 1
 
-        if game.clan.game_mode == "cruel season":
+        if game.clan and game.clan.game_mode == "cruel season":
             if mortality != 0:
                 mortality = int(mortality * 0.5)
                 med_mortality = int(med_mortality * 0.5)
@@ -1766,7 +1784,7 @@ class Cat():
             }
 
     def get_injured(self, name, event_triggered=False, lethal=True, severity='default'):
-        if game.clan.game_mode == "classic":
+        if game.clan and game.clan.game_mode == "classic":
             return
         
         if name not in INJURIES:
@@ -1797,7 +1815,7 @@ class Cat():
             duration = 1
 
         if mortality != 0:
-            if game.clan.game_mode == "cruel season":
+            if game.clan and game.clan.game_mode == "cruel season":
                 mortality = int(mortality * 0.5)
 
                 if mortality == 0:
@@ -1921,14 +1939,17 @@ class Cat():
             if name in intersex_exclusive:
                 print("cat isn't intersex!")
                 return
-            
+        if "blind" in self.permanent_condition and name == "failing eyesight":
+            return
+        if "deaf" in self.permanent_condition and name == "partial hearing loss":
+            return
 
         # remove accessories if need be
         if 'NOTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS']:
             self.pelt.accessory = None
         if 'HALFTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS']:
             self.pelt.accessory = None
-        
+
         condition = PERMANENT[name]
         new_condition = False
         mortality = condition["mortality"][self.age]
@@ -2017,18 +2038,25 @@ class Cat():
 
     def not_working(self):
         """returns True if the cat cannot work, False if the cat can work"""
-        not_working = False
         for illness in self.illnesses:
             if self.illnesses[illness]['severity'] != 'minor':
-                not_working = True
-                break
+                return True
         for injury in self.injuries:
             if self.injuries[injury]['severity'] != 'minor':
-                not_working = True
-                break
-        return not_working
+                return True
+        return False
 
-    
+    def not_work_because_hunger(self):
+        """returns True if the only condition, why the cat cannot work is because of starvation"""
+        non_minor_injuries = [injury for injury in self.injuries if self.injuries[injury]['severity'] != 'minor']
+        if len(non_minor_injuries) > 0:
+            return False
+        non_minor_illnesses = [illness for illness in self.illnesses if self.illnesses[illness]['severity'] != 'minor']
+        if "starving" in non_minor_illnesses and len(non_minor_illnesses) == 1:
+            return True
+        else:
+            return False
+
     def retire_cat(self):
         """This is only for cats that retire due to health condition"""
         
@@ -2333,6 +2361,10 @@ class Cat():
         #Former mentor
         is_former_mentor = (other_cat.ID in self.former_apprentices or self.ID in other_cat.former_apprentices)
         if is_former_mentor and not game.clan.clan_settings['romantic with former mentor']:
+            return False
+
+        #current mentor
+        if other_cat.ID in self.apprentice or self.ID in other_cat.apprentice:
             return False
 
         return True
@@ -2916,9 +2948,13 @@ class Cat():
     def load_faded_cat(cat: str):
         """Loads a faded cat, returning the cat object. This object is saved nowhere else. """
         try:
-            with open(get_save_dir() + '/' + game.clan.name + '/faded_cats/' + cat + ".json", 'r') as read_file:
+            if game.clan == None: clan = game.switches['clan_list'][0]
+            if game.clan != None: clan = game.clan.name
+
+            with open(get_save_dir() + '/' + clan + '/faded_cats/' + cat + ".json", 'r') as read_file:
                 cat_info = ujson.loads(read_file.read())
-        except AttributeError:  # If loading cats is attempted before the Clan is loaded, we would need to use this.
+                                # If loading cats is attempted before the Clan is loaded, we would need to use this.
+        except AttributeError:  # NOPE, cats are always loaded before the Clan, so doesnt make sense to throw an error
             with open(get_save_dir() + '/' + game.switches['clan_list'][0] + '/faded_cats/' + cat + ".json",
                       'r') as read_file:
                 cat_info = ujson.loads(read_file.read())
@@ -2945,21 +2981,23 @@ class Cat():
     # ---------------------------------------------------------------------------- #
 
     @staticmethod
-    def sort_cats():
+    def sort_cats(given_list=[]):
+        if not given_list:
+            given_list = Cat.all_cats_list
         if game.sort_type == "age":
-            Cat.all_cats_list.sort(key=lambda x: Cat.get_adjusted_age(x))
+            given_list.sort(key=lambda x: Cat.get_adjusted_age(x))
         elif game.sort_type == "reverse_age":
-            Cat.all_cats_list.sort(key=lambda x: Cat.get_adjusted_age(x), reverse=True)
+            given_list.sort(key=lambda x: Cat.get_adjusted_age(x), reverse=True)
         elif game.sort_type == "id":
-            Cat.all_cats_list.sort(key=lambda x: int(x.ID))
+            given_list.sort(key=lambda x: int(x.ID))
         elif game.sort_type == "reverse_id":
-            Cat.all_cats_list.sort(key=lambda x: int(x.ID), reverse=True)
+            given_list.sort(key=lambda x: int(x.ID), reverse=True)
         elif game.sort_type == "rank":
-            Cat.all_cats_list.sort(key=lambda x: (Cat.rank_order(x), Cat.get_adjusted_age(x)), reverse=True)
+            given_list.sort(key=lambda x: (Cat.rank_order(x), Cat.get_adjusted_age(x)), reverse=True)
         elif game.sort_type == "exp":
-            Cat.all_cats_list.sort(key=lambda x: x.experience, reverse=True)
+            given_list.sort(key=lambda x: x.experience, reverse=True)
         elif game.sort_type == "death":
-            Cat.all_cats_list.sort(key=lambda x: -1 * int(x.dead_for))
+            given_list.sort(key=lambda x: -1 * int(x.dead_for))
 
         return
 
@@ -3093,7 +3131,7 @@ class Cat():
                 "specsuffix_hidden": self.name.specsuffix_hidden,
                 "gender": self.gender,
                 "gender_align": self.genderalign,
-                #"pronouns": self.pronouns,
+                "pronouns": self.pronouns,
                 "birth_cooldown": self.birth_cooldown,
                 "status": self.status,
                 "backstory": self.backstory if self.backstory else None,
@@ -3114,6 +3152,7 @@ class Cat():
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
                 "exiled": self.exiled,
+                "driven_out": self.driven_out,
                 "pelt_name": self.pelt.name,
                 "pelt_color": self.pelt.colour,
                 "pelt_length": self.pelt.length,
