@@ -1557,7 +1557,7 @@ class Cat():
             splitrng = randint(1, (len(self.alters)+1))
             if splitrng < (len(self.alters)+1):
                 template["origin"] = self.alters[(splitrng-1)]['name']
-                self.add_split(splitrng, template["name"])
+                self.add_split((splitrng-1), template["name"])
         #print(template)
         self.alters.append(template)
 
