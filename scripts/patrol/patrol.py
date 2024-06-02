@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: ascii -*-
+from copy import deepcopy
 import random
 from random import choice, randint, choices
 from typing import List, Tuple
@@ -64,6 +65,7 @@ class Patrol():
         final_patrols, final_romance_patrols = self.get_possible_patrols(
             str(game.clan.current_season).casefold(),
             str(game.clan.biome).casefold(),
+            str(game.clan.camp_bg).casefold(),
             patrol_type,
             game.settings.get('disasters')
         )
@@ -206,12 +208,13 @@ class Patrol():
         print("Patrol Leader:", str(self.patrol_leader.name))
         print("Random Cat:", str(self.patrol_random_cat.name))
 
-    def get_possible_patrols(self, current_season:str, biome:str, patrol_type:str,
+    def get_possible_patrols(self, current_season:str, biome:str, camp:str, patrol_type:str,
                              game_setting_disaster=None) -> Tuple[List[PatrolEvent]]:
         # ---------------------------------------------------------------------------- #
         #                                LOAD RESOURCES                                #
         # ---------------------------------------------------------------------------- #
         biome = biome.lower()
+        camp = camp.lower()
         game_setting_disaster = game_setting_disaster if game_setting_disaster is not None else \
                                 game.clan.clan_settings['disasters']
         season = current_season.lower()
@@ -303,7 +306,7 @@ class Patrol():
             elif clan_hostile:
                 possible_patrols.extend(self.generate_patrol_events(self.OTHER_CLAN_HOSTILE))
 
-        final_patrols, final_romance_patrols = self. get_filtered_patrols(possible_patrols, biome, current_season,
+        final_patrols, final_romance_patrols = self. get_filtered_patrols(possible_patrols, biome, camp, current_season,
                                                                           patrol_type)
 
         # This is a debug option. If the patrol_id set isn "debug_ensure_patrol" is possible,
@@ -312,7 +315,7 @@ class Patrol():
             for _pat in final_patrols:
                 if _pat.patrol_id == game.config["patrol_generation"]["debug_ensure_patrol_id"]:
                     final_patrols = [_pat]
-                    print(f"debug_ensure_patrol_id: "
+                    print(f"debug_ensure_patrol_id: " 
                           f'"{game.config["patrol_generation"]["debug_ensure_patrol_id"]}" '
                            "is a possible normal patrol, and was set as the only "
                            "normal patrol option")
@@ -325,7 +328,7 @@ class Patrol():
             for _pat in final_romance_patrols:
                 if _pat.patrol_id == game.config["patrol_generation"]["debug_ensure_patrol_id"]:
                     final_romance_patrols = [_pat]
-                    print(f"debug_ensure_patrol_id: "
+                    print(f"debug_ensure_patrol_id: " 
                           f'"{game.config["patrol_generation"]["debug_ensure_patrol_id"]}" '
                            "is a possible romantic patrol, and was set as the only "
                            "romantic patrol option")
@@ -381,6 +384,26 @@ class Patrol():
                 if x[0].ID not in x[1].mate:
                     return False
 
+        # check if all cats are mates with p_l (they do not have to be mates with each other)
+        if "mates_with_pl" in patrol.relationship_constraints:
+            # First test if there is more then one cat
+            if len(self.patrol_cats) == 1:
+                return False
+
+            # Check each patrol cat to see if it is mates with the patrol leader
+            for cat in self.patrol_cats:
+                if cat.ID == self.patrol_leader.ID:
+                    continue
+
+                if cat.ID not in self.patrol_leader.mate:
+                    return False
+
+        # check if all cats are not mates
+        if "not_mates" in patrol.relationship_constraints:
+            # opposite of mate check
+            for x in combinations(self.patrol_cats, 2):
+                if x[0].ID in x[1].mate:
+                    return False
 
         # check if the cats are in a parent/child relationship
         if "parent/child" in patrol.relationship_constraints:
@@ -527,12 +550,12 @@ class Patrol():
         print("final romance chance:", chance_of_romance_patrol)
         return not int(random.random() * chance_of_romance_patrol)
 
-    def _filter_patrols(self, possible_patrols: List[PatrolEvent], biome:str, current_season:str, patrol_type:str):
+    def _filter_patrols(self, possible_patrols: List[PatrolEvent], biome:str, camp:str, current_season:str, patrol_type:str):
         filtered_patrols = []
         romantic_patrols = []
         special_date = get_special_date()
         # This make sure general only gets hunting, border, or training patrols
-		# chose fix type will make it not depending on the content amount
+        # chose fix type will make it not depending on the content amount
         if patrol_type == "general":
             patrol_type = random.choice(["hunting", "border", "training"])
 
@@ -566,9 +589,11 @@ class Patrol():
             if flag:
                 continue
 
-            if biome not in patrol.biome and "Any" not in patrol.biome:
+            if biome not in patrol.biome and "any" not in patrol.biome:
                 continue
-            if current_season not in patrol.season and "Any" not in patrol.season:
+            if camp not in patrol.camp and "any" not in patrol.camp:
+                continue
+            if current_season not in patrol.season and "any" not in patrol.season:
                 continue
 
             if 'hunting' not in patrol.types and patrol_type == 'hunting':
@@ -596,16 +621,16 @@ class Patrol():
 
         return filtered_patrols, romantic_patrols
 
-    def get_filtered_patrols(self, possible_patrols, biome, current_season, patrol_type):
+    def get_filtered_patrols(self, possible_patrols, biome, camp, current_season, patrol_type):
 
-        filtered_patrols, romantic_patrols = self._filter_patrols(possible_patrols, biome, current_season,
+        filtered_patrols, romantic_patrols = self._filter_patrols(possible_patrols, biome, camp, current_season,
                                                                   patrol_type)
 
         if not filtered_patrols:
             print('No normal patrols possible. Repeating filter with used patrols cleared.')
             self.used_patrols.clear()
             print('used patrols cleared', self.used_patrols)
-            filtered_patrols, romantic_patrols = self._filter_patrols(possible_patrols, biome,
+            filtered_patrols, romantic_patrols = self._filter_patrols(possible_patrols, biome, camp,
                                                                       current_season, patrol_type)
 
         return filtered_patrols, romantic_patrols
@@ -616,8 +641,10 @@ class Patrol():
             patrol_event = PatrolEvent(
                 patrol_id=patrol.get("patrol_id"),
                 biome=patrol.get("biome"),
+                camp=patrol.get("camp"),
                 season=patrol.get("season"),
                 tags=patrol.get("tags"),
+                weight=patrol.get("weight", 20),
                 types=patrol.get("types"),
                 intro_text=patrol.get("intro_text"),
                 patrol_art=patrol.get("patrol_art"),
@@ -813,8 +840,8 @@ class Patrol():
                     increment = int(adaption.split("_")[0])
                     new_idx = prey_size.index(chosen_prey_size) + increment
                     # check that the increment does not lead to a overflow
-                    new_idx = new_idx if new_idx <= len(chosen_prey_size) else len(chosen_prey_size)
-                    chosen_prey_size = prey_size[new_idx]
+                    new_idx = new_idx if new_idx < len(prey_size) else len(prey_size)-1
+                    chosen_prey_size = deepcopy(prey_size[new_idx])
 
             # now count the outcomes + prey size
             prey_types = {}
@@ -831,9 +858,9 @@ class Patrol():
             # get the prey size with the most outcomes
             most_prey_size = ""
             max_occurrences = 0
-            for prey_size, amount in prey_types.items():
+            for size, amount in prey_types.items():
                 if amount >= max_occurrences and most_prey_size != chosen_prey_size:
-                    most_prey_size = prey_size
+                    most_prey_size = size
 
             if chosen_prey_size == most_prey_size:
                 filtered_patrols.append(patrol)
@@ -1021,8 +1048,8 @@ class Patrol():
                 f"WARNING: No history found for {self.patrol_event.patrol_id}, it may not need one but double check please!")
         if scar and "scar" in self.patrol_event.history_text:
             adjust_text = self.patrol_event.history_text['scar']
-            adjust_text = adjust_text.replace("r_c", str(cat.name))
-            adjust_text = adjust_text.replace("o_c_n", str(self.other_clan.name))
+            adjust_text = adjust_text.replace("o_c_n", f"{str(self.other_clan.name)}Clan")
+            adjust_text = process_text(adjust_text, {"r_c": (str(cat.name), choice(cat.pronouns))})
             if possible:
                 History.add_possible_history(cat, condition=condition, scar_text=adjust_text)
             else:
@@ -1031,8 +1058,8 @@ class Patrol():
             if cat.status == 'leader':
                 if "lead_death" in self.patrol_event.history_text:
                     adjust_text = self.patrol_event.history_text['lead_death']
-                    adjust_text = adjust_text.replace("r_c", str(cat.name))
-                    adjust_text = adjust_text.replace("o_c_n", str(self.other_clan.name))
+                    adjust_text = adjust_text.replace("o_c_n", f"{str(self.other_clan.name)}Clan")
+                    adjust_text = process_text(adjust_text, {"r_c": (str(cat.name), choice(cat.pronouns))})
                     if possible:
                         History.add_possible_history(cat, condition=condition, death_text=adjust_text)
                     else:
@@ -1040,8 +1067,8 @@ class Patrol():
             else:
                 if "reg_death" in self.patrol_event.history_text:
                     adjust_text = self.patrol_event.history_text['reg_death']
-                    adjust_text = adjust_text.replace("r_c", str(cat.name))
-                    adjust_text = adjust_text.replace("o_c_n", str(self.other_clan.name))
+                    adjust_text = adjust_text.replace("o_c_n", f"{str(self.other_clan.name)}Clan")
+                    adjust_text = process_text(adjust_text, {"r_c": (str(cat.name), choice(cat.pronouns))})
                     if possible:
                         History.add_possible_history(cat, condition=condition, death_text=adjust_text)
                     else:
@@ -1065,7 +1092,7 @@ More Documentation: https://docs.google.com/document/d/1Vuyclyd40mjG7PFXtl0852Dl
 
 
 Patrol Template.
-This is a good starting point for writing your own patrols.
+This is a good starting point for writing your own patrols. 
 
 {
     "patrol_id": "some_unique_id",
@@ -1100,7 +1127,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-
+            
         },
     ],
     "fail_outcomes": [
@@ -1109,7 +1136,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-
+            
         },
     ],
 
@@ -1119,7 +1146,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-
+            
         },
     ],
 
@@ -1129,7 +1156,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-
+            
         },
     ],
 
@@ -1178,7 +1205,7 @@ This is a good starting point for writing your own outcomes.
             "mutual": false
             "values": [],
             "amount": 5
-        },
+        },	
         {
             "cats_to": [],
             "cats_from": [],
