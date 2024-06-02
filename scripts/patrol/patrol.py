@@ -1127,7 +1127,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-            
+
         },
     ],
     "fail_outcomes": [
@@ -1136,7 +1136,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-            
+
         },
     ],
 
@@ -1146,7 +1146,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-            
+
         },
     ],
 
@@ -1156,7 +1156,7 @@ This is a good starting point for writing your own patrols.
         },
         {
             SEE OUTCOME BLOCK TEMPLATE
-            
+
         },
     ],
 
@@ -1205,7 +1205,7 @@ This is a good starting point for writing your own outcomes.
             "mutual": false
             "values": [],
             "amount": 5
-        },	
+        },
         {
             "cats_to": [],
             "cats_from": [],
