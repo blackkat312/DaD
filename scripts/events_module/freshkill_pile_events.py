@@ -82,7 +82,6 @@ class Freshkill_Events():
             if cat.status == "leader":
                 game.clan.leader_lives -= 1
 
-
             cat.die()
             History.add_death(cat, history_text)
 
@@ -166,11 +165,12 @@ class Freshkill_Events():
 
         # change the trigger factor according to the size of the clan
         trigger_factor = FRESHKILL_EVENT_TRIGGER_FACTOR
-        trigger_factor = trigger_factor - ((len(living_cats)) / 50)
-        if len(living_cats) > 30:
-            trigger_factor = trigger_factor - ((len(living_cats)) / 50)
-        if trigger_factor < 1.1:
-            trigger_factor = 1.1
+        divider = 35 if game.clan.game_mode == "expanded" else 20
+        trigger_factor = trigger_factor - round(pow((len(living_cats)/divider), 2))
+        if trigger_factor < 2 and game.clan.game_mode == "expanded":
+            trigger_factor = 2
+        if trigger_factor < 1.2 and game.clan.game_mode == "cruel season":
+            trigger_factor = 1.2
 
         # check if amount of the freshkill pile is too big and a event will be triggered
         needed_amount = freshkill_pile.amount_food_needed()
@@ -205,7 +205,6 @@ class Freshkill_Events():
         possible_tasks = []
         for tag_type in EVENT_WEIGHT_TYPE:
             possible_tasks.extend(tag_type * EVENT_WEIGHT_TYPE[tag_type])
-        needed_tags = []
 
         # randomly choose which tags are used for the event
         choice = random.choice(possible_tasks)
