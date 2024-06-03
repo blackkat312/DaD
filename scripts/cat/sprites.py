@@ -356,9 +356,9 @@ class Sprites():
                 self.make_group('nyloncollars', (col, row), f'collars{nyloncollar}')
 
         # dismod accessories
-        for row, disability_accs in enumerate(disabilityaccs_data):
-            for col, disability_acc in enumerate(disability_accs):
-                self.make_group('disability_accs', (col, row), f'acc_dismod{disability_acc}')
+        for row, disabilityaccs in enumerate(disabilityaccs_data):
+            for col, disabilityacc in enumerate(disabilityaccs):
+                self.make_group('disabilityaccs', (col, row), f'acc_dismod{disabilityacc}')
 
     def load_symbols(self):
         """
