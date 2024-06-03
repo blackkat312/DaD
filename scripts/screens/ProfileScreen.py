@@ -126,6 +126,7 @@ class ProfileScreen(Screens):
         self.history_text_box = None
         self.genetic_text_box = None
         self.conditions_tab_button = None
+        self.alters_tab_button = None
         self.condition_container = None
         self.left_conditions_arrow = None
         self.right_conditions_arrow = None
@@ -199,6 +200,8 @@ class ProfileScreen(Screens):
                 self.toggle_history_tab()
             elif event.ui_element == self.conditions_tab_button:
                 self.toggle_conditions_tab()
+            elif event.ui_element == self.alters_tab_button:
+                self.toggle_alters_tab()
             elif "leader_ceremony" in self.profile_elements and \
                     event.ui_element == self.profile_elements["leader_ceremony"]:
                 self.change_screen('ceremony screen')
@@ -410,6 +413,13 @@ class ProfileScreen(Screens):
             if event.ui_element == self.left_conditions_arrow:
                 self.conditions_page -= 1
                 self.display_conditions_page()
+        elif self.open_tab == 'alters':
+            if event.ui_element == self.right_conditions_arrow:
+                self.conditions_page += 1
+                self.display_alters_page()
+            if event.ui_element == self.left_conditions_arrow:
+                self.conditions_page -= 1
+                self.display_alters_page()
 
     def screen_switches(self):
         self.the_cat = Cat.all_cats.get(game.switches['cat'])
@@ -444,9 +454,8 @@ class ProfileScreen(Screens):
             object_id="#conditions_tab_button", manager=MANAGER
         )
 
-        self.placeholder_tab_3 = UIImageButton(scale(pygame.Rect((800, 1244), (352, 60))), "",
-                                               object_id="#cat_tab_3_blank_button", starting_height=1, manager=MANAGER)
-        self.placeholder_tab_3.disable()
+        self.alters_tab_button = UIImageButton(scale(pygame.Rect((800, 1244), (352, 60))), "",
+                                               object_id="#alters_tab_button", manager=MANAGER)
 
         self.placeholder_tab_4 = UIImageButton(scale(pygame.Rect((1152, 1244), (352, 60))), "",
                                                object_id="#cat_tab_4_blank_button", manager=MANAGER)
@@ -482,7 +491,7 @@ class ProfileScreen(Screens):
         self.dangerous_tab_button.kill()
         self.backstory_tab_button.kill()
         self.conditions_tab_button.kill()
-        self.placeholder_tab_3.kill()
+        self.alters_tab_button.kill()
         self.placeholder_tab_4.kill()
         self.inspect_button.kill()
         self.close_current_tab()
@@ -491,6 +500,11 @@ class ProfileScreen(Screens):
         """Rebuild builds the cat profile. Run when you switch cats
             or for changes in the profile."""
         self.the_cat = Cat.all_cats.get(game.switches["cat"])
+
+        if self.the_cat.is_plural():
+            self.alters_tab_button.enable()
+        else:
+            self.alters_tab_button.disable()
 
         # use these attributes to create differing profiles for StarClan cats etc.
         is_sc_instructor = False
@@ -1775,6 +1789,36 @@ class ProfileScreen(Screens):
 
         return victim_text
 
+    def toggle_alters_tab(self):
+        """Opens the conditions tab"""
+        previous_open_tab = self.open_tab
+        # This closes the current tab, so only one can be open at a time
+        self.close_current_tab()
+
+        if previous_open_tab == 'alters':
+            '''If the current open tab is conditions, just close the tab and do nothing else. '''
+            pass
+        else:
+            self.open_tab = 'alters'
+            self.conditions_page = 0
+            self.right_conditions_arrow = UIImageButton(
+                scale(pygame.Rect((1418, 1080), (68, 68))),
+                "",
+                object_id='#arrow_right_button', manager=MANAGER
+            )
+            self.left_conditions_arrow = UIImageButton(
+                scale(pygame.Rect((118, 1080), (68, 68))),
+                "",
+                object_id='#arrow_left_button'
+            )
+            self.conditions_background = pygame_gui.elements.UIImage(
+                scale(pygame.Rect((178, 942), (1248, 302))),
+                self.conditions_tab
+            )
+
+            # This will be overwritten in update_disabled_buttons_and_text()
+            self.update_disabled_buttons_and_text()
+
     def toggle_conditions_tab(self):
         """Opens the conditions tab"""
         previous_open_tab = self.open_tab
@@ -1805,7 +1849,7 @@ class ProfileScreen(Screens):
             # This will be overwritten in update_disabled_buttons_and_text()
             self.update_disabled_buttons_and_text()
 
-    def display_conditions_page(self):
+    def display_alters_page(self):
         # tracks the position of the detail boxes
         if self.condition_container: 
             self.condition_container.kill()
@@ -1816,9 +1860,6 @@ class ProfileScreen(Screens):
         
         # gather a list of all the conditions and info needed.
         all_illness_injuries = []
-
-        all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.permanent_condition if
-                                not (self.the_cat.permanent_condition[i]['born_with'] and self.the_cat.permanent_condition[i]["moons_until"] != -2)])
         if self.the_cat.is_plural:
             if "shattered soul" in self.the_cat.permanent_condition:
                 con = "shattered soul"
@@ -1836,9 +1877,100 @@ class ProfileScreen(Screens):
                     minmoons = 0
                 if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
                     all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
+
+        all_illness_injuries = chunks(all_illness_injuries, 4)
+
+        if not all_illness_injuries:
+            self.conditions_page = 0
+            self.right_conditions_arrow.disable()
+            self.left_conditions_arrow.disable()
+            return
+
+        # Adjust the page number if it somehow goes out of range.
+        if self.conditions_page < 0:
+            self.conditions_page = 0
+        elif self.conditions_page > len(all_illness_injuries) - 1:
+            self.conditions_page = len(all_illness_injuries) - 1
+
+        # Disable the arrow buttons
+        if self.conditions_page == 0:
+            self.left_conditions_arrow.disable()
+        else:
+            self.left_conditions_arrow.enable()
+
+        if self.conditions_page >= len(all_illness_injuries) - 1:
+            self.right_conditions_arrow.disable()
+        else:
+            self.right_conditions_arrow.enable()
+
+        x_pos = 30
+        for con in all_illness_injuries[self.conditions_page]:
+            condition_name = self.change_condition_name(con[0])
+            # Background Box
+            pygame_gui.elements.UIImage(
+                scale(pygame.Rect((x_pos, 25), (280, 276))),
+                self.condition_details_box, manager=MANAGER,
+                container=self.condition_container)
+
+            y_adjust = 60
+
+            name = UITextBoxTweaked(
+                condition_name,
+                scale(pygame.Rect((x_pos, 26), (272, -1))),
+                line_spacing=.90,
+                object_id="#text_box_30_horizcenter",
+                container=self.condition_container, manager=MANAGER)
+
+            y_adjust = name.get_relative_rect().height
+            details_rect = scale(pygame.Rect((x_pos, 0), (276, -1)))
+            details_rect.y = y_adjust
+
+            UITextBoxTweaked(
+                con[1],
+                details_rect,
+                line_spacing=.90,
+                object_id="#text_box_22_horizcenter_pad_20_20",
+                container=self.condition_container, manager=MANAGER)
+
+            x_pos += 304
+
+        return
+
+    def display_conditions_page(self):
+        # tracks the position of the detail boxes
+        if self.condition_container:
+            self.condition_container.kill()
+
+        self.condition_container = pygame_gui.core.UIContainer(
+            scale(pygame.Rect((178, 942), (1248, 302))),
+            MANAGER)
+
+        # gather a list of all the conditions and info needed.
+        all_illness_injuries = [(i, self.get_condition_details(i)) for i in self.the_cat.permanent_condition if
+                                not (self.the_cat.permanent_condition[i]['born_with'] and
+                                     self.the_cat.permanent_condition[i]["moons_until"] != -2)]
+        '''
+        if self.the_cat.is_plural:
+            if "shattered soul" in self.the_cat.permanent_condition:
+                con = "shattered soul"
+                if self.the_cat.permanent_condition[con]["born_with"] is True:
+                    minmoons = -1
+                else:
+                    minmoons = 0
+                if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
+                    all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
+            elif "budding spirit" in self.the_cat.permanent_condition:
+                con = "budding spirit"
+                if self.the_cat.permanent_condition[con]["born_with"] is True:
+                    minmoons = -1
+                else:
+                    minmoons = 0
+                if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
+                    all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
+        '''
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.injuries])
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.illnesses if
-                                    i not in ("an infected wound", "a festering wound")])
+                                     i not in ("an infected wound", "a festering wound")])
         #for i in all_illness_injuries:
             #print(i)
         all_illness_injuries = chunks(all_illness_injuries, 4)
@@ -1956,6 +2088,7 @@ class ProfileScreen(Screens):
         #print(text)
         return text
 
+
     def get_condition_details(self, name):
         """returns the relevant condition details as one string with line breaks"""
         text_list = []
@@ -1979,6 +2112,10 @@ class ProfileScreen(Screens):
 
             # is permanent
             text_list.append('permanent condition')
+
+            if name in ["shattered soul", "budding spirit"]:
+                alters = str(len(self.the_cat.alters))
+                text_list.append(f"alters: " + alters)
 
             # infected or festering
             complication = self.the_cat.permanent_condition[name].get("complication", None)
@@ -2356,7 +2493,6 @@ class ProfileScreen(Screens):
             if self.open_sub_tab == 'life events':
                 self.sub_tab_1.disable()
                 self.sub_tab_2.enable()
-                self.sub_tab_3.enable()
                 self.history_text_box.kill()
                 self.history_text_box = UITextBoxTweaked(self.get_all_history_text(),
                                                          scale(pygame.Rect((200, 946), (1200, 298))),
@@ -2384,7 +2520,6 @@ class ProfileScreen(Screens):
             elif self.open_sub_tab == 'user notes':
                 self.sub_tab_1.enable()
                 self.sub_tab_2.disable()
-                self.sub_tab_3.enable()
                 if self.history_text_box:
                     self.history_text_box.kill()
                     self.no_moons.kill()
@@ -2468,6 +2603,8 @@ class ProfileScreen(Screens):
         # Conditions Tab
         elif self.open_tab == 'conditions':
             self.display_conditions_page()
+        elif self.open_tab == 'alters':
+            self.display_alters_page()
 
     def close_current_tab(self):
         """Closes current tab. """
@@ -2519,6 +2656,12 @@ class ProfileScreen(Screens):
                     self.genetic_text_box.kill()
 
         elif self.open_tab == 'conditions':
+            self.left_conditions_arrow.kill()
+            self.right_conditions_arrow.kill()
+            self.conditions_background.kill()
+            self.condition_container.kill()
+
+        elif self.open_tab == 'alters':
             self.left_conditions_arrow.kill()
             self.right_conditions_arrow.kill()
             self.conditions_background.kill()
