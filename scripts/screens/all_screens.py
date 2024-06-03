@@ -1,3 +1,4 @@
+from .LeaderDenScreen import LeaderDenScreen
 from .Screens import Screens
 from .StartScreen import StartScreen
 from .PatrolScreen import PatrolScreen
@@ -7,9 +8,6 @@ from .ChooseAdoptiveParentScreen import ChooseAdoptiveParentScreen
 from .ProfileScreen import ProfileScreen
 from .RoleScreen import RoleScreen
 from .SpriteInspectScreen import SpriteInspectScreen
-from .DFScreen import DFScreen
-from .StarClanScreen import StarClanScreen
-from .UnknownResScreen import UnknownResScreen
 from .MakeClanScreen import MakeClanScreen
 from .MedDenScreen import MedDenScreen
 from .RelationshipScreen import RelationshipScreen
@@ -21,10 +19,11 @@ from .EventsScreen import EventsScreen
 from .ChooseMateScreen import ChooseMateScreen
 from .ChooseMentorScreen import ChooseMentorScreen
 from .FamilyTreeScreen import FamilyTreeScreen
-from .OutsideClanScreen import OutsideClanScreen
 from .MediationScreen import MediationScreen
 from .ClanSettingsScreen import ClanSettingsScreen
 from .ClearingScreen import ClearingScreen
+from .ChangeGenderScreen import ChangeGenderScreen
+from .WarriorDenScreen import WarriorDenScreen
 
 # ---------------------------------------------------------------------------- #
 #                                  UI RULES                                    #
@@ -34,13 +33,13 @@ SCREEN: 700 height x 800 width
 
 MARGINS: 25px on all sides
     ~Any new buttons or text MUST be within these margins.
-    ~Buttons on the edge of the screen should butt up right against the margin.
-    (i.e. the <<Main Menu button is placed 25px x 25px on most screens)
-
+    ~Buttons on the edge of the screen should butt up right against the margin. 
+    (i.e. the <<Main Menu button is placed 25px x 25px on most screens) 
+    
 BUTTONS:
     ~Buttons are 30px in height. Width can be anything, though generally try to keep to even numbers.
     ~Square icons are 34px x 34px.
-    ~Generally keep text at least 5px away from the right and left /straight/ (do not count the rounded ends) edge
+    ~Generally keep text at least 5px away from the right and left /straight/ (do not count the rounded ends) edge 
     of the button (this rule is sometimes broken. the goal is to be consistent across the entire screen or button type)
     ~Generally, the vertical gap between buttons should be 5px
 """
@@ -64,10 +63,10 @@ make_clan_screen = MakeClanScreen('make clan screen')
 allegiances_screen = AllegiancesScreen('allegiances screen')
 camp_screen = ClanScreen('camp screen')
 catlist_screen = ListScreen('list screen')
-starclan_screen = StarClanScreen('starclan screen')
-df_screen = DFScreen('dark forest screen')
 med_den_screen = MedDenScreen('med den screen')
 freshkill_pile_screen = ClearingScreen('clearing screen')
+warrior_den_screen = WarriorDenScreen('warrior den screen')
+leader_den_screen = LeaderDenScreen('leader den screen')
 
 
 events_screen = EventsScreen('events screen')
@@ -88,7 +87,5 @@ choose_adoptive_parent_screen = ChooseAdoptiveParentScreen('choose adoptive pare
 relationship_screen = RelationshipScreen('relationship screen')
 view_children_screen = FamilyTreeScreen('see kits screen')
 mediation_screen = MediationScreen("mediation screen")
+change_gender_screen = ChangeGenderScreen("change gender screen")
 
-
-outside_clan_screen = OutsideClanScreen('other screen')
-unknown_residence_screen = UnknownResScreen('unknown residence screen')
