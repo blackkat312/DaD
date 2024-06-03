@@ -62,6 +62,34 @@
         "other_cat_skill": null
     },
     {
+        "injury": "subluxated joint",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c misstepped and slipped from a rock, subluxating a joint.",
+        "cat_trait": null,
+        "cat_skill": null,
+        "other_cat_trait": null,
+        "other_cat_skill": null
+    },
+    {
+        "injury": "subluxated joint",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare"
+        ],
+        "event_text": "m_c slipped on some rocks and subluxated {PRONOUN/m_c/poss} leg.",
+        "cat_trait": null,
+        "cat_skill": null,
+        "other_cat_trait": null,
+        "other_cat_skill": null
+    },
+    {
         "injury": "sprain",
         "tags": [
             "Newleaf",
@@ -796,7 +824,7 @@
         "other_cat_trait": null,
         "other_cat_skill": null
     },
-        {
+    {
         "injury": "mangled leg",
         "camp": "any",
         "tags": [
@@ -904,5 +932,141 @@
             "rebellious"
         ],
         "other_cat_skill": null
+    },
+    {
+        "injury": "rash",
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare",
+			"scar",
+			"RASH"
+        ],
+        "event_text": "m_c was out on a walk alone when {PRONOUN/m_c/subject} heard a dog approaching! {PRONOUN/m_c/subject/CAP} crawled into a nearby bush to hide, only to suddenly discover that it was poison ivy!",
+        "cat_trait": [
+            "nervous",
+            "wise",
+            "insecure",
+            "careful",
+            "calm",
+            "sneaky",
+            "strange"
+        ],
+        "cat_skill": [
+            "CLEVER,1"
+        ],
+        "history_text": {
+            "scar": "m_c got a scar from a poison-ivy rash.",
+            "reg_death": "m_c died from exposure to poison ivy."
+        },
+        "other_cat_trait": null,
+        "other_cat_skill": null
+    },
+    {
+        "injury": "wrenched claws",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare",
+            "scar",
+            "DECLAWED"
+        ],
+        "event_text": "m_c was captured by Twolegs, but managed to escape and return home.",
+        "history_text": {
+            "scar": "m_c was scarred when {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs.",
+            "reg_death": "m_c died after {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs."
+        }
+    },
+    {
+        "injury": "wrenched claws",
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare",
+            "scar",
+            "DECLAWED"
+        ],
+        "event_text": "m_c got curious while out wandering the territory and got captured briefly by Twolegs.",
+        "history_text": {
+            "scar": "m_c was scarred when {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs.",
+            "reg_death": "m_c died after {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs."
+        },
+        "cat_trait": ["strange"],
+        "cat_skill": null,
+        "other_cat_trait": null,
+        "other_cat_skill": null
+    },
+    {
+        "injury": "wrenched claws",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-fall",
+            "Leaf-bare",
+            "scar",
+            "DECLAWED"
+        ],
+        "event_text": "Thinking that {PRONOUN/m_c/subject} could easily fight a Twoleg, m_c went out into the territory hissing and spitting, only to come back subdued.",
+        "history_text": {
+            "scar": "m_c was scarred when {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs.",
+            "reg_death": "m_c died after {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs."
+        },
+        "cat_trait": ["vengeful", "ambitious", "bloodthirsty"],
+        "cat_skill": null,
+        "other_cat_trait": null,
+        "other_cat_skill": null
+    },
+    {
+       "injury": "earache",
+       "camp": "any",
+       "tags": [
+           "Newleaf",
+           "Greenleaf",
+           "Leaf-fall",
+           "Leaf-bare"
+       ],
+       "event_text": "Poor m_c has gotten an earache this moon.",
+       "history_text": null,
+       "cat_trait": null,
+       "cat_skill": null,
+       "other_cat_trait": null,
+       "other_cat_skill": null
+    },    
+	{
+       "injury": "earache",
+       "camp": "any",
+       "tags": [
+           "Newleaf",
+           "Greenleaf",
+           "Leaf-fall",
+           "Leaf-bare"
+       ],
+       "event_text": "After m_c visits the medicine den over some dizziness, it turns out that {PRONOUN/m_c/subject} just {VERB/m_c/have/had} a small earache.",
+       "history_text": null,
+       "cat_trait": null,
+       "cat_skill": null,
+       "other_cat_trait": null,
+       "other_cat_skill": null
+    },    
+	{
+       "injury": "fatigue",
+       "camp": "any",
+       "tags": [
+           "Newleaf",
+           "Greenleaf",
+           "Leaf-fall",
+           "Leaf-bare"
+       ],
+       "event_text": "Despite sleeping, m_c still feels absolutely exhausted. It would seem that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gotten some fatigue.",
+       "history_text": null,
+       "cat_trait": null,
+       "cat_skill": null,
+       "other_cat_trait": null,
+       "other_cat_skill": null
     }
 ]
