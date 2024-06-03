@@ -325,7 +325,7 @@
             "romantic"
         ],
         "event_text": "m_c and r_c watch the Clan's kits play and daydream about having their own one day."
-     },
+    },
     {
         "camp": "any",
         "tags": [
@@ -455,6 +455,7 @@
             "Greenleaf",
             "Leaf-fall",
             "Leaf-bare",
+            "rc_to_mc",
             "comfort",
             "respect",
             "clan_kits"
@@ -466,7 +467,7 @@
         ]
     },
     {
-        "camp": "Any",
+        "camp": "any",
         "tags": [
             "Leaf-fall",
             "clan_kits",
@@ -523,7 +524,7 @@
 			"Leaf-fall",
 			"Leaf-bare"
 		],
-        "event_text": "While out on an adventure m_c found an interesting object in the territory and decided to keep it.",
+        "event_text": "While out on an adventure, m_c found an interesting object in the territory and decided to keep it.",
         "accessories": [
 			"TOY"
 		]
@@ -536,7 +537,7 @@
 			"Leaf-fall",
 			"Leaf-bare"
 		],
-        "event_text": "After sneaking out of the territory m_c has come back with an acc_singular that {PRONOUN/m_c/subject} {VERB/m_c/find/finds} comforting.",
+        "event_text": "After sneaking out of the territory, m_c has come back with an acc_singular that {PRONOUN/m_c/subject} {VERB/m_c/find/finds} comforting.",
         "accessories": [
 			"TOY"
 		]
@@ -575,7 +576,7 @@
             "Leaf-fall",
             "Leaf-bare"
         ],
-        "event_text": "m_c found a twoleg cloth that radiates pride.",
+        "event_text": "m_c found a Twoleg cloth that radiates pride.",
         "accessories": [
             "FLAG"
         ]
@@ -592,17 +593,6 @@
         "accessories": [
             "FLAG"
         ]
-    },
-    {
-        "camp": "any",
-        "tags": [
-			"Greenleaf",
-			"other_cat",
-			"other_cat_mate",
-			"to_both",
-			"platonic"
-		],
-        "event_text": "It's tough working in such extreme heat. m_c and r_c spend their evening relaxing together and cooling down in the shade."
     },
     {
         "camp": "any",
@@ -628,7 +618,7 @@
             "Leaf-fall",
             "skill_trait_required"
         ],
-        "event_text": "m_c thought {PRONOUN/m_c/subject} saw a familar wispy form lingering at the edge of camp, but the ghost disappeared before {PRONOUN/m_c/subject} could be sure.",
+        "event_text": "m_c thought {PRONOUN/m_c/subject} saw a familiar wispy form lingering at the edge of camp, but the ghost disappeared before {PRONOUN/m_c/subject} could be sure.",
         "cat_trait": null,
         "cat_skill": [
             "GHOST,0"
@@ -656,7 +646,7 @@
             "murder_reveal",
             "other_cat"
         ],
-        "event_text": "m_c can't keep this secret anymore. When {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} alone with r_c, {PRONOUN/m_c/subject} tell the story of mur_c's death."
+        "event_text": "m_c can't keep this secret anymore. When {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} alone with r_c, {PRONOUN/m_c/subject} {VERB/m_c/tell/tells} the story of mur_c's death."
     },
     {
         "camp": "any",
@@ -741,6 +731,7 @@
             "Leaf-bare",
             "Leaf-fall",
             "murder_reveal",
+	    "clan_discovery",
             "other_cat"
         ],
         "event_text": "m_c boldly confesses to the entire Clan that {PRONOUN/m_c/subject} killed mur_c. m_c claims that mur_c deserved to pay for what {PRONOUN/mur_c/subject} did.",
@@ -776,6 +767,23 @@
         "event_text": "r_c is stunned when {PRONOUN/r_c/subject} {VERB/r_c/discover/discovers} m_c carelessly bragging about killing mur_c to a wandering loner.",
         "cat_trait": [
             "oblivious"
+        ]
+    },
+    {
+        "camp": "any",
+        "tags": [
+            "Newleaf",
+            "Greenleaf",
+            "Leaf-bare",
+            "Leaf-fall",
+            "murder_reveal",
+            "other_cat"
+        ],
+        "event_text": "m_c can't keep this secret anymore. {PRONOUN/m_c/subject/CAP} {VERB/m_c/request/requests} a Clan meeting, where {PRONOUN/m_c/subject} {VERB/m_c/reveal/reveals} the terrible secret {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} kept.",
+        "cat_trait": [
+            "righteous",
+            "bold",
+            "strict"
         ]
     }
 ]

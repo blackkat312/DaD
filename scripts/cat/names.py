@@ -64,7 +64,8 @@ class Name():
                  tortiepattern=None,
                  biome=None,
                  specsuffix_hidden=False,
-                 load_existing_name=False):
+                 load_existing_name=False
+                 ):
         self.status = status
         self.prefix = prefix
         self.suffix = suffix
@@ -139,6 +140,7 @@ class Name():
             possible_prefix_categories.append(self.names_dict["colour_prefixes"][colour])
         if biome is not None and biome in self.names_dict["biome_prefixes"]:
             possible_prefix_categories.append(self.names_dict["biome_prefixes"][biome])
+
         # Choose appearance-based prefix if possible and named_after_appearance because True.
         if named_after_appearance and possible_prefix_categories and not named_after_biome_:
             prefix_category = random.choice(possible_prefix_categories)
@@ -173,12 +175,12 @@ class Name():
                 self.suffix = random.choice(self.names_dict["normal_suffixes"])
 
     def __repr__(self):
+        # Handles predefined suffixes (such as newborns being kit), then suffixes based on ages (fixes #2004, just trust me)
         if self.status in self.names_dict["special_suffixes"] and not self.specsuffix_hidden:
             return self.prefix + self.names_dict["special_suffixes"][self.status]
-        else:
-            if game.config['fun']['april_fools']:
-                return self.prefix + 'egg'
-            return self.prefix + self.suffix
+        if game.config['fun']['april_fools']:
+            return self.prefix + 'egg'
+        return self.prefix + self.suffix
 
 
 names = Name()

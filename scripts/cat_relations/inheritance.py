@@ -101,16 +101,16 @@ class Inheritance():
             # grand kits
             self.init_grand_kits(inter_id, inter_cat)
 
-        # relations to faded cats - these must occur after all non-faded
-        # cats have been handled, and in the following order.
+        # relations to faded cats - these must occur after all non-faded 
+        # cats have been handled, and in the following order. 
         self.init_faded_kits()
-
+        
         self.init_faded_siblings()
-
+        
         self.init_faded_parents_siblings()
-
+        
         self.init_faded_grandkits()
-
+        
         self.init_faded_cousins()
 
         if len(self.need_update) > 1:
@@ -124,13 +124,13 @@ class Inheritance():
         """Update all the inheritances of the cats, which are related to the current cat."""
         # only adding/removing parents or kits will use this function, because all inheritances are based on parents
         for cat_id in self.all_involved:
-             # Don't update the inheritance of faded cats - they are not viewable by the player and won't be used in any checks.
+            # Don't update the inheritance of faded cats - they are not viewable by the player and won't be used in any checks. 
             if cat_id in self.all_inheritances and self.cat.fetch_cat(cat_id) and not self.cat.fetch_cat(cat_id).faded:
                 self.all_inheritances[cat_id].update_inheritance()
 
     def update_all_mates(self):
-        """
-        This function should be called, when the cat breaks up.
+        """ 
+        This function should be called, when the cat breaks up. 
         It renews all inheritances, where this cat is listed as a mate of a kit or sibling.
         """
         self.update_inheritance()
@@ -243,7 +243,6 @@ class Inheritance():
 
     def init_faded_cousins(self):
         """This must occur after all parent's siblings, faded and otherwise, have been gathered."""
-
         for inter_id in self.get_parents_siblings():
             inter_cat = self.cat.fetch_cat(inter_id)
             if not inter_cat:
@@ -312,7 +311,10 @@ class Inheritance():
             grandparents = self.get_parents(parent_cat)
             for grand_id in grandparents:
                 if grand_id in self.parents.keys():
-                    continue
+                    parent_relation = self.parents[grand_id]
+                    if parent_relation["type"] == RelationType.BLOOD:
+                        print("WARNING - How did this happen? A grandparent is also the blood parent? Please report this!")
+                    continue # even it is not blood related, it is confusing
                 grand_type = RelationType.BLOOD if value["type"] == RelationType.BLOOD else RelationType.NOT_BLOOD
                 if grand_id not in self.grand_parents:
                     self.grand_parents[grand_id] = {
@@ -499,13 +501,13 @@ class Inheritance():
 
         for inter_parent_id in inter_parent_ids:
             if inter_parent_id in self.parents_siblings.keys():
-                rel_type = RelationType.BLOOD
+                rel_type = RelationType.BLOOD 
                 if self.parents_siblings[inter_parent_id]["type"] not in BLOOD_RELATIVE_TYPES:
                     rel_type = RelationType.NOT_BLOOD
                 add_info = ""
                 if len(parent_cats_names) > 0:
                     add_info = f"child of " + ", ".join(parent_cats_names)
-
+                        
                 self.cousins[inter_id] = {
                     "type": rel_type,
                     "additional": [add_info]
@@ -535,9 +537,9 @@ class Inheritance():
                         "type": rel_type,
                         "additional": [add_info]
                     }
-                    self.all_but_cousins.append(inter_cat)
+                    self.all_but_cousins.append(inter_id)
                     self.all_involved.append(inter_id)
-
+                
 
     # ---------------------------------------------------------------------------- #
     #                             all getter functions                             #

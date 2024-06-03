@@ -93,131 +93,11 @@
             "scar",
             "MANLEG"
         ],
-        "event_text": "A horrible battle between c_n and o_c patrols after the two patrols traded insults at the border. m_c is left badly injured.",
+        "event_text": "A horrible battle occurred between c_n and o_c patrols after the two patrols traded insults at the border. m_c is left badly injured.",
         "history_text": {
             "scar": "m_c was scarred after a fight with o_c cats.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with o_c cats."
         }
-    },
-    {
-        "injury": "shock",
-        "tags": [
-            "other_cat",
-            "other_cat_mentor",
-            "Newleaf",
-            "Greenleaf",
-            "Leaf-fall",
-            "Leaf-bare",
-            "mc_to_rc",
-            "neg_respect",
-            "neg_trust",
-            "neg_comfort",
-            "dislike",
-            "neg_platonic",
-            "permanent_condition",
-            "echoing shock"
-        ],
-        "event_text": "r_c's rough training style has left m_c feeling numb, distant and fearful.",
-        "history_text": {
-            "permanent_condition": "m_c's memories of {PRONOUN/m_c/poss} training has damdged {PRONOUN/m_c/poss} sense of self.",
-            "reg_death": "m_c died after r_c's training was too much for {PRONOUN/m_c/object}."
-        },
-        "cat_trait": null,
-        "cat_skill": null,
-        "other_cat_trait": [
-            "adventurous",
-            "ambitious",
-            "bloodthirsty",
-            "bold",
-            "cold",
-            "daring",
-            "fierce",
-            "shameless",
-            "strict",
-            "troublesome",
-            "vengeful"
-        ],
-        "other_cat_skill": null
-    },
-    {
-        "injury": "shock",
-        "tags": [
-            "other_cat",
-            "other_cat_mentor",
-            "Newleaf",
-            "Greenleaf",
-            "Leaf-fall",
-            "Leaf-bare",
-            "mc_to_rc",
-            "neg_respect",
-            "neg_trust",
-            "neg_comfort",
-            "dislike",
-            "neg_platonic",
-            "permanent_condition",
-            "echoing shock"
-        ],
-        "event_text": "r_c's words when m_c failed {PRONOUN/m_c/poss} catch rattled around in m_c and have left {PRONOUN/m_c/object} distant.",
-        "history_text": {
-            "permanent_condition": "r_c's words have given m_c some echoing shock.",
-            "reg_death": "m_c died because of r_c's rougher and rougher training."
-        },
-        "cat_trait": null,
-        "cat_skill": null,
-        "other_cat_trait": [
-            "adventurous",
-            "ambitious",
-            "bloodthirsty",
-            "bold",
-            "cold",
-            "daring",
-            "fierce",
-            "shameless",
-            "strict",
-            "troublesome",
-            "vengeful"
-        ],
-        "other_cat_skill": null
-    },
-    {
-        "injury": "shock",
-        "tags": [
-            "other_cat",
-            "other_cat_mentor",
-            "Newleaf",
-            "Greenleaf",
-            "Leaf-fall",
-            "Leaf-bare",
-            "mc_to_rc",
-            "neg_respect",
-            "neg_trust",
-            "neg_comfort",
-            "dislike",
-            "neg_platonic",
-            "permanent_condition",
-            "echoing shock"
-        ],
-        "event_text": "r_c's cruel training style has left m_c in shock.",
-        "history_text": {
-            "permanent_condition": "m_c realizes that {PRONOUN/m_c/subject} can't stand being in the pressance of {PRONOUN/m_c/poss} mentor, r_c anymore.",
-            "reg_death": "m_c died after r_c's training put too much strain on {PRONOUN/m_c/poss} body."
-        },
-        "cat_trait": null,
-        "cat_skill": null,
-        "other_cat_trait": [
-            "adventurous",
-            "ambitious",
-            "bloodthirsty",
-            "bold",
-            "cold",
-            "daring",
-            "fierce",
-            "shameless",
-            "strict",
-            "troublesome",
-            "vengeful"
-        ],
-        "other_cat_skill": null
     },
     {
         "injury": "cat bite",
@@ -368,8 +248,8 @@
         ],
         "event_text": "m_c was injured recklessly fighting a fox that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
         "history_text": {
-            "scar": "m_c was scarred fighting a dog that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
-            "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a dog."
+            "scar": "m_c was scarred fighting a fox that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
+            "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a fox."
         },
         "cat_trait": null,
         "cat_skill": null,

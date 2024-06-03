@@ -25,17 +25,19 @@
         "silvercough": [
             "r_c quietly tells m_c's parent that {PRONOUN/r_c/subject} {VERB/r_c/need/needs} to move m_c to the medicine cat den. m_c's kittencough has progressed to silvercough.",
             "m_c coughs pathetically, wondering why it's not getting better, and why {PRONOUN/m_c/subject} {VERB/m_c/have/has} to be in the stinky medicine cat den now."
+
         ]
     },
     "an infected wound": {
         "a festering wound": [
             "The stink of infection has strengthened and worsened. r_c mutters about different herbs, as m_c watches {PRONOUN/r_c/object} change yet another poultice that probably won't work.",
             "m_c swears {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} been cleaning it, but {PRONOUN/m_c/poss} wound has begun to fester like week-old prey."
+
         ]
     },
     "running nose": {
         "whitecough": [
-            "r_c attempts to move m_c to the medicine cat den, where the whitecough that {PRONOUN/m_c/poss} running nose has turned into is more easily monitored.",
+            "r_c moves m_c to the medicine cat den, where the whitecough that {PRONOUN/m_c/poss} running nose has turned into is more easily monitored.",
             "m_c brings {PRONOUN/m_c/self} to the medicine cat den, concerned {PRONOUN/m_c/poss} running nose only seems to be getting worse.",
 			"Despite {PRONOUN/m_c/poss} running nose only getting worse, m_c refuses to stay in the medicine den because it's only a little whitecough."
         ],
@@ -60,17 +62,19 @@
             "r_c searches through {PRONOUN/r_c/poss} herb stores. m_c's silvercough has progressed to greencough, greatly worrying {PRONOUN/r_c/object}.",
             "m_c coughs, feeling like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} hacking up half {PRONOUN/m_c/poss} lungs. This is definitely worse than silvercough ever gets."
         ]
-    },	
+    },
     "yellowcough": {
         "redcough": [
              "r_c spots the specks of blood in the bedding where m_c has been coughing, and swallows a wail of despair. If {PRONOUN/m_c/poss} yellowcough has progressed to redcough, it's a death sentence.",
              "m_c is going to be fine. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'re/'s} sure of it. {PRONOUN/m_c/poss/CAP} lungs don't hurt nearly as much anymore, and if there's blood in {PRONOUN/m_c/poss} mouth when {PRONOUN/m_c/subject} {VERB/m_c/finish/finishes} a coughing fit, what of it?"
+
         ]
     },
     "heat exhaustion": {
         "heat stroke": [
             "r_c squeezes the damp moss onto m_c's forehead, as {PRONOUN/m_c/subject} {VERB/m_c/lie/lies} completely drained and panting. This is more than heat exhaustion, m_c will need time to recover from this heat stroke.",
             "m_c dazedly rolls around in {PRONOUN/m_c/poss} nest, searching for a cooler spot. {PRONOUN/m_c/poss/CAP} exhaustion is beyond just a little thing, and {PRONOUN/m_c/poss} confused brain still has enough observational power to recognise full heat stroke."
+
         ]
     },
     "stomachache": {
