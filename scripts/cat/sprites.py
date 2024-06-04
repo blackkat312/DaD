@@ -129,11 +129,10 @@ class Sprites():
             'shadersnewwhite', 'tortiepatchesmasks', 'minkstorties',
             'medcatherbs', 'flower_accessories', 'plant2_accessories', 'snake_accessories', 'smallAnimal_accessories',
             'deadInsect_accessories', 'aliveInsect_accessories', 'fruit_accessories', 'crafted_accessories',
-            'tail2_accessories', 'disabilityaccs',
+            'tail2_accessories', 'disabilityaccs', 'booties',
             'lightingnew', 'fademask',
             'fadestarclan', 'fadedarkforest',
             'symbols'
-
         ]:
             if 'lineart' in x and game.config['fun']['april_fools']:
                 self.spritesheet(f"sprites/aprilfools{x}.png", x)
@@ -317,10 +316,10 @@ class Sprites():
 
         for row, patches in enumerate(white_patches):
             for col, patch in enumerate(patches):
-                self.make_group('whitepatches', (col, row), f"white{patch}")
+                self.make_group('whitepatches', (col, row), patch)
         for row, minkpatches in enumerate(minks_white_patches):
             for col, minkpatch in enumerate(minkpatches):
-                self.make_group('whitepatches', (col, row), f"white{minkpatch}")
+                self.make_group('minkswhite', (col, row), minkpatch)
 
         # tortiepatchesmasks
         tortiepatchesmasks = [
@@ -360,7 +359,7 @@ class Sprites():
                 self.make_group('tortiepatchesmasks', (col, row), f"tortiemask{mask}")
         for row, minkmasks in enumerate(minks_tortie_patches):
             for col, minkmask in enumerate(minkmasks):
-                self.make_group('tortiepatchesmasks', (col, row), f"tortiemask{minkmask}")
+                self.make_group('minkstorties', (col, row), f"tortiemask{minkmask}")
         self.make_group('Other/blue-tipped', (0, 0), 'tortiemaskBLUE-TIPPED')
 
         self.load_scars()
@@ -489,6 +488,12 @@ class Sprites():
             ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
         ]
 
+        booties_data = [
+            ["CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT"],
+            ["GREENBOOT", "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT"],
+            ["PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"]
+        ]
+
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
             for col, herb in enumerate(herbs):
@@ -569,6 +574,11 @@ class Sprites():
         for row, disabilityaccs in enumerate(disabilityaccs_data):
             for col, disabilityacc in enumerate(disabilityaccs):
                 self.make_group('disabilityaccs', (col, row), f'acc_dismod{disabilityacc}')
+
+        # booties added
+        for row, bootiesaccs in enumerate(booties_data):
+            for col, bootiesacc in enumerate(bootiesaccs):
+                self.make_group('booties', (col, row), f'booties{bootiesacc}')
 
     def load_symbols(self):
         """
