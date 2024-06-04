@@ -66,6 +66,22 @@ class GenerateEvents:
         return events
 
     @staticmethod
+    def get_lead_den_event_dicts(event_type: str, success: bool):
+
+        try:
+            file_path = f"{resource_directory}/leader_den/{'success' if success else 'fail'}/{event_type}.json"
+            with open(
+                    file_path,
+                    "r"
+            ) as read_file:
+                events = ujson.loads(read_file.read())
+        except:
+            events = None
+            print(f"ERROR: Unable to load lead den events for {event_type} {'success' if success else 'fail'}.")
+
+        return events
+
+    @staticmethod
     def clear_loaded_events():
         GenerateEvents.loaded_events = {}
 
@@ -99,7 +115,7 @@ class GenerateEvents:
                     tags=event["tags"],
                     event_text=event_text,
                     history_text=event["history_text"] if "history_text" in event else {},
-                    cat_trait= event["cat_trait"] if "cat_trait" in event else [],
+                    cat_trait=event["cat_trait"] if "cat_trait" in event else [],
                     cat_skill=event["cat_skill"] if "cat_skill" in event else [],
                     other_cat_trait=event["other_cat_trait"] if "other_cat_trait" in event else [],
                     other_cat_skill=event["other_cat_skill"] if "other_cat_skill" in event else [],
@@ -167,9 +183,9 @@ class GenerateEvents:
                 event = None
                 for event in events_dict:
                     if event["event"] != specific_event:
-                        #print(event["event"], 'is not', specific_event)
+                        # print(event["event"], 'is not', specific_event)
                         continue
-                    #print(event["event"], "is", specific_event)
+                    # print(event["event"], "is", specific_event)
                     event = OngoingEvent(
                         event=event["event"],
                         camp=event["camp"],
@@ -264,7 +280,8 @@ class GenerateEvents:
         return event_list
 
     @staticmethod
-    def filter_possible_short_events(possible_events, cat, other_cat, war, enemy_clan, other_clan, alive_kits, murder=False, murder_reveal=False):
+    def filter_possible_short_events(possible_events, cat, other_cat, war, enemy_clan, other_clan, alive_kits,
+                                     murder=False, murder_reveal=False):
         final_events = []
 
         minor = []
@@ -561,7 +578,8 @@ class GenerateEvents:
                 minor_chance = GenerateEvents.INJURY_DISTRIBUTION[cat.status]['minor']
                 major_chance = GenerateEvents.INJURY_DISTRIBUTION[cat.status]['major']
                 severe_chance = GenerateEvents.INJURY_DISTRIBUTION[cat.status]['severe']
-                severity_chosen = random.choices(["minor", "major", "severe"], [minor_chance, major_chance, severe_chance], k=1)
+                severity_chosen = random.choices(["minor", "major", "severe"],
+                                                 [minor_chance, major_chance, severe_chance], k=1)
                 if severity_chosen[0] == 'minor':
                     final_events = minor
                 elif severity_chosen[0] == 'major':
@@ -590,7 +608,7 @@ class GenerateEvents:
                 )"""
                 return event_list
             else:
-                #print(specific_event)
+                # print(specific_event)
                 event = (
                     GenerateEvents.generate_ongoing_events(event_type, biome, specific_event)
                 )
@@ -615,6 +633,81 @@ class GenerateEvents:
         # print(possible_events)
 
         return possible_events
+
+    def possible_lead_den_events(self, cat, event_type: str, interaction_type: str, success: bool,
+                                 other_clan_temper=None, player_clan_temper=None) -> list:
+        """
+        finds and generates a list of possible leader den events
+        :param cat: the cat object of the cat attending the Gathering
+        :param other_clan_temper: the temperament of the other clan
+        :param player_clan_temper: the temperament of the player clan
+        :param event_type: other_clan or outsider
+        :param interaction_type: str retrieved from object_ID of selected interaction button
+        :param success: True if the interaction was a success, False if it was a failure
+        """
+        possible_events = []
+
+        events = GenerateEvents.get_lead_den_event_dicts(event_type, success)
+        for event in events:
+            if event["interaction_type"] != interaction_type:
+                continue
+
+            if "other_clan_temper" in event or "player_clan_temper" in event:
+                if other_clan_temper not in event["other_clan_temper"] and "any" not in event["other_clan_temper"]:
+                    continue
+                if player_clan_temper not in event["player_clan_temper"] and "any" not in event["player_clan_temper"]:
+                    continue
+
+            elif "reputation" in event:
+                reputation = game.clan.reputation
+                # hostile
+                if 1 <= reputation <= 30 and "hostile" not in event["reputation"] and "any" not in event["reputation"]:
+                    continue
+                # neutral
+                elif 31 <= reputation <= 70 and "neutral" not in event["reputation"] and "any" not in event["reputation"]:
+                    continue
+                # welcoming
+                elif 71 <= reputation <= 100 and "welcoming" not in event["reputation"] and "any" not in event["reputation"]:
+                    continue
+
+            cat_info = event["m_c"]
+            if "status" in cat_info:
+                # special lost cat check
+                if event_type == "outsider":
+                    if cat.status not in ["loner", "rogue", "kittypet", "former clancat", "exiled"]:
+                        if "lost" not in cat_info["status"]:
+                            continue
+                    elif cat.status not in cat_info["status"] and "any" not in cat_info["status"]:
+                        continue
+                elif cat.status not in cat_info["status"] and "any" not in cat_info["status"]:
+                    continue
+            if "age" in cat_info:
+                if cat.age not in cat_info["age"]:
+                    continue
+            if "trait" in cat_info:
+                if cat.personality.trait not in cat_info["trait"]:
+                    continue
+            if "skill" in cat_info:
+                has_skill = False
+                for _skill in cat_info["skill"]:
+                    split = _skill.split(",")
+
+                    if len(split) < 2:
+                        print("Cat skill incorrectly formatted", _skill)
+                        continue
+
+                    if cat.skills.meets_skill_requirement(split[0], int(split[1])):
+                        has_skill = True
+                        break
+                if not has_skill:
+                    continue
+
+            possible_events.append(event)
+
+        return possible_events
+
+
+generate_events = GenerateEvents()
 
 
 class ShortEvent:
