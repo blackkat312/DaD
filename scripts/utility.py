@@ -1397,7 +1397,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 if scar in cat.pelt.scars2:
                     new_sprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0), special_flags=blendmode)
 
-        # draw accessories
+        # draw accessories & blep
         if not acc_hidden:
             if cat.pelt.accessory in cat.pelt.plant_accessories:
                 new_sprite.blit(sprites.sprites['acc_herbs' + cat.pelt.accessory + cat_sprite], (0, 0))
@@ -1411,6 +1411,11 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 new_sprite.blit(sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0))
             elif cat.pelt.accessory in cat.pelt.flag_accessories:
                 new_sprite.blit(sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0))
+            elif cat.pelt.accessory in cat.pelt.booties:
+                new_sprite.blit(sprites.sprites['booties' + cat.pelt.accessory + cat_sprite], (0, 0))
+
+        if cat.pelt.blep:
+                new_sprite.blit(sprites.sprites['blep' + cat.pelt.skin + cat_sprite], (0, 0))  
 
         # Apply fading fog
         if cat.pelt.opacity <= 97 and not cat.prevent_fading and game.clan.clan_settings["fading"] and dead:

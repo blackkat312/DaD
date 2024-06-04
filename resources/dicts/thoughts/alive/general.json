@@ -2301,7 +2301,26 @@
             "Doesn't get why r_c babies {PRONOUN/m_c/object} so much",
             "Accidentally makes a friend even more upset by sharing {PRONOUN/m_c/poss} own experiences",
             "Thinks {PRONOUN/m_c/subject} said something mean to a friend and is now fretting over it",
-            "Realized someone was making fun of {PRONOUN/m_c/object} when {PRONOUN/m_c/subject} were an apprentice"
+            "Realized someone was making fun of {PRONOUN/m_c/object} when {PRONOUN/m_c/subject} were an apprentice",
+			"Is struggling to process emotions",
+			"Is struggling to understand why {PRONOUN/m_c/poss} reaction is 'wrong'",
+			"Can't cry over something making {PRONOUN/m_c/object} sad",
+			"Wants to cry but can't",
+			"Is feeling too many emotions at once",
+			"Is vibrating trying not to correct r_c",
+			"Is vibrating in general",
+			"Purring up a storm talking to r_c",
+			"Is curled up in a sunbeam",
+			"Found a nice stick that made a pleasing sound",
+			"Is cleaning up the fresh-kill pile",
+			"Refuses to go on patrol with r_c",
+			"Internally Screaming",
+			"Externally Screaming",
+			"Screaming because {PRONOUN/m_c/subject} {VERB/m_c/like/likes} the sound",
+			"Flopped in the side of the den",
+			"Is drawing patterns in the dirt of camp",
+			"Just realised {PRONOUN/m_c/subject} could purr again",
+			"Is struggling to cat"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2402,7 +2421,23 @@
             "Is feeling like doom is over the horizon",
             "Wants to talk to r_c about {PRONOUN/m_c/poss} fears",
             "Is worried for r_c",
-            "Has a sore jaw after grinding {PRONOUN/m_c/poss} teeth anxiously"
+            "Has a sore jaw after grinding {PRONOUN/m_c/poss} teeth anxiously",
+			"Internally Screaming",
+			"Is too anxious to be happy today",
+			"Got to experience the best sunbeam",
+			"Is watching the clouds",
+			"Is scared of the clouds fearing rain",
+			"Is sitting with a feeling of big bad in the corner",
+			"Is feeling like crying",
+			"Is too wound up to properly cry",
+			"Talking to r_c about fixing camp defences",
+			"Has too many emotions all at once",
+			"Is struggling to cat",
+			"Complains about how hard fur is to keep clean",
+			"Worries about ticks and fleas",
+			"Volunteered to guard the camp... mostly so {PRONOUN/m_c/subject} didn't make a fool of {PRONOUN/m_c/self}",
+			"Worries {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} out too much",
+			"Worries {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} stand out enough"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2476,11 +2511,91 @@
             "Lies to r_c and says that {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} fine",
             "Looks up at the stars and asks them why life is so hard",
             "Wonders what {PRONOUN/m_c/subject} did to deserve having a heavy soul",
-            "Is jealous of {PRONOUN/r_c/poss} Clanmates enjoying themselves"
+            "Is jealous of {PRONOUN/r_c/poss} Clanmates enjoying themselves",
+			"Is feeling frustrated with {PRONOUN/m_c/poss} own brain",
+			"Wants to cry but can't",
+			"Is telling {PRONOUN/m_c/self} sad things to try and cry",
+			"Is frustrated at {PRONOUN/m_c/poss} inability to cry",
+			"Is sitting with big emotions",
+			"Expresses concern about {PRONOUN/m_c/poss} emotions to r_c",
+			"Is concerned about r_c",
+			"Is feeling exhausted and emotional",
+			"Is feeling on the brink of tears",
+			"Yelled at r_c and sulked about it",
+			"Is overwhelmed with emotions",
+			"Tells r_c it's a big-sad day",
+			"Appreciates r_c not pushing {PRONOUN/m_c/object}",
+			"Wishes the birds would be quiet",
+			"Wonders if the sky is sad when it rains",
+			"Is having a hard time",
+			"Is judging r_c",
+			"Is judging {PRONOUN/m_c/self}",
+			"Is worrying that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} too sad",
+			"Appreciates the quiet support of the clan",
+			"Cries and feels refreshed",
+			"Is crying over the final piece of prey",
+			"Is crying and can't stop",
+			"Cried all last patrol",
+			"Got lost on patrol",
+			"Missing r_c even though {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} right beside {PRONOUN/m_c/object}"
         ],
         "perm_conditions": {
             "m_c": [
                 "heavy soul"
+            ]
+        },
+        "random_status_constraint": [
+            "kitten",
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
+            "warrior",
+            "medicine cat",
+            "mediator",
+            "deputy",
+            "leader",
+            "elder"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "comet_spirit_to_alive_gen",
+        "thoughts": [
+            "Is racing around the camp",
+			"Challenges r_c to a race",
+			"Is skipping around camp cheerfully",
+			"Has the wriggles",
+			"Is chattering at {PRONOUN/m_c/poss} clanmates about something interesting",
+			"Was caught singing on {PRONOUN/m_c/poss} guard rotation",
+			"Is complaining about having to do the dawn patrol",
+			"Thinks that r_c hates {PRONOUN/m_c/object} because {PRONOUN/m_c/subject} awoke {PRONOUN/r_c/object} from a nap",
+			"Accidentally stepped on {PRONOUN/m_c/poss} own tail",
+			"Is chasing {PRONOUN/m_c/poss} own tail",
+			"Got distracted by a bee",
+			"Vanished in the middle of a patrol",
+			"Fell into the river trying to catch a fish",
+			"Is collecting fishbones",
+			"Has forgotten which nest in the den is {PRONOUN/m_c/inposs}",
+			"Ran so fast {PRONOUN/m_c/subject} ran into a tree",
+			"Tripped over {PRONOUN/m_c/poss} own paws... twice",
+			"Spoke too fast for r_c to keep up with {PRONOUN/m_c/object}",
+			"Has all the thoughts, all the time",
+			"Is offended when someone calls {PRONOUN/m_c/object} just a kitten",
+			"Is vibrating",
+			"Forgot what {PRONOUN/m_c/subject} {VERB/m_c/were/was} doing in the middle of the task",
+			"Accidentally abandoned {PRONOUN/m_c/poss} patrol for another",
+			"Zoned out in the middle of a task",
+			"Left half finished prey in the den, again",
+			"Got side-tracked talking to r_c",
+			"Is entertaining the kits with silly stories",
+			"Lost track of time again",
+			"Realises that {PRONOUN/m_c/subject} forgot to eat"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "comet spirit"
             ]
         },
         "random_status_constraint": [
@@ -2525,7 +2640,28 @@
             "Is tasting colors",
             "Is seeing sounds",
             "Tripped over r_c the other day",
-            "Stumbled into r_c because {PRONOUN/m_c/subject} misjudged how close {PRONOUN/r_c/subject} {VERB/m_c/were/was}"
+            "Stumbled into r_c because {PRONOUN/m_c/subject} misjudged how close {PRONOUN/r_c/subject} {VERB/m_c/were/was}",
+			"Is feeling too many emotions",
+			"Is too tired to cry",
+			"Watched r_c make the same mistake over and over",
+			"Is attempting to powernap in a sunbeam",
+			"Is sleeping at the wrong time",
+			"Is too tired to properly patrol",
+			"Complains to r_c about the sounds in the den",
+			"Jealously watches r_c sleep peacefully",
+			"Spitefully hopes to wake the clan by been too loud",
+			"Hisses at r_c for getting too close",
+			"Feels generally grumpy from lack of sleep",
+			"Longs for the joy of sleeping",
+			"Is feeling extra productive this moon",
+			"Is feeling energized",
+			"Has been awake long enough {PRONOUN/m_c/subject} no longer {VERB/m_c/feel/feels} tired",
+			"Doesn't fear anything",
+			"Walked into the den wall",
+			"Has been telling r_c a nonsense story",
+			"Has been talking to the air",
+			"Has been talking to {PRONOUN/m_c/self}",
+			"Is not feeling enough emotions"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2727,6 +2863,110 @@
         "perm_conditions": {
             "m_c": [
                 "disrupted senses"
+            ]
+        },
+        "random_status_constraint": [
+            "kitten",
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
+            "warrior",
+            "medicine cat",
+            "mediator",
+            "deputy",
+            "leader",
+            "elder"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "kit_regressor_to_alive_gen",
+        "thoughts": [
+            "Is purring in a sunbeam",
+			"Was seen playing moss-ball",
+			"Is scared to leave the camp",
+			"Curled up in the nursery to talk with the queens",
+			"Cutely purrs at r_c",
+			"Feels fuzzy and distant from {PRONOUN/m_c/self}",
+			"Has quiet time",
+			"Is playing with a kittypet toy {PRONOUN/m_c/subject} found",
+			"Chewing on sticks",
+			"Bats at some leaves around the camp",
+			"Found something new the other day",
+			"Is bounding around camp with new lightness and energy",
+			"Insists nothing is wrong with {PRONOUN/m_c/object}",
+			"Refuses to take {PRONOUN/m_c/poss} herbs",
+			"Is loudly whining about patrols",
+			"Is complaining about {PRONOUN/m_c/poss} prey choice",
+			"Is following r_c around",
+			"Is happy that r_c is playing with {PRONOUN/m_c/object}",
+			"Is whining about been unable to hide behind r_c properly",
+			"Peacefully naps in a sunbeam",
+			"Feels full of energy",
+			"Wants r_c to play with {PRONOUN/m_c/object}",
+			"Doesn't want to go on patrol",
+			"Found a kittypet bell to play with",
+			"Is destroying a leaf",
+			"Is building stone piles just to knock them over again",
+			"Is playing a made up game",
+			"Whines about been too big to play a game properly",
+			"Is mewling"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "kitten regressor"
+            ]
+        },
+        "random_status_constraint": [
+            "kitten",
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
+            "warrior",
+            "medicine cat",
+            "mediator",
+            "deputy",
+            "leader",
+            "elder"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "kit_regressor_to_elder_gen",
+        "thoughts": [
+            "Is listening to the elders stories",
+			"Is looking to r_c for support and advice",
+			"Is bothering r_c",
+			"Thinks about pranking the elders",
+			"Wonders what it's like to grow to be so old",
+			"Wonders if {PRONOUN/m_c/subject} could be as wise as the elders one day",
+			"Doesn't want to grow up"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "kitten regressor"
+            ]
+        },
+        "random_status_constraint": [
+            "elder"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "pup_regressor_to_alive_gen",
+        "thoughts": [
+            "Is chasing r_c around",
+			"Is barking from happiness"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "puppy regressor"
             ]
         },
         "random_status_constraint": [

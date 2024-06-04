@@ -2199,7 +2199,7 @@
     },
     "testosterone deficiency": {
         "severity": "minor",
-        "congenital": "always",
+        "congenital": "intersex",
         "moons_until": 0,
         "mortality": {
             "newborn": 0,
@@ -2222,7 +2222,7 @@
     },
     "excess testosterone": {
         "severity": "minor",
-        "congenital": "always",
+        "congenital": "intersex",
         "moons_until": 0,
         "mortality": {
             "newborn": 0,
@@ -2249,7 +2249,7 @@
     },
     "aneuploidy": {
         "severity": "minor",
-        "congenital": "always",
+        "congenital": "intersex",
         "moons_until": 0,
         "mortality": {
             "newborn": 0,
@@ -2272,7 +2272,7 @@
     },
     "mosaicism": {
         "severity": "minor",
-        "congenital": "always",
+        "congenital": "intersex",
         "moons_until": 0,
         "mortality": {
             "newborn": 0,
@@ -2295,7 +2295,7 @@
     },
     "chimerism": {
         "severity": "minor",
-        "congenital": "always",
+        "congenital": "intersex",
         "moons_until": 0,
         "mortality": {
             "newborn": 0,

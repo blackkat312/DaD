@@ -288,7 +288,13 @@ class Cat():
             #probability that the cat will be intersex.. base chance around 5%
             if intersexchance < 6 and example is False:
                 self.gender = "intersex"
-                intersex_condition = choice (["excess testosterone", "testosterone deficiency", "aneuploidy", "mosaicism", "chimerism"])
+                intersex_conditions = []            
+                for condition in PERMANENT:
+                    intersex = PERMANENT[condition]
+                    if intersex["congenital"] in ['intersex']:
+                        intersex_conditions.append(condition)
+            
+                intersex_condition = choice(intersex_conditions)
                 self.get_permanent_condition(intersex_condition, born_with=True)
             else:
                 self.gender = choice(["female", "male"])
@@ -1884,11 +1890,10 @@ class Cat():
         max_conditions = game.config["cat_generation"]["max_conditions_born_with"]
         conditions = 1
         count = 1
-        genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
-            if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
+            if possible["congenital"] in ['always', 'sometimes']:
                 possible_conditions.append(condition)
 
         while count <= max_conditions:
@@ -1953,7 +1958,7 @@ class Cat():
             if game.clan and game.clan.game_mode == "cruel season":
                 mortality = int(mortality * 0.65)
 
-        if condition['congenital'] == 'always':
+        if condition['congenital'] in ['always', 'intersex']:
             born_with = True
         moons_until = condition["moons_until"]
         if born_with and moons_until != 0:
@@ -2197,6 +2202,11 @@ class Cat():
 
             if "paralyzed" in self.permanent_condition and not self.pelt.paralyzed:
                 self.pelt.paralyzed = True
+
+            if "stimming" in self.illnesses and not self.pelt.blep:
+                self.pelt.blep = True
+            else:
+                self.pelt.blep = False
 
         except Exception as e:
             print(f"WARNING: There was an error reading the condition file of cat #{self}.\n", e)
@@ -3163,6 +3173,7 @@ class Cat():
                 "tortie_color": self.pelt.tortiecolour,
                 "tortie_pattern": self.pelt.tortiepattern,
                 "skin": self.pelt.skin,
+                "blep": self.pelt.blep,
                 "tint": self.pelt.tint,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
