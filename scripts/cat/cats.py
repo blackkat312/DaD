@@ -2203,6 +2203,11 @@ class Cat():
             if "paralyzed" in self.permanent_condition and not self.pelt.paralyzed:
                 self.pelt.paralyzed = True
 
+            if "stimming" in self.illnesses and not self.pelt.blep:
+                self.pelt.blep = True
+            else:
+                self.pelt.blep = False
+
         except Exception as e:
             print(f"WARNING: There was an error reading the condition file of cat #{self}.\n", e)
 
@@ -3168,6 +3173,7 @@ class Cat():
                 "tortie_color": self.pelt.tortiecolour,
                 "tortie_pattern": self.pelt.tortiepattern,
                 "skin": self.pelt.skin,
+                "blep": self.pelt.blep,
                 "tint": self.pelt.tint,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],

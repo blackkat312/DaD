@@ -238,6 +238,7 @@ class Sprites():
         for row, colors in enumerate(skin_colors):
             for col, color in enumerate(colors):
                 self.make_group('skin', (col, row), f"skin{color}")
+                self.make_group('blep', (col, row), f"blep{color}")
 
         self.load_scars()
         self.load_symbols()
@@ -323,6 +324,12 @@ class Sprites():
             ["BALL", "MOUSE", "MOSSBLANKIE", "BONE"],
             ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
         ]
+        
+        booties_data = [
+            ["CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT"]
+            ["GREENBOOT", "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT"]
+            ["PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"]
+        ] 
 
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
@@ -359,6 +366,11 @@ class Sprites():
         for row, disabilityaccs in enumerate(disabilityaccs_data):
             for col, disabilityacc in enumerate(disabilityaccs):
                 self.make_group('disabilityaccs', (col, row), f'acc_dismod{disabilityacc}')
+
+        # booties added
+        for row, bootiesaccs in enumerate(booties_data):
+            for col, bootiesacc in enumerate(bootiesaccs):
+                self.make_group('booties', (col, row), f'booties{bootiesacc}')         
 
     def load_symbols(self):
         """

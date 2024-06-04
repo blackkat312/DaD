@@ -90,7 +90,11 @@ class Pelt():
     ]
     toy_accessories = ["BALL", "MOUSE", "BONE"]
     blankie_accessories = ["MOSSBLANKIE"]
-    flag_accessories = ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
+    flag_accessories = ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"],
+    booties = [ 
+        "CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT", 
+        "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT" 
+    ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti"]
     spotted = ["Speckled", "Rosette"]
@@ -158,6 +162,7 @@ class Pelt():
                  scars:list=None,
                  tint:str="none",
                  skin:str="BLACK",
+                 blep:bool=False,
                  white_patches_tint:str="none",
                  kitten_sprite:int=None,
                  adol_sprite:int=None,
@@ -201,6 +206,7 @@ class Pelt():
 
         self.reverse = reverse
         self.skin = skin
+        self.blep = blep
 
     @staticmethod
     def generate_new_pelt(gender:str, parents:tuple=(), age:str="adult"):

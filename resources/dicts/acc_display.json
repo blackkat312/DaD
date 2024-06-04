@@ -453,5 +453,80 @@
     "default": "an autism pride flag",
     "plural": "autism pride flags",
     "singualar": "autism pride flag"
+  },
+  "CRIMSONBOOT": {
+    "default": "set of crimson booties",
+    "plural": "set of crimson booties",
+    "singular": "set of crimson booties"
+  },
+  "BLUEBOOT": {
+    "default": "set of blue booties",
+    "plural": "set of blue booties",
+    "singular": "set of blue booties"
+  },
+  "CYANBOOT": {
+    "default": "set of cyan booties",
+    "plural": "set of cyan booties",
+    "singular": "set of cyan booties"
+  },
+  "YELLOWBOOT": {
+    "default": "set of yellow booties",
+    "plural": "set of yellow booties",
+    "singular": "set of yellow booties"
+  },
+  "LIMEBOOT": {
+    "default": "set of lime booties",
+    "plural": "set of lime booties",
+    "singular": "set of lime booties"
+  },
+  "GREENBOOT": {
+    "default": "set of green booties",
+    "plural": "set of green booties",
+    "singular": "set of green booties"
+  },
+  "REDBOOT": {
+    "default": "set of red booties",
+    "plural": "set of red booties",
+    "singular": "set of red booties"
+  },
+  "RAINBOWBOOT": {
+    "default": "set of rainbow booties",
+    "plural": "set of rainbow booties",
+    "singular": "set of rainbow booties"
+  },
+  "BLACKBOOT": {
+    "default": "set of black booties",
+    "plural": "set of black booties",
+    "singular": "set of black booties"
+  },
+  "BROWNBOOT": {
+    "default": "set of brown booties",
+    "plural": "set of brown booties",
+    "singular": "set of brown booties"
+  },
+  "WHITEBOOT": {
+    "default": "set of white booties",
+    "plural": "set of white booties",
+    "singular": "set of white booties"
+  },
+  "PINKBOOT": {
+    "default": "set of pink booties",
+    "plural": "set of pink booties",
+    "singular": "set of pink booties"
+  },
+  "PURPLEBOOT": {
+    "default": "set of purple booties",
+    "plural": "set of purple booties",
+    "singular": "set of purple booties"
+  },
+  "MULTIBOOT": {
+    "default": "set of lilac booties",
+    "plural": "set of lilac booties",
+    "singular": "set of lilac booties"
+  },
+  "INDIGOBOOT": {
+    "default": "set of indigo booties",
+    "plural": "set of indigo booties",
+    "singular": "set of indigo booties"
   }
 }

@@ -209,6 +209,8 @@ class MiscEvents():
             acc_list.extend(Pelt.plant_accessories)
         if "COLLAR" in possible_accs:
             acc_list.extend(Pelt.collars)
+        if "BOOTIES" in possible_accs:
+            acc_list.extend(Pelt.booties)
         if "TOY" in possible_accs:
             acc_list.extend(Pelt.toy_accessories)
         if "BLANKIE" in possible_accs:
