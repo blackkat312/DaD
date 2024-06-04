@@ -860,7 +860,13 @@ class Cat():
 
         # sex!?!??!?!?!??!?!?!?!??
         if self.gender == "intersex":
-            intersex_condition = choice(["excess testosterone", "testosterone deficiency", "aneuploidy", "mosaicism", "chimerism"])
+            intersex_conditions = []
+            for condition in PERMANENT:
+                intersex = PERMANENT[condition]
+                if intersex["congenital"] in ['intersex']:
+                    intersex_conditions.append(condition)
+
+            intersex_condition = choice(intersex_conditions)
             self.get_permanent_condition(intersex_condition, born_with=True)
 
         self.gender = self.genotype.gender
@@ -881,7 +887,8 @@ class Cat():
             self.genderalign = self.gender
             trans_chance = randint(0, 30)
             nb_chance = randint(0, 35)
-            if self.status == 'newborn':
+            #newborns can't be trans, sorry babies
+            if self.age in ['newborn']:
                 trans_chance = 0
                 nb_chance = 0
             self.genderalign = ""
@@ -2065,6 +2072,7 @@ class Cat():
             print(f"rest and recover - injury {injury} of {self.name} healed earlier")
             self.healed_condition = True
             return False
+
     '''
     def system_core(self):
         template = {
@@ -2074,7 +2082,7 @@ class Cat():
             "role": "host",
             "other": "cat"
             }
-        if self.pelt is not None:
+        #if self.pelt is not None:
         template[name] = str(self.name)
         template[gender] = self.genderalign
         self.alters.append(template)
@@ -2268,21 +2276,17 @@ class Cat():
             self.inheritance = Inheritance(self)
         return other_cat.ID in self.inheritance.cousins.keys()
 
-    def is_related(self, other_cat, cousin_allowed):
+    def is_related(self, other_cat):
         """Checks if the given cat is related to the current cat, according to the inheritance."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        if cousin_allowed:
-            return other_cat.ID in self.inheritance.all_but_cousins
         return other_cat.ID in self.inheritance.all_involved
 
-    def get_relatives(self, cousin_allowed=True) -> list:
+    def get_relatives(self) -> list:
         """Returns a list of ids of all nearly related ancestors."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        if cousin_allowed:
-            return self.inheritance.all_involved
-        return self.inheritance.all_but_cousins
+        return self.inheritance.all_involved
 
     # ---------------------------------------------------------------------------- #
     #                                  conditions                                  #
@@ -2468,8 +2472,7 @@ class Cat():
         max_conditions = game.config["cat_generation"]["max_conditions_born_with"]
         conditions = 1
         count = 1
-        genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism",
-                              "albinism", "ocular albinism", "manx syndrome"]
+        genetics_exclusive = ["albinism", "ocular albinism", "manx syndrome"]
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
@@ -2548,7 +2551,7 @@ class Cat():
             if game.clan and game.clan.game_mode == "cruel season":
                 mortality = int(mortality * 0.65)
 
-        if condition['congenital'] == 'always':
+        if condition['congenital'] in ['always', 'intersex']:
             born_with = True
         moons_until = condition["moons_until"]
         if born_with and moons_until != 0:
@@ -2893,19 +2896,12 @@ class Cat():
                           other_cat: Cat,
                           for_love_interest: bool = False,
                           age_restriction: bool = True,
-                          first_cousin_mates:bool = False,
                           ignore_no_mates:bool=False,
                           outsider= False):
         """
             Checks if this cat is potential mate for the other cat.
             There are no restrictions if the current cat already has a mate or not (this allows poly-mates).
         """
-
-        try:
-            first_cousin_mates = game.clan.clan_settings["first cousin mates"]
-        except:
-            if 'unittest' not in sys.modules:
-                raise
 
 
         # just to be sure, check if it is not the same cat
@@ -2917,9 +2913,8 @@ class Cat():
             return False
 
         # Inheritance check
-        if self.is_related(other_cat, first_cousin_mates):
+        if self.is_related(other_cat):
             return False
-
 
         # check exiled, outside, and dead cats
         if (self.dead != other_cat.dead) or (self.outside and not outsider) or other_cat.outside:
@@ -4039,7 +4034,6 @@ def create_example_cats():
             if scar in not_allowed:
                 game.choose_cats[a].pelt.scars.remove(scar)
         game.choose_cats[a].genetic_conditions()
-
 
 
 
