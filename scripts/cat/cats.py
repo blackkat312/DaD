@@ -1689,21 +1689,17 @@ class Cat():
             self.inheritance = Inheritance(self)
         return other_cat.ID in self.inheritance.cousins.keys()
 
-    def is_related(self, other_cat, cousin_allowed):
+    def is_related(self, other_cat):
         """Checks if the given cat is related to the current cat, according to the inheritance."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        if cousin_allowed:
-            return other_cat.ID in self.inheritance.all_but_cousins
         return other_cat.ID in self.inheritance.all_involved
 
-    def get_relatives(self, cousin_allowed=True) -> list:
+    def get_relatives(self) -> list:
         """Returns a list of ids of all nearly related ancestors."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        if cousin_allowed:
-            return self.inheritance.all_involved
-        return self.inheritance.all_but_cousins
+        return self.inheritance.all_involved
 
     # ---------------------------------------------------------------------------- #
     #                                  conditions                                  #
@@ -2305,18 +2301,11 @@ class Cat():
                           other_cat: Cat,
                           for_love_interest: bool = False,
                           age_restriction: bool = True,
-                          first_cousin_mates:bool = False,
                           ignore_no_mates:bool=False):
         """
             Checks if this cat is potential mate for the other cat.
             There are no restrictions if the current cat already has a mate or not (this allows poly-mates).
         """
-        
-        try:
-            first_cousin_mates = game.clan.clan_settings["first cousin mates"]
-        except:
-            if 'unittest' not in sys.modules:
-                raise
                 
         
         # just to be sure, check if it is not the same cat
@@ -2328,7 +2317,7 @@ class Cat():
             return False
 
         # Inheritance check
-        if self.is_related(other_cat, first_cousin_mates):
+        if self.is_related(other_cat):
             return False
 
         # check exiled, outside, and dead cats
