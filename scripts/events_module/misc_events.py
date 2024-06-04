@@ -265,6 +265,8 @@ class MiscEvents():
         if "TAIL2" in possible_accs:
             acc_list.extend(Pelt.tail2_accessories)
         # dad accessories
+        if "BOOTIES" in possible_accs:
+            acc_list.extend(Pelt.booties)
         if "TOY" in possible_accs:
             acc_list.extend(Pelt.toy_accessories)
         if "BLANKIE" in possible_accs:
@@ -274,7 +276,7 @@ class MiscEvents():
 
         for acc in possible_accs:
             if acc not in ["WILD", "PLANT", "COLLAR", "FLOWER", "PLANT2", "SNAKE", "SMALLANIMAL", "DEADINSECT",
-                           "ALIVEINSECT", "FRUIT", "CRAFTED", "TAIL2", "TOY", "BLANKIE", "FLAG"]:
+                           "ALIVEINSECT", "FRUIT", "CRAFTED", "TAIL2", "BOOTIES", "TOY", "BLANKIE", "FLAG"]:
                 acc_list.append(acc)
 
         if "NOTAIL" in cat.pelt.scars or "HALFTAIL" in cat.pelt.scars or (cat.phenotype.bobtailnr > 0 and cat.phenotype.bobtailnr < 5):
@@ -291,6 +293,12 @@ class MiscEvents():
                 except ValueError:
                     print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
 
+        if "DECLAWED" in cat.pelt.scars:
+            for acc in Pelt.booties:
+                try:
+                    acc_list.remove(acc)
+                except ValueError:
+                    print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
 
         cat.pelt.accessory = random.choice(acc_list)
 
