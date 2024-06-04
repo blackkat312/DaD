@@ -432,7 +432,7 @@ class ProfileScreen(Screens):
                                                  , manager=MANAGER)
         self.back_button = UIImageButton(scale(pygame.Rect((50, 120), (210, 60))), "", object_id="#back_button"
                                          , manager=MANAGER)
-        self.inspect_button = UIImageButton(scale(pygame.Rect((1482, 120),(68,68))), "", 
+        self.inspect_button = UIImageButton(scale(pygame.Rect((1482, 120), (68, 68))), "",
                                             object_id="#magnify_button",
                                             manager=MANAGER)
         self.relations_tab_button = UIImageButton(scale(pygame.Rect((96, 840), (352, 60))), "",
@@ -575,7 +575,7 @@ class ProfileScreen(Screens):
         if game.clan.clan_settings['backgrounds']:
             self.profile_elements["background"] = pygame_gui.elements.UIImage(
                 scale(pygame.Rect((110, 400), (480, 420))),
-                pygame.transform.scale(self.get_platform(), scale_dimentions((480, 420))), 
+                pygame.transform.scale(self.get_platform(), scale_dimentions((480, 420))),
                 manager=MANAGER)
             self.profile_elements["background"].disable()
 
@@ -931,7 +931,7 @@ class ProfileScreen(Screens):
             bs_text = the_cat.status
         else:
             if the_cat.backstory:
-                #print(the_cat.backstory)
+                # print(the_cat.backstory)
                 for category in BACKSTORIES["backstory_categories"]:
                     if the_cat.backstory in BACKSTORIES["backstory_categories"][category]:
                         bs_text = BACKSTORIES["backstory_display"][category]
@@ -952,7 +952,7 @@ class ProfileScreen(Screens):
                 if not nutr:
                     game.clan.freshkill_pile.add_cat_to_nutrition(the_cat)
                     nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
-                output += "nutrition: " + nutr.nutrition_text 
+                output += "nutrition: " + nutr.nutrition_text
                 if game.clan.clan_settings['showxp']:
                     output += ' (' + str(int(nutr.percentage)) + ')'
                 output += "\n"
@@ -1383,17 +1383,14 @@ class ProfileScreen(Screens):
         output = ""
         if self.open_sub_tab == 'life events':
             # start our history with the backstory, since all cats get one
-            if self.the_cat.status not in ["rogue", "kittypet", "loner", "former Clancat"]:
-                life_history = [str(self.get_backstory_text())]
-            else:
-                life_history = []
+            life_history = [str(self.get_backstory_text())]
 
             # now get apprenticeship history and add that if any exists
             app_history = self.get_apprenticeship_text()
             if app_history:
                 life_history.append(app_history)
-                
-            #Get mentorship text if it exists
+
+            # Get mentorship text if it exists
             mentor_history = self.get_mentorship_text()
             if mentor_history:
                 life_history.append(mentor_history)
@@ -1430,23 +1427,26 @@ class ProfileScreen(Screens):
         bs_blurb = None
         if self.the_cat.backstory:
             bs_blurb = BACKSTORIES["backstories"][self.the_cat.backstory]
-        if self.the_cat.status in ['kittypet', 'loner', 'rogue', 'former Clancat']:
+        if self.the_cat.status in ['kittypet', 'loner', 'rogue', 'former Clancat'] and self.the_cat.dead:
+            bs_blurb = f"This cat was a {self.the_cat.status} in life."
+        elif self.the_cat.status in ['kittypet', 'loner', 'rogue', 'former Clancat']:
             bs_blurb = f"This cat is a {self.the_cat.status} and currently resides outside of the Clans."
 
         if bs_blurb is not None:
             adjust_text = str(bs_blurb).replace('This cat', str(self.the_cat.name))
             text = adjust_text
         else:
-            text = str(self.the_cat.name) + " was born into the Clan where {PRONOUN/m_c/subject} currently reside."
+            text = str(self.the_cat.name) + "'s past history is unknown."
 
-        beginning = History.get_beginning(self.the_cat)
-        if beginning:
-            if beginning['clan_born']:
-                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/were/was} born on Moon " + str(
-                    beginning['moon']) + " during " + str(beginning['birth_season']) + "."
-            else:
-                text += " {PRONOUN/m_c/subject/CAP} joined the Clan on Moon " + str(
-                    beginning['moon']) + " at the age of " + str(beginning['age']) + " Moons."
+        if not self.the_cat.dead and self.the_cat.status not in ['kittypet', 'loner', 'rogue', 'former Clancat']:
+            beginning = History.get_beginning(self.the_cat)
+            if beginning:
+                if beginning['clan_born']:
+                    text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/were/was} born on Moon " + str(
+                        beginning['moon']) + " during " + str(beginning['birth_season']) + "."
+                else:
+                    text += " {PRONOUN/m_c/subject/CAP} joined the Clan on Moon " + str(
+                        beginning['moon']) + " at the age of " + str(beginning['age']) + " Moons."
 
         text = process_text(text, cat_dict)
         return text
@@ -1513,14 +1513,14 @@ class ProfileScreen(Screens):
 
         mentor_influence = History.get_mentor_influence(self.the_cat)
         influence_history = ""
-        
-        #First, just list the mentors:
+
+        # First, just list the mentors:
         if self.the_cat.status in ['kitten', 'newborn']:
             influence_history = 'This cat has not begun training.'
         elif self.the_cat.status in ['apprentice', 'medicine cat apprentice', 'mediator apprentice']:
             influence_history = 'This cat has not finished training.'
         else:
-            valid_formor_mentors = [Cat.fetch_cat(i) for i in self.the_cat.former_mentor if 
+            valid_formor_mentors = [Cat.fetch_cat(i) for i in self.the_cat.former_mentor if
                                     isinstance(Cat.fetch_cat(i), Cat)]
             if valid_formor_mentors:
                 influence_history += "{PRONOUN/m_c/subject/CAP} {VERB/m_c/were/was} mentored by "
@@ -1536,12 +1536,12 @@ class ProfileScreen(Screens):
             trait_influence = []
             if "trait" in mentor_influence and isinstance(mentor_influence["trait"], dict):
                 for _mentor in mentor_influence["trait"]:
-                    #If the strings are not set (empty list), continue. 
+                    # If the strings are not set (empty list), continue.
                     if not mentor_influence["trait"][_mentor].get("strings"):
                         continue
                     
                     ment_obj = Cat.fetch_cat(_mentor)
-                    #Continue of the mentor is invalid too.
+                    # Continue of the mentor is invalid too.
                     if not isinstance(ment_obj, Cat):
                         continue
                     
@@ -1559,12 +1559,12 @@ class ProfileScreen(Screens):
             skill_influence = []
             if "skill" in mentor_influence and isinstance(mentor_influence["skill"], dict):
                 for _mentor in mentor_influence["skill"]:
-                    #If the strings are not set (empty list), continue. 
+                    # If the strings are not set (empty list), continue.
                     if not mentor_influence["skill"][_mentor].get("strings"):
                         continue
                     
                     ment_obj = Cat.fetch_cat(_mentor)
-                    #Continue of the mentor is invalid too.
+                    # Continue of the mentor is invalid too.
                     if not isinstance(ment_obj, Cat):
                         continue
                     
@@ -1636,7 +1636,7 @@ class ProfileScreen(Screens):
     def get_text_for_murder_event(self, event, death):
         ''' returns the adjusted murder history text for the victim '''
         if event["text"] == death["text"] and event["moon"] == death["moon"]:
-            if event["revealed"] is True: 
+            if event["revealed"] is True:
                 final_text = event_text_adjust(Cat, event["text"], self.the_cat, Cat.fetch_cat(death["involved"]))
                 if event.get("revelation_text"):
                     final_text = final_text + event["revelation_text"]
@@ -1686,7 +1686,7 @@ class ProfileScreen(Screens):
                     else:
                         life_text = "lost a life"
                 elif death_number > 1:
-                    #for retired leaders
+                    # for retired leaders
                     if index == death_number - 1 and self.the_cat.dead:
                         life_text = "lost {PRONOUN/m_c/poss} last remaining life"
                         # added code
@@ -1748,7 +1748,7 @@ class ProfileScreen(Screens):
         victims = []
         if murder_history:
             if 'is_murderer' in murder_history:
-                victims = murder_history["is_murderer"]                
+                victims = murder_history["is_murderer"]
 
         if len(victims) > 0:
             victim_names = {}
@@ -1757,7 +1757,7 @@ class ProfileScreen(Screens):
 
             for victim in victims:
                 if not Cat.fetch_cat(victim["victim"]):
-                    continue 
+                    continue
                 name = str(Cat.fetch_cat(victim["victim"]).name)
 
                 if victim["revealed"]:
