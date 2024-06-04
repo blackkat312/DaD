@@ -150,6 +150,10 @@ class Pelt():
     toy_accessories = ["BALL", "MOUSE", "BONE"]
     blankie_accessories = ["MOSSBLANKIE"]
     flag_accessories = ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
+    booties = [
+        "CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT",
+        "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"
+    ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti"]
     spotted = ["Speckled", "Rosette"]
