@@ -365,6 +365,12 @@ class GenerateEvents:
                 if event.injury == 'torn ear' and 'NOEAR' in cat.pelt.scars:
                     continue
 
+                if event.injury == 'wrenched claws' and ["CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT",
+                                                         "LIMEBOOT", "GREENBOOT", "RAINBOWBOOT", "BLACKBOOT",
+                                                         "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT",
+                                                         "MULTIBOOT", "INDIGOBOOT"] in cat.pelt.accessory:
+                    continue
+
             # check meddie tags
             if "medicine_cat" in event.tags and cat.status != "medicine cat":
                 continue
@@ -500,6 +506,9 @@ class GenerateEvents:
             if event.accessories == ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'SEAWEED', 'DAISY CORSAGE'] and ("NOTAIL" in cat.pelt.scars or "HALFTAIL" in cat.pelt.scars or (cat.phenotype.bobtailnr > 0 and cat.phenotype.bobtailnr < 5)):
                 continue
 
+            # check if booties + declawed
+            if event.accessories == ['CRIMSONBOOT', 'BLUEBOOT', 'YELLOWBOOT', 'CYANBOOT', 'REDBOOT', 'LIMEBOOT', 'GREENBOOT', 'RAINBOWBOOT', 'BLACKBOOT', 'BROWNBOOT', 'WHITEBOOT', 'PINKBOOT', 'PURPLEBOOT', 'MULTIBOOT', 'INDIGOBOOT'] and "DECLAWED" in cat.pelt.scars:
+                continue
 
             # check cat trait and skill
             has_trait = False
