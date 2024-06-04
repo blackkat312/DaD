@@ -80,6 +80,8 @@ class ClanScreen(Screens):
                 self.menu_button_pressed(event)
             if event.ui_element == self.warrior_den_label:
                 self.change_screen('warrior den screen')
+            if event.ui_element == self.leader_den_label:
+                self.change_screen('leader den screen')
 
         elif event.type == pygame.KEYDOWN and game.settings['keybinds']:
             if event.key == pygame.K_RIGHT:
@@ -96,7 +98,6 @@ class ClanScreen(Screens):
                 game.save_settings()
                 game.switches['saved_clan'] = True
                 self.update_buttons_and_text()
-
 
     def screen_switches(self):
         self.update_camp_bg()
@@ -120,7 +121,9 @@ class ClanScreen(Screens):
         i = 0
         for x in game.clan.clan_cats:
             if not Cat.all_cats[x].dead and Cat.all_cats[x].in_camp and \
-                    not (Cat.all_cats[x].exiled or Cat.all_cats[x].outside) and (Cat.all_cats[x].status != 'newborn' or game.config['fun']['all_cats_are_newborn'] or game.config['fun']['newborns_can_roam']):
+                    not (Cat.all_cats[x].exiled or Cat.all_cats[x].outside) and (
+                    Cat.all_cats[x].status != 'newborn' or game.config['fun']['all_cats_are_newborn'] or
+                    game.config['fun']['newborns_can_roam']):
 
                 i += 1
                 if i > self.max_sprites_displayed:
@@ -144,11 +147,11 @@ class ClanScreen(Screens):
             object_id="#warrior_den_button",
             starting_height=2
         )
-        self.leader_den_label = pygame_gui.elements.UIImage(
+        self.leader_den_label = UIImageButton(
             scale(pygame.Rect(self.layout["leader den"], (224, 56))),
-            pygame.transform.scale(
-                image_cache.load_image('resources/images/leader_den.png'),
-                (224, 56)))
+            "",
+            object_id="#lead_den_button",
+            starting_height=2)
         self.med_den_label = UIImageButton(scale(pygame.Rect(
             self.layout["medicine den"], (302, 56))),
             "",
@@ -160,7 +163,7 @@ class ClanScreen(Screens):
             pygame.transform.scale(
                 image_cache.load_image('resources/images/elder_den.png'),
                 (206, 56)),
-            )
+        )
         self.nursery_label = pygame_gui.elements.UIImage(scale(pygame.Rect(self.layout['nursery'], (160, 56))),
                                                          pygame.transform.scale(
                                                              image_cache.load_image('resources/images/nursery_den.png'),
@@ -372,7 +375,6 @@ class ClanScreen(Screens):
             elif Cat.all_cats[x].status == "leader":
                 game.clan.leader.placement = self.choose_nonoverlapping_positions(first_choices, all_dens,
                                                                                   [1, 200, 1, 1, 1, 1, 1])
-
 
     def update_buttons_and_text(self):
         if game.switches['saved_clan']:
