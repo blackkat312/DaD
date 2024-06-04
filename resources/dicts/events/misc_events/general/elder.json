@@ -103,13 +103,14 @@
             "Greenleaf",
             "Leaf-fall"
         ],
-        "event_text": "m_c disappears for a few days, then returns to camp with a acc_singular around {PRONOUN/m_c/poss} neck.",
+        "event_text": "m_c disappears for a few days, then returns to camp with acc_singular that {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} know how to get off.",
         "cat_trait": null,
         "cat_skill": null,
         "other_cat_trait": null,
         "other_cat_skill": null,
         "accessories": [
-            "COLLAR"
+            "COLLAR",
+            "BOOTIES"
         ]
     },
     {
@@ -127,7 +128,7 @@
         "other_cat_skill": null
     },
     {
-        "camp": "Any",
+        "camp": "any",
         "tags": [
             "Newleaf",
             "Greenleaf",
