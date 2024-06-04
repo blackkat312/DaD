@@ -512,7 +512,7 @@
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -538,7 +538,7 @@
                 "stat_skill": ["LORE,1", "STORY,1"],
                 "can_have_stat": ["any"],
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -562,7 +562,7 @@
                 "exp": 20,
                 "weight": 5,
                 "new_cat": [
-                    ["female", "loner", "age:has_kits", "meeting"],
+                    ["molly", "loner", "age:has_kits", "meeting"],
                     ["litter", "parent:0", "status:newborn", "backstory:abandoned2"],
                     ["age:newborn", "loner", "meeting", "parent:0"]
                 ],
@@ -613,7 +613,7 @@
                 "weight": 20,
                 "outsider_rep": -4,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ],
@@ -624,7 +624,7 @@
                 "weight": 20,
                 "outsider_rep": -2,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ]
@@ -1473,7 +1473,7 @@
                 "exp": 30,
                 "weight": 20,
                 "new_cat": [
-                    ["kittypet", "female", "dead", "age:has_kits"],
+                    ["kittypet", "molly", "dead", "age:has_kits"],
                     [
                         "litter",
                         "parent:0",
@@ -1496,7 +1496,7 @@
                 "exp": 30,
                 "weight": 5,
                 "new_cat": [
-                    ["kittypet", "female", "dead", "age:has_kits"],
+                    ["kittypet", "molly", "dead", "age:has_kits"],
                     [
                         "litter",
                         "parent:0",
@@ -1520,7 +1520,7 @@
                 "weight": 20,
                 "stat_trait": ["careful", "thoughtful"],
                 "new_cat": [
-                    ["kittypet", "female", "dead", "age:has_kits"],
+                    ["kittypet", "molly", "dead", "age:has_kits"],
                     [
                         "litter",
                         "parent:0",
