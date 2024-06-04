@@ -435,24 +435,99 @@
     "singular": "mouse"
   },
   "BONE": {
-    "default": "a rubber bone",
+    "default": "rubber bone",
     "plural": "rubber bones",
-    "singular": "a rubber bone"
+    "singular": "rubber bone"
   },
   "DISFLAG": {
-    "default": "a disability pride flag",
+    "default": "disability pride flag",
     "plural": "disability pride flags",
     "singular": "disability pride flag"
   },
   "ZEBFLAG": {
-    "default": "a zebra pride flag",
+    "default": "zebra pride flag",
     "plural": "zebra pride flags",
     "singular": "zebra pride flag"
   },
   "AUTISMFLAG": {
-    "default": "an autism pride flag",
+    "default": "autism pride flag",
     "plural": "autism pride flags",
     "singular": "autism pride flag"
+  },
+  "CRIMSONBOOT": {
+    "default": "set of crimson booties",
+    "plural": "sets of crimson booties",
+    "singular": "set of crimson booties"
+  },
+  "BLUEBOOT": {
+    "default": "set of blue booties",
+    "plural": "sets of blue booties",
+    "singular": "set of blue booties"
+  },
+  "CYANBOOT": {
+    "default": "set of cyan booties",
+    "plural": "sets of cyan booties",
+    "singular": "set of cyan booties"
+  },
+  "YELLOWBOOT": {
+    "default": "set of yellow booties",
+    "plural": "sets of yellow booties",
+    "singular": "set of yellow booties"
+  },
+  "LIMEBOOT": {
+    "default": "set of lime booties",
+    "plural": "sets of lime booties",
+    "singular": "set of lime booties"
+  },
+  "GREENBOOT": {
+    "default": "set of green booties",
+    "plural": "sets of green booties",
+    "singular": "set of green booties"
+  },
+  "REDBOOT": {
+    "default": "set of red booties",
+    "plural": "sets of red booties",
+    "singular": "set of red booties"
+  },
+  "RAINBOWBOOT": {
+    "default": "set of rainbow booties",
+    "plural": "sets of rainbow booties",
+    "singular": "set of rainbow booties"
+  },
+  "BLACKBOOT": {
+    "default": "set of black booties",
+    "plural": "sets of black booties",
+    "singular": "set of black booties"
+  },
+  "BROWNBOOT": {
+    "default": "set of brown booties",
+    "plural": "sets of brown booties",
+    "singular": "set of brown booties"
+  },
+  "WHITEBOOT": {
+    "default": "set of white booties",
+    "plural": "sets of white booties",
+    "singular": "set of white booties"
+  },
+  "PINKBOOT": {
+    "default": "set of pink booties",
+    "plural": "sets of pink booties",
+    "singular": "set of pink booties"
+  },
+  "PURPLEBOOT": {
+    "default": "set of purple booties",
+    "plural": "sets of purple booties",
+    "singular": "set of purple booties"
+  },
+  "MULTIBOOT": {
+    "default": "set of lilac booties",
+    "plural": "sets of lilac booties",
+    "singular": "set of lilac booties"
+  },
+  "INDIGOBOOT": {
+    "default": "set of indigo booties",
+    "plural": "sets of indigo booties",
+    "singular": "set of indigo booties"
   },
   "DAISY": {
     "default": "daisy",
