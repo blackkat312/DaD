@@ -308,7 +308,6 @@ class Events:
                 success=info_dict["success"]
             )
             chosen_event = random.choice(events)
-            print(chosen_event)
 
             # get event text
             event_text = chosen_event["event_text"]
@@ -598,7 +597,6 @@ class Events:
                 else:
                     print("No herbs to destroy")
                     return
-                print(f"New herb found: {bad_herb}")
 
             herb_amount = random.randrange(1, game.clan.herbs[bad_herb] + 1)
             # deplete the herb
@@ -645,7 +643,6 @@ class Events:
                     else:
                         print("No herbs to destroy")
                         return
-                    print(f"New herb found: {herb_given}")
 
                 if game.clan.herbs[herb_given] > 2:
                     herb_amount = random.randrange(
@@ -1054,7 +1051,6 @@ class Events:
                 Single_Event(text, "misc", cat_IDs))
 
         # Perform a ceremony if needed
-        print("checking ceremonies for returned cat")
         for cat_ID in cat_IDs:
             x = Cat.fetch_cat(cat_ID)
             if x.status in ["apprentice", "medicine cat apprentice", "mediator apprentice", "kitten", "newborn"]:
@@ -2446,7 +2442,6 @@ class Events:
                 if game.clan.clan_settings.get("rest and recover"):
                     stopping_chance = game.config["focus"]["rest and recover"]["outbreak_prevention"]
                     if not int(random.random() * stopping_chance):
-                        # print(f"rest and recover - outbreak of {illness} prevented")
                         continue
 
                 if illness == 'kittencough':
