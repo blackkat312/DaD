@@ -183,9 +183,7 @@ class GenerateEvents:
                 event = None
                 for event in events_dict:
                     if event["event"] != specific_event:
-                        # print(event["event"], 'is not', specific_event)
                         continue
-                    # print(event["event"], "is", specific_event)
                     event = OngoingEvent(
                         event=event["event"],
                         camp=event["camp"],
@@ -469,8 +467,7 @@ class GenerateEvents:
                 elif event.other_cat_skill:
                     if not has_skill and (prevent_bypass or int(random.random() * trait_skill_bypass)):
                         continue
-                
-                
+
                 # check cat negate trait and skill
                 has_trait = False
                 if event.other_cat_negate_trait:
@@ -541,8 +538,7 @@ class GenerateEvents:
             elif event.cat_skill:
                 if not has_skill and (prevent_bypass or int(random.random() * trait_skill_bypass)):
                     continue
-            
-            
+
             # check cat negate trait and skill
             has_trait = False
             if event.cat_negate_trait:
@@ -617,7 +613,6 @@ class GenerateEvents:
                 )"""
                 return event_list
             else:
-                # print(specific_event)
                 event = (
                     GenerateEvents.generate_ongoing_events(event_type, biome, specific_event)
                 )
@@ -638,8 +633,6 @@ class GenerateEvents:
             possible_events.extend(events["general"][body_status])
             if trait in events:
                 possible_events.extend(events[trait][body_status])
-
-        # print(possible_events)
 
         return possible_events
 
