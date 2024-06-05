@@ -968,7 +968,7 @@ class ProfileScreen(Screens):
         already_sick_injured = False
         if the_cat.is_injured():
             special_conditions = [
-                "overstimulation", "understimulation", "fatigue", "fainting"
+                "recovering from birth", "overstimulation", "understimulation", "fatigue", "fainting", "pregnant"
             ]
             all_special = True
             for condition in the_cat.injuries:
