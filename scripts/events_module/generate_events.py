@@ -368,7 +368,7 @@ class GenerateEvents:
                 if event.injury == 'wrenched claws' and cat.pelt.accessory in ["CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", 
                                                         "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT", 
                                                         "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", 
-                                                        "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"] :
+                                                        "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"]:
                     continue
 
             # check meddie tags
