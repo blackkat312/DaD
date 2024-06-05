@@ -334,7 +334,7 @@ def create_new_cat(Cat,
             if kittypet:
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 2) == 1:
-                    accessory = choice(choice(Pelt.collars), choice(Pelt.booties))
+                    accessory = choice([choice(Pelt.collars), choice(Pelt.booties)])
             elif loner and randint(1, 2) == 1:  # try to give name from full loner name list
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 2) == 1:
