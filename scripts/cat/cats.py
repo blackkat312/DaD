@@ -949,13 +949,13 @@ class Cat():
                     m -= 1
             elif self.age in ['young adult', 'adult']:
                 self.experience = randint(Cat.experience_levels_range["prepared"][0],
-                                          Cat.experience_levels_range["proficient"][1])
+                                        Cat.experience_levels_range["proficient"][1])
             elif self.age in ['senior adult']:
                 self.experience = randint(Cat.experience_levels_range["competent"][0],
-                                          Cat.experience_levels_range["expert"][1])
+                                        Cat.experience_levels_range["expert"][1])
             elif self.age in ['senior']:
                 self.experience = randint(Cat.experience_levels_range["competent"][0],
-                                          Cat.experience_levels_range["master"][1])
+                                        Cat.experience_levels_range["master"][1])
             else:
                 self.experience = 0
 
@@ -1657,7 +1657,6 @@ class Cat():
                 else:
                     extra_givers = sample(possible_sc_cats, k=amount)
             else:
-                #print(game.clan.darkforest_cats)
                 possible_df_cats = [i for i in game.clan.darkforest_cats if
                                     self.fetch_cat(i) and
                                     i not in life_givers and
@@ -2028,7 +2027,7 @@ class Cat():
         # CLAN FOCUS! - if the focus 'rest and recover' is selected
         elif game.clan.clan_settings.get("rest and recover") and\
             self.illnesses[illness]["duration"] + moons_prior - moons_with <= 0:
-            # print(f"rest and recover - illness {illness} of {self.name} healed earlier")
+            print(f"rest and recover - illness {illness} of {self.name} healed earlier")
             self.healed_condition = True
             return False
 
@@ -2915,6 +2914,7 @@ class Cat():
         # Inheritance check
         if self.is_related(other_cat):
             return False
+
 
         # check exiled, outside, and dead cats
         if (self.dead != other_cat.dead) or (self.outside and not outsider) or other_cat.outside:
@@ -4034,6 +4034,7 @@ def create_example_cats():
             if scar in not_allowed:
                 game.choose_cats[a].pelt.scars.remove(scar)
         game.choose_cats[a].genetic_conditions()
+
 
 
 
