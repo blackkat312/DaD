@@ -1,1 +1,1 @@
-https://github.com/Chinch-Bug/clangen-genemod/commit/83351cbc8073fc9bf1a2f8573fc2bd1a7a0dd654
+https://github.com/Chinch-Bug/clangen-genemod/commit/662ec5c8505dd96c4329adc2bb27fc3dcafd97fc
