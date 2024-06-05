@@ -74,7 +74,7 @@ class TestsGetStatusThought(unittest.TestCase):
         # given
         medicine = Cat()
         warrior = Cat()
-        medicine.status = "healer"
+        medicine.status = "medicine cat"
         warrior.status = "warrior"
         medicine.trait = "bold"
         biome = "Forest"
@@ -98,8 +98,6 @@ class TestsGetStatusThought(unittest.TestCase):
 
         # load thoughts
         thoughts = Thoughts.load_thoughts(cat, None, "expanded", biome, season, camp)
-        """Prints can be turned back on if testing is needed"""
-        # print("Exiled Thoughts: " + str(thoughts))
 
     def test_lost_thoughts(self):
         # given
@@ -111,8 +109,6 @@ class TestsGetStatusThought(unittest.TestCase):
 
         # load thoughts
         thoughts = Thoughts.load_thoughts(cat, None, "expanded", biome, season, camp)
-        """Prints can be turned back on if testing is needed"""
-        # print("Lost Thoughts: " + str(thoughts))
 
 
 class TestFamilyThoughts(unittest.TestCase):
