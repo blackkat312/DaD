@@ -372,7 +372,7 @@ class RelationshipScreen(Screens):
                                                                                     (44, 40)))
             else:
                 # Family Dot
-                related = self.the_cat.is_related(self.inspect_cat, game.clan.clan_settings["first cousin mates"])
+                related = self.the_cat.is_related(self.inspect_cat)
                 if related:
                     self.inspect_cat_elements['family'] = pygame_gui.elements.UIImage(
                         scale(pygame.Rect((90, 300), (36, 36))),
@@ -382,9 +382,9 @@ class RelationshipScreen(Screens):
                             (36, 36)))
 
             # Gender
-            if self.inspect_cat.genderalign == 'molly' or (self.inspect_cat.gender == 'intersex' and self.inspect_cat.genderalign == 'trans molly'):
+            if self.inspect_cat.genderalign == 'molly':
                 gender_icon = image_cache.load_image("resources/images/female_big.png").convert_alpha()
-            elif self.inspect_cat.genderalign == 'tom' or (self.inspect_cat.gender == 'intersex' and self.inspect_cat.genderalign == 'trans tom'):
+            elif self.inspect_cat.genderalign == 'tom':
                 gender_icon = image_cache.load_image("resources/images/male_big.png").convert_alpha()
             elif self.inspect_cat.genderalign == 'trans molly':
                 gender_icon = image_cache.load_image("resources/images/transfem_big.png").convert_alpha()
@@ -454,7 +454,7 @@ class RelationshipScreen(Screens):
                         col2 += "related: sibling (littermate)"
                     else:
                         col2 += "related: sibling"
-                elif not game.clan.clan_settings["first cousin mates"] and self.inspect_cat.is_cousin(self.the_cat):
+                elif self.inspect_cat.is_cousin(self.the_cat):
                     col2 += "related: cousin"
 
             self.inspect_cat_elements["col2"] = pygame_gui.elements.UITextBox(col2,
@@ -563,9 +563,9 @@ class RelationshipScreen(Screens):
                                                                                      object_id="#text_box_26_horizcenter")
 
         # Gender alignment
-        if the_relationship.cat_to.genderalign == 'molly' or (the_relationship.cat_to.gender == 'intersex' and the_relationship.cat_to.genderalign == 'trans molly'):
+        if the_relationship.cat_to.genderalign == 'molly':
             gender_icon = image_cache.load_image("resources/images/female_big.png").convert_alpha()
-        elif the_relationship.cat_to.genderalign == 'tom' or (the_relationship.cat_to.gender == 'intersex' and the_relationship.cat_to.genderalign == 'trans tom'):
+        elif the_relationship.cat_to.genderalign == 'tom':
             gender_icon = image_cache.load_image("resources/images/male_big.png").convert_alpha()
         elif the_relationship.cat_to.genderalign == 'trans molly':
             gender_icon = image_cache.load_image("resources/images/transfem_big.png").convert_alpha()
@@ -593,10 +593,7 @@ class RelationshipScreen(Screens):
         else:
             # FAMILY DOT
             # Only show family dot on cousins if first cousin mates are disabled.
-            if game.clan.clan_settings['first cousin mates']:
-                check_cousins = False
-            else:
-                check_cousins = the_relationship.cat_to.is_cousin(self.the_cat)
+            check_cousins = the_relationship.cat_to.is_cousin(self.the_cat)
 
             if the_relationship.cat_to.is_uncle_aunt(self.the_cat) or self.the_cat.is_uncle_aunt(
                     the_relationship.cat_to) \
