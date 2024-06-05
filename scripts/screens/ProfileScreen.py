@@ -931,7 +931,6 @@ class ProfileScreen(Screens):
             bs_text = the_cat.status
         else:
             if the_cat.backstory:
-                # print(the_cat.backstory)
                 for category in BACKSTORIES["backstory_categories"]:
                     if the_cat.backstory in BACKSTORIES["backstory_categories"][category]:
                         bs_text = BACKSTORIES["backstory_display"][category]
@@ -1971,8 +1970,6 @@ class ProfileScreen(Screens):
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.injuries])
         all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.illnesses if
                                      i not in ("an infected wound", "a festering wound")])
-        #for i in all_illness_injuries:
-            #print(i)
         all_illness_injuries = chunks(all_illness_injuries, 4)
 
         if not all_illness_injuries:
@@ -2493,6 +2490,7 @@ class ProfileScreen(Screens):
             if self.open_sub_tab == 'life events':
                 self.sub_tab_1.disable()
                 self.sub_tab_2.enable()
+                self.sub_tab_3.enable()
                 self.history_text_box.kill()
                 self.history_text_box = UITextBoxTweaked(self.get_all_history_text(),
                                                          scale(pygame.Rect((200, 946), (1200, 298))),
@@ -2520,6 +2518,7 @@ class ProfileScreen(Screens):
             elif self.open_sub_tab == 'user notes':
                 self.sub_tab_1.enable()
                 self.sub_tab_2.disable()
+                self.sub_tab_3.enable()
                 if self.history_text_box:
                     self.history_text_box.kill()
                     self.no_moons.kill()
