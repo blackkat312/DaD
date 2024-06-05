@@ -155,6 +155,8 @@ class Pelt():
         "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"
     ]
 
+    all_natural_accessories = [plant_accessories, wild_accessories, flower_accessories, plant2_accessories, deadInsect_accessories, fruit_accessories, ["LEAF BOW"], tail2_accessories]
+
     tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti"]
     spotted = ["Speckled", "Rosette"]
     plain = ["SingleColour", "TwoColour", "Smoke", "Singlestripe"]
