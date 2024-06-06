@@ -2073,6 +2073,11 @@ class Cat():
         is_ill = True
         if len(self.illnesses) <= 0:
             is_ill = False
+
+        if "stimming" in self.illnesses:
+            self.pelt.blep = True
+        else:
+            self.pelt.blep = False
         return is_ill is not False
 
     def is_injured(self):

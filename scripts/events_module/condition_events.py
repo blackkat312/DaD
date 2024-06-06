@@ -153,6 +153,8 @@ class Condition_Events():
                 elif chosen_illness in ['kittenspace', 'puppyspace']:
                     event_string = f"Recently, {cat.name} has been acting a bit differently than usual." \
                                    f" It seems like they may have gone into {chosen_illness}."
+                elif chosen_illness == "stimming":
+                    event_string = f"{cat.name} has started {chosen_illness}."
                 else:
                     event_string = f"{cat.name} has gotten {chosen_illness}."
                 event_string = Condition_Events.change_condition_name(event_string)
