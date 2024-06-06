@@ -1537,8 +1537,6 @@ class Events:
                         'wise', 'faithful'
                     ]:
                         chance = int(chance / 1.3)
-                    if cat.is_disabled():
-                        chance = int(chance / 2)
 
                     if chance == 0:
                         chance = 1
