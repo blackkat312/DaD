@@ -1541,19 +1541,38 @@ class Events:
                             med_personality = True
                         index += 1
 
-                    # med skill
-                    med_skills = ["CLEVER", "HEALER", "GARDENER", "MEMORY", "HERBALIST"]
-                    med_skill = False
-                    index = 0
-                    for entry in med_skills:
-                        if med_skills[index] == cat.skills:
-                            med_skill = True
-                        index += 1
+                    # med skills
+                    clever = False
+                    healer = False
+                    gardener = False
+                    memory = False
+                    herbalist = False
 
-                    if med_personality or med_skill:
-                        chance = int(chance / 1.3)
+                    if "CLEVER" in cat.skills:
+                        clever = True
+                    if "HEALER" in cat.skills:
+                        healer = True
+                    if "GARDENER" in cat.skills:
+                        gardener = True
+                    if "MEMORY" in cat.skills:
+                        memory = True
+                    if "HERBALIST" in cat.skills:
+                        herbalist = True
 
-                    if chance == 0:
+                    if med_personality:
+                        chance = int(chance / 1.5)
+                    if clever:
+                        chance = int(chance / 1.5)
+                    if healer:
+                        chance = int(chance / 1.5)
+                    if gardener:
+                        chance = int(chance / 1.5)
+                    if memory:
+                        chance = int(chance / 1.5)
+                    if herbalist:
+                        chance = int(chance / 1.5)
+
+                    if chance <= 0:
                         chance = 1
 
                     if not has_med_app and not int(random.random() * chance):
@@ -1585,19 +1604,68 @@ class Events:
                                 media_personality = True
                             index += 1
 
-                        # media skill
-                        media_skills = ["TEACHER", "SPEAKER", "MEDIATOR", "CLEVER", "INSIGHTFUL", "KIT", "MEMORY", "MESSENGER", "ASSIST", "PATIENT", "DETECTIVE"]
-                        media_skill = False
-                        index = 0
-                        for entry in media_skills:
-                            if media_skills[index] == cat.skills:
-                                media_skill = True
-                            index += 1
+                        # media skills
+                        teacher = False
+                        speaker = False
+                        mediator = False
+                        clever = False
+                        insightful = False
+                        kit = False
+                        memory = False
+                        messenger = False
+                        assist = False
+                        patient = False
+                        detective = False
 
-                        if media_personality or media_skill:
-                            chance = int(chance / 1.3)
+                        if "TEACHER" in cat.skills:
+                            teacher = True
+                        if "SPEAKER" in cat.skills:
+                            speaker = True
+                        if "MEDIATOR" in cat.skills:
+                            mediator = True
+                        if "CLEVER" in cat.skills:
+                            clever = True
+                        if "INSIGHTFUL" in cat.skills:
+                            insightful = True
+                        if "KIT" in cat.skills:
+                            kit = True
+                        if "MEMORY" in cat.skills:
+                            memory = True
+                        if "MESSENGER" in cat.skills:
+                            messenger = True
+                        if "ASSIST" in cat.skills:
+                            assist = True
+                        if "PATIENT" in cat.skills:
+                            patient = True
+                        if "DETECTIVE" in cat.skills:
+                            detective = True
 
-                        if chance == 0:
+                        if media_personality:
+                            chance = int(chance / 1.5)
+                        if teacher:
+                            chance = int(chance / 1.5)
+                        if speaker:
+                            chance = int(chance / 1.5)
+                        if mediator:
+                            chance = int(chance / 1.5)
+                        if clever:
+                            chance = int(chance / 1.5)
+                        if insightful:
+                            chance = int(chance / 1.5)
+                        if kit:
+                            chance = int(chance / 1.5)
+                        if memory:
+                            chance = int(chance / 1.5)
+                        if messenger:
+                            chance = int(chance / 1.5)
+                        if assist:
+                            chance = int(chance / 1.5)
+                        if patient:
+                            chance = int(chance / 1.5)
+                        if detective:
+                            chance = int(chance / 1.5)
+
+                        if chance <= 0:
                             chance = 1
 
                         if not has_mediator_apprentice and not int(random.random() * chance):
