@@ -305,6 +305,7 @@ class ProfileScreen(Screens):
                             self.the_cat.genderalign = random.choice(genderqueer_list)
                     else:
                         self.the_cat.genderalign = random.choice(genderqueer_list)
+                #pronoun handler
                 if 'molly' in self.the_cat.genderalign:
                     self.pronouns = [self.the_cat.default_pronouns[1].copy()]
                 elif 'tom' in self.the_cat.genderalign:
@@ -1056,7 +1057,7 @@ class ProfileScreen(Screens):
             special_conditions = [
                 "grief stricken", "fleas", "malnourished", "starving", "paranoia", "seasonal lethargy", "lethargy",
                 "special interest", "hyperfixation", "stimming", "indecision", "impulsivity", "zoomies",
-                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness"
+                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness", "nausea"
             ]
             all_special = True
             for condition in the_cat.illnesses:
@@ -1224,6 +1225,13 @@ class ProfileScreen(Screens):
                     output += '\ndizzy!'
                 else:
                     output += 'dizzy!'
+                    already_sick_injured = True
+
+            if "nausea" in the_cat.illnesses:
+                if already_sick_injured:
+                    output += '\nnauseous!'
+                else:
+                    output += 'nauseous!'
 
         return output
 
@@ -2231,6 +2239,9 @@ class ProfileScreen(Screens):
 
             if name == 'dizziness':
                 insert = 'has been dizzy for'
+
+            if name == 'nausea':
+                insert = 'has been nauseous for'
 
             if moons_with != 1:
                 text_list.append(f"{insert} {moons_with} moons")
