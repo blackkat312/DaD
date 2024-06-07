@@ -905,6 +905,10 @@
             {
                 "name": "counting fog",
                 "chance": 75
+            },
+            {
+                "name": "nausea",
+                "chance": 20
             }
         ],
         "herbs": [ ]
