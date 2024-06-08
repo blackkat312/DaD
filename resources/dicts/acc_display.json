@@ -520,9 +520,9 @@
     "singular": "a set of purple booties"
   },
   "MULTIBOOT": {
-    "default": "set of lilac booties",
-    "plural": "sets of lilac booties",
-    "singular": "a set of lilac booties"
+    "default": "set of brown booties",
+    "plural": "sets of brown booties",
+    "singular": "a set of brown booties"
   },
   "INDIGOBOOT": {
     "default": "set of indigo booties",
