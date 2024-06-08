@@ -1,10 +1,11 @@
+import os
 import unittest
+
 import ujson
 
 from scripts.cat.cats import Cat
 from scripts.conditions import medical_cats_condition_fulfilled
 
-import os
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
@@ -15,7 +16,7 @@ class TestsMedCondition(unittest.TestCase):
         cat1.status = "warrior"
 
         med = Cat(moons=20)
-        med.status = "medicine cat"
+        med.status = "healer"
 
         all_cats = [cat1, med]
         self.assertTrue(medical_cats_condition_fulfilled(all_cats, 15))
@@ -31,9 +32,9 @@ class TestsMedCondition(unittest.TestCase):
         cat4.status = "warrior"
 
         med1 = Cat(moons=20)
-        med1.status = "medicine cat"
+        med1.status = "healer"
         med2 = Cat(moons=20)
-        med2.status = "medicine cat"
+        med2.status = "healer"
 
         all_cats = [cat1, cat2, cat3, cat4, med1, med2]
         self.assertTrue(medical_cats_condition_fulfilled(all_cats, 2))
@@ -43,7 +44,7 @@ class TestsMedCondition(unittest.TestCase):
         cat1.status = "warrior"
 
         med = Cat(moons=20)
-        med.status = "medicine cat"
+        med.status = "healer"
         med.injuries["small cut"] = {"severity": "minor"}
 
         all_cats = [cat1, med]
@@ -54,7 +55,7 @@ class TestsMedCondition(unittest.TestCase):
         cat1.status = "warrior"
 
         med = Cat(moons=20)
-        med.status = "medicine cat"
+        med.status = "healer"
         med.illnesses["running nose"] = {"severity": "minor"}
 
         all_cats = [cat1, med]
