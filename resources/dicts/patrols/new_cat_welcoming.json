@@ -517,7 +517,7 @@
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -543,7 +543,7 @@
                 "stat_skill": ["LORE,1", "STORY,1"],
                 "can_have_stat": ["any"],
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -618,7 +618,7 @@
                 "weight": 20,
                 "outsider_rep": -1,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ],
@@ -629,7 +629,7 @@
                 "weight": 20,
                 "outsider_rep": -2,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ]
