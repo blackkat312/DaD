@@ -1,13 +1,13 @@
+import os
 import unittest
 from unittest.mock import patch
 
+from scripts.cat.cats import Cat
 from scripts.cat_relations.relationship import Relationship
+from scripts.clan import Clan
 from scripts.events_module.relationship.pregnancy_events import Pregnancy_Events
 from scripts.events_module.relationship.romantic_events import Romantic_Events
-from scripts.cat.cats import Cat
-from scripts.clan import Clan
 
-import os
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
@@ -26,9 +26,9 @@ class CanHaveKits(unittest.TestCase):
         # given
         test_clan = Clan(name="clan")
         test_clan.pregnancy_data = {}
-        cat1 = Cat(gender='molly')
+        cat1 = Cat(gender = 'molly')
         cat1.no_kits = True
-        cat2 = Cat(gender='tom')
+        cat2 = Cat(gender = 'tom')
 
         cat1.mate.append(cat2.ID)
         cat2.mate.append(cat1.ID)
@@ -49,8 +49,8 @@ class SameSexAdoptions(unittest.TestCase):
     def test_kits_are_adopted(self):
         # given
 
-        cat1 = Cat(gender='fem', age="adult", moons=40)
-        cat2 = Cat(gender='fem', age="adult", moons=40)
+        cat1 = Cat(gender = 'fem', age = "adult", moons=40)
+        cat2 = Cat(gender = 'fem', age = "adult", moons=40)
         cat1.mate.append(cat2.ID)
         cat2.mate.append(cat1.ID)
 
@@ -78,7 +78,7 @@ class Pregnancy(unittest.TestCase):
     def test_single_cat_female(self, check_if_can_have_kits):
         # given
         clan = Clan(name="clan")
-        cat = Cat(gender='fem')
+        cat = Cat(gender = 'fem')
         clan.pregnancy_data = {}
 
         # when
@@ -92,8 +92,8 @@ class Pregnancy(unittest.TestCase):
     def test_pair(self, check_if_can_have_kits):
         # given
         clan = Clan(name="clan")
-        cat1 = Cat(gender='fem')
-        cat2 = Cat(gender='masc')
+        cat1 = Cat(gender = 'fem')
+        cat2 = Cat(gender = 'masc')
 
         clan.pregnancy_data = {}
 
