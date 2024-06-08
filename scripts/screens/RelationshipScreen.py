@@ -373,6 +373,10 @@ class RelationshipScreen(Screens):
             else:
                 # Family Dot
                 related = self.the_cat.is_related(self.inspect_cat)
+                if not game.clan.clan_settings["second cousin mates"]:
+                    if not related:
+                        if self.the_cat.is_second_cousin(self.inspect_cat):
+                            related = True
                 if related:
                     self.inspect_cat_elements['family'] = pygame_gui.elements.UIImage(
                         scale(pygame.Rect((90, 300), (36, 36))),
@@ -433,29 +437,70 @@ class RelationshipScreen(Screens):
                     elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
                         col2 += "related: nephew"
                     else:
-                        col2 += "related: sibling's child\n"
+                        col2 += "related: nibling"
                 elif self.inspect_cat.is_uncle_aunt(self.the_cat):
                     if self.inspect_cat.genderalign in ['molly', 'trans molly']:
                         col2 += "related: aunt"
                     elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
                         col2 += "related: uncle"
                     else:
-                        col2 += "related: parent's sibling"
+                        col2 += "related: pibling"
                 elif self.inspect_cat.is_grandparent(self.the_cat):
-                    col2 += "related: grandparent"
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: grandmother"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: grandfather"
+                    else:
+                        col2 += "related: grandparent"
                 elif self.the_cat.is_grandparent(self.inspect_cat):
-                    col2 += "related: grandchild"
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: granddaughter"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: grandson"
+                    else:
+                        col2 += "related: grandkit"
                 elif self.inspect_cat.is_parent(self.the_cat):
-                    col2 += "related: parent"
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: mother"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: father"
+                    else:
+                        col2 += "related: parent"
                 elif self.the_cat.is_parent(self.inspect_cat):
-                    col2 += "related: child"
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: daughter"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: son"
+                    else:
+                        col2 += "related: kit"
                 elif self.inspect_cat.is_sibling(self.the_cat) or self.the_cat.is_sibling(self.inspect_cat):
-                    if self.inspect_cat.is_littermate(self.the_cat) or self.the_cat.is_littermate(self.inspect_cat):
-                        col2 += "related: sibling (littermate)"
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: sister"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: brother"
                     else:
                         col2 += "related: sibling"
+                    if self.inspect_cat.is_littermate(self.the_cat) or self.the_cat.is_littermate(self.inspect_cat):
+                        col2 += " (littermate)"
                 elif self.inspect_cat.is_cousin(self.the_cat):
                     col2 += "related: cousin"
+                elif self.inspect_cat.is_greatgrandkit(self.the_cat):
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: great-granddaughter"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: great-grandson"
+                    else:
+                        col2 += "related: great-grandkit"
+                elif self.the_cat.is_greatgrandkit(self.inspect_cat):
+                    if self.inspect_cat.genderalign in ['molly', 'trans molly']:
+                        col2 += "related: great-grandmother"
+                    elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
+                        col2 += "related: great-grandfather"
+                    else:
+                        col2 += "related: great-grandparent"
+                elif not game.clan.clan_settings["second cousin mates"]:
+                    if self.the_cat.is_second_cousin(self.inspect_cat):
+                        col2 += "related: second cousin"
 
             self.inspect_cat_elements["col2"] = pygame_gui.elements.UITextBox(col2,
                                                                               scale(pygame.Rect((300, 650), (180, 180))),
@@ -592,8 +637,16 @@ class RelationshipScreen(Screens):
                     "resources/images/heart_big.png").convert_alpha())
         else:
             # FAMILY DOT
-            # Only show family dot on cousins if first cousin mates are disabled.
-            check_cousins = the_relationship.cat_to.is_cousin(self.the_cat)
+            # Only show family dot on second cousins if second cousin mates is disabled.
+            check_cousins = False
+            ggp_cat = the_relationship.cat_to.get_greatgrandparents()
+            ggp_other = self.the_cat.get_greatgrandparents()
+
+            if not game.clan.clan_settings["second cousin mates"]:
+                for key in ggp_cat:
+                    for key2 in ggp_other:
+                        if key == key2:
+                            check_cousins = True
 
             if the_relationship.cat_to.is_uncle_aunt(self.the_cat) or self.the_cat.is_uncle_aunt(
                     the_relationship.cat_to) \
@@ -601,7 +654,8 @@ class RelationshipScreen(Screens):
                     self.the_cat.is_grandparent(the_relationship.cat_to) or \
                     the_relationship.cat_to.is_parent(self.the_cat) or \
                     self.the_cat.is_parent(the_relationship.cat_to) or \
-                    the_relationship.cat_to.is_sibling(self.the_cat) or check_cousins:
+                    self.the_cat.is_greatgrandkit(the_relationship.cat_to) or the_relationship.cat_to.is_greatgrandkit(self.the_cat) or \
+                    the_relationship.cat_to.is_sibling(self.the_cat) or the_relationship.cat_to.is_cousin(self.the_cat) or check_cousins:
                 related = True
                 self.relation_list_elements['relation_icon' + str(i)] = pygame_gui.elements.UIImage(
                     scale(pygame.Rect((pos_x + 10,
