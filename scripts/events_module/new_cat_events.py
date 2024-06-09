@@ -101,9 +101,9 @@ class NewCatEvents:
         elif "new_app" in new_cat_event.tags:
             status = "apprentice"
         elif "new_med_app" in new_cat_event.tags:
-            status = "healer apprentice"
+            status = "medicine cat apprentice"
         elif "new_med" in new_cat_event.tags:
-            status = "healer"
+            status = "medicine cat"
 
         cat_type = ""
         blood_parent = None
@@ -134,7 +134,7 @@ class NewCatEvents:
                                           age=ages[0],
                                           gender='masc',
                                           outside=True)[0]
-            while 'infertility' in blood_parent.permanent_condition:
+            while 'infertile' in blood_parent.permanent_condition:
                 if(blood_parent):
                     del Cat.all_cats[blood_parent.ID]
                 blood_parent = create_new_cat(Cat, Relationship,
@@ -152,7 +152,7 @@ class NewCatEvents:
                                           age=ages[1] if ages[1] > 14 else 15,
                                           gender='fem',
                                           outside=True)[0]
-                while 'infertility' in blood_parent2.permanent_condition:
+                while 'infertile' in blood_parent2.permanent_condition:
                     if(blood_parent2):
                         del Cat.all_cats[blood_parent2.ID]
                     blood_parent = create_new_cat(Cat, Relationship,
@@ -163,7 +163,7 @@ class NewCatEvents:
                                             gender='fem',
                                             outside=True)[0]
             else:
-                par2geno = Genotype(game.config['genetics_config'], game.settings["ban problem genes"])
+                par2geno = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
                 par2geno.Generator('fem')
 
         created_cats = create_new_cat(Cat,
@@ -312,7 +312,7 @@ class NewCatEvents:
     @staticmethod
     def update_cat_properties(cat):
         if cat.backstory in BACKSTORIES["backstory_categories"]["healer_backstories"]:
-            cat.status = "healer"
+            cat.status = "medicine cat"
         elif cat.age in ["newborn", "kitten"]:
             cat.status = cat.age
         elif cat.age == "senior":
