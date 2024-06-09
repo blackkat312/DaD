@@ -4,10 +4,11 @@ from scripts.cat.cats import Cat
 from scripts.cat.history import History
 from scripts.cat.pelts import Pelt
 from scripts.cat_relations.relationship import Relationship
-from scripts.events_module.generate_events import GenerateEvents
-from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values
-from scripts.game_structure.game_essentials import game
 from scripts.event_class import Single_Event
+from scripts.events_module.generate_events import GenerateEvents
+from scripts.game_structure.game_essentials import game
+from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values
+
 
 # ---------------------------------------------------------------------------- #
 #                               Death Event Class                              #
@@ -145,28 +146,28 @@ class MiscEvents():
         white_text1 = ""
         white_text2 = ""
 
-        if cat.genotype.white[0] == 'W' or (cat.genotype.white[0] == 'ws' and cat.genotype.whitegrade > 4) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
+        if cat.genotype.white[0] == "W" or cat.genotype.white[0] == "ws" or ("full white" in cat.white_pattern and "break/" not in cat.white_pattern) or cat.genotype.pointgene[0] == "c" or "o" not in cat.genotype.sexgene:
             return
 
-        if 'ws' in cat.genotype.white:
+        if "ws" in cat.genotype.white or "wt" in cat.genotype.white or "wg" in cat.genotype.white or "wsal" in cat.genotype.white:
             white_text1 = ", apart from the white"
             white_text2 = " the colored part of "
-        if cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
+        if cat.genotype.dilute[0] == "D" and cat.genotype.pinkdilute[0] == "Dp":
             red_colour = "orange"
-        elif cat.genotype.dilute[0] == 'd' and cat.genotype.pinkdilute[0] == 'Dp':
+        elif cat.genotype.dilute[0] == "d" and cat.genotype.pinkdilute[0] == "Dp":
             red_colour = "cream"
-        elif cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'dp':
+        elif cat.genotype.dilute[0] == "D" and cat.genotype.pinkdilute[0] == "dp":
             red_colour = "yellow"
         else:
-            red_colour = 'creamy white'
+            red_colour = "creamy white"
 
-        if cat.genotype.ext[0] == 'ec' and cat.genotype.agouti[0] == 'a' and cat.moons == 6:
+        if cat.genotype.ext[0] == "ec" and cat.genotype.agouti[0] == "a" and cat.moons == 6:
             event_text = "Throughout kithood, m_c has gotten many comments about {PRONOUN/m_c/poss} unique coat. Well, it looks by now to have turned completely " + red_colour + white_text1 + "!"
-        if cat.genotype.ext[0] == 'ea' and ((cat.moons == 12 and cat.genotype.agouti[0] != 'a') or (cat.moons == 24 and cat.genotype.agouti[0] == 'a')):
-            event_text = "m_c has gotten used to the odd comment of 'is" + white_text2 + "your fur more " + red_colour + " today?', having heard it practically since kithood. But by now, nobody can deny it; there's barely a trace of any other coat color left."
-        if cat.genotype.ext[0] == 'er' and cat.moons == 12 and cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
-            event_text = "'What an odd cat!' many would say, having marveled at how m_c's coat changed with time to be nigh unrecognizable since kithood. The medicine cats couldn't explain it either..."
-        if cat.genotype.ext[0] == 'er' and cat.moons == 24 and cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
+        if cat.genotype.ext[0] == "ea" and ((cat.moons == 12 and cat.genotype.agouti[0] != "a") or (cat.moons == 24 and cat.genotype.agouti[0] == "a")):
+            event_text = "m_c has gotten used to the odd comment of \"is" + white_text2 + "your fur more " + red_colour + " today?\", having heard it practically since kithood. But by now, nobody can deny it; there's barely a trace of any other coat color left."
+        if cat.genotype.ext[0] == "er" and cat.moons == 12 and cat.genotype.dilute[0] == "D" and cat.genotype.pinkdilute[0] == "Dp":
+            event_text = "\"What an odd cat!\" many would say, having marveled at how m_c's coat changed with time to be nigh unrecognizable since kithood. The medicine cats couldn't explain it either..."
+        if cat.genotype.ext[0] == "er" and cat.moons == 24 and cat.genotype.dilute[0] == "D" and cat.genotype.pinkdilute[0] == "Dp":
             event_text = "Well what do you know? Full of surprises, m_c's coat has turned a whole new color - this time " + red_colour + ", even" + white_text1 + ". Everyone's jokingly asking what color they're trying out next."
 
         if event_text:
