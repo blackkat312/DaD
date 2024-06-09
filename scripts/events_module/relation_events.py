@@ -400,7 +400,7 @@ class Relation_Events:
     @staticmethod
     def can_trigger_events(cat):
         """Returns if the given cat can still trigger events."""
-        special_status = ["leader", "deputy", "healer", "mediator"]
+        special_status = ["leader", "deputy", "medicine cat", "mediator"]
         
         # set the threshold correctly
         threshold = game.config["relationship"]["max_interaction"]
