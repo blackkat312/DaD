@@ -1,6 +1,5 @@
 import random
 
-from scripts.cat.cats import Cat
 from scripts.cat.history import History
 from scripts.conditions import get_amount_cat_for_one_medic, medical_cats_condition_fulfilled
 from scripts.game_structure.game_essentials import game
@@ -113,9 +112,10 @@ class Scar_Events():
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
 
-        if len(cat.pelt.scars) < 5 and random.randint(1, 2) == 1:
+        if len(cat.pelt.scars) < 5 and random.randint(1, 3) > 1:
             
             # move potential scar text into displayed scar text
+
 
             specialty = None  # Scar to be set
 
