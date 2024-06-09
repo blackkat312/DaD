@@ -1,16 +1,17 @@
 from scripts.cat.names import names
 from scripts.cat_relations.relationship import Relationship
 from scripts.cat.genotype import Genotype
+from scripts.cat.history import History
 
 import random
 
 from scripts.cat.cats import Cat, INJURIES, BACKSTORIES
-from scripts.events_module.generate_events import GenerateEvents
-from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values, create_new_cat
-from scripts.game_structure.game_essentials import game
-from scripts.event_class import Single_Event
 from scripts.cat.names import Name
-from scripts.cat.history import History
+from scripts.cat_relations.relationship import Relationship
+from scripts.event_class import Single_Event
+from scripts.events_module.generate_events import GenerateEvents
+from scripts.game_structure.game_essentials import game
+from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values, create_new_cat
 
 
 # ---------------------------------------------------------------------------- #
@@ -70,7 +71,7 @@ class NewCatEvents:
 
                 return [outside_cat]
 
-        
+
         # ---------------------------------------------------------------------------- #
         #                                cat creation                                  #
         # ---------------------------------------------------------------------------- #
@@ -100,9 +101,9 @@ class NewCatEvents:
         elif "new_app" in new_cat_event.tags:
             status = "apprentice"
         elif "new_med_app" in new_cat_event.tags:
-            status = "medicine cat apprentice"
+            status = "healer apprentice"
         elif "new_med" in new_cat_event.tags:
-            status = "medicine cat"
+            status = "healer"
 
         cat_type = ""
         blood_parent = None
@@ -114,7 +115,7 @@ class NewCatEvents:
             thought = "Is happy their kits are safe"
             ages = [random.randint(15,120), 0]
             ages[1] = ages[0] + random.randint(0, 24) - 12
-
+            
             if('rogue' in new_cat_event.event_text):
                 cat_type = 'rogue'
             elif('loner' in new_cat_event.event_text):
@@ -125,7 +126,7 @@ class NewCatEvents:
                 cat_type = 'del'
             else:
                 cat_type = 'rogue'
-
+            
             blood_parent = create_new_cat(Cat, Relationship,
                                           status=random.choice(["loner", "rogue", "kittypet"]),
                                           alive=True,
@@ -133,7 +134,7 @@ class NewCatEvents:
                                           age=ages[0],
                                           gender='masc',
                                           outside=True)[0]
-            while 'infertile' in blood_parent.permanent_condition:
+            while 'infertility' in blood_parent.permanent_condition:
                 if(blood_parent):
                     del Cat.all_cats[blood_parent.ID]
                 blood_parent = create_new_cat(Cat, Relationship,
@@ -151,7 +152,7 @@ class NewCatEvents:
                                           age=ages[1] if ages[1] > 14 else 15,
                                           gender='fem',
                                           outside=True)[0]
-                while 'infertile' in blood_parent2.permanent_condition:
+                while 'infertility' in blood_parent2.permanent_condition:
                     if(blood_parent2):
                         del Cat.all_cats[blood_parent2.ID]
                     blood_parent = create_new_cat(Cat, Relationship,
@@ -162,7 +163,7 @@ class NewCatEvents:
                                             gender='fem',
                                             outside=True)[0]
             else:
-                par2geno = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
+                par2geno = Genotype(game.config['genetics_config'], game.settings["ban problem genes"])
                 par2geno.Generator('fem')
 
         created_cats = create_new_cat(Cat,
@@ -179,7 +180,7 @@ class NewCatEvents:
                                       parent2=blood_parent.ID if blood_parent else None,
                                       extrapar = par2geno
                                       )
-
+            
         for new_cat in created_cats:
             if new_cat.genotype.manx[1] == "Ab" or new_cat.genotype.manx[1] == "M" or new_cat.genotype.fold[1] == "Fd" or new_cat.genotype.munch[1] == "Mk":
                 new_cat.moons = 0
@@ -187,14 +188,14 @@ class NewCatEvents:
                 new_cat.dead = True
                 History.add_death(new_cat, str(new_cat.name) + " was stillborn.")
                 created_cats.remove(new_cat)
-            else:
+            else:      
                 involved_cats.append(new_cat.ID)
-
+                
                 # Set the blood parent, if one was created.
-                # Also set adoptive parents if needed.
+                # Also set adoptive parents if needed. 
                 if "adoption" in new_cat_event.tags and cat.ID not in new_cat.adoptive_parents:
                     new_cat.adoptive_parents.append(cat.ID)
-
+                    
                     # give relationship to adoptive parent and vice versa
                     cat.create_one_relationship(new_cat)
                     new_cat.create_one_relationship(cat)
@@ -229,13 +230,13 @@ class NewCatEvents:
                             if mate_id not in new_cat.adoptive_parents:
                                 new_cat.adoptive_parents.extend(cat.mate)
 
-                # All parents have been added now, we now create the inheritance.
+                # All parents have been added now, we now create the inheritance. 
                 new_cat.create_inheritance_new_cat()
 
             if "m_c" in new_cat_event.tags:
                 cat.create_one_relationship(new_cat)
                 new_cat.create_one_relationship(cat)
-
+                
                 new_to_clan_cat = game.config["new_cat"]["rel_buff"]["new_to_clan_cat"]
                 clan_cat_to_new = game.config["new_cat"]["rel_buff"]["clan_cat_to_new"]
                 change_relationship_values(
@@ -311,7 +312,7 @@ class NewCatEvents:
     @staticmethod
     def update_cat_properties(cat):
         if cat.backstory in BACKSTORIES["backstory_categories"]["healer_backstories"]:
-            cat.status = "medicine cat"
+            cat.status = "healer"
         elif cat.age in ["newborn", "kitten"]:
             cat.status = cat.age
         elif cat.age == "senior":

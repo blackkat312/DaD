@@ -1,10 +1,11 @@
 import random
 
-from scripts.cat.cats import Cat, INJURIES
-from scripts.events_module.generate_events import GenerateEvents, OngoingEvent
-from scripts.utility import event_text_adjust, change_clan_relations, change_relationship_values, get_med_cats
-from scripts.game_structure.game_essentials import game
+from scripts.cat.cats import Cat
 from scripts.event_class import Single_Event
+from scripts.events_module.generate_events import GenerateEvents
+from scripts.game_structure.game_essentials import game
+from scripts.utility import get_med_cats
+
 
 # ---------------------------------------------------------------------------- #
 #                            Disaster Event Class                              #
@@ -173,7 +174,7 @@ class DisasterEvents():
 
         # removing events that mention ranks if those ranks are not currently filled in the clan
         for event in text_list:
-            if (event.find('med_name') == -1 or event.find('medicine cat') == -1) and not med_exists:
+            if (event.find('med_name') == -1 or event.find('healer') == -1) and not med_exists:
                 text_list.remove(event)
             if (event.find('dep_name') == -1 or event.find('deputy') == -1) and not dep_exists:
                 text_list.remove(event)
