@@ -429,7 +429,7 @@ class RoleScreen(Screens):
                      f"Clan cats has been entrusted to them by StarClan. The leader is the highest " \
                      f"authority in the Clan. The leader holds Clan meetings, determines mentors for " \
                      f"new apprentices, and names new warriors. To help them protect the Clan, " \
-                     f"StarClan has given them nine lives. They typically take the suffix \"star\"."
+                     f"StarClan has given them four lives. They typically take the suffix \"star\"."
         elif self.the_cat.status == "deputy":
             output = f"{self.the_cat.name} is {game.clan.name}Clan's <b>deputy</b>. " \
                      f"The deputy is the second in command, " \
