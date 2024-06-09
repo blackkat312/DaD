@@ -259,9 +259,7 @@ class PatrolScreen(Screens):
             self.elements["random"].enable()
 
             # making sure meds don't get the option for other patrols
-            if any((cat.status in ['medicine cat', 'medicine cat apprentice'] for cat in self.current_patrol)):
-                self.patrol_type = 'med'
-            else:
+            if not( any((cat.status in ['medicine cat', 'medicine cat apprentice'] for cat in self.current_patrol))):
                 if self.patrol_type == 'med':
                     self.patrol_type = 'general'
 
@@ -271,10 +269,11 @@ class PatrolScreen(Screens):
             self.elements['herb'].enable()
             self.elements['info'].kill()  # clearing the text before displaying new text
 
-            if self.patrol_type != 'med' and self.current_patrol:
+            if not( any((cat.status in ['medicine cat', 'medicine cat apprentice'] for cat in self.current_patrol))) and self.current_patrol:
                 self.elements['herb'].disable()
                 if self.patrol_type == 'med':
                     self.patrol_type = 'general'
+
             if self.patrol_type == 'general':
                 text = 'random patrol type'
             elif self.patrol_type == 'training':
@@ -284,13 +283,7 @@ class PatrolScreen(Screens):
             elif self.patrol_type == 'hunting':
                 text = 'hunting'
             elif self.patrol_type == 'med':
-                if self.current_patrol:
-                    text = 'herb gathering'
-                    self.elements['mouse'].disable()
-                    self.elements['claws'].disable()
-                    self.elements['paw'].disable()
-                else:
-                    text = 'herb gathering'
+                text = 'herb gathering'
             else:
                 text = ""
 
