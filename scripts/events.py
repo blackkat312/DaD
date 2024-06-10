@@ -122,8 +122,8 @@ class Events:
             )
             game.clan.freshkill_pile.time_skip(relevant_cats, game.freshkill_event_list)
             # handle freshkill pile events, after feeding
-            # first 5 moons there will not be any freshkill pile event
-            if game.clan.age >= 5:
+            # first 12 moons there will not be any freshkill pile event
+            if game.clan.age >= 12:
                 Freshkill_Events.handle_amount_freshkill_pile(
                     game.clan.freshkill_pile, relevant_cats
                 )
@@ -144,7 +144,7 @@ class Events:
         if random.randint(1, rejoin_upperbound) == 1:
             self.handle_lost_cats_return()
 
-        #Kill kits as needed
+        # Kill kits as needed
         faded_kits = []
         if game.clan.clan_settings['modded_kits']:
             faded_kits = self.kit_deaths(Cat.all_cats_list)
@@ -1346,6 +1346,24 @@ class Events:
         cat.one_moon()
         cat.manage_outside_trait()
         self.handle_outside_EX(cat)
+
+        # steal their balls
+        if cat.moons > 2:
+            if cat.status == "kittypet":
+                if cat.moons <= 12 and random.randint(1, 5) > 2:
+                    cat.neutered = True
+                elif cat.moons <= 24 and random.randint(1, 30) == 1:
+                    cat.neutered = True
+                elif random.randint(1, 100) == 1:
+                    cat.neutered = True
+            elif cat.status in ["loner", "rogue", "former Clancat"]:
+                if cat.moons <= 12 and random.randint(1, 15) == 1:
+                    cat.neutered = True
+                elif random.randint(1, 50) == 1:
+                    cat.neutered = True
+            elif cat.status != "driven off":
+                if random.randint(1, 2) == 1:
+                    cat.neutered = True
 
         cat.skills.progress_skill(cat)
         Pregnancy_Events.handle_having_kits(cat, clan=game.clan)
@@ -2610,7 +2628,7 @@ class Events:
         
         # disaster death chance
         if game.clan.clan_settings.get("disasters"):
-            if not random.getrandbits(9):  # 1/512
+            if not random.getrandbits(9):  # 2/512 (1/256)
                 self.handle_mass_extinctions(cat)
                 return True
 
