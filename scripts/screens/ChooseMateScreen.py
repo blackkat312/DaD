@@ -958,9 +958,7 @@ class ChooseMateScreen(Screens):
                                                                    manager=MANAGER
                                                                    )
 
-        if (((not game.clan.clan_settings["same sex birth"]) and
-                ((self.the_cat.gender == self.selected_cat.gender) or (self.the_cat.gender == 'intersex' or self.selected_cat.gender == 'intersex')))
-                or (('infertile' in self.the_cat.permanent_condition) or ('infertile' in self.selected_cat.permanent_condition))):
+        if (((not game.clan.clan_settings["same sex birth"]) and ((self.the_cat.gender == self.selected_cat.gender) or (self.the_cat.gender == 'intersex' or self.selected_cat.gender == 'intersex'))) or ('infertile' in self.the_cat.permanent_condition or 'infertile' in self.selected_cat.permanent_condition or self.the_cat.neutered or self.selected_cat.neutered)):
             self.selected_cat_elements["no kit warning"] = pygame_gui.elements.UITextBox(
                 f"<font pixel_size={int(22 / 1400 * screen_y)}> This pair can't have biological kittens </font>",
                 scale(pygame.Rect((550, 250), (498, 50))),
@@ -1155,7 +1153,8 @@ class ChooseMateScreen(Screens):
                        and i.ID not in self.the_cat.mate
                        and (not self.single_only or not i.mate)
                        and (not self.have_kits_only
-                            or (('infertile' not in i.permanent_condition) and ('infertile' not in self.the_cat.permanent_condition)))
+                            or (('infertile' not in i.permanent_condition) and ('infertile' not in self.the_cat.permanent_condition))
+                            or (not i.neutered and not self.the_cat.neutered))
                        and (not self.have_kits_only
                             or game.clan.clan_settings["same sex birth"]
                             or ((i.gender != self.the_cat.gender) and (i.gender != 'intersex' and self.the_cat.gender != 'intersex')))]
