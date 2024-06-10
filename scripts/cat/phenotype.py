@@ -229,7 +229,7 @@ class Phenotype():
         elif(self.genotype.ghosting[0] == "Gh"):
             self.fade = "faded "
     def SolidWhite(self, pattern=None):
-        if(self.genotype.white[0] == "W" or self.genotype.pointgene[0] == "c" or (self.genotype.white[1] in ['wt', 'ws'] and self.genotype.whitegrade == 5) or (self.genotype.brindledbi and 'o' not in self.genotype.sexgene)):
+        if(self.genotype.white[0] == "W" or self.genotype.pointgene[0] == "c" or (self.genotype.brindledbi and 'o' not in self.genotype.sexgene)):
             self.highwhite = ""
             self.fade = ""
             if(self.genotype.pointgene[0] == "c"):
@@ -422,7 +422,7 @@ class Phenotype():
         if(self.tailtype != ''):
             self.tailtype += "tail"
 
-    def PhenotypeOutput(self, gender=None, pattern=None):
+    def PhenotypeOutput(self, gender=None, sex=None, pattern=None):
         self.FurtypeFinder()
         self.MainColourFinder()
         self.PointFinder()
@@ -455,7 +455,8 @@ class Phenotype():
             eyes = "one " + self.genotype.lefteye + " eye, and one " + self.genotype.righteye + " eye"
 
         if(self.genotype.extraeye):
-            eyes += " and sectoral heterochromia"
+            eyes = eyes.replace(" eye, and one ", " eye, one ")
+            eyes += ", and sectoral heterochromia"
 
         withword = self.specwhite
         if (self.eartype !="" or self.tailtype!="" or self.pawtype!="" or furtype!="" or self.vitiligo != ""):
@@ -482,21 +483,33 @@ class Phenotype():
                 else:
                     withword += " and "
         else:
-            eyes = eyes.replace(" eye, and one ", " eye and one ")
+            if ", and sectoral " in eyes and " eye, one " not in eyes:
+                eyes = eyes.replace(", and sectoral ", " and sectoral ")
+            elif "eye, and one " in eyes and ", and sectoral " not in eyes:
+                eyes = eyes.replace(" eye, and one ", " eye and one ")
 
         withword = " with " + withword + eyes.lower()
 
-        if not gender:
-            gendera = 'cat'
-        elif 'tom' in gender and gender != 'demitom':
-            gendera = "tom"
-        elif 'molly' in gender and gender != 'demimolly':
-            gendera = "molly"
+        if not sex:
+            sex = " "
+        elif sex == "tom":
+            sex = "amab "
+        elif sex == "molly":
+            sex = "afab "
         else:
-            gendera = "cat"
+            sex = "axab "
+
+        if not gender:
+            gender = "cat"
+        elif gender == "tom":
+            gendera = "tom"
+        elif gender == "molly":
+            gender = "molly"
+        else:
+            gender = "cat"
 
         if self.genotype.chimera:
-            gendera = "chimera " + gendera
+            gender = "chimera " + gender
 
         if self.tabby == "blotched":
             self.tabby = "classic"
@@ -506,9 +519,9 @@ class Phenotype():
             breed = " " + breed + " "
 
         if self.genotype.pointgene == ['C', 'c']:
-            outputs = "a " + self.length + " albinistic " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
+            outputs = "a " + self.length + " albinistic " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + sex + gender + withword
         else:
-            outputs = "a " + self.length + " " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
+            outputs = "a " + self.length + " " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + sex + gender + withword
 
         while "  " in outputs:
             outputs = outputs.replace("  ", " ")
