@@ -149,12 +149,13 @@ class Events:
         if game.clan.clan_settings['modded_kits']:
             faded_kits = self.kit_deaths(Cat.all_cats_list)
 
+        tnr_setting = game.clan.clan_settings["tnr"]
         # Calling of "one_moon" functions.
         for cat in Cat.all_cats.copy().values():
             if not cat.outside or cat.dead:
                 self.one_moon_cat(cat)
             else:
-                self.one_moon_outside_cat(cat)
+                self.one_moon_outside_cat(cat, tnr_setting)
 
         # Adding in any potential lead den events that have been saved
         if "lead_den_interaction" in game.clan.clan_settings:
@@ -1229,17 +1230,28 @@ class Events:
                 "{PRONOUN/m_c/subject/CAP} met so many friends on {PRONOUN/m_c/poss} journey, but c_n is where m_c truly belongs. With a tearful goodbye, "
                 "{PRONOUN/m_c/subject} {VERB/m_c/return/returns} home.",
             ]
+            if lost_cat.neutered:
+                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/smell/smells} a bit different, though"
             lost_cat.outside = False
             additional_cats = lost_cat.add_to_clan()
             cat_IDs.extend(additional_cats)
             text = random.choice(text)
 
             if additional_cats:
-                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
-                if len(additional_cats) > 1:
-                    text += str(len(additional_cats)) + " children."
+                if "smell" in text:
+                    text += ", and {PRONOUN/m_c/subject} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
+                    if len(additional_cats) > 1:
+                        text += str(len(additional_cats)) + " children."
+                    else:
+                        text += "child."
                 else:
-                    text += "child."
+                    text += " {PRONOUN/m_c/subject/CAP} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
+                    if len(additional_cats) > 1:
+                        text += str(len(additional_cats)) + " children."
+                    else:
+                        text += "child."
+            elif "smell" in text:
+                text += "."
 
             text = event_text_adjust(Cat, text, lost_cat, clan=game.clan)
 
@@ -1275,7 +1287,7 @@ class Events:
                     x.status_change("apprentice")
                 elif x.moons < 120 and x.status != "warrior":
                     x.status_change("warrior")
-                elif x.moons > 120:
+                elif x.moons >= 120:
                     x.status_change("elder")
 
     def handle_fading(self, cat):
@@ -1338,7 +1350,7 @@ class Events:
                 game.cat_to_fade.append(cat.ID)
                 cat.set_faded()
 
-    def one_moon_outside_cat(self, cat):
+    def one_moon_outside_cat(self, cat, tnr_setting):
         """
         exiled cat events
         """
@@ -1348,7 +1360,7 @@ class Events:
         self.handle_outside_EX(cat)
 
         # steal their balls
-        if cat.moons > 2:
+        if cat.moons > 2 and tnr_setting:
             if cat.status == "kittypet":
                 if cat.moons <= 12 and random.randint(1, 5) > 2:
                     cat.neutered = True
