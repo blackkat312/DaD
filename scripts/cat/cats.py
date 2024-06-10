@@ -313,20 +313,19 @@ class Cat:
                 while None in white_pattern:
                     white_pattern.remove(None)
 
-            low1 = ['SCOURGE', 'BLAZE', 'TAILTIP', 'TOES', 'LUNA', 'LOCKET', 'ESTRELLA', 'LEFTEAR', 'RIGHTEAR',
+            low1 = ['BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
                     'MINKEMBER']
 
-            low2 = ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'PAWS', 'BROKENBLAZE', 'BEARD', 'BIB', 'VEE',
-                    'HONEY', 'TOESTAIL', 'RAVENPAW', 'LILTWO', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE', 'REVERSEEYE',
-                    'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS', 'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE',
-                    'MINKMINIMALTHREE']
+            low2 = ['BLAZEMASK', 'BEARD', 'BIB', 'BROKENBLAZE', 'BUZZARDFANG', 'EYEBAGS', 'HONEY', 'LIGHTTUXEDO',
+                    'LILTWO', 'LITTLE', 'MUSTACHE', 'PAWS', 'RAVENPAW', 'REVERSEEYE', 'REVERSEHEART', 'SPARKLE',
+                    'TEARS', 'TIP', 'TOESTAIL', 'VEE', 'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE']
 
             low3 = ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
                     'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
                     'DAPPLEPAW' 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
 
-            low4 = ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
-                    'HAWKBLAZE', 'TOPCOVER', 'MINKEYEDOT']
+            low4 = ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT', 'HAWKBLAZE',
+                    'TOPCOVER', 'MINKEYEDOT']
 
             low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS', 'MINKOREO']
 
