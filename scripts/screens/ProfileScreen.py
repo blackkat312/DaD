@@ -1122,6 +1122,12 @@ class ProfileScreen(Screens):
                     output += " (" + str(int(nutr.percentage)) + ")"
                 output += "\n"
 
+        if the_cat.neutered:
+            if the_cat.is_disabled or the_cat.is_plural or the_cat.is_injured or the_cat.is_ill:
+                output += "neutered\n"
+            else:
+                output += "neutered"
+
         if the_cat.is_disabled():
             for condition in the_cat.permanent_condition:
                 if (
