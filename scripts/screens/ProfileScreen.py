@@ -3017,12 +3017,12 @@ class ProfileScreen(Screens):
                 if self.genetic_text_box:
                     self.genetic_text_box.kill()
 
-                self.genelist = str(self.the_cat.phenotype.PhenotypeOutput(self.the_cat.genderalign)) + "\n" + str(self.the_cat.genotype.ShowGenes())
+                self.genelist = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)) + "\n" + str(self.the_cat.genotype.ShowGenes())
                 print("genetically: " + str(self.the_cat.phenotype.PhenotypeOutput(self.the_cat.genderalign)))
                 if(self.the_cat.genotype.chimera):
                     chimpheno = Phenotype(self.the_cat.genotype.chimerageno)
-                    self.genelist += "\n\n" + str(chimpheno.PhenotypeOutput(self.the_cat.genderalign)) + "\n" + str(self.the_cat.genotype.chimerageno.ShowGenes())
-                    print("chimerically: " + str(chimpheno.PhenotypeOutput(self.the_cat.genderalign)))
+                    self.genelist += "\n\n" + str(chimpheno.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.chimerageno.gender)) + "\n" + str(self.the_cat.genotype.chimerageno.ShowGenes())
+                    print("chimerically: " + str(chimpheno.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.chimerageno.gender)))
 
                 self.genetic_text_box = UITextBoxTweaked(self.genelist,
                                               scale(pygame.Rect((200, 946), (1200, 298))),
