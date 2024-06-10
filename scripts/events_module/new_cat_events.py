@@ -134,7 +134,7 @@ class NewCatEvents:
                                           age=ages[0],
                                           gender='masc',
                                           outside=True)[0]
-            while 'infertile' in blood_parent.permanent_condition:
+            while 'infertile' in blood_parent.permanent_condition or blood_parent.neutered:
                 if(blood_parent):
                     del Cat.all_cats[blood_parent.ID]
                 blood_parent = create_new_cat(Cat, Relationship,
@@ -152,7 +152,7 @@ class NewCatEvents:
                                           age=ages[1] if ages[1] > 14 else 15,
                                           gender='fem',
                                           outside=True)[0]
-                while 'infertile' in blood_parent2.permanent_condition:
+                while 'infertile' in blood_parent2.permanent_condition or blood_parent2.neutered:
                     if(blood_parent2):
                         del Cat.all_cats[blood_parent2.ID]
                     blood_parent = create_new_cat(Cat, Relationship,
