@@ -113,6 +113,11 @@
             "Allow cats to have kittens with a biological parent outside your Clan.",
             false
         ],
+        "tnr": [
+            "Allow cats outside your Clan to be neutered/spayed",
+            "Cats outside your Clan will have varying chances of being permanently prevented from having kits.",
+            false
+        ],
         "multisire": [
             "Allow litters with multiple sires",
             "Allow cats to have litters with multiple sires",
@@ -121,7 +126,7 @@
         "romantic with former mentor": [
             "Allow romantic interactions with former mentors",
             "Allows mentors and the cats they trained to be romantic after they become warriors.",
-            true
+            false
         ],
         "second cousin mates": [
             "Allow second cousins to be mates and have romantic interactions",
