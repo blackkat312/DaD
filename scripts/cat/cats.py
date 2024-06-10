@@ -259,13 +259,13 @@ class Cat:
 
         maingame_white = {
             'low':{
-                '1': [None, 'SCOURGE', 'BLAZE', 'TAILTIP', 'TOES', 'LUNA', 'LOCKET', 'ESTRELLA', 'LEFTEAR', 'RIGHTEAR',
+                '1': [None, 'BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
                       # Mink's torties
                       'MINKEMBER'],
 
-                '2': ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'PAWS', 'BROKENBLAZE', 'BEARD', 'BIB', 'VEE',
-                      'HONEY', 'TOESTAIL', 'RAVENPAW', 'LILTWO', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE',
-                      'REVERSEEYE', 'BACKSPOT', 'BLAZEMASK', 'EYEBAGS', 'TEARS',
+                '2': ['BLAZEMASK', 'BEARD', 'BIB', 'BROKENBLAZE', 'BUZZARDFANG', 'EYEBAGS', 'HONEY', 'LIGHTTUXEDO',
+                      'LILTWO', 'LITTLE', 'MUSTACHE', 'PAWS', 'RAVENPAW', 'REVERSEEYE', 'REVERSEHEART', 'SPARKLE',
+                      'TEARS', 'TIP', 'TOESTAIL', 'VEE',
                       # Mink's torties
                       'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE'],
 
@@ -275,7 +275,7 @@ class Cat:
                       # Mink's torties
                       'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE'],
 
-                '4': ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
+                '4': ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
                       'HAWKBLAZE', 'TOPCOVER',
                       # Mink's torties
                       'MINKEYEDOT'],
@@ -784,6 +784,7 @@ class Cat:
         self.no_kits = False
         self.no_mates = False
         self.no_retire = False
+        self.neutered = False
         self.prevent_fading = False  # Prevents a cat from fading
 
         self.faded_offspring = (
@@ -4184,6 +4185,7 @@ class Cat:
                 "no_kits": self.no_kits,
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
+                "neutered": self.neutered,
                 "exiled": self.exiled,
                 "genotype": self.genotype.toJSON(),
                 "white_pattern" : self.genotype.white_pattern,
