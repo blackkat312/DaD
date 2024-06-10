@@ -122,12 +122,12 @@ class Pregnancy_Events:
         All_Infertile = True
         if second_parent:
             for x in second_parent:
-                if 'infertile' not in x.permanent_condition:
+                if 'infertile' not in x.permanent_condition or not x.neutered:
                     All_Infertile = False
 
         if not int(random.random() * chance):
             # If you've reached here - congrats, kits!
-            if kits_are_adopted or 'infertile' in cat.permanent_condition or (second_parent and All_Infertile):
+            if kits_are_adopted or 'infertile' in cat.permanent_condition or (second_parent and All_Infertile) or cat.neutered:
                 Pregnancy_Events.handle_adoption(cat, second_parent, clan)
             else:
                 Pregnancy_Events.handle_zero_moon_pregnant(cat, second_parent, clan)
@@ -521,7 +521,7 @@ class Pregnancy_Events:
                     mate_age = cat.moons + randint(0, 24)-12
                     if cat_type != "Clancat":
                         out_par = None
-                        while not out_par or "infertile" in out_par.permanent_condition:
+                        while not out_par or "infertile" in out_par.permanent_condition or out_par.neutered:
                             if(out_par):
                                 del Cat.all_cats[out_par]
                             out_par = create_new_cat(Cat, Relationship,
@@ -1160,7 +1160,7 @@ class Pregnancy_Events:
                     for i in range(0, nr_of_parents):
                         blood_par2 = None
                         parage = parage + randint(0, 24) - 12
-                        while not blood_par2 or "infertile" in blood_par2.permanent_condition:
+                        while not blood_par2 or "infertile" in blood_par2.permanent_condition or blood_par2.neutered:
                             if(blood_par2):
                                 del Cat.all_cats[blood_par2.ID]
                             blood_par2 = create_new_cat(Cat, Relationship,
