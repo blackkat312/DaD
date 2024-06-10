@@ -1952,10 +1952,10 @@ class ChangeCatToggles(UIWindow):
             tool_tip = "The afterlife guide can never fade."
         elif self.the_cat.prevent_fading:
             box_type = "#checked_checkbox"
-            tool_tip = "Prevents cat from fading away after being dead for 202 moons."
+            tool_tip = "Allow the cat to fade away after being dead for 25 moons."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevents cat from fading away after being dead for 202 moons."
+            tool_tip = "Prevent the cat from fading away after being dead for 25 moons."
 
         # Fading
         self.checkboxes["prevent_fading"] = UIImageButton(
@@ -1970,12 +1970,20 @@ class ChangeCatToggles(UIWindow):
             self.checkboxes["prevent_fading"].disable()
 
         # No Kits
-        if self.the_cat.no_kits:
-            box_type = "#checked_checkbox"
-            tool_tip = "Prevent the cat from adopting or having kittens."
+        if self.the_cat.neutered or "infertile" in self.the_cat.permanent_condition:
+            if self.the_cat.no_kits:
+                box_type = "#checked_checkbox"
+                tool_tip = "Allow the cat to adopt kittens."
+            else:
+                box_type = "#unchecked_checkbox"
+                tool_tip = "Prevent the cat from adopting kittens."
         else:
-            box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent the cat from adopting or having kittens."
+            if self.the_cat.no_kits:
+                box_type = "#checked_checkbox"
+                tool_tip = "Allow the cat to adopt or have kittens."
+            else:
+                box_type = "#unchecked_checkbox"
+                tool_tip = "Prevent the cat from adopting or having kittens."
 
         self.checkboxes["prevent_kits"] = UIImageButton(
             scale(pygame.Rect(45, 100, 68, 68)),
@@ -1988,10 +1996,10 @@ class ChangeCatToggles(UIWindow):
         # No Retire
         if self.the_cat.no_retire:
             box_type = "#checked_checkbox"
-            tool_tip = "Allow cat to retiring automatically."
+            tool_tip = "Allow the cat to retire automatically."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent cat from retiring automatically."
+            tool_tip = "Prevent the cat from retiring automatically."
 
         self.checkboxes["prevent_retire"] = UIImageButton(
             scale(pygame.Rect(45, 150, 68, 68)),
@@ -2004,10 +2012,10 @@ class ChangeCatToggles(UIWindow):
         # No mates
         if self.the_cat.no_mates:
             box_type = "#checked_checkbox"
-            tool_tip = "Prevent cat from automatically taking a mate, breaking up, or having romantic interactions with non-mates."
+            tool_tip = "Allow the cat to automatically take a mate, break up, or have romantic interactions with non-mates."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent cat from automatically taking a mate, breaking up, or having romantic interactions with non-mates."
+            tool_tip = "Prevent the cat from automatically taking a mate, breaking up, or having romantic interactions with non-mates."
 
         self.checkboxes["prevent_mates"] = UIImageButton(
             scale(pygame.Rect(45, 200, 68, 68)),
