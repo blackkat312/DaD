@@ -223,7 +223,7 @@ class Cat:
 
         self.phenotype = Phenotype(self.genotype)
 
-        self.phenotype.PhenotypeOutput(self.genotype.gender)
+        self.phenotype.PhenotypeOutput(gender=self.genotype.gender, sex=self.genotype.gender)
         self.pelt = pelt if pelt else Pelt(self.genotype, self.phenotype)
 
         self.former_mentor = []
