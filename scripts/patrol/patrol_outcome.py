@@ -1235,7 +1235,7 @@ class PatrolOutcome:
         # Now, it's time to generate the new cat
         # This is a bit of a pain, but I can't re-write this function
         adoptive = None
-        if parent1 and 'infertile' in parent1.permanent_condition:
+        if parent1 and ('infertile' in parent1.permanent_condition or parent1.neutered):
             adoptive = parent1.ID
             parent1 = parent2
             parent2 = None
