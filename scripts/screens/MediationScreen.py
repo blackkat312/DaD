@@ -482,20 +482,14 @@ class MediationScreen(Screens):
             )
         elif other_cat:
             # FAMILY DOT
-            # Only show family dot on cousins if first cousin mates are disabled.
-            check_cousins = other_cat.is_cousin(cat)
+            # Only show family dot on second cousins if second cousin mates is disabled.
+            check_cousins = False
+            if not game.clan.clan_settings["second cousin mates"]:
+                check_cousins = cat.is_second_cousin(other_cat)
 
-            if (
-                other_cat.is_uncle_aunt(cat)
-                or cat.is_uncle_aunt(other_cat)
-                or other_cat.is_grandparent(cat)
-                or cat.is_grandparent(other_cat)
-                or other_cat.is_parent(cat)
-                or cat.is_parent(other_cat)
-                or other_cat.is_sibling(cat)
-                or check_cousins
-            ):
+            if cat.is_related(other_cat) or check_cousins:
                 related = True
+            if related:
                 self.selected_cat_elements["relation_icon" + tag] = (
                     pygame_gui.elements.UIImage(
                         scale(pygame.Rect((x + 28, y + 28), (36, 36))),
@@ -544,26 +538,70 @@ class MediationScreen(Screens):
                 elif cat.genderalign in ['tom', 'trans tom']:
                     col2 += "nephew"
                 else:
-                    col2 += "sibling's child"
+                    col2 += "nibling"
             elif cat.is_uncle_aunt(other_cat):
                 if cat.genderalign in ['molly', 'trans molly']:
                     col2 += "aunt"
                 elif cat.genderalign in ['tom', 'trans tom']:
                     col2 += "uncle"
                 else:
-                    col2 += "related: parent's sibling"
+                    col2 += "pibling"
             elif cat.is_grandparent(other_cat):
-                col2 += "grandparent"
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "grandmother"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "grandfather"
+                else:
+                    col2 += "grandparent"
             elif other_cat.is_grandparent(cat):
-                col2 += "grandchild"
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "granddaughter"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "grandson"
+                else:
+                    col2 += "grandkit"
             elif cat.is_parent(other_cat):
-                col2 += "parent"
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "mother"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "father"
+                else:
+                    col2 += "parent"
             elif other_cat.is_parent(cat):
-                col2 += "child"
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "daughter"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "son"
+                else:
+                    col2 += "kit"
             elif cat.is_sibling(other_cat) or other_cat.is_sibling(cat):
-                col2 += "sibling"
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "sister"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "brother"
+                else:
+                    col2 += "sibling"
+                if cat.is_littermate(other_cat) or other_cat.is_littermate(cat):
+                    col2 += " (littermate)"
             elif other_cat.is_cousin(cat):
                 col2 += "cousin"
+            elif cat.is_greatgrandkit(other_cat):
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "great-granddaughter"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "great-grandson"
+                else:
+                    col2 += "great-grandkit"
+            elif other_cat.is_greatgrandkit(cat):
+                if cat.genderalign in ['molly', 'trans molly']:
+                    col2 += "great-grandmother"
+                elif cat.genderalign in ['tom', 'trans tom']:
+                    col2 += "great-grandfather"
+                else:
+                    col2 += "great-grandparent"
+            elif not game.clan.clan_settings["second cousin mates"]:
+                if other_cat.is_second_cousin(cat):
+                    col2 += "second cousin"
 
         self.selected_cat_elements["col2" + tag] = pygame_gui.elements.UITextBox(
             col2,
@@ -608,6 +646,11 @@ class MediationScreen(Screens):
 
             # If they are not both adults, or the same age, OR they are related, don't display any romantic affection,
             # even if they somehow have some. They should not be able to get any, but it never hurts to check.
+            if not game.clan.clan_settings["second cousin mates"]:
+                if not related:
+                    if cat.is_second_cousin(other_cat):
+                        related = True
+
             if not check_age or related:
                 display_romantic = 0
                 # Print, just for bug checking. Again, they should not be able to get love towards their relative.
