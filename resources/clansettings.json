@@ -68,7 +68,7 @@
     },
     "role": {
         "deputy": [
-            "Allow leaders to automatically choose a new deputy",
+            "Allow guardians to automatically choose a new deputy",
             "The Warrior Code rules will be taken into account when choosing a deputy.",
             false
         ],
@@ -181,7 +181,7 @@
         ],
         "hunting":[
             "Feeding the Clan",
-            "The Clan will focus on hunting, each working warrior (including deputy and leader) and each working apprentice will gather additional prey on each moonskip.",
+            "The Clan will focus on hunting, each working warrior (including deputy and guardian) and each working apprentice will gather additional prey on each moonskip.",
             false,
             "hunting_focus",
             "#hunting_focus_button"
