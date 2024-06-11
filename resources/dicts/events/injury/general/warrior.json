@@ -419,7 +419,7 @@
             "scar",
             "NECKBITE"
         ],
-        "event_text": "m_c was hurt while protecting the leader from a fox.",
+        "event_text": "m_c was hurt while protecting the guardian from a fox.",
         "history_text": {
             "scar": "m_c was scarred by a fox while protecting r_c.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after protecting r_c from a fox."
@@ -760,7 +760,7 @@
             "scar",
             "SNOUT"
         ],
-        "event_text": "m_c was hurt while protecting the leader from a rogue.",
+        "event_text": "m_c was hurt while protecting the guardian from a rogue.",
         "history_text": {
             "scar": "m_c was scarred by a rogue while protecting r_c.",
             "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after protecting r_c from a rogue."
