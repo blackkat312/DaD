@@ -916,7 +916,7 @@
             "Leaf-fall",
             "Leaf-bare"
         ],
-        "death_text": "One day, the deputy finds m_c dead in the leader's den. Seems {PRONOUN/m_c/subject} lost a life to old age.",
+        "death_text": "One day, the deputy finds m_c dead in the guardian's den. Seems {PRONOUN/m_c/subject} lost a life to old age.",
         "history_text": {
             "lead_death": "died of old age"
         }
@@ -931,7 +931,7 @@
             "Leaf-fall",
             "Leaf-bare"
         ],
-        "death_text": "One day, m_c is found dead in the leader's den, never to rise again. Seems {PRONOUN/m_c/subject} lost the rest of {PRONOUN/m_c/poss} lives to old age.",
+        "death_text": "One day, m_c is found dead in the guardian's den, never to rise again. Seems {PRONOUN/m_c/subject} lost the rest of {PRONOUN/m_c/poss} lives to old age.",
         "history_text": {
             "lead_death": "died of old age"
         }
