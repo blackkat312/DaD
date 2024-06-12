@@ -307,7 +307,7 @@
         "thoughts": [
             "Is wondering what r_c is thinking",
             "Is hoping r_c notices {PRONOUN/m_c/poss} improvement",
-            "Is in awe of r_c's leadership",
+            "Is in awe of r_c's guardianship",
             "Thinks r_c could be leading the Clan better",
             "Has a list of complaints for r_c",
             "Is hoping r_c doesn't assign {PRONOUN/m_c/object} to dawn patrol tomorrow"
@@ -530,7 +530,7 @@
     {
         "id": "gen_to_dead_leader",
         "thoughts": [
-            "Is missing {PRONOUN/m_c/poss} late leader r_c",
+            "Is missing {PRONOUN/m_c/poss} late guardian r_c",
             "Is wondering if r_c is proud of {PRONOUN/m_c/object}",
             "Is wondering if r_c approves from StarClan"
         ],
@@ -635,7 +635,7 @@
         "thoughts": [
             "Is observing r_c's actions closely",
             "Is nervous about some of r_c's choices recently",
-            "Is disapproving of r_c's leadership recently"
+            "Is disapproving of r_c's guardianship recently"
         ],
         "main_status_constraint": [
             "apprentice",
@@ -706,7 +706,7 @@
     {
         "id": "gen_tragedy_survivor_to_alive_leader",
         "thoughts": [
-            "Is wondering how well the Clan would fare in a disaster under r_c's leadership"
+            "Is wondering how well the Clan would fare in a disaster under r_c's guardianship"
         ],
         "main_status_constraint": [
             "apprentice",
@@ -790,7 +790,7 @@
             "Is proud of how far {PRONOUN/m_c/subject} {verb/m_c/have/has} come from {PRONOUN/m_c/poss} kittypet life",
             "Is annoyed to still hear gossip about {PRONOUN/m_c/poss} past",
             "Would never wish to return to {PRONOUN/m_c/poss} old kittypet life",
-            "Wishes other cats would trust in the leader's choice of making {PRONOUN/m_c/object} deputy",
+            "Wishes other cats would trust in the guardian's choice of making {PRONOUN/m_c/object} deputy",
             "Wouldn't mind bragging about {PRONOUN/m_c/poss} position in the Clan to some old kittypet friends"
         ],
         "main_backstory_constraint": ["kittypet1", "kittypet2", "kittypet3", "kittypet4", "refugee3", "tragedy_survivor3", "guided1"],
@@ -802,7 +802,7 @@
         "thoughts": [
             "Is proud of how far {PRONOUN/m_c/subject} {verb/m_c/have/has} come from {PRONOUN/m_c/poss} kittypet life",
             "Would never wish to return to {PRONOUN/m_c/poss} old kittypet life",
-            "Is happy to prove StarClan's trust in {PRONOUN/m_c/poss} leadership",
+            "Is happy to prove StarClan's trust in {PRONOUN/m_c/poss} guardianship",
             "Carefully practices the words to every ceremony in {PRONOUN/m_c/poss} den",
             "Looks back on {PRONOUN/m_c/poss} life as a kittypet, amazed at how different things are now",
             "Thinks about taking in some kittypets as apprentices"
@@ -1388,7 +1388,7 @@
         "thoughts": [
             "Winked cheekily at another apprentice",
             "Is criticizing {PRONOUN/m_c/poss} mentor",
-            "Tells the leader they're doing something wrong"
+            "Tells the guardian they're doing something wrong"
         ],
         "main_status_constraint": [
             "apprentice",
@@ -1591,7 +1591,7 @@
             "Is feeling proud of {PRONOUN/m_c/self}",
             "Made sure to wake up early to train",
             "Is daydreaming about a Clan celebration in {PRONOUN/m_c/poss} honor",
-            "Is asking the Clan leader how {PRONOUN/m_c/subject} can help out around camp",
+            "Is asking the Clan guardian how {PRONOUN/m_c/subject} can help out around camp",
             "Has been asking {PRONOUN/m_c/poss} mentor for more training",
             "Tries to put on a brave face for {PRONOUN/m_c/poss} fellow apprentices",
             "Seems to be ordering {PRONOUN/m_c/poss} fellow apprentices around"
@@ -2049,7 +2049,7 @@
         "id": "wasting_disease_adolescent_to_alive_gen",
         "thoughts": [
             "Is frustrated by everyone's concern for {PRONOUN/m_c/poss} health",
-            "Daydreams about someday being leader"
+            "Daydreams about someday being guardian"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2633,7 +2633,7 @@
             "Is worried that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} losing {PRONOUN/m_c/poss} sight",
             "Jolted back to awareness in the middle of the thunderpath, not knowing how {PRONOUN/m_c/subject} got there",
             "Stopped taking poppy seeds because {PRONOUN/m_c/subject} lost track of how many {PRONOUN/m_c/subject} already took",
-            "Is speaking nonsense while the rest of {PRONOUN/m_c/poss} patrol reports to the leader",
+            "Is speaking nonsense while the rest of {PRONOUN/m_c/poss} patrol reports to the guardian",
             "Brought back a stick for the prey pile",
             "Forgot where the exit to camp is",
             "Got startled by a leaf falling on {PRONOUN/m_c/poss} head",
