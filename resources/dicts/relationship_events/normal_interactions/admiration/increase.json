@@ -289,7 +289,7 @@
 		"id": "admire_kit_inc_high1",
 		"intensity": "high",
 		"interactions": [
-			"m_c asks r_c if {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} really going to be the leader someday."
+			"m_c asks r_c if {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} really going to be the guardian someday."
 		],
 		"main_status_constraint": [
 			"kitten"
