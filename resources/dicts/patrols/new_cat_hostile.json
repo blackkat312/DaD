@@ -2128,7 +2128,7 @@
                 ]
             },
             {
-                "text": "StarClan, but the cat {PRONOUN/app1/subject} {VERB/app1/find/finds} is weird, their fur soft and thin, their cries desperate as they call in confusion. app1 watches until {PRONOUN/app1/poss} paws are cold and uncomfortable, crouched behind cover, but the dumb outsider doesn't even try to steal prey, they just wail for help, quieter and quieter as they begin to lose their voice. Finally, app1 can't take it anyone - striding out, {PRONOUN/app1/subject} {VERB/app1/tell/tells} the cat to follow {PRONOUN/app1/object}, the Leader will know what to do with this.",
+                "text": "StarClan, but the cat {PRONOUN/app1/subject} {VERB/app1/find/finds} is weird, their fur soft and thin, their cries desperate as they call in confusion. app1 watches until {PRONOUN/app1/poss} paws are cold and uncomfortable, crouched behind cover, but the dumb outsider doesn't even try to steal prey, they just wail for help, quieter and quieter as they begin to lose their voice. Finally, app1 can't take it anyone - striding out, {PRONOUN/app1/subject} {VERB/app1/tell/tells} the cat to follow {PRONOUN/app1/object}, the guardian will know what to do with this.",
                 "exp": 20,
                 "weight": 5,
                 "new_cat": [
@@ -2152,7 +2152,7 @@
                 ]
             },
             {
-                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. {PRONOUN/app1/subject/CAP} {VERB/app1/watch/watches} from under a rock overhang, but no, actually the kittypet is <i>that stupid</i> and it really seems likely they'll freeze to death if app1 doesn't do something. Ugh. Fine, well app1 can bring them back to camp, and then it's the Leader's problem to deal with, not app1's.",
+                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. {PRONOUN/app1/subject/CAP} {VERB/app1/watch/watches} from under a rock overhang, but no, actually the kittypet is <i>that stupid</i> and it really seems likely they'll freeze to death if app1 doesn't do something. Ugh. Fine, well app1 can bring them back to camp, and then it's the guardian's problem to deal with, not app1's.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": ["adventurous", "playful", "strange", "childish", "shameless"],
