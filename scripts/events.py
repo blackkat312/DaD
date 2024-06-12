@@ -156,6 +156,10 @@ class Events:
                 self.one_moon_cat(cat)
             else:
                 self.one_moon_outside_cat(cat, tnr_setting)
+            if cat.neutered and "TIPPED" not in cat.pelt.scars:
+                History.add_scar(cat=cat,
+                                 scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
+                cat.pelt.scars.append("TIPPED")
 
         # Adding in any potential lead den events that have been saved
         if "lead_den_interaction" in game.clan.clan_settings:
@@ -1360,7 +1364,7 @@ class Events:
         self.handle_outside_EX(cat)
 
         # steal their balls
-        if cat.moons > 2 and tnr_setting:
+        if cat.moons > 2 and tnr_setting and not cat.neutered:
             if cat.status == "kittypet":
                 if cat.moons <= 12 and random.randint(1, 5) > 2:
                     cat.neutered = True
