@@ -16,7 +16,7 @@
         "thoughts": [
             "Is assigning cats to a border patrol",
             "Is assigning cats to a hunting patrol",
-            "Is wondering what it would be like to be a leader",
+            "Is wondering what it would be like to be a guardian",
             "Is stressed about organizing patrols",
             "Wonders who will give {PRONOUN/m_c/object} nine lives",
             "Feels overworked",
@@ -31,8 +31,8 @@
     {
         "id": "deputy_alive_leader",
         "thoughts": [
-            "Is doing {PRONOUN/m_c/poss} best to honor {PRONOUN/m_c/poss} Clan and {PRONOUN/m_c/poss} leader",
-            "Must speak with the leader soon about something {PRONOUN/m_c/subject} found while out on patrol"
+            "Is doing {PRONOUN/m_c/poss} best to honor {PRONOUN/m_c/poss} Clan and {PRONOUN/m_c/poss} guardian",
+            "Must speak with the guardian soon about something {PRONOUN/m_c/subject} found while out on patrol"
         ],
         "random_status_constraint": [
             "leader"
@@ -61,8 +61,8 @@
     {
         "id": "bloodthirsty_deputy_leader",
         "thoughts": [
-            "Thinks about killing the leader and staging it as an accident",
-            "Encourages the leader to start a war"
+            "Thinks about killing the guardian and staging it as an accident",
+            "Encourages the guardian to start a war"
         ],
         "main_trait_constraint": [
             "bloodthirsty"
@@ -87,8 +87,8 @@
     {  
         "id":"insecure_deputy",
         "thoughts": [
-            "Keeps confirming with the leader that the patrols {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} organizing sound right",
-            "Hopes {PRONOUN/m_c/subject}'ll make a decent leader someday",
+            "Keeps confirming with the guardian that the patrols {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} organizing sound right",
+            "Hopes {PRONOUN/m_c/subject}'ll make a decent guardian someday",
             "Wonders how {PRONOUN/m_c/subject} became deputy in the first place",
             "Feels a pang of self-doubt when a patrol returns late",
             "Questions whether {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} respected or just tolerated by the Clan",
@@ -101,7 +101,7 @@
     {  
         "id":"insecure_deputy_leader",
         "thoughts": [
-            "Keeps confirming with the leader that the patrols {PRONOUN/m_c/subject}{VERB/m_c/'s/'re} organizing sound right"
+            "Keeps confirming with the guardian that the patrols {PRONOUN/m_c/subject}{VERB/m_c/'s/'re} organizing sound right"
         ],
         "main_trait_constraint":[
             "insecure"
@@ -146,9 +146,9 @@
     {
         "id": "ambitious_deputy",
         "thoughts": [
-            "Is imagining the respect {PRONOUN/m_c/subject}'d command as the leader of the Clan",
+            "Is imagining the respect {PRONOUN/m_c/subject}'d command as the guardian of the Clan",
             "Is considering innovative strategies to earn more recognition",
-            "Feels a burning desire to prove {PRONOUN/m_c/self} worthy of leadership"
+            "Feels a burning desire to prove {PRONOUN/m_c/self} worthy of guardianship"
         ],
         "main_trait_constraint": [
             "ambitious"
@@ -157,7 +157,7 @@
     {
         "id": "ambitious_deputy_teacher",
         "thoughts": [
-            "Is planning a new training curriculum to impress the leader"
+            "Is planning a new training curriculum to impress the guardian"
         ],
         "random_status_constraint": [
             "leader"
@@ -204,8 +204,8 @@
     {
         "id": "rebellious_deputy_leader",
         "thoughts": [
-            "Feels an urge to challenge the leader's decision for the betterment of the Clan",
-            "Decided to change patrol routes on {PRONOUN/m_c/poss} own, hoping the leader will see the benefits"
+            "Feels an urge to challenge the guardian's decision for the betterment of the Clan",
+            "Decided to change patrol routes on {PRONOUN/m_c/poss} own, hoping the guardian will see the benefits"
         ],
         "main_trait_constraint": [
             "rebellious"
