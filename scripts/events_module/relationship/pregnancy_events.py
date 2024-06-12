@@ -1600,7 +1600,7 @@ class Pregnancy_Events:
             inverse_chance = int(inverse_chance * 1.7)
 
         # - decrease inverse chance if the current family is small
-        if len(first_parent.get_relatives(clan.clan_settings["first cousin mates"])) < (
+        if len(first_parent.get_relatives()) < (
             living_cats / 15
         ):
             inverse_chance = int(inverse_chance * 0.7)
