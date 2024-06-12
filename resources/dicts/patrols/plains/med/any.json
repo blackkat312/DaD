@@ -19,7 +19,7 @@
         "chance_of_success": 45,
         "success_outcomes": [
             {
-                "text": "As p_l looks into the puddle, {PRONOUN/p_l/subject} {VERB/p_l/are/is} greeted by an intense vision. {PRONOUN/p_l/subject/CAP} {VERB/p_l/drop/drops} what {PRONOUN/p_l/subject} {VERB/p_l/are/is} doing and {VERB/p_l/race/races} back to the camp to tell and consult with {PRONOUN/p_l/poss} leader.",
+                "text": "As p_l looks into the puddle, {PRONOUN/p_l/subject} {VERB/p_l/are/is} greeted by an intense vision. {PRONOUN/p_l/subject/CAP} {VERB/p_l/drop/drops} what {PRONOUN/p_l/subject} {VERB/p_l/are/is} doing and {VERB/p_l/race/races} back to the camp to tell and consult with {PRONOUN/p_l/poss} guardian.",
                 "exp": 10,
                 "weight": 20,
                 "relationships": [
@@ -1178,7 +1178,7 @@
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "They have a good discussion while foraging, following their mental maps and scent trials through the seemingly featureless grasslands as familiar as their own pelts. Together they manage to come up with several ideas to discuss with c_n's leadership.",
+                "text": "They have a good discussion while foraging, following their mental maps and scent trials through the seemingly featureless grasslands as familiar as their own pelts. Together they manage to come up with several ideas to discuss with c_n's guardianship.",
                 "exp": 10,
                 "weight": 20,
                 "herbs": ["random_herbs"],
@@ -1193,7 +1193,7 @@
                 ]
             },
             {
-                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans and return to camp to discuss them with the leader and deputy.",
+                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans and return to camp to discuss them with the guardian and deputy.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["random_herbs"],
