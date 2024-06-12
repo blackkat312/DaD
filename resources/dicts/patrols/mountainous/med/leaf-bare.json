@@ -1422,7 +1422,7 @@
         "chance_of_success": 20,
         "success_outcomes": [
             {
-                "text": "p_l can't say it's fun, swiping away snow to scrounge for the bodies and roots of wilted dandelions beneath, and then the wild garlic bulbs almost immediately after, but what matters currently is that it's possible. They specifically ensure that, when they return to camp with the additions to the herb stores, the whole camp sees them praising their long-suffering patrol to the leader.",
+                "text": "p_l can't say it's fun, swiping away snow to scrounge for the bodies and roots of wilted dandelions beneath, and then the wild garlic bulbs almost immediately after, but what matters currently is that it's possible. They specifically ensure that, when they return to camp with the additions to the herb stores, the whole camp sees them praising their long-suffering patrol to the guardian.",
                 "exp": 10,
                 "weight": 20,
                 "herbs": ["wild_garlic", "dandelion"],
