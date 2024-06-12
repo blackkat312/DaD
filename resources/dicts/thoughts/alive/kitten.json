@@ -54,7 +54,7 @@
             "Is busy mastering a battle move {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} performing incorrectly",
             "Is hatching a plan to sneak out of camp and play",
             "Is running like a whirlwind around the camp",
-            "Is pretending to be the Clan leader",
+            "Is pretending to be the Clan guardian",
             "Doesn't want to grow up yet...",
             "Got in trouble for bringing thorns into the nest",
             "Is hunting bugs",
@@ -180,7 +180,7 @@
             "Thinks {PRONOUN/m_c/subject} can outsmart a fox",
             "Wants to guard the nursery",
             "Is sure {PRONOUN/m_c/subject} could fight a badger",
-            "Is sneaking into the leader's nest",
+            "Is sneaking into the guardian's nest",
             "Sticks {PRONOUN/m_c/poss} paw into an old snake hole",
             "Isn't afraid of the dark at all"
 
@@ -194,9 +194,9 @@
         "thoughts": [
             "Thinks {PRONOUN/m_c/subject} saw a StarClan cat in {PRONOUN/m_c/poss} dreams",
             "Is mesmerized by the night sky",
-            "Thinks {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} the leader of {PRONOUN/m_c/poss} own Clan",
+            "Thinks {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} the guardian of {PRONOUN/m_c/poss} own Clan",
             "Bosses around imaginary cats as deputy",
-            "Wonders what it would be like to be leader",
+            "Wonders what it would be like to be guardian",
             "Sorts blades of grass like a medicine cat would",
             "Stares into nothing in particular",
             "Makes up a tale on the spot for the other kits",
@@ -472,7 +472,7 @@
         "thoughts": [
             "Can't wait to be deputy so {PRONOUN/m_c/subject} can assign patrols",
             "Tells r_c to catch {PRONOUN/m_c/object} some fresh prey",
-            "Wants to be leader so everycat will have to listen to {PRONOUN/m_c/object} all the time",
+            "Wants to be guardian so everycat will have to listen to {PRONOUN/m_c/object} all the time",
             "Tells r_c to change the bedding in the nursery",
             "Tells r_c to play with {PRONOUN/m_c/object}",
             "Is mad no one will listen to {PRONOUN/m_c/object}",
