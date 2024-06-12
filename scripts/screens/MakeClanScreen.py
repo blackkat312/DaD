@@ -943,12 +943,7 @@ class MakeClanScreen(Screens):
         # SELECTED CAT INFO
         if selected is not None:
 
-            if self.sub_screen == "choose leader":
-                self.elements["cat_name"].set_text(
-                    str(selected.name) + " --> " + selected.name.prefix + "star"
-                )
-            else:
-                self.elements["cat_name"].set_text(str(selected.name))
+            self.elements["cat_name"].set_text(str(selected.name))
             self.elements["cat_name"].show()
             self.elements["cat_info"].set_text(
                 selected.gender
@@ -1353,7 +1348,7 @@ class MakeClanScreen(Screens):
         )
         # Error message, to appear if you can't choose that cat.
         self.elements["error_message"] = pygame_gui.elements.UITextBox(
-            "Too young to become leader",
+            "Too young to become guardian",
             scale(pygame.Rect((300, 706), (1000, 110))),
             object_id=get_text_box_theme("#text_box_30_horizcenter_red"),
             visible=False,
@@ -1728,7 +1723,7 @@ class MakeClanScreen(Screens):
         )
         self.text["leader"] = pygame_gui.elements.UILabel(
             scale(pygame.Rect((0, 90), (-1, -1))),
-            text=f"Leader name: {self.leader.name.prefix}star",
+            text=f"Guardian name: {self.leader.name.prefix}{self.leader.name.suffix}",
             container=self.elements["text_container"],
             object_id=get_text_box_theme("#text_box_30_horizleft"),
             manager=MANAGER,
