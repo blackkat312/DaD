@@ -28,7 +28,7 @@
             "Is thinking about what to say at the Gathering",
             "Is questioning {PRONOUN/m_c/poss} ability to lead",
             "Is dreading the Clan meeting {PRONOUN/m_c/subject} must call later today",
-            "Is finding the responsibility of leadership to be quite the heavy burden",
+            "Is finding the responsibility of guardianship to be quite the heavy burden",
             "Is feeling blessed by StarClan this moon",
             "Is thinking about forming an alliance",
             "Is making a solemn vow to protect {PRONOUN/m_c/poss} Clanmates",
@@ -37,7 +37,7 @@
             "Is pondering recent dreams {PRONOUN/m_c/subject} {VERB/m_c/have/has} had... perhaps from StarClan?",
             "Recently called a Clan meeting, but forgot what to say",
             "Is thinking about new ways to care for the Clan",
-            "Is wondering what the Clan thinks of {PRONOUN/m_c/poss} leadership",
+            "Is wondering what the Clan thinks of {PRONOUN/m_c/poss} guardianship",
             "Is proud of the way the Clan is handling things lately",
             "Is promising to take care of the Clan with {PRONOUN/m_c/poss} lives",
             "Is busy planning out priorities for the day"
@@ -69,7 +69,7 @@
             "Wants to go on patrol with r_c so they can have a chat",
             "Is grateful for r_c's support",
             "Is wondering if r_c will do a good job after {PRONOUN/m_c/object}",
-            "Is teaching r_c about the small details of being a leader",
+            "Is teaching r_c about the small details of being a guardian",
             "Is trusting r_c to take care of something important"
         ],
         "random_status_constraint": [
@@ -123,7 +123,7 @@
             "Demands the warriors train with their claws unsheathed",
             "Is thinking about exiling elders from now on",
             "Is thinking about driving out an opposing Clan",
-            "Is glaring over the Clan from the leader's den",
+            "Is glaring over the Clan from the guardian's den",
             "Is slashing at a 'disloyal' warrior",
             "Is swearing the Clan is plotting against {PRONOUN/m_c/object}"
         ],
@@ -182,7 +182,7 @@
         "id": "insecure_leader",
         "thoughts": [
             "Thinks {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} deserve StarClan's blessing of 4 lives",
-            "Wonders if cats like {PRONOUN/m_c/object} as a leader"
+            "Wonders if cats like {PRONOUN/m_c/object} as a guardian"
         ],
         "main_trait_constraint": [
             "insecure"
