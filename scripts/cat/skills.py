@@ -174,9 +174,9 @@ class SkillPath(Enum):
         "decor master",
     )
     LEADERSHIP = (
-        "deputy helper",
+        "medicine cat's helper",
         "leads patrols",
-        "leader's accomplice",
+        "guardian's accomplice",
         "assiduous",
     )
     AGILE = (
