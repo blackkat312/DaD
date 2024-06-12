@@ -188,7 +188,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "r_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. Furious, {PRONOUN/r_c/subject} {VERB/r_c/snarl/snarls} {PRONOUN/r_c/poss} anger. The apprentice turns tail and flees with r_c hot on their trail, and when the apprentice crosses the border to hide behind their mentor, the o_c_n warrior's tail tucks at the sight of c_n's outraged leader.",
+                "text": "r_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. Furious, {PRONOUN/r_c/subject} {VERB/r_c/snarl/snarls} {PRONOUN/r_c/poss} anger. The apprentice turns tail and flees with r_c hot on their trail, and when the apprentice crosses the border to hide behind their mentor, the o_c_n warrior's tail tucks at the sight of c_n's outraged guardian.",
                 "exp": 20,
                 "weight": 5,
                 "other_clan_rep": 2
@@ -201,7 +201,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} a o_c_n border patrol, which includes a young apprentice. Their eyes go round, and they hide behind their mentor, but s_c manages to coax them out, praising the little apprentice to their mentor, who purrs gratefully at the c_n leader's kindness.",
+                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} a o_c_n border patrol, which includes a young apprentice. Their eyes go round, and they hide behind their mentor, but s_c manages to coax them out, praising the little apprentice to their mentor, who purrs gratefully at the c_n guardian's kindness.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -308,7 +308,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the deputy of o_c_n out doing the same thing. Both deputies find a point where they can't agree on the right border path and return to their respective camps to discuss with their leaders.",
+                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the deputy of o_c_n out doing the same thing. Both deputies find a point where they can't agree on the right border path and return to their respective camps to discuss with their guardian and leader.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -370,7 +370,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the leader of o_c_n out doing the same thing. Both leaders find a point where they can't agree on the right border path and agree to raise it at the next Gathering instead.",
+                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the leader of o_c_n out doing the same thing. The guardian and leader find a point where they can't agree on the right border path and agree to raise it at the next Gathering instead.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -485,7 +485,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "s_c comes across a patrol from o_c_n, out on a similar mission to {PRONOUN/s_c/object}. {PRONOUN/s_c/subject/CAP} {VERB/s_c/strike/strikes} up a friendly conversation, keen to catch up on what their ally has been up to. {PRONOUN/s_c/subject/CAP} {VERB/s_c/send/sends} the patrol off with several friendly messages to pass on from different c_n cats and an update from c_n's leader.",
+                "text": "s_c comes across a patrol from o_c_n, out on a similar mission to {PRONOUN/s_c/object}. {PRONOUN/s_c/subject/CAP} {VERB/s_c/strike/strikes} up a friendly conversation, keen to catch up on what their ally has been up to. {PRONOUN/s_c/subject/CAP} {VERB/s_c/send/sends} the patrol off with several friendly messages to pass on from different c_n cats and an update from c_n's guardian.",
                 "exp": 20,
                 "weight": 20,
                 "stat_skill": ["SPEAKER,1"],
@@ -570,7 +570,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} a o_c_n border patrol, which includes a young apprentice. Their eyes go round, and they hide behind their mentor, but s_c manages to coax them out, praising the little apprentice to their mentor, who purrs gratefully at the c_n leader's kindness.",
+                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} a o_c_n border patrol, which includes a young apprentice. Their eyes go round, and they hide behind their mentor, but s_c manages to coax them out, praising the little apprentice to their mentor, who purrs gratefully at the c_n guardian's kindness.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -666,7 +666,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the deputy of o_c_n out doing the same thing. Both deputies find a point where they can't agree on the right border path and return to their respective camps to discuss with their leaders.",
+                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the deputy of o_c_n out doing the same thing. Both deputies find a point where they can't agree on the right border path and return to their respective camps to discuss with their guardian and leader.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -709,7 +709,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "s_c comes across a patrol from o_c_n, out on a similar mission to s_c with their leader. They strike up a friendly conversation, and eventually the o_c_n warriors drift away. The unexpected opportunity turns into a venting session, both leaders finally getting the chance to lift stress from their shoulders and talk to an equal.",
+                "text": "s_c comes across a patrol from o_c_n, out on a similar mission to s_c with their leader. They strike up a friendly conversation, and eventually the o_c_n warriors drift away. The unexpected opportunity turns into a venting session, the guardian and leader finally getting the chance to lift stress from their shoulders and talk to an equal.",
                 "exp": 20,
                 "weight": 20,
                 "stat_skill": ["SPEAKER,1"],
@@ -734,7 +734,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the leader of o_c_n out doing the same thing. Both leaders find a point where they can't agree on the right border path and agree to bring the subject up at next Gathering instead.",
+                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the leader of o_c_n out doing the same thing. The guardian and leader find a point where they can't agree on the right border path and agree to bring the subject up at next Gathering instead.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -993,7 +993,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} a o_c_n border patrol. It even includes a young apprentice, who fluffs up their pelt and insults {PRONOUN/s_c/object}. s_c sternly growls back to the apprentice that border fights are no joke, and surprisingly, their mentor joins s_c, both warrior and leader lecturing the apprentice.",
+                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} a o_c_n border patrol. It even includes a young apprentice, who fluffs up their pelt and insults {PRONOUN/s_c/object}. s_c sternly growls back to the apprentice that border fights are no joke, and surprisingly, their mentor joins s_c, both warrior and guardian lecturing the apprentice.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -1011,7 +1011,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "r_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. Furious, {PRONOUN/r_c/subject} {VERB/r_c/snarl/snarls} {PRONOUN/r_c/poss} anger. The apprentice turns tail and flees with r_c hot on their trail, and when the apprentice crosses the border to hide behind their mentor, the o_c_n warrior's face goes slack with horror to see c_n's leader.",
+                "text": "r_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. Furious, {PRONOUN/r_c/subject} {VERB/r_c/snarl/snarls} {PRONOUN/r_c/poss} anger. The apprentice turns tail and flees with r_c hot on their trail, and when the apprentice crosses the border to hide behind their mentor, the o_c_n warrior's face goes slack with horror to see c_n's guardian.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -1103,7 +1103,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} the o_c_n deputy out with their new apprentice. s_c passes on a message from c_n's leader and politely wishes the young apprentice well. The other deputy is begrudgingly impressed.",
+                "text": "As s_c marks the border, {PRONOUN/s_c/subject} {VERB/s_c/encounter/encounters} the o_c_n deputy out with their new apprentice. s_c passes on a message from c_n's guardian and politely wishes the young apprentice well. The other deputy is begrudgingly impressed.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -1194,7 +1194,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the leader of o_c_n out doing the same thing. Both leaders find a point where they can't agree on the right border path and storm off in a huff.",
+                "text": "r_c heads out to clarify a portion of the border that there's been confusion over recently and encounters the leader of o_c_n out doing the same thing. The guardian and leader find a point where they can't agree on the right border path and storm off in a huff.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
