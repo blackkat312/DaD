@@ -36,8 +36,8 @@
     {
         "id": "mediator_to_alive_leader",
         "thoughts": [
-            "Is angry with the leader for a border dispute gone wrong",
-            "Mediated a meeting between senior warriors and the leader over recent Clan decisions",
+            "Is angry with the guardian for a border dispute gone wrong",
+            "Mediated a meeting between senior warriors and the guardian over recent Clan decisions",
             "Thinks r_c should be more prudent regarding Clan relations"
         ],
         "random_status_constraint": [
