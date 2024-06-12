@@ -59,7 +59,7 @@
             "Leaf-fall",
             "Leaf-bare"
         ],
-        "event_text": "m_c finds paths and twists of healthy green ivy growing down just above the leader's den. Looking left and right for any cat paying attention to them, {PRONOUN/m_c/subject} quickly snap a pair of leaves off of one of the lower branches. m_c is seen wearing the ivy shortly after.",
+        "event_text": "m_c finds paths and twists of healthy green ivy growing down just above the guardian's den. Looking left and right for any cat paying attention to them, {PRONOUN/m_c/subject} quickly snap a pair of leaves off of one of the lower branches. m_c is seen wearing the ivy shortly after.",
         "accessories": ["IVY"]
     },
     {
