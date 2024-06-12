@@ -3036,7 +3036,7 @@
                 ]
             },
             {
-                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. The apprentice introduces {PRONOUN/app1/self} cheerfully, and the desperate kittypet slowly loses a little of their fear as app1 guides them back to camp, sure that the Leader will know what to do with them.",
+                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. The apprentice introduces {PRONOUN/app1/self} cheerfully, and the desperate kittypet slowly loses a little of their fear as app1 guides them back to camp, sure that the guardian will know what to do with them.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": ["adventurous", "playful", "strange", "childish", "shameless"],
