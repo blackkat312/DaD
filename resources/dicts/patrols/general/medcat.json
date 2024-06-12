@@ -414,7 +414,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "It definitely distracts {PRONOUN/p_l/object} from the hunt for cobwebs, but p_l uses the time by {PRONOUN/p_l/self} to put {PRONOUN/p_l/poss} thoughts in order. The sign from {PRONOUN/p_l/poss} ancestors will need acting upon, and {PRONOUN/p_l/subject} {VERB/p_l/return/returns} to camp to assemble the leader and deputy.",
+                "text": "It definitely distracts {PRONOUN/p_l/object} from the hunt for cobwebs, but p_l uses the time by {PRONOUN/p_l/self} to put {PRONOUN/p_l/poss} thoughts in order. The sign from {PRONOUN/p_l/poss} ancestors will need acting upon, and {PRONOUN/p_l/subject} {VERB/p_l/return/returns} to camp to assemble the guardian and deputy.",
                 "exp": 20,
                 "weight": 20
             },
@@ -2928,7 +2928,7 @@
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "They have a good discussion while foraging for herbs, and manage to come up with several ideas regarding the latest news to discuss with the leader and deputy.",
+                "text": "They have a good discussion while foraging for herbs, and manage to come up with several ideas regarding the latest news to discuss with the guardian and deputy.",
                 "exp": 10,
                 "weight": 20,
                 "herbs": ["random_herbs"],
@@ -2943,7 +2943,7 @@
                 ]
             },
             {
-                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans, and they return to camp to discuss them with the leader and deputy.",
+                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans, and they return to camp to discuss them with the guardian and deputy.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["random_herbs"],
