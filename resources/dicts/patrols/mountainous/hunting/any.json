@@ -663,7 +663,7 @@
         "chance_of_success": 60,
         "success_outcomes": [
             {
-                "text": "r_c immediately turns and heads for home to report this to {PRONOUN/r_c/poss} leader, alarmed by the sudden presence of Twolegs in their territory.",
+                "text": "r_c immediately turns and heads for home to report this to {PRONOUN/r_c/poss} guardian, alarmed by the sudden presence of Twolegs in their territory.",
                 "exp": 20,
                 "weight": 20
             },
@@ -739,7 +739,7 @@
         "chance_of_success": 60,
         "success_outcomes": [
             {
-                "text": "The patrol immediately turns and heads for home to report this to their leader, alarmed by the sudden presence of Twolegs in their territory.",
+                "text": "The patrol immediately turns and heads for home to report this to their guardian, alarmed by the sudden presence of Twolegs in their territory.",
                 "exp": 20,
                 "weight": 20,
                 "prey": ["medium"]
@@ -817,7 +817,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The patrol immediately turns and heads for home to report this to their leader, alarmed by the sudden presence of Twolegs in their territory.",
+                "text": "The patrol immediately turns and heads for home to report this to their guardian, alarmed by the sudden presence of Twolegs in their territory.",
                 "exp": 20,
                 "weight": 20,
                 "prey": ["large"]
@@ -1085,7 +1085,7 @@
                 "injury": [
                     {
                         "cats": ["r_c"],
-                        "injuries": ["persistent headache"]
+                        "injuries": ["persistent headaches"]
                     }
                 ]
             },
