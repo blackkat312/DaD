@@ -91,7 +91,7 @@
     {
         "id": "elder_alive_leader",
         "thoughts": [
-            "Is giving the Clan leader attitude"
+            "Is giving the Clan guardian attitude"
         ],
         "main_age_constraint": [
             "senior"
@@ -370,7 +370,7 @@
     {
         "id": "one_bad_eye_adolescent_retired_to_alive_gen",
         "thoughts": [
-            "Brags to the Clan that {PRONOUN/m_c/subject} would've been the best leader"
+            "Brags to the Clan that {PRONOUN/m_c/subject} would've been the best guardian"
         ],
         "perm_conditions": {
             "m_c": [
