@@ -20,7 +20,7 @@
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "They have a good discussion while foraging among the dunes and manage to come up with several ideas to discuss with c_n's leadership.",
+                "text": "They have a good discussion while foraging among the dunes and manage to come up with several ideas to discuss with c_n's guardianship.",
                 "exp": 10,
                 "weight": 20,
                 "herbs": ["random_herbs"],
@@ -35,7 +35,7 @@
                 ]
             },
             {
-                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans and return to camp to discuss them with the leader and deputy.",
+                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans and return to camp to discuss them with the guardian and deputy.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["random_herbs"],
