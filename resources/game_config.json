@@ -159,9 +159,9 @@
 	},
 	"pregnancy": {
 		"birth_cooldown": 1,
-		"primary_chance_mated": 100,
-		"primary_chance_unmated": 80,
-		"random_affair_chance": 35,
+		"primary_chance_mated": 90,
+		"primary_chance_unmated": 75,
+		"random_affair_chance": 30,
 		"unmated_random_affair_chance": 1,
 		"one_kit_possibility": {"young adult": 8, "adult": 9, "senior adult": 10, "senior": 25},
         "two_kit_possibility": {"young adult": 30, "adult": 20, "senior adult": 50, "senior": 40},
@@ -185,6 +185,7 @@
 		"min_kits": 1,
 		"max_kits": 19,
 
+
 		"modded_primary_chance_mated": 50,
 		"modded_primary_chance_unmated": 100,
 		"one_kit_modded": {"young adult": 64, "adult": 4, "senior adult": 8, "senior": 64},
@@ -206,15 +207,15 @@
 	},
 	"cat_generation": {
 		"base_permanent_condition": 15,
-		"multiple_permanent_conditions": 20,
+		"multiple_permanent_conditions": 25,
 		"max_conditions_born_with": 5,
 		"base_male_tortie": 13,
 		"base_female_tortie": 4,
-		"base_heterochromia": 60,
+		"base_heterochromia": 50,
 		"direct_inheritance": 15,
 		"wildcard_tortie": 9,
-		"vit_chance": 6,
-		"random_point_chance": 3,
+		"vit_chance": 8,
+		"random_point_chance": 5,
 		"comment": [
 			"multiple_permanent_conditions (20 by default) - 1/chance for a cat to be born with one extra permanent condition,",
 			"runs until it's tried to give a cat [max_conditions_born_with - 1] extra conditions.",
@@ -233,11 +234,11 @@
 	},
 	"accessory_generation": {
 		"base_acc_chance": 30,
-		"med_modifier": -10,
+		"med_modifier": -5,
 		"baby_modifier": 0,
 		"elder_modifier": -5,
-		"happy_trait_modifier": 0,
-		"grumpy_trait_modifier":0,
+		"happy_trait_modifier": -5,
+		"grumpy_trait_modifier": 0,
 		"ceremony_modifier": -5
 	},
 	"fading": {
@@ -248,10 +249,10 @@
 	},
 	"roles": {
 		"mediator_app_chance": 50,
-		"base_medicine_app_chance": 41,
+		"base_medicine_app_chance": 40,
 		"become_mediator_chances": {
-			"warrior": 800,
-			"elder": 800
+			"warrior": 650,
+			"elder": 650
 		}
 	},
 	"lost_cat": {
@@ -289,15 +290,18 @@
 			"due to how it's written in the save files. So don't try to 'fix' it."
 		]
 	},
+	"event_generation": {
+		"debug_ensure_event_id": null
+	},
 	"death_related": {
-		"leader_death_chance": 100,
+		"leader_death_chance": 50,
 		"classic_death_chance": 500,
 		"expanded_death_chance": 270,
 		"cruel season_death_chance": 300,
 		"war_death_modifier_leader": 95,
-		"war_death_modifier": 200,
+		"war_death_modifier": 150,
 		"base_random_murder_chance": 30,
-		"base_murder_kill_chance": 40,
+		"base_murder_kill_chance": 35,
 		"old_age_death_start": 150,
 		"old_age_death_curve": 2,
 		"kit_death_chances":{"0" : 0.25, "1" : 0.2, "2" : 0.2, "3" : 0.15, "4" : 0.1, "5" : 0.05},
@@ -310,7 +314,7 @@
 	"condition_related": {
 		"expanded_illness_chance": 190,
 		"cruel season_illness_chance": 200,
-		"classic_injury_chance": 250,
+		"classic_injury_chance": 450,
 		"expanded_injury_chance": 130,
 		"cruel season_injury_chance": 150,
 		"permanent_condition_chance": 3,
@@ -322,12 +326,12 @@
 	},
 	"genetic_chances": {
 		"chimera" : 250,
-		"intersex" : 65,
-		"XXX/XXY" : 90,
+		"intersex" : 60,
+		"XXX/XXY" : 70,
 		"brindled_bicolour" : 100,
-		"vitiligo" : 50,
-		"random_mutation" : 100,
-		"kittypet_breed" : 60,
+		"vitiligo" : 75,
+		"random_mutation" : 90,
+		"kittypet_breed" : 50,
 		"other_breed" : 100,
 		"purebred_min" : 95,
 		"mix_min" : 25
@@ -352,6 +356,7 @@
         "hunting":{
             "warrior": 2,
             "apprentice": 1,
+            "emergency": 1,
             "comment": "Defines how much a working warrior(leader/deputy) or apprentice gathers additionally."
         },
         "herb gathering" : {
@@ -459,7 +464,7 @@
 	"fun": {
 		"april_fools": false,
 		"all_cats_are_newborn": false,
-		"newborns_can_roam": false,
+		"newborns_can_roam": true,
 		"newborns_can_patrol": false,
 		"always_halloween": true
 	},
