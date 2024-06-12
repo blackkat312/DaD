@@ -21,7 +21,7 @@
         "pl_skill_constraint": ["PROPHET,1"],
         "success_outcomes": [
             {
-                "text": "As p_l looks into the water of the underground spring {PRONOUN/p_l/subject} {VERB/p_l/are/is} greeted by an intense vision. {PRONOUN/p_l/subject/CAP} {VERB/p_l/drop/drops} what {PRONOUN/p_l/subject} {VERB/p_l/are/is} doing and race back to the camp to tell and consult with {PRONOUN/p_l/poss} leader.",
+                "text": "As p_l looks into the water of the underground spring {PRONOUN/p_l/subject} {VERB/p_l/are/is} greeted by an intense vision. {PRONOUN/p_l/subject/CAP} {VERB/p_l/drop/drops} what {PRONOUN/p_l/subject} {VERB/p_l/are/is} doing and race back to the camp to tell and consult with {PRONOUN/p_l/poss} guardian.",
                 "exp": 10,
                 "weight": 20,
                 "relationships": [
