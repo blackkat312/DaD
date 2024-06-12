@@ -205,7 +205,7 @@
 		"id": "dislike_inc_high4",
 		"intensity": "high",
 		"interactions": [
-			"m_c accuses r_c of being a bad leader.",
+			"m_c accuses r_c of being a bad guardian.",
 			"m_c accuses r_c of not taking care of the Clan.",
 			"m_c accuses r_c of not putting the Clan first."
 		],
