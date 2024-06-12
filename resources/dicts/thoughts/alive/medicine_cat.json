@@ -9,9 +9,9 @@
             "Climbed a tree to gather alder bark instead of clawing the trunk",
             "Thinks about visiting StarClan, just to explore their hunting grounds",
             "Asks the deputy to go on patrol",
-            "Begs the leader to give {PRONOUN/m_c/object} the bounciest kit as {PRONOUN/m_c/poss} apprentice",
+            "Begs the guardian to give {PRONOUN/m_c/object} the bounciest kit as {PRONOUN/m_c/poss} apprentice",
             "Is showing the kits herbs by taking them on adventures in the territory",
-            "Helps the leader with their duties while the deputy is on patrol",
+            "Helps the guardian with their duties while the deputy is on patrol",
             "Offers to help the queens with badger rides for the kits",
             "Uses extra herbs just to go gather more"
         ],
@@ -48,8 +48,8 @@
             "Refused to treat anyone today",
             "Is upset that {PRONOUN/m_c/subject} can't fight alongside the warriors",
             "Wishes to fight alongside the warriors",
-            "Thinks {PRONOUN/m_c/subject}'d be an amazing leader",
-            "Talks to the leader and deputy about war",
+            "Thinks {PRONOUN/m_c/subject}'d be an amazing guardian",
+            "Talks to the guardian and deputy about war",
             "Ignores the low herb stocks, instead practicing battle moves"
         ],
         "main_trait_constraint": [
@@ -180,7 +180,7 @@
             "Wonders why the warriors won't share prey with {PRONOUN/m_c/object}",
             "Wishes {PRONOUN/m_c/subject} could make friends with someone",
             "Wishes the warriors shared an interest in herbs",
-            "Wants to talk to the leader about having a new apprentice",
+            "Wants to talk to the guardian about having a new apprentice",
             "Wishes for an apprentice, as {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} a bit lonely",
             "Hasn't talked to any warriors for a few days"
         ],
@@ -260,7 +260,7 @@
     {
         "id": "sneaky_medicine_cat",
         "thoughts": [
-            "Seems to be hiding something in the medicine {PRONOUN/m_c/subject} {VERB/m_c/give/gives} to the leader"
+            "Seems to be hiding something in the medicine {PRONOUN/m_c/subject} {VERB/m_c/give/gives} to the guardian"
         ],
         "main_trait_constraint": [
             "sneaky"
