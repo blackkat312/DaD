@@ -17,7 +17,7 @@
             "Leaf-fall",
             "Leaf-bare"
         ],
-        "event_text": "m_c feels as though the responsibility of leadership is crushing {PRONOUN/m_c/object}."
+        "event_text": "m_c feels as though the responsibility of guardianship is crushing {PRONOUN/m_c/object}."
     },
     {
         "camp": "any",
