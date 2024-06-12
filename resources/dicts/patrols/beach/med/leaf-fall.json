@@ -5458,7 +5458,7 @@
                 "herbs": ["raspberry"]
             },
             {
-                "text": "p_l knows deathberries when {PRONOUN/p_l/subject} {VERB/p_l/see/sees} {PRONOUN/p_l/object} and slips back to camp to report it to the leader - the warriors will need to be told to avoid this bush.",
+                "text": "p_l knows deathberries when {PRONOUN/p_l/subject} {VERB/p_l/see/sees} {PRONOUN/p_l/object} and slips back to camp to report it to the guardian - the warriors will need to be told to avoid this bush.",
                 "exp": 30,
                 "weight": 5
             },
