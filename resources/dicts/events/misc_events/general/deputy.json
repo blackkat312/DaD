@@ -51,7 +51,7 @@
             "Leaf-bare",
             "war"
         ],
-        "event_text": "As the deputy, m_c is doing {PRONOUN/m_c/poss} best to prepare for leadership in the case that the worst happens."
+        "event_text": "As the deputy, m_c is doing {PRONOUN/m_c/poss} best to prepare for guardianship in the case that the worst happens."
     },
     {
         "camp": "any",
@@ -68,7 +68,7 @@
             "respect",
             "trust"
         ],
-        "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as leader if r_c loses {PRONOUN/r_c/poss} last life. How could {PRONOUN/m_c/subject} {VERB/m_c/go/goes} on without {PRONOUN/m_c/poss} beloved leader? How difficult will it to be to lead in {PRONOUN/r_c/poss} stead?",
+        "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as guardian if r_c loses {PRONOUN/r_c/poss} last life. How could {PRONOUN/m_c/subject} {VERB/m_c/go/goes} on without {PRONOUN/m_c/poss} beloved guardian? How difficult will it to be to lead in {PRONOUN/r_c/poss} stead?",
         "cat_trait": [
             "insecure",
             "lonesome",
@@ -86,7 +86,7 @@
             "other_cat",
             "other_cat_leader"
         ],
-        "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as leader if r_c loses {PRONOUN/r_c/poss} last life.",
+        "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as guardian if r_c loses {PRONOUN/r_c/poss} last life.",
         "cat_trait": [
             "insecure",
             "lonesome",
