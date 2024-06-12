@@ -2056,6 +2056,8 @@ def generate_sprite(
                     pads.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 elif ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour):
                     pads.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                elif 'black' in whichcolour and genotype.pointgene[0] != 'C' and genotype.pointgene[0] != 'c':
+                    pads.blit(sprites.sprites['nosecolours4'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 else:
                     pads.blit(sprites.sprites['nosecolours' + str(pad_dict.get(whichcolour))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
@@ -2159,6 +2161,8 @@ def generate_sprite(
                 nose.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             elif (phenotype.maincolour != phenotype.spritecolour and genotype.ext[0] != 'ea'):
                 nose.blit(sprites.sprites['nosecolours2'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            elif 'black' in phenotype.maincolour and genotype.pointgene[0] != 'C' and genotype.pointgene[0] != 'c':
+                nose.blit(sprites.sprites['nosecolours4'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             else:
                 nose.blit(sprites.sprites['nosecolours' + str(nose_dict.get(phenotype.maincolour))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
