@@ -766,7 +766,7 @@ class ProfileScreen(Screens):
                 scale(pygame.Rect((766, 220), (68, 68))),
                 "",
                 object_id="#leader_ceremony_button",
-                tool_tip_text="Leader Ceremony",
+                tool_tip_text="Guardian Ceremony",
                 manager=MANAGER,
             )
         elif self.the_cat.status in ["mediator", "mediator apprentice"]:
@@ -984,11 +984,13 @@ class ProfileScreen(Screens):
         if (
             the_cat.outside
             and not the_cat.exiled
-            and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat"]
+            and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]
         ):
             output += "<font color='#FF0000'>lost</font>"
         elif the_cat.exiled:
             output += "<font color='#FF0000'>exiled</font>"
+        elif the_cat.status == "leader":
+            output += "guardian"
         else:
             output += the_cat.status
 
