@@ -1669,7 +1669,7 @@ class Events:
                 text = ""
                 if game.clan.deputy.personality.trait == "bloodthirsty":
                     text = (
-                        f"{game.clan.deputy.name} has become the new leader. "
+                        f"{game.clan.deputy.name} has become the new guardian. "
                         f"They stare down at their Clanmates with unsheathed claws, "
                         f"promising a new era for the Clans."
                     )
@@ -1679,7 +1679,7 @@ class Events:
                         text = (
                             str(game.clan.deputy.name.prefix)
                             + str(game.clan.deputy.name.suffix)
-                            + " has been promoted to the new leader of the Clan. "
+                            + " has been promoted to the new guardian of the Clan. "
                             "They travel immediately to the Moonstone to get their "
                             "nine lives and are hailed by their new name, "
                             + str(game.clan.deputy.name)
@@ -1687,7 +1687,7 @@ class Events:
                         )
                     elif c == 2:
                         text = (
-                            f"{game.clan.deputy.name} has become the new leader of the Clan. "
+                            f"{game.clan.deputy.name} has become the new guardian of the Clan. "
                             f"They vow that they will protect the Clan, "
                             f"even at the cost of their nine lives."
                         )
@@ -1695,7 +1695,7 @@ class Events:
                         text = (
                             f"{game.clan.deputy.name} has received "
                             f"their nine lives and became the "
-                            f"new leader of the Clan. They feel like "
+                            f"new guardian of the Clan. They feel like "
                             f"they are not ready for this new "
                             f"responsibility, but will try their best "
                             f"to do what is right for the Clan."
@@ -1704,7 +1704,7 @@ class Events:
                 # game.ceremony_events_list.append(text)
                 text += (
                     f"\nVisit {game.clan.deputy.name}'s "
-                    "profile to see their full leader ceremony."
+                    "profile to see their full guardian ceremony."
                 )
 
                 game.cur_events_list.append(
@@ -3230,7 +3230,7 @@ class Events:
 
             if leader_dead or leader_outside:
                 game.cur_events_list.insert(
-                    0, Single_Event(f"{game.clan.name}Clan has no leader!")
+                    0, Single_Event(f"{game.clan.name}Clan has no guardian!")
                 )
 
     def check_and_promote_deputy(self):
@@ -3283,7 +3283,7 @@ class Events:
                         if random_cat.personality.trait == "bloodthirsty":
                             text = (
                                 f"{random_cat.name} has been chosen as the new deputy. "
-                                f"They look at the Clan leader with an odd glint in their eyes."
+                                f"They look at the Clan guardian with an odd glint in their eyes."
                             )
                             # No additional involved cats
                         else:
@@ -3310,14 +3310,14 @@ class Events:
                             involved_cats.append(game.clan.leader.ID)
                     elif leader_status == "not_here" and deputy_status == "here":
                         text = (
-                            f"The Clan is without a leader, but a "
+                            f"The Clan is without a guardian, but a "
                             f"new deputy must still be named.  "
                             f"{random_cat.name} is chosen as the new deputy. "
                             f"The retired deputy nods their approval."
                         )
                     elif leader_status == "not_here" and deputy_status == "not_here":
                         text = (
-                            f"Without a leader or deputy, the Clan has been directionless. "
+                            f"Without a guardian or deputy, the Clan has been directionless. "
                             f"They all turn to {random_cat.name} with hope for the future."
                         )
                     elif leader_status == "here" and deputy_status == "here":
