@@ -138,7 +138,7 @@ class LeaderDenScreen(Screens):
             object_id="#help_button",
             manager=MANAGER,
             tool_tip_text="This screen allows you to check on the other cats who live nearby, both Outsiders and "
-            "other Clan cats.  You can control how the leader of your Clan will treat other leaders at "
+            "other Clan cats.  You can control how the guardian of your Clan will treat other leaders at "
             "Gatherings, but keep in mind that you can only determine one interaction each moon!  "
             "Likewise, you can consider whether to drive out or invite in Outsider cats.  If you drive "
             "out a cat, they will no longer appear in the Cats Outside the Clans list.  If you invite "
