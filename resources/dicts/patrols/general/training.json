@@ -1611,7 +1611,7 @@
                 ]
             },
             {
-                "text": "s_c doesn't much care what the patrol does - {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} keen to use the opportunity for a slightly different aim. As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's leadership and if they think the Clan is going in the right direction.",
+                "text": "s_c doesn't much care what the patrol does - {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} keen to use the opportunity for a slightly different aim. As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's guardianship and if they think the Clan is going in the right direction.",
                 "exp": 60,
                 "weight": 20,
                 "can_have_stat":["any"],
@@ -1780,7 +1780,7 @@
                 ]
             },
             {
-                "text": "As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's leadership and if they think the Clan is going in the right direction. {PRONOUN/s_c/subject/CAP}{VERB/s_c/'ve/'s} transparently oily about it, and the group returns to camp disgusted with s_c's lack of faith.",
+                "text": "As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's guardianship and if they think the Clan is going in the right direction. {PRONOUN/s_c/subject/CAP}{VERB/s_c/'ve/'s} transparently oily about it, and the group returns to camp disgusted with s_c's lack of faith.",
                 "exp": 0,
                 "weight": 20,
                 "can_have_stat":["any"],
@@ -1973,7 +1973,7 @@
                 ]
             },
             {
-                "text": "r_c asks what they should do - but s_c doesn't care! {PRONOUN/s_c/subject/CAP} don't want to lead this, to be the <i>leader</i> here. Please, for this afternoon, {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} just another Clanmate. And it's such a welcome break from {PRONOUN/s_c/poss} responsibilities, laughing and playing with the other cats til dusk, carefree and unburdened.",
+                "text": "r_c asks what they should do - but s_c doesn't care! {PRONOUN/s_c/subject/CAP} don't want to lead this, to be the <i>guardian</i> here. Please, for this afternoon, {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} just another Clanmate. And it's such a welcome break from {PRONOUN/s_c/poss} responsibilities, laughing and playing with the other cats til dusk, carefree and unburdened.",
                 "exp": 40,
                 "weight": 20,
                 "can_have_stat":["p_l"],
@@ -2100,7 +2100,7 @@
                 ]
             },
             {
-                "text": "As the cats train, r_c quietly takes s_c aside. It's nothing important - {PRONOUN/r_c/subject} just wanted some advice about something. s_c always has time for {PRONOUN/s_c/poss} Clanmates, it's no trouble at all. After, r_c rejoins the group afterwards, padding like weight has fallen off {PRONOUN/r_c/poss} shoulders, and the rest of the group shares a smile. There's nothing like the reassurance of sage, measured wisdom to help a cat. That wisdom is definitely one of s_c's talents as a leader.",
+                "text": "As the cats train, r_c quietly takes s_c aside. It's nothing important - {PRONOUN/r_c/subject} just wanted some advice about something. s_c always has time for {PRONOUN/s_c/poss} Clanmates, it's no trouble at all. After, r_c rejoins the group afterwards, padding like weight has fallen off {PRONOUN/r_c/poss} shoulders, and the rest of the group shares a smile. There's nothing like the reassurance of sage, measured wisdom to help a cat. That wisdom is definitely one of s_c's talents as a guardian.",
                 "exp": 40,
                 "weight": 20,
                 "can_have_stat":["p_l"],
@@ -2142,7 +2142,7 @@
                 ]
             },
             {
-                "text": "s_c doesn't take charge or lead the patrol haring off after some grand adventure. That just isn't {PRONOUN/s_c/poss} style. Instead, the cats are reminded of the kindness in their leader's heart as they watch s_c help r_c up off the ground, reassure another Clanmate when they get a move wrong. The warmth of these little sparks of empathy remind everyone why c_n follows s_c.",
+                "text": "s_c doesn't take charge or lead the patrol haring off after some grand adventure. That just isn't {PRONOUN/s_c/poss} style. Instead, the cats are reminded of the kindness in their guardian's heart as they watch s_c help r_c up off the ground, reassure another Clanmate when they get a move wrong. The warmth of these little sparks of empathy remind everyone why c_n follows s_c.",
                 "exp": 40,
                 "weight": 20,
                 "can_have_stat":["p_l"],
@@ -7740,7 +7740,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "No matter how patiently p_l tries to teach app1 how to firmly, but gently, gather and shred the moss, {PRONOUN/app1/subject} {VERB/app1/don't/doesn't} seem to be paying any attention. Frustrated with {PRONOUN/app1/object}, p_l decides to have a talk with the leader upon their return to camp.",
+                "text": "No matter how patiently p_l tries to teach app1 how to firmly, but gently, gather and shred the moss, {PRONOUN/app1/subject} {VERB/app1/don't/doesn't} seem to be paying any attention. Frustrated with {PRONOUN/app1/object}, p_l decides to have a talk with the guardian upon their return to camp.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -8108,13 +8108,13 @@
             "all apprentices": [-1, -1]
         },
         "weight": 100,
-        "intro_text": "p_l can't believe that r_c is <i>such</i> a fox-heart that the leader of c_n sent them both out together to work out their problems. Like, what?",
+        "intro_text": "p_l can't believe that r_c is <i>such</i> a fox-heart that the guardian of c_n sent them both out together to work out their problems. Like, what?",
         "decline_text": "Maybe this rivalry has gotten a little... excessive.",
         "chance_of_success": 60,
         "relationship_constraint": ["dislike_30", "romantic_30"],
         "success_outcomes": [
             {
-                "text": "If there is a single thing that r_c and p_l can both agree on, it's this: how dare anyone order them to be friends! They complain to each other about the leader's commands for a good long while, before both being swept up into their normal arguments. Which they'll be continuing as long as they feel like, thank you.",
+                "text": "If there is a single thing that r_c and p_l can both agree on, it's this: how dare anyone order them to be friends! They complain to each other about the guardian's commands for a good long while, before both being swept up into their normal arguments. Which they'll be continuing as long as they feel like, thank you.",
                 "exp": 15,
                 "weight": 20,
                 "relationships": [
@@ -8181,7 +8181,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "{PRONOUN/p_l/subject/CAP} {VERB/p_l/breathe/breathes}, reminding {PRONOUN/p_l/self} of {PRONOUN/p_l/poss} responsibilities as leader of the Clan. How would it look if {PRONOUN/p_l/subject} just exploded at r_c, no matter how justified?",
+                "text": "{PRONOUN/p_l/subject/CAP} {VERB/p_l/breathe/breathes}, reminding {PRONOUN/p_l/self} of {PRONOUN/p_l/poss} responsibilities as guardian of the Clan. How would it look if {PRONOUN/p_l/subject} just exploded at r_c, no matter how justified?",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -8496,7 +8496,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l tries to ignore what's clearly apprentice nonsense, up until there's a rather painful yelp. app1 has encountered something sharp in the puddle app2 shoved {PRONOUN/app1/object} into. <i>Apprentices</i>. The leader is going to hear <i>exactly</i> which cats caused this patrol to fail.",
+                "text": "p_l tries to ignore what's clearly apprentice nonsense, up until there's a rather painful yelp. app1 has encountered something sharp in the puddle app2 shoved {PRONOUN/app1/object} into. <i>Apprentices</i>. The guardian is going to hear <i>exactly</i> which cats caused this patrol to fail.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -8694,7 +8694,7 @@
                 ]
             },
             {
-                "text": "p_l sits down with app1 in the training grounds. What's wrong? As the leader, p_l could - app1 cuts {PRONOUN/p_l/object} off. Yes, app1 knows {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} the leader, <i>everyone</i> knows p_l is the leader! That's the problem! Everyone expects so much, just because app1 happened to be born into p_l's nest, like that's helped app1 at all! p_l curls around them sympathetically, listening, heart sinking to hear the burden placed on {PRONOUN/p_l/poss} kit by the Clan.",
+                "text": "p_l sits down with app1 in the training grounds. What's wrong? As the guardian, p_l could - app1 cuts {PRONOUN/p_l/object} off. Yes, app1 knows {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} the guardian, <i>everyone</i> knows p_l is the guardian! That's the problem! Everyone expects so much, just because app1 happened to be born into p_l's nest, like that's helped app1 at all! p_l curls around them sympathetically, listening, heart sinking to hear the burden placed on {PRONOUN/p_l/poss} kit by the Clan.",
                 "exp": 20,
                 "weight": 5,
                 "relationships": [
@@ -11017,7 +11017,7 @@
                 ]
             },
             {
-                "text": "app1 tries hard to resist the urge to scratch app2's confidence away. How dare {PRONOUN/app2/subject} try to show off during {PRONOUN/app1/poss} assessment? Unfortunately, it's a losing battle. app1 just can't hold {PRONOUN/app1/self} back anymore as {PRONOUN/app1/subject} listen to app2 brag about why {PRONOUN/app2/subject} should be leader. app1 leaps onto {PRONOUN/app2/object}, and they tussle on the ground. The mentors rush out of hiding to break up the fight and chide the apprentices for their foolishness.",
+                "text": "app1 tries hard to resist the urge to scratch app2's confidence away. How dare {PRONOUN/app2/subject} try to show off during {PRONOUN/app1/poss} assessment? Unfortunately, it's a losing battle. app1 just can't hold {PRONOUN/app1/self} back anymore as {PRONOUN/app1/subject} listen to app2 brag about why {PRONOUN/app2/subject} should be guardian. app1 leaps onto {PRONOUN/app2/object}, and they tussle on the ground. The mentors rush out of hiding to break up the fight and chide the apprentices for their foolishness.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["bloodthirsty"],
