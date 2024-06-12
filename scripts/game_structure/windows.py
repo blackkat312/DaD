@@ -1050,7 +1050,7 @@ class KillCat(UIWindow):
             "",
             object_id="#unchecked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the leader will lose all {PRONOUN/m_c/poss} lives",
+                "If this is checked, the guardian will lose all {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1061,7 +1061,7 @@ class KillCat(UIWindow):
             "",
             object_id="#checked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the leader will lose all {PRONOUN/m_c/poss} lives",
+                "If this is checked, the guardian will lose all {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1086,7 +1086,7 @@ class KillCat(UIWindow):
 
             self.all_lives_check.hide()
             self.life_text = pygame_gui.elements.UITextBox(
-                "Take all the leader's lives",
+                "Take all the guardian's lives",
                 scale(pygame.Rect((120, 295), (900, 80))),
                 object_id="#text_box_30_horizleft",
                 manager=MANAGER,
