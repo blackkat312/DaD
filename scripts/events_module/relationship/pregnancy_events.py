@@ -1,4 +1,3 @@
-from random import choice, randint
 import random
 from operator import xor
 from random import choice, randint
@@ -15,13 +14,12 @@ from scripts.events_module.condition_events import Condition_Events
 from scripts.game_structure.game_essentials import game
 from scripts.utility import (
     create_new_cat,
-    create_outside_cat,
     get_highest_romantic_relation,
-    get_med_cats,
     event_text_adjust,
     get_personality_compatibility,
     BACKSTORIES,
-    change_relationship_values
+    change_relationship_values,
+    get_alive_status_cats
 )
 
 
@@ -51,6 +49,7 @@ class Pregnancy_Events:
     @staticmethod
     def biggest_family_is_big():
         """Returns if the current biggest family is big enough to 'activates' additional inbreeding counters."""
+
         living_cats = len(
             [i for i in Cat.all_cats.values() if not (i.dead or i.outside or i.exiled)]
         )
@@ -175,8 +174,8 @@ class Pregnancy_Events:
         amount = Pregnancy_Events.get_amount_of_kits(cat, clan)
         kits = Pregnancy_Events.get_kits(amount, None, None, clan, adoptive_parents=adoptive_parents)
         
-        insert = "this should not display"
-        insert2 = "this should not display"
+        insert = 'this should not display'
+        insert2 = 'this should not display'
         if amount == 1:
             insert = "a single kitten"
             insert2 = "it"
@@ -239,7 +238,7 @@ class Pregnancy_Events:
         if (cat and cat.no_kits):
             return
 
-        if clan.clan_settings["same sex birth"] and not (not other_cat and random.randint(0,1)):
+        if clan.clan_settings['same sex birth'] and not (not other_cat and random.randint(0,1)):
             # same sex birth enables all cats to get pregnant,
             # therefore the main cat will be used, regarding of gender
             ids = []
@@ -257,10 +256,9 @@ class Pregnancy_Events:
             if clan.game_mode != "classic":
                 severity = random.choices(["minor", "major"], [3, 1], k=1)
                 cat.get_injured("pregnant", severity=severity[0])
-                text += choice(
-                    Pregnancy_Events.PREGNANT_STRINGS[f"{severity[0]}_severity"]
-                )
-            text = event_text_adjust(Cat, text, cat, clan=clan)
+                text += choice(Pregnancy_Events.PREGNANT_STRINGS[f"{severity[0]}_severity"])
+            text = event_text_adjust(Cat, text, main_cat=cat, clan=game.clan)
+
             game.cur_events_list.append(Single_Event(text, "birth_death", cat.ID))
         else:
             if not other_cat and cat.gender == "tom":
@@ -269,53 +267,56 @@ class Pregnancy_Events:
                 stillborn_chance = 0
 
                 if amount < 3:
-                    stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["small"]
+                    stillborn_chance = game.config['pregnancy']['stillborn_chances']['small']
                 elif amount == 3:
-                    stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["three"]
+                    stillborn_chance = game.config['pregnancy']['stillborn_chances']['three']
                 elif amount < 6:
-                    stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["mid"]
+                    stillborn_chance = game.config['pregnancy']['stillborn_chances']['mid']
                 elif amount < 9:
-                    stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["big"]
+                    stillborn_chance = game.config['pregnancy']['stillborn_chances']['big']
                 else:
-                    stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["large"]
+                    stillborn_chance = game.config['pregnancy']['stillborn_chances']['large']
 
-                if not (clan.clan_settings["modded_kits"]):
+                if not (clan.clan_settings['modded_kits']):
                     stillborn_chance = 0
 
                 unknowns = []
                 for outcat in Cat.all_cats:
                     outcat = Cat.all_cats.get(outcat)
-                    if not outcat.dead and outcat.status in ["kittypet", "loner", "rogue"]:
+                    if not outcat.dead and outcat.status in ['kittypet', 'loner', 'rogue']:
                         unknowns.append(outcat)
 
                 possible_affair_partners = [i for i in unknowns if
                                         i.is_potential_mate(cat, for_love_interest=True, outsider=True)
-                                        and (clan.clan_settings["same sex birth"]
+                                        and (clan.clan_settings['same sex birth']
                                         or (xor(i.gender == "tom", cat.gender == "tom")
                                         or i.gender == "intersex" or cat.gender == "intersex"))
                                         and len(i.mate) == 0]
                 if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                     if(randint(1, 4) > 1):
-                        cat_type = choice(["loner", "rogue", "kittypet"])
+                        cat_type = choice(['loner', 'rogue', 'kittypet'])
                         backstories = {
-                            "loner" : "loner_backstories",
-                            "rogue" : "rogue_backstories",
-                            "kittypet" : "kittypet_backstories"
+                            'loner' : 'loner_backstories',
+                            'rogue' : 'rogue_backstories',
+                            'kittypet' : 'kittypet_backstories'
                         }
-                        backkit = "outsider_roots2"
+                        backkit = 'outsider_roots2'
                     else:
-                        cat_type = "Clancat"
-                        backkit = "halfclan2"
+                        cat_type = 'Clancat'
+                        backkit = 'halfclan2'
                     mate_age = cat.moons + randint(0, 24)-12
                     outside_parent = None
-                    if cat_type != "Clancat":
+                    if cat_type != 'Clancat':
                         if cat.gender == "tom":
                             mate_gender = "fem"
                         elif cat.gender == "molly":
                             mate_gender = "masc"
                         else:
                             mate_gender = random.choice(["fem", "masc"])
-                        outside_parent = create_new_cat(Cat, Relationship,
+                        outside_parent = create_new_cat(Cat,
+                                                loner=cat_type in ["loner", "rogue"],
+                                                kittypet=cat_type == "kittypet",
+                                                other_clan=cat_type == 'former Clancat',
                                                 status=cat_type,
                                                 backstory=BACKSTORIES["backstory_categories"][backstories[cat_type]],
                                                 alive=True,
@@ -331,7 +332,7 @@ class Pregnancy_Events:
 
                 else:
                     outside_parent = [choice(possible_affair_partners)]
-                    backkit = "outsider_roots2"
+                    backkit = 'outsider_roots2'
 
 
                 kits = Pregnancy_Events.get_kits(amount, cat, outside_parent, clan, backkit=backkit)
@@ -342,11 +343,11 @@ class Pregnancy_Events:
                         History.add_death(kit, str(kit.name) + " was stillborn.")
                         kits.remove(kit)
 
-                insert = "this should not display"
+                insert = 'this should not display'
                 if len(kits) == 1:
-                    insert = "a single kitten"
+                    insert = 'a single kitten'
                 if len(kits) > 1:
-                    insert = f"a litter of {len(kits)} kits"
+                    insert = f'a litter of {len(kits)} kits'
                 if len(kits) > 0:
                     print_event = f"{cat.name} brought {insert} back to camp, but refused to talk about their origin."
                     cats_involved = [cat.ID]
@@ -381,13 +382,10 @@ class Pregnancy_Events:
             if clan.game_mode != "classic":
                 severity = random.choices(["minor", "major"], [3, 1], k=1)
                 pregnant_cat.get_injured("pregnant", severity=severity[0])
-                text += choice(
-                    Pregnancy_Events.PREGNANT_STRINGS[f"{severity[0]}_severity"]
-                )
-            text = event_text_adjust(Cat, text, pregnant_cat, clan=clan)
-            game.cur_events_list.append(
-                Single_Event(text, "birth_death", pregnant_cat.ID)
-            )
+                text += choice(Pregnancy_Events.PREGNANT_STRINGS[f"{severity[0]}_severity"])
+            text = event_text_adjust(Cat, text, main_cat=pregnant_cat, clan=game.clan)
+            game.cur_events_list.append(Single_Event(text, "birth_death", pregnant_cat.ID))
+
 
     @staticmethod
     def handle_one_moon_pregnant(cat: Cat, clan=game.clan):
@@ -402,7 +400,7 @@ class Pregnancy_Events:
 
         amount = Pregnancy_Events.get_amount_of_kits(cat, clan)
         
-        text = "This should not appear (pregnancy_events.py)"
+        text = 'This should not appear (pregnancy_events.py)'
 
         # add the amount to the pregnancy dict
         clan.pregnancy_data[cat.ID]["amount"] = amount
@@ -440,7 +438,7 @@ class Pregnancy_Events:
             except:
                 print("Is this an old save? Cat does not have the pregnant condition")
 
-        text = event_text_adjust(Cat, text, cat, clan=clan)
+        text = event_text_adjust(Cat, text, main_cat=cat, clan=game.clan)
         game.cur_events_list.append(Single_Event(text, "birth_death", cat.ID))
 
     @staticmethod
@@ -458,19 +456,21 @@ class Pregnancy_Events:
 
         kits_amount = clan.pregnancy_data[cat.ID]["amount"]
         stillborn_chance = 0
+        if kits_amount == 0:  # safety check, sometimes pregnancies were ending up with 0 due to save rollbacks
+            kits_amount = 1
 
         if kits_amount < 3:
-            stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["small"]
+            stillborn_chance = game.config['pregnancy']['stillborn_chances']['small']
         elif kits_amount == 3:
-            stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["three"]
+            stillborn_chance = game.config['pregnancy']['stillborn_chances']['three']
         elif kits_amount < 6:
-            stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["mid"]
+            stillborn_chance = game.config['pregnancy']['stillborn_chances']['mid']
         elif kits_amount < 9:
-            stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["big"]
+            stillborn_chance = game.config['pregnancy']['stillborn_chances']['big']
         else:
-            stillborn_chance = game.config["pregnancy"]["stillborn_chances"]["large"]
+            stillborn_chance = game.config['pregnancy']['stillborn_chances']['large']
         
-        if not (clan.clan_settings["modded_kits"]):
+        if not (clan.clan_settings['modded_kits']):
             stillborn_chance = 0
 
         other_cat_id = clan.pregnancy_data[cat.ID]["second_parent"]
@@ -489,47 +489,50 @@ class Pregnancy_Events:
             unknowns = []
             for outcat in Cat.all_cats:
                 outcat = Cat.all_cats.get(outcat)
-                if not outcat.dead and outcat.status in ["kittypet", "loner", "rogue"]:
+                if not outcat.dead and outcat.status in ['kittypet', 'loner', 'rogue']:
                     unknowns.append(outcat)
 
             possible_affair_partners = [i for i in unknowns if
                                     i.is_potential_mate(cat, for_love_interest=True, outsider=True)
-                                    and (clan.clan_settings["same sex birth"]
+                                    and (clan.clan_settings['same sex birth']
                                     or (xor(i.gender == "tom", cat.gender == "tom")
                                     or i.gender == "intersex" or cat.gender == "intersex"))
                                     and len(i.mate) == 0]
             if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                 if(randint(1, 4) > 1):
-                    cat_type = choice(["loner", "rogue", "kittypet"])
+                    cat_type = choice(['loner', 'rogue', 'kittypet'])
 
                     backstories = {
-                        "loner" : "loner_backstories",
-                        "rogue" : "rogue_backstories",
-                        "kittypet" : "kittypet_backstories"
+                        'loner' : 'loner_backstories',
+                        'rogue' : 'rogue_backstories',
+                        'kittypet' : 'kittypet_backstories'
                     }
-                    backkit = "outsider_roots1"
+                    backkit = 'outsider_roots1'
                 else:
-                    cat_type = "Clancat"
-                    backkit = "halfclan1"
+                    cat_type = 'Clancat'
+                    backkit = 'halfclan1'
 
                 nr_of_parents = 1
-                if clan.clan_settings["multisire"] and cat_type != "Clancat":
+                if clan.clan_settings['multisire'] and cat_type != 'Clancat':
                     nr_of_parents = randint(1, choice([1, 1, 1, randint(2, 5)]))
                 other_cat = []
                 for i in range(0, nr_of_parents):
 
                     mate_age = cat.moons + randint(0, 24)-12
-                    if cat_type != "Clancat":
+                    if cat_type != 'Clancat':
                         out_par = None
                         while not out_par or "infertile" in out_par.permanent_condition or out_par.neutered:
                             if(out_par):
                                 del Cat.all_cats[out_par]
-                            out_par = create_new_cat(Cat, Relationship,
+                            out_par = create_new_cat(Cat,
+                                                    loner=cat_type in ["loner", "rogue"],
+                                                    kittypet=cat_type == "kittypet",
+                                                    other_clan=cat_type == 'former Clancat',
                                                     status=cat_type,
                                                     backstory=BACKSTORIES["backstory_categories"][backstories[cat_type]],
                                                     alive=True,
                                                     age=mate_age if mate_age > 14 else 15,
-                                                    gender="masc",
+                                                    gender='masc',
                                                     outside=True)[0]
                             out_par.thought = f"Is wondering how {cat.name} is doing"
 
@@ -540,10 +543,10 @@ class Pregnancy_Events:
                         other_cat.append(out_par)
 
             else:
-                backkit = "outsider_roots1"
+                backkit = 'outsider_roots1'
                 other_cat = []
                 nr_of_parents = 1
-                if clan.clan_settings["multisire"]:
+                if clan.clan_settings['multisire']:
                     nr_of_parents = randint(1, choice([1, 1, 1, randint(2, 5)]))
 
                 if nr_of_parents > len(possible_affair_partners):
@@ -571,11 +574,11 @@ class Pregnancy_Events:
             for kit in kits:
                 kit.outside = True
                 game.clan.add_to_outside(kit)
-                kit.backstory = "outsider"
+                kit.backstory = "outsider1"
                 if cat.exiled:
                     kit.status = "loner"
                     name = choice(names.names_dict["normal_prefixes"])
-                    kit.name = Name("loner", prefix=name, suffix="")
+                    kit.name = Name('loner', prefix=name, suffix="")
                 if other_cat and not other_cat[0].outside:
                     kit.backstory = "outsider2"
                 if cat.outside and not cat.exiled:
@@ -614,7 +617,7 @@ class Pregnancy_Events:
                     Which_Aff = x
 
         # choose event string
-        # TODO: currently they don't choose which "mate" is the "blood" parent or not
+        # TODO: currently they don't choose which 'mate' is the 'blood' parent or not
         # change or leaf as it is?
         events = Pregnancy_Events.PREGNANT_STRINGS
         event_list = []
@@ -658,7 +661,7 @@ class Pregnancy_Events:
         ):  # chance for a cat to die during childbirth
             possible_events = events["birth"]["death"]
             # just makin sure meds aren't mentioned if they aren't around or if they are a parent
-            meds = get_med_cats(Cat, working=False)
+            meds = get_alive_status_cats(Cat, ["medicine cat", "medicine cat apprentice"], sort=True)
             mate_is_med = [mate_id for mate_id in cat.mate if mate_id in meds]
             if not meds or cat in meds or len(mate_is_med) > 0:
                 for event in possible_events:
@@ -696,7 +699,7 @@ class Pregnancy_Events:
                 History.add_possible_history(cat, "blood loss", death_text=death_event)
                 possible_events = events["birth"]["difficult_birth"]
                 # just makin sure meds aren't mentioned if they aren't around or if they are a parent
-                meds = get_med_cats(Cat, working=False)
+                meds = get_alive_status_cats(Cat, ["medicine cat", "medicine cat apprentice"])
                 mate_is_med = [mate_id for mate_id in cat.mate if mate_id in meds]
                 if not meds or cat in meds or len(mate_is_med) > 0:
                     for event in possible_events:
@@ -704,6 +707,7 @@ class Pregnancy_Events:
                             possible_events.remove(event)
 
                 event_list.append(choice(possible_events))
+
         if clan.game_mode != "classic" and not cat.dead:
             # If they are dead in childbirth above, all condition are cleared anyway.
             try:
@@ -714,11 +718,11 @@ class Pregnancy_Events:
                 )
         print_event = " ".join(event_list)
         print_event = print_event.replace("{insert}", insert)
-        
-        print_event = event_text_adjust(Cat, print_event, cat, RandomChoice, clan=clan)
 
         for kit in kits:
             involved_cats.append(kit.ID)
+
+        print_event = event_text_adjust(Cat, print_event, main_cat=cat, random_cat=RandomChoice, clan=game.clan)
 
         # display event
         game.cur_events_list.append(
@@ -933,7 +937,7 @@ class Pregnancy_Events:
 
         # randomly select a mate of given cat
         if len(cat.mate) > 0:
-            if clan.clan_settings["multisire"]:
+            if clan.clan_settings['multisire']:
                 mate_copy = cat.mate
                 mate = []
                 for x in mate_copy:
@@ -946,7 +950,7 @@ class Pregnancy_Events:
         if not samesex and mate and cat.gender == "molly" and clan.clan_settings["multisire"]:
             opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "tom", cat.gender == "tom")]
             if len(opposite_mate) > 0:
-                mate = [choice(opposite_mate)]
+                mate = opposite_mate
         elif not samesex and mate and cat.gender == "tom":
             opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "tom", cat.gender == "tom")]
             if len(opposite_mate) > 0:
@@ -994,7 +998,7 @@ class Pregnancy_Events:
             chance = game.config["pregnancy"]["unmated_random_affair_chance"]
             special_affair = True
 
-        # "buff" affairs if the current biggest family is big + this cat doesn't belong there
+        # 'buff' affairs if the current biggest family is big + this cat doesn't belong there
         if not Pregnancy_Events.biggest_family:
             Pregnancy_Events.set_biggest_family()
 
@@ -1004,7 +1008,7 @@ class Pregnancy_Events:
         ):
             chance = int(chance * 0.8)
 
-        # "regular" random affair
+            # "regular" random affair
         if not int(random.random() * chance):
             possible_affair_partners = [
                 i
@@ -1058,7 +1062,9 @@ class Pregnancy_Events:
                     return highest_romantic_relation.cat_to
         elif highest_romantic_relation:
             # Love affair change if the cat doesn't have a mate:
-            chance_love_affair = Pregnancy_Events.get_unmated_love_affair_chance(highest_romantic_relation)
+            chance_love_affair = Pregnancy_Events.get_unmated_love_affair_chance(
+                highest_romantic_relation
+            )
             if not chance_love_affair or not int(random.random() * chance_love_affair):
                 if samesex or (cat.gender != highest_romantic_relation.cat_to.gender and (cat.gender != "intersex" and highest_romantic_relation.cat_to.gender != "intersex")):
                     return highest_romantic_relation.cat_to
@@ -1068,7 +1074,7 @@ class Pregnancy_Events:
     @staticmethod
     def get_kits(kits_amount, cat=None, other_cat=None, clan=game.clan, adoptive_parents=None, backkit=None):
         """Create some amount of kits
-        No parents are specifed, it will create a blood parents for all the
+        No parents are specified, it will create a blood parents for all the
         kits to be related to. They may be dead or alive, but will always be outside
         the clan."""
         all_kitten = []
@@ -1097,10 +1103,10 @@ class Pregnancy_Events:
         ##### SELECT BACKSTORY #####
         if backkit:
             backstory = backkit
-            if "halfclan" in backkit:
+            if 'halfclan' in backkit:
                 other_cat = None
         elif cat and cat.gender == "molly":
-            backstory = choice(["halfclan1", "outsider_roots1"])
+            backstory = choice(['halfclan1', 'outsider_roots1'])
         elif cat:
             backstory = choice(["halfclan2", "outsider_roots2"])
         else:  # cat is adopted
@@ -1135,12 +1141,11 @@ class Pregnancy_Events:
         for kit in range(kits_amount):
             kit = None
             if not cat:
-
                 # No parents provided, give a blood parent - this is an adoption.
                 if not blood_parent:
                     # Generate a blood parent if we haven't already. 
                     nr_of_parents = 1
-                    if clan.clan_settings["multisire"]:
+                    if clan.clan_settings['multisire']:
                         nr_of_parents = randint(1, choice([1, 1, 1, randint(2, 5)]))
 
                     insert = "their kits are"
@@ -1148,9 +1153,13 @@ class Pregnancy_Events:
                         insert = "their kit is"
                     thought = f"Is glad that {insert} safe"
                     parage = randint(15,120)
-                    blood_parent = create_new_cat(Cat, Relationship,
-                                                status=random.choice(["loner", "kittypet"]),
-                                                gender="fem",
+                    cat_type = random.choice(["loner", "kittypet"])
+                    blood_parent = create_new_cat(Cat,
+                                                loner=cat_type in ["loner", "rogue"],
+                                                kittypet=cat_type == "kittypet",
+                                                other_clan=cat_type == 'former Clancat',
+                                                status=cat_type,
+                                                gender='fem',
                                                 alive=False,
                                                 thought=thought,
                                                 age=parage,
@@ -1163,9 +1172,13 @@ class Pregnancy_Events:
                         while not blood_par2 or "infertile" in blood_par2.permanent_condition or blood_par2.neutered:
                             if(blood_par2):
                                 del Cat.all_cats[blood_par2.ID]
-                            blood_par2 = create_new_cat(Cat, Relationship,
-                                                        status=random.choice(["loner", "kittypet"]),
-                                                        gender="masc",
+                            cat_type = random.choice(["loner", "kittypet"])
+                            blood_par2 = create_new_cat(Cat,
+                                                        loner=cat_type in ["loner", "rogue"],
+                                                        kittypet=cat_type == "kittypet",
+                                                        other_clan=cat_type == 'former Clancat',
+                                                        status=cat_type,
+                                                        gender='masc',
                                                         alive=False,
                                                         thought=thought,
                                                         age=parage if parage > 14 else 15,
@@ -1176,7 +1189,7 @@ class Pregnancy_Events:
 
                     blood_parent.thought = thought
                 
-                kit = Cat(parent1=blood_parent.ID, parent2=choice(blood_parent2).ID,moons=0, backstory=backstory, status="newborn")
+                kit = Cat(parent1=blood_parent.ID, parent2=choice(blood_parent2).ID,moons=0, backstory=backstory, status='newborn')
             else:
                 # Two parents provided
                 second_blood = None
@@ -1184,9 +1197,9 @@ class Pregnancy_Events:
                     second_blood = choice(other_cat)
 
                 if backkit:
-                    kit = Cat(parent1=cat.ID, parent2=second_blood.ID if second_blood else None, moons=0, backstory=backstory, status="newborn", extrapar = par2geno)
+                    kit = Cat(parent1=cat.ID, parent2=second_blood.ID if second_blood else None, moons=0, backstory=backstory, status='newborn', extrapar = par2geno)
                 else:
-                    kit = Cat(parent1=cat.ID, parent2=second_blood.ID, moons=0, status="newborn")
+                    kit = Cat(parent1=cat.ID, parent2=second_blood.ID, moons=0, status='newborn')
 
                 if cat.gender == "molly" or not second_blood or second_blood.outside:
                     kit.thought = f"Snuggles up to the belly of {cat.name}"
@@ -1220,10 +1233,10 @@ class Pregnancy_Events:
             ):
                 kit.congenital_condition(kit)
                 for condition in kit.permanent_condition:
-                    if kit.permanent_condition[condition] == "born without a leg":
-                        kit.pelt.scars.append("NOPAW")
-                    elif kit.permanent_condition[condition] == "born without a tail" and kit.phenotype.bobtailnr != 1:
-                        kit.pelt.scars.append("NOTAIL")
+                    if kit.permanent_condition[condition] == 'born without a leg':
+                        kit.pelt.scars.append('NOPAW')
+                    elif kit.permanent_condition[condition] == 'born without a tail' and kit.phenotype.bobtailnr != 1:
+                        kit.pelt.scars.append('NOTAIL')
                 Condition_Events.handle_already_disabled(kit)
 
             # create and update relationships
@@ -1315,7 +1328,7 @@ class Pregnancy_Events:
                     ]
                     change_relationship_values(
                         cats_from=[kit],
-                        cats_to=[parent.ID],
+                        cats_to=[parent],
                         platonic_like=kit_to_parent["platonic"],
                         dislike=kit_to_parent["dislike"],
                         admiration=kit_to_parent["admiration"],
@@ -1325,7 +1338,7 @@ class Pregnancy_Events:
                     )
                     change_relationship_values(
                         cats_from=[parent],
-                        cats_to=[kit.ID],
+                        cats_to=[kit],
                         platonic_like=parent_to_kit["platonic"],
                         dislike=parent_to_kit["dislike"],
                         admiration=parent_to_kit["admiration"],
@@ -1348,7 +1361,7 @@ class Pregnancy_Events:
     def get_amount_of_kits(cat, clan):
         """Get the amount of kits which will be born."""
         
-        if(clan.clan_settings["modded_kits"]):
+        if(clan.clan_settings['modded_kits']):
 
             one_kit = [1] * game.config["pregnancy"]["one_kit_modded"][cat.age]
             two_kits = [2] * game.config["pregnancy"]["two_kit_modded"][cat.age]
@@ -1486,12 +1499,12 @@ class Pregnancy_Events:
         """Returns a chance based on different values."""
         # Now that the second parent is determined, we can calculate the balanced chance for kits
         # get the chance for pregnancy
-        if not (clan.clan_settings["modded_kits"]):
+        if not (clan.clan_settings['modded_kits']):
             inverse_chance = game.config["pregnancy"]["primary_chance_unmated"]
         else:
             inverse_chance = game.config["pregnancy"]["modded_primary_chance_unmated"]
         if len(first_parent.mate) > 0 and not affair:
-            if not (clan.clan_settings["modded_kits"]):
+            if not (clan.clan_settings['modded_kits']):
                 inverse_chance = game.config["pregnancy"]["primary_chance_mated"]
             else:
                 inverse_chance = game.config["pregnancy"]["modded_primary_chance_mated"]
