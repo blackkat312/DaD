@@ -1140,10 +1140,7 @@ class ProfileScreen(Screens):
 
         if the_cat.is_disabled():
             for condition in the_cat.permanent_condition:
-                if (
-                    the_cat.permanent_condition[condition]["born_with"] is True
-                    and the_cat.permanent_condition[condition]["moons_until"] != -2
-                ):
+                if (the_cat.permanent_condition[condition]["born_with"] is True and the_cat.permanent_condition[condition]["moons_until"] != -2) or ("excess testosterone" in the_cat.permanent_condition[condition] or "aneuploidy" in the_cat.permanent_condition[condition] or "testosterone deficiency" in the_cat.permanent_condition[condition] or "chimerism" in the_cat.permanent_condition[condition] or "mosaicism" in the_cat.permanent_condition[condition] or "albinism" in the_cat.permanent_condition[condition] or "ocular albinism" in the_cat.permanent_condition[condition]):
                     continue
                 elif "declawed" in the_cat.permanent_condition:
                     output += "declawed"
@@ -1932,7 +1929,13 @@ class ProfileScreen(Screens):
 
 
     def get_text_for_murder_event(self, event, death):
-        """returns the adjusted murder history text for the victim"""
+        """ Returns the adjusted murder history text for the victim """
+
+        if game.switches['show_history_moons']:
+            moons = True
+        else:
+            moons = False
+
         if event["text"] == death["text"] and event["moon"] == death["moon"]:
             if event["revealed"] is True:
                 final_text = event_text_adjust(
@@ -1942,7 +1945,10 @@ class ProfileScreen(Screens):
                     random_cat=Cat.fetch_cat(death["involved"]))
 
                 if event.get("revelation_text"):
-                    final_text = final_text + event["revelation_text"]
+                    final_text = f"{final_text} {event['revelation_text']}"
+                if moons:
+                    if event.get("revelation_moon"):
+                        final_text = f"{final_text} (Moon {event['revelation_moon']})."
                 return final_text
             else:
                 return event_text_adjust(
@@ -2085,9 +2091,11 @@ class ProfileScreen(Screens):
                 if victim["revealed"]:
                     victim_names[name] = []
                     if victim.get("revelation_text"):
-                        reveal_text = str(victim["revelation_text"])
+                        reveal_text = victim["revelation_text"]
                     if moons:
                         victim_names[name].append(victim["moon"])
+                        if victim.get("revelation_moon"):
+                            reveal_text = f"{reveal_text} (Moon {victim['revelation_moon']})"
 
             if victim_names:
                 for name in victim_names:
