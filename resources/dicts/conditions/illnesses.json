@@ -838,7 +838,7 @@
         "severity": "severe",
         "mortality": {
             "newborn": 0,
-            "kitten": 60,
+            "kitten": 0,
             "adolescent": 60,
             "young adult": 60,
             "adult": 60,
@@ -847,7 +847,7 @@
         },
         "medicine_mortality": {
             "newborn": 0,
-            "kitten": 100,
+            "kitten": 0,
             "adolescent": 100,
             "young adult": 100,
             "adult": 100,
