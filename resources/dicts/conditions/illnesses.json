@@ -1547,18 +1547,18 @@
             "kitten": 0,
             "adolescent": 0,
             "young adult": 0,
-            "adult": 0,
-            "senior adult": 0,
-            "senior": 0
+            "adult": 2000,
+            "senior adult": 1500,
+            "senior": 1000
         },
         "medicine_mortality": {
             "newborn": 0,
             "kitten": 0,
             "adolescent": 0,
             "young adult": 0,
-            "adult": 2000,
-            "senior adult": 1500,
-            "senior": 1000
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
         },
         "duration": 2,
         "medicine_duration": 1,
