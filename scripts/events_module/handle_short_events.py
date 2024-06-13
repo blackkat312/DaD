@@ -767,8 +767,8 @@ handle_short_events = HandleShortEvents()
 # ---------------------------------------------------------------------------- #
 
 INJURY_GROUPS = {
-    "battle_injury": ["claw-wound", "mangled leg", "mangled tail", "torn pelt", "cat bite"],
-    "minor_injury": ["sprain", "sore", "bruises", "scrapes"],
+    "battle_injury": ["claw-wound", "mangled leg", "mangled tail", "torn pelt", "cat bite", "torn ear"],
+    "minor_injury": ["sprain", "sore", "bruises", "scrapes", "torn pelt", "torn ear"],
     "blunt_force_injury": ["broken bone", "broken back", "head damage", "broken jaw"],
     "hot_injury": ["heat exhaustion", "heat stroke", "dehydrated"],
     "cold_injury": ["shivering", "frostbite"],
@@ -776,5 +776,6 @@ INJURY_GROUPS = {
     "small_bite_injury": ["bite-wound", "torn ear", "torn pelt", "scrapes"],
     "beak_bite": ["beak bite", "torn ear", "scrapes"],
     "rat_bite": ["rat bite", "torn ear", "torn pelt"],
-    "sickness": ["greencough", "redcough", "whitecough", "yellowcough"]
+    "sickness": ["greencough", "redcough", "whitecough", "yellowcough", "silvercough"],
+    "regressed": ["kittenspace", "puppyspace"]
 }
