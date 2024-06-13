@@ -492,17 +492,13 @@ class Phenotype():
 
         if not sex:
             sex = " "
-        elif sex == "tom":
-            sex = "amab "
-        elif sex == "molly":
-            sex = "afab "
-        else:
-            sex = "axab "
+        elif sex == "intersex":
+            sex += " "
 
         if not gender:
             gender = "cat"
         elif gender == "tom":
-            gendera = "tom"
+            gender = "tom"
         elif gender == "molly":
             gender = "molly"
         else:
