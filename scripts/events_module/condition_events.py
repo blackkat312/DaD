@@ -547,6 +547,7 @@ class Condition_Events:
             "BOTHBLIND": ["blind"],
             "RATBITE": ["weak leg"],
             "DECLAWED": ["declawed"],
+            "RASH": ["constant rash"],
         }
 
         scarless_conditions = [
@@ -583,7 +584,6 @@ class Condition_Events:
             "burning light",
             "disrupted senses",
             "constant nightmares",
-            "constant rash",
             "jellyfish joints",
             "lazy eye",
             "shattered soul",
