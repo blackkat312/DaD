@@ -87,7 +87,6 @@ def bs_blurb_text(cat):
 
     return backstory_text
 
-
 # ---------------------------------------------------------------------------- #
 #             change how backstory info displays on cat profiles               #
 # ---------------------------------------------------------------------------- #
@@ -104,7 +103,6 @@ def backstory_text(cat):
     bs_display = BACKSTORIES["backstory_display"][bs_category]
 
     return bs_display
-
 
 # ---------------------------------------------------------------------------- #
 #                               Profile Screen                                 #
@@ -305,24 +303,24 @@ class ProfileScreen(Screens):
                 trans_list = [
                     "trans molly", "trans tom",
                 ]
-                # if the cat is anything besides t/m/transt/transm/i then turn them back to cis
+                #if the cat is anything besides t/m/transt/transm/i then turn them back to cis
                 if self.the_cat.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
                     self.the_cat.genderalign = self.the_cat.gender
                 elif self.the_cat.gender == "tom" and self.the_cat.genderalign == 'molly':
                     self.the_cat.genderalign = self.the_cat.gender
                 elif self.the_cat.gender == "molly" and self.the_cat.genderalign == 'tom':
                     self.the_cat.genderalign = self.the_cat.gender
-                # if the cat is cis (gender & gender align are the same) then set them to trans
-                # cis toms -> trans molly first
+                #if the cat is cis (gender & gender align are the same) then set them to trans
+                #cis toms -> trans molly first
                 elif self.the_cat.gender == "tom" and self.the_cat.genderalign == 'tom':
                     self.the_cat.genderalign = 'trans molly'
-                # cis mollies -> trans tom
+                #cis mollies -> trans tom
                 elif self.the_cat.gender == "molly" and self.the_cat.genderalign == 'molly':
                     self.the_cat.genderalign = 'trans tom'
-                # intersex -> trans mollies/toms
+                #intersex -> trans mollies/toms
                 elif self.the_cat.gender == "intersex" and self.the_cat.genderalign == 'intersex':
                     self.the_cat.genderalign = random.choice(trans_list)
-                # if the cat is trans then set them to nonbinary
+                #if the cat is trans then set them to nonbinary
                 elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
                     if self.the_cat.gender == "intersex":
                         intergenderchance = random.randint(1, 2)
@@ -333,9 +331,9 @@ class ProfileScreen(Screens):
                     else:
                         self.the_cat.genderalign = random.choice(genderqueer_list)
                 # pronoun handler
-                if 'molly' in self.the_cat.genderalign:
+                if self.the_cat.genderalign == "molly":
                     self.pronouns = [self.the_cat.default_pronouns[1].copy()]
-                elif 'tom' in self.the_cat.genderalign:
+                elif self.the_cat.genderalign == "tom":
                     self.pronouns = [self.the_cat.default_pronouns[2].copy()]
                 else:
                     self.pronouns = [self.the_cat.default_pronouns[0].copy()]
@@ -843,10 +841,19 @@ class ProfileScreen(Screens):
         """Generate the left column information"""
         output = ""
         # SEX/GENDER
-        if the_cat.genderalign is None or the_cat.genderalign == the_cat.gender:
+        if the_cat.genderalign is None:
             output += str(the_cat.gender)
+        elif the_cat.gender == "intersex" and the_cat.genderalign != "intersex":
+            if the_cat.genderalign in ["demimolly", "demitom", "demienby", "trans molly", "trans tom"]:
+                output += "intersex " + str(the_cat.genderalign)
+            elif the_cat.genderalign == "intergender":
+                output += str(the_cat.genderalign)
+            else:
+                output += str(the_cat.genderalign) + " and intersex"
         else:
             output += str(the_cat.genderalign)
+        if output == "molly and intersex" or output == "tom and intersex":
+            output == "this should not appear"
         # NEWLINE ----------
         output += "\n"
 
@@ -901,6 +908,7 @@ class ProfileScreen(Screens):
             else:
                 output += "parents: " + ", ".join([str(i.name) for i in all_parents])
 
+
         # MOONS
         output += "\n"
         if the_cat.dead:
@@ -925,6 +933,7 @@ class ProfileScreen(Screens):
         # MATE
         if len(the_cat.mate) > 0:
             output += "\n"
+
 
             mate_names = []
             # Grab the names of only the first two, since that's all we will display
@@ -1034,7 +1043,6 @@ class ProfileScreen(Screens):
         # FORMER APPRENTICES
         # Optional - Only shows up if the cat has previous apprentice(s)
         if the_cat.former_apprentices:
-
             apprentices = [
                 Cat.fetch_cat(i)
                 for i in the_cat.former_apprentices
@@ -1693,9 +1701,11 @@ class ProfileScreen(Screens):
             i = 0
             for scar in scar_history:
                 # base adjustment to get the cat's name and moons if needed
-                new_text = event_text_adjust(
-                    Cat, scar["text"], self.the_cat, Cat.fetch_cat(scar["involved"])
-                )
+                new_text = (event_text_adjust(Cat,
+                                              scar["text"],
+                                              main_cat=self.the_cat,
+                                              random_cat=Cat.fetch_cat(scar["involved"])))
+
                 if moons:
                     new_text += f" (Moon {scar['moon']})"
 
@@ -1775,12 +1785,12 @@ class ProfileScreen(Screens):
                 mentor_influence["trait"], dict
             ):
                 for _mentor in mentor_influence["trait"]:
-                    # If the strings are not set (empty list), continue.
+                    #If the strings are not set (empty list), continue.
                     if not mentor_influence["trait"][_mentor].get("strings"):
                         continue
 
                     ment_obj = Cat.fetch_cat(_mentor)
-                    # Continue of the mentor is invalid too.
+                    #Continue of the mentor is invalid too.
                     if not isinstance(ment_obj, Cat):
                         continue
 
@@ -1806,17 +1816,18 @@ class ProfileScreen(Screens):
 
             influence_history += " ".join(trait_influence)
 
+
             skill_influence = []
             if "skill" in mentor_influence and isinstance(
                 mentor_influence["skill"], dict
             ):
                 for _mentor in mentor_influence["skill"]:
-                    # If the strings are not set (empty list), continue.
+                    #If the strings are not set (empty list), continue.
                     if not mentor_influence["skill"][_mentor].get("strings"):
                         continue
 
                     ment_obj = Cat.fetch_cat(_mentor)
-                    # Continue of the mentor is invalid too.
+                    #Continue of the mentor is invalid too.
                     if not isinstance(ment_obj, Cat):
                         continue
 
@@ -1879,6 +1890,7 @@ class ProfileScreen(Screens):
         apprenticeship_history = process_text(apprenticeship_history, cat_dict)
         return apprenticeship_history
 
+
     def get_mentorship_text(self):
         """
 
@@ -1918,24 +1930,29 @@ class ProfileScreen(Screens):
 
         return text
 
+
     def get_text_for_murder_event(self, event, death):
         """returns the adjusted murder history text for the victim"""
         if event["text"] == death["text"] and event["moon"] == death["moon"]:
             if event["revealed"] is True:
                 final_text = event_text_adjust(
-                    Cat, event["text"], self.the_cat, Cat.fetch_cat(death["involved"])
-                )
+                    Cat,
+                    event["text"],
+                    main_cat=self.the_cat,
+                    random_cat=Cat.fetch_cat(death["involved"]))
+
                 if event.get("revelation_text"):
                     final_text = final_text + event["revelation_text"]
                 return final_text
             else:
                 return event_text_adjust(
                     Cat,
-                    event["unrevealed_text"],
-                    self.the_cat,
-                    Cat.fetch_cat(death["involved"]),
-                )
+                    event["text"],
+                    main_cat=self.the_cat,
+                    random_cat=Cat.fetch_cat(death["involved"]))
+
         return None
+
 
     def get_death_text(self):
         """
@@ -1965,20 +1982,18 @@ class ProfileScreen(Screens):
                             found_murder = True  # Update the flag if a matching murder event is found
                             break
 
-                if found_murder and text is not None and not event["revealed"]:
-                    text = event_text_adjust(
-                        Cat,
-                        event["unrevealed_text"],
-                        self.the_cat,
-                        Cat.fetch_cat(death["involved"]),
-                    )
-                elif not found_murder:
+                        if found_murder and text is not None and not event["revealed"]:
+                            text = event_text_adjust(
+                                Cat,
+                                event["text"],
+                                main_cat=self.the_cat,
+                                random_cat=Cat.fetch_cat(death["involved"]))
+                if not found_murder:
                     text = event_text_adjust(
                         Cat,
                         death["text"],
-                        self.the_cat,
-                        Cat.fetch_cat(death["involved"]),
-                    )
+                        main_cat=self.the_cat,
+                        random_cat=Cat.fetch_cat(death["involved"]))
 
                 if self.the_cat.status == "leader":
                     if index == death_number - 1 and self.the_cat.dead:
@@ -1991,7 +2006,7 @@ class ProfileScreen(Screens):
                     else:
                         life_text = "lost a life"
                 elif death_number > 1:
-                    # for retired leaders
+                    #for retired leaders
                     if index == death_number - 1 and self.the_cat.dead:
                         life_text = "lost {PRONOUN/m_c/poss} last remaining life"
                         # added code
@@ -2099,13 +2114,13 @@ class ProfileScreen(Screens):
         return victim_text
 
     def toggle_alters_tab(self):
-        """Opens the conditions tab"""
+        """Opens the alters tab"""
         previous_open_tab = self.open_tab
         # This closes the current tab, so only one can be open at a time
         self.close_current_tab()
 
         if previous_open_tab == "alters":
-            """If the current open tab is conditions, just close the tab and do nothing else. """
+            """If the current open tab is alters, just close the tab and do nothing else. """
             pass
         else:
             self.open_tab = "alters"
@@ -2263,25 +2278,6 @@ class ProfileScreen(Screens):
                 and self.the_cat.permanent_condition[i]["moons_until"] != -2
             )
         ]
-        """
-        if self.the_cat.is_plural:
-            if "shattered soul" in self.the_cat.permanent_condition:
-                con = "shattered soul"
-                if self.the_cat.permanent_condition[con]["born_with"] is True:
-                    minmoons = -1
-                else:
-                    minmoons = 0
-                if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
-                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
-            elif "budding spirit" in self.the_cat.permanent_condition:
-                con = "budding spirit"
-                if self.the_cat.permanent_condition[con]["born_with"] is True:
-                    minmoons = -1
-                else:
-                    minmoons = 0
-                if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
-                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
-        """
         all_illness_injuries.extend(
             [(i, self.get_condition_details(i)) for i in self.the_cat.injuries]
         )
@@ -2757,7 +2753,7 @@ class ProfileScreen(Screens):
                 self.manage_roles.disable()
             else:
                 self.manage_roles.enable()
-            if self.the_cat.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice"] \
+            if self.the_cat.status not in ['apprentice', 'medicine cat apprentice', 'mediator apprentice'] \
                     or self.the_cat.dead or self.the_cat.outside:
                 self.change_mentor_button.disable()
             else:
