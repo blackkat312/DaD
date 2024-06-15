@@ -2318,6 +2318,10 @@ class Genotype:
         if self.pointgene == ["cb", "cs"] or self.piggrade == 0 or ((self.pointgene == ["cb", "cm"] or self.pointgene == ["cm", "cm"] or self.pointgene == ["cm", "c"]) and randint(1, 5) == 1):
             self.piggrade = 1
 
+        # 50% of cats with pink-eyed dilution have low pigmented eyes (brown/orange/yellow) instead of albino
+        if self.pinkdilute[0] == 'dp' and randint(1, 2) == 1:
+            self.piggrade = 1
+
         def RefTypeFind(x, piggrade):
             y = ""
                     
