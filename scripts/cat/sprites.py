@@ -265,6 +265,8 @@ class Sprites:
             for a, y in enumerate(range(1, 12)):
                 self.make_group('Other/eyes_full', (a, b), f'R{y} ; {x}/', sprites_y=6)
 
+        self.make_group('Other/red_pupils', (0, 0), 'redpupils')
+
         # Line art
         self.make_group('lineart', (0, 0), 'lines')
         self.make_group('shadersnewwhite', (0, 0), 'shaders')
