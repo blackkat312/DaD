@@ -290,7 +290,9 @@ def change_clan_relations(other_clan, difference):
     # setting it in the Clan save
     game.clan.all_clans[y].relations = clan_relations
 
-def create_bio_parents(Cat, cat_type, sex):
+def create_bio_parents(Cat, cat_type, sex=None):
+    if not sex:
+        sex = choice(["fem", "masc"])
     thought = "Is happy their kits are safe"
     ages = [randint(15,120), 0]
     ages[1] = ages[0] + randint(0, 24) - 12
@@ -940,7 +942,7 @@ def create_new_cat(
                     # assign scars
                     if chosen_condition in ["lost a leg", "born without a leg"] and ("NOPAW") not in new_cat.pelt.scars:
                         new_cat.pelt.scars.append("NOPAW")
-                    elif chosen_condition in ["lost their tail", "born without a tail"] and ("NOTAIL") not in new_cat.pelt.scars:
+                    elif chosen_condition in ["lost their tail"] and ("NOTAIL") not in new_cat.pelt.scars:
                         new_cat.pelt.scars.append("NOTAIL")
 
         if outside:
@@ -3216,7 +3218,10 @@ def generate_sprite(
                     special.blit(sprites.sprites[genotype.extraeye + cat_sprite], (0, 0))
                     special.blit(sprites.sprites[genotype.extraeyetype + "/" + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                     gensprite.blit(special, (0, 0))
-            
+
+                if(genotype.pinkdilute[0] == 'dp'):
+                    gensprite.blit(sprites.sprites['redpupils' + cat_sprite], (0, 0))
+
             return gensprite
 
         gensprite.blit(GenSprite(cat.genotype, cat.phenotype), (0, 0))
