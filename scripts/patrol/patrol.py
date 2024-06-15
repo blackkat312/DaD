@@ -158,7 +158,7 @@ class Patrol:
                 else:
                     self.patrol_statuses["all apprentices"] = 1
 
-            if cat.status in ("warrior", "deputy", "leader"):
+            if cat.status in ("warrior", "deputy", "leader", "medicine cat"):
                 if "normal adult" in self.patrol_statuses:
                     self.patrol_statuses["normal adult"] += 1
                 else:
@@ -484,7 +484,10 @@ class Patrol:
         # This make sure general only gets hunting, border, or training patrols
         # chose fix type will make it not depending on the content amount
         if patrol_type == "general":
-            patrol_type = random.choice(["hunting", "border", "training"])
+            if not ("medicine cat" in self.patrol_status_list or "medicine cat apprentice" in self.patrol_status_list):
+                patrol_type = random.choice(["hunting", "border", "training"])
+            else:
+                patrol_type = random.choice(["hunting", "border", "training", "med", "med"])
 
         # makes sure that it grabs patrols in the correct biomes, season, with the correct number of cats
         for patrol in possible_patrols:
