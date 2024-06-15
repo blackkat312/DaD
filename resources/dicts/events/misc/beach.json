@@ -1,0 +1,566 @@
+[    
+  {
+    "event_id": "bch_misc_war_anyclanapprentice1",
+    "location": ["beach"],
+    "season": ["any"],
+    "sub_type": ["war"],
+    "tags": ["clan:apprentice"],
+    "weight": 15,
+    "event_text": "The apprentices of the Clan are taking special training to learn how to disguise their scents from enemies with kelp and seawater.",
+    "m_c": {
+      "status": [
+        "apprentice"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anyprophecymedcatprophet1",
+    "location": ["beach"],
+    "season": ["any"],
+    "weight": 20,
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the medicine cat den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "m_c": {
+      "status": [
+        "medicine cat",
+        "medicine cat apprentice"
+      ],
+      "skill": [
+        "PROPHET,0"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anyprophecyapprenticeprophet1",
+    "location": ["beach"],
+    "season": ["any"],
+    "weight": 20,
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the apprentices' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "m_c": {
+      "status": [
+        "apprentice",
+        "mediator apprentice"
+      ],
+      "skill": [
+        "PROPHET,0"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anyprophecymultistatusprophet1",
+    "location": ["beach"],
+    "season": ["any"],
+    "weight": 20,
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the warriors' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "m_c": {
+      "status": [
+        "deputy",
+        "mediator",
+        "warrior"
+      ],
+      "skill": [
+        "PROPHET,0"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anyprophecyleaderprophet1",
+    "location": ["beach"],
+    "season": ["any"],
+    "weight": 20,
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the guardian's den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "m_c": {
+      "status": [
+        "leader"
+      ],
+      "skill": [
+        "PROPHET,0"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anyprophecyelderprophet1",
+    "location": ["beach"],
+    "season": ["any"],
+    "weight": 20,
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the elders' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "m_c": {
+      "status": [
+        "elder"
+      ],
+      "skill": [
+        "PROPHET,0"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anyomenmultistatusomen1",
+    "location": ["beach"],
+    "season": ["any"],
+    "weight": 20,
+    "event_text": "The things {PRONOUN/m_c/subject} saw today: omen_list_sight... m_c dips a paw in a rockpool, watching the tiny, crawling life inside, and considering what the omens foretell.",
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "status": [
+        "any"
+      ],
+      "skill": [
+        "OMEN,0"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_war_anymultitraitleader1",
+    "location": ["beach"],
+    "season": ["any"],
+    "sub_type": ["war"],
+    "weight": 15,
+    "event_text": "m_c sits by the water, contemplating the calm waves that brush {PRONOUN/m_c/poss} paws and wondering why times are not as peaceful as the tides.",
+    "m_c": {
+      "status": [
+        "leader"
+      ],
+      "skill": [
+        "MEDIATOR,1"
+      ],
+      "trait": [
+        "thoughtful",
+        "wise",
+        "righteous"
+      ],
+      "not_trait": [
+        "bloodthirsty",
+        "ambitious"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_herb_leafbareflooddestruction1",
+    "location": ["any"],
+    "season": ["leaf-bare"],
+    "tags": ["clan_wide"],
+    "weight": 1,
+    "event_text": "A huge wave crashes into camp, leaving everyone soaked and the herb stores irreparably damaged.",
+    "supplies": [
+      {
+          "type": "all_herb",
+          "trigger": ["always"],
+          "adjust": "reduce_full"
+      }
+    ]
+  },
+  {
+    "event_id": "bch_misc_notleafbareaccessory1",
+    "location": ["any"],
+    "season": [
+      "newleaf",
+      "greenleaf",
+      "leaf-fall"
+    ],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c plucks a pristine white flower from the camp's nearby frangipani bush. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wear/wears} it with genuine joy, brighter than the beachy sun.",
+    "new_accessory": [
+      "FRANGIPANI"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_notleafbareaccessory2",
+    "location": ["any"],
+    "season": [
+      "newleaf",
+      "greenleaf",
+      "leaf-fall"
+    ],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c plucks a pretty marigold from a nearby flower patch. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wear/wears} it with poise.",
+    "new_accessory": [
+      "FRANGIPANI"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_notleafbaretwocatsaccessory1",
+    "location": ["any"],
+    "season": [
+      "newleaf",
+      "greenleaf",
+      "leaf-fall"
+    ],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "Inbetween grooming m_c, r_c tucks the prettiest acc_plural {PRONOUN/r_c/subject} could find next to m_c's ear. m_c almost doesn't notice the next morning, but purrs a thank you to r_c when {PRONOUN/r_c/subject} {VERB/r_c/walk/walks} by.",
+    "new_accessory": [
+      "FRANGIPANI",
+      "MARIGOLD"
+    ],
+    "m_c": {
+      "age": [
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "relationship_status": [
+        "mates"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "romantic",
+          "platonic",
+          "comfort"
+        ],
+        "amount": 10
+      },
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "dislike",
+          "jealousy"
+        ],
+        "amount": -10
+      }
+    ]
+  },
+  {
+    "event_id": "bch_misc_notleafbareaccessory3",
+    "location": ["any"],
+    "season": [
+      "newleaf",
+      "greenleaf",
+      "leaf-fall"
+    ],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c's eyes sparkle as {PRONOUN/m_c/subject} {VERB/m_c/realize/realizes} something <i>wonderful</i> - {PRONOUN/m_c/subject} can propagate the reeds on c_n territory, and decorate {PRONOUN/m_c/poss} nest with them! A week later, m_c is seen sleeping soundly with thick stalks of dark green reeds casting shadows on {PRONOUN/m_c/poss} pelt.",
+    "new_accessory": [
+      "REEDS"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_notleafbaretwocatsaccessory2",
+    "location": ["any"],
+    "season": [
+      "newleaf",
+      "greenleaf",
+      "leaf-fall"
+    ],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "r_c has a wonderful idea for decorating m_c's nest! m_c wakes up in the middle of the night with reeds brushing {PRONOUN/m_c/poss} face. Despite the slight scare it gave m_c, {PRONOUN/m_c/subject} {VERB/m_c/thank/thanks} r_c in the morning for the gift.",
+    "new_accessory": [
+      "REEDS"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "platonic",
+          "comfort"
+        ],
+        "amount": 10
+      },
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "dislike",
+          "jealousy"
+        ],
+        "amount": -10
+      }
+    ]
+  },
+  {
+    "event_id": "bch_misc_anyaccessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c curiously pokes and prods at a crab that wandered into camp. The crab, unbothered to m_c's antics, seems relaxed enough to keep as a pet. m_c cheerfully shows off {PRONOUN/m_c/poss} new friend!",
+    "new_accessory": [
+      "CRAB"
+    ],
+    "m_c": {
+      "age": [
+        "kitten",
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anytwocatsaccessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "r_c decides to stop by m_c while {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} sunbathing in camp, asking {PRONOUN/m_c/object} if {PRONOUN/m_c/subject} would like a crab {PRONOUN/r_c/subject} caught. m_c nods, interested, so r_c drops the critter on its back. However, m_c doesn't crack {PRONOUN/m_c/poss} jaws into its shell like expected. Instead, m_c flips it over and ogles it curiously. Seems like m_c has found a new friend...?",
+    "new_accessory": [
+      "CRAB"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "platonic",
+          "comfort"
+        ],
+        "amount": 10
+      },
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "dislike",
+          "jealousy"
+        ],
+        "amount": -10
+      }
+    ]
+  },
+  {
+    "event_id": "bch_misc_anyaccessory2",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c catches a cool snail that slid into camp! {PRONOUN/m_c/subject/CAP} {VERB/m_c/decide/decides} to keep the snail as a pet.",
+    "new_accessory": [
+      "RED SNAIL"
+    ],
+    "m_c": {
+      "age": [
+        "kitten",
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anytwocatsaccessory2",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "r_c and m_c find a cute snail with a pointy red shell while hanging out in camp together! m_c decides to keep it with {PRONOUN/m_c/object}.",
+    "new_accessory": [
+      "RED SNAIL"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "relationship_status": [
+        "platonic_40"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "relationship_status": [
+        "platonic_40"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "platonic",
+          "comfort"
+        ],
+        "amount": 10
+      },
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "dislike",
+          "jealousy"
+        ],
+        "amount": -10
+      }
+    ]
+  },
+  {
+    "event_id": "bch_misc_anyaccessory3",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "When m_c peeks out of {PRONOUN/m_c/poss} den, {PRONOUN/m_c/subject} {VERB/m_c/find/finds} that some seaweed has managed to get into camp. {PRONOUN/m_c/subject/CAP} {VERB/m_c/decide/decides} to use it as a cool decoration for {PRONOUN/m_c/poss} tail!",
+    "new_accessory": [
+      "SEAWEED"
+    ],
+    "m_c": {
+      "age": [
+        "kitten",
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_anytwocatsaccessory3",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "During a free sunny morning before the dawn patrol, r_c quietly wraps vibrant seaweed around m_c's tail.",
+    "new_accessory": [
+      "SEAWEED"
+    ],
+    "m_c": {
+      "age": [
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "relationship_status": [
+        "mates"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "romantic",
+          "platonic",
+          "comfort"
+        ],
+        "amount": 10
+      },
+      {
+        "cats_to": ["m_c"],
+        "cats_from": ["r_c"],
+        "mutual": true,
+        "values": [
+          "dislike",
+          "jealousy"
+        ],
+        "amount": -10
+      }
+    ]
+  }
+]
