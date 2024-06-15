@@ -35,7 +35,7 @@ from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game, screen
 from scripts.housekeeping.datadir import get_save_dir
 from scripts.utility import (
-    get_med_cats,
+    get_alive_status_cats,
     get_personality_compatibility,
     event_text_adjust,
     update_sprite,
@@ -1103,7 +1103,7 @@ class Cat:
 
         if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
             self.get_permanent_condition('albinism', born_with=True, genetic=True)
-        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype) or (self.genotype.chimera is True and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype)):
+        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or self.genotype.pinkdilute[0] == 'dp') or (self.genotype.chimera is True and (('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype) or self.genotype.chimerageno.pinkdilute[0] == 'dp')):
             self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
 
     @property
@@ -2691,7 +2691,7 @@ class Cat:
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
-            if possible["congenital"] in ["always", "sometimes"] and condition not in genetics_exclusive:
+            if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
         while count <= max_conditions:
