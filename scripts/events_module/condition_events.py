@@ -613,7 +613,7 @@ class Condition_Events:
                 event = event_text_adjust(Cat, event, main_cat=cat)
 
                 if cat.status == 'leader':
-                    event = event + " " + get_leader_life_notice()
+                    event = event + " " + event_text_adjust(Cat, get_leader_life_notice(), main_cat=cat)
                     history_event = history_event.replace("m_c ", "")
                     History.add_death(cat, condition=illness, death_text=history_event.strip())
                 else:
@@ -719,7 +719,7 @@ class Condition_Events:
                 event = event_text_adjust(Cat, event, main_cat=cat)
 
                 if cat.status == 'leader':
-                    event = event + " " + get_leader_life_notice()
+                    event = event + " " + event_text_adjust(Cat, get_leader_life_notice(), main_cat=cat)
                     history_text = history_text.replace("m_c", " ")
                     History.add_death(cat, condition=injury, death_text=history_text.strip())
 
