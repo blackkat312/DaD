@@ -471,7 +471,7 @@ class Phenotype():
                 if(withword == withword.replace(", , ", ", ")):
                     nochange = True
 
-        if(withword != ""):
+        if withword != "":
             if ", " in withword:
                 if "one" in eyes:
                     withword += ", "
@@ -490,34 +490,31 @@ class Phenotype():
 
         withword = " with " + withword + eyes.lower()
 
-        if not sex:
-            sex = " "
-        elif sex == "intersex":
-            sex += " "
+        if not sex or (sex and sex != "intersex"):  # everything else
+            sextext = " "
+        elif sex == "intersex":  # jic
+            sextext = sex + " "
 
         if not gender:
-            gender = "cat"
-        elif gender == "tom":
-            gender = "tom"
-        elif gender == "molly":
-            gender = "molly"
+            gendertext = "cat"
+        elif gender == "tom" or gender == "molly":
+            gendertext = gender
         else:
-            gender = "cat"
+            gendertext = "cat"
 
         if self.genotype.chimera:
-            gender = "chimera " + gender
+            gendertext = "chimera " + gendertext
 
-        if self.tabby == "blotched":
-            self.tabby = "classic"
+        gendertext = sextext + gendertext
 
         breed = find_my_breed(self.genotype, self, self.genotype.odds)
         if breed:
             breed = " " + breed + " "
 
         if self.genotype.pointgene == ['C', 'c']:
-            outputs = "a " + self.length + " albinistic " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + sex + gender + withword
+            outputs = "a " + self.length + " albinistic " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendertext + withword
         else:
-            outputs = "a " + self.length + " " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + sex + gender + withword
+            outputs = "a " + self.length + " " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendertext + withword
 
         while "  " in outputs:
             outputs = outputs.replace("  ", " ")
