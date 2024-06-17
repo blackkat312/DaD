@@ -2318,7 +2318,7 @@ class Genotype:
         if self.pointgene == ["cb", "cs"] or self.piggrade == 0 or ((self.pointgene == ["cb", "cm"] or self.pointgene == ["cm", "cm"] or self.pointgene == ["cm", "c"]) and randint(1, 5) == 1):
             self.piggrade = 1
 
-        # 50% of cats with pink-eyed dilution have low pigmented eyes (brown/orange/yellow) instead of albino
+        # 50% of cats with pink-eyed dilution have low pigmented eyes (brown/orange/yellow) instead of other colors
         if self.pinkdilute[0] == 'dp' and randint(1, 2) == 1:
             self.piggrade = 1
 
@@ -2408,7 +2408,7 @@ class Genotype:
         if self.altai != ["al","al"] and randint(0, 4)!= 0:
             hetindex = 0
 
-        if het2index == 0 and not (self.pinkdilute[0] == "dp" or ("c" in self.pointgene)) and blueindex != 0:
+        if het2index == 0 and "c" not in self.pointgene and blueindex != 0:
             tempref = randint(1, 11)
             temppig = randint(1, 12)
             if randint(1, 2)==1:
@@ -2437,7 +2437,7 @@ class Genotype:
             self.extraeyetype = SecondaryRefTypeFind(a[0], a[1])
 
 
-            if self.pinkdilute[0] == "dp" or ("c" in self.pointgene):
+            if "c" in self.pointgene:
                 self.lefteye = RefTypeFind(self.refgrade, 13)
                 self.righteye = RefTypeFind(self.refgrade, 13)
 
