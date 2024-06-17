@@ -399,7 +399,7 @@ class HandleShortEvents():
                     game.clan.leader_lives -= 1
 
                 cat.die(body)
-                self.additional_event_text = get_leader_life_notice()
+                self.additional_event_text = event_text_adjust(Cat, get_leader_life_notice(), main_cat=cat)
 
             else:
                 cat.die(body)
