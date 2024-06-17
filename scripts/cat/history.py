@@ -246,22 +246,43 @@ class History:
             SkillPath.RUNNER: ["running"],
             SkillPath.CLIMBER: ["climbing"],
             SkillPath.SWIMMER: ["swimming"],
-            SkillPath.SPEAKER: ["arguing"],
+            SkillPath.SPEAKER: ["voicing things"],
             SkillPath.MEDIATOR: ["resolving arguments"],
             SkillPath.CLEVER: ["solving problems"],
             SkillPath.INSIGHTFUL: ["providing insight"],
             SkillPath.SENSE: ["noticing small details"],
-            SkillPath.KIT: ["caring for kittens"],
+            SkillPath.KIT: ["caring for kits"],
             SkillPath.STORY: ["storytelling"],
             SkillPath.LORE: ["remembering lore"],
             SkillPath.CAMP: ["caring for camp"],
             SkillPath.HEALER: ["healing"],
-            SkillPath.STAR: ["connecting to starclan"],
+            SkillPath.STAR: ["connecting to StarClan"],
+            SkillPath.DARK: ["connecting to the Dark Forest"],
             SkillPath.OMEN: ["finding omens"],
             SkillPath.DREAM: ["understanding dreams"],
             SkillPath.CLAIRVOYANT: ["predicting the future"],
             SkillPath.PROPHET: ["understanding prophecies"],
-            SkillPath.GHOST: ["connecting to the afterlife"]
+            SkillPath.GHOST: ["connecting to the afterlife"],
+
+            # Beetle's
+            SkillPath.GARDENER: ["gardening"],
+            SkillPath.UNKNOWN: ["connecting to the Unknown Residence"],
+            SkillPath.WAKEFUL: ["being vigilant"],
+            SkillPath.DELIVERER: ["delivering kits"],
+            SkillPath.DECORATOR: ["decorating camp"],
+            SkillPath.LEADERSHIP: ["leading"],
+            SkillPath.AGILE: ["being agile"],
+            SkillPath.STEALTHY: ["sneaking"],
+            SkillPath.MEMORY: ["remembering things"],
+            SkillPath.MESSENGER: ["delivering messages"],
+            SkillPath.ASSIST: ["assisting others"],
+            SkillPath.HISTORIAN: ["keeping track of history"],
+            SkillPath.BOOKMAKER: ["making stories"],
+            SkillPath.TUNNELER: ["digging"],
+            SkillPath.PATIENT: ["waiting"],
+            SkillPath.DETECTIVE: ["sleuthing"],
+            SkillPath.HERBALIST: ["making remedies"],
+            SkillPath.CHEF: ["preparing prey"]
         }
 
         for _ment in cat.history.mentor_influence["skill"]:
@@ -276,7 +297,8 @@ class History:
                         cat.history.mentor_influence["skill"][_ment]["strings"].append(
                             random.choice(skill_influence_text[SkillPath[_path]]))
                 except KeyError:
-                    print("issue", _path)
+                    if "PRODIGY" not in SkillPath[_path]:
+                        print("issue", _path)
 
     @staticmethod
     def add_facet_mentor_influence(cat, mentor_id, facet, amount):
