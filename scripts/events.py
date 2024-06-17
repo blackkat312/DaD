@@ -1574,6 +1574,7 @@ class Events:
             # apprentice a kitten to either med or warrior
             if cat.moons == cat_class.age_moons["adolescent"][0]:
                 if cat.status == 'kitten':
+                    skills_string = str(cat.skills)
                     med_cat_list = [i for i in Cat.all_cats_list if
                                     i.status in ["medicine cat", "medicine cat apprentice"] and not (
                                             i.dead or i.outside)]
@@ -1640,15 +1641,15 @@ class Events:
                     memory = False
                     herbalist = False
 
-                    if "CLEVER" in cat.skills:
+                    if "CLEVER" in skills_string:
                         clever = True
-                    if "HEALER" in cat.skills:
+                    if "HEALER" in skills_string:
                         healer = True
-                    if "GARDENER" in cat.skills:
+                    if "GARDENER" in skills_string:
                         gardener = True
-                    if "MEMORY" in cat.skills:
+                    if "MEMORY" in skills_string:
                         memory = True
-                    if "HERBALIST" in cat.skills:
+                    if "HERBALIST" in skills_string:
                         herbalist = True
 
                     if med_personality:
@@ -1720,27 +1721,27 @@ class Events:
                         patient = False
                         detective = False
 
-                        if "TEACHER" in cat.skills:
+                        if "TEACHER" in skills_string:
                             teacher = True
-                        if "SPEAKER" in cat.skills:
+                        if "SPEAKER" in skills_string:
                             speaker = True
-                        if "MEDIATOR" in cat.skills:
+                        if "MEDIATOR" in skills_string:
                             mediator = True
-                        if "CLEVER" in cat.skills:
+                        if "CLEVER" in skills_string:
                             clever = True
-                        if "INSIGHTFUL" in cat.skills:
+                        if "INSIGHTFUL" in skills_string:
                             insightful = True
-                        if "KIT" in cat.skills:
+                        if "KIT" in skills_string:
                             kit = True
-                        if "MEMORY" in cat.skills:
+                        if "MEMORY" in skills_string:
                             memory = True
-                        if "MESSENGER" in cat.skills:
+                        if "MESSENGER" in skills_string:
                             messenger = True
-                        if "ASSIST" in cat.skills:
+                        if "ASSIST" in skills_string:
                             assist = True
-                        if "PATIENT" in cat.skills:
+                        if "PATIENT" in skills_string:
                             patient = True
-                        if "DETECTIVE" in cat.skills:
+                        if "DETECTIVE" in skills_string:
                             detective = True
 
                         if media_personality:
