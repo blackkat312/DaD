@@ -2407,7 +2407,7 @@ class Cat:
         """Returns list containing great-grandparents of cat(id)."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        return self.inheritance.great_grand_parents.keys()
+        return self.inheritance.great_grandparents.keys()
 
     def get_siblings(self):
         """Returns list of the siblings(id)."""
@@ -2431,7 +2431,7 @@ class Cat:
         """Check if the cat is the grandparent of the other cat."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        return other_cat.ID in self.inheritance.great_grand_parents.keys()
+        return other_cat.ID in self.inheritance.great_grandparents.keys()
 
     def is_parent(self, other_cat: Cat):
         """Check if the cat is the parent of the other cat."""
