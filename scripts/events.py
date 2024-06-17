@@ -1328,8 +1328,20 @@ class Events:
         event_text = ""
         white_text1 = ""
         white_text2 = ""
+        has_break_white = False
+        break_white = [
+            "break/left back mitten", "break/left ear", "break/left face", "break/left front mitten", "break/nose1",
+            "break/piebald1", "break/piebald2", "break/right back mitten", "break/right ear", "break/right face",
+            "break/right front mitten", "break/tail band", "break/tail rings", "break/tail tip"
+        ]
 
-        if cat.genotype.white[0] == 'W' or cat.genotype.white[0] == 'ws' or ('full white' in cat.white_pattern and 'break/' not in cat.white_pattern) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
+        if cat.pelt.white_pattern and cat.pelt.white_pattern != "No":
+            for entry in break_white:
+                if entry in cat.pelt.white_pattern:
+                    has_break_white = True
+                    break
+
+        if cat.genotype.white[0] == 'W' or ('full white' in cat.pelt.white_pattern and not has_break_white) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
             return
 
         if 'ws' in cat.genotype.white or 'wt' in cat.genotype.white or 'wg' in cat.genotype.white or 'wsal' in cat.genotype.white:
