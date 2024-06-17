@@ -3032,59 +3032,59 @@ def generate_sprite(
                     'beige' : 14
                 }
 
-                ### should_trigger start ###
-                should_trigger = False
-                should_trigger_color = False
-                should_trigger_point = False
+                ### trigger_chocolate_skin start ###
+                trigger_chocolate_skin = False
+                trigger_color = False
+                trigger_point = False
 
                 if "black" in whichcolour:
-                    should_trigger_color = True
+                    trigger_color = True
                 elif "sable" in whichcolour:
-                    should_trigger_color = True
+                    trigger_color = True
                 elif "seal" in whichcolour:
-                    should_trigger_color = True
+                    trigger_color = True
 
                 if genotype.eumelanin == ["B", "B"]:
-                    should_trigger_color = True
+                    trigger_color = True
                 elif genotype.eumelanin == ["B", "b"]:
-                    should_trigger_color = True
+                    trigger_color = True
                 elif genotype.eumelanin == ["B", "bl"]:
-                    should_trigger_color = True
+                    trigger_color = True
 
                 if genotype.pointgene == ["cb", "cb"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 elif genotype.pointgene == ["cb", "cs"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 elif genotype.pointgene == ["cb", "cm"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 elif genotype.pointgene == ["cb", "c"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 # sepia end
                 elif genotype.pointgene == ["cs", "cs"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 elif genotype.pointgene == ["cs", "cm"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 elif genotype.pointgene == ["cs", "c"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 # point end
                 elif genotype.pointgene == ["cm", "cm"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 elif genotype.pointgene == ["cm", "c"]:
-                    should_trigger_point = True
+                    trigger_point = True
                 # mocha end
 
-                if should_trigger_color and should_trigger_point:
-                    should_trigger = True
+                if trigger_color and trigger_point:
+                    trigger_chocolate_skin = True
 
                 if genotype.pointgene[0] == "C":
-                    should_trigger = False
+                    trigger_chocolate_skin = False
                 elif genotype.pointgene[0] == "c":
-                    should_trigger = False
-                ### should_trigger end ###
+                    trigger_chocolate_skin = False
+                ### trigger_chocolate_skin end ###
 
                 if(genotype.white[0] == 'W' or genotype.pointgene[0] == 'c' or genotype.white_pattern == ['full white']):
                     pads.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                elif should_trigger:
+                elif trigger_chocolate_skin:
                     pads.blit(sprites.sprites['nosecolours4'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 elif ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour):
                     pads.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
@@ -3185,55 +3185,55 @@ def generate_sprite(
                 'beige' : 14
             }
 
-            ### should_trigger start ###
-            should_trigger = False
-            should_trigger_color = False
-            should_trigger_point = False
+            ### trigger_chocolate_skin start ###
+            trigger_chocolate_skin = False
+            trigger_color = False
+            trigger_point = False
 
             if "black" in phenotype.maincolour:
-                should_trigger_color = True
+                trigger_color = True
             elif "sable" in phenotype.maincolour:
-                should_trigger_color = True
+                trigger_color = True
             elif "seal" in phenotype.maincolour:
-                should_trigger_color = True
+                trigger_color = True
 
             if genotype.eumelanin == ["B", "B"]:
-                should_trigger_color = True
+                trigger_color = True
             elif genotype.eumelanin == ["B", "b"]:
-                should_trigger_color = True
+                trigger_color = True
             elif genotype.eumelanin == ["B", "bl"]:
-                should_trigger_color = True
+                trigger_color = True
 
             if genotype.pointgene == ["cb", "cb"]:
-                should_trigger_point = True
+                trigger_point = True
             elif genotype.pointgene == ["cb", "cs"]:
-                should_trigger_point = True
+                trigger_point = True
             elif genotype.pointgene == ["cb", "cm"]:
-                should_trigger_point = True
+                trigger_point = True
             elif genotype.pointgene == ["cb", "c"]:
-                should_trigger_point = True
+                trigger_point = True
             # sepia end
             elif genotype.pointgene == ["cs", "cs"]:
-                should_trigger_point = True
+                trigger_point = True
             elif genotype.pointgene == ["cs", "cm"]:
-                should_trigger_point = True
+                trigger_point = True
             elif genotype.pointgene == ["cs", "c"]:
-                should_trigger_point = True
+                trigger_point = True
             # point end
             elif genotype.pointgene == ["cm", "cm"]:
-                should_trigger_point = True
+                trigger_point = True
             elif genotype.pointgene == ["cm", "c"]:
-                should_trigger_point = True
+                trigger_point = True
             # mocha end
 
-            if should_trigger_color and should_trigger_point:
-                should_trigger = True
+            if trigger_color and trigger_point:
+                trigger_chocolate_skin = True
 
             if genotype.pointgene[0] == "C":
-                should_trigger = False
+                trigger_chocolate_skin = False
             elif genotype.pointgene[0] == "c":
-                should_trigger = False
-            ### should_trigger end ###
+                trigger_chocolate_skin = False
+            ### trigger_chocolate_skin end ###
 
             if(genotype.white[0] == 'W' or genotype.pointgene[0] == 'c'):
                 nose.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
@@ -3241,7 +3241,7 @@ def generate_sprite(
                 nose.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             elif (phenotype.maincolour != phenotype.spritecolour and genotype.ext[0] != 'ea'):
                 nose.blit(sprites.sprites['nosecolours2'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-            elif should_trigger:
+            elif trigger_chocolate_skin:
                 nose.blit(sprites.sprites['nosecolours4'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             else:
                 nose.blit(sprites.sprites['nosecolours' + str(nose_dict.get(phenotype.maincolour))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
