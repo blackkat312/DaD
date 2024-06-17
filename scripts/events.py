@@ -1335,13 +1335,13 @@ class Events:
             "break/right front mitten", "break/tail band", "break/tail rings", "break/tail tip"
         ]
 
-        if cat.pelt.white_pattern and cat.pelt.white_pattern != "No":
+        if cat.genotype.white_pattern and cat.genotype.white_pattern != "No":
             for entry in break_white:
-                if entry in cat.pelt.white_pattern:
+                if entry in cat.genotype.white_pattern:
                     has_break_white = True
                     break
 
-        if cat.genotype.white[0] == 'W' or ('full white' in cat.pelt.white_pattern and not has_break_white) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
+        if cat.genotype.white[0] == 'W' or ('full white' in cat.genotype.white_pattern and not has_break_white) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
             return
 
         if 'ws' in cat.genotype.white or 'wt' in cat.genotype.white or 'wg' in cat.genotype.white or 'wsal' in cat.genotype.white:
