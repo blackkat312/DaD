@@ -472,7 +472,14 @@ class Events:
                 upper_value = game.prey_config["auto_apprentice_prey"][1]
 
             prey_amount += random.randint(lower_value, upper_value)
-        game.freshkill_event_list.append(f"The Clan managed to catch {prey_amount} pieces of prey in this moon.")
+        if prey_amount == 1:
+            game.freshkill_event_list.append(
+                f"The Clan managed to catch {prey_amount} piece of prey in this moon."
+            )
+        else:
+            game.freshkill_event_list.append(
+                f"The Clan managed to catch {prey_amount} pieces of prey in this moon."
+            )
         game.clan.freshkill_pile.add_freshkill(prey_amount)
 
     def herb_gather(self):
@@ -1039,7 +1046,7 @@ class Events:
             text = random.choice(text)
 
             if additional_cats:
-                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
+                text += " {PRONOUN/m_c/subject/CAP} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
                 if len(additional_cats) > 1:
                     text += str(len(additional_cats)) + " children."
                 else:
@@ -1072,7 +1079,7 @@ class Events:
                     x.status_change('apprentice')
                 elif x.moons < 120 and x.status != "warrior":
                     x.status_change('warrior')
-                elif x.moons > 120:
+                elif x.moons >= 120:
                     x.status_change('elder')
 
     def handle_fading(self, cat):
@@ -1443,6 +1450,7 @@ class Events:
             # apprentice a kitten to either med or warrior
             if cat.moons == cat_class.age_moons["adolescent"][0]:
                 if cat.status == 'kitten':
+                    skills_string = str(cat.skills)
                     med_cat_list = [i for i in Cat.all_cats_list if
                                     i.status in ["medicine cat", "medicine cat apprentice"] and not (
                                             i.dead or i.outside)]
@@ -1486,7 +1494,14 @@ class Events:
                         chance = int(chance * 2.22)
 
                     # med personality
-                    med_personalities = ["righteous", "compassionate", "thoughtful", "faithful", "loving", "wise"]
+                    med_personalities = [
+                        "righteous",
+                        "compassionate",
+                        "thoughtful",
+                        "faithful",
+                        "loving",
+                        "wise",
+                    ]
                     med_personality = False
                     index = 0
                     for entry in med_personalities:
@@ -1498,9 +1513,9 @@ class Events:
                     clever = False
                     healer = False
 
-                    if "CLEVER" in cat.skills:
+                    if "CLEVER" in skills_string:
                         clever = True
-                    if "HEALER" in cat.skills:
+                    if "HEALER" in skills_string:
                         healer = True
 
                     if med_personality:
@@ -1510,8 +1525,8 @@ class Events:
                     if healer:
                         chance = int(chance / 1.5)
 
-                    if cat.is_disabled():
-                        chance = int(chance / 2)
+                    if cat.is_disabled() and game.clan.clan_settings["higher_disabled_med_rates"]:
+                        chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
 
                     if chance <= 0:
                         chance = 1
@@ -1537,7 +1552,14 @@ class Events:
                         chance = game.config["roles"]["mediator_app_chance"]
 
                         # media personality
-                        media_personalities = ["charismatic", "compassionate", "thoughtful", "calm", "careful", "sincere"]
+                        media_personalities = [
+                            "charismatic",
+                            "compassionate",
+                            "thoughtful",
+                            "calm",
+                            "careful",
+                            "sincere",
+                        ]
                         media_personality = False
                         index = 0
                         for entry in media_personalities:
@@ -1553,17 +1575,17 @@ class Events:
                         insightful = False
                         kit = False
 
-                        if "TEACHER" in cat.skills:
+                        if "TEACHER" in skills_string:
                             teacher = True
-                        if "SPEAKER" in cat.skills:
+                        if "SPEAKER" in skills_string:
                             speaker = True
-                        if "MEDIATOR" in cat.skills:
+                        if "MEDIATOR" in skills_string:
                             mediator = True
-                        if "CLEVER" in cat.skills:
+                        if "CLEVER" in skills_string:
                             clever = True
-                        if "INSIGHTFUL" in cat.skills:
+                        if "INSIGHTFUL" in skills_string:
                             insightful = True
-                        if "KIT" in cat.skills:
+                        if "KIT" in skills_string:
                             kit = True
 
                         if media_personality:
@@ -1581,8 +1603,8 @@ class Events:
                         if kit:
                             chance = int(chance / 1.5)
 
-                        if cat.is_disabled():
-                            chance = int(chance / 2)
+                        if cat.is_disabled() and game.clan.clan_settings["higher_disabled_med_rates"]:
+                            chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
 
                         if chance <= 0:
                             chance = 1
