@@ -98,6 +98,16 @@ class HandleShortEvents():
             event_type = "death"
         elif event_type == "health":
             event_type = "injury"
+
+        if isinstance(game.config["event_generation"]["debug_ensure_event_type"], str):
+            event_type = game.config["event_generation"]["debug_ensure_event_type"]
+            self.types.append(str(game.config["event_generation"]["debug_ensure_event_type"]))
+            print("set event_type")
+
+        if isinstance(game.config["event_generation"]["debug_ensure_event_sub_type"], str):
+            self.sub_types = [str(game.config["event_generation"]["debug_ensure_event_sub_type"])]
+            print("set sub_types")
+
         possible_short_events = GenerateEvents.possible_short_events(event_type)
 
         final_events = GenerateEvents.filter_possible_short_events(
