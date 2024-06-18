@@ -377,8 +377,7 @@ def create_new_cat(Cat,
             new_cat.update_mentor()
 
         # Remove disabling scars, if they generated.
-        not_allowed = ['NOPAW', 'NOTAIL', 'HALFTAIL', 'NOEAR', 'BOTHBLIND', 'RIGHTBLIND',
-                       'LEFTBLIND', 'BRIGHTHEART', 'NOLEFTEAR', 'NORIGHTEAR', 'MANLEG']
+        not_allowed = []
         for scar in new_cat.pelt.scars:
             if scar in not_allowed:
                 new_cat.pelt.scars.remove(scar)
@@ -391,15 +390,8 @@ def create_new_cat(Cat,
                 chance = game.config["cat_generation"]["base_permanent_condition"] + 10
             if not int(random() * chance):
                 possible_conditions = []
-                genetics_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism",
-                                      "mosaicism"]
                 for condition in PERMANENT:
-                    if (kit or litter) and ((PERMANENT[condition]['congenital'] not in ['always', 'sometimes']) or (condition in genetics_exclusive)):
-                        continue
-                    # next part ensures that a kit won't get a condition that takes too long to reveal
-                    age = new_cat.moons
-                    leeway = 5 - (PERMANENT[condition]['moons_until'] + 1)
-                    if age > leeway:
+                    if (kit or litter) and PERMANENT[condition]['congenital'] not in ['always', 'sometimes']:
                         continue
                     possible_conditions.append(condition)
 
