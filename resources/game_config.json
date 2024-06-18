@@ -226,7 +226,11 @@
 		"become_mediator_chances": {
 			"warrior": 5000,
 			"elder": 400
-		}
+		},
+		"disabled_cat_med_chance_increase": 2,
+		"comment": [
+			"The disabled_cat_med_chance_increase (2 by default) will divide the chance of disabled cats becoming medicine cat/mediator apprentices by its value."
+		]
 	},
 	"lost_cat": {
 		"rejoin_chance": 20

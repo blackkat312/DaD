@@ -1525,7 +1525,7 @@ class Cat():
         template["ID"] = str(len(self.alters) + 1)
         template["role"] = choice(["co-host", "caregiver", "little", "protecter", "trauma holder", "persecutor"])
         extra = randint(1, 5)
-        if extra == 5:
+        if extra == 1:
             template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
         rng = randint(1, 20)
         gender = "???"
@@ -1567,18 +1567,18 @@ class Cat():
                     alter_name = choice(["Snowkit", "Mosskit"])
                 else:
                     alter_name = choice(names_dict["normal_prefixes"])
-                    alter_name += choice(["kit","paw"])
+                    alter_name += choice(["kit", "paw"])
             else:
                 alter_name = choice(names_dict["normal_prefixes"])
-                alter_name += choice(["kit","paw"])
+                alter_name += choice(["kit", "paw"])
         elif template["other"] == "cat" or template["other"] == "otherclan":
             alter_name += choice(names_dict["normal_suffixes"])
         template["name"] = alter_name
         if template["ID"] != "1":
             splitrng = randint(1, (len(self.alters)+1))
-            if splitrng < (len(self.alters)+1):
-                template["origin"] = self.alters[(splitrng-1)]['name']
-                self.add_split((splitrng-1), template["name"])
+            if splitrng < (len(self.alters) + 1):
+                template["origin"] = self.alters[(splitrng - 1)]['name']
+                self.add_split((splitrng - 1), template["name"])
         # print(template)
         self.alters.append(template)
 
@@ -1598,7 +1598,7 @@ class Cat():
                 self.new_alter()
             if splitting < 15:
                 if len(self.alters) < 100:
-                    num_splits = randint(1,3)
+                    num_splits = randint(1, 3)
                     for i in range(num_splits):
                         self.new_alter()
             can_front = [str(self.name)]
@@ -1926,6 +1926,16 @@ class Cat():
             new_condition = choice(possible_conditions)
             while new_condition in cat.permanent_condition:
                 new_condition = choice(possible_conditions)
+            if new_condition == "blind" and "failing eyesight" in cat.permanent_condition:
+                while new_condition == "blind":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+            if new_condition == "failing eyesight" and "blind" in cat.permanent_condition:
+                while new_condition == "failing eyesight":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
 
             if new_condition == "born without a leg":
                 cat.pelt.scars.append('NOPAW')
@@ -2017,8 +2027,8 @@ class Cat():
                 moons_until = randint(moons_until - 1, moons_until + 2)
             else:
                 moons_until = randint(moons_until - 1, moons_until + 1)  # creating a range in which a condition can present
-            if moons_until < 0:
-                moons_until = 0
+            if moons_until < 1:
+                moons_until = 1
 
         if born_with and self.status not in ['kitten', 'newborn']:
             moons_until = -2
@@ -3468,8 +3478,7 @@ class Personality():
 # Twelve example cats
 def create_example_cats():
     e = sample(range(12), 3)
-    not_allowed = ['NOPAW', 'NOTAIL', 'HALFTAIL', 'NOEAR', 'BOTHBLIND', 'RIGHTBLIND', 'LEFTBLIND', 'BRIGHTHEART',
-                   'NOLEFTEAR', 'NORIGHTEAR', 'MANLEG']
+    not_allowed = []
     for a in range(12):
         if a in e:
             game.choose_cats[a] = Cat(status='warrior', biome=None)
