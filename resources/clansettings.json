@@ -75,6 +75,11 @@
         "retirement": [
             "Cats will never retire due to a permanent condition",
             "When this setting is off, cats with permanent conditions will choose whether or not they want to retire.",
+            true
+        ],
+        "higher_disabled_med_rates": [
+            "Cats with permanent conditions will be more likely to become medicine cat or mediator apprentices",
+            "Cats with permanent conditions will be 2 times more likely to become a medicine cat or mediator apprentice when they hit 6 moons old. This does not effect the chance to become a mediator later in life, if the setting is on.",
             false
         ],
         "become_mediator": [
