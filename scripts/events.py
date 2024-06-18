@@ -2709,6 +2709,10 @@ class Events:
                     cat.pronouns = [cat.default_pronouns[2].copy()]
                 else:
                     cat.genderalign = random.choice(["trans molly", "trans tom"])
+                    if cat.genderalign == "trans female":
+                        cat.pronouns = [cat.default_pronouns[1].copy()]
+                    else:
+                        cat.pronouns = [cat.default_pronouns[2].copy()]
             elif cat.gender == "intersex":
                 intergenderchance = random.randint(1, 2)
                 if intergenderchance == 1:
