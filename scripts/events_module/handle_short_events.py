@@ -78,6 +78,13 @@ class HandleShortEvents():
             self.other_clan = random.choice(game.clan.all_clans if game.clan.all_clans else None)
             self.other_clan_name = f'{self.other_clan.name}Clan'
 
+        if isinstance(game.config["event_generation"]["debug_ensure_event_type"], str):
+            event_type = game.config["event_generation"]["debug_ensure_event_type"]
+            self.types.append(str(game.config["event_generation"]["debug_ensure_event_type"]))
+
+        if isinstance(game.config["event_generation"]["debug_ensure_event_sub_type"], str):
+            self.sub_types = [str(game.config["event_generation"]["debug_ensure_event_sub_type"])]
+
         # checking if a murder reveal should happen
         if event_type == "misc":
             self.victim_cat = None
@@ -90,23 +97,18 @@ class HandleShortEvents():
                         if murder_history[self.murder_index]["revealed"] is True:
                             continue
                         self.victim_cat = Cat.fetch_cat(murder_history[self.murder_index]["victim"])
-                        self.sub_types.append("murder_reveal")
+                        if "murder_reveal" not in self.sub_types:
+                            self.sub_types.append("murder_reveal")
                         break
+                elif "murder_reveal" in self.sub_types:
+                    # cat isn't a murderer
+                    self.sub_types.remove("murder_reveal")
 
         # NOW find the possible events and filter
         if event_type == "birth_death":
             event_type = "death"
         elif event_type == "health":
             event_type = "injury"
-
-        if isinstance(game.config["event_generation"]["debug_ensure_event_type"], str):
-            event_type = game.config["event_generation"]["debug_ensure_event_type"]
-            self.types.append(str(game.config["event_generation"]["debug_ensure_event_type"]))
-            print("set event_type")
-
-        if isinstance(game.config["event_generation"]["debug_ensure_event_sub_type"], str):
-            self.sub_types = [str(game.config["event_generation"]["debug_ensure_event_sub_type"])]
-            print("set sub_types")
 
         possible_short_events = GenerateEvents.possible_short_events(event_type)
 
