@@ -705,7 +705,9 @@ class History:
                     victim_history["revelation_text"] = \
                         "The truth of {PRONOUN/m_c/poss} murder was discovered by [discoverer]."
 
-                discoverer = str(other_cat.name)
+                discoverer = ''
+                if other_cat:
+                    discoverer = str(other_cat.name)
                 if "clan_discovery" in murder_history:
                     discoverer = game.clan.name + "Clan"
 
