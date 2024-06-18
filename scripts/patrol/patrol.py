@@ -489,6 +489,9 @@ class Patrol:
             else:
                 patrol_type = random.choice(["hunting", "border", "training", "med", "med"])
 
+            if ("medicine cat" in self.patrol_status_list or "medicine cat apprentice" in self.patrol_status_list) and game.clan.clan_settings["patrol_lock_meds"]:
+                patrol_type = "med"
+
         # makes sure that it grabs patrols in the correct biomes, season, with the correct number of cats
         for patrol in possible_patrols:
             if not self._check_constraints(patrol):
