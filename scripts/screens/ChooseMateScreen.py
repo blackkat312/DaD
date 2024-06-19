@@ -10,7 +10,7 @@ from scripts.game_structure.game_essentials import (
     screen_y,
     MANAGER,
 )
-from scripts.game_structure.image_button import UIImageButton, UISpriteButton
+from scripts.game_structure.ui_elements import UIImageButton, UISpriteButton
 from scripts.utility import (
     get_personality_compatibility,
     get_text_box_theme,
@@ -957,6 +957,7 @@ class ChooseMateScreen(Screens):
                                                                    object_id="#text_box_22_horizcenter_vertcenter_spacing_95",
                                                                    manager=MANAGER
                                                                    )
+
 
         if (((not game.clan.clan_settings["same sex birth"]) and ((self.the_cat.gender == self.selected_cat.gender) or (self.the_cat.gender == 'intersex' or self.selected_cat.gender == 'intersex'))) or ('infertile' in self.the_cat.permanent_condition or 'infertile' in self.selected_cat.permanent_condition or self.the_cat.neutered or self.selected_cat.neutered)):
             self.selected_cat_elements["no kit warning"] = pygame_gui.elements.UITextBox(
