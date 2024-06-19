@@ -8,7 +8,7 @@ import pygame_gui
 from scripts.cat.cats import Cat
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game, screen, screen_x, screen_y
-from scripts.game_structure.image_button import UISpriteButton, UIImageButton
+from scripts.game_structure.ui_elements import UISpriteButton, UIImageButton
 from scripts.game_structure.windows import SaveError
 from scripts.utility import scale
 from .Screens import Screens
@@ -85,7 +85,7 @@ class ClanScreen(Screens):
 
         elif event.type == pygame.KEYDOWN and game.settings['keybinds']:
             if event.key == pygame.K_RIGHT:
-                self.change_screen('starclan screen')
+                self.change_screen('list screen')
             elif event.key == pygame.K_LEFT:
                 self.change_screen('events screen')
             elif event.key == pygame.K_SPACE:
@@ -148,7 +148,7 @@ class ClanScreen(Screens):
             starting_height=2
         )
         self.leader_den_label = UIImageButton(
-            scale(pygame.Rect(self.layout["leader den"], (224, 56))),
+            scale(pygame.Rect(self.layout["leader den"], (266, 56))),
             "",
             object_id="#lead_den_button",
             starting_height=2)
@@ -344,12 +344,9 @@ class ClanScreen(Screens):
 
             # Newborns are not meant to be placed. They are hiding.
             if Cat.all_cats[x].status == 'newborn' or game.config['fun']['all_cats_are_newborn']:
-                if game.config['fun']['all_cats_are_newborn'] or game.config['fun']['newborns_can_roam']:
-                    # Free them
-                    Cat.all_cats[x].placement = self.choose_nonoverlapping_positions(first_choices, all_dens,
-                                                                                     [1, 100, 1, 1, 1, 100, 50])
-                else:
-                    continue
+                # No, free them
+                Cat.all_cats[x].placement = self.choose_nonoverlapping_positions(first_choices, all_dens,
+                                                                                 [60, 8, 1, 1, 1, 1, 1])
 
             if Cat.all_cats[x].status in ['apprentice', 'mediator apprentice']:
                 Cat.all_cats[x].placement = self.choose_nonoverlapping_positions(first_choices, all_dens,
