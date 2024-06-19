@@ -6,6 +6,7 @@ import ujson
 
 from scripts.game_structure.game_essentials import game
 from scripts.utility import filter_relationship_type, get_living_clan_cat_count,get_alive_status_cats
+from scripts.cat.pelts import Pelt
 
 resource_directory = "resources/dicts/events/"
 
