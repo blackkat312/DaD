@@ -259,7 +259,7 @@ class Phenotype():
                     self.silvergold += 'smoke '
         else:
             if(self.genotype.silver[0] == 'I'):
-                if(self.genotype.sunshine[0] in ['sg', 'sh']):
+                if(self.genotype.sunshine[0] in ['sg', 'sh'] or (self.genotype.ext[0] != 'ec' and self.genotype.ext[1] == 'ec')):
                     self.silvergold = 'bimetallic '
                 elif(self.genotype.sunshine[0] == 'fg'):
                     self.silvergold = 'silver copper '
@@ -471,7 +471,7 @@ class Phenotype():
                 if(withword == withword.replace(", , ", ", ")):
                     nochange = True
 
-        if withword != "":
+        if(withword != ""):
             if ", " in withword:
                 if "one" in eyes:
                     withword += ", "
@@ -490,9 +490,10 @@ class Phenotype():
 
         withword = " with " + withword + eyes.lower()
 
+        sextext = " "
         if not sex or (sex and sex != "intersex"):  # everything else
             sextext = " "
-        elif sex == "intersex":  # jic
+        elif sex == "intersex":  # jic though
             sextext = sex + " "
 
         if not gender:
@@ -654,7 +655,7 @@ class Phenotype():
             self.patchcolour = main[1]
 
             self.genotype.tortiepattern = self.tortpattern
-        elif ('o' not in self.genotype.sexgene) or (self.genotype.ext[0] == 'ea' and ((moons > 11 and self.genotype.agouti[0] != 'a') or (moons > 23))) or (self.genotype.ext[0] == 'er' and moons > 23 and 'O' not in self.genotype.sexgene) or (self.genotype.ext[0] == 'ec' and (self.genotype.agouti[0] != 'a' or moons > 5)):
+        elif ('o' not in self.genotype.sexgene) or (self.genotype.ext[0] == 'ea' and ((moons > 11 and self.genotype.agouti[0] != 'a') or (moons > 23))) or (self.genotype.ext[0] == 'er' and moons > 23 and 'O' not in self.genotype.sexgene) or (self.genotype.ext[0] == 'ec' and moons > 0 and (self.genotype.agouti[0] != 'a' or moons > 5)):
             main = self.FindRed(self.genotype, moons, special=self.genotype.ext[0])
             self.maincolour = main[0]
             self.spritecolour = main[1]
@@ -719,11 +720,11 @@ class Phenotype():
         if special=='er':
             return self.FindRed(genes, moons, special)
         else:
-            if genes.eumelanin[0] == "bl" or (genes.eumelanin[0] == 'b' and genes.ext[0] == 'er'):
-                if(genes.dilutemd[0] == 'Dm' or (genes.ext[0] == 'er' and moons < 12 and moons > 5)):
+            if genes.eumelanin[0] == "bl":
+                if genes.dilutemd[0] == 'Dm':
                     self.caramel = 'caramel'
 
-                if(genes.dilute[0] == "d" or (genes.ext[0] == 'er' and moons < 12)):
+                if genes.dilute[0] == "d":
                     if(genes.pinkdilute[0] == "dp"):
                         colour = "beige"
                     else:
@@ -734,11 +735,11 @@ class Phenotype():
                     else:
                         colour = "cinnamon"
                         self.caramel = ""
-            elif genes.eumelanin[0] == "b" or genes.ext[0] == 'er':
-                if(genes.dilutemd[0] == 'Dm' or (genes.ext[0] == 'er' and moons < 12 and moons > 5)):
+            elif genes.eumelanin[0] == "b":
+                if genes.dilutemd[0] == 'Dm':
                     self.caramel = 'caramel'
 
-                if(genes.dilute[0] == "d" or (genes.ext[0] == 'er' and moons < 12)):
+                if genes.dilute[0] == "d":
                     if(genes.pinkdilute[0] == "dp"):
                         colour = "lavender"
                     else:
@@ -769,23 +770,23 @@ class Phenotype():
 
             if ('masked' in self.silvergold and genes.wbsum > 15) or (genes.agouti[0] != "a" and genes.ext[0] != "Eg") or (genes.ext[0] not in ['Eg', 'E']):
                 if genes.silver[0] == "I" or genes.brindledbi or (moons < 3 and genes.karp[0] == "K"):
-                    if genes.sunshine[0] == "sg" or genes.ext[0] == 'ec':
+                    if genes.sunshine[0] == "sg":
                         colour =  colour + "silver" + "chinchilla"
-                    elif genes.sunshine[0] == "sh" or genes.sunshine[0] == "fg" or (genes.ext[0] == 'ea' and moons > 3):
+                    elif genes.sunshine[0] == "sh" or genes.sunshine[0] == "fg" or genes.ext[0] == 'ec' or (genes.ext[0] == 'ea' and moons > 3):
                         colour =  colour + "silver" + "shaded"
                     else:
                         colour =  colour + "silver" + genes.wbtype
                 elif genes.pointgene[0] != "C" or genes.agouti[0] == "Apb":
-                    if genes.sunshine[0] == "sg" or genes.ext[0] == 'ec':
+                    if genes.sunshine[0] == "sg":
                         colour =  colour + "low" + "chinchilla"
-                    elif genes.sunshine[0] == "sh" or genes.sunshine[0] == "fg" or (genes.ext[0] == 'ea' and moons > 3):
+                    elif genes.sunshine[0] == "sh" or genes.sunshine[0] == "fg" or genes.ext[0] == 'ec' or (genes.ext[0] == 'ea' and moons > 3):
                         colour =  colour + "low" + "shaded"
                     else:
                         colour = colour + "low" + genes.wbtype
                 else:
-                    if genes.sunshine[0] == "sg" or genes.ext[0] == 'ec':
+                    if genes.sunshine[0] == "sg":
                         colour =  colour + genes.ruftype + "chinchilla"
-                    elif genes.sunshine[0] == "sh" or genes.sunshine[0] == "fg" or (genes.ext[0] == 'ea' and moons > 3):
+                    elif genes.sunshine[0] == "sh" or genes.sunshine[0] == "fg" or genes.ext[0] == 'ec' or (genes.ext[0] == 'ea' and moons > 3):
                         colour =  colour + genes.ruftype + "shaded"
                     else:
                         colour = colour + genes.ruftype + genes.wbtype
