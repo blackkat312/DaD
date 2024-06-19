@@ -17,7 +17,7 @@ from scripts.cat.pelts import Pelt
 from scripts.clan_resources.freshkill import FRESHKILL_ACTIVE
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game, MANAGER
-from scripts.game_structure.image_button import UIImageButton, UITextBoxTweaked
+from scripts.game_structure.ui_elements import UIImageButton, UITextBoxTweaked
 from scripts.utility import event_text_adjust, scale, ACC_DISPLAY, process_text, chunks
 from scripts.utility import get_text_box_theme, scale_dimentions, shorten_text_to_fit
 from .Screens import Screens
@@ -664,14 +664,14 @@ class ProfileScreen(Screens):
             self.generate_column1(self.the_cat),
             scale(pygame.Rect((600, 460), (360, 380))),
             object_id=get_text_box_theme("#text_box_22_horizleft"),
-            line_spacing=0.95,
+            line_spacing=1,
             manager=MANAGER,
         )
         self.profile_elements["cat_info_column2"] = UITextBoxTweaked(
             self.generate_column2(self.the_cat),
             scale(pygame.Rect((980, 460), (500, 360))),
             object_id=get_text_box_theme("#text_box_22_horizleft"),
-            line_spacing=0.95,
+            line_spacing=1,
             manager=MANAGER,
         )
 
@@ -1606,7 +1606,7 @@ class ProfileScreen(Screens):
             if app_history:
                 life_history.append(app_history)
 
-            # Get mentorship text if it exists
+            #Get mentorship text if it exists
             mentor_history = self.get_mentorship_text()
             if mentor_history:
                 life_history.append(mentor_history)
@@ -1703,8 +1703,15 @@ class ProfileScreen(Screens):
                                               main_cat=self.the_cat,
                                               random_cat=Cat.fetch_cat(scar["involved"])))
 
+                new_text_list = []
+                for letter in new_text:
+                    new_text_list += letter
+
                 if moons:
-                    new_text += f" (Moon {scar['moon']})"
+                    if new_text_list[-1] == ".":
+                        new_text += f" (Moon {scar['moon']})"
+                    else:
+                        new_text += f" (moon {scar['moon']})"
 
                 # checking to see if we can throw out a duplicate
                 if new_text in scar_text:
@@ -1880,8 +1887,15 @@ class ProfileScreen(Screens):
                     + " moons old."
                 )
 
+            graduation_history_list = []
+            for letter in graduation_history:
+                graduation_history_list += letter
+
             if game.switches["show_history_moons"]:
-                graduation_history += f" (Moon {app_ceremony['moon']})"
+                if graduation_history_list[-1] == ".":
+                    graduation_history += f" (Moon {app_ceremony['moon']})"
+                else:
+                    graduation_history += f" (moon {app_ceremony['moon']})"
         cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
         apprenticeship_history = influence_history + " " + graduation_history
         apprenticeship_history = process_text(apprenticeship_history, cat_dict)
@@ -1946,9 +1960,17 @@ class ProfileScreen(Screens):
 
                 if event.get("revelation_text"):
                     final_text = f"{final_text} {event['revelation_text']}"
+
+                final_text_list = []
+                for letter in final_text:
+                    final_text_list += letter
+
                 if moons:
                     if event.get("revelation_moon"):
-                        final_text = f"{final_text} (Moon {event['revelation_moon']})."
+                        if final_text_list[-1] == ".":
+                            final_text = f"{final_text} (Moon {event['revelation_moon']})."
+                        else:
+                            final_text = f"{final_text} (moon {event['revelation_moon']})."
                 return final_text
             else:
                 return event_text_adjust(
@@ -2031,8 +2053,15 @@ class ProfileScreen(Screens):
                     else:
                         text = f"{text}"
 
+                    text_list = []
+                    for letter in text:
+                        text_list += letter
+
                     if moons:
-                        text += f" (Moon {death['moon']})"
+                        if text_list[-1] == ".":
+                            text += f" (Moon {death['moon']})"
+                        else:
+                            text += f" (moon {death['moon']})"
                     all_deaths.append(text)
 
             if self.the_cat.status == "leader" or death_number > 1:
@@ -2092,17 +2121,33 @@ class ProfileScreen(Screens):
                     victim_names[name] = []
                     if victim.get("revelation_text"):
                         reveal_text = victim["revelation_text"]
+
+                    reveal_text_list = []
+                    for letter in reveal_text:
+                        reveal_text_list += letter
+
                     if moons:
                         victim_names[name].append(victim["moon"])
                         if victim.get("revelation_moon"):
-                            reveal_text = f"{reveal_text} (Moon {victim['revelation_moon']})"
+                            if reveal_text_list[-1] == ".":
+                                reveal_text = f"{reveal_text} (Moon {victim['revelation_moon']})"
+                            else:
+                                reveal_text = f"{reveal_text} (moon {victim['revelation_moon']})"
 
             if victim_names:
                 for name in victim_names:
+
+                    name_list = []
+                    for letter in name:
+                        name_list += letter
+
                     if not moons:
                         name_list.append(name)
                     else:
-                        name_list.append(f"{name} (Moon {victim_names[name][0]})")
+                        if name_list[-1] == ".":
+                            name_list.append(f"{name} (Moon {victim_names[name][0]})")
+                        else:
+                            name_list.append(f"{name} (moon {victim_names[name][0]})")
 
                 if len(name_list) == 1:
                     victim_text = f"{self.the_cat.name} murdered {name_list[0]}."
