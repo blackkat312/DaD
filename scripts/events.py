@@ -490,6 +490,8 @@ class Events:
                 if additional_kits:
                     for kit_ID in additional_kits:
                         kit = Cat.fetch_cat(kit_ID)
+                        if kit.dead:
+                            continue
                         kit.thought = event_text_adjust(
                             Cat,
                             text=cat_dict["kit_thought"],
@@ -1165,15 +1167,6 @@ class Events:
 
         death_chances = game.config['death_related']['kit_death_chances']
 
-        # If at war, grab enemy clans
-        enemy_clan = None
-        if game.clan.war.get("at_war", False):
-            
-            for other_clan in game.clan.all_clans:
-                if other_clan.name == game.clan.war["enemy"]:
-                    enemy_clan = other_clan
-                    break
-
         for kit in cats:
             if kit.moons < 2 and not kit.dead:
                 if random.random() < death_chances[str(kit.moons)]:
@@ -1358,12 +1351,8 @@ class Events:
 
         if cat.genotype.ext[0] == 'ec' and cat.genotype.agouti[0] == 'a' and cat.moons == 6:
             event_text = "Throughout kithood, m_c has gotten many comments about {PRONOUN/m_c/poss} unique coat. Well, it looks by now to have turned completely " + red_colour + white_text1 + "!"
-        if cat.genotype.ext[0] == 'ea' and ((cat.moons == 12 and cat.genotype.agouti[0] != 'a') or (cat.moons == 24 and cat.genotype.agouti[0] == 'a')):
+        if (cat.genotype.ext[0] == 'ea' and ((cat.moons == 12 and cat.genotype.agouti[0] != 'a') or (cat.moons == 24 and cat.genotype.agouti[0] == 'a'))) or (cat.genotype.ext[0] == 'er' and cat.moons == 24):
             event_text = "m_c has gotten used to the odd comment of \"is" + white_text2 + "your fur more " + red_colour + " today?\", having heard it practically since kithood. But by now, nobody can deny it; there's barely a trace of any other coat color left."
-        if cat.genotype.ext[0] == 'er' and cat.moons == 12 and cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
-            event_text = "\"What an odd cat!\" many would say, having marveled at how m_c's coat changed with time to be nigh unrecognizable since kithood. The medicine cats couldn't explain it either..."
-        if cat.genotype.ext[0] == 'er' and cat.moons == 24 and cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
-            event_text = "Well what do you know? Full of surprises, m_c's coat has turned a whole new color - this time " + red_colour + ", even" + white_text1 + ". Everyone's jokingly asking what color they're trying out next."
 
         if event_text:
             event_text = event_text_adjust(Cat, event_text, cat)
@@ -1382,8 +1371,6 @@ class Events:
         # if there are somehow no other clans, don't proceed
         if not game.clan.all_clans:
             return
-
-        # Prevent wars from starting super early in the game.
 
         # check that the save dict has all the things we need
         if "at_war" not in game.clan.war:
@@ -2680,16 +2667,16 @@ class Events:
         if cat.genderalign == cat.gender:
             involved_cats = [cat.ID]
             if cat.age == 'kitten':
-                transing_chance = random.randint(0, 75)
-            elif cat.age == 'adolescent':
-                transing_chance = random.randint(0, 75)
-            elif cat.age == 'young adult':
                 transing_chance = random.randint(0, 85)
+            elif cat.age == 'adolescent':
+                transing_chance = random.randint(0, 85)
+            elif cat.age == 'young adult':
+                transing_chance = random.randint(0, 95)
             elif cat.age == 'adult':
-                transing_chance = random.randint(0, 100)
+                transing_chance = random.randint(0, 110)
             else:
                 # senior adult & elder
-                transing_chance = random.randint(0, 150)
+                transing_chance = random.randint(0, 160)
 
             if transing_chance:
                 # transing_chance != 0, no trans kitties today...    L
