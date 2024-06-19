@@ -616,9 +616,9 @@ class Sprites:
         :param Surface symbol: The clan symbol to convert"""
         dark_mode_symbol = copy(symbol)
         var = pygame.PixelArray(dark_mode_symbol)
-        var.replace((87, 76, 45), (239, 229, 206))
+        var.replace((87, 76, 45), (172, 157, 114))
         del var
-        # dark mode color (239, 229, 206)
+        # dark mode color (172, 157, 114)
         # debug hot pink (255, 105, 180)
 
         return dark_mode_symbol
