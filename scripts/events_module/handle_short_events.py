@@ -109,7 +109,6 @@ class HandleShortEvents():
             event_type = "death"
         elif event_type == "health":
             event_type = "injury"
-
         possible_short_events = GenerateEvents.possible_short_events(event_type)
 
         final_events = GenerateEvents.filter_possible_short_events(
@@ -483,7 +482,14 @@ class HandleShortEvents():
                     # handle murder
                     if "murder" in self.chosen_event.sub_type:
                         revealed = False
+                        death_history = history_text_adjust(death_history,
+                                                            self.other_clan_name, game.clan,
+                                                            [Cat.fetch_cat(cat) for cat in self.involved_cats
+                                                             if cat != self.main_cat.ID][0])
                         History.add_murders(self.main_cat, self.random_cat, revealed, death_history)
+                    else:
+                        death_history = history_text_adjust(death_history,
+                                                            self.other_clan_name, game.clan, self.main_cat)
 
                     History.add_death(self.main_cat, death_history, other_cat=self.random_cat)
 
@@ -730,7 +736,7 @@ class HandleShortEvents():
             elif adjustment == "reduce_eighth":
                 herbs[self.chosen_herb] = int(game.clan.herbs[self.chosen_herb] / 8)
             elif "increase" in adjustment:
-                herbs[self.chosen_herb] += adjustment.split("_")[1]
+                herbs[self.chosen_herb] += int(adjustment.split("_")[1])
 
         if not self.chosen_herb:
             self.chosen_herb = random.choice(list(herbs.keys()))
