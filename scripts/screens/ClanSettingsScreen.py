@@ -10,7 +10,8 @@ import ujson
 
 from scripts.cat.cats import Cat
 from scripts.game_structure.game_essentials import game, screen_x, screen_y, MANAGER
-from scripts.game_structure.image_button import UIImageButton
+
+from scripts.game_structure.ui_elements import UIImageButton
 from scripts.utility import (
     get_text_box_theme,
     scale,
@@ -340,6 +341,7 @@ class ClanSettingsScreen(Screens):
         mediators = 0
         elders = 0
         kits = 0
+        potats = 0
         cats_outside = 0
         starclan = 0
         df = 0
@@ -377,8 +379,10 @@ class ClanSettingsScreen(Screens):
                 mediators += 1
             elif cat.status == "elder":
                 elders += 1
-            elif cat.status in ("newborn", "kitten"):
+            elif cat.status == "kitten":
                 kits += 1
+            elif cat.status == "newborn":
+                potats += 1
 
         text = (
             f"Living Clan Cats: {living_cats}\n"
@@ -392,7 +396,8 @@ class ClanSettingsScreen(Screens):
             f"Mediators: {mediators}\n"
             f"Mediators Apprentices: {mediator_apprentices}\n"
             f"Elders: {elders}\n"
-            f"Kittens and Newborns: {kits}\n"
+            f"Kittens: {kits}\n"
+            f"Newborns: {potats}\n"
             f"Faded Cats: {faded_cats}"
         )
 
