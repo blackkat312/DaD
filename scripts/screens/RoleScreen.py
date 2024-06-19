@@ -8,7 +8,7 @@ import pygame_gui
 from scripts.cat.cats import Cat
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game, screen_x, screen_y, MANAGER
-from scripts.game_structure.image_button import UIImageButton, UITextBoxTweaked
+from scripts.game_structure.ui_elements import UIImageButton, UITextBoxTweaked
 from scripts.utility import get_text_box_theme, shorten_text_to_fit
 from scripts.utility import scale
 from .Screens import Screens
@@ -455,9 +455,7 @@ class RoleScreen(Screens):
             output = f"{self.the_cat.name} is an <b>elder</b>. They have spent many moons serving their Clan, " \
                      f"and have earned " \
                      f"many moons of rest. Elders are essential to passing down the oral tradition of the Clan. " \
-                     f"Sometimes, cats may retire due to disability or injury. Whatever the " \
-                     f"circumstance of their retirement, elders are held in high esteem in the Clan, and always eat " \
-                     f"before Warriors and Medicine Cats. "
+                     f"Elders are held in high esteem in the Clan, and always eat before warriors and medicine cats. "
         elif self.the_cat.status == "apprentice":
             output = f"{self.the_cat.name} is an <b>apprentice</b>, in training to become a warrior. " \
                      f"Kits can be made warrior apprentices at six moons of age, where they will learn how " \
@@ -470,7 +468,7 @@ class RoleScreen(Screens):
                      f"Kits can be made medicine cat apprentices at six moons of age, where they will learn how to " \
                      f"heal their Clanmates and commune with StarClan. Medicine cat apprentices are typically chosen " \
                      f"for their interest in healing and/or their connecting to StarClan. Apprentices take the suffix " \
-                     f"-paw, to represent the path their paws take towards adulthood."
+                     f"\"paw\", to represent the path their paws take towards adulthood. "
         elif self.the_cat.status == "mediator apprentice":
             output = f"{self.the_cat.name} is a <b>mediator apprentice</b>, training to become a full mediator. " \
                      f"Mediators are in charge of handling disagreements both within the Clan and between Clans. " \
@@ -478,19 +476,19 @@ class RoleScreen(Screens):
                      f"Apprentices take the suffix \"paw\", " \
                      f"to represent the path their paws take towards adulthood. "
         elif self.the_cat.status == "kitten":
-            output = f"{self.the_cat.name} is a <b>kitten</b>. All cats below the age of six moons are " \
+            output = f"{self.the_cat.name} is a <b>kit</b>. All cats below the age of six moons are " \
                      f"considered kits. Kits " \
                      f"are prohibited from leaving camp in order to protect them from the dangers of the wild. " \
                      f"Although they don't have any official duties in the Clan, they are expected to learn the " \
                      f"legends and traditions of their Clan. They are protected by every cat in the Clan and always " \
-                     f"eat first. Kit take the suffix \"kit\"."
+                     f"eat first. Kits take the suffix \"kit\"."
         elif self.the_cat.status == "newborn":
-            output = f"{self.the_cat.name} is a <b>newborn kitten</b>. All cats below the age of six moons are " \
+            output = f"{self.the_cat.name} is a <b>newborn kit</b>. All cats below the age of six moons are " \
                      f"considered kits. Kits " \
                      f"are prohibited from leaving camp in order to protect them from the dangers of the wild. " \
                      f"Although they don't have any official duties in the Clan, they are expected to learn the " \
                      f"legends and traditions of their Clan. They are protected by every cat in the Clan and always " \
-                     f"eat first. Kit take the suffix \"kit\"."
+                     f"eat first. Kits take the suffix \"kit\"."
         else:
             output = f"{self.the_cat.name} has an unknown rank. I guess they want to make their own way in life! "
 
