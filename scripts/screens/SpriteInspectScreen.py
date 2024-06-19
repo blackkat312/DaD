@@ -5,7 +5,7 @@ import pygame_gui
 
 from scripts.cat.cats import Cat
 from scripts.game_structure.game_essentials import game, MANAGER
-from scripts.game_structure.image_button import UIImageButton
+from scripts.game_structure.ui_elements import UIImageButton
 from scripts.utility import (
     get_text_box_theme,
     scale_dimentions,
@@ -235,8 +235,6 @@ class SpriteInspectScreen(Screens):
         self.valid_life_stages = []
         for life_stage in SpriteInspectScreen.cat_life_stages:
             self.valid_life_stages.append(life_stage)
-            if life_stage == current_life_stage:
-                break
 
         # Store the index of the currently displayed life stage.
         self.displayed_life_stage = len(self.valid_life_stages) - 1
