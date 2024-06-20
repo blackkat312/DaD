@@ -2451,5 +2451,43 @@
         "risks": [
         ],
         "herbs": []
+    },
+    "spirited heart": {
+        "severity": "minor",
+        "congenital": "sometimes",
+        "moons_until": 4,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+        ],
+        "herbs": []
+    },
+    "puzzled heart": {
+        "severity": "minor",
+        "congenital": "sometimes",
+        "moons_until": 4,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+        ],
+        "herbs": []
     }
 }
