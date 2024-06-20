@@ -2037,7 +2037,9 @@ class ProfileScreen(Screens):
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
-            "puppyspace": "petspace"
+            "puppyspace": "petspace",
+            "spirited heart": "hyperempathy",
+            "puzzled heart": "low empathy"
         }
         if not game.settings['warriorified names']:
             if condition in dad_names:

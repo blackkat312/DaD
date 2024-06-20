@@ -1012,9 +1012,18 @@ def event_text_adjust(Cat,
     """
 
     cat_dict = {}
+    cat_name = str(cat.name)
+    
+    if cat.is_plural():
+        if cat.front:
+            name = str(cat.front)
+            if len(cat.alters) > 0:
+                if name != cat_name:
+                        cat_name = name + " (" + str(cat.name) + ")"
+
 
     if cat:
-        cat_dict["m_c"] = (str(cat.name), choice(cat.pronouns))
+        cat_dict["m_c"] = (cat_name, choice(cat.pronouns))
         cat_dict["p_l"] = cat_dict["m_c"]
     if "acc_plural" in text:
         text = text.replace("acc_plural", str(ACC_DISPLAY[cat.pelt.accessory]["plural"]))
@@ -1106,9 +1115,19 @@ def ceremony_text_adjust(Cat,
     random_dead_parent = None
 
     adjust_text = text
+    
+    cat_name = str(cat.name)
+    
+    if cat.is_plural():
+        if cat.front:
+            name = str(cat.front)
+            if len(cat.alters) > 0:
+                if name != cat_name:
+                        cat_name = name + " (" + str(cat.name) + ")"
+            
 
     cat_dict = {
-        "m_c": (str(cat.name), choice(cat.pronouns)) if cat else ("cat_placeholder", None),
+        "m_c": (cat_name, choice(cat.pronouns)) if cat else ("cat_placeholder", None),
         "(mentor)": (str(mentor.name), choice(mentor.pronouns)) if mentor else ("mentor_placeholder", None),
         "(deadmentor)": (str(dead_mentor.name), choice(dead_mentor.pronouns)) if dead_mentor else (
             "dead_mentor_name", None),

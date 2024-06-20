@@ -408,12 +408,28 @@
     "curved spine": [
         "m_c can barely get out of {PRONOUN/m_c/poss} bed due to back pain. r_c feels {PRONOUN/m_c/poss} back and realizes that {PRONOUN/m_c/poss} spine is curved."
     ],
+    "puzzled heart":[
+        "When other cats vent to m_c, {PRONOUN/m_c/subject/CAP} tend to give solutions rather than comfort. The medicine cat proposes that m_c is a puzzled heart.",
+        "m_c admits that {PRONOUN/m_c/subject} {VERB/m_c/has/have} never been able to read emotions, much less empathize with them."
+    ], 
+    "spirited heart":[
+        "After watching a bee die, m_c was left destitute for weeks. {PRONOUN/m_c/poss/CAP} emotions run strong: {PRONOUN/m_c/subject} is a spirited heart."
+    ],
     "starwalker":{
         "jumbled mind": [
             "Being a starwalker affects how m_c process words. Whenever {PRONOUN/m_c/subject} speaks, it comes out as a jumbled mess."
         ],
         "counting fog":[
             "Being a starwalker affects how m_c processes numbers. r_c assures {PRONOUN/m_c/object} that it's okay, m_c just has counting fog."
+        ],
+        "spirited heart":[
+            "After watching a bee die, m_c was left destitute for weeks. {PRONOUN/m_c/poss/CAP} emotions run strong: {PRONOUN/m_c/subject} is a spirited heart.",
+            "Being a starwalker amplifies how m_c feels emotions, especially the emotions of {PRONOUN/m_c/poss} clanmates. {PRONOUN/m_c/subject/CAP} may be a spirited heart."
+        ],
+        "puzzled heart":[
+            "When other cats vent to m_c, {PRONOUN/m_c/subject/CAP} tend to give solutions rather than comfort. The medicine cat proposes that m_c is a puzzled heart.",
+            "m_c admits that {PRONOUN/m_c/subject} {VERB/m_c/has/have} never been able to read emotions, much less empathize with them.",
+            "As a starwalker, m_c has never been able to connect with other cats in the same way. {PRONOUN/m_c/subject/CAP} may be a puzzled heart."
         ]
     },
     "comet spirit":
@@ -423,6 +439,11 @@
         ],
         "counting fog":[
             "Being a comet spirit affects how m_c processes numbers. r_c assures {PRONOUN/m_c/object} that it's okay, m_c just has counting fog."
+        ],
+        "spirited heart":[
+            "After watching a bee die, m_c was left destitute for weeks. {PRONOUN/m_c/poss} emotions run strong: {PRONOUN/m_c/subject} {VERB/m_c/is/are} a spirited heart.",
+            "Being a comet spirit amplifies how m_c feels emotions, especially the emotions of {PRONOUN/m_c/poss} clanmates. {PRONOUN/m_c/subject/CAP} may be a spirited heart."
         ]
+
     }
 }

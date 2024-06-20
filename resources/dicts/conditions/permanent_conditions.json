@@ -429,7 +429,7 @@
                 "chance": 80
             },
 			{
-				"name": "nonverbal",
+				"name": "verbal shutdown",
 				"chance": 20
 			},
 			{
@@ -464,7 +464,7 @@
 				"chance": 120
 			},
 			{
-				"name": "nonverbal",
+				"name": "verbal shutdown",
 				"chance": 20
 			},
             {
@@ -835,7 +835,7 @@
 				"chance": 5
 			},
             {
-                "name": "nonverbal",
+                "name": "verbal shutdown",
                 "chance": 40
             },
 			{
@@ -909,6 +909,14 @@
             {
                 "name": "nausea",
                 "chance": 20
+            },
+            {
+                "name": "spirited heart",
+                "chance": 100
+            },
+            {
+                "name": "puzzled heart",
+                "chance": 100
             }
         ],
         "herbs": [ ]
@@ -1106,6 +1114,10 @@
             {
                 "name": "counting fog",
                 "chance": 75
+            },
+            {
+                "name": "spirited heart",
+                "chance": 100
             }
         ],
         "herbs":[
@@ -1212,6 +1224,10 @@
             {
                 "name": "sore",
                 "chance": 25
+            },
+            {
+                "name": "spirited heart",
+                "chance": 100
             }
         ],
         "herbs": [
@@ -1490,6 +1506,15 @@
             {
                 "name": "shattered soul",
                 "chance": 70
+            },
+            {
+                "name": "puzzled heart",
+                "chance": 100
+            },
+            
+            {
+                "name": "spirited heart",
+                "chance": 100
             }
 
         ],

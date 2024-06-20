@@ -521,7 +521,10 @@ class MedDenScreen(Screens):
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
-            "puppyspace": "petspace"
+            "puppyspace": "petspace",
+            
+            "spirited heart": "hyperempathy",
+            "puzzled heart": "low empathy"
         }
         length = 0
         if not game.settings['warriorified names']:
