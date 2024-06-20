@@ -2029,6 +2029,7 @@ class ProfileScreen(Screens):
             "curved spine": "scoliosis",
             "jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
+            "parrot chatter": "echolalia",
 
             "sunblindness": "light sensitivity",
 

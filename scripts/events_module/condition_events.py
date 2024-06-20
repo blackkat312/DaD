@@ -435,7 +435,8 @@ class Condition_Events():
             "kitten regressor", "puppy regressor", "snow vision", "echoing shock", "irritable bowels", "loose body",
             "longcough", "burning light", "disrupted senses", "constant nightmares", "jellyfish joints", "lazy eye", 
             "shattered soul", "budding spirit", "pcos", "infertile", "excess testosterone", "aneuploidy", "testosterone deficiency", 
-            "chimerism", "mosaicism", "curved spine", "jumbled mind", "counting fog", "spirited heart", "puzzled heart"
+            "chimerism", "mosaicism", "curved spine", "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness",
+            "parrot chatter"
 
         ]
 
