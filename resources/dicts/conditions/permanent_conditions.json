@@ -925,6 +925,10 @@
             {
 				"name": "parrot chatter",
 				"chance": 75
+			},
+            {
+				"name": "selective mutism",
+				"chance": 75
 			}
         ],
         "herbs": [ ]
@@ -1240,7 +1244,11 @@
             {
                 "name": "spirited heart",
                 "chance": 100
-            }
+            },
+            {
+				"name": "selective mutism",
+				"chance": 50
+			}
         ],
         "herbs": [
             "chamomile",
@@ -2123,7 +2131,11 @@
             {
                 "name": "broken bone",
                 "chance": 100
-            }
+            },
+            {
+				"name": "parrot chatter",
+				"chance": 75
+			}
         ]
     },
     "falling paws": {
@@ -2199,7 +2211,11 @@
             {
                 "name": "puppy regressor",
                 "chance": 70
-            }
+            },
+            {
+				"name": "selective mutism",
+				"chance": 75
+			}
         ],
         "herbs": []
     },
@@ -2238,7 +2254,11 @@
             {
                 "name": "puppy regressor",
                 "chance": 70
-            }
+            },
+            {
+				"name": "selective mutism",
+				"chance": 75
+			}
         ],
         "herbs": []
     },
@@ -2535,7 +2555,7 @@
     },
     "parrot chatter": {
         "severity": "minor",
-        "congenital": "always",
+        "congenital": "sometimes",
         "moons_until": 2,
         "mortality": {
             "newborn": 0,
@@ -2552,6 +2572,37 @@
             {
 				"name": "stimming",
 				"chance": 5
+			},
+            {
+				"name": "verbal loss",
+				"chance": 25
+			}
+        ],
+        "herbs": []
+    },
+    "selective mutism": {
+        "severity": "minor",
+        "congenital": "sometimes",
+        "moons_until": 4,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+				"name": "verbal shutdown",
+				"chance": 5
+			},
+            {
+				"name": "anxiety attack",
+				"chance": 20
 			}
         ],
         "herbs": []

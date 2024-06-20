@@ -307,12 +307,12 @@ class Cat():
         if not loading_cat:
             
             # everyone is plural :3
-            '''
-            if game.clan:
-                new_condition=choice(["shattered soul", "budding spirit"])
-                self.get_permanent_condition(new_condition, born_with=True)
             
-            '''
+            if game.clan:
+                #new_condition=choice(["shattered soul", "budding spirit"])
+                self.get_permanent_condition("selective mutism", born_with=True)
+            
+            
             
             # trans cat chances
             theythemdefault = game.settings["they them default"]
