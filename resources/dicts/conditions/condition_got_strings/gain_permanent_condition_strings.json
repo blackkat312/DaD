@@ -334,8 +334,10 @@
 	"wrenched claws": {
 		"declawed": [
 			"r_c fusses over m_c's paws with {PRONOUN/m_c/object} before sitting back and shaking {PRONOUN/r_c/poss} head sadly. It appears {PRONOUN/m_c/subject} will have to learn to fight without {PRONOUN/m_c/poss} claws.",
-			"r_c frustratedly hisses over the state of m_c's paws and claws. Curse those horrible twolegs who did this.",
-			"Curse them, curse those twolegs for taking m_c away and bringing {PRONOUN/m_c/object} back without {PRONOUN/m_c/poss} claws."
+			"r_c frustratedly hisses over the state of m_c's paws and claws. Curse the decisions that led to this.",
+			"m_c has many curses to say as {PRONOUN/m_c/subject} {VERB/m_c/find/finds} that even healed {PRONOUN/m_c/poss} paws and claws will never be the same.",
+			"It appears that m_c's claws will never return to the most useable state as before {PRONOUN/m_c/subject} got them wrenched.",
+			"m_c curses all that {PRONOUN/m_c/subject} can realising that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} now declawed."
 		],
 		"recurring shock": [
 			"Ever since m_c's experiece with the twolegs {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} told r_c about having recurring flashes of been in a scary place, with slippery surfaces and screaming creatures all around.",

@@ -929,7 +929,7 @@
 			"m_c's pelt has become torn from {PRONOUN/m_c/object} pulling out {PRONOUN/m_c/poss} fur.",
 			"m_c has been anxiously pulling out {PRONOUN/m_c/poss} fur."
 		],
-		"wrentched claws": [
+		"wrenched claws": [
 			"r_c sighs when m_c comes in after biting {PRONOUN/m_c/poss} claws to shreds.",
 			"m_c winces after realizing just how far down {PRONOUN/m_c/subject} {VERB/m_c/have/has} bitten {PRONOUN/m_c/poss} claws.",
 			"m_c has bitten {PRONOUN/m_c/poss} claws down to a useless state."
