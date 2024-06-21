@@ -310,6 +310,8 @@ class ProfileScreen(Screens):
                     self.the_cat.genderalign = self.the_cat.gender
                 elif self.the_cat.gender == "molly" and self.the_cat.genderalign == 'tom':
                     self.the_cat.genderalign = self.the_cat.gender
+                elif self.the_cat.gender == "intersex" and (self.the_cat.genderalign == 'molly' or self.the_cat.genderalign == 'tom'):
+                    self.the_cat.genderalign = self.the_cat.gender
                 #if the cat is cis (gender & gender align are the same) then set them to trans
                 #cis toms -> trans molly first
                 elif self.the_cat.gender == "tom" and self.the_cat.genderalign == 'tom':
@@ -853,7 +855,7 @@ class ProfileScreen(Screens):
         else:
             output += str(the_cat.genderalign)
         if output == "molly and intersex" or output == "tom and intersex":
-            output == "this should not appear"
+            output += " (this should not appear)"
         # NEWLINE ----------
         output += "\n"
 
@@ -2887,6 +2889,14 @@ class ProfileScreen(Screens):
                     manager=MANAGER,
                 )
             elif self.the_cat.gender == "molly" and self.the_cat.genderalign == "tom":
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_cis_button",
+                    manager=MANAGER,
+                )
+            elif self.the_cat.gender == "intersex" and (self.the_cat.genderalign == "molly" or self.the_cat.genderalign == "tom"):
                 self.cis_trans_button = UIImageButton(
                     scale(pygame.Rect((804, 972), (344, 104))),
                     "",
