@@ -322,7 +322,8 @@ class Pregnancy_Events:
                                                 alive=True,
                                                 age=mate_age if mate_age > 14 else 15,
                                                 gender=mate_gender,
-                                                outside=True)[0]
+                                                outside=True,
+                                                is_parent=True)[0]
                         outside_parent.thought = "Is wondering what their kits are doing"
                         if random.random() < 0.2:
                             outside_parent.mate.append(cat.ID)
@@ -533,7 +534,8 @@ class Pregnancy_Events:
                                                     alive=True,
                                                     age=mate_age if mate_age > 14 else 15,
                                                     gender='masc',
-                                                    outside=True)[0]
+                                                    outside=True,
+                                                    is_parent=True)[0]
                             out_par.thought = f"Is wondering how {cat.name} is doing"
 
                         if random.random() < 0.2:
@@ -1163,7 +1165,8 @@ class Pregnancy_Events:
                                                 alive=False,
                                                 thought=thought,
                                                 age=parage,
-                                                outside=True)[0]
+                                                outside=True,
+                                                is_parent=True)[0]
                     blood_parent2 = []
 
                     for i in range(0, nr_of_parents):
@@ -1182,7 +1185,8 @@ class Pregnancy_Events:
                                                         alive=False,
                                                         thought=thought,
                                                         age=parage if parage > 14 else 15,
-                                                        outside=True)[0]
+                                                        outside=True,
+                                                        is_parent=True)[0]
                         blood_par2.thought = thought
 
                         blood_parent2.append(blood_par2)
