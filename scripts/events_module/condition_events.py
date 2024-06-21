@@ -1018,13 +1018,15 @@ class Condition_Events():
                             random_index = 1
                     event = possible_string_list[random_index]
                 except KeyError:
-                    if condition not in (cat.permanent_condition and cat.illnesses and cat.injuries):
-                        print(f"WARNING: {condition} couldn't be found in the risk strings! placeholder string was used")
-                        event = f"m_c has gotten {condition}."
-                        event = Condition_Events.change_condition_name(event)
-                    else:
-                        print(f"the game tried to give a cat {condition}, but they already have it! Please report in #bugs-and-typos in DaD's server")
+                    if new_condition_name in (cat.permanent_condition or cat.illnesses or cat.injuries):
+                        print(f"the game tried to give a cat {new_condition_name}, but they already have it! Please report in #bugs-and-typos in DaD's server")
                         event = "this should not appear"
+                    else:
+                        print(
+                            f"WARNING: {new_condition_name} couldn't be found in the risk strings of {condition}! placeholder string was used"
+                        )
+                        event = f"m_c has gotten {new_condition_name}."
+                        event = Condition_Events.change_condition_name(event)
 
                 event = Condition_Events.change_condition_name(event)
                 event = event_text_adjust(Cat, event, cat, other_cat=med_cat)  # adjust the text
