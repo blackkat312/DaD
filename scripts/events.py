@@ -1355,7 +1355,7 @@ class Events:
             event_text = "m_c has gotten used to the odd comment of \"is" + white_text2 + "your fur more " + red_colour + " today?\", having heard it practically since kithood. But by now, nobody can deny it; there's barely a trace of any other coat color left."
 
         if event_text:
-            event_text = event_text_adjust(Cat, event_text, cat)
+            event_text = event_text_adjust(Cat, event_text, main_cat=cat)
             types = ["misc"]
             game.cur_events_list.append(Single_Event(event_text, types, involved_cats))
 
