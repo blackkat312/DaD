@@ -2693,9 +2693,14 @@ class Cat:
         possible_conditions = []
         multiple_condition_chance = game.config["cat_generation"]["multiple_permanent_conditions"]
         max_conditions = game.config["cat_generation"]["max_conditions_born_with"]
+        comorbidity_chance = game.config["cat_generation"]["comorbidity_chance"]
         conditions = 1
         count = 1
         genetics_exclusive = ["albinism", "ocular albinism", "manx syndrome"]
+        comorbid_conditions = {
+            "starwalker": ["comet spirit", "spirited heart", "puzzled heart"]
+        }
+        possible_comorbidities = []
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
@@ -2708,29 +2713,62 @@ class Cat:
             count += 1
 
         while conditions:
+            for entry in comorbid_conditions:
+                if entry in cat.permanent_condition:
+                    possible_comorbidities.append(comorbid_conditions.get(entry))
+
             new_condition = choice(possible_conditions)
+            if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                new_condition = choice(choice(possible_comorbidities))
+
             while new_condition in cat.permanent_condition:
                 new_condition = choice(possible_conditions)
+                if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                    new_condition = choice(choice(possible_comorbidities))
+
             while new_condition == "born without a tail":
                 new_condition = choice(possible_conditions)
                 while new_condition in cat.permanent_condition:
                     new_condition = choice(possible_conditions)
+                    if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                        new_condition = choice(choice(possible_comorbidities))
+
             if new_condition == "blind" and "failing eyesight" in cat.permanent_condition:
                 while new_condition == "blind":
                     new_condition = choice(possible_conditions)
                     while new_condition in cat.permanent_condition:
                         new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
             if new_condition == "failing eyesight" and "blind" in cat.permanent_condition:
                 while new_condition == "failing eyesight":
                     new_condition = choice(possible_conditions)
                     while new_condition in cat.permanent_condition:
                         new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+
+            if new_condition == "spirited heart" and "puzzled heart" in cat.permanent_condition:
+                while new_condition == "spirited heart":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "puzzled heart" and "spirited heart" in cat.permanent_condition:
+                while new_condition == "puzzled heart":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
 
             if new_condition == "born without a leg":
                 cat.pelt.scars.append("NOPAW")
 
             self.get_permanent_condition(new_condition, born_with=True)
             conditions -= 1
+            possible_comorbidities = []  # Reset possible_comorbidities so that the chances stay equal for each comorbidity
 
     def update_alters(self):
         if self.alters:
