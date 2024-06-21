@@ -498,6 +498,11 @@ class Condition_Events:
             "albinism",
             "ocular albinism",
             "manx syndrome",
+            "spirited heart",
+            "puzzled heart",
+            "face blindness",
+            "parrot chatter",
+            "selective mutism",
         ]
 
         got_condition = False
@@ -524,6 +529,11 @@ class Condition_Events:
                             ]
                         ):
                             perm_condition = random.choice(possible_conditions)
+                            '''if perm_condition == 'recurring shock' and injury_name == "wrenched claws":                                 
+                                if injury_name not in cat.history.possible_history:
+                                    perm_condition = None
+                                    print(f"Hopefully failed to give recurring shock to non-traumatised cat")
+                                    THIS IS NOT WORKING FOR ME, :< Just blocks it all right now. '''
                         else:
                             return perm_condition
                 except KeyError:
@@ -572,7 +582,7 @@ class Condition_Events:
             "sleeplessness": "ongoing sleeplessness",
             "ticks": ["tick bites", "severe tick bites"],
             "nest wetting": "night dirtmaking",
-            "nonverbal": "mute",
+            "verbal shutdown": "mute",
             "tics": "tic attack",
             "nausea": "stomachache",
         }
@@ -975,6 +985,9 @@ class Condition_Events:
             "a curved spine": "scoliosis",
             "a jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
+            "spirited heart": "hyperempathy",
+            "puzzled heart": "low empathy",
+            "parrot chatter": "echolalia",
 
             "sunblindness": "light sensitivity",
 
@@ -1186,14 +1199,14 @@ class Condition_Events:
                             random_index = 1
                     event = possible_string_list[random_index]
                 except KeyError:
-                    if condition in (cat.permanent_condition or cat.illnesses or cat.injuries):
-                        print(f"the game tried to give a cat {condition}, but they already have it! Please report in #bugs-and-typos in DaD's server")
+                    if new_condition_name in (cat.permanent_condition or cat.illnesses or cat.injuries):
+                        print(f"the game tried to give a cat {new_condition_name}, but they already have it! Please report in #bugs-and-typos in DaD's server")
                         event = "this should not appear"
                     else:
                         print(
-                            f"WARNING: {condition} couldn't be found in the risk strings! placeholder string was used"
+                            f"WARNING: {new_condition_name} couldn't be found in the risk strings of {condition}! placeholder string was used"
                         )
-                        event = f"m_c has gotten {condition}."
+                        event = f"m_c has gotten {new_condition_name}."
                         event = Condition_Events.change_condition_name(event)
 
                 event = Condition_Events.change_condition_name(event)
