@@ -1138,14 +1138,32 @@ class ProfileScreen(Screens):
             else:
                 output += "neutered"
 
+        already_disabled = False
         if the_cat.is_disabled():
             for condition in the_cat.permanent_condition:
+                special_conditions = [
+                    "declawed"
+                ]
+                all_special = True
+                for condition2 in the_cat.permanent_condition:
+                    if condition2 not in special_conditions:
+                        all_special = False
+                    if not all_special:
+                        break
+
                 if (the_cat.permanent_condition[condition]["born_with"] is True and the_cat.permanent_condition[condition]["moons_until"] != -2) or ("excess testosterone" in the_cat.permanent_condition[condition] or "aneuploidy" in the_cat.permanent_condition[condition] or "testosterone deficiency" in the_cat.permanent_condition[condition] or "chimerism" in the_cat.permanent_condition[condition] or "mosaicism" in the_cat.permanent_condition[condition] or "albinism" in the_cat.permanent_condition[condition] or "ocular albinism" in the_cat.permanent_condition[condition]):
                     continue
-                elif "declawed" in the_cat.permanent_condition:
-                    output += "declawed"
-                else:
+
+                if not all_special:
                     output += "has a permanent condition"
+                    already_disabled = True
+
+                if "declawed" in the_cat.permanent_condition:
+                    if already_disabled:
+                        output += "\ndeclawed"
+                    else:
+                        output += "declawed"
+                        already_disabled = True
 
                 # NEWLINE ----------
                 output += "\n"
@@ -1276,7 +1294,7 @@ class ProfileScreen(Screens):
 
             if "starving" in the_cat.illnesses:
                 if already_sick_injured:
-                    # I don"t think cats can be malnourished and starving at the same time, but jic
+                    # I don't think cats can be malnourished and starving at the same time, but jic
                     if "malnourished!" in output:
                         output = output.replace("malnourished!", "starving!")
                     else:
@@ -1292,7 +1310,7 @@ class ProfileScreen(Screens):
                     output += "paranoid!"
                     already_sick_injured = True
 
-            if ("lethargy" or "seasonal lethargy") in the_cat.illnesses:
+            if "lethargy" in the_cat.illnesses or "seasonal lethargy" in the_cat.illnesses:
                 if already_sick_injured:
                     if game.settings["warriorified names"]:
                         output += "\nlethargic!"
