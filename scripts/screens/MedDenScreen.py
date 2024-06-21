@@ -583,6 +583,9 @@ class MedDenScreen(Screens):
             "curved spine": "scoliosis",
             "jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
+            "spirited heart": "hyperempathy",
+            "puzzled heart": "low empathy",
+            "parrot chatter": "echolalia",
 
             "sunblindness": "light sensitivity",
 
