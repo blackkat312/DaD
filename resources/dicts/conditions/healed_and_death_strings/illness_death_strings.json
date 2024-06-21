@@ -122,8 +122,8 @@
   "lethargy": [
     "this REALLY should not appear! m_c died from lethargy?"
   ],
-  "nonverbal": [
-    "this should not appear! m_c died from being nonverbal?"
+  "verbal shutdown": [
+    "this should not appear! m_c died from having a verbal shutdown?"
   ],
   "special interest": [
     "this should not appear! m_c died from having a special interest?"
