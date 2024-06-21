@@ -871,7 +871,7 @@
 				"chance": 15
 			},
 			{
-				"name": "nonverbal",
+				"name": "verbal shutdown",
 				"chance": 50
 			}
 		],
@@ -1050,7 +1050,7 @@
             "poppy"
         ]
     },	
-    "nonverbal": {
+    "verbal shutdown": {
         "severity": "minor",
         "mortality": {
             "newborn": 0,
@@ -1556,9 +1556,9 @@
             "kitten": 0,
             "adolescent": 0,
             "young adult": 0,
-            "adult": 0,
-            "senior adult": 0,
-            "senior": 0
+            "adult": 5000,
+            "senior adult": 4500,
+            "senior": 4000
         },
         "duration": 2,
         "medicine_duration": 1,
