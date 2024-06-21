@@ -585,5 +585,18 @@
                 "disrupted senses"
             ]
         }
+    },
+	{
+        "id": "face_blindness_kitten",
+        "thoughts": [
+            "Is surrounded by familiar strangers",
+			"Can't identify {PRONOUN/m_c/poss} parents",
+			"Is crying out for someone familiar"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "face blindness"
+            ]
+        }
     }
 ]
