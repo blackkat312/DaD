@@ -510,7 +510,7 @@ class Condition_Events():
             "sleeplessness": "ongoing sleeplessness",
             "ticks": ["tick bites", "severe tick bites"],
             "nest wetting": "night dirtmaking",
-            "nonverbal": "mute",
+            "verbal shutdown": "mute",
             "tics": "tic attack",
             "nausea": "stomachache"
         }
