@@ -611,7 +611,7 @@
     "event_id": "gen_misc_any_accessory4",
     "location": ["any"],
     "season": ["any"],
-    "sub_type": ["ceremony"],
+    "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "m_c was given acc_plural as a congratulations, r_c watches from the side with a jealous glint in {PRONOUN/r_c/poss} eyes.",
     "new_accessory": ["WILD", "PLANT"],
@@ -663,7 +663,7 @@
     "event_id": "gen_misc_any_accessory6",
     "location": ["any"],
     "season": ["any"],
-    "sub_type": ["ceremony"],
+    "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "m_c decides to pick something to adorn {PRONOUN/m_c/poss} pelt as celebration.",
     "new_accessory": ["WILD","PLANT"],
@@ -676,7 +676,7 @@
     "event_id": "gen_misc_any_accessory7",
     "location": ["any"],
     "season": ["any"],
-    "sub_type": ["ceremony"],
+    "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "r_c gives m_c something to adorn {PRONOUN/m_c/poss} pelt as congratulations.",
     "new_accessory": ["WILD","PLANT"],
@@ -1270,7 +1270,7 @@
         "season": ["any"],
         "sub_type": ["accessory"],
         "weight": 15,
-        "event_text": "m_c sneaked out of camp, and brought back with them some acc_singular from when {PRONOUN/m_c/poss} fur got snagged in a bush.",
+        "event_text": "m_c sneaked out of camp, and brought back with {PRONOUN/m_c/object} some acc_plural from when {PRONOUN/m_c/poss} fur got snagged in a bush.",
         "new_accessory": ["HOLLY", "JUNIPER"],
         "m_c": {
             "status": ["kitten"]
@@ -2317,7 +2317,7 @@
     "event_text": "m_c visits o_c_n to converse with their medicine cats about an omen StarClan sent.",
     "m_c": {
         "status": ["medicine cat"],
-        "skill": ["OMEN,0"]
+        "skill": ["OMEN,1"]
       },
     "other_clan": {
       "current_rep": ["any"],
@@ -2331,8 +2331,7 @@
     "weight": 15,
     "event_text": "m_c visits o_c_n to congratulate them on their new medicine cat.",
     "m_c": {
-        "status": ["medicine cat"],
-        "skill": ["MEDIATOR,1"]
+        "status": ["medicine cat"]
       },
     "other_clan": {
       "current_rep": ["any"],
@@ -2343,7 +2342,7 @@
     "event_id": "gen_misc_ceremony_any_medicinecatacc1",
     "location": ["any"],
     "season": ["any"],
-    "sub_type": ["ceremony"],
+    "sub_type": ["ceremony", "accessory"],
     "weight": 10,
     "event_text": "r_c presents m_c with acc_plural as a congratulations.",
     "new_accessory": ["WILD", "PLANT"],
@@ -2379,7 +2378,7 @@
     "m_c": {
       "age":["any"],
       "status": ["medicine cat"],
-      "skill": ["OMEN,0"]
+      "skill": ["OMEN,1"]
       },
     "r_c": {
       "status": ["leader"]
@@ -2409,7 +2408,7 @@
     "event_text": "m_c walks into the dreams of {PRONOUN/m_c/poss} Clanmates while everyone sleeps.",
     "m_c": {
       "status": ["medicine cat"],
-      "skill": ["DREAM,2"]
+      "skill": ["DREAM,1"]
     }
   },
   {
@@ -2418,10 +2417,10 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dreamself pads through the thoughts of {PRONOUN/m_c/poss} Clanmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
+    "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dream-self pads through the thoughts of {PRONOUN/m_c/poss} Clanmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
     "m_c": {
       "status": ["medicine cat apprentice", "medicine cat"],
-      "skill": ["DREAM,2"]
+      "skill": ["DREAM,0"]
     }
   },
   {
@@ -2430,10 +2429,10 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c correctly warns the leader of an ambush, thanks to {PRONOUN/m_c/poss} clairvoyant nature.",
+    "event_text": "m_c correctly warns the guardian of an ambush, thanks to {PRONOUN/m_c/poss} clairvoyant nature.",
     "m_c": {
       "status": ["medicine cat"],
-      "skill": ["CLAIRVOYANT,2"]
+      "skill": ["CLAIRVOYANT,1"]
     }
   },
   {
@@ -2444,22 +2443,22 @@
     "event_text": "m_c spends {PRONOUN/m_c/poss} day communing with StarClan, attempting to figure out a recent prophecy.",
     "m_c": {
       "status":["medicine cat", "medicine cat apprentice"],
-      "skill": ["PROPHET,2"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatelderlore1",
+    "event_id": "gen_misc_any_medicinecatelderhistorian1",
     "location": ["any"],
     "season": ["any"],
     "weight": 20,
     "event_text": "m_c has been worried that c_n will lose the knowledge r_c has gained through {PRONOUN/r_c/poss} long life, but by sitting with r_c and discussing {PRONOUN/r_c/poss} experiences, m_c will ensure the lessons learned in the past are never forgotten.",
     "m_c": {
-      "status":["medicine cat"],
-      "skill": ["LORE,1"]
+      "status": ["medicine cat", "medicine cat apprentice"],
+      "skill": ["HISTORIAN,1"]
     },
     "r_c": {
         "age": ["senior"],
-        "status": ["elder"]
+        "skill": ["MEMORY,2"]
     }
   },
   {
@@ -2751,7 +2750,7 @@
     "season": ["any"],
     "sub_type": ["war"],
     "weight": 10,
-    "event_text": "As the deputy, m_c is doing {PRONOUN/m_c/poss} best to prepare for leadership in the case that the worst happens.",
+    "event_text": "As the deputy, m_c is doing {PRONOUN/m_c/poss} best to prepare for guardianship in the case that the worst happens.",
     "m_c":{
       "status": ["deputy"]
     }
@@ -2763,7 +2762,7 @@
     "sub_type": ["war"],
     "tags": ["low_lives"],
     "weight": 5,
-    "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as leader if r_c loses {PRONOUN/r_c/poss} last life.",
+    "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as guardian if r_c loses {PRONOUN/r_c/poss} last life.",
     "m_c": {
       "age":["any"],
       "status": ["deputy"],
@@ -2781,7 +2780,7 @@
      "sub_type": ["war"],
     "tags": ["low_lives"],
     "weight": 10,
-    "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as leader if r_c loses {PRONOUN/r_c/poss} last life. How could {PRONOUN/m_c/subject} {VERB/m_c/go/goes} on without {PRONOUN/m_c/poss} beloved leader? How difficult will it to be to lead in {PRONOUN/r_c/poss} stead?",
+    "event_text": "m_c is struggling to accept the fact that {PRONOUN/m_c/subject} may have to step up as guardian if r_c loses {PRONOUN/r_c/poss} last life. How could {PRONOUN/m_c/subject} {VERB/m_c/go/goes} on without {PRONOUN/m_c/poss} beloved guardian? How difficult will it to be to lead in {PRONOUN/r_c/poss} stead?",
     "m_c": {
       "status": ["deputy"],
       "trait": ["insecure","lonesome", "nervous"]
@@ -2851,7 +2850,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c feels as though the responsibility of leadership is crushing {PRONOUN/m_c/object}.",
+    "event_text": "m_c feels as though the responsibility of guardianship is crushing {PRONOUN/m_c/object}.",
     "m_c":{
       "status": ["leader"]
     }
