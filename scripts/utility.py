@@ -308,7 +308,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     thought=thought,
                                     age=ages[0],
                                     gender=sex,
-                                    outside=True)[0]
+                                    outside=True,
+                                    is_parent=True)[0]
     while 'infertile' in blood_parent.permanent_condition or blood_parent.neutered:
         if(blood_parent):
             del Cat.all_cats[blood_parent.ID]
@@ -321,7 +322,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     thought=thought,
                                     age=ages[0],
                                     gender=sex,
-                                    outside=True)[0]
+                                    outside=True,
+                                    is_parent=True)[0]
     if cat_type != 'del':
         cat_type = choice(["loner", "rogue", "kittypet"])
         blood_parent2 = create_new_cat(Cat,
@@ -333,7 +335,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     thought=thought,
                                     age=ages[1] if ages[1] > 14 else 15,
                                     gender=sex,
-                                    outside=True)[0]
+                                    outside=True,
+                                    is_parent=True)[0]
         while 'infertile' in blood_parent2.permanent_condition or blood_parent2.neutered:
             if(blood_parent2):
                 del Cat.all_cats[blood_parent2.ID]
@@ -346,7 +349,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     thought=thought,
                                     age=ages[0],
                                     gender=sex,
-                                    outside=True)[0]
+                                    outside=True,
+                                    is_parent=True)[0]
     else:
         par2geno = Genotype(game.config['genetics_config'], game.settings["ban problem genes"])
         par2geno.Generator(sex)
@@ -730,8 +734,9 @@ def create_new_cat(
         outside: bool = False,
         parent1: str = None,
         parent2: str = None,
-        extrapar:Genotype=None,
-        adoptive_parent:list=None
+        extrapar: Genotype = None,
+        adoptive_parent: list = None,
+        is_parent: bool = False
 ) -> list:
     """
     This function creates new cats and then returns a list of those cats
@@ -2209,9 +2214,11 @@ def ceremony_text_adjust(
 
     adjust_text = text
 
-    cat_name = str(cat.name)
-    
+    cat_name = "cat_placeholder"
+
     if cat:
+        cat_name = str(cat.name)
+
         if cat.is_plural():
             if cat.front:
                 name = str(cat.front)
