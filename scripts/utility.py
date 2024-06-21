@@ -1988,10 +1988,18 @@ def event_text_adjust(
         print("WARNING: Tried to adjust text, but no text was provided.")
 
     replace_dict = {}
+    cat_name = str(main_cat.name)
+
+    if main_cat.is_plural():
+        if main_cat.front:
+            name = str(main_cat.front)
+            if len(main_cat.alters) > 0:
+                if name != cat_name:
+                    cat_name = name + " (" + str(main_cat.name) + ")"
 
     # main_cat
     if "m_c" in text:
-        replace_dict["m_c"] = (str(main_cat.name), choice(main_cat.pronouns))
+        replace_dict["m_c"] = (str(cat_name), choice(main_cat.pronouns))
 
     # patrol_lead
     if "p_l" in text:
@@ -2200,9 +2208,19 @@ def ceremony_text_adjust(
 
     adjust_text = text
 
+    cat_name = str(cat.name)
+
+    if cat.is_plural():
+        if cat.front:
+            name = str(cat.front)
+            if len(cat.alters) > 0:
+                if name != cat_name:
+                        cat_name = name + " (" + str(cat.name) + ")"
+
+
     cat_dict = {
         "m_c": (
-            (str(cat.name), choice(cat.pronouns)) if cat else ("cat_placeholder", None)
+            (str(cat_name), choice(cat.pronouns)) if cat else ("cat_placeholder", None)
         ),
         "(mentor)": (
             (str(mentor.name), choice(mentor.pronouns))
