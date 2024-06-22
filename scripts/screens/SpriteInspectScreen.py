@@ -51,17 +51,34 @@ class SpriteInspectScreen(Screens):
         # Don't handle the events if a window is open.
         if game.switches["window_open"]:
             return
+        life_stages_dict = {
+            "newborn": 0,
+            "kitten": 1,
+            "adolescent": 2,
+            "adult": 3,
+            "senior": 4
+        }
+        current_life_stage_number = life_stages_dict.get(self.get_current_life_stage())
 
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
             if event.ui_element == self.back_button:
+                self.cat_elements["cat_name"].kill()
+                self.cat_elements["favourite_button"].kill()
+                self.cat_elements["not_favourite_button"].kill()
                 self.change_screen("profile screen")
             elif event.ui_element == self.next_cat_button:
                 if isinstance(Cat.fetch_cat(self.next_cat), Cat):
+                    self.cat_elements["cat_name"].kill()
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
                     game.switches["cat"] = self.next_cat
                     self.cat_setup()
                 else:
                     print("invalid next cat", self.next_cat)
             elif event.ui_element == self.previous_cat_button:
+                self.cat_elements["cat_name"].kill()
+                self.cat_elements["favourite_button"].kill()
+                self.cat_elements["not_favourite_button"].kill()
                 if isinstance(Cat.fetch_cat(self.previous_cat), Cat):
                     game.switches["cat"] = self.previous_cat
                     self.cat_setup()
@@ -71,12 +88,427 @@ class SpriteInspectScreen(Screens):
                 self.displayed_life_stage = min(
                     self.displayed_life_stage + 1, len(self.valid_life_stages) - 1
                 )
+
+                if self.displayed_life_stage > current_life_stage_number:
+                    self.cat_elements["cat_name"].kill()
+
+                    cat_name = str(self.the_cat.name)  # name
+                    if self.the_cat.dead:
+                        cat_name += " (older, dead)"
+                    else:
+                        cat_name += " (older)"
+                    short_name = shorten_text_to_fit(cat_name, 390, 40)
+
+                    self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                        cat_name,
+                        scale(pygame.Rect((50, 120), (-1, 80))),
+                        object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                        manager=MANAGER,
+                    )
+                    name_text_size = self.cat_elements["cat_name"].get_relative_rect()
+
+                    self.cat_elements["cat_name"].kill()
+
+                    if game.settings["fullscreen"]:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(
+                                pygame.Rect(
+                                    (800 - name_text_size.width, 120),
+                                    (name_text_size.width * 2, 80),
+                                )
+                            ),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+                    else:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(pygame.Rect((800 - name_text_size.width, 120), (-1, 80))),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
+
+                    if game.settings["fullscreen"]:
+                        x_pos = 745 - name_text_size.width // 2
+                    else:
+                        x_pos = 740 - name_text_size.width
+                    self.cat_elements["favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Remove favorite status",
+                        starting_height=2,
+                    )
+
+                    self.cat_elements["not_favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#not_fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Mark as favorite",
+                        starting_height=2,
+                    )
+                    if self.the_cat.favourite:
+                        self.cat_elements["favourite_button"].show()
+                        self.cat_elements["not_favourite_button"].hide()
+                    else:
+                        self.cat_elements["favourite_button"].hide()
+                        self.cat_elements["not_favourite_button"].show()
+                elif self.displayed_life_stage < current_life_stage_number:
+                    self.cat_elements["cat_name"].kill()
+
+                    cat_name = str(self.the_cat.name)  # name
+                    if self.the_cat.dead:
+                        cat_name += " (younger, dead)"
+                    else:
+                        cat_name += " (younger)"
+
+                    self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                        cat_name,
+                        scale(pygame.Rect((50, 120), (-1, 80))),
+                        object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                        manager=MANAGER,
+                    )
+                    name_text_size = self.cat_elements["cat_name"].get_relative_rect()
+
+                    self.cat_elements["cat_name"].kill()
+
+                    if game.settings["fullscreen"]:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(
+                                pygame.Rect(
+                                    (800 - name_text_size.width, 120),
+                                    (name_text_size.width * 2, 80),
+                                )
+                            ),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+                    else:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(pygame.Rect((800 - name_text_size.width, 120), (-1, 80))),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
+
+                    if game.settings["fullscreen"]:
+                        x_pos = 745 - name_text_size.width // 2
+                    else:
+                        x_pos = 740 - name_text_size.width
+                    self.cat_elements["favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Remove favorite status",
+                        starting_height=2,
+                    )
+
+                    self.cat_elements["not_favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#not_fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Mark as favorite",
+                        starting_height=2,
+                    )
+                    if self.the_cat.favourite:
+                        self.cat_elements["favourite_button"].show()
+                        self.cat_elements["not_favourite_button"].hide()
+                    else:
+                        self.cat_elements["favourite_button"].hide()
+                        self.cat_elements["not_favourite_button"].show()
+                else:
+                    self.cat_elements["cat_name"].kill()
+
+                    cat_name = str(self.the_cat.name)  # name
+                    if self.the_cat.dead:
+                        cat_name += " (dead)"
+
+                    self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                        cat_name,
+                        scale(pygame.Rect((50, 120), (-1, 80))),
+                        object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                        manager=MANAGER,
+                    )
+                    name_text_size = self.cat_elements["cat_name"].get_relative_rect()
+
+                    self.cat_elements["cat_name"].kill()
+
+                    if game.settings["fullscreen"]:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(
+                                pygame.Rect(
+                                    (800 - name_text_size.width, 120),
+                                    (name_text_size.width * 2, 80),
+                                )
+                            ),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+                    else:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(pygame.Rect((800 - name_text_size.width, 120), (-1, 80))),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
+
+                    if game.settings["fullscreen"]:
+                        x_pos = 745 - name_text_size.width // 2
+                    else:
+                        x_pos = 740 - name_text_size.width
+                    self.cat_elements["favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Remove favorite status",
+                        starting_height=2,
+                    )
+
+                    self.cat_elements["not_favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#not_fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Mark as favorite",
+                        starting_height=2,
+                    )
+                    if self.the_cat.favourite:
+                        self.cat_elements["favourite_button"].show()
+                        self.cat_elements["not_favourite_button"].hide()
+                    else:
+                        self.cat_elements["favourite_button"].hide()
+                        self.cat_elements["not_favourite_button"].show()
+
                 self.update_disabled_buttons()
                 self.make_cat_image()
             elif event.ui_element == self.save_image_button:
                 SaveAsImage(self.generate_image_to_save(), str(self.the_cat.name))
             elif event.ui_element == self.previous_life_stage:
                 self.displayed_life_stage = max(self.displayed_life_stage - 1, 0)
+
+                if self.displayed_life_stage > current_life_stage_number:
+                    self.cat_elements["cat_name"].kill()
+
+                    cat_name = str(self.the_cat.name)  # name
+                    if self.the_cat.dead:
+                        cat_name += " (older, dead)"
+                    else:
+                        cat_name += " (older)"
+
+                    self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                        cat_name,
+                        scale(pygame.Rect((50, 120), (-1, 80))),
+                        object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                        manager=MANAGER,
+                    )
+                    name_text_size = self.cat_elements["cat_name"].get_relative_rect()
+
+                    self.cat_elements["cat_name"].kill()
+
+                    if game.settings["fullscreen"]:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(
+                                pygame.Rect(
+                                    (800 - name_text_size.width, 120),
+                                    (name_text_size.width * 2, 80),
+                                )
+                            ),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+                    else:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(pygame.Rect((800 - name_text_size.width, 120), (-1, 80))),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
+
+                    if game.settings["fullscreen"]:
+                        x_pos = 745 - name_text_size.width // 2
+                    else:
+                        x_pos = 740 - name_text_size.width
+                    self.cat_elements["favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Remove favorite status",
+                        starting_height=2,
+                    )
+
+                    self.cat_elements["not_favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#not_fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Mark as favorite",
+                        starting_height=2,
+                    )
+                    if self.the_cat.favourite:
+                        self.cat_elements["favourite_button"].show()
+                        self.cat_elements["not_favourite_button"].hide()
+                    else:
+                        self.cat_elements["favourite_button"].hide()
+                        self.cat_elements["not_favourite_button"].show()
+                elif self.displayed_life_stage < current_life_stage_number:
+                    self.cat_elements["cat_name"].kill()
+
+                    cat_name = str(self.the_cat.name)  # name
+                    if self.the_cat.dead:
+                        cat_name += " (younger, dead)"
+                    else:
+                        cat_name += " (younger)"
+
+                    self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                        cat_name,
+                        scale(pygame.Rect((50, 120), (-1, 80))),
+                        object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                        manager=MANAGER,
+                    )
+                    name_text_size = self.cat_elements["cat_name"].get_relative_rect()
+
+                    self.cat_elements["cat_name"].kill()
+
+                    if game.settings["fullscreen"]:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(
+                                pygame.Rect(
+                                    (800 - name_text_size.width, 120),
+                                    (name_text_size.width * 2, 80),
+                                )
+                            ),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+                    else:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(pygame.Rect((800 - name_text_size.width, 120), (-1, 80))),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
+
+                    if game.settings["fullscreen"]:
+                        x_pos = 745 - name_text_size.width // 2
+                    else:
+                        x_pos = 740 - name_text_size.width
+                    self.cat_elements["favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Remove favorite status",
+                        starting_height=2,
+                    )
+
+                    self.cat_elements["not_favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#not_fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Mark as favorite",
+                        starting_height=2,
+                    )
+                    if self.the_cat.favourite:
+                        self.cat_elements["favourite_button"].show()
+                        self.cat_elements["not_favourite_button"].hide()
+                    else:
+                        self.cat_elements["favourite_button"].hide()
+                        self.cat_elements["not_favourite_button"].show()
+                else:
+                    self.cat_elements["cat_name"].kill()
+
+                    cat_name = str(self.the_cat.name)  # name
+                    if self.the_cat.dead:
+                        cat_name += " (dead)"
+
+                    self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                        cat_name,
+                        scale(pygame.Rect((50, 120), (-1, 80))),
+                        object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                        manager=MANAGER,
+                    )
+                    name_text_size = self.cat_elements["cat_name"].get_relative_rect()
+
+                    self.cat_elements["cat_name"].kill()
+
+                    if game.settings["fullscreen"]:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(
+                                pygame.Rect(
+                                    (800 - name_text_size.width, 120),
+                                    (name_text_size.width * 2, 80),
+                                )
+                            ),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+                    else:
+                        self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
+                            cat_name,
+                            scale(pygame.Rect((800 - name_text_size.width, 120), (-1, 80))),
+                            object_id=get_text_box_theme("#text_box_40_horizcenter"),
+                            manager=MANAGER,
+                        )
+
+                    self.cat_elements["favourite_button"].kill()
+                    self.cat_elements["not_favourite_button"].kill()
+
+                    if game.settings["fullscreen"]:
+                        x_pos = 745 - name_text_size.width // 2
+                    else:
+                        x_pos = 740 - name_text_size.width
+                    self.cat_elements["favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Remove favorite status",
+                        starting_height=2,
+                    )
+
+                    self.cat_elements["not_favourite_button"] = UIImageButton(
+                        scale(pygame.Rect((x_pos, 127), (56, 56))),
+                        "",
+                        object_id="#not_fav_star",
+                        manager=MANAGER,
+                        tool_tip_text="Mark as favorite",
+                        starting_height=2,
+                    )
+                    if self.the_cat.favourite:
+                        self.cat_elements["favourite_button"].show()
+                        self.cat_elements["not_favourite_button"].hide()
+                    else:
+                        self.cat_elements["favourite_button"].hide()
+                        self.cat_elements["not_favourite_button"].show()
+
                 self.update_disabled_buttons()
                 self.make_cat_image()
             elif event.ui_element == self.checkboxes["platform_shown"]:
@@ -261,10 +693,9 @@ class SpriteInspectScreen(Screens):
             cat_name += (
                 " (dead)"  # A dead cat will have the (dead) sign next to their name
             )
-        short_name = shorten_text_to_fit(cat_name, 390, 40)
 
         self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
-            short_name,
+            cat_name,
             scale(pygame.Rect((50, 120), (-1, 80))),
             object_id=get_text_box_theme("#text_box_40_horizcenter"),
             manager=MANAGER,
@@ -328,6 +759,16 @@ class SpriteInspectScreen(Screens):
 
         self.determine_previous_and_next_cat()
         self.update_disabled_buttons()
+
+    def get_current_life_stage(self):
+        self.the_cat = Cat.fetch_cat(game.switches["cat"])
+
+        if self.the_cat.age in ["young adult", "adult", "senior adult"]:
+            current_life_stage = "adult"
+        else:
+            current_life_stage = self.the_cat.age
+
+        return current_life_stage
 
     def update_checkboxes(self):
         for ele in self.checkboxes:
