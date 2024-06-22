@@ -146,9 +146,9 @@ class Scar_Events():
             # Extra check for disabling scars.
             if int(random.random() * 3):
                 condition_scars = {
-                    "LEGBITE", "THREE", "NOPAW", "TOETRAP", "NOTAIL", "HALFTAIL", "LEFTEAR", "RIGHTEAR",
-                    "MANLEG", "BRIGHTHEART", "NOLEFTEAR", "NORIGHTEAR", "NOEAR", "LEFTBLIND",
-                    "RIGHTBLIND", "BOTHBLIND", "RATBITE", "DECLAWED", "RASH"
+                    "LEGBITE", "THREE", "NOPAW", "TOETRAP", "NOTAIL", "HALFTAIL", "MANLEG", "BRIGHTHEART",
+                    "NOLEFTEAR", "NORIGHTEAR", "NOEAR", "LEFTBLIND", "RIGHTBLIND",
+                    "BOTHBLIND", "RATBITE", "DECLAWED", "RASH"
                 }
 
                 scar_pool = list(set(scar_pool).difference(condition_scars))
