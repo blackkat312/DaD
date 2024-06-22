@@ -432,8 +432,6 @@ class Condition_Events:
             "TOETRAP": ["weak leg"],
             "NOTAIL": ["lost their tail"],
             "HALFTAIL": ["lost their tail"],
-            "LEFTEAR": ["partial hearing loss"],
-            "RIGHTEAR": ["partial hearing loss"],
             "MANLEG": ["weak leg", "twisted leg"],
             "BRIGHTHEART": ["one bad eye"],
             "NOLEFTEAR": ["partial hearing loss"],
