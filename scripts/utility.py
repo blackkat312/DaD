@@ -640,7 +640,8 @@ def create_new_cat_block(
                                   outside=outside,
                                   parent1=parent1.ID if parent1 else None,
                                   parent2=parent2.ID if parent2 else None,
-                                  extrapar=generated_parents[2] if not parent2 and generated_parents else None
+                                  extrapar=generated_parents[2] if not parent2 and generated_parents else None,
+                                  is_parent="age:has_kits" in attribute_list
                                   )
 
         # NEXT
@@ -889,11 +890,58 @@ def create_new_cat(
         if new_cat.age == "adolescent":
             new_cat.update_mentor()
 
-        # Remove disabling scars, if they generated.
-        not_allowed = []
+        scar_to_condition = {
+            "THREE": ["one bad eye"],
+            "FOUR": ["weak leg"],
+            "NOLEFTEAR": ["partial hearing loss"],
+            "NORIGHTEAR": ["partial hearing loss"],
+            "NOEAR": ["partial hearing loss", "deaf"],
+            "NOPAW": ["lost a leg", "born without a leg"],
+            "NOTAIL": ["lost their tail"],
+            "HALFTAIL": ["lost their tail"],
+            "BRIGHTHEART": ["one bad eye"],
+            "LEFTBLIND": ["one bad eye"],
+            "RIGHTBLIND": ["one bad eye"],
+            "BOTHBLIND": ["blind"],
+            "MANLEG": ["weak leg", "twisted leg"],
+            "MANTAIL": ["recurring shock", "no", "no", "no", "no"],
+            "RATBITE": ["weak leg"],
+            "NECKBITE": ["recurring shock", "no", "no", "no", "no"],
+            "LEGBITE": ["weak leg"],
+            "SNOUT": ["crooked jaw", "no", "no"],
+            "THROAT": ["recurring shock", "no", "no", "no", "no"],
+            "SIDE": ["recurring shock", "no", "no", "no", "no"],
+            "TOETRAP": ["weak leg"],
+            "RASH": ["constant rash"],
+            "DECLAWED": ["declawed"],
+        }
+        cat_gain_age = new_cat.age
+        clan_gain_moon = game.clan.age
+        cat_birth_moon = game.clan.age - new_cat.age
+
+        if new_cat.age >= 6:
+            cat_gain_age = randint(6, new_cat.age)
+        elif new_cat.age == 4 or new_cat.age == 5:
+            cat_gain_age = randint(4, new_cat.age)
+
+        # Give conditions for disabling scars, if they generated.
         for scar in new_cat.pelt.scars:
-            if scar in not_allowed:
-                new_cat.pelt.scars.remove(scar)
+            if scar in scar_to_condition:
+                if game.clan.game_mode == "classic" or new_cat.age < 4:
+                    new_cat.pelt.scars.remove(scar)
+                else:
+                    condition = choice(scar_to_condition.get(scar))
+
+                    if condition == "no":
+                        break
+                    elif condition == "born without a leg" or (condition == "constant rash" and randint(1, 2) == 1):
+                        born_with = True
+                        clan_gain_moon = cat_birth_moon
+                    else:
+                        born_with = False
+                        clan_gain_moon = (new_cat.age - cat_gain_age) + cat_birth_moon
+
+                    new_cat.get_permanent_condition(condition, born_with=born_with, starting_moon=clan_gain_moon)
 
         # chance to give the new cat a permanent condition, higher chance for found kits and litters
         if game.clan.game_mode != "classic":
@@ -902,7 +950,7 @@ def create_new_cat(
                     game.config["cat_generation"]["base_permanent_condition"] / 11.25
                 )
             else:
-                chance = game.config["cat_generation"]["base_permanent_condition"] + 10
+                chance = game.config["cat_generation"]["base_permanent_condition"]
 
             if not int(random() * chance):
                 possible_conditions = []
