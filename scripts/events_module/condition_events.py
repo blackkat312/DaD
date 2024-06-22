@@ -427,7 +427,7 @@ class Condition_Events:
         # dict of possible physical conditions that can be acquired from relevant scars
         scar_to_condition = {
             "LEGBITE": ["weak leg"],
-            "THREE": ["one bad eye", "failing eyesight"],
+            "THREE": ["one bad eye"],
             "NOPAW": ["lost a leg"],
             "TOETRAP": ["weak leg"],
             "NOTAIL": ["lost their tail"],
@@ -439,8 +439,8 @@ class Condition_Events:
             "NOLEFTEAR": ["partial hearing loss"],
             "NORIGHTEAR": ["partial hearing loss"],
             "NOEAR": ["partial hearing loss", "deaf"],
-            "LEFTBLIND": ["one bad eye", "failing eyesight"],
-            "RIGHTBLIND": ["one bad eye", "failing eyesight"],
+            "LEFTBLIND": ["one bad eye"],
+            "RIGHTBLIND": ["one bad eye"],
             "BOTHBLIND": ["blind"],
             "RATBITE": ["weak leg"],
             "DECLAWED": ["declawed"],
