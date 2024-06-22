@@ -22,7 +22,7 @@ import ujson
 
 logger = logging.getLogger(__name__)
 from scripts.game_structure import image_cache
-from scripts.cat.cats import Cat
+import scripts.cat.cats
 from scripts.cat.history import History
 from scripts.cat.names import names
 from scripts.cat.pelts import Pelt
@@ -934,7 +934,7 @@ def create_new_cat(
                     condition = choice(scar_to_condition.get(scar))
 
                     if condition == "no":
-                        break
+                        continue
                     elif condition == "born without a leg" or (condition == "constant rash" and randint(1, 2) == 1):
                         born_with = True
                         clan_gain_moon = cat_birth_moon
