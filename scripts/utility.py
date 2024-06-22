@@ -22,6 +22,7 @@ import ujson
 
 logger = logging.getLogger(__name__)
 from scripts.game_structure import image_cache
+from scripts.cat.cats import Cat
 from scripts.cat.history import History
 from scripts.cat.names import names
 from scripts.cat.pelts import Pelt
@@ -943,7 +944,7 @@ def create_new_cat(
 
                     new_cat.get_permanent_condition(condition, born_with=born_with, starting_moon=clan_gain_moon)
 
-        # chance to give the new cat a permanent condition, higher chance for found kits and litters
+        # chance to give the new cat a congenital permanent condition, higher chance for found kits and litters
         if game.clan.game_mode != "classic":
             if kit or litter:
                 chance = int(
@@ -953,38 +954,7 @@ def create_new_cat(
                 chance = game.config["cat_generation"]["base_permanent_condition"]
 
             if not int(random() * chance):
-                possible_conditions = []
-                genetics_exclusive = [
-                    "albinism",
-                    "ocular albinism",
-                    "manx syndrome",
-                ]
-                for condition in PERMANENT:
-                    if (kit or litter) and PERMANENT[condition]["congenital"] not in [
-                        "always",
-                        "sometimes",
-                    ]:
-                        continue
-                    if condition in genetics_exclusive:
-                        continue
-                    possible_conditions.append(condition)
-
-                if possible_conditions:
-                    chosen_condition = choice(possible_conditions)
-                    born_with = False
-                    if PERMANENT[chosen_condition]["congenital"] in [
-                        "always",
-                        "sometimes",
-                    ]:
-                        born_with = True
-
-                    new_cat.get_permanent_condition(chosen_condition, born_with)
-
-                    # assign scars
-                    if chosen_condition in ["lost a leg", "born without a leg"] and ("NOPAW") not in new_cat.pelt.scars:
-                        new_cat.pelt.scars.append("NOPAW")
-                    elif chosen_condition in ["lost their tail"] and ("NOTAIL") not in new_cat.pelt.scars:
-                        new_cat.pelt.scars.append("NOTAIL")
+                new_cat.congenital_condition(new_cat)
 
         if outside:
             new_cat.outside = True
