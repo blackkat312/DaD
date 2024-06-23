@@ -1442,26 +1442,26 @@
         ]
     },
 
-   "sound headache" : {
+   "sound headache": {
         "duration": 1,
         "severity": "major",
         "medicine_duration": 1,
         "mortality": {
-                "newborn": 0,
-                "kitten": 0,
-                "adolescent": 0,
-                "young adult": 0,
-                "adult": 0,
-                "senior": 0,
-                "senior adult": 0
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
         },
         "illness_infectiousness": [
         ],
-        "risks":[
+        "risks": [
         ],
-        "also_got":[
+        "also_got": [
         ],
-	"cause_permanent": [
+        "cause_permanent": [
         ],
         "herbs": [
             "poppy",
@@ -1526,7 +1526,96 @@
             "moss"
         ]
     },
-    "rash":{
+    "body sunburn": {
+        "duration": 2,
+        "severity": "minor",
+        "medicine_duration": 1,
+        "mortality": {
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+        ],
+        "also_got": [
+        ],
+        "cause_permanent": [
+        ],
+        "herbs": [
+            "cobwebs",
+            "marigold",
+            "wild_garlic",
+            "oak_leaves",
+            "goldenrod",
+            "juniper",
+            "ragwort",
+            "poppy",
+            "moss"
+        ]
+    },
+    "back pain": {
+        "duration": 1,
+        "severity": "minor",
+        "medicine_duration": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [
+        ],
+        "cause_permanent": [
+        ],
+        "herbs": [
+            "marigold",
+            "ragwort",
+            "daisy",
+            "poppy"
+        ]
+    },
+    "cyst": {
+        "duration": 2,
+        "severity": "major",
+        "medicine_duration": 2,
+        "mortality": {
+            "newborn": 10,
+            "kitten": 10,
+            "adolescent": 35,
+            "young adult": 50,
+            "adult": 50,
+            "senior adult": 50,
+            "senior": 10
+        },
+        "illness_infectiousness": [],
+        "risks": [
+            {
+                "name": "a festering wound",
+                "chance": 4
+            }
+        ],
+        "also_got": [
+        ],
+        "cause_permanent": [
+        ],
+        "herbs": [
+            "marigold",
+            "burdock",
+            "wild_garlic",
+            "poppy"
+        ]
+    },
+    "rash": {
         "duration": 3,
         "severity": "minor",
         "medicine_duration": 1,
@@ -1548,7 +1637,7 @@
         ],
         "also_got": [],
         "cause_permanent": [
-		"constant rash"
+		    "constant rash"
 		],
         "herbs": [
             "poppy",
@@ -1597,11 +1686,11 @@
         },
         "illness_infectiousness": [],
         "risks": [
-		{
-			"name": "an infected wound",
-			"chance": 20
-			}
-		],
+            {
+                "name": "an infected wound",
+                "chance": 20
+            }
+        ],
         "also_got": [
             "bruises",
             "sore",
@@ -1826,7 +1915,6 @@
             
         ]
     },
-
     "pregnant": {
         "duration": 2,
         "severity": "major",
