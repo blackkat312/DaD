@@ -679,16 +679,19 @@ class MedDenScreen(Screens):
                         manager=MANAGER,
                     )
                 continue
-            self.herbs[herb] = pygame_gui.elements.UIImage(
-                scale(pygame.Rect((216, 190), (792, 448))),
-                pygame.transform.scale(
-                    pygame.image.load(
-                        f"resources/images/med_cat_den/{herb}.png"
-                    ).convert_alpha(),
-                    (792, 448),
-                ),
-                manager=MANAGER,
-            )
+            try:
+                self.herbs[herb] = pygame_gui.elements.UIImage(
+                    scale(pygame.Rect((216, 190), (792, 448))),
+                    pygame.transform.scale(
+                        pygame.image.load(
+                            f"resources/images/med_cat_den/{herb}.png"
+                        ).convert_alpha(),
+                        (792, 448),
+                    ),
+                    manager=MANAGER,
+                )
+            except:
+                continue
 
     def exit_screen(self):
         self.meds_messages.kill()
