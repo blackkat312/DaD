@@ -893,7 +893,7 @@ def create_new_cat(
 
         scar_to_condition = {
             "THREE": ["one bad eye"],
-            "FOUR": ["weak leg"],
+            "FOUR": ["weak leg", "no", "no"],
             "NOLEFTEAR": ["partial hearing loss"],
             "NORIGHTEAR": ["partial hearing loss"],
             "NOEAR": ["partial hearing loss", "deaf"],
@@ -916,19 +916,19 @@ def create_new_cat(
             "RASH": ["constant rash"],
             "DECLAWED": ["declawed"],
         }
-        cat_gain_age = int(new_cat.age)
+        cat_gain_age = age
         clan_gain_moon = int(game.clan.age)
         cat_birth_moon = clan_gain_moon - cat_gain_age
 
-        if new_cat.age >= 6:
-            cat_gain_age = randint(6, new_cat.age)
-        elif new_cat.age == 4 or new_cat.age == 5:
-            cat_gain_age = randint(4, new_cat.age)
+        if age >= 6:
+            cat_gain_age = randint(6, age)
+        elif age == 4 or age == 5:
+            cat_gain_age = randint(4, age)
 
         # Give conditions for disabling scars, if they generated.
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
-                if game.clan.game_mode == "classic" or new_cat.age < 4:
+                if game.clan.game_mode == "classic" or age < 4:
                     new_cat.pelt.scars.remove(scar)
                 else:
                     condition = choice(scar_to_condition.get(scar))
@@ -940,7 +940,7 @@ def create_new_cat(
                         clan_gain_moon = cat_birth_moon
                     else:
                         born_with = False
-                        clan_gain_moon = (new_cat.age - cat_gain_age) + cat_birth_moon
+                        clan_gain_moon = (age - cat_gain_age) + cat_birth_moon
 
                     new_cat.get_permanent_condition(condition, born_with=born_with, starting_moon=clan_gain_moon)
 
