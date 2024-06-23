@@ -326,11 +326,14 @@
 		"war_injury_modifier": 80,
 		"max_alters": 30,
 		"max_splits": 2,
+		"plural_names": 200,
 		"comment": [
 			"max_alters = total number of alters per system. Recommended to be <100 unless you have a beefy computer.",
 			"max_alters must be at least 3 to prevent crashes.",
 			"max_splits = maximum number of new alters gained per moon in a system. recommended to be <10 unless you have a beefy computer.",
-			"max_splits must be at least 1"
+			"max_splits must be at least 1",
+			"plural_names = chance per moon that an adult system chooses a collective name.",
+			"plural_names must be at least 2. to disable, go to clan settings"
 		]
 	},
 	"clan_creation": {
