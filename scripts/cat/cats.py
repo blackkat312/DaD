@@ -192,7 +192,7 @@ class Cat:
 
         self.adoptive_parents = []
         self.genotype = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
-        #print(genotype)
+        # print(genotype)
         if genotype:
             self.genotype.fromJSON(genotype)
         elif parent1 or parent2:
@@ -1095,22 +1095,41 @@ class Cat:
             if(random() > ((self.phenotype.bobtailnr + 1) * 0.2)):
                 self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
 
+
         if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
             self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
 
-        if self.genotype.fold[0] == 'Fd' or self.genotype.munch[0] == 'Mk' or ('manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1))):
+        if self.genotype.fold[0] == 'Fd' or ('manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1))):
             self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
-
         if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1)):
             self.get_permanent_condition('irritable bowels', born_with=True, genetic=True)
-
         if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1)):
             self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1)):
+            self.get_permanent_condition('curved spine', born_with=True, genetic=True)
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1)):
+            self.get_permanent_condition('rabbit gait', born_with=True, genetic=True)
 
         if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
             self.get_permanent_condition('albinism', born_with=True, genetic=True)
         elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or self.genotype.pinkdilute[0] == 'dp') or (self.genotype.chimera is True and (('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype) or self.genotype.chimerageno.pinkdilute[0] == 'dp')):
             self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
+
+        if self.phenotype.length == 'hairless':
+            self.get_permanent_condition('fully hairless', born_with=True, genetic=True)
+        if self.phenotype.length == 'fur-pointed' or 'patchy ' in self.phenotype.furtype:
+            self.get_permanent_condition('partially hairless', born_with=True, genetic=True)
+
+        if self.genotype.munch[0] == 'Mk':
+            if randint(1, 3) == 1:
+                self.get_permanent_condition('constant joint pain', born_with=True, genetic=True, custom_reveal=randint(24, 36))
+            if randint(1, 15) == 1:
+                self.get_permanent_condition('curved spine', born_with=True, genetic=True)
+            if randint(1, 30) == 1:
+                self.get_permanent_condition('narrowed chest', born_with=True, genetic=True)
+
+        if self.genotype.lykoi[0] == 'ly':
+            self.get_permanent_condition('bumpy skin', born_with=True, genetic=True)
 
     @property
     def mentor(self):
@@ -2696,7 +2715,8 @@ class Cat:
         comorbidity_chance = game.config["cat_generation"]["comorbidity_chance"]
         conditions = 1
         count = 1
-        genetics_exclusive = ["albinism", "ocular albinism", "manx syndrome"]
+        genetics_exclusive = ["rabbit gait", "manx syndrome", "albinism", "ocular albinism", "fully hairless",
+                              "partially hairless", "bumpy skin"]
         possible_comorbidities = []
         comorbid_conditions = {
             "paralyzed": [
@@ -2709,7 +2729,25 @@ class Cat:
                 "chattering tongue", "curved spine", "face blindness", "parrot chatter"
             ],
             "manx syndrome": [
-                "paralyzed", "constant joint pain", "irritable bowels"
+                "paralyzed", "constant joint pain", "rabbit gait", "irritable bowels"
+            ],
+            "albinism": [
+                "persistent headaches", "blind", "failing eyesight"
+            ],
+            "ocular albinism": [
+                "persistent headaches", "blind", "failing eyesight"
+            ],
+            "fully hairless": [
+                "constant rash"
+            ],
+            "partially hairless": [
+                "constant rash"
+            ],
+            "narrowed chest": [
+                "constant joint pain", "curved spine"
+            ],
+            "bumpy skin": [
+                "constant rash"
             ],
             "starwalker": [
                 "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
@@ -2925,7 +2963,7 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon=game.clan.age if game.clan else 0):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon=game.clan.age if game.clan else 0, custom_reveal=None):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
             PERMANENT = ujson.loads(read_file.read())
         if name not in PERMANENT:
@@ -2940,11 +2978,17 @@ class Cat:
         if name in intersex_exclusive and self.genotype.gender != "intersex":
             return
 
+        if (name == "rabbit gait" or name == "manx syndrome") and "M" not in self.genotype.manx:
+            return
         if name == "albinism" and not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == "c")):
             return
         elif name == "ocular albinism" and not ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or self.genotype.pinkdilute[0] == "dp" or (self.genotype.chimera is True and ("albino" in self.genotype.chimerageno.lefteyetype or "albino" in self.genotype.chimerageno.righteyetype or self.genotype.chimerageno.pinkdilute[0] == "dp"))):
             return
-        if name == "manx syndrome" and "M" not in self.genotype.manx:
+        if name == "fully hairless" and self.phenotype.length != "hairless":
+            return
+        elif name == "partially hairless" and self.phenotype.length != "fur-pointed" and "patchy " not in self.phenotype.furtype:
+            return
+        if name == "bumpy skin" and self.genotype.lykoi[0] != "ly":
             return
 
         if name == "failing eyesight" and "blind" in self.permanent_condition:
@@ -2997,6 +3041,8 @@ class Cat:
             born_with = True
         moons_until = condition["moons_until"]
         if born_with and moons_until != 0:
+            if name == "bumpy skin":
+                moons_until = randint(moons_until - 12, moons_until + 12)
             if name == "budding spirit":
                 moons_until = randint(moons_until - 1, moons_until + 12)
             if name == "shattered soul":
@@ -3033,8 +3079,13 @@ class Cat:
                 moons_until = randint(
                     moons_until - 1, moons_until + 1
                 )  # creating a range in which a condition can present
-            if moons_until < 1:
-                moons_until = 1
+            if moons_until < 0:
+                moons_until = 0
+
+        if name == "partially hairless" and self.phenotype.length != "fur-pointed":
+            moons_until = 11
+        if custom_reveal:
+            moons_until = custom_reveal
 
         if born_with and self.status not in ["kitten", "newborn"]:
             moons_until = -2
