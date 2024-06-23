@@ -324,6 +324,12 @@
             "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
         ]
     },
+    "fully hairless" : {
+        "failing eyesight" : [
+            "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. After taking a look, r_c says that something might've gotten stuck in {PRONOUN/m_c/poss} eyes due to {PRONOUN/m_c/poss} lack of eyelashes.",
+            "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. It's annoying, but {PRONOUN/m_c/subject}'ll have to learn to deal with it."
+        ]
+    },
     "poisoned": {
         "recurring shock": [
             "r_c has to reassure m_c that nobody poisoned {PRONOUN/m_c/poss} prey.",
@@ -332,15 +338,15 @@
     },
 	"rash": {
 		"constant rash": [
-			"r_c fusses over m_c, helping to apply the herbal paste to {PRONOUN/m_c/poss} rash that refuses to leave even with dilligent care.",
-			"After even just one missed day r_c hisses in sympathy with m_c to see that the rash has returned with a vengence.",
+			"r_c fusses over m_c, helping to apply the herbal paste to {PRONOUN/m_c/poss} rash that refuses to leave even with diligent care.",
+			"After even just one missed day r_c hisses in sympathy with m_c to see that the rash has returned with a vengeance.",
 			"More than a little frustrated, m_c complains about the rash that {PRONOUN/m_c/subject} had thought was gone."
 		]
 	},
 	"wrenched claws": {
 		"declawed": [
 			"r_c fusses over m_c's paws with {PRONOUN/m_c/object} before sitting back and shaking {PRONOUN/r_c/poss} head sadly. It appears {PRONOUN/m_c/subject} will have to learn to fight without {PRONOUN/m_c/poss} claws.",
-			"m_c frustratedly hisses over the state of {PRONOUN/m_c/poss} paws and claws. Curse the decisions that led to this.",
+			"m_c frustratedly hisses over the state of {PRONOUN/m_c/poss} paws and claws.",
 			"m_c has many curses to say as {PRONOUN/m_c/subject} {VERB/m_c/find/finds} that even healed {PRONOUN/m_c/poss} paws and claws will never be the same.",
 			"It appears that m_c's claws will never return to the most usable state as before {PRONOUN/m_c/subject} got them wrenched.",
 			"m_c curses all that {PRONOUN/m_c/subject} can realising that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} now declawed."
