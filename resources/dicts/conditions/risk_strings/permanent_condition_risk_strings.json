@@ -1527,5 +1527,13 @@
 			"r_c has noticed that m_c is a lot quieter around the camp recently. After a quick checkup, it's nothing dangerous - {PRONOUN/m_c/subject} is experiencing a verbal shutdown.",
 			"m_c doesn't speak to anyone, preferring to use signs to communicate."
 		]
+	},
+	"parrot chatter":{
+		"stimming": [
+			"m_c has been bouncing around camp, flicking {PRONOUN/m_c/poss} tail and ears constantly. r_c watches with a very amused purr at {PRONOUN/m_c/poss} excited stimming.",
+			"It seems like m_c can barely stay still as {PRONOUN/m_c/subject} {VERB/m_c/wriggle/wriggles} {PRONOUN/m_c/poss} whole body in excitement for the whole day.",
+			"m_c keeps purring to {PRONOUN/m_c/self} as an act of self soothing.",
+			"Some of m_c's Clanmates find themselves confused because of m_c running around the camp in small circles, seemingly chasing {PRONOUN/m_c/poss} tail."
+		]
 	}
 }
