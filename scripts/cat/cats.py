@@ -2896,6 +2896,21 @@ class Cat:
                         if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
                             new_condition = choice(choice(possible_comorbidities))
 
+            if new_condition == "mute" and "selective mutism" in cat.permanent_condition:
+                while new_condition == "mute":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "selective mutism" and "mute" in cat.permanent_condition:
+                while new_condition == "selective mutism":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+
             if new_condition == "born without a leg":
                 cat.pelt.scars.append("NOPAW")
 
@@ -2922,35 +2937,35 @@ class Cat:
 
         intersex_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
 
+        if name in intersex_exclusive and self.genotype.gender != "intersex":
+            return
+
+        if name == "albinism" and not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == "c")):
+            return
+        elif name == "ocular albinism" and not ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or self.genotype.pinkdilute[0] == "dp" or (self.genotype.chimera is True and ("albino" in self.genotype.chimerageno.lefteyetype or "albino" in self.genotype.chimerageno.righteyetype or self.genotype.chimerageno.pinkdilute[0] == "dp"))):
+            return
+        if name == "manx syndrome" and "M" not in self.genotype.manx:
+            return
+
+        if name == "failing eyesight" and "blind" in self.permanent_condition:
+            return
+
+        if name == "partial hearing loss" and "deaf" in self.permanent_condition:
+            return
+
         if name == "shattered soul" and "budding spirit" in self.permanent_condition:
-            print("cat is already plural!")
             return
         if name == "budding spirit" and "shattered soul" in self.permanent_condition:
-            print("cat is already plural!")
             return
-        if self.gender != "intersex":
-            if name in intersex_exclusive:
-                print("cat isn't intersex!")
-                return
-        if not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == "c")):
-            if name == "albinism":
-                print("cat isn't cc!")
-                return
-        elif not (("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype) or (self.genotype.chimera is True and ("albino" in self.genotype.chimerageno.lefteyetype or "albino" in self.genotype.chimerageno.righteyetype))):
-            if name == "ocular albinism":
-                print("cat isn't -c!")
-                return
-        if "M" not in self.genotype.manx:
-            if name == "manx syndrome":
-                print("cat isn't a manx!")
-                return
-        if "blind" in self.permanent_condition and name == "failing eyesight":
+
+        if name == "spirited heart" and "puzzled heart" in self.permanent_condition:
             return
-        if "deaf" in self.permanent_condition and name == "partial hearing loss":
+        if name == "puzzled heart" and "spirited heart" in self.permanent_condition:
             return
-        if "spirited heart" in self.permanent_condition and name == "puzzled heart":
+
+        if name == "mute" and "selective mutism" in self.permanent_condition:
             return
-        if "puzzled heart" in self.permanent_condition and name == "spirited heart":
+        if name == "selective mutism" and "mute" in self.permanent_condition:
             return
 
         # remove accessories if need be
