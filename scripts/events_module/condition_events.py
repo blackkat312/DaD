@@ -527,11 +527,11 @@ class Condition_Events:
                             ]
                         ):
                             perm_condition = random.choice(possible_conditions)
-                            '''if perm_condition == 'recurring shock' and injury_name == "wrenched claws":                                 
+                            """if perm_condition == 'recurring shock' and injury_name == "wrenched claws":                                 
                                 if injury_name not in cat.history.possible_history:
                                     perm_condition = None
                                     print(f"Hopefully failed to give recurring shock to non-traumatised cat")
-                                    THIS IS NOT WORKING FOR ME, :< Just blocks it all right now. '''
+                                    # THIS IS NOT WORKING FOR ME, :< Just blocks it all right now."""
                         else:
                             return perm_condition
                 except KeyError:
