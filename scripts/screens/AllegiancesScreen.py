@@ -69,7 +69,7 @@ class AllegiancesScreen(Screens):
                                    container=self.scroll_container, manager=MANAGER))
                 self.ranks_boxes[-1].disable()
 
-            self.names_buttons.append(AllegiancesCat(scale(pygame.Rect((290, y_pos+8), (1060, -1))),
+            self.names_buttons.append(AllegiancesCat(scale(pygame.Rect((290, y_pos+10), (1060, -1))),
                                     x[1],
                                     object_id=get_button_theme(),
                                     container=self.scroll_container, manager=MANAGER))
@@ -165,8 +165,8 @@ class AllegiancesScreen(Screens):
             elif queen in living_elders:
                 living_elders.remove(queen)
 
-        # Clan Leader Box:
-        # Pull the Clan leaders
+        # Clan Guardian Box:
+        # Pull the Clan guardians
         outputs = []
         if game.clan.leader and not (game.clan.leader.dead or game.clan.leader.outside):
                 x = self.generate_one_entry(game.clan.leader)
