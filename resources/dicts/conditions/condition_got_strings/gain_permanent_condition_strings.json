@@ -312,24 +312,6 @@
             "m_c shudders, {PRONOUN/m_c/poss} mind putting what happened to {PRONOUN/m_c/object} on replay."
         ]
     },
-    "albinism" : {
-        "persistent headaches" : [
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent.",
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
-        ]
-    },
-    "ocular albinism" : {
-        "persistent headaches" : [
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent.",
-            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
-        ]
-    },
-    "fully hairless" : {
-        "failing eyesight" : [
-            "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. After taking a look, r_c says that something might've gotten stuck in {PRONOUN/m_c/poss} eyes due to {PRONOUN/m_c/poss} lack of eyelashes.",
-            "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. It's annoying, but {PRONOUN/m_c/subject}'ll have to learn to deal with it."
-        ]
-    },
     "poisoned": {
         "recurring shock": [
             "r_c has to reassure m_c that nobody poisoned {PRONOUN/m_c/poss} prey.",
