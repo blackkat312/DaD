@@ -15,9 +15,6 @@ from typing import List
 
 import pygame
 
-from scripts.cat.phenotype import Phenotype
-from scripts.cat.genotype import Genotype
-
 import ujson
 
 logger = logging.getLogger(__name__)
@@ -408,9 +405,9 @@ def create_new_cat(Cat,
             "RASH": ["constant rash"],
             "DECLAWED": ["declawed"],
         }
-        cat_gain_age = new_cat.age
-        clan_gain_moon = game.clan.age
-        cat_birth_moon = game.clan.age - new_cat.age
+        cat_gain_age = int(new_cat.age)
+        clan_gain_moon = int(game.clan.age)
+        cat_birth_moon = clan_gain_moon - cat_gain_age
 
         if new_cat.age >= 6:
             cat_gain_age = randint(6, new_cat.age)
