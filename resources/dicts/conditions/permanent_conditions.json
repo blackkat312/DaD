@@ -1097,7 +1097,7 @@
         "illness_infectiousness": [],
         "risks": [
             {
-                "name": "cyst",
+                "name": "popped cyst",
                 "chance": 15
             }
         ],
