@@ -91,6 +91,11 @@
             "Medicine cats will always default to herb gathering patrols",
             "Different types of patrols can still be selected manually.",
             false
+        ],
+        "plural names": [
+            "Allow plural cats to choose collective names",
+            "Adult plural cats will have a chance to choose a collective name upon timeskip.",
+            false
         ]
     },
     "relation": {
