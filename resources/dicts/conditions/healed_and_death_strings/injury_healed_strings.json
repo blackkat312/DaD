@@ -230,6 +230,19 @@
     "sunburn" : [
         "m_c's nose and ears are feeling good as new."
     ],
+    "body sunburn" : [
+        "m_c's skin is finally no longer sore."
+    ],
+    "back pain": [
+        "The back pain m_c was experiencing has abated.",
+        "m_c is no longer suffering from back pain.",
+        "m_c's back pain is gone.",
+        "m_c's back pain is feeling much better.",
+        "m_c has recovered from {PRONOUN/m_c/poss} back pain and is happy to be moving around pain-free."
+    ],
+    "cyst" : [
+        "The skin seems to have healed over m_c's wound nicely."
+    ],
 	"rash": [
 		"Thankfully for m_c the rash {PRONOUN/m_c/subject} {VERB/m_c/have/has} been suffering from has cleared up.",
 		"m_c is grateful that {PRONOUN/m_c/subject} {VERB/m_c/are/is} able to go about {PRONOUN/m_c/poss} day without any more itching or dry skin under {PRONOUN/m_c/poss} fur.",
