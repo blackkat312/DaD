@@ -417,8 +417,8 @@
             "m_c had never had the clearest vision, forced to squint most of the time. But even still, it seems like it's noticeably less clear."
         ],
         "persistent headaches": [
-            "With how often m_c has been getting headaches from being out in the light, r_c has felt the need to break the news - they'll need to adapt.",
-            "With how often m_c has been getting headaches from being out in the light, m_c wonders if this'll be how it is forever."
+            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent.",
+            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
         ]
     },
     "ocular albinism" : {
@@ -435,8 +435,76 @@
             "m_c had never had the clearest vision, forced to squint most of the time. But even still, it seems like it's noticeably less clear."
         ],
         "persistent headaches": [
-            "With how often m_c has been getting headaches from being out in the light, r_c has felt the need to break the news - they'll need to adapt.",
-            "With how often m_c has been getting headaches from being out in the light, m_c wonders if this'll be how it is forever."
+            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent.",
+            "m_c's eyes have always been very sensitive to light, but recently the headaches have just been more and more frequent."
+        ]
+    },
+	"fully hairless" : {
+        "body sunburn" : [
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn",
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn"
+        ],
+        "ear infection": [
+            "Without hair to keep things out of {PRONOUN/m_c/poss} ears, m_c has been complaining about pain inside them.",
+            "Without hair to keep things out of {PRONOUN/m_c/poss} ears, m_c has been complaining about muffled hearing."
+        ],
+		"failing eyesight": [
+            "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. After taking a look, r_c says that something might've gotten stuck in {PRONOUN/m_c/poss} eyes due to {PRONOUN/m_c/poss} lack of eyelashes.",
+            "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. It's annoying, but {PRONOUN/m_c/subject}'ll have to learn to deal with it."
+        ],
+        "rash" : [
+            "m_c can't stop scratching at {PRONOUN/m_c/poss} itchy skin",
+            "m_c struggles to listen to the warnings not to scratch the itchy spots of skin."
+        ],
+        "shivering" : [
+            "Without fur, m_c has been struggling to keep properly warm at night.",
+            "Without fur, m_c has been struggling to keep properly warm at night."
+        ],
+        "frostbite" : [
+            "Without fur, m_c has been struggling to keep properly warm at night.",
+            "Without fur, m_c has been struggling to keep properly warm at night."
+        ]
+    },
+    "partially hairless" : {
+        "body sunburn" : [
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn",
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn"
+        ],
+        "rash" : [
+            "m_c can't stop scratching at {PRONOUN/m_c/poss} itchy skin",
+            "m_c struggles to listen to the warnings not to scratch the itchy spots of skin."
+        ],
+        "shivering" : [
+            "Without much fur, m_c has been struggling to keep properly warm at night.",
+            "Without much fur, m_c has been struggling to keep properly warm at night."
+        ],
+        "frostbite" : [
+            "Without much fur, m_c has been struggling to keep properly warm at night.",
+            "Without much fur, m_c has been struggling to keep properly warm at night."
+        ]
+    },
+    "narrowed chest" : {
+        "running nose": [
+            "r_c feeds m_c disgusting herbs with {PRONOUN/m_c/poss} supper, concerned over {PRONOUN/m_c/poss} running nose. m_c thinks {PRONOUN/r_c/subject} should be more concerned with ruining {PRONOUN/m_c/poss} appetite!",
+            "m_c's nose has been running perpetually all moon."
+        ],
+		"silvercough": [
+            "r_c worst fears have been realized: silvercough has infected m_c, thanks to {PRONOUN/m_c/poss} narrowed chest.",
+            "m_c's narrowed chest has left {PRONOUN/m_c/object} coughing and wheezing this moon, unable to resist potential sickness."
+        ],
+        "greencough": [
+            "r_c worst fears have been realized: greencough has infected m_c, thanks to {PRONOUN/m_c/poss} narrowed chest.",
+            "m_c's narrowed chest has left {PRONOUN/m_c/object} coughing and wheezing this moon, unable to resist potential sickness."
+        ],
+        "yellowcough": [
+            "If only {PRONOUN/r_c/subject} had lungwort... r_c searches the herb stores, desperate for a way to help m_c through yellowcough.",
+            "m_c has been weak and fevered, only barely coherent. It seems {PRONOUN/m_c/subject} {VERB/m_c/have/has} yellowcough."
+        ]
+    },
+    "bumpy skin" : {
+        "popped cyst" : [
+            "r_c urges m_c to keep the area extra clean after one of {PRONOUN/m_c/poss} bumps pops.",
+            "One of the bumps on m_c's skin has popped, but {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} working to keep it clean."
         ]
     },
 	"manx syndrome" : {
@@ -451,6 +519,10 @@
         "irritable bowels": [
             "WiP string, m_c got irritable bowels",
             "WiP string, m_c got irritable bowels"
+        ],
+        "curved spine": [
+            "WiP string, m_c got curved spine",
+            "WiP string, m_c got curved spine"
         ]
     },
     "heavy soul": {
