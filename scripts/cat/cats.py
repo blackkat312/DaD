@@ -1098,13 +1098,13 @@ class Cat:
         if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
             self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
 
-        if self.genotype.fold[0] == 'Fd' or self.genotype.munch[0] == 'Mk' or ('manx syndrome' in self.permanent_condition and ('M' in self.genotype.manx and self.phenotype.bobtailnr < 4 and self.phenotype.bobtailnr > 1 and random() < 0.05)):
+        if self.genotype.fold[0] == 'Fd' or self.genotype.munch[0] == 'Mk' or ('manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1))):
             self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
 
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.3) or (self.phenotype.bobtailnr > 1 and random() > 0.5)):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1)):
             self.get_permanent_condition('irritable bowels', born_with=True, genetic=True)
 
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and random() > 0.6) or (self.phenotype.bobtailnr > 1 and random() > 0.8)):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1)):
             self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
 
         if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
@@ -2697,10 +2697,120 @@ class Cat:
         conditions = 1
         count = 1
         genetics_exclusive = ["albinism", "ocular albinism", "manx syndrome"]
-        comorbid_conditions = {
-            "starwalker": ["comet spirit", "spirited heart", "puzzled heart"]
-        }
         possible_comorbidities = []
+        comorbid_conditions = {
+            "paralyzed": [
+                "curved spine"
+            ],
+            "constant joint pain": [
+                "curved spine"
+            ],
+            "seizure prone": [
+                "chattering tongue", "curved spine", "face blindness", "parrot chatter"
+            ],
+            "manx syndrome": [
+                "paralyzed", "constant joint pain", "irritable bowels"
+            ],
+            "starwalker": [
+                "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
+                "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
+                "selective mutism"
+            ],
+            "obsessive mind": [
+                "spirited heart"
+            ],
+            "heavy soul": [
+                "shattered soul", "budding spirit"
+            ],
+            "comet spirit": [
+                "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue", "jumbled mind",
+                "counting fog", "spirited heart", "parrot chatter"
+            ],
+            "antisocial": [
+                "shattered soul", "budding spirit", "puzzled heart"
+            ],
+            "anxiety": [
+                "shattered soul", "budding spirit", "selective mutism"
+            ],
+            "constant roaming pain": [
+                "jellyfish joints", "loose body", "curved spine"
+            ],
+            "thunderous spirit": [
+                "shattered soul", "budding spirit", "spirited heart", "puzzled heart"
+            ],
+            "otherworldly mind": [
+                "shattered soul", "budding spirit"
+            ],
+            "irritable bowels": [
+                "jellyfish joints", "loose body"
+            ],
+            "jellyfish joints": [
+                "constant roaming pain", "irritable bowels", "loose body"
+            ],
+            "loose body": [
+                "constant roaming pain", "irritable bowels", "jellyfish joints"
+            ],
+            "burning light": [
+                "starwalker", "comet spirit", "jumbled noise", "disrupted senses"
+            ],
+            "jumbled noise": [
+                "starwalker", "comet spirit", "burning light", "disrupted senses"
+            ],
+            "disrupted senses": [
+                "starwalker", "comet spirit", "burning light", "jumbled noise"
+            ],
+            "chattering tongue": [
+                "seizure prone", "starwalker", "comet spirit", "parrot chatter"
+            ],
+            "shattered soul": [
+                "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
+            ],
+            "budding spirit": [
+                "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
+            ],
+            "testosterone deficiency": [
+                "infertile"
+            ],
+            "excess testosterone": [
+                "pcos", "infertile"
+            ],
+            "aneuploidy": [
+                "infertile"
+            ],
+            "mosaicism": [
+                "infertile"
+            ],
+            "chimerism": [
+                "infertile"
+            ],
+            "pcos": [
+                "infertile"
+            ],
+            "curved spine": [
+                "paralyzed", "constant joint pain", "seizure prone", "constant roaming pain"
+            ],
+            "jumbled mind": [
+                "starwalker", "comet spirit", "counting fog"
+            ],
+            "counting fog": [
+                "starwalker", "comet spirit", "jumbled mind"
+            ],
+            "spirited heart": [
+                "starwalker", "obsessive mind", "comet spirit", "thunderous spirit"
+            ],
+            "puzzled heart": [
+                "starwalker", "antisocial", "thunderous spirit"
+            ],
+            "face blindness": [
+                "seizure prone", "starwalker"
+            ],
+            "parrot chatter": [
+                "seizure prone", "starwalker", "comet spirit", "chattering tongue"
+            ],
+            "selective mutism": [
+                "starwalker", "anxiety"
+            ]
+        }
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
@@ -2715,7 +2825,8 @@ class Cat:
         while conditions:
             for entry in comorbid_conditions:
                 if entry in cat.permanent_condition:
-                    possible_comorbidities.append(comorbid_conditions.get(entry))
+                    if not (entry == "constant joint pain" and cat.genotype.fold[0] == "Fd"):
+                        possible_comorbidities.append(comorbid_conditions.get(entry))
 
             new_condition = choice(possible_conditions)
             if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
@@ -2727,6 +2838,13 @@ class Cat:
                     new_condition = choice(choice(possible_comorbidities))
 
             while new_condition == "born without a tail":
+                new_condition = choice(possible_conditions)
+                while new_condition in cat.permanent_condition:
+                    new_condition = choice(possible_conditions)
+                    if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                        new_condition = choice(choice(possible_comorbidities))
+
+            while new_condition == "pcos" and cat.genotype.gender == "tom":
                 new_condition = choice(possible_conditions)
                 while new_condition in cat.permanent_condition:
                     new_condition = choice(possible_conditions)
@@ -2757,6 +2875,21 @@ class Cat:
                             new_condition = choice(choice(possible_comorbidities))
             if new_condition == "puzzled heart" and "spirited heart" in cat.permanent_condition:
                 while new_condition == "puzzled heart":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+
+            if new_condition == "shattered soul" and "budding spirit" in cat.permanent_condition:
+                while new_condition == "shattered soul":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "budding spirit" and "shattered soul" in cat.permanent_condition:
+                while new_condition == "budding spirit":
                     new_condition = choice(possible_conditions)
                     while new_condition in cat.permanent_condition:
                         new_condition = choice(possible_conditions)
