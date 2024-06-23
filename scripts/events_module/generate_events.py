@@ -348,10 +348,20 @@ class GenerateEvents:
                     continue
 
             if event.m_c:
+                condition_is_required = False
+                condition_cannot_be = False
                 if cat.age not in event.m_c["age"] and "any" not in event.m_c["age"]:
-
                     continue
                 if cat.status not in event.m_c["status"] and "any" not in event.m_c["status"]:
+                    continue
+                for condition in cat.permanent_condition:
+                    if condition in event.m_c["permanent_condition"]:
+                        condition_is_required = True
+                    if condition in event.m_c["not_permanent_condition"]:
+                        condition_cannot_be = True
+                if not condition_is_required:
+                    continue
+                if condition_cannot_be:
                     continue
                 if event.m_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
@@ -418,9 +428,20 @@ class GenerateEvents:
 
             # check that a random_cat is available to use for r_c
             if event.r_c and random_cat:
+                condition_is_required = False
+                condition_cannot_be = False
                 if random_cat.age not in event.r_c["age"] and "any" not in event.r_c["age"]:
                     continue
                 if random_cat.status not in event.r_c["status"] and "any" not in event.r_c["status"]:
+                    continue
+                for condition in random_cat.permanent_condition:
+                    if condition in event.r_c["permanent_condition"]:
+                        condition_is_required = True
+                    if condition in event.r_c["not_permanent_condition"]:
+                        condition_cannot_be = True
+                if not condition_is_required:
+                    continue
+                if condition_cannot_be:
                     continue
                 if event.r_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
