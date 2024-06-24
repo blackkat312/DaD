@@ -118,6 +118,11 @@
                 false
             ]
         ],
+        "pregnancy turmoil": [
+            "Allow negative pregnancy events",
+            "Allows cats to have events like post-partem and false pregnancies.",
+            false
+        ],
         "single parentage": [
             "Allow cats to have kittens with an outside second parent",
             "Allow cats to have kittens with a biological parent outside your Clan.",
