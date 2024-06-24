@@ -1613,8 +1613,9 @@ class Cat():
                             #CHOOSE PLURAL NAME
                             if os.path.exists('resources/dicts/names/names.json'):
                                 with open('resources/dicts/names/names.json') as read_file:
+                                    names_dict = ujson.loads(read_file.read())
                                     if not self.name.suffix in names_dict["plural_suffixes"]:
-                                        names_dict = ujson.loads(read_file.read())
+                        
                                         plural = choice(names_dict["plural_suffixes"])
                                         old_name = self.name.suffix
                                         self.name.suffix = plural
