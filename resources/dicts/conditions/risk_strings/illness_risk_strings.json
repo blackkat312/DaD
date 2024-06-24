@@ -215,6 +215,18 @@
 			"Something in m_c's chest feels tight, feels numb really. A weight that {PRONOUN/m_c/subject} {VERB/m_c/have/has} to carry around for the rest of {PRONOUN/m_c/poss} life."
 		]
 	},
+	"stimming": {
+		"parroting": [
+			"It appears to r_c as though m_c is parroting as a form of stimming.",
+			"m_c is parroting in the midst of all {PRONOUN/m_c/poss} stimming.",
+			"m_c is behaving like a parrot to {PRONOUN/m_c/poss} Clanmates."
+		],
+		"body biter": [
+			"r_c lightly scolds m_c when {PRONOUN/r_c/subject} {VERB/r_c/notice/notices} that in all of {PRONOUN/m_c/poss} stimming, {PRONOUN/m_c/poss} {VERB/m_c/have/has} become a body biter.",
+			"Reluctantly, m_c has to admit {PRONOUN/m_c/subject} might have a problem with body biting.",
+			"m_c stares at {PRONOUN/m_c/poss} bleeding paws with the realisation that it's self inflicted."
+		]
+	},
 	"verbal shutdown": {
 		"mute": [
 			"After all this time some of the Clan thinks that m_c should have started speaking again. r_c simply shakes their head, it's not up to those cats to demand that.",
