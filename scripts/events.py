@@ -2697,7 +2697,7 @@ class Events:
                     cat.pronouns = [cat.default_pronouns[2].copy()]
                 else:
                     cat.genderalign = random.choice(["trans molly", "trans tom"])
-                    if cat.genderalign == "trans female":
+                    if cat.genderalign == "trans molly":
                         cat.pronouns = [cat.default_pronouns[1].copy()]
                     else:
                         cat.pronouns = [cat.default_pronouns[2].copy()]
@@ -2731,7 +2731,16 @@ class Events:
                 trans += "a demitom"
             else:
                 trans += cat.genderalign
-            text = f"{cat.name} has been mulling over this for moons, but now they feel comfortable enough to tell the Clan: they aren't {gender}, they're {trans}."
+
+            if cat.gender != "intersex" and cat.genderalign not in ["trans molly", "trans tom"]:
+                text = random.choice(
+                    [
+                        f"{cat.name} has been mulling over this for moons, but now they feel comfortable enough to tell the Clan: they aren't {gender}, they're {trans}.",
+                        f"For a long time, the only term {cat.name} knew to describe themself was \"{cat.gender}\", and it never really felt like it fit. However, when they find the term {cat.genderalign}, they feel so much better calling themself {trans} instead of {gender}."
+                    ]
+                )
+            else:
+                text = f"{cat.name} has been mulling over this for moons, but now they feel comfortable enough to tell the Clan: they aren't {gender}, they're {trans}."
             game.cur_events_list.append(Single_Event(text, "misc", involved_cats))
             # game.misc_events_list.append(text)
 
