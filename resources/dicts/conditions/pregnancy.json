@@ -1,10 +1,48 @@
 {
   "announcement": [
-    "m_c announced that {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting kits."
+    "m_c announced that {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting kits.",
+	"m_c goes to the medicine den after feeling funny for a few days. It turns out {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} expecting kits.",
+	"m_c is in firm denial that anything is different about {PRONOUN/m_c/object}. Even as {PRONOUN/m_c/poss} belly clearly swells with kittens.",
+	"m_c stares at the medicine cat in disbelief, {PRONOUN/m_c/subject} can't be expecting kits, {PRONOUN/m_c/subject} just can't.",
+	"m_c creeps around the camp nervously, {PRONOUN/m_c/subject} {VERB/m_c/refuse/refuses} to tell anyone about expecting kittens until {PRONOUN/m_c/subject} can be certain it'll go well.",
+	"m_c refuses to tell anyone about the kittens that {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting, not wishing to stop active duties yet.",
+	"To m_c's surprise the stomachache that {PRONOUN/m_c/subject} {VERB/m_c/have/has} been experiencing turns out to be kits.",
+	"m_c proudly struts around the camp making sure that everycat knows {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting kits.",
+	"Excitedly m_c talks about how {PRONOUN/m_c/subject} look forwards to having kits soon.",
+	"With all the symptoms that m_c's been experience {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} convinced {PRONOUN/m_c/self} that {PRONOUN/m_c/subject} {VERB/m_c/are/is} having kits.",
+	"m_c hisses at the medicine cat, insisting that {PRONOUN/m_c/subject} must be having kits.",
+	"Recently m_c has noticed {PRONOUN/m_c/self} putting on weight and excitedly assumes it must be kits."
   ],
-  "litter_guess": [
-    "m_c hopes the litter will be small - {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} overwhelmed at the idea of a big litter.",
-    "m_c is hoping for a big litter!",
+  "false_preg announcement": [
+	"m_c announced that {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} to be expecting kits.",
+	"Uneasily m_c talks to {PRONOUN/m_c/poss} clanmates about possibly expecting kits.",
+	"While m_c isn't entirely certain, the only explanation that makes sense is {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting kits.",
+	"While m_c isn't entirely certain, the only explanation that makes sense is {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting kits.",
+	"With more than a little trepidation m_c talks to the Medicine Cat about kitten care and what to expect.",
+	"m_c knows that {PRONOUN/m_c/subject} can't be expecting kits. Yet a longing rises up in {PRONOUN/m_c/object} anyway.",
+	"m_c is feeling parental and keeps longingly looking towards the nursery.",
+	"m_c is convinced that {PRONOUN/m_c/subject} will be having kits soon and refuses to hear anything to the contrary.",
+	"m_c keeps looking towards the nursery with a mixture of hope and caution in {PRONOUN/m_c/poss} eyes.",
+	"m_c is pretty sure {PRONOUN/m_c/subject} {VERB/m_c/aren't/isn't} expecting kittens, and yet some part of {PRONOUN/m_c/object} is insisting it.",
+	"While m_c knows it's not really a possibility {PRONOUN/m_c/subject} still find {PRONOUN/m_c/self} entertaining the expectation of kits."
+  ],
+
+  "litter_guess": {
+	"small_litter" : [
+		"m_c hopes the litter will be small - {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} overwhelmed at the idea of a big litter.",
+		"m_c has hopes that this litter will be small. Nice and manageable.",
+		"As much as m_c is looking forwards to having kits of {PRONOUN/m_c/poss} own, {PRONOUN/m_c/subject} really {VERB/m_c/hope/hopes} it's not too many.",
+		"m_c really doesn't want a large litter. Only a few kittens would be more than enough."
+	],
+	"large_litter": [
+	    "m_c is hoping {PRONOUN/m_c/subject}'ll have a large litter.",
+		"m_c is daydreaming about having many kits. A large litter would suit {PRONOUN/m_c/object} perfectly.",
+		"m_c really hopes that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} having a large litter. More future warriors.",
+		"With the rest of the clan behind m_c {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} {PRONOUN/m_c/subject} wouldn't mind a large litter."
+	]
+  },
+
+  "unsure_litter_guess": [
     "m_c is unsure how many kits {PRONOUN/m_c/subject}'ll have.",
     "m_c wonders how much of {PRONOUN/m_c/poss} expanding belly is kits and how much is pregnancy weight.",
     "m_c has no idea how big {PRONOUN/m_c/subject} should craft the nest in the nursery {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} creating - but it needs the softest materials, the best moss.",
@@ -17,7 +55,7 @@
     "m_c feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} eating enough at each meal to feed an army, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} predicting a big litter. Or perhaps one very plump kit.",
     "m_c has begun hoarding little trinkets, stashing bits of fluff and feather and shiny rocks into {PRONOUN/m_c/poss} birthing nest to stock it with kitten toys.",
     "m_c invites {PRONOUN/m_c/poss} friends to feel {PRONOUN/m_c/poss} litter kick - surely these kittens are going to be talented warriors, because, well - ow."
-  ],
+	],
 
 	"adoption_announce": [
 		"While m_c is disappointed to hear the medicine cat confirm that {PRONOUN/m_c/subject} really aren't expecting kittens, there is still hope that {PRONOUN/m_c/subject} could adopt.",
