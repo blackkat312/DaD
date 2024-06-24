@@ -1619,7 +1619,10 @@
 	"parrot chatter": {
 		"stimming": [
 			"r_c has noticed that m_c is using {PRONOUN/m_c/poss} chattering as a form of stimming recently.",
-			"m_c has been stimming more often recently."
+			"m_c has been stimming more often recently.",
+			"It seems like m_c can barely stay still as {PRONOUN/m_c/subject} {VERB/m_c/wriggle/wriggles} {PRONOUN/m_c/poss} whole body in excitement for the whole day.",
+			"m_c keeps purring to {PRONOUN/m_c/self} as an act of self soothing.",
+			"Some of m_c's Clanmates find themselves confused because of m_c running around the camp in small circles, seemingly chasing {PRONOUN/m_c/poss} tail."
 		],
 		"verbal shutdown": [
 			"When r_c checks on m_c it's to discover that {PRONOUN/m_c/subject} {VERB/m_c/are/is} in verbal shut down.",
@@ -1634,6 +1637,5 @@
 		"face blindness": [
 			"r_c has noticed that m_c seems to struggle with recognizing {PRONOUN/m_c/poss} Clanmates.",
 			"With more than a bit of frustration, m_c has to admit that {PRONOUN/m_c/subject} might be face blind alongside {PRONOUN/m_c/poss} thought blindness."
-		]
 	}
 }
