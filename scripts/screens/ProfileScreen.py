@@ -991,19 +991,30 @@ class ProfileScreen(Screens):
         """Generate the right column information"""
         output = ""
 
+        if the_cat.status == "leader":
+            rank = "guardian"
+        else:
+            rank = the_cat.status
+
         # STATUS
-        if (
+        if the_cat.dead and not the_cat.df and not the_cat.outside:
+            output += f"<font color='#FFBCCC'>StarClan {rank}</font>"
+        elif the_cat.dead and the_cat.df and not the_cat.outside:
+            output += f"<font color='#BEFDE4'>Dark Forest {rank}</font>"
+        elif the_cat.dead and not the_cat.df and the_cat.outside and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]:
+            output += f"<font color='#FFBCCC'>ghost {rank}</font>"
+        elif the_cat.dead and not the_cat.df and the_cat.outside:
+            output += f"<font color='#FFBCCC'>{the_cat.dead_outside_display} {rank}</font>"
+        elif (
             the_cat.outside
             and not the_cat.exiled
             and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]
         ):
-            output += "<font color='#FF0000'>lost</font>"
+            output += f"<font color='#FF0000'>lost {rank}</font>"
         elif the_cat.exiled:
             output += "<font color='#FF0000'>exiled</font>"
-        elif the_cat.status == "leader":
-            output += "guardian"
         else:
-            output += the_cat.status
+            output += rank
 
         # NEWLINE ----------
         output += "\n"
