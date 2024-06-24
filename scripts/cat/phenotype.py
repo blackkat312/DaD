@@ -443,8 +443,6 @@ class Phenotype():
         if(self.genotype.chimera and not self.genotype.chimerapattern):
             self.genotype.chimerapattern = self.ChooseTortiePattern('chim')
 
-        eyes = ""
-
         furtype = ""
         for i in self.furtype:
             furtype += i
@@ -498,8 +496,10 @@ class Phenotype():
 
         if not gender:
             gendertext = "cat"
-        elif gender == "tom" or gender == "molly":
-            gendertext = gender
+        elif gender == "molly" or gender == "trans molly":
+            gendertext = "molly"
+        elif gender == "tom" or gender == "trans tom":
+            gendertext = "tom"
         else:
             gendertext = "cat"
 
