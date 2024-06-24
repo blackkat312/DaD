@@ -2387,8 +2387,8 @@ class Cat:
                             # CHOOSE PLURAL NAME
                             if os.path.exists('resources/dicts/names/names.json'):
                                 with open('resources/dicts/names/names.json') as read_file:
+                                    names_dict = ujson.loads(read_file.read())
                                     if self.name.suffix not in names_dict["plural_suffixes"]:
-                                        names_dict = ujson.loads(read_file.read())
                                         plural = choice(names_dict["plural_suffixes"])
                                         old_suffix = self.name.suffix
                                         if self.status == "leader":
