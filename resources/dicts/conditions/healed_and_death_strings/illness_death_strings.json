@@ -202,5 +202,8 @@
   ],
   "nausea": [
     "this should not appear! m_c died from being nauseous?"
+  ],
+  "parroting": [
+    "this should not appear! m_c died from parroting?"
   ]
 }
