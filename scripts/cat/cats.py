@@ -240,6 +240,7 @@ class Cat:
         self.dead = False
         self.exiled = False
         self.outside = False
+        self.dead_outside_display = ""
         self.driven_out = False
         self.dead_for = 0  # moons
         self.thought = ""
@@ -1261,7 +1262,7 @@ class Cat:
 
         # apply grief to cats with high positive relationships to dead cat
         for cat in Cat.all_cats.values():
-            if cat.dead or cat.outside or cat.moons < 1:
+            if cat.dead or cat.outside:
                 continue
 
             to_self = cat.relationships.get(self.ID)
@@ -4460,6 +4461,7 @@ class Cat:
                 "former_apprentices": [appr for appr in self.former_apprentices],
                 "df": self.df,
                 "outside": self.outside,
+                "dead_outside_display": self.dead_outside_display,
                 "faded_offspring": self.faded_offspring,
                 "opacity": self.pelt.opacity,
                 "prevent_fading": self.prevent_fading,
