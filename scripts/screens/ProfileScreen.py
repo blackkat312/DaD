@@ -2036,6 +2036,7 @@ class ProfileScreen(Screens):
             "jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
             "parrot chatter": "echolalia",
+            "parroting": "echolalia",
 
             "sunblindness": "light sensitivity",
 
@@ -2048,7 +2049,8 @@ class ProfileScreen(Screens):
             "spirited heart": "hyperempathy",
             "puzzled heart": "low empathy",
             "faux pregnant": "phantom pregnancy",
-            "thought blind": "aphantasia"
+            "thought blind": "aphantasia",
+            "turmoiled litter": "post partum"
         }
         if not game.settings['warriorified names']:
             if condition in dad_names:
