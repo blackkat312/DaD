@@ -47,6 +47,7 @@ def json_load():
     # create new cat objects
     for i, cat in enumerate(cat_data):
         try:
+            new_dead_outside = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             try:
                 new_cat = Cat(ID=cat["ID"],
                         prefix=cat["name_prefix"],
@@ -194,6 +195,7 @@ def json_load():
             new_cat.df = cat["df"] if "df" in cat else False
 
             new_cat.outside = cat["outside"] if "outside" in cat else False
+            new_cat.dead_outside_display = cat["dead_outside_display"] if "dead_outside_display" in cat else new_dead_outside
             new_cat.faded_offspring = (
                 cat["faded_offspring"] if "faded_offspring" in cat else []
             )
