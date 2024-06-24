@@ -1637,5 +1637,6 @@
 		"face blindness": [
 			"r_c has noticed that m_c seems to struggle with recognizing {PRONOUN/m_c/poss} Clanmates.",
 			"With more than a bit of frustration, m_c has to admit that {PRONOUN/m_c/subject} might be face blind alongside {PRONOUN/m_c/poss} thought blindness."
+		]
 	}
 }
