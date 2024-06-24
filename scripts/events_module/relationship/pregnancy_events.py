@@ -981,7 +981,13 @@ class Pregnancy_Events():
                     continue
                 if the_cat.ID in kit.get_parents():
                     if "turmoiled litter" in the_cat.illnesses:
-                        the_cat.relationships[kit.ID] = Relationship(the_cat, kit)   
+                        parent_to_kit = game.config["new_cat"]["parent_buff"]["parent_to_kit"]
+                        y = random.randrange(0, 15)
+                        start_relation = Relationship(the_cat, kit, False, True)
+                        start_relation.platonic_like += parent_to_kit["platonic"] - y
+                        start_relation.dislike += parent_to_kit["dislike"] - y
+                        start_relation.jealousy = parent_to_kit["jealousy"] - y
+                        the_cat.relationships[kit.ID] = start_relation 
                     else:
                         parent_to_kit = game.config["new_cat"]["parent_buff"]["parent_to_kit"]
                         y = random.randrange(0, 15)
