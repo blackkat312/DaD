@@ -108,11 +108,16 @@
 			"parent_to_kit": {
 				"romantic": 0,
 				"platonic": 40,
-				"dislike": 0,
+				"dislike": 25,
 				"admiration": 30,
 				"comfortable": 40,
-				"jealousy": 0,
-				"trust": 30
+				"jealousy": 20,
+				"trust": 30,
+				"comment": [
+					"Dislike and jealousy are called for the turmoiled litter events.",
+					"While still having platonic value at least.",
+					"Only occurs with the turmoil right after a litter is born though."
+				]
 			}
 		},
 		"sib_buff": {
@@ -163,6 +168,8 @@
 		"primary_chance_unmated": 75,
 		"random_affair_chance": 30,
 		"unmated_random_affair_chance": 1,
+		"false_pregnancy_chance": 80,
+		"failed_adopt": {"intersex": 3, "female": 3, "male": 3},
 		"one_kit_possibility": {"young adult": 8, "adult": 9, "senior adult": 10, "senior": 25},
         "two_kit_possibility": {"young adult": 30, "adult": 20, "senior adult": 50, "senior": 40},
         "three_kit_possibility": {"young adult": 40, "adult": 30, "senior adult": 40, "senior": 25},
@@ -202,7 +209,8 @@
 			"primary unmated - 1/chance for kits, relationship and other factors will influence this chance",
 			"The kit number is incremental. It is 1-6 as default so if you change these numbers, you should probably keep this in mind.",
 			"As in, your max kits number should probably be 5 more than the min kits number.",
-			"But that's not required - just makes more sense that way with how the litters are generated."
+			"But that's not required - just makes more sense that way with how the litters are generated.",
+			"Failed adoption in this case is how often a false pregnancy results in no kits, no end of adoption. Toggled with the pregnancy turmoil setting in game."
 		]
 	},
 	"cat_generation": {
