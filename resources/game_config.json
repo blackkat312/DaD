@@ -355,6 +355,7 @@
 		"brindled_bicolour" : 100,
 		"vitiligo" : 75,
 		"random_mutation" : 90,
+		"somatic_mutation" : 100,
 		"kittypet_breed" : 50,
 		"other_breed" : 100,
 		"purebred_min" : 95,
@@ -381,12 +382,12 @@
             "warrior": 2,
             "apprentice": 1,
             "emergency": 1,
-            "comment": "Defines how much a working warrior(leader/deputy) or apprentice gathers additionally."
+            "comment": "Defines how much a working warrior(guardian/deputy) or apprentice gathers additionally."
         },
         "herb gathering" : {
             "med": 3,
             "med_apprentice" : 2,
-            "comment": "Defines how much a working warrior(leader/deputy) or (apprentice) medicine cat gathers additionally."
+            "comment": "Defines how much a working warrior(guardian/deputy) or (apprentice) medicine cat gathers additionally."
         },
         "outsiders" : {
             "reputation": 5,
@@ -416,9 +417,9 @@
             },
             "relation": 3,
             "comments": [
-                "prey_warrior - how much prey each working warrior(leader/deputy) will gather",
+                "prey_warrior - how much prey each working warrior(guardian/deputy) will gather",
                 "herb_medicine - how much herb each working medicine cat will gather",
-                "injury chance of each warrior(leader/deputy) or medicine cat to get injured",
+                "injury chance of each warrior(guardian/deputy) or medicine cat to get injured",
                 "chance_increase_per_clan - the more clan which are raided the more likely it is to get injured",
                 "injuries - list of injuries which can occur and to which distribution",
                 "relation - amount of decrease; Clan relation is between 0 and 30, therefore a smaller number is chosen",
@@ -448,11 +449,11 @@
                 "whitecough": 1
             },
             "comments": [
-                "prey_warrior - how much prey each working warrior(leader/deputy) will gather",
+                "prey_warrior - how much prey each working warrior(guardian/deputy) will gather",
                 "herb_medicine - how much herb each working medicine cat will gather",
-                "injury chance of each warrior(leader/deputy) or medicine cat to get injured",
+                "injury chance of each warrior(guardian/deputy) or medicine cat to get injured",
                 "injuries - list of injuries which can occur and to which distribution",
-                "illness chance of each warrior(leader/deputy) and medicine cat to get sick",
+                "illness chance of each warrior(guardian/deputy) and medicine cat to get sick",
                 "illnesses - list of illnesses which can occur and to which distribution",
                 "INFO: a cat can get EITHER injured OR sick, not both - for simpler distribution (50/50 chance decide which condition will be used)",
                 "INFO: current sum of injuries is 100 - for easier understanding it should stay the same"
