@@ -994,11 +994,30 @@ class ProfileScreen(Screens):
                 already_sick_injured = True
 
             if "recovering from birth" in the_cat.injuries:
-                if already_sick_injured:
-                    output += '\nrecovering from birth!'
+                if game.settings['warriorified names']:
+                    if "turmoiled litter" in the_cat.illnesses:
+                        if already_sick_injured:
+                            output += '\nrecovering from a turmoiled birth!'
+                        else:
+                            output += 'recovering from a turmoiled birth!'                    
+                    else:
+                        if already_sick_injured:
+                            output += '\nrecovering from birth!'
+                        else:
+                            output += 'recovering from birth!'
+                            already_sick_injured = True
                 else:
-                    output += 'recovering from birth!'
-                    already_sick_injured = True
+                    if "turmoiled litter" in the_cat.illnesses:
+                        if already_sick_injured:
+                            output += '\nrecovering from birth! Has post-partum!'
+                        else:
+                            output += 'recovering from birth! Has post-partum!'                    
+                    else:
+                        if already_sick_injured:
+                            output += '\nrecovering from birth!'
+                        else:
+                            output += 'recovering from birth!'
+                            already_sick_injured = True
 
             if "overstimulation" in the_cat.injuries:
                 if already_sick_injured:
@@ -1045,7 +1064,8 @@ class ProfileScreen(Screens):
             special_conditions = [
                 "grief stricken", "fleas", "malnourished", "starving", "paranoia", "seasonal lethargy", "lethargy",
                 "special interest", "hyperfixation", "stimming", "indecision", "impulsivity", "zoomies",
-                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness", "nausea"
+                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness", "nausea",
+                "turmoiled litter"
             ]
             all_special = True
             for condition in the_cat.illnesses:

@@ -175,7 +175,6 @@ class Pregnancy_Events():
             if cat.ID in clan.pregnancy_data:
                 other_cat_id = clan.pregnancy_data[cat.ID]["second_parent"]
                 other_cat = Cat.all_cats.get(other_cat_id)
-            cats_involved.append(other_cat.ID)
 
         amount = Pregnancy_Events.get_amount_of_kits(cat)
         kits = Pregnancy_Events.get_kits(
@@ -250,6 +249,7 @@ class Pregnancy_Events():
         
         if not clan.clan_settings["same sex birth"] and cat.gender == "male":
             return
+            
         
         clan.pregnancy_data[cat.ID] = {
             "second_parent": str(other_cat.ID) if other_cat else None,
@@ -281,6 +281,10 @@ class Pregnancy_Events():
         
         # additional save for no kit setting
         if (cat and cat.no_kits) or (other_cat and other_cat.no_kits):
+            return
+
+        # here's where we check for infertility, just in case ir slipped trough
+        if (cat and "infertile" in cat.permanent_condition) and not (other_cat and "infertile" in other_cat.permanent_condition):
             return
 
         if clan.clan_settings['same sex birth']:
