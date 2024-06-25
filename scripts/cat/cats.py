@@ -2765,7 +2765,7 @@ class Cat:
             "starwalker": [
                 "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
                 "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
-                "selective mutism"
+                "selective mutism", "thought blindness"
             ],
             "obsessive mind": [
                 "spirited heart"
@@ -2853,13 +2853,16 @@ class Cat:
                 "starwalker", "antisocial", "thunderous spirit"
             ],
             "face blindness": [
-                "seizure prone", "starwalker"
+                "seizure prone", "starwalker", "thought blindness"
             ],
             "parrot chatter": [
                 "seizure prone", "starwalker", "comet spirit", "chattering tongue"
             ],
             "selective mutism": [
                 "starwalker", "anxiety"
+            ],
+            "thought blindness": [
+                "starwalker", "face blindness"
             ]
         }
 
