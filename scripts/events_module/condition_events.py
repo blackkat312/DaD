@@ -354,13 +354,13 @@ class Condition_Events:
         # handle if the current cat is already injured
         if cat.is_injured() and game.clan.game_mode != "classic":
             for injury in cat.injuries:
-                if injury == "pregnant" and cat.ID not in game.clan.pregnancy_data:
+                if injury in ["pregnant", "false pregnancy"] and cat.ID not in game.clan.pregnancy_data:
                     print(
                         f"INFO: deleted pregnancy condition of {cat.ID} due no pregnancy data in the clan."
                     )
                     del cat.injuries[injury]
                     return triggered
-                elif injury == "pregnant":
+                elif injury in ["pregnant", "false pregnancy"]:
                     return triggered
             triggered = Condition_Events.handle_already_injured(cat)
         else:
@@ -1133,6 +1133,13 @@ class Condition_Events:
                 skip = False
                 if risk["name"] in progression:
                     if progression[risk["name"]] in dictionary:
+                        skip = True
+                # Making sure world tired can only be given if you have dangerous settings on
+                if not game.settings["allow shell farm"]:
+                    if risk['name'] == "world tired":
+                        skip = True
+                if not game.clan.clan_settings["pregnancy turmoil"]:
+                    if risk['name'] == "turmoiled litter":
                         skip = True
                 # if it is, then break instead of giving the risk
                 if skip is True:
