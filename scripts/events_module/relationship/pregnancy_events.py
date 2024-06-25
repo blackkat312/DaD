@@ -345,6 +345,10 @@ class Pregnancy_Events:
         if cat and (cat.no_kits or cat.neutered or "infertile" in cat.permanent_condition):
             return
 
+        # here's where we check for infertility, just in case it slipped trough
+        if (cat and "infertile" in cat.permanent_condition) and not (other_cat and "infertile" in other_cat.permanent_condition):
+            return
+
         if clan.clan_settings['same sex birth'] and not (not other_cat and random.randint(0,1)):
             # same sex birth enables all cats to get pregnant,
             # therefore the main cat will be used, regarding of gender
