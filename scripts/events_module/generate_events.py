@@ -354,15 +354,18 @@ class GenerateEvents:
                     continue
                 if cat.status not in event.m_c["status"] and "any" not in event.m_c["status"]:
                     continue
-                for condition in cat.permanent_condition:
-                    if condition in event.m_c["permanent_condition"]:
-                        condition_is_required = True
-                    if condition in event.m_c["not_permanent_condition"]:
-                        condition_cannot_be = True
-                if not condition_is_required:
-                    continue
-                if condition_cannot_be:
-                    continue
+                if event.m_c["permanent_condition"]:
+                    for condition in cat.permanent_condition:
+                        if condition in event.m_c["permanent_condition"]:
+                            condition_is_required = True
+                    if not condition_is_required:
+                        continue
+                if event.m_c["not_permanent_condition"]:
+                    for condition in cat.permanent_condition:
+                        if condition in event.m_c["not_permanent_condition"]:
+                            condition_cannot_be = True
+                    if condition_cannot_be:
+                        continue
                 if event.m_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
                                                     filter_types=event.m_c["relationship_status"],
