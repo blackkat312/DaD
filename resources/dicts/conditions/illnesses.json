@@ -131,10 +131,14 @@
                 "name": "yellowcough",
                 "chance": 60
             },
-		{
-		"name": "longcough",
-		"chance": 120
-		}
+		    {
+		        "name": "longcough",
+		        "chance": 120
+		    },
+            {
+                "name": "raspy lungs",
+                "chance": 120
+            }
         ],
         "herbs": [
             "catmint",
@@ -173,6 +177,10 @@
             {
                 "name": "silvercough",
                 "chance": 10
+            },
+            {
+                "name": "raspy lungs",
+                "chance": 180
             }
         ],
         "herbs": [
@@ -275,7 +283,12 @@
         "duration": 50,
         "medicine_duration": 40,
         "infectiousness": 0,
-        "risks": [],
+        "risks": [
+            {
+                "name": "raspy lungs",
+                "chance": 60
+            }
+        ],
         "herbs": [
             "lungwort",
             "mullein",
@@ -315,10 +328,10 @@
                 "name": "whitecough",
                 "chance": 15
             },
-		{
-		"name": "silvercough",
-		"chance": 15
-		}
+		    {
+		        "name": "silvercough",
+		        "chance": 15
+		    }
         ],
         "herbs": [
             "ragwort",
@@ -409,7 +422,7 @@
             "poppy",
             "moss"
         ]
-    },	
+    },
     "yellowcough": {
         "severity": "major",
         "mortality": {
@@ -436,6 +449,10 @@
         "risks": [
             {
                 "name": "redcough",
+                "chance": 80
+            },
+            {
+                "name": "raspy lungs",
                 "chance": 80
             }
         ],
