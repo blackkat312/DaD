@@ -200,9 +200,7 @@ class Pregnancy_Events:
                         adoptive_parents.append(_m)
 
         amount = Pregnancy_Events.get_amount_of_kits(cat, clan)
-        kits = Pregnancy_Events.get_kits(
-            amount, None, None, clan, adoptive_parents=adoptive_parents
-        )
+        kits = Pregnancy_Events.get_kits(amount, None, None, clan, adoptive_parents=adoptive_parents)
 
         insert = "this should not display"
         if amount == 1:
@@ -437,8 +435,8 @@ class Pregnancy_Events:
                                                 is_parent=True)[0]
                         outside_parent.thought = "Is wondering what their kits are doing"
                         if random.random() < 0.2:
-                            outside_parent.mate.append(cat.ID)
-                            cat.mate.append(outside_parent.ID)
+                            outside_parent.set_mate(cat.ID)
+                            cat.set_mate(outside_parent.ID)
 
                     outside_parent = [outside_parent]
 
@@ -669,8 +667,8 @@ class Pregnancy_Events:
                             out_par.thought = f"Is wondering how {cat.name} is doing"
 
                         if random.random() < 0.2:
-                            out_par.mate.append(cat.ID)
-                            cat.mate.append(out_par.ID)
+                            out_par.set_mate(cat.ID)
+                            cat.set_mate(out_par.ID)
 
                         other_cat.append(out_par)
 
@@ -753,7 +751,7 @@ class Pregnancy_Events:
 
         # choose event string
         # TODO: currently they don't choose which 'mate' is the 'blood' parent or not
-        # change or leave as it is?
+        # change or leaf as it is?
         events = Pregnancy_Events.PREGNANT_STRINGS
         event_list = []
 
