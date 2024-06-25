@@ -2342,7 +2342,9 @@
 			"Flopped in the side of the den",
 			"Is drawing patterns in the dirt of camp",
 			"Just realised {PRONOUN/m_c/subject} could purr again",
-			"Is struggling to cat"
+			"Is struggling to cat",
+			"Is looking at a piece of prey like it personally offended {PRONOUN/m_c/object}",
+			"Complains that {PRONOUN/m_c/poss} mouth is full of lies after eating some prey"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2559,7 +2561,10 @@
 			"Is crying and can't stop",
 			"Cried all last patrol",
 			"Got lost on patrol",
-			"Missing r_c even though {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} right beside {PRONOUN/m_c/object}"
+			"Missing r_c even though {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} right beside {PRONOUN/m_c/object}",
+			"Feels stinky",
+			"Has noticed {PRONOUN/m_c/subject} {VERB/m_c/are/is} kind of smelly",
+			"Doesn't have the energy to groom {PRONOUN/m_c/self}"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2715,12 +2720,24 @@
             "Almost fell out of a tree today",
             "Is wincing each step {PRONOUN/m_c/subject} {VERB/m_c/take/takes}",
             "Is grooming {PRONOUN/m_c/poss} sore paws",
-            "Doesn't understand why Twolegs would do this",
+            "Doesn't understand why Twolegs would do this to kittypets on purpose",
             "Doesn't understand how kittypets could live like this",
             "Hates the fact that {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} have claws anymore",
             "Isn't ready for practicing with r_c today",
             "Is warning {PRONOUN/m_c/poss} Clanmates about the worst that Twolegs can do",
-            "Is making up a dramatic story about the loss of {PRONOUN/m_c/poss} claws"
+            "Is making up a dramatic story about the loss of {PRONOUN/m_c/poss} claws",
+			"Is warning r_c about losing {PRONOUN/m_c/poss} claws in general",
+			"Can't quite scratch at an itchy spot",
+			"Glares at a tree as if it's purposefully offended {PRONOUN/m_c/object}",
+			"Makes up a story about the 'Claw-Stealer'",
+			"Baps r_c only to wince at the motion in {PRONOUN/m_c/poss} paw",
+			"Stepped slightly wrong and is in pain",
+			"Tripped over {PRONOUN/m_c/poss} own paws",
+			"Wonders about the tales of false-clawed kittypets",
+			"Is claiming claws are overrated anyway",
+			"Feels unbalanced on {PRONOUN/m_c/poss} paws today",
+			"Is comparing pawprints with r_c",
+			"Discourages r_c from biting {PRONOUN/r_c/poss} own paws"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2743,6 +2760,34 @@
             "living"
         ]
     },
+	{
+		"id": "declawed_warrior",
+		"thoughts": [
+			"Flexes {PRONOUN/m_c/poss} sore paws in frustration",
+			"Refuses to give up on {PRONOUN/m_c/poss} dreams",
+			"Is determined to show that {PRONOUN/m_c/subject} can still be a real warrior",
+			"Put in extra effort this moon",
+			"Still has {PRONOUN/m_c/poss} teeth to bite any and all challengers",
+			"Is still just as capable as any other cat",
+			"Doesn't accept been looked down on from anyone",
+			"Volunteers for the dawn patrol",
+			"Is having a bit of a hard day",
+			"Is practicing battle moves that don't require claws",
+			"Misses {PRONOUN/m_c/poss} claws deeply",
+			"Feels insecure after meeting a cat from another Clan at the border",
+			"Goes on a solo hunt to keep busy",
+			"Is struggling with {PRONOUN/m_c/poss} duties"
+		],
+		"main_status_constraint": [
+			"apprentice",
+			"warrior"
+		],
+			"perm_conditions": {
+				"m_c": [
+					"declawed"
+				]
+			}
+	},
     {
         "id": "otherworldly_mind_to_alive_gen",
         "thoughts": [
@@ -3091,7 +3136,7 @@
 			"Is batting at r_c's tail",
 			"Rolls {PRONOUN/m_c/poss} paws over and over",
 			"Big stretch",
-			"Clicks (PRONOUN/m_c/poss} jaw with a big yawn",
+			"Clicks {PRONOUN/m_c/poss} jaw with a big yawn",
 			"Keeps opening and closing {PRONOUN/m_c/poss} mouth",
 			"Rolls {PRONOUN/m_c/poss} tongue and flicks it",
 			"Pacing on the spot",
