@@ -1209,7 +1209,8 @@ class ProfileScreen(Screens):
         already_sick_injured = False
         if the_cat.is_injured():
             special_conditions = [
-                "recovering from birth", "overstimulation", "understimulation", "fatigue", "fainting", "pregnant"
+                "recovering from birth", "overstimulation", "understimulation", "fatigue", "fainting", "pregnant",
+                "false pregnancy"
             ]
             all_special = True
             for condition in the_cat.injuries:
@@ -1262,6 +1263,13 @@ class ProfileScreen(Screens):
                     output += "\npregnant!"
                 else:
                     output += "pregnant!"
+                    already_sick_injured = True
+
+            if "false pregnancy" in the_cat.injuries:
+                if already_sick_injured:
+                    output += "\npregnant?"
+                else:
+                    output += "pregnant?"
                     already_sick_injured = True
 
         if the_cat.is_ill():
@@ -2469,19 +2477,25 @@ class ProfileScreen(Screens):
             "spirited heart": "hyperempathy",
             "puzzled heart": "low empathy",
             "parrot chatter": "echolalia",
+            "thought blindness": "aphantasia",
 
             "sunblindness": "light sensitivity",
 
             "seasonal lethargy": "seasonal depression",
             "lethargy": "depression",
+            "turmoiled litter": "post partem",
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
-            "puppyspace": "petspace"
+            "puppyspace": "petspace",
+            "parroting": "echolalia"
         }
         if not game.settings["warriorified names"]:
             if condition in dad_names:
                 condition = condition.replace(condition, dad_names.get(condition))
+
+        if condition == "false pregnancy":
+            condition = "pregnant?"
 
         return condition
 
@@ -2560,6 +2574,9 @@ class ProfileScreen(Screens):
 
             if name == "pregnant":
                 insert = "has been pregnant for"
+
+            if name == 'false pregnancy':
+                insert = 'has possibly been pregnant for'
 
             if moons_with != 1:
                 text_list.append(f"{insert} {moons_with} moons")
