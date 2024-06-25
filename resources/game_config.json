@@ -169,7 +169,7 @@
 		"random_affair_chance": 30,
 		"unmated_random_affair_chance": 1,
 		"false_pregnancy_chance": 80,
-		"failed_adopt": {"intersex": 3, "female": 3, "male": 3},
+		"failed_adopt": {"intersex": 3, "molly": 3, "tom": 3},
 		"one_kit_possibility": {"young adult": 8, "adult": 9, "senior adult": 10, "senior": 25},
         "two_kit_possibility": {"young adult": 30, "adult": 20, "senior adult": 50, "senior": 40},
         "three_kit_possibility": {"young adult": 40, "adult": 30, "senior adult": 40, "senior": 25},
