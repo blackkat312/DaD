@@ -250,6 +250,10 @@ class Pregnancy_Events():
         
         if not clan.clan_settings["same sex birth"] and cat.gender == "male":
             return
+            
+        # here's where we check for infertility, just in case ir slipped trough
+        if (cat and "infertile" in cat.permanent_condition) and not (other_cat and "infertile" in other_cat.permanent_condition):
+            return
         
         clan.pregnancy_data[cat.ID] = {
             "second_parent": str(other_cat.ID) if other_cat else None,
