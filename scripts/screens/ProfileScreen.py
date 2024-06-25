@@ -855,7 +855,7 @@ class ProfileScreen(Screens):
         else:
             output += str(the_cat.genderalign)
         if output == "molly and intersex" or output == "tom and intersex":
-            output += " (this should not appear)"
+            output = "this should not appear"
         # NEWLINE ----------
         output += "\n"
 
@@ -3144,7 +3144,7 @@ class ProfileScreen(Screens):
                 if self.genetic_text_box:
                     self.genetic_text_box.kill()
 
-                self.genelist = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)) + "\n" + str(self.the_cat.genotype.ShowGenes())
+                self.genelist = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)) + "\n" + str(self.the_cat.genotype.ShowGenes()) + "\n" + self.the_cat.genotype.FormatSomatic()
                 print("genetically: " + str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)))
                 if(self.the_cat.genotype.chimera):
                     chimpheno = Phenotype(self.the_cat.genotype.chimerageno)
