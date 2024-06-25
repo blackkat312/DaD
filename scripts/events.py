@@ -1013,21 +1013,17 @@ class Events:
             cat_IDs.extend(additional_cats)
             text = random.choice(text)
             if lost_cat.neutered:
-                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/smell/smells} a bit different, though"
+                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/smell/smells} a bit different, though, and {VERB/m_c/have/has} a small, barely visible scar on {PRONOUN/m_c/poss} belly"
 
             if additional_cats:
-                if "smell" in text:
-                    text += ", and {PRONOUN/m_c/subject} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
-                    if len(additional_cats) > 1:
-                        text += str(len(additional_cats)) + " children."
-                    else:
-                        text += "child."
+                if "{VERB/m_c/smell/smells}" in text:
+                    text += "."
+                text += " {PRONOUN/m_c/subject/CAP} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
+                if len(additional_cats) > 1:
+                    text += str(len(additional_cats)) + " children "
                 else:
-                    text += " {PRONOUN/m_c/subject/CAP} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
-                    if len(additional_cats) > 1:
-                        text += str(len(additional_cats)) + " children."
-                    else:
-                        text += "child."
+                    text += "child "
+                text += "with {PRONOUN/m_c/object}."
             elif "{VERB/m_c/smell/smells}" in text:
                 text += "."
 
@@ -1183,7 +1179,8 @@ class Events:
                                             main_cat=kit,
                                             random_cat=random.choice(cats),
                                             freshkill_pile=game.clan.freshkill_pile)
-                    kit.moons -= 1
+                    if kit.dead:
+                        kit.moons -= 1
 
         if len(fading_kits) > 0:
             event_text = "In the past moon, "
@@ -1192,7 +1189,7 @@ class Events:
                 event_text += " have"
             else:
                 event_text += " has"
-            event_text += " faded over the course of a few days."
+            event_text += " faded over the course of a week."
             game.cur_events_list.append(Single_Event(event_text, ['birth_death'], fading_kits))
 
         return fading_kits
@@ -1283,6 +1280,7 @@ class Events:
 
         cat.relationship_interaction()
         cat.thoughts()
+        self.handle_colour_changes(cat)
 
         # relationships have to be handled separately, because of the ceremony name change
         if not cat.dead and not cat.outside:
@@ -1294,7 +1292,6 @@ class Events:
 
         self.invite_new_cats(cat)
         self.other_interactions(cat)
-        self.handle_colour_changes(cat)
         # self.gain_accessories(cat)
 
         # switches between the two death handles
@@ -1518,6 +1515,9 @@ class Events:
                         )
 
                 # game.ceremony_events_list.append(text)
+
+                # TODO: add cats with plural suffixes having a 50/50 chance of changing the plural suffix here
+
                 text += (
                     f"\nVisit {game.clan.deputy.name}'s "
                     "profile to see their full guardian ceremony."
