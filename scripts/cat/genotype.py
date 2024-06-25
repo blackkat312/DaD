@@ -121,6 +121,10 @@ class Genotype:
         self.extraeyecolour = ""
 
         self.breeds = {}
+        self.somatic = {}
+
+    def __getitem__(self, name):
+        return getattr(self, name)
 
     def fromJSON(self, jsonstring):
         #jsonstring = json.loads(jsonstring)
@@ -239,8 +243,13 @@ class Genotype:
             self.breeds = json.loads(jsonstring["breeds"])
         except:
             self.breeds = {}
+        try:
+            self.somatic = json.loads(jsonstring["somatic"])
+        except:
+            self.somatic = {}
 
         self.PolyEval()
+        self.EyeColourName()
 
     def toJSON(self):
         chimgen = None
@@ -327,7 +336,8 @@ class Genotype:
             "extraeyetype" :self.extraeyetype,
             "extraeyecolour" : self.extraeyecolour,
 
-            "breeds" : json.dumps(self.breeds)
+            "breeds" : json.dumps(self.breeds),
+            "somatic" : json.dumps(self.somatic)
         }
 
     def Generator(self, special=None):
@@ -901,6 +911,9 @@ class Genotype:
             self.piggrade = 11
 
         self.GeneSort()
+
+        if randint(1, self.odds['somatic_mutation']) == 1:
+            self.GenerateSomatic()
 
         self.EyeColourFinder()
 
@@ -1481,6 +1494,9 @@ class Genotype:
 
         self.GeneSort()
 
+        if randint(1, self.odds['somatic_mutation']) == 1:
+            self.GenerateSomatic()
+
         self.EyeColourFinder()
 
         self.refgrade = "R" + str(self.refgrade)
@@ -1582,6 +1598,9 @@ class Genotype:
             self.piggrade = 11
 
         self.GeneSort()
+
+        if randint(1, self.odds['somatic_mutation']) == 1:
+            self.GenerateSomatic()
 
         self.EyeColourFinder()
 
@@ -2059,6 +2078,9 @@ class Genotype:
             self.Mutate()
 
         self.GeneSort()
+
+        if randint(1, self.odds['somatic_mutation']) == 1:
+            self.GenerateSomatic()
         self.PolyEval()
         self.EyeColourFinder()
 
@@ -2294,18 +2316,19 @@ class Genotype:
             self.manx[0] = "Ab"
 
     def EyeColourFinder(self):
-        Ref1 = ["Citrine", "Golden Beryl", "Yellow", "Pale Golden", "Golden", "Amber", "Light Orange", "Orange", "Cinnabar", "Auburn", "Copper", "Ice Blue", "Albino Pink"]
-        Ref2 = ["Pale Citrine", "Pale Yellow", "Lemon", "Deep Yellow", "Dull Golden", "Honey", "Pale Orange", "Burnt Orange", "Dark Orange", "Russet", "Dark Topaz", "Aquamarine", "Albino Rose"]
-        Ref3 = ["Lemonade Yellow", "Straw Yellow", "Dandelion Yellow", "Banana Yellow", "Sunglow Yellow", "Copal", "Dull Orange", "Rust Orange", "Topaz", "Chocolate", "Burgundy", "Sky Blue", "Albino Magenta"]
-        Ref4 = ["Light Celadon", "Pale Chartreuse", "Pear Green", "Brass Yellow", "Golden Green", "Butterscotch", "Dusty Orange", "Tawny", "Jasper", "Light Brown", "Earth", "Cyan", "Albino Periwinkle"]
-        Ref5 = ["Light Jade", "Pale Lime", "Spring Bud", "Chartreuse", "Pale Hazel", "Yellow Hazel", "Golden Flourite", "Beaver Brown", "Sienna", "Chestnut", "Umber", "Baby Blue", "Albino Violet"]
-        Ref6 = ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Albino Glass"]
-        Ref7 = ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Moonstone"]
-        Ref8 = ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Albino Ice Blue"]
-        Ref9 = ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Albino Aquamarine"]
-        Ref10 = ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Albino Sky Blue"]
-        Ref11 = ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Albino Azure"]
-
+        eyecolours = {
+        "R1" : ["Citrine", "Golden Beryl", "Yellow", "Pale Golden", "Golden", "Amber", "Light Orange", "Orange", "Cinnabar", "Auburn", "Copper", "Ice Blue", "Pink"],
+        "R2" : ["Pale Citrine", "Pale Yellow", "Lemon", "Deep Yellow", "Dull Golden", "Honey", "Pale Orange", "Burnt Orange", "Dark Orange", "Russet", "Dark Topaz", "Aquamarine", "Rose"],
+        "R3" : ["Lemonade Yellow", "Straw Yellow", "Dandelion Yellow", "Banana Yellow", "Sunglow Yellow", "Copal", "Dull Orange", "Rust Orange", "Topaz", "Chocolate", "Burgundy", "Sky Blue", "Magenta"],
+        "R4" : ["Light Celadon", "Pale Chartreuse", "Pear Green", "Brass Yellow", "Golden Green", "Butterscotch", "Dusty Orange", "Tawny", "Jasper", "Light Brown", "Earth", "Cyan", "Periwinkle"],
+        "R5" : ["Light Jade", "Pale Lime", "Spring Bud", "Chartreuse", "Pale Hazel", "Yellow Hazel", "Golden Flourite", "Beaver Brown", "Sienna", "Chestnut", "Umber", "Baby Blue", "Violet"],
+        "R6" : ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Glass"],
+        "R7" : ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Moonstone"],
+        "R8" : ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Albino Ice Blue"],
+        "R9" : ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Albino Aquamarine"],
+        "R10" : ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Albino Sky Blue"],
+        "R11" : ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Albino Azure"]
+        }
         sectoralindex = randint(0, 74)
         het2index = randint(0, 99)
         blueindex = 1
@@ -2323,30 +2346,7 @@ class Genotype:
             self.piggrade = 1
 
         def RefTypeFind(x, piggrade):
-            y = ""
-                    
-            if x == 1:
-                y = Ref1[piggrade-1]
-            elif x == 2:
-                y = Ref2[piggrade-1]
-            elif x == 3:
-                y = Ref3[piggrade-1]
-            elif x == 4:
-                y = Ref4[piggrade-1]
-            elif x == 5:
-                y = Ref5[piggrade-1]
-            elif x == 6:
-                y = Ref6[piggrade-1]
-            elif x == 7:
-                y = Ref7[piggrade-1]
-            elif x == 8:
-                y = Ref8[piggrade-1]
-            elif x == 9:
-                y = Ref9[piggrade-1]
-            elif x == 10:
-                y = Ref10[piggrade-1]
-            elif x == 11:
-                y = Ref11[piggrade-1]
+            y = eyecolours['R' + str(x)][piggrade-1]
 
             return y
         
@@ -2480,6 +2480,32 @@ class Genotype:
                 else:
                     self.righteye = RefTypeFind(self.refgrade, 12)
                     self.righteyetype = SecondaryRefTypeFind(self.refgrade, 12)
+
+    def EyeColourName(self):
+
+        eyecolours = {
+        "R1" : ["Citrine", "Golden Beryl", "Yellow", "Pale Golden", "Golden", "Amber", "Light Orange", "Orange", "Cinnabar", "Auburn", "Copper", "Ice Blue", "Pink"],
+        "R2" : ["Pale Citrine", "Pale Yellow", "Lemon", "Deep Yellow", "Dull Golden", "Honey", "Pale Orange", "Burnt Orange", "Dark Orange", "Russet", "Dark Topaz", "Aquamarine", "Rose"],
+        "R3" : ["Lemonade Yellow", "Straw Yellow", "Dandelion Yellow", "Banana Yellow", "Sunglow Yellow", "Copal", "Dull Orange", "Rust Orange", "Topaz", "Chocolate", "Burgundy", "Sky Blue", "Magenta"],
+        "R4" : ["Light Celadon", "Pale Chartreuse", "Pear Green", "Brass Yellow", "Golden Green", "Butterscotch", "Dusty Orange", "Tawny", "Jasper", "Light Brown", "Earth", "Cyan", "Periwinkle"],
+        "R5" : ["Light Jade", "Pale Lime", "Spring Bud", "Chartreuse", "Pale Hazel", "Yellow Hazel", "Golden Flourite", "Beaver Brown", "Sienna", "Chestnut", "Umber", "Baby Blue", "Violet"],
+        "R6" : ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Glass"],
+        "R7" : ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Moonstone"],
+        "R8" : ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Albino Ice Blue"],
+        "R9" : ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Albino Aquamarine"],
+        "R10" : ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Albino Sky Blue"],
+        "R11" : ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Albino Azure"]
+        }
+
+        def setup(eyestring):
+            eye = eyestring.split(' ; ')
+            ref = eye[0]
+            pig = int(eye[1].replace("albino", '13').replace('blue', '12').replace('P', ''))
+            return eyecolours[ref][pig-1]
+        self.lefteye = setup(self.lefteyetype)
+        self.righteye = setup(self.righteyetype)
+        if self.extraeyecolour != '':
+            self.extraeyecolour = setup(self.extraeyetype)
 
     def ShowGenes(self):
         self.PolyEval()
@@ -3521,4 +3547,114 @@ class Genotype:
             else:
                 self.Mutate()
         print(which)
+
+    def GenerateSomatic(self):
+        self.somatic["base"] = choice(['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail',
+                                    'underbelly1', 'right front bicolour2', 'left front bicolour2',
+                                    'right back bicolour2', 'left back bicolour2'])
+
+        possible_mutes = {
+        "furtype" : ["wirehair", "laperm", "cornish", "urals", "tenn", "fleece", "sedesp"],
+        "other" : ["pinkdilute", "ext", "sunshine", "karp"],
+        "main" : ["eumelanin", "sexgene", "dilute", "white", "pointgene", "silver", "agouti"]
+        }
+
+        for gene in possible_mutes["furtype"]:
+            if gene in ['wirehair', 'laperm', 'sedesp']:
+                if self[gene][0] in ['Wh', 'Lp', 'Se', 'hr', 're']:
+                    possible_mutes["furtype"].remove(gene)
+            try:
+                if self[gene][0] in ['r', 'ru', 'tr', 'fc']:
+                    possible_mutes["furtype"].remove(gene)
+                elif self[gene][1] in ['R', 'Ru', 'Tr', 'Fc']:
+                    possible_mutes["furtype"].remove(gene)
+            except:
+                continue
+        for gene in possible_mutes["other"]:
+            if gene == 'sunshine' and (self.agouti[0] == 'a' or self.ext[0] == 'Eg'):
+                possible_mutes["other"].remove(gene)
+                continue
+            elif gene in ['ext', 'karp', 'ghosting']:
+                if self[gene][0] in ['Eg', 'K', 'Gh']:
+                    possible_mutes["other"].remove(gene)
+                    continue
+            if self[gene][0] in ['dp', 'ec', 'ea', 'er', 'sh', 'sg', 'fg', 'lb', 'st', 'gl']:
+                possible_mutes["other"].remove(gene)
+            elif self[gene][1] in ['Dp', 'E', 'N', 'Lb', 'St', 'Gl']:
+                possible_mutes["other"].remove(gene)
+        for gene in possible_mutes["main"]:
+            if gene in ['mack', 'ticked', 'silver'] and (self.agouti[0] == 'a' or self.ext[0] == 'Eg'):
+                possible_mutes["main"].remove(gene)
+                continue
+            elif gene == 'agouti' and self.ext[0] == 'Eg':
+                possible_mutes["main"].remove(gene)
+                continue
+            elif gene in ['sexgene', 'white']:
+                if self[gene][0] in ['O', 'W', 'ws', 'wt']:
+                    possible_mutes["main"].remove(gene)
+                    continue
+            if self[gene][0] in ['b', 'bl', 'd', 'wg', 'wsal', 'cs', 'cb', 'cm', 'c', 'Apb', 'a']:
+                possible_mutes["main"].remove(gene)
+            elif self[gene][1] in ['B', 'D', 'w', 'C', 'A']:
+                possible_mutes["main"].remove(gene)
+
+        whichgene = ['furtype', 'other', 'main', 'other', 'main', 'main']
+        if self.white[0] == 'W':
+            whichgene = ['furtype']
+        for cate in whichgene:
+            if len(possible_mutes[cate]) == 0:
+                whichgene.remove(cate);
+        if len(whichgene) > 0:
+            self.somatic["gene"] = choice(possible_mutes[choice(whichgene)])
+
+
+        if self.white[1] in ['ws', 'wt'] and self.somatic["base"] not in ['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail']:
+            self.somatic["base"] = choice(['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail'])
+        if self.somatic["gene"] in possible_mutes["furtype"]:
+            self.somatic["base"] = "Somatic/tail"
+
+        alleles = {
+            "wirehair" : ['Wh'],
+            "laperm" : ['Lp'],
+            "cornish" : ['r'],
+            "urals" : ['ru'],
+            "tenn" : ['tr'],
+            "fleece" : ['fc'],
+            "sedesp" : ['Se'],
+
+            'pinkdilute' : ['dp'],
+            "ext" : ['Eg', 'ec', 'er', 'ea'],
+            "sunshine" : ['sh', 'sg', 'fg'],
+            "karp" : ['K'],
+            "bleach" : ['lb'],
+            "ghosting" : ['Gh'],
+
+            'eumelanin' : ['b', 'bl'],
+            'sexgene' : ['O'],
+            "dilute" : ['d'],
+            "white" : ['W', 'wsal'],
+            "pointgene" : ['cb', 'cs', 'cm', 'c'],
+            "silver" : ['I'],
+            "agouti" : ['Apb', 'a']
+        }
+
+        self.somatic["allele"] = choice(alleles[self.somatic['gene']])
+
+    def FormatSomatic(self):
+        body = {
+            "Somatic/leftface" : "face",
+            "Somatic/rightface" : "face",
+            "Somatic/tail" : 'tail',
+            "underbelly1" : 'underbelly',
+            'right front bicolour2' : 'front leg',
+            'left front bicolour2' : 'front leg',
+            'right back bicolour2' : 'back leg',
+            'left back bicolour2' : 'back leg'
+        }
+
+        return self.somatic['gene'] + ' mutated to \'' + self.somatic['allele'] + "\' on " + body[self.somatic['base']]
+
+
+
+
 
