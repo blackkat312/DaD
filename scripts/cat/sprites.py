@@ -151,7 +151,10 @@ class Sprites:
             sprites.spritesheet("sprites/genemod/extra/"+x, 'Other/'+x.replace('.png', ""))
         for x in os.listdir("sprites/genemod/effects"):
             sprites.spritesheet("sprites/genemod/effects/"+x, 'Other/'+x.replace('.png', ""))
-        
+        for x in os.listdir("sprites/genemod/somatic"):
+            sprites.spritesheet("sprites/genemod/somatic/"+x, 'Somatic/'+x.replace('.png', ""))
+            self.make_group('Somatic/'+x.replace('.png', ""), (0, 0), "Somatic/"+x.replace('.png', ""))
+
         
         for x in os.listdir("sprites/genemod/white"):
             sprites.spritesheet("sprites/genemod/white/"+x, 'White/'+x.replace('.png', ""))
