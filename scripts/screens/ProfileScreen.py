@@ -1276,7 +1276,8 @@ class ProfileScreen(Screens):
             special_conditions = [
                 "grief stricken", "fleas", "malnourished", "starving", "paranoia", "seasonal lethargy", "lethargy",
                 "special interest", "hyperfixation", "stimming", "indecision", "impulsivity", "zoomies",
-                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness", "nausea"
+                "sleeplessness", "burn out", "kittenspace", "puppyspace", "tics", "tic attack", "dizziness", "nausea",
+                "turmoiled litter"
             ]
             all_special = True
             for condition in the_cat.illnesses:
@@ -1451,6 +1452,22 @@ class ProfileScreen(Screens):
                     output += "\nnauseous!"
                 else:
                     output += "nauseous!"
+                    already_sick_injured = True
+
+            if "turmoiled litter" in the_cat.illnesses:
+                if already_sick_injured:
+                    if game.settings["warriorified names"]:
+                        if "recovering from birth!" in output:
+                            output = output.replace("recovering from birth!", "recovering from a turmoiled birth!")
+                        else:
+                            output += "\nrecovering from a turmoiled birth!"
+                    else:
+                        output += "\nexperiencing post partem!"
+                else:
+                    if game.settings["warriorified names"]:
+                        output += "recovering from a turmoiled birth!"
+                    else:
+                        output += "experiencing post partem!"
 
         return output
 
