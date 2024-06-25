@@ -2389,11 +2389,12 @@ class Cat:
                             if os.path.exists('resources/dicts/names/names.json'):
                                 with open('resources/dicts/names/names.json') as read_file:
                                     names_dict = ujson.loads(read_file.read())
-                                    if self.name.suffix not in names_dict["plural_suffixes"]:
-                                        plural = choice(names_dict["plural_suffixes"])
+                                    suffix_and_space = " " + self.name.suffix
+                                    if suffix_and_space not in [names_dict["normal_plural_suffixes"], names_dict["leader_plural_suffixes"]]:
+                                        plural = choice(names_dict["normal_plural_suffixes"])
                                         old_suffix = self.name.suffix
                                         if self.status == "leader":
-                                            plural = " Constellation"
+                                            plural = choice(names_dict["leader_plural_suffixes"])
                                         self.name.suffix = plural
                                         text = self.name.prefix + old_suffix + "'s headmates have discussed things, and they've decided that a collective name will suit them better. After a bit of thinking, they've decided on " + self.name.prefix + self.name.suffix + "!"
                                         game.cur_events_list.append(Single_Event(text, ["misc"], [self.ID]))
