@@ -437,11 +437,18 @@ class GenerateEvents:
                     continue
                 if random_cat.status not in event.r_c["status"] and "any" not in event.r_c["status"]:
                     continue
-                for condition in random_cat.permanent_condition:
-                    if condition in event.r_c["permanent_condition"]:
-                        condition_is_required = True
-                    if condition in event.r_c["not_permanent_condition"]:
-                        condition_cannot_be = True
+                if event.r_c["permanent_condition"]:
+                    for condition in random_cat.permanent_condition:
+                        if condition in event.r_c["permanent_condition"]:
+                            condition_is_required = True
+                    if not condition_is_required:
+                        continue
+                if event.r_c["not_permanent_condition"]:
+                    for condition in random_cat.permanent_condition:
+                        if condition in event.r_c["not_permanent_condition"]:
+                            condition_cannot_be = True
+                    if condition_cannot_be:
+                        continue
                 if not condition_is_required:
                     continue
                 if condition_cannot_be:
