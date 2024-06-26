@@ -841,7 +841,7 @@
     "rabbit gait": {
         "severity": "minor",
         "congenital": "always",
-        "moons_until": 4,
+        "moons_until": 3,
         "mortality": {
             "newborn": 0,
             "kitten": 0,
@@ -1070,24 +1070,7 @@
             "senior adult": 120,
             "senior": 60
         },
-        "illness_infectiousness": [
-            {
-                "name": "running nose",
-                "chance": 10
-            },
-            {
-                "name": "silvercough",
-                "chance": 20
-            },
-            {
-                "name": "greencough",
-                "chance": 30
-            },
-            {
-                "name": "yellowcough",
-                "chance": 40
-            }
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "running nose",
