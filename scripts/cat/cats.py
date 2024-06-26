@@ -1080,6 +1080,19 @@ class Cat:
                 already_gave_condition = True
                 break
 
+        if self.genotype.gender == "intersex" and self.genotype.chimera:
+            self.get_permanent_condition("chimerism", born_with=True)
+        elif self.genotype.gender != "intersex" and self.genotype.chimera:
+            if self.genderalign == "molly" or self.genderalign == "tom":
+                self.genderalign = "intersex"
+            self.gender = "intersex"
+            self.genotype.gender = "intersex"
+            self.get_permanent_condition("chimerism", born_with=True)
+        elif self.genotype.gender == "intersex" and self.genotype.chimera and not already_gave_condition:
+            intersex_condition = choice([choice(intersex_conditions), choice(intersex_conditions),
+                                         choice(intersex_conditions), choice(intersex_conditions), "chimerism"])
+            self.get_permanent_condition(intersex_condition, born_with=True)
+
         if self.genotype.deaf:
             if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
                 self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
@@ -1124,19 +1137,6 @@ class Cat:
 
         if self.genotype.lykoi[0] == 'ly':
             self.get_permanent_condition('bumpy skin', born_with=True, genetic=True)
-
-        if self.genotype.gender == "intersex" and self.genotype.chimera:
-            self.get_permanent_condition("chimerism", born_with=True)
-        elif self.genotype.gender != "intersex" and self.genotype.chimera:
-            self.genotype.gender = "intersex"
-            self.gender = "intersex"
-            if self.gender == self.genderalign:
-                self.genderalign = "intersex"
-            self.get_permanent_condition("chimerism", born_with=True)
-        elif self.genotype.gender == "intersex" and self.genotype.chimera and not already_gave_condition:
-            intersex_condition = choice([choice(intersex_conditions), choice(intersex_conditions),
-                                         choice(intersex_conditions), choice(intersex_conditions), "chimerism"])
-            self.get_permanent_condition(intersex_condition, born_with=True)
 
     @property
     def mentor(self):
