@@ -1083,7 +1083,7 @@ class Cat:
         if self.genotype.gender == "intersex" and self.genotype.chimera:
             self.get_permanent_condition("chimerism", born_with=True)
         elif self.genotype.gender != "intersex" and self.genotype.chimera:
-            if self.genderalign == "molly" or self.genderalign == "tom":
+            if self.gender == self.genderalign:
                 self.genderalign = "intersex"
             self.gender = "intersex"
             self.genotype.gender = "intersex"
@@ -2060,11 +2060,21 @@ class Cat:
 
     def one_moon(self):
         """Handles a moon skip for an alive cat."""
+        cisgenders = [
+            "molly", "tom", "intersex"
+        ]
         old_age = self.age
         self.moons += 1
         if self.moons == 1 and self.status == "newborn":
             self.status = "kitten"
         self.in_camp = 1
+
+        if self.gender != self.genotype.gender:
+            self.gender = self.genotype.gender
+            print(f"{self.name}'s gender doesn't match their genotype.gender. Resetting...")
+        if self.genderalign != self.gender and self.genderalign in cisgenders:
+            self.genderalign = self.gender
+            print(f"{self.name} is cisgender, but their genderalign doesn't match their gender. Resetting...")
 
         if self.exiled or self.outside:
             # this is handled in events.py
