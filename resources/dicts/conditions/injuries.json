@@ -1587,7 +1587,7 @@
     "popped cyst": {
         "duration": 2,
         "severity": "major",
-        "medicine_duration": 2,
+        "medicine_duration": 1,
         "mortality": {
             "newborn": 10,
             "kitten": 10,
