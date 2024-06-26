@@ -236,7 +236,7 @@ class Pregnancy_Events:
                 involved_cats.append(who_died.ID)
                 random_choice = who_died
             event_list.append(choice(events["adoption"]["dead_mate"]))
-        elif len(cat.mate) < 1 and not both_unmated and not dead_mate:
+        elif len(cat.mate) < 1 and both_unmated and not dead_mate:
             involved_cats.append(random_choice.ID)
             event_list.append(choice(events["adoption"]["both_unmated"]))
         elif (len(cat.mate) > 0 and affair) or (affair and len(which_aff.mate) > 0 and cat.ID not in which_aff.mate and not which_aff.dead):
@@ -392,8 +392,11 @@ class Pregnancy_Events:
                 possible_affair_partners = [i for i in unknowns if
                                         i.is_potential_mate(cat, for_love_interest=True, outsider=True)
                                         and (clan.clan_settings['same sex birth']
-                                        or (xor(i.gender == "tom", cat.gender == "tom")
-                                        or i.gender == "intersex" or cat.gender == "intersex"))
+                                        or (xor(i.genotype.gender == "tom", cat.genotype.gender == "tom")
+                                        and i.genotype.gender != "intersex" and cat.genotype.gender != "intersex"
+                                        and i.genotype.gender != cat.genotype.gender))
+                                        and not i.neutered and not cat.neutered
+                                        and "infertile" not in i.permanent_condition and "infertile" not in cat.permanent_condition
                                         and len(i.mate) == 0]
                 if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                     if(randint(1, 4) > 1):
@@ -429,8 +432,8 @@ class Pregnancy_Events:
                                                 is_parent=True)[0]
                         outside_parent.thought = "Is wondering what their kits are doing"
                         if random.random() < 0.2:
-                            outside_parent.set_mate(cat.ID)
-                            cat.set_mate(outside_parent.ID)
+                            outside_parent.set_mate(cat)
+                            cat.set_mate(outside_parent)
 
                     outside_parent = [outside_parent]
 
@@ -618,8 +621,11 @@ class Pregnancy_Events:
             possible_affair_partners = [i for i in unknowns if
                                     i.is_potential_mate(cat, for_love_interest=True, outsider=True)
                                     and (clan.clan_settings['same sex birth']
-                                    or (xor(i.gender == "tom", cat.gender == "tom")
-                                    or i.gender == "intersex" or cat.gender == "intersex"))
+                                    or (xor(i.genotype.gender == "tom", cat.genotype.gender == "tom")
+                                    and i.genotype.gender != "intersex" and cat.genotype.gender != "intersex"
+                                    and i.genotype.gender != cat.genotype.gender))
+                                    and not i.neutered and not cat.neutered
+                                    and "infertile" not in i.permanent_condition and "infertile" not in cat.permanent_condition
                                     and len(i.mate) == 0]
             if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                 if(randint(1, 4) > 1):
@@ -661,8 +667,8 @@ class Pregnancy_Events:
                             out_par.thought = f"Is wondering how {cat.name} is doing"
 
                         if random.random() < 0.2:
-                            out_par.set_mate(cat.ID)
-                            cat.set_mate(out_par.ID)
+                            out_par.set_mate(cat)
+                            cat.set_mate(out_par)
 
                         other_cat.append(out_par)
 
@@ -765,7 +771,7 @@ class Pregnancy_Events:
                 involved_cats.append(WhoDied.ID)
                 RandomChoice = WhoDied
             event_list.append(choice(events["birth"]["dead_mate"]))
-        elif len(cat.mate) < 1 and not Both_Unmated and not Dead_Mate:
+        elif len(cat.mate) < 1 and Both_Unmated and not Dead_Mate:
             involved_cats.append(RandomChoice.ID)
             event_list.append(choice(events["birth"]["both_unmated"]))
         elif (len(cat.mate) > 0 and Affair) or\
@@ -1644,7 +1650,7 @@ class Pregnancy_Events:
             inverse_chance = game.config["pregnancy"]["primary_chance_unmated"]
         else:
             inverse_chance = game.config["pregnancy"]["modded_primary_chance_unmated"]
-        if len(first_parent.mate) > 0 and not affair:
+        if len(first_parent.mate) > 0:
             if not (clan.clan_settings['modded_kits']):
                 inverse_chance = game.config["pregnancy"]["primary_chance_mated"]
             else:
@@ -1652,7 +1658,7 @@ class Pregnancy_Events:
 
         # SETTINGS
         # - decrease inverse chance if only mated pairs can have kits
-        if clan.clan_settings["single parentage"]:
+        if not clan.clan_settings["single parentage"]:
             inverse_chance = int(inverse_chance * 0.7)
 
         # - decrease inverse chance if affairs are not allowed
@@ -1672,6 +1678,7 @@ class Pregnancy_Events:
         # COMPATIBILITY
         # - decrease / increase depending on the compatibility
         comp = None
+        inv = inverse_chance
         if second_parent:
             for x in second_parent:
                 if comp == True:
@@ -1681,7 +1688,7 @@ class Pregnancy_Events:
                     buff = 0.85
                     if not comp:
                         buff += 0.3
-                    inverse_chance = int(inverse_chance * buff)
+                    inverse_chance = int(inv * buff)
 
 
         average_romantic_love = -1000
@@ -1712,26 +1719,26 @@ class Pregnancy_Events:
                 if x_trust > average_trust:
                     average_trust = x_trust
 
-                if average_romantic_love >= 85:
-                    inverse_chance -= int(inverse_chance * 0.3)
-                elif average_romantic_love >= 55:
-                    inverse_chance -= int(inverse_chance * 0.2)
-                elif average_romantic_love >= 35:
-                    inverse_chance -= int(inverse_chance * 0.1)
+            if average_romantic_love >= 85:
+                inverse_chance -= int(inverse_chance * 0.3)
+            elif average_romantic_love >= 55:
+                inverse_chance -= int(inverse_chance * 0.2)
+            elif average_romantic_love >= 35:
+                inverse_chance -= int(inverse_chance * 0.1)
 
-                if average_comfort >= 85:
-                    inverse_chance -= int(inverse_chance * 0.3)
-                elif average_comfort >= 55:
-                    inverse_chance -= int(inverse_chance * 0.2)
-                elif average_comfort >= 35:
-                    inverse_chance -= int(inverse_chance * 0.1)
+            if average_comfort >= 85:
+                inverse_chance -= int(inverse_chance * 0.3)
+            elif average_comfort >= 55:
+                inverse_chance -= int(inverse_chance * 0.2)
+            elif average_comfort >= 35:
+                inverse_chance -= int(inverse_chance * 0.1)
 
-                if average_trust >= 85:
-                    inverse_chance -= int(inverse_chance * 0.3)
-                elif average_trust >= 55:
-                    inverse_chance -= int(inverse_chance * 0.2)
-                elif average_trust >= 35:
-                    inverse_chance -= int(inverse_chance * 0.1)
+            if average_trust >= 85:
+                inverse_chance -= int(inverse_chance * 0.3)
+            elif average_trust >= 55:
+                inverse_chance -= int(inverse_chance * 0.2)
+            elif average_trust >= 35:
+                inverse_chance -= int(inverse_chance * 0.1)
         
         # AGE
         # - decrease the inverse chance if the whole clan is really old
