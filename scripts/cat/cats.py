@@ -1601,7 +1601,7 @@ class Cat():
                         self.new_alter()
             can_front = [str(self.name)]
             for alter in self.alters: 
-                if 'pregnant' not in self.injuries or alter["role"] != "little":
+                if ['pregnant', 'faux pregnant'] not in self.injuries or alter["role"] != "little":
                     can_front.append(alter["name"])
             self.front = choice(can_front)
             if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
