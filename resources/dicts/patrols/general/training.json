@@ -1909,11 +1909,11 @@
         },
         "weight": 20,
         "intro_text": "p_l heads out with a group of {PRONOUN/p_l/poss} Clanmates to go train.",
-        "decline_text": "A messager comes from the border, and p_l sighs. The patrol will have to go out without {PRONOUN/p_l/object} - this could be important.",
+        "decline_text": "A messanger comes from the border, and p_l sighs. The patrol will have to go out without {PRONOUN/p_l/object} - this could be important.",
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "It's not that they do anything remarkable together, but that's not the point. Instead, the purpose of this training is to get out of camp and amoungst {PRONOUN/p_l/poss} Clanmates, and it's important for p_l to do so as often as possible.",
+                "text": "It's not that they do anything remarkable together, but that's not the point. Instead, the purpose of this training is to get out of camp and amongst {PRONOUN/p_l/poss} Clanmates, and it's important for p_l to do so as often as possible.",
                 "exp": 30,
                 "weight": 5,
                 "relationships": [
@@ -2666,8 +2666,7 @@
         "max_cats": 6,
         "min_max_status": {
             "warrior": [1, 6],
-            "deputy": [1, 6],
-            "leader": [-1, -1]
+            "leader": [1, 6]
         },
         "weight": 10,
         "intro_text": "The patrol has a disagreement and looks to p_l to settle the dispute.",
@@ -2717,7 +2716,7 @@
                 ]
             },
             {
-                "text": "c_n's deputy always knows what to say - even if that sometimes includes laying down the law. p_l convinces the patrol that arguing over something so small is beneath them.",
+                "text": "c_n's guardian always knows what to say - even if that sometimes includes laying down the law. p_l convinces the patrol that arguing over something so small is beneath them.",
                 "exp": 20,
                 "weight": 20,
                 "can_have_stat": ["p_l"],
@@ -2786,7 +2785,7 @@
                 ]
             },
             {
-                "text": "Well, if the cats want s_c's advice (and they do, or at the very least they want to feel like they're in the right because the deputy is on their side), s_c would advise... compromise. While it isn't the most satisfying way to win an argument, it's the best path forward.",
+                "text": "Well, if the cats want s_c's advice (and they do, or at the very least they want to feel like they're in the right because the guardian is on their side), s_c would advise... compromise. While it isn't the most satisfying way to win an argument, it's the best path forward.",
                 "exp": 20,
                 "weight": 20,
                 "can_have_stat": ["p_l"],
@@ -10497,64 +10496,6 @@
         ]
     },
     {
-        "patrol_id": "gen_train_silverpeltfable_storylorelocked1",
-        "biome": ["any"],
-        "season": ["any"],
-        "types": ["training"],
-        "tags": [],
-        "patrol_art": "train_general_intro",
-        "min_cats": 3,
-        "max_cats": 6,
-        "min_max_status": {
-            "normal adult": [1, 5],
-            "apprentice": [1, 5]
-        },
-        "weight": 20,
-        "chance_of_success": 60,
-        "pl_skill_constraint": ["STORY,1", "LORE,1"],
-        "intro_text": "Legends tell of the first Clan cat that, upon her death, created the stars above and below...",
-        "decline_text": "No one is interested in fables today.",
-        "success_outcomes": [
-            {
-                "text": "As the first cat to ever pad through the stars, Silverpelt decorates her fur with the gleaming souls of fallen warriors to keep her company in Starclan.",
-                "exp": 30,
-                "weight": 20,
-                "relationships": [
-                        {
-                            "cats_to": ["p_l"],
-                            "cats_from": ["patrol"],
-                            "mutual": true,
-                            "values": ["platonic", "respect"],
-                            "amount": 5
-                        },
-                        {
-                            "cats_to": ["p_l"],
-                            "cats_from": ["patrol"],
-                            "mutual": false,
-                            "values": ["respect"],
-                            "amount": 5
-                        }
-                     ]
-            }
-        ],
-            "fail_outcomes": [
-                {
-                    "text": "Legends build no muscles and practice no pounces. app1 is uninterested in the lesson.",
-                    "exp": 0,
-                    "weight": 20,
-                    "relationships": [
-                        {
-                            "cats_to": ["p_l"],
-                            "cats_from": ["app1"],
-                            "mutual": false,
-                            "values": ["platonic", "respect"],
-                            "amount": -5
-                        }
-                    ]
-                }
-            ]
-    },
-    {
         "patrol_id": "gen_train_firestarfable_storylorelocked1",
         "biome": ["any"],
         "season": ["any"],
@@ -11017,7 +10958,7 @@
                 ]
             },
             {
-                "text": "app1 tries hard to resist the urge to scratch app2's confidence away. How dare {PRONOUN/app2/subject} try to show off during {PRONOUN/app1/poss} assessment? Unfortunately, it's a losing battle. app1 just can't hold {PRONOUN/app1/self} back anymore as {PRONOUN/app1/subject} listen to app2 brag about why {PRONOUN/app2/subject} should be guardian. app1 leaps onto {PRONOUN/app2/object}, and they tussle on the ground. The mentors rush out of hiding to break up the fight and chide the apprentices for their foolishness.",
+                "text": "app1 tries hard to resist the urge to scratch app2's confidence away. How dare {PRONOUN/app2/subject} try to show off during {PRONOUN/app1/poss} assessment? Unfortunately, it's a losing battle. app1 just can't hold {PRONOUN/app1/self} back anymore as {PRONOUN/app1/subject} listen to app2 brag about why {PRONOUN/app2/subject} should be leader. app1 leaps onto {PRONOUN/app2/object}, and they tussle on the ground. The mentors rush out of hiding to break up the fight and chide the apprentices for their foolishness.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["bloodthirsty"],
@@ -11065,8 +11006,8 @@
             "warrior": [1, 1]
         },
         "weight": 20,
-        "intro_text": "It is almost dawn when the deputy rouses app1 for {PRONOUN/app1/poss} assessment. {PRONOUN/app1/subject/CAP} {VERB/app1/are/is} meant to find p_l posing as an enemy warrior somewhere on the territory and handle the situation. p_l could be anywhere!",
-        "decline_text": "app1 sheepishly looks up at the deputy, a guilty gleam in {PRONOUN/app1/poss} eyes, and says that {PRONOUN/app1/subject} {VERB/app1/have/has} a stomachache. {PRONOUN/app1/subject/CAP} hurriedly {VERB/app1/run/runs} to the medicine den, wondering how {PRONOUN/app1/subject} {VERB/app1/are/is} going to get away with this fake illness at sunhigh when the Clan shares tongues.",
+        "intro_text": "It is almost dawn when the guardian rouses app1 for {PRONOUN/app1/poss} assessment. {PRONOUN/app1/subject/CAP} {VERB/app1/are/is} meant to find p_l posing as an enemy warrior somewhere on the territory and handle the situation. p_l could be anywhere!",
+        "decline_text": "app1 sheepishly looks up at the guardian, a guilty gleam in {PRONOUN/app1/poss} eyes, and says that {PRONOUN/app1/subject} {VERB/app1/have/has} a stomachache. {PRONOUN/app1/subject/CAP} hurriedly {VERB/app1/run/runs} to the medicine den, wondering how {PRONOUN/app1/subject} {VERB/app1/are/is} going to get away with this fake illness at sunhigh when the Clan shares tongues.",
         "chance_of_success": 60,
         "success_outcomes": [
             {
@@ -11112,7 +11053,7 @@
                 ]
             },
             {
-                "text": "app1 was already awake and raring to go. {PRONOUN/app1/subject/CAP} run off before the deputy can say anything. It's just a game of hide and seek, after all. When {PRONOUN/app1/subject} {VERB/app1/find/finds} p_l, {PRONOUN/app1/subject} {VERB/app1/have/has} to stifle {PRONOUN/app1/poss} chitters of excited pleasure. p_l must have heard {PRONOUN/app1/object}, because app1 sees {PRONOUN/p_l/poss} whiskers twitch in amusement. Oh well - {PRONOUN/app1/subject} gleefully {VERB/app1/charge/charges} forward anyway.",
+                "text": "app1 was already awake and raring to go. {PRONOUN/app1/subject/CAP} run off before the guardian can say anything. It's just a game of hide and seek, after all. When {PRONOUN/app1/subject} {VERB/app1/find/finds} p_l, {PRONOUN/app1/subject} {VERB/app1/have/has} to stifle {PRONOUN/app1/poss} chitters of excited pleasure. p_l must have heard {PRONOUN/app1/object}, because app1 sees {PRONOUN/p_l/poss} whiskers twitch in amusement. Oh well - {PRONOUN/app1/subject} gleefully {VERB/app1/charge/charges} forward anyway.",
                 "exp": 15,
                 "weight": 20,
                 "stat_skill": ["RUNNER,0", "CLEVER,0"],
