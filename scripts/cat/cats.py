@@ -2388,7 +2388,7 @@ class Cat:
                         self.new_alter()
             can_front = [str(self.name)]
             for alter in self.alters:
-                if 'pregnant' not in self.injuries or alter["role"] != "little":
+                if ("recovering from birth" not in self.injuries and "false pregnancy" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "false pregnancy" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
                     can_front.append(alter["name"])
             self.front = choice(can_front)
             if self.moons > 18:
