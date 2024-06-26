@@ -104,10 +104,7 @@ class Pregnancy_Events:
             cat, clan.clan_settings["single parentage"], clan.clan_settings["affair"]
         )
         if not can_have_kits:
-            if clan.clan_settings["pregnancy turmoil"] and "infertile" in cat.permanent_condition:
-                skip = True
-            else:
-                return
+            return
 
         false_preg = 0
         # FOR FALSE PREGNANCIES
@@ -132,10 +129,7 @@ class Pregnancy_Events:
         )
         if second_parent:
             if not can_have_kits:
-                if clan.clan_settings["pregnancy turmoil"] and "infertile" in second_parent.permanent_condition:
-                    skip = True
-                else:
-                    return
+                return
         else:
             if not game.clan.clan_settings["single parentage"]:
                 return
