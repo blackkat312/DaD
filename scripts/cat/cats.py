@@ -855,17 +855,6 @@ class Cat:
         else:
             self.backstory = self.backstory
 
-        # sex!?!??!?!?!??!?!?!?!??
-        if self.gender == "intersex":
-            intersex_conditions = []
-            for condition in PERMANENT:
-                intersex = PERMANENT[condition]
-                if intersex["congenital"] in ['intersex']:
-                    intersex_conditions.append(condition)
-
-            intersex_condition = choice(intersex_conditions)
-            self.get_permanent_condition(intersex_condition, born_with=True)
-
         self.gender = self.genotype.gender
         self.g_tag = self.gender_tags[self.gender]
 
@@ -1080,6 +1069,17 @@ class Cat:
         return hash(self.ID)
 
     def genetic_conditions(self):
+        already_gave_condition = False
+        intersex_conditions = []
+        for condition in PERMANENT:
+            intersex = PERMANENT[condition]
+            if intersex["congenital"] in ['intersex'] and intersex != "chimerism":
+                intersex_conditions.append(condition)
+        for x in self.permanent_condition:
+            if x in intersex_conditions:
+                already_gave_condition = True
+                break
+
         if self.genotype.deaf:
             if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
                 self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
@@ -1104,9 +1104,9 @@ class Cat:
         if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1)):
             self.get_permanent_condition('rabbit gait', born_with=True, genetic=True)
 
-        if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == 'c')):
+        if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c')):
             self.get_permanent_condition('albinism', born_with=True, genetic=True)
-        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or self.genotype.pinkdilute[0] == 'dp') or (self.genotype.chimera is True and (('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype) or self.genotype.chimerageno.pinkdilute[0] == 'dp')):
+        elif('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or self.genotype.pinkdilute[0] == 'dp') or (self.genotype.chimera and (('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype) or self.genotype.chimerageno.pinkdilute[0] == 'dp')):
             self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
 
         if self.phenotype.length == 'hairless':
@@ -1124,6 +1124,19 @@ class Cat:
 
         if self.genotype.lykoi[0] == 'ly':
             self.get_permanent_condition('bumpy skin', born_with=True, genetic=True)
+
+        if self.genotype.gender == "intersex" and self.genotype.chimera:
+            self.get_permanent_condition("chimerism", born_with=True)
+        elif self.genotype.gender != "intersex" and self.genotype.chimera:
+            self.genotype.gender = "intersex"
+            self.gender = "intersex"
+            if self.gender == self.genderalign:
+                self.genderalign = "intersex"
+            self.get_permanent_condition("chimerism", born_with=True)
+        elif self.genotype.gender == "intersex" and self.genotype.chimera and not already_gave_condition:
+            intersex_condition = choice([choice(intersex_conditions), choice(intersex_conditions),
+                                         choice(intersex_conditions), choice(intersex_conditions), "chimerism"])
+            self.get_permanent_condition(intersex_condition, born_with=True)
 
     @property
     def mentor(self):
@@ -2997,9 +3010,9 @@ class Cat:
 
         if (name == "rabbit gait" or name == "manx syndrome") and "M" not in self.genotype.manx:
             return
-        if name == "albinism" and not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera is True and self.genotype.chimerageno.pointgene[0] == "c")):
+        if name == "albinism" and not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == "c")):
             return
-        elif name == "ocular albinism" and not ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or self.genotype.pinkdilute[0] == "dp" or (self.genotype.chimera is True and ("albino" in self.genotype.chimerageno.lefteyetype or "albino" in self.genotype.chimerageno.righteyetype or self.genotype.chimerageno.pinkdilute[0] == "dp"))):
+        elif name == "ocular albinism" and not ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or self.genotype.pinkdilute[0] == "dp" or (self.genotype.chimera and ("albino" in self.genotype.chimerageno.lefteyetype or "albino" in self.genotype.chimerageno.righteyetype or self.genotype.chimerageno.pinkdilute[0] == "dp"))):
             return
         if name == "fully hairless" and self.phenotype.length != "hairless":
             return
@@ -3129,7 +3142,7 @@ class Cat:
                 "severity": new_perm_condition.severity,
                 "born_with": born_with,
                 "moons_until": new_perm_condition.moons_until,
-                "moon_start": game.clan.age if game.clan else 0,
+                "moon_start": starting_moon if starting_moon else 0,
                 "mortality": new_perm_condition.current_mortality,
                 "illness_infectiousness": new_perm_condition.illness_infectiousness,
                 "risks": new_perm_condition.risks,
