@@ -890,9 +890,11 @@ def create_new_cat(
 
         if kittypet and randint(1, 5) > 2 and age > 2:
             new_cat.neutered = True
-        elif loner and random.randint(1, 7) == 1 and age > 2:
+        elif kittypet and randint(1, 3) == 1 and age > 2:
+            new_cat.vaccinated = True
+        elif loner and randint(1, 7) == 1 and age > 2:
             new_cat.neutered = True
-        elif other_clan and random.randint(1, 12) == 1 and age > 2:
+        elif other_clan and randint(1, 12) == 1 and age > 2:
             new_cat.neutered = True
 
         # give apprentice aged cat a mentor
