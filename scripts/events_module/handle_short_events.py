@@ -288,7 +288,7 @@ class HandleShortEvents():
                 if cat.dead:
                     extra_text = f"{cat.name}'s ghost now wanders."
                 elif cat.outside:
-                    extra_text = f"The Clan now knows about {cat.name}'s presence in the territories."
+                    extra_text = f"Some members of the Clan recognize this cat - it's {cat.name}!"
                 else:
                     Relation_Events.welcome_new_cats([cat])
                 self.involved_cats.append(cat.ID)
