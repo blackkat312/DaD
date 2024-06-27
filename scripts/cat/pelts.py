@@ -571,29 +571,27 @@ class Pelt:
         #   PELT LENGTH
         # ------------------------------------------------------------------------------------------------------------#
 
-        """
         weights = [0, 0, 0]  # Weights for each length. It goes (short, medium, long)
-        for p_ in par_peltlength:
-            if p_ == "short":
-                add_weight = (50, 10, 2)
-            elif p_ == "medium":
-                add_weight = (25, 50, 25)
-            elif p_ == "long":
-                add_weight = (2, 10, 50)
-            elif p_ is None:
-                add_weight = (10, 10, 10)
-            else:
-                add_weight = (0, 0, 0)
+        #for p_ in par_peltlength:
+        #    if p_ == "short":
+        #        add_weight = (50, 10, 2)
+        #    elif p_ == "medium":
+        #        add_weight = (25, 50, 25)
+        #    elif p_ == "long":
+        #        add_weight = (2, 10, 50)
+        #    elif p_ is None:
+        #        add_weight = (10, 10, 10)
+        #    else:
+        #        add_weight = (0, 0, 0)
 
-            for x in range(0, len(weights)):
-                weights[x] += add_weight[x]
+        #    for x in range(0, len(weights)):
+        #        weights[x] += add_weight[x]
 
         # A quick check to make sure all the weights aren't 0
-        if all([x == 0 for x in weights]):
-            weights = [1, 1, 1]
+        #if all([x == 0 for x in weights]):
+        #    weights = [1, 1, 1]
 
-        chosen_pelt_length = random.choices(Pelt.pelt_length, weights=weights, k=1)[0]
-        """
+        #chosen_pelt_length = random.choices(Pelt.pelt_length, weights=weights, k=1)[0]
 
         # ------------------------------------------------------------------------------------------------------------#
         #   PELT WHITE
@@ -1038,6 +1036,7 @@ class Pelt:
     def describe_appearance(cat, short=False):
 
         color_name = cat.phenotype.PhenotypeOutput(gender=cat.genderalign, pattern=cat.genotype.white_pattern)
+
 
         scar_details = {
             "NOTAIL": "a stubby tail",
