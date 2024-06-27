@@ -888,6 +888,13 @@ def create_new_cat(
         if accessory:
             new_cat.pelt.accessory = accessory
 
+        if kittypet and randint(1, 5) > 2 and age > 2:
+            new_cat.neutered = True
+        elif loner and random.randint(1, 7) == 1 and age > 2:
+            new_cat.neutered = True
+        elif other_clan and random.randint(1, 12) == 1 and age > 2:
+            new_cat.neutered = True
+
         # give apprentice aged cat a mentor
         if new_cat.age == "adolescent":
             new_cat.update_mentor()
