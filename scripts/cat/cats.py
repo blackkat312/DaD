@@ -786,6 +786,7 @@ class Cat:
         self.no_mates = False
         self.no_retire = False
         self.neutered = False
+        self.vaccinated = False
         self.prevent_fading = False  # Prevents a cat from fading
 
         self.faded_offspring = (
@@ -2075,6 +2076,9 @@ class Cat:
         if self.genderalign != self.gender and self.genderalign in cisgenders:
             self.genderalign = self.gender
             print(f"{self.name} is cisgender, but their genderalign doesn't match their gender. Resetting...")
+
+        if self.neutered and not self.vaccinated:
+            self.vaccinated = True
 
         if self.exiled or self.outside:
             # this is handled in events.py
@@ -4471,6 +4475,7 @@ class Cat:
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
                 "neutered": self.neutered,
+                "vaccinated": self.vaccinated,
                 "exiled": self.exiled,
                 "genotype": self.genotype.toJSON(),
                 "white_pattern" : self.genotype.white_pattern,
