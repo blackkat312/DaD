@@ -742,11 +742,16 @@ class Events:
             herbs_found = []
 
             # handle medicine cats
-            healthy_meds = list(filter(
-                lambda c: c.status == "medicine cat" and not c.dead
-                and not c.outside and not c.exiled and not c.not_working(),
-                Cat.all_cats.values()
-            ))
+            healthy_meds = list(
+                filter(
+                    lambda c: c.status == "medicine cat"
+                    and not c.dead
+                    and not c.outside
+                    and not c.exiled
+                    and not c.not_working(),
+                    Cat.all_cats.values(),
+                )
+            )
             med_amount = game.config["focus"]["herb gathering"]["med"]
             for med in healthy_meds:
                 herbs_found.extend(random.sample(HERBS, k=med_amount))
@@ -1034,7 +1039,13 @@ class Events:
         # Perform a ceremony if needed
         for cat_ID in cat_IDs:
             x = Cat.fetch_cat(cat_ID)
-            if x.status in ["apprentice", "medicine cat apprentice", "mediator apprentice", "kitten", "newborn"]:
+            if x.status in [
+                "apprentice",
+                "medicine cat apprentice",
+                "mediator apprentice",
+                "kitten",
+                "newborn",
+            ]:
                 if x.moons >= 15:
                     if x.status == "medicine cat apprentice":
                         self.ceremony(x, "medicine cat")
@@ -1549,7 +1560,7 @@ class Events:
         if not cat_dead:
             if cat.status == "deputy" and game.clan.deputy is None:
                 game.clan.deputy = cat
-            if cat.status == 'medicine cat' and game.clan.medicine_cat is None:
+            if cat.status == "medicine cat" and game.clan.medicine_cat is None:
                 game.clan.medicine_cat = cat
 
             # retiring to elder den
@@ -1569,17 +1580,25 @@ class Events:
 
             # apprentice a kitten to either med or warrior
             if cat.moons == cat_class.age_moons["adolescent"][0]:
-                if cat.status == 'kitten':
+                if cat.status == "kitten":
                     skills_string = str(cat.skills)
-                    med_cat_list = [i for i in Cat.all_cats_list if
-                                    i.status in ["medicine cat", "medicine cat apprentice"] and not (
-                                            i.dead or i.outside)]
+                    med_cat_list = [
+                        i
+                        for i in Cat.all_cats_list
+                        if i.status in ["medicine cat", "medicine cat apprentice"]
+                        and not (i.dead or i.outside)
+                    ]
 
                     # check if the medicine cat is an elder
-                    has_elder_med = [c for c in med_cat_list if c.age == 'senior' and c.status == "medicine cat"]
+                    has_elder_med = [
+                        c
+                        for c in med_cat_list
+                        if c.age == "senior" and c.status == "medicine cat"
+                    ]
 
                     very_old_med = [
-                        c for c in med_cat_list
+                        c
+                        for c in med_cat_list
                         if c.moons >= 150 and c.status == "medicine cat"
                     ]
 
@@ -1590,8 +1609,9 @@ class Events:
                     )
 
                     # check if a med cat app already exists
-                    has_med_app = any(cat.status == "medicine cat apprentice"
-                                      for cat in med_cat_list)
+                    has_med_app = any(
+                        cat.status == "medicine cat apprentice" for cat in med_cat_list
+                    )
 
                     # assign chance to become med app depending on current med cat and traits
                     chance = game.config["roles"]["base_medicine_app_chance"]
@@ -1665,7 +1685,7 @@ class Events:
                         chance = 1
 
                     if not has_med_app and not int(random.random() * chance):
-                        self.ceremony(cat, 'medicine cat apprentice')
+                        self.ceremony(cat, "medicine cat apprentice")
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
                     else:
@@ -1779,8 +1799,9 @@ class Events:
 
             # graduate
             if cat.status in [
-                "apprentice", "mediator apprentice",
-                "medicine cat apprentice"
+                "apprentice",
+                "mediator apprentice",
+                "medicine cat apprentice",
             ]:
 
                 if game.clan.clan_settings["12_moon_graduation"]:
@@ -2030,7 +2051,7 @@ class Events:
 
         # getting the random honor if it's needed
         random_honor = None
-        if promoted_to in ['warrior', 'mediator', 'medicine cat']:
+        if promoted_to in ["warrior", "mediator", "medicine cat"]:
             resource_dir = "resources/dicts/events/ceremonies/"
             with open(
                 f"{resource_dir}ceremony_traits.json", encoding="ascii"
@@ -2121,7 +2142,7 @@ class Events:
         # chance to gain acc
         acc_chances = game.config["accessory_generation"]
         chance = acc_chances["base_acc_chance"]
-        if cat.status in ['medicine cat', 'medicine cat apprentice']:
+        if cat.status in ["medicine cat", "medicine cat apprentice"]:
             chance += acc_chances["med_modifier"]
         if cat.age in ["kitten", "adolescent"]:
             chance += acc_chances["baby_modifier"]
@@ -2213,7 +2234,9 @@ class Events:
         TODO: DOCS
         """
         if cat.status in [
-            "apprentice", "medicine cat apprentice", "mediator apprentice"
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
         ]:
 
             if cat.not_working() and int(random.random() * 3):
@@ -2360,7 +2383,7 @@ class Events:
                                              sub_type=["old_age"],
                                              freshkill_pile=game.clan.freshkill_pile)
             return True
-        
+
         # disaster death chance
         if game.clan.clan_settings.get('disasters'):
             if not random.getrandbits(10):  # 1/1010
@@ -2675,13 +2698,13 @@ class Events:
         # TODO: should figure out how to handle these as a ShortEvent, we don't want hardcoded text
         if cat.genderalign == cat.gender:
             involved_cats = [cat.ID]
-            if cat.age == 'kitten':
+            if cat.age == "kitten":
                 transing_chance = random.randint(0, 85)
-            elif cat.age == 'adolescent':
+            elif cat.age == "adolescent":
                 transing_chance = random.randint(0, 85)
-            elif cat.age == 'young adult':
+            elif cat.age == "young adult":
                 transing_chance = random.randint(0, 95)
-            elif cat.age == 'adult':
+            elif cat.age == "adult":
                 transing_chance = random.randint(0, 110)
             else:
                 # senior adult & elder
@@ -2720,14 +2743,14 @@ class Events:
                 cat.genderalign = random.choice(genderqueer_list)
                 cat.pronouns = [cat.default_pronouns[0].copy()]
 
-            trans = ''
-            if cat.gender == 'tom':
-                gender = 'a tom'
-            elif cat.gender == 'molly':
-                gender = 'a molly'
+            trans = ""
+            if cat.gender == "tom":
+                gender = "a tom"
+            elif cat.gender == "molly":
+                gender = "a molly"
             else:
-                gender = 'just intersex'
-                trans = 'also '
+                gender = "just intersex"
+                trans = "also "
 
             if cat.genderalign == "trans molly":
                 trans += "a molly"
@@ -2744,7 +2767,7 @@ class Events:
                 text = random.choice(
                     [
                         f"{cat.name} has been mulling over this for moons, but now they feel comfortable enough to tell the Clan: they aren't {gender}, they're {trans}.",
-                        f"For a long time, the only term {cat.name} knew to describe themself was \"{cat.gender}\", and it never really felt like it fit. However, when they find the term {cat.genderalign}, they feel so much better calling themself {trans} instead of {gender}."
+                        f"For a long time, the only term {cat.name} knew to describe themself was \"{cat.gender}\" - and it never really felt like it fit. However, when they find the term {cat.genderalign}, they feel so much better calling themself that instead of {gender}."
                     ]
                 )
             else:
@@ -2792,15 +2815,29 @@ class Events:
                 # This determines all the cats who are eligible to be deputy.
                 possible_deputies = list(
                     filter(
-                        lambda x: not x.dead and not x.outside and x.status ==
-                                  "warrior" and ([i for i in x.former_apprentices if 'apprentice' not in Cat.all_cats.get(i).status]),
-                        Cat.all_cats_list))
+                        lambda x: not x.dead
+                        and not x.outside
+                        and x.status == "warrior"
+                        and (
+                                  [
+                                      i
+                                      for i in x.former_apprentices
+                                      if "apprentice" not in Cat.all_cats.get(i).status
+                                  ]
+                        ),
+                        Cat.all_cats_list,
+                    )
+                )
                 if not possible_deputies:
                     possible_deputies = list(
                         filter(
-                            lambda x: not x.dead and not x.outside and x.status ==
-                                    "warrior" and (x.apprentice or x.former_apprentices),
-                            Cat.all_cats_list))
+                            lambda x: not x.dead
+                            and not x.outside
+                            and x.status == "warrior"
+                            and (x.apprentice or x.former_apprentices),
+                            Cat.all_cats_list,
+                        )
+                    )
 
                 # If there are possible deputies, choose from that list.
                 if possible_deputies:
