@@ -1013,7 +1013,7 @@ class Events:
             cat_IDs.extend(additional_cats)
             text = random.choice(text)
             if lost_cat.neutered:
-                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/smell/smells} a bit different, though, and {VERB/m_c/have/has} a small, barely visible scar on {PRONOUN/m_c/poss} belly"
+                text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/smell/smells} a bit different, though, and one of {PRONOUN/m_c/poss} ears is tipped."
 
             if additional_cats:
                 if "{VERB/m_c/smell/smells}" in text:
@@ -1134,23 +1134,32 @@ class Events:
 
         self.handle_outside_EX(cat)
 
-        # steal their balls
+        # tnr
         if cat.moons > 2 and tnr_setting and not cat.neutered:
             if cat.status == "kittypet":
-                if cat.moons <= 12 and random.randint(1, 5) > 2:
+                if cat.moons <= 12 and random.randint(1, 9) == 1:
                     cat.neutered = True
-                elif cat.moons <= 24 and random.randint(1, 30) == 1:
+                elif cat.moons <= 24 and random.randint(1, 50) == 1:
                     cat.neutered = True
-                elif random.randint(1, 100) == 1:
+                elif random.randint(1, 250) == 1:
                     cat.neutered = True
             elif cat.status in ["loner", "rogue", "former Clancat"]:
                 if cat.moons <= 12 and random.randint(1, 15) == 1:
                     cat.neutered = True
-                elif random.randint(1, 50) == 1:
+                elif random.randint(1, 100) == 1:
                     cat.neutered = True
             elif cat.status != "driven off":
                 if random.randint(1, 2) == 1:
                     cat.neutered = True
+
+        # vaccinate
+        if cat.moons > 2 and tnr_setting and not cat.neutered and not cat.vaccinated and cat.status == "kittypet":
+            if cat.moons <= 12 and random.randint(1, 4) == 1:
+                cat.vaccinated = True
+            elif cat.moons <= 24 and random.randint(1, 30) == 1:
+                cat.vaccinated = True
+            elif random.randint(1, 175) == 1:
+                cat.vaccinated = True
 
         cat.skills.progress_skill(cat)
         Pregnancy_Events.handle_having_kits(cat, clan=game.clan)
@@ -1209,7 +1218,6 @@ class Events:
         and new cat events
         """
         if cat.dead:
-
             cat.thoughts()
             if cat.ID in game.just_died:
                 cat.moons += 1
