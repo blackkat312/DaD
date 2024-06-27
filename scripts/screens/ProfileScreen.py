@@ -333,13 +333,12 @@ class ProfileScreen(Screens):
                     else:
                         self.the_cat.genderalign = random.choice(genderqueer_list)
                 # pronoun handler
-                if self.the_cat.genderalign == "molly":
-                    self.pronouns = [self.the_cat.default_pronouns[1].copy()]
-                elif self.the_cat.genderalign == "tom":
-                    self.pronouns = [self.the_cat.default_pronouns[2].copy()]
+                if self.the_cat.genderalign in ["molly", "trans molly"]:
+                    self.the_cat.pronouns = [self.the_cat.default_pronouns[1].copy()]
+                elif self.the_cat.genderalign in ["tom", "trans tom"]:
+                    self.the_cat.pronouns = [self.the_cat.default_pronouns[2].copy()]
                 else:
-                    self.pronouns = [self.the_cat.default_pronouns[0].copy()]
-
+                    self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
                 self.clear_profile()
                 self.build_profile()
                 self.update_disabled_buttons_and_text()
@@ -392,14 +391,14 @@ class ProfileScreen(Screens):
                     self.help_button.kill()
                 elif self.open_sub_tab == 'genetics':
                     self.genetic_text_box.kill()
-                self.open_sub_tab = 'life events'
+                self.open_sub_tab = "life events"
                 self.toggle_history_sub_tab()
             elif event.ui_element == self.sub_tab_2:
                 if self.open_sub_tab == "life events":
                     self.history_text_box.kill()
                 elif self.open_sub_tab == 'genetics':
                     self.genetic_text_box.kill()
-                self.open_sub_tab = 'user notes'
+                self.open_sub_tab = "user notes"
                 self.toggle_history_sub_tab()
             elif event.ui_element == self.sub_tab_3:
                 if self.open_sub_tab == 'user notes':
@@ -875,9 +874,9 @@ class ProfileScreen(Screens):
         output += "\n"
 
         # PELT TYPE
-        #output += 'pelt: ' + the_cat.pelt.name.lower()
+        # output += "pelt: " + the_cat.pelt.name.lower()
         # NEWLINE ----------
-        #output += "\n"
+        # output += "\n"
 
         # PELT LENGTH
         output += "fur length: " + the_cat.pelt.length
@@ -972,18 +971,6 @@ class ProfileScreen(Screens):
         if not the_cat.dead:
             # NEWLINE ----------
             output += "\n"
-
-        # NUTRITION INFO (if the game is in the correct mode)
-        if game.clan.game_mode in ["expanded", "cruel season"] and the_cat.is_alive() and FRESHKILL_ACTIVE:
-            nutr = None
-            if the_cat.ID in game.clan.freshkill_pile.nutrition_info:
-                nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
-            if nutr:
-                output += f"nutrition status: {round(nutr.percentage, 1)}%\n"
-            else:
-                output += f"nutrition status: 100%\n"
-
-        
 
         return output
 
@@ -1563,7 +1550,6 @@ class ProfileScreen(Screens):
         if self.user_notes is None:
             self.user_notes = "Click the check mark to enter notes about your cat!"
 
-
         self.notes_entry = pygame_gui.elements.UITextEntryBox(
             scale(pygame.Rect((200, 946), (1200, 298))),
             initial_text=self.user_notes,
@@ -1813,10 +1799,14 @@ class ProfileScreen(Screens):
         influence_history = ""
 
         # First, just list the mentors:
-        if self.the_cat.status in ['kitten', 'newborn']:
-            influence_history = 'This cat has not begun training.'
-        elif self.the_cat.status in ['apprentice', 'medicine cat apprentice', 'mediator apprentice']:
-            influence_history = 'This cat has not finished training.'
+        if self.the_cat.status in ["kitten", "newborn"]:
+            influence_history = "This cat has not begun training."
+        elif self.the_cat.status in [
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
+        ]:
+            influence_history = "This cat has not finished training."
         else:
             valid_formor_mentors = [
                 Cat.fetch_cat(i)
@@ -2868,8 +2858,12 @@ class ProfileScreen(Screens):
                 self.manage_roles.disable()
             else:
                 self.manage_roles.enable()
-            if self.the_cat.status not in ['apprentice', 'medicine cat apprentice', 'mediator apprentice'] \
-                    or self.the_cat.dead or self.the_cat.outside:
+            if (
+                self.the_cat.status
+                not in ["apprentice", "medicine cat apprentice", "mediator apprentice"]
+                or self.the_cat.dead
+                or self.the_cat.outside
+            ):
                 self.change_mentor_button.disable()
             else:
                 self.change_mentor_button.enable()
@@ -2887,7 +2881,9 @@ class ProfileScreen(Screens):
                     object_id="#change_trans_female_button",
                     manager=MANAGER,
                 )
-            elif self.the_cat.gender == "molly" and self.the_cat.genderalign == "molly":
+            elif (
+                self.the_cat.gender == "molly" and self.the_cat.genderalign == "molly"
+            ):
                 self.cis_trans_button = UIImageButton(
                     scale(pygame.Rect((804, 972), (344, 104))),
                     "",
@@ -2911,7 +2907,12 @@ class ProfileScreen(Screens):
                     object_id="#change_nonbi_button",
                     manager=MANAGER,
                 )
-            elif self.the_cat.genderalign not in ["molly", "trans molly", "tom", "trans tom"]:
+            elif self.the_cat.genderalign not in [
+                "molly",
+                "trans molly",
+                "tom",
+                "trans tom",
+            ]:
                 self.cis_trans_button = UIImageButton(
                     scale(pygame.Rect((804, 972), (344, 104))),
                     "",
@@ -3123,10 +3124,13 @@ class ProfileScreen(Screens):
                         manager=MANAGER,
                     )
 
-                    self.display_notes = UITextBoxTweaked(self.user_notes,
-                                                          scale(pygame.Rect((200, 946), (1200, 298))),
-                                                          object_id="#text_box_26_horizleft_pad_10_14",
-                                                          line_spacing=1, manager=MANAGER)
+                    self.display_notes = UITextBoxTweaked(
+                        self.user_notes,
+                        scale(pygame.Rect((200, 946), (1200, 298))),
+                        object_id="#text_box_26_horizleft_pad_10_14",
+                        line_spacing=1,
+                        manager=MANAGER,
+                    )
             elif self.open_sub_tab == 'genetics':
                 self.sub_tab_1.enable()
                 self.sub_tab_2.enable()
