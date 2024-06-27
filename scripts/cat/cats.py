@@ -84,7 +84,7 @@ class Cat:
         "leader",
     ]
 
-    gender_tags = {'molly': 'F', 'tom': 'M', 'intersex': 'I'}
+    gender_tags = {"molly": "F", "tom": "M", "intersex": "I"}
 
     # EX levels and ranges.
     # Ranges are inclusive to both bounds
@@ -151,13 +151,32 @@ class Cat:
         example=False,
         faded=False,
         skill_dict=None,
-        pelt:Pelt=None,
-        genotype:Genotype=None,
+        pelt: Pelt=None,
+        genotype: Genotype=None,
         white_patterns=None,
         chim_white=None,
         loading_cat=False,  # Set to true if you are loading a cat at start-up.
-        **kwargs
-        ):
+        **kwargs,
+    ):
+        """Initialise the cat.
+
+        :param prefix: Cat's prefix (e.g. Fire- for Fireheart)
+        :param gender: Cat's gender, default None
+        :param status: Cat's age range, default "newborn"
+        :param backstory: Cat's origin, default "clanborn"
+        :param parent1: ID of parent 1, default None
+        :param parent2: ID of parent 2, default None
+        :param suffix: Cat's suffix (e.g. -heart for Fireheart)
+        :param specsuffix_hidden: Whether cat has a special suffix (-kit, -paw, etc.), default False
+        :param ID: Cat's unique ID, default None
+        :param moons: Cat's age, default None
+        :param example: If cat is an example cat, default False
+        :param faded: If cat is faded, default False
+        :param skill_dict: TODO find a good definition for this
+        :param pelt: Body details, default None
+        :param loading_cat: If loading a cat rather than generating a new one, default False
+        :param kwargs: TODO what are the possible args here? ["biome", ]
+        """
 
         self.history = None
 
@@ -189,7 +208,6 @@ class Cat:
         )
         self.parent1 = parent1
         self.parent2 = parent2
-
         self.adoptive_parents = []
         self.genotype = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
         # print(genotype)
@@ -787,6 +805,7 @@ class Cat:
         self.no_retire = False
         self.neutered = False
         self.vaccinated = False
+
         self.prevent_fading = False  # Prevents a cat from fading
 
         self.faded_offspring = (
@@ -849,13 +868,13 @@ class Cat:
                 self.age = choice(['young adult', 'adult', 'adult', 'senior adult'])
             self.moons = randint(self.age_moons[self.age][0], self.age_moons[self.age][1])
 
-
         # backstory
         if self.backstory is None:
             self.backstory = "clanborn"
         else:
             self.backstory = self.backstory
 
+        # sex!?!??!?!?!??!?!?!?!??
         self.gender = self.genotype.gender
         self.g_tag = self.gender_tags[self.gender]
 
@@ -880,7 +899,6 @@ class Cat:
             biome = game.clan.biome
         else:
             biome = None
-
         # NAME
         # load_existing_name is needed so existing cats don't get their names changed/fixed for no reason
         if self.pelt is not None:
@@ -897,8 +915,14 @@ class Cat:
                 load_existing_name=loading_cat,
             )
         else:
-            self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
-                             load_existing_name = loading_cat)
+            self.name = Name(
+                status,
+                prefix,
+                suffix,
+                eyes=self.pelt.eye_colour,
+                specsuffix_hidden=self.specsuffix_hidden,
+                load_existing_name=loading_cat,
+            )
 
         # Private Sprite
         self._sprite = None
@@ -1022,9 +1046,15 @@ class Cat:
             self.pronouns = [self.default_pronouns[0].copy()]
 
         # APPEARANCE
-        self.pelt = Pelt.generate_new_pelt(self.genotype, self.phenotype, self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
+        self.pelt = Pelt.generate_new_pelt(
+            self.genotype,
+            self.phenotype,
+            self.gender,
+            [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i],
+            self.age,
+        )
 
-        #Personality
+        # Personality
         self.personality = Personality(kit_trait=self.is_baby())
 
         # experience and current patrol status
@@ -1033,10 +1063,12 @@ class Cat:
         elif self.age in ['adolescent']:
             m = self.moons
             self.experience = 0
-            while m > Cat.age_moons['adolescent'][0]:
+            while m > Cat.age_moons["adolescent"][0]:
                 ran = game.config["graduation"]["base_app_timeskip_ex"]
                 exp = choice(
-                    list(range(ran[0][0], ran[0][1] + 1)) + list(range(ran[1][0], ran[1][1] + 1)))
+                    list(range(ran[0][0], ran[0][1] + 1))
+                    + list(range(ran[1][0], ran[1][1] + 1))
+                )
                 self.experience += exp + 3
                 m -= 1
         elif self.age in ['young adult', 'adult']:
@@ -1468,19 +1500,23 @@ class Cat:
         for child_id in children:
             if Cat.all_cats.get(child_id, None):
                 child = Cat.all_cats[child_id]
-                if child.outside and not child.exiled and not child.dead and child.moons < 12:
+                if (
+                    child.outside
+                    and not child.exiled
+                    and not child.dead
+                    and child.moons < 12
+                ):
                     child.add_to_clan()
                     ids.append(child_id)
-
 
         return ids
 
     def status_change(self, new_status, resort=False):
-        """ Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
-            new_status = The new status of a cat. Can be 'apprentice', 'medicine cat apprentice', 'warrior'
-                        'medicine cat', 'elder'.
-            resort = If sorting type is 'rank', and resort is True, it will resort the cat list. This should
-                    only be true for non-timeskip status changes. """
+        """Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
+        new_status = The new status of a cat. Can be 'apprentice', 'medicine cat apprentice', 'warrior'
+                    'medicine cat', 'elder'.
+        resort = If sorting type is 'rank', and resort is True, it will resort the cat list. This should
+                only be true for non-timeskip status changes."""
         old_status = self.status
         self.status = new_status
         self.name.status = new_status
@@ -1499,7 +1535,7 @@ class Cat:
         if self.status == "apprentice":
             pass
 
-        elif self.status == 'medicine cat apprentice':
+        elif self.status == "medicine cat apprentice":
             pass
 
         elif self.status == "warrior":
@@ -1515,7 +1551,7 @@ class Cat:
                     game.clan.deputy = None
                     game.clan.deputy_predecessors += 1
 
-        elif self.status == 'medicine cat':
+        elif self.status == "medicine cat":
             if game.clan is not None:
                 game.clan.new_medicine_cat(self)
 
@@ -1583,11 +1619,15 @@ class Cat:
         self.personality.set_kit(self.is_baby())  # Update kit trait stuff
 
     def describe_cat(self, short=False):
-        """ Generates a string describing the cat's appearance and gender. Mainly used for generating
-        the allegiances. If short is true, it will generate a very short one, with the minimal amount of information. """
+        """Generates a string describing the cat's appearance and gender.
+
+        :param short: Whether to truncate the output, default False
+        :type short: bool
+        """
         return Pelt.describe_appearance(self, short)
 
     def describe_eyes(self):
+        """Get a human-readable description of this cat's eye colour"""
         if(self.genotype.lefteye == self.genotype.righteye):
             colour = self.genotype.lefteye.lower()
         else:
@@ -2098,7 +2138,11 @@ class Cat:
         self.personality.set_kit(self.is_baby())
         # Upon age-change
 
-        if self.status in ['apprentice', 'mediator apprentice', 'medicine cat apprentice']:
+        if self.status in [
+            "apprentice",
+            "mediator apprentice",
+            "medicine cat apprentice",
+        ]:
             self.update_mentor()
 
     def thoughts(self):
@@ -2896,7 +2940,7 @@ class Cat:
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
-            if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
+            if possible["congenital"] in ["always", "sometimes"] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
         while count <= max_conditions:
@@ -3057,12 +3101,12 @@ class Cat:
             return
 
         # remove accessories if need be
-        if ('NOTAIL' in self.pelt.scars or (self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5)) and self.pelt.accessory in [
-            'RED FEATHERS',
-            'BLUE FEATHERS',
-            'JAY FEATHERS',
-            'SEAWEED',
-            'DAISY CORSAGE',
+        if ("NOTAIL" in self.pelt.scars or (self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5)) and self.pelt.accessory in [
+            "RED FEATHERS",
+            "BLUE FEATHERS",
+            "JAY FEATHERS",
+            "SEAWEED",
+            "DAISY CORSAGE",
         ]:
             self.pelt.accessory = None
         if "HALFTAIL" in self.pelt.scars and self.pelt.accessory in [
@@ -3205,9 +3249,13 @@ class Cat:
     def retire_cat(self):
         """This is only for cats that retire due to health condition"""
 
-        #There are some special tasks we need to do for apprentice
-        # Note that although you can unretire cats, they will be a full warrior/med_cat/mediator
-        if self.moons > 6 and self.status in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
+        # There are some special tasks we need to do for apprentice
+        # Note that although you can un-retire cats, they will be a full warrior/med_cat/mediator
+        if self.moons > 6 and self.status in [
+            "apprentice",
+            "medicine cat apprentice",
+            "mediator apprentice",
+        ]:
             _ment = Cat.fetch_cat(self.mentor) if self.mentor else None
             self.status_change(
                 "warrior"
@@ -3370,7 +3418,10 @@ class Cat:
         if potential_mentor.dead or potential_mentor.outside:
             return False
         # Match jobs
-        if self.status == 'medicine cat apprentice' and potential_mentor.status != 'medicine cat':
+        if (
+            self.status == "medicine cat apprentice"
+            and potential_mentor.status != "medicine cat"
+        ):
             return False
         if self.status == "apprentice" and potential_mentor.status not in [
             "leader",
@@ -3455,7 +3506,7 @@ class Cat:
             for cat in self.all_cats.values():
                 if self.is_valid_mentor(cat):
                     potential_mentors.append(cat)
-                    if not cat.apprentice and not cat.not_working() and not cat.moons < 24:
+                    if not cat.apprentice and not cat.not_working() and not cat.moons < 12:
                         priority_mentors.append(cat)
             # First try for a cat who currently has no apprentices and is working
             if priority_mentors:  # length of list > 0
