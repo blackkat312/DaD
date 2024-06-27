@@ -84,7 +84,7 @@ class Cat:
         "leader",
     ]
 
-    gender_tags = {"molly": "F", "tom": "M", "intersex": "I"}
+    gender_tags = {'molly': 'F', 'tom': 'M', 'intersex': 'I'}
 
     # EX levels and ranges.
     # Ranges are inclusive to both bounds
@@ -151,32 +151,13 @@ class Cat:
         example=False,
         faded=False,
         skill_dict=None,
-        pelt: Pelt=None,
-        genotype: Genotype=None,
+        pelt:Pelt=None,
+        genotype:Genotype=None,
         white_patterns=None,
         chim_white=None,
         loading_cat=False,  # Set to true if you are loading a cat at start-up.
-        **kwargs,
-    ):
-        """Initialise the cat.
-
-        :param prefix: Cat's prefix (e.g. Fire- for Fireheart)
-        :param gender: Cat's gender, default None
-        :param status: Cat's age range, default "newborn"
-        :param backstory: Cat's origin, default "clanborn"
-        :param parent1: ID of parent 1, default None
-        :param parent2: ID of parent 2, default None
-        :param suffix: Cat's suffix (e.g. -heart for Fireheart)
-        :param specsuffix_hidden: Whether cat has a special suffix (-kit, -paw, etc.), default False
-        :param ID: Cat's unique ID, default None
-        :param moons: Cat's age, default None
-        :param example: If cat is an example cat, default False
-        :param faded: If cat is faded, default False
-        :param skill_dict: TODO find a good definition for this
-        :param pelt: Body details, default None
-        :param loading_cat: If loading a cat rather than generating a new one, default False
-        :param kwargs: TODO what are the possible args here? ["biome", ]
-        """
+        **kwargs
+        ):
 
         self.history = None
 
@@ -195,9 +176,9 @@ class Cat:
 
         # Public attributes
         self.gender = gender
-        if self.gender == 'molly':
+        if self.gender == "molly":
             self.gender = 'fem'
-        elif self.gender == 'tom':
+        elif self.gender == "tom":
             self.gender = 'masc'
         self.status = status
         self.backstory = backstory
@@ -208,9 +189,10 @@ class Cat:
         )
         self.parent1 = parent1
         self.parent2 = parent2
+
         self.adoptive_parents = []
         self.genotype = Genotype(game.config['genetic_chances'], game.settings["ban problem genes"])
-        # print(genotype)
+        #print(genotype)
         if genotype:
             self.genotype.fromJSON(genotype)
         elif parent1 or parent2:
@@ -386,6 +368,7 @@ class Cat:
                     for mark in ["left front mitten", "left back mitten", "right front mitten", "right back mitten"]:
                         white_pattern.append(mark)
                 elif KIT[0] in ["ws", "wt"] and KIT[1] not in ["ws", "wt"]:
+
                     if(randint(1, 4) >= 3):
                         white_pattern.append(choice(maingame_white["low"].get(str(KITgrade))))
 
@@ -499,6 +482,7 @@ class Cat:
                             KITgrade = 5
 
                         clean_white()
+
                     elif KITgrade == 1:
                         grade1list = ['chest tuft', 'belly tuft', 'chest tuft', 'belly tuft', None]
                         white_pattern.append(choice(grade1list))
@@ -606,6 +590,7 @@ class Cat:
 
                             clean_white()
                 else:
+
                     if(randint(1, 4) >= 3):
                         white_pattern.append(choice(maingame_white["high"].get(str(KITgrade))))
 
@@ -868,6 +853,7 @@ class Cat:
                 self.age = choice(['young adult', 'adult', 'adult', 'senior adult'])
             self.moons = randint(self.age_moons[self.age][0], self.age_moons[self.age][1])
 
+
         # backstory
         if self.backstory is None:
             self.backstory = "clanborn"
@@ -875,6 +861,7 @@ class Cat:
             self.backstory = self.backstory
 
         # sex!?!??!?!?!??!?!?!?!??
+
         self.gender = self.genotype.gender
         self.g_tag = self.gender_tags[self.gender]
 
@@ -899,6 +886,7 @@ class Cat:
             biome = game.clan.biome
         else:
             biome = None
+
         # NAME
         # load_existing_name is needed so existing cats don't get their names changed/fixed for no reason
         if self.pelt is not None:
@@ -915,14 +903,8 @@ class Cat:
                 load_existing_name=loading_cat,
             )
         else:
-            self.name = Name(
-                status,
-                prefix,
-                suffix,
-                eyes=self.pelt.eye_colour,
-                specsuffix_hidden=self.specsuffix_hidden,
-                load_existing_name=loading_cat,
-            )
+            self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
+                             load_existing_name = loading_cat)
 
         # Private Sprite
         self._sprite = None
@@ -1038,23 +1020,17 @@ class Cat:
 
         if theythemdefault is True:
             self.pronouns = [self.default_pronouns[0].copy()]
-        elif 'molly' in self.genderalign:
+        elif self.genderalign in ["molly", "trans molly"]:
             self.pronouns = [self.default_pronouns[1].copy()]
-        elif 'tom' in self.genderalign:
+        elif self.genderalign in ["tom", "trans tom"]:
             self.pronouns = [self.default_pronouns[2].copy()]
         else:
             self.pronouns = [self.default_pronouns[0].copy()]
 
         # APPEARANCE
-        self.pelt = Pelt.generate_new_pelt(
-            self.genotype,
-            self.phenotype,
-            self.gender,
-            [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i],
-            self.age,
-        )
+        self.pelt = Pelt.generate_new_pelt(self.genotype, self.phenotype, self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
 
-        # Personality
+        #Personality
         self.personality = Personality(kit_trait=self.is_baby())
 
         # experience and current patrol status
@@ -1063,12 +1039,10 @@ class Cat:
         elif self.age in ['adolescent']:
             m = self.moons
             self.experience = 0
-            while m > Cat.age_moons["adolescent"][0]:
+            while m > Cat.age_moons['adolescent'][0]:
                 ran = game.config["graduation"]["base_app_timeskip_ex"]
                 exp = choice(
-                    list(range(ran[0][0], ran[0][1] + 1))
-                    + list(range(ran[1][0], ran[1][1] + 1))
-                )
+                    list(range(ran[0][0], ran[0][1] + 1)) + list(range(ran[1][0], ran[1][1] + 1)))
                 self.experience += exp + 3
                 m -= 1
         elif self.age in ['young adult', 'adult']:
@@ -1139,15 +1113,15 @@ class Cat:
         if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
             self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
 
-        if self.genotype.fold[0] == 'Fd' or ('manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1))):
+        if self.genotype.fold[0] == 'Fd' or ('manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1 and "constant joint pain" not in self.permanent_condition) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1 and "constant joint pain" not in self.permanent_condition))):
             self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1)):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1 and "irritable bowels" not in self.permanent_condition) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1 and "irritable bowels" not in self.permanent_condition)):
             self.get_permanent_condition('irritable bowels', born_with=True, genetic=True)
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1)):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1 and "paralyzed" not in self.permanent_condition) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1 and "paralyzed" not in self.permanent_condition)):
             self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1)):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 20) == 1 and "curved spine" not in self.permanent_condition) or (self.phenotype.bobtailnr > 1 and randint(1, 25) == 1 and "curved spine" not in self.permanent_condition)):
             self.get_permanent_condition('curved spine', born_with=True, genetic=True)
-        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1)):
+        if 'manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1 and "rabbit gait" not in self.permanent_condition) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1 and "rabbit gait" not in self.permanent_condition)):
             self.get_permanent_condition('rabbit gait', born_with=True, genetic=True)
 
         if(self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c')):
@@ -1161,11 +1135,11 @@ class Cat:
             self.get_permanent_condition('partially hairless', born_with=True, genetic=True)
 
         if self.genotype.munch[0] == 'Mk':
-            if randint(1, 3) == 1:
+            if randint(1, 3) == 1 and "constant joint pain" not in self.permanent_condition:
                 self.get_permanent_condition('constant joint pain', born_with=True, genetic=True, custom_reveal=randint(24, 36))
-            if randint(1, 15) == 1:
+            if randint(1, 15) == 1 and "curved spine" not in self.permanent_condition:
                 self.get_permanent_condition('curved spine', born_with=True, genetic=True)
-            if randint(1, 30) == 1:
+            if randint(1, 30) == 1 and "narrowed chest" not in self.permanent_condition:
                 self.get_permanent_condition('narrowed chest', born_with=True, genetic=True)
 
         if self.genotype.lykoi[0] == 'ly':
@@ -1500,23 +1474,19 @@ class Cat:
         for child_id in children:
             if Cat.all_cats.get(child_id, None):
                 child = Cat.all_cats[child_id]
-                if (
-                    child.outside
-                    and not child.exiled
-                    and not child.dead
-                    and child.moons < 12
-                ):
+                if child.outside and not child.exiled and not child.dead and child.moons < 12:
                     child.add_to_clan()
                     ids.append(child_id)
+
 
         return ids
 
     def status_change(self, new_status, resort=False):
-        """Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
-        new_status = The new status of a cat. Can be 'apprentice', 'medicine cat apprentice', 'warrior'
-                    'medicine cat', 'elder'.
-        resort = If sorting type is 'rank', and resort is True, it will resort the cat list. This should
-                only be true for non-timeskip status changes."""
+        """ Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
+            new_status = The new status of a cat. Can be 'apprentice', 'medicine cat apprentice', 'warrior'
+                        'medicine cat', 'elder'.
+            resort = If sorting type is 'rank', and resort is True, it will resort the cat list. This should
+                    only be true for non-timeskip status changes. """
         old_status = self.status
         self.status = new_status
         self.name.status = new_status
@@ -1535,7 +1505,7 @@ class Cat:
         if self.status == "apprentice":
             pass
 
-        elif self.status == "medicine cat apprentice":
+        elif self.status == 'medicine cat apprentice':
             pass
 
         elif self.status == "warrior":
@@ -1619,15 +1589,11 @@ class Cat:
         self.personality.set_kit(self.is_baby())  # Update kit trait stuff
 
     def describe_cat(self, short=False):
-        """Generates a string describing the cat's appearance and gender.
-
-        :param short: Whether to truncate the output, default False
-        :type short: bool
-        """
+        """ Generates a string describing the cat's appearance and gender. Mainly used for generating
+        the allegiances. If short is true, it will generate a very short one, with the minimal amount of information. """
         return Pelt.describe_appearance(self, short)
 
     def describe_eyes(self):
-        """Get a human-readable description of this cat's eye colour"""
         if(self.genotype.lefteye == self.genotype.righteye):
             colour = self.genotype.lefteye.lower()
         else:
@@ -2138,11 +2104,7 @@ class Cat:
         self.personality.set_kit(self.is_baby())
         # Upon age-change
 
-        if self.status in [
-            "apprentice",
-            "mediator apprentice",
-            "medicine cat apprentice",
-        ]:
+        if self.status in ['apprentice', 'mediator apprentice', 'medicine cat apprentice']:
             self.update_mentor()
 
     def thoughts(self):
@@ -2940,7 +2902,7 @@ class Cat:
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
-            if possible["congenital"] in ["always", "sometimes"] and condition not in genetics_exclusive:
+            if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
         while count <= max_conditions:
@@ -3101,13 +3063,7 @@ class Cat:
             return
 
         # remove accessories if need be
-        if ("NOTAIL" in self.pelt.scars or (self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5)) and self.pelt.accessory in [
-            "RED FEATHERS",
-            "BLUE FEATHERS",
-            "JAY FEATHERS",
-            "SEAWEED",
-            "DAISY CORSAGE",
-        ]:
+        if ('NOTAIL' in self.pelt.scars or (self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5)) and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'SEAWEED', 'DAISY CORSAGE']:
             self.pelt.accessory = None
         if "HALFTAIL" in self.pelt.scars and self.pelt.accessory in [
             "RED FEATHERS",
@@ -3170,7 +3126,7 @@ class Cat:
             if moons_until < 0:
                 moons_until = 0
 
-        if name == "partially hairless" and self.phenotype.length != "fur-pointed":
+        if name == 'partially hairless' and self.phenotype.length != 'fur-pointed':
             moons_until = 11
         if custom_reveal:
             moons_until = custom_reveal
@@ -3249,13 +3205,9 @@ class Cat:
     def retire_cat(self):
         """This is only for cats that retire due to health condition"""
 
-        # There are some special tasks we need to do for apprentice
-        # Note that although you can un-retire cats, they will be a full warrior/med_cat/mediator
-        if self.moons > 6 and self.status in [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-        ]:
+        #There are some special tasks we need to do for apprentice
+        # Note that although you can unretire cats, they will be a full warrior/med_cat/mediator
+        if self.moons > 6 and self.status in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
             _ment = Cat.fetch_cat(self.mentor) if self.mentor else None
             self.status_change(
                 "warrior"
@@ -3418,10 +3370,7 @@ class Cat:
         if potential_mentor.dead or potential_mentor.outside:
             return False
         # Match jobs
-        if (
-            self.status == "medicine cat apprentice"
-            and potential_mentor.status != "medicine cat"
-        ):
+        if self.status == 'medicine cat apprentice' and potential_mentor.status != 'medicine cat':
             return False
         if self.status == "apprentice" and potential_mentor.status not in [
             "leader",
@@ -4860,25 +4809,11 @@ def create_cat(status, moons=None, biome=None):
         elif new_cat.moons == 0:
             new_cat.moons = randint(1, 5)
 
-    scar_to_condition = {
-        "THREE": ["one bad eye"],
-        "NOLEFTEAR": ["partial hearing loss"],
-        "NORIGHTEAR": ["partial hearing loss"],
-        "NOEAR": ["partial hearing loss", "deaf"],
-        "NOPAW": ["lost a leg", "born without a leg"],
-        "NOTAIL": ["lost their tail"],
-        "HALFTAIL": ["lost their tail"],
-        "BRIGHTHEART": ["one bad eye"],
-        "LEFTBLIND": ["one bad eye"],
-        "RIGHTBLIND": ["one bad eye"],
-        "BOTHBLIND": ["blind"],
-        "MANLEG": ["weak leg", "twisted leg"],
-        "RASH": ["constant rash"],
-        "DECLAWED": ["declawed"],
-    }
+    not_allowed_scars = ['THREE', 'NOLEFTEAR', 'NORIGHTEAR', 'NOEAR', 'NOPAW', 'NOTAIL', 'HALFTAIL', 'BRIGHTHEART',
+                         'LEFTBLIND', 'RIGHTBLIND', 'BOTHBLIND', 'MANLEG', 'RASH', 'DECLAWED']
 
     for scar in new_cat.pelt.scars:
-        if scar in scar_to_condition:
+        if scar in not_allowed_scars:
             new_cat.pelt.scars.remove(scar)
 
     return new_cat
