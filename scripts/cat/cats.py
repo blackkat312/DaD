@@ -3003,7 +3003,7 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon, custom_reveal=None):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon=0, custom_reveal=None):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
             PERMANENT = ujson.loads(read_file.read())
         if name not in PERMANENT:
@@ -3131,6 +3131,9 @@ class Cat:
             moons_until = -2
         elif born_with is False:
             moons_until = 0
+
+        if not starting_moon:
+            starting_moon = game.clan.age
 
         if name == "paralyzed":
             self.pelt.paralyzed = True
