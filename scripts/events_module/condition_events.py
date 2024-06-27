@@ -256,6 +256,10 @@ class Condition_Events:
                     "condition_related", f"{game.clan.game_mode}_illness_chance"
                 )
             )
+
+            if cat.vaccinated and random.randint(1, 3) != 1:
+                random_number = int(random_number * 10)
+
             if (
                 not cat.dead
                 and not cat.is_ill()
@@ -290,32 +294,13 @@ class Condition_Events:
                 # make em sick
                 cat.get_ill(chosen_illness)
 
-                # create event text
-                if chosen_illness == "stomachache":
-                    event_string = f"{cat.name} has gotten a {chosen_illness}."
-                elif chosen_illness == "running nose":
-                    event_string = f"{cat.name}'s nose has started running."
-                elif chosen_illness == "zoomies":
-                    event_string = f"{cat.name} has gotten the {chosen_illness}!"
-                elif chosen_illness == "sleeplessness":
-                    event_string = f"{cat.name} has been unable to get any sleep."
-                elif chosen_illness == "burn out":
-                    event_string = f"{cat.name} has gotten burnt out."
-                elif chosen_illness == "anxiety attack":
-                    event_string = f"{cat.name} has gotten worked up into an {chosen_illness}."
-                elif chosen_illness == "seasonal lethargy":
-                    event_string = f"{cat.name} is experiencing some {chosen_illness}."
-                elif chosen_illness in ["nest wetting", "night dirtmaking"]:
-                    event_string = f"{cat.name} is experiencing {chosen_illness}."
-                elif chosen_illness == "nightmares":
-                    event_string = f"{cat.name} has been struggling recently with nightmares."
-                elif chosen_illness in ["kittenspace", "puppyspace"]:
-                    event_string = f"Recently, {cat.name} has been acting a bit differently than usual." \
-                                   f" It seems like they may have gone into {chosen_illness}."
-                elif chosen_illness == "stimming":
-                    event_string = f"{cat.name} has started {chosen_illness}."
-                else:
-                    event_string = f"{cat.name} has gotten {chosen_illness}."
+                try:
+                    possible_string_list = Condition_Events.ILLNESS_GOT_STRINGS[chosen_illness]
+                except:
+                    print(f"WARNING: {chosen_illness} couldn't be found in illness_got_strings.json! placeholder string was used")
+                    possible_string_list = [f"m_c has gotten {chosen_illness}."]
+
+                event_string = event_text_adjust(Cat, random.choice(possible_string_list), main_cat=cat)
                 event_string = Condition_Events.change_condition_name(event_string)
 
         # if an event happened, then add event to cur_event_list and save death if it happened.
