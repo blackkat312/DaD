@@ -2853,40 +2853,6 @@
         }]
     },
     {
-        "event_id": "gen_dissapeared_any1",
-        "location": ["any"],
-        "season": [
-            "any"
-        ],
-        "tags": ["no_body"],
-        "weight": 30,
-        "event_text": "m_c snuck out of camp, and was never found.",
-        "m_c": {
-            "age": [
-                "kitten"
-            ],
-            "status": [
-                "kitten"
-            ],
-            "trait": [
-                "troublesome",
-                "lonesome",
-                "impulsive",
-                "attention-seeker",
-                "daring",
-                "quiet",
-                "daydreamer",
-                "know-it-all"
-            ],
-            "dies": true
-        },
-        "history": [{
-            "cats": ["m_c"],
-            "reg_death": "m_c disappeared.",
-            "lead_death": "disappeared from camp"
-        }]
-    },
-    {
         "event_id": "gen_death_drown_multi2",
         "location": ["plains", "forest", "mountainous"],
         "season": [
