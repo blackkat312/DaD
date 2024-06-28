@@ -85,24 +85,18 @@ class MakeClanScreen(Screens):
         "With this mode you'll be making the important Clan-life decisions."
     )
 
-    cruel_mode_text = (
-        "This mode has all the features of Expanded mode, but is significantly more difficult. If "
-        "you'd like a challenge with a bit of brutality, then this mode is for you.<br><br>"
-        "You heard the warnings... a Cruel Season is coming. Will you survive?"
-        "<br><br>"
-        "-COMING SOON-"
-    )
-    single_clan_text = (
-        "The Clan Generator we're all used to. "
-        "You can see and control only one Clan with all the rest simply remaining a mystery..."
-    )
+    cruel_mode_text = "This mode has all the features of Expanded mode, but is significantly more difficult. If " \
+                      "you'd like a challenge with a bit of brutality, then this mode is for you.<br><br>" \
+                      "You heard the warnings... a Cruel Season is coming. Will you survive?" \
+                      "<br><br>" \
+                      "-COMING SOON-"
+    single_clan_text = "The Clan Generator we're all used to. " \
+                        "You can see and control only one Clan with all the rest simply remaining a mystery..."
 
-    multi_clan_text = (
-        "A bit of something more... "
-        "With this, you can see into your neighbouring Clans almost as if they were your own! "
-        "They'll die, be born, age... all on their own, "
-        "or with a little push from you."
-    )
+    multi_clan_text = "A bit of something more... " \
+                         "With this, you can see into your neighbouring Clans almost as if they were your own! " \
+                         "They'll die, be born, age... all on their own, " \
+                         "or with a little push from you."
 
     # This section holds all the information needed
     game_mode = 'classic'  # To save the users selection before conformation.
