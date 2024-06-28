@@ -2086,7 +2086,7 @@ class Cat:
         if self.neutered and not self.vaccinated:
             self.vaccinated = True
 
-        if not self.dead_outside_display:
+        if not self.dead_outside_display or self.dead_outside_display == "":
             self.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             print(f"{self.name} doesn't have a dead_outside_display. Randomizing...")
             print(f"CHOSEN: {self.dead_outside_display}\n")
