@@ -348,13 +348,14 @@ class GenerateEvents:
                     continue
 
             if event.m_c:
-                has_condition_that_is_required = False
-                has_condition_that_cannot_have = False
+                """has_condition_that_is_required = False
+                has_condition_that_cannot_have = False"""
                 if cat.age not in event.m_c["age"] and "any" not in event.m_c["age"]:
+
                     continue
                 if cat.status not in event.m_c["status"] and "any" not in event.m_c["status"]:
                     continue
-                if event.m_c["permanent_condition"]:
+                """if event.m_c["permanent_condition"]:
                     for condition in cat.permanent_condition:
                         if condition in event.m_c["permanent_condition"]:
                             has_condition_that_is_required = True
@@ -365,7 +366,7 @@ class GenerateEvents:
                         if condition in event.m_c["not_permanent_condition"]:
                             has_condition_that_cannot_have = True
                     if has_condition_that_cannot_have and event.m_c["permanent_condition"] != ["none"]:
-                        continue
+                        continue"""
                 if event.m_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
                                                     filter_types=event.m_c["relationship_status"],
@@ -431,13 +432,13 @@ class GenerateEvents:
 
             # check that a random_cat is available to use for r_c
             if event.r_c and random_cat:
-                has_condition_that_is_required = False
-                has_condition_that_cannot_have = False
+                """has_condition_that_is_required = False
+                has_condition_that_cannot_have = False"""
                 if random_cat.age not in event.r_c["age"] and "any" not in event.r_c["age"]:
                     continue
                 if random_cat.status not in event.r_c["status"] and "any" not in event.r_c["status"]:
                     continue
-                if event.r_c["permanent_condition"]:
+                """if event.r_c["permanent_condition"]:
                     for condition in random_cat.permanent_condition:
                         if condition in event.r_c["permanent_condition"]:
                             has_condition_that_is_required = True
@@ -452,7 +453,7 @@ class GenerateEvents:
                 if not has_condition_that_is_required:
                     continue
                 if has_condition_that_cannot_have:
-                    continue
+                    continue"""
                 if event.r_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
                                                     filter_types=event.r_c["relationship_status"],
@@ -846,7 +847,7 @@ class GenerateEvents:
             if "age" in cat_info:
                 if cat.age not in cat_info["age"]:
                     continue
-            has_condition_that_is_required = False
+            """has_condition_that_is_required = False
             has_condition_that_cannot_have = False
             if "permanent_condition" in cat_info:
                 for condition in cat.permanent_condition:
@@ -859,7 +860,7 @@ class GenerateEvents:
                     if condition in cat_info["not_permanent_condition"]:
                         has_condition_that_cannot_have = True
                 if has_condition_that_cannot_have and cat_info["permanent_condition"] != ["none"]:
-                    continue
+                    continue"""
             if "trait" in cat_info:
                 if cat.personality.trait not in cat_info["trait"]:
                     continue
@@ -946,10 +947,10 @@ class ShortEvent:
                 self.m_c["backstory"] = []
             if "dies" not in self.m_c:
                 self.m_c["dies"] = False
-            if "permanent_condition" not in self.m_c:
+            """if "permanent_condition" not in self.m_c:
                 self.m_c["permanent_condition"] = ["any"]
             if "not_permanent_condition" not in self.m_c:
-                self.m_c["not_permanent_condition"] = ["none"]
+                self.m_c["not_permanent_condition"] = ["none"]"""
 
         self.r_c = r_c if r_c else {}
         if self.r_c:
@@ -973,10 +974,10 @@ class ShortEvent:
                 self.r_c["backstory"] = []
             if "dies" not in self.r_c:
                 self.r_c["dies"] = False
-            if "permanent_condition" not in self.r_c:
+            """if "permanent_condition" not in self.r_c:
                 self.r_c["permanent_condition"] = ["any"]
             if "not_permanent_condition" not in self.r_c:
-                self.r_c["not_permanent_condition"] = ["none"]
+                self.r_c["not_permanent_condition"] = ["none"]"""
 
         self.new_cat = new_cat if new_cat else []
         self.injury = injury if injury else []
