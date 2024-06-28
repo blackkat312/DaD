@@ -77,8 +77,7 @@
             "any"
         ],
         "tags": [
-            "no_body",
-            "all_lives"
+            "no_body"
         ],
         "weight": 20,
         "event_text": "m_c was carried off by an owl, never to be seen again.",
@@ -90,8 +89,7 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was carried away by an owl.",
-            "lead_death": "{VERB/m_c/were/was} carried away by an owl"
+            "reg_death": "m_c was carried away by an owl."
         }]
     },
     {
@@ -100,7 +98,7 @@
         "season": [
             "any"
         ],
-        "tags": ["no_body", "all_lives"],
+        "tags": ["no_body"],
         "weight": 20,
         "event_text": "r_c, guarding camp, yowls a warning as they spot a circling shadow, right above m_c. r_c starts sprinting to m_c's position but couldn't get there in time, not before m_c was carried high into the sky by a rook.",
         "m_c": {
@@ -117,8 +115,7 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was grabbed by a rook, never to be seen again.",
-            "lead_death": "{VERB/m_c/were/was} grabbed by a rook, never to be seen again"
+            "reg_death": "m_c was grabbed by a rook, never to be seen again."
         }]
     }
 ]
