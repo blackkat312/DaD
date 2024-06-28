@@ -1131,7 +1131,7 @@ class Events:
         if not cat.dead_outside_display or cat.dead_outside_display == "":
             cat.dead_outside_display = random.choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             print(f"{cat.name} doesn't have a dead_outside_display. Randomizing...")
-            print(f"CHOSEN: {cat.dead_outside_display}")
+            print(f"CHOSEN: {cat.dead_outside_display}\n")
 
         # aging the cat
         cat.one_moon()
@@ -1225,7 +1225,7 @@ class Events:
         if not cat.dead_outside_display or cat.dead_outside_display == "":
             cat.dead_outside_display = random.choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             print(f"{cat.name} doesn't have a dead_outside_display. Randomizing...")
-            print(f"CHOSEN: {cat.dead_outside_display}")
+            print(f"CHOSEN: {cat.dead_outside_display}\n")
 
         if cat.dead:
 
