@@ -1602,7 +1602,9 @@ class Cat():
                         num_splits = randint(1, game.config["condition_related"]["max_splits"])
                     for i in range(num_splits):
                         self.new_alter()
-            can_front = [str(self.name)]
+            can_front = []            
+            if self.alters[0]["ID"] != "0":            
+                can_front = [str(self.name)]
             for alter in self.alters: 
                 if ("recovering from birth" not in self.injuries and "faux pregnant" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "faux pregnant" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
                     can_front.append(alter["name"])
