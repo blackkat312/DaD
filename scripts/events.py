@@ -1153,7 +1153,7 @@ class Events:
                     cat.neutered = True
 
         # vaccinate
-        if cat.moons > 2 and tnr_setting and not cat.neutered and not cat.vaccinated and cat.status == "kittypet":
+        if cat.moons > 1 and tnr_setting and not cat.neutered and not cat.vaccinated and cat.status == "kittypet":
             if cat.moons <= 12 and random.randint(1, 4) == 1:
                 cat.vaccinated = True
             elif cat.moons <= 24 and random.randint(1, 30) == 1:
