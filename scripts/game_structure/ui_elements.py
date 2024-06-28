@@ -17,12 +17,6 @@ from scripts.game_structure.game_essentials import game
 from scripts.utility import scale, shorten_text_to_fit
 
 
-class AllegiancesCat(pygame_gui.elements.UIButton):
-    def set_cat_id(self, id):
-        self.cat_id = id
-    def return_cat_id(self):
-        return self.cat_id
-
 class UIImageButton(pygame_gui.elements.UIButton):
     """Subclass of pygame_gui's button class. This allows for auto-scaling of the
     button image."""
