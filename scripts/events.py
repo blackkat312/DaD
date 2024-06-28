@@ -1128,6 +1128,11 @@ class Events:
         """
         exiled cat events
         """
+        if not cat.dead_outside_display or cat.dead_outside_display == "":
+            cat.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
+            print(f"{cat.name} doesn't have a dead_outside_display. Randomizing...")
+            print(f"CHOSEN: {cat.dead_outside_display}")
+
         # aging the cat
         cat.one_moon()
         cat.manage_outside_trait()
@@ -1217,6 +1222,11 @@ class Events:
         -if the cat was not injured or ill, then they will do all of the above *and* trigger misc events, acc events,
         and new cat events
         """
+        if not cat.dead_outside_display or cat.dead_outside_display == "":
+            cat.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
+            print(f"{cat.name} doesn't have a dead_outside_display. Randomizing...")
+            print(f"CHOSEN: {cat.dead_outside_display}")
+
         if cat.dead:
 
             cat.thoughts()
