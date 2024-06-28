@@ -112,7 +112,7 @@ class Scar_Events():
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
 
-        if len(cat.pelt.scars) < 5 and random.randint(1, 3) > 1:
+        if len(cat.pelt.scars) < 5 and random.randint(1, 2) == 1:
 
             # move potential scar text into displayed scar text
 
@@ -146,9 +146,8 @@ class Scar_Events():
             # Extra check for disabling scars.
             if int(random.random() * 3):
                 condition_scars = {
-                    "LEGBITE", "THREE", "NOPAW", "TOETRAP", "NOTAIL", "HALFTAIL", "MANLEG", "BRIGHTHEART",
-                    "NOLEFTEAR", "NORIGHTEAR", "NOEAR", "LEFTBLIND", "RIGHTBLIND",
-                    "BOTHBLIND", "RATBITE", "DECLAWED", "RASH"
+                    "LEGBITE", "THREE", "NOPAW", "TOETRAP", "NOTAIL", "HALFTAIL", "MANLEG", "BRIGHTHEART", "NOLEFTEAR",
+                    "NORIGHTEAR", "NOEAR", "LEFTBLIND", "RIGHTBLIND", "BOTHBLIND", "RATBITE", "DECLAWED", "RASH"
                 }
 
                 scar_pool = list(set(scar_pool).difference(condition_scars))
