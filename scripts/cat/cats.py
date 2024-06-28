@@ -2088,6 +2088,9 @@ class Cat:
 
         if not self.dead_outside_display:
             self.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
+            print(f"{self.name} doesn't have a dead_outside_display. Randomizing...")
+            print(f"CHOSEN: {self.dead_outside_display}\n")
+
 
         if self.exiled or self.outside:
             # this is handled in events.py
