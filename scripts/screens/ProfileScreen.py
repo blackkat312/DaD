@@ -2057,6 +2057,7 @@ class ProfileScreen(Screens):
             "counting fog": "dyscalculia",
             "parrot chatter": "echolalia",
             "parroting": "echolalia",
+            "vivid daydreamer": "maladaptive daydreaming",
 
             "sunblindness": "light sensitivity",
 

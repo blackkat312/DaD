@@ -1259,6 +1259,10 @@
 			{
 				"name": "hallucinations",
 				"chance": 120
+			},
+            {
+				"name": "vivid daydreamer",
+				"chance": 120
 			}
 		],
         "herbs": [
