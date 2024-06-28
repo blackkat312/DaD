@@ -7,11 +7,9 @@ from scripts.game_structure.ui_elements import (
     UISpriteButton,
     UIImageButton,
     UITextBoxTweaked,
-    AllegiancesCat
 )
 from scripts.utility import (
     get_text_box_theme,
-    get_button_theme,
     scale,
     get_alive_status_cats,
     shorten_text_to_fit,
@@ -26,11 +24,7 @@ class AllegiancesScreen(Screens):
 
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
-            if event.ui_element in self.names_buttons:
-                game.switches["cat"] = event.ui_element.return_cat_id()
-                self.change_screen('profile screen')
-            else:
-                self.menu_button_pressed(event)
+            self.menu_button_pressed(event)
 
     def on_use(self):
         pass
@@ -58,29 +52,29 @@ class AllegiancesScreen(Screens):
 
         self.ranks_boxes = []
         self.names_boxes = []
-        self.names_buttons = []
         y_pos = 0
         for x in allegiance_list:
-            #print(x)
-            if(x[0] != ""):
-                self.ranks_boxes.append(pygame_gui.elements.UITextBox(x[0],
-                                   scale(pygame.Rect((0, y_pos), (300, -1))),
-                                   object_id=get_text_box_theme("#text_box_30_horizleft"),
-                                   container=self.scroll_container, manager=MANAGER))
-                self.ranks_boxes[-1].disable()
+            self.ranks_boxes.append(
+                pygame_gui.elements.UITextBox(
+                    x[0],
+                    scale(pygame.Rect((0, y_pos), (300, -1))),
+                    object_id=get_text_box_theme("#text_box_30_horizleft"),
+                    container=self.scroll_container,
+                    manager=MANAGER,
+                )
+            )
+            self.ranks_boxes[-1].disable()
 
-            self.names_buttons.append(AllegiancesCat(scale(pygame.Rect((290, y_pos+10), (1060, -1))),
-                                    x[1],
-                                    object_id=get_button_theme(),
-                                    container=self.scroll_container, manager=MANAGER))
-            self.names_buttons[-1].set_cat_id(x[2])
-            self.names_boxes.append(pygame_gui.elements.UITextBox(x[3],
-                                scale(pygame.Rect((300, y_pos), (1060, -1))),
-                                object_id=get_text_box_theme("#text_box_30_horizleft"),
-                                container=self.scroll_container, manager=MANAGER))
+            self.names_boxes.append(
+                pygame_gui.elements.UITextBox(
+                    x[1],
+                    scale(pygame.Rect((300, y_pos), (1060, -1))),
+                    object_id=get_text_box_theme("#text_box_30_horizleft"),
+                    container=self.scroll_container,
+                    manager=MANAGER,
+                )
+            )
             self.names_boxes[-1].disable()
-
-            #self.names_boxes[-1].process_event(pygame_gui.UI_ELEMENT_PRESSED)
 
             y_pos += 1400 * self.names_boxes[-1].get_relative_rect()[3] / screen_y
 
@@ -95,9 +89,6 @@ class AllegiancesScreen(Screens):
         for x in self.names_boxes:
             x.kill()
         del self.names_boxes
-        for x in self.names_buttons:
-            x.kill()
-        del self.names_buttons
         self.scroll_container.kill()
         del self.scroll_container
         self.heading.kill()
@@ -120,7 +111,7 @@ class AllegiancesScreen(Screens):
                 ]
             )
 
-        return [str(cat.name).upper(), cat.ID, output]
+        return output
 
     def get_allegiances_text(self):
         """Determine Text. Ouputs list of tuples."""
@@ -139,18 +130,16 @@ class AllegiancesScreen(Screens):
                 living_warriors.append(cat)
             elif cat.status == "mediator":
                 living_mediators.append(cat)
-            elif cat.status in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
+            elif cat.status in [
+                "apprentice",
+                "medicine cat apprentice",
+                "mediator apprentice",
+            ]:
                 living_apprentices.append(cat)
             elif cat.status in ["kitten", "newborn"]:
                 living_kits.append(cat)
             elif cat.status == "elder":
                 living_elders.append(cat)
-        living_meds = sorted(living_meds, key=lambda x: x.moons, reverse=True)
-        living_mediators = sorted(living_mediators, key=lambda x: x.moons, reverse=True)
-        living_warriors = sorted(living_warriors, key=lambda x: x.moons, reverse=True)
-        living_apprentices = sorted(living_apprentices, key=lambda x: x.moons, reverse=True)
-        living_kits = sorted(living_kits, key=lambda x: x.moons, reverse=True)
-        living_elders = sorted(living_elders, key=lambda x: x.moons, reverse=True)
 
         # Find Queens:
         queen_dict, living_kits = get_alive_clan_queens(living_cats)
@@ -169,121 +158,57 @@ class AllegiancesScreen(Screens):
         # Pull the Clan guardians
         outputs = []
         if game.clan.leader and not (game.clan.leader.dead or game.clan.leader.outside):
-                x = self.generate_one_entry(game.clan.leader)
-                outputs.append([
-                    '<b><u>GUARDIAN</u></b>',
-                    x[0],
-                    x[1],
-                    x[2]
-                ])
+            outputs.append(
+                ["<b><u>GUARDIAN</u></b>", self.generate_one_entry(game.clan.leader)]
+            )
 
         # Deputy Box:
         if game.clan.deputy and not (game.clan.deputy.dead or game.clan.deputy.outside):
-            x = self.generate_one_entry(game.clan.deputy)
-            outputs.append([
-                '<b><u>DEPUTY</u></b>',
-                x[0],
-                x[1],
-                x[2]
-            ])
+            outputs.append(
+                ["<b><u>DEPUTY</u></b>", self.generate_one_entry(game.clan.deputy)]
+            )
 
         # Medicine Cat Box:
         if living_meds:
+            _box = ["", ""]
             if len(living_meds) == 1:
-                _box = ["", "", "", ""]
-                _box[0] = '<b><u>MEDICINE CAT</u></b>'
-                x = self.generate_one_entry(living_meds[0])
-                _box[1] = x[0]
-                _box[2] = x[1]
-                _box[3] = x[2]
-                outputs.append(_box)
+                _box[0] = "<b><u>MEDICINE CAT</u></b>"
             else:
-                for i in range(len(living_meds)):
-                    _box = ["", "", "", ""]
-                    if i == 0:
-                        _box[0] = '<b><u>MEDICINE CATS</u></b>'
-                    else:
-                        _box[0] = ""
-                    x = self.generate_one_entry(living_meds[i])
-                    _box[1] = x[0]
-                    _box[2] = x[1]
-                    _box[3] = x[2]
+                _box[0] = "<b><u>MEDICINE CATS</u></b>"
 
-            #_box[1] = "\n".join([self.generate_one_entry(i) for i in living_meds])
-                    outputs.append(_box)
+            _box[1] = "\n".join([self.generate_one_entry(i) for i in living_meds])
+            outputs.append(_box)
 
         # Mediator Box:
         if living_mediators:
-            if len(living_mediators) == 1:
-                _box = ["", "", "", ""]
-                _box[0] = '<b><u>MEDIATORS</u></b>'
-                x = self.generate_one_entry(living_mediators[0])
-                _box[1] = x[0]
-                _box[2] = x[1]
-                _box[3] = x[2]
-                outputs.append(_box)
-            else:
-                for i in range(len(living_mediators)):
-                    _box = ["", "", "", ""]
-                    if i == 0:
-                        _box[0] = '<b><u>MEDIATORS</u></b>'
-                    else:
-                        _box[0] = ""
-                    x = self.generate_one_entry(living_mediators[i])
-                    _box[1] = x[0]
-                    _box[2] = x[1]
-                    _box[3] = x[2]
+            _box = ["", ""]
+            _box[0] = "<b><u>MEDIATORS</u></b>"
 
-            #_box[1] = "\n".join([self.generate_one_entry(i) for i in living_mediators])
-                    outputs.append(_box)
+            _box[1] = "\n".join([self.generate_one_entry(i) for i in living_mediators])
+            outputs.append(_box)
 
         # Warrior Box:
         if living_warriors:
-            if len(living_warriors) == 1:
-                box = ["", "", "", ""]
-                box[0] = '<b><u>WARRIORS</u></b>'
-                x = self.generate_one_entry(living_warriors[0])
-                box[1] = x[0]
-                box[2] = x[1]
-                box[3] = x[2]
-                outputs.append(box)
-            else:
-                for i in range(len(living_warriors)):
-                    box = ["", "", "", ""]
-                    if i == 0:
-                        box[0] = '<b><u>WARRIORS</u></b>'
-                    else:
-                        box[0] = ""
-                    x = self.generate_one_entry(living_warriors[i])
-                    box[1] = x[0]
-                    box[2] = x[1]
-                    box[3] = x[2]
-                    outputs.append(box)
-         # Apprentice Box:
-        if living_apprentices:
-            if len(living_apprentices) == 1:
-                _box = ["", "", "", ""]
-                _box[0] = '<b><u>APPRENTICES</u></b>'
-                x = self.generate_one_entry(living_apprentices[0])
-                _box[1] = x[0]
-                _box[2] = x[1]
-                _box[3] = x[2]
-                outputs.append(_box)
-            else:
-                for i in range(len(living_apprentices)):
-                    _box = ["", "", "", ""]
-                    if i == 0:
-                        _box[0] = '<b><u>APPRENTICES</u></b>'
-                    else:
-                        _box[0] = ""
-                    x = self.generate_one_entry(living_apprentices[i])
-                    _box[1] = x[0]
-                    _box[2] = x[1]
-                    _box[3] = x[2]
-                    outputs.append(_box)
+            _box = ["", ""]
+            _box[0] = "<b><u>WARRIORS</u></b>"
 
-         # Queens and Kits Box:
+            _box[1] = "\n".join([self.generate_one_entry(i) for i in living_warriors])
+            outputs.append(_box)
+
+        # Apprentice Box:
+        if living_apprentices:
+            _box = ["", ""]
+            _box[0] = "<b><u>APPRENTICES</u></b>"
+
+            _box[1] = "\n".join(
+                [self.generate_one_entry(i) for i in living_apprentices]
+            )
+            outputs.append(_box)
+
+        # Queens and Kits Box:
         if queen_dict or living_kits:
+            _box = ["", ""]
+            _box[0] = "<b><u>QUEENS AND KITS</u></b>"
 
             # This one is a bit different.  First all the queens, and the kits they are caring for.
             all_entries = []
@@ -303,42 +228,19 @@ class AllegiancesScreen(Screens):
 
             # Now kittens without carers
             for k in living_kits:
-                all_entries.append([str(k.name).upper(), k.ID, f"{str(k.name).upper()} - {k.describe_cat(short=True)}"])
+                all_entries.append(
+                    f"{str(k.name).upper()} - {k.describe_cat(short=True)}"
+                )
 
-            if all_entries:
-                for i in range(len(all_entries)):
-                    _box = ["", "", "", ""]
-                    if i == 0:
-                        _box[0] = '<b><u>QUEENS AND KITS</u></b>'
-                    else:
-                        _box[0] = ''
-
-                    _box[1] = all_entries[i][0]
-                    _box[2] = all_entries[i][1]
-                    _box[3] = all_entries[i][2]
-                    outputs.append(_box)
+            _box[1] = "\n".join(all_entries)
+            outputs.append(_box)
 
         # Elder Box:
         if living_elders:
-            if len(living_elders) == 1:
-                _box = ["", "", "", ""]
-                _box[0] = '<b><u>ELDERS</u></b>'
-                x = self.generate_one_entry(living_elders[0])
-                _box[1] = x[0]
-                _box[2] = x[1]
-                _box[3] = x[2]
-                outputs.append(_box)
-            else:
-                for i in range(len(living_elders)):
-                    _box = ["", "", "", ""]
-                    if i == 0:
-                        _box[0] = '<b><u>ELDERS</u></b>'
-                    else:
-                        _box[0] = ""
-                    x = self.generate_one_entry(living_elders[i])
-                    _box[1] = x[0]
-                    _box[2] = x[1]
-                    _box[3] = x[2]
-                    outputs.append(_box)
+            _box = ["", ""]
+            _box[0] = "<b><u>ELDERS</u></b>"
+
+            _box[1] = "\n".join([self.generate_one_entry(i) for i in living_elders])
+            outputs.append(_box)
 
         return outputs
