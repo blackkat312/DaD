@@ -336,10 +336,10 @@ class Pregnancy_Events:
         # additional save for no kit setting
         if cat and (cat.no_kits or cat.neutered or "infertile" in cat.permanent_condition):
             return
-
-        # here's where we check for infertility, just in case it slipped trough
-        if (cat and "infertile" in cat.permanent_condition) and not (other_cat and "infertile" in other_cat.permanent_condition):
-            return
+        if other_cat:
+            for x in other_cat:
+                if x.no_kits or x.neutered or "infertile" in x.permanent_condition:
+                    return
 
         if clan.clan_settings['same sex birth'] and not (not other_cat and random.randint(0,1)):
             # same sex birth enables all cats to get pregnant,
@@ -465,7 +465,7 @@ class Pregnancy_Events:
 
 
 
-            # if the other cat is a molly and the current cat is a tom, make the female cat pregnant
+            # if the other cat is a molly and the current cat is a tom, make the molly cat pregnant
             pregnant_cat = cat
             second_parent = other_cat
             if second_parent:
@@ -685,6 +685,7 @@ class Pregnancy_Events:
                 for i in range(0, nr_of_parents):
                     other_cat.append(choice(possible_affair_partners))
                     possible_affair_partners.remove(other_cat[i])
+
 
         if clan.clan_settings["pregnancy turmoil"]:
             turmoil = random.randint(1, 100)
@@ -1085,15 +1086,15 @@ class Pregnancy_Events:
                 mate = [cat.fetch_cat(mate)]
 
         # if the sex does matter, choose the best solution to allow kits
-        if not samesex and mate and cat.gender == "molly" and clan.clan_settings["multisire"]:
+        if not samesex and mate and cat.gender == "molly" and clan.clan_settings['multisire']:
             opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "tom", cat.gender == "tom")]
             if len(opposite_mate) > 0:
                 mate = opposite_mate
         elif not samesex and mate and cat.gender == "tom":
-            opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "tom", cat.gender == "tom")]
+            opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "molly", cat.gender == "molly")]
             if len(opposite_mate) > 0:
                 mate = [choice(opposite_mate)]
-        elif not samesex and mate and cat.gender == "intersex":
+        elif not samesex and mate:
             opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate]
             if len(opposite_mate) > 0:
                 mate = [choice(opposite_mate)]
@@ -1348,7 +1349,7 @@ class Pregnancy_Events:
                 else:
                     kit.thought = f"Snuggles up to the belly of {second_blood.name}"
                 
-            # kit.adoptive_parents = all_adoptive_parents  # Add the adoptive parents.
+            #kit.adoptive_parents = all_adoptive_parents  # Add the adoptive parents.
             # Prevent duplicate prefixes in Clan
             while kit.name.prefix in [kitty.name.prefix for kitty in Cat.all_cats.values() if not kitty.dead and not kitty.outside and kitty.ID != kit.ID]:
                 kit.name = Name("newborn")
@@ -1542,6 +1543,7 @@ class Pregnancy_Events:
             seventeen_kits = [min_kits + 16] * game.config["pregnancy"]["seventeen_kit_possibility"][cat.age]
             eighteen_kits = [min_kits + 17] * game.config["pregnancy"]["eighteen_kit_possibility"][cat.age]
             max_kits = [game.config["pregnancy"]["max_kits"]] * game.config["pregnancy"]["max_kit_possibility"][cat.age]
+
             amount = choice(
                 min_kit + two_kits + three_kits + four_kits + five_kits + six_kits + seven_kits + eight_kits +
                 nine_kits + ten_kits + eleven_kits + twelve_kits + thirteen_kits + fourteen_kits + fifteen_kits +
