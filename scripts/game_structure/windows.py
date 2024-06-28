@@ -1054,7 +1054,7 @@ class KillCat(UIWindow):
             "",
             object_id="#unchecked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the guardian will lose all {PRONOUN/m_c/poss} lives",
+                "If this is checked, the guardian will lose all of {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1065,7 +1065,7 @@ class KillCat(UIWindow):
             "",
             object_id="#checked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the guardian will lose all {PRONOUN/m_c/poss} lives",
+                "If this is checked, the guardian will lose all of {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1090,7 +1090,7 @@ class KillCat(UIWindow):
 
             self.all_lives_check.hide()
             self.life_text = pygame_gui.elements.UITextBox(
-                "Take all the guardian's lives",
+                "Take all of the guardian's lives",
                 scale(pygame.Rect((120, 295), (900, 80))),
                 object_id="#text_box_30_horizleft",
                 manager=MANAGER,
@@ -1973,17 +1973,17 @@ class ChangeCatToggles(UIWindow):
         if self.the_cat.neutered or "infertile" in self.the_cat.permanent_condition:
             if self.the_cat.no_kits:
                 box_type = "#checked_checkbox"
-                tool_tip = "Allow the cat to adopt kittens."
+                tool_tip = "Allow the cat to adopt kits."
             else:
                 box_type = "#unchecked_checkbox"
-                tool_tip = "Prevent the cat from adopting kittens."
+                tool_tip = "Prevent the cat from adopting kits."
         else:
             if self.the_cat.no_kits:
                 box_type = "#checked_checkbox"
-                tool_tip = "Allow the cat to adopt or have kittens."
+                tool_tip = "Allow the cat to adopt or have kits."
             else:
                 box_type = "#unchecked_checkbox"
-                tool_tip = "Prevent the cat from adopting or having kittens."
+                tool_tip = "Prevent the cat from adopting or having kits."
 
         self.checkboxes["prevent_kits"] = UIImageButton(
             scale(pygame.Rect(45, 100, 68, 68)),
