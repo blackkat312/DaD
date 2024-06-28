@@ -206,7 +206,7 @@ class Clan:
                                              "medicine cat", "leader", "mediator", "deputy", "elder"]),
                               )
         self.instructor.dead = True
-        self.instructor.dead_for = randint(20, 200)
+        self.instructor.dead_for = randint(0, 1000)
         self.add_cat(self.instructor)
         self.add_to_starclan(self.instructor)
         self.all_clans = []
