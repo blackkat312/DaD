@@ -1640,5 +1640,19 @@
 			"r_c has noticed that m_c seems to struggle with recognizing {PRONOUN/m_c/poss} Clanmates.",
 			"With more than a bit of frustration, m_c has to admit that {PRONOUN/m_c/subject} might be face blind alongside {PRONOUN/m_c/poss} thought blindness."
 		]
+	},
+	"vivid daydreamer":{
+		"vivid daydreams": [
+            "m_c talks to r_c at length about all {PRONOUN/m_c/poss} ideas and dreams to help the Clan.",
+            "It's not odd to see m_c running around camp with {PRONOUN/m_c/poss} head somewhere in the clouds.",
+            "m_c purrs in a sunbeam while {PRONOUN/m_c/poss} mind is elsewhere.",
+			"m_c closes {PRONOUN/m_c/poss} eyes and daydreams for a long time today."
+		],
+		"hallucinations": [
+            "r_c talks m_c through the things that {PRONOUN/m_c/subject} {VERB/m_c/are/is} seeing and hearing. It helps m_c more firmly ground {PRONOUN/m_c/self} in reality.",
+            "m_c struggles to understand what is really there or not as the shadows seem to hold impossible things.",
+            "Sometimes when m_c is half asleep, it feels as if there are creatures climbing up over {PRONOUN/m_c/poss} body, conspiring to keep {PRONOUN/m_c/object} awake.",
+            "m_c admits to a Clanmate that {PRONOUN/m_c/subject} {VERB/m_c/are/is} not sure if {PRONOUN/m_c/subject} can actually trust {PRONOUN/m_c/poss} ears and what {PRONOUN/m_c/subject} {VERB/m_c/are/is} hearing anymore."
+		]
 	}
 }

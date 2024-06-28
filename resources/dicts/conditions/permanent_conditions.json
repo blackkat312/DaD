@@ -969,6 +969,10 @@
 			{
 				"name": "word loss",
 				"chance": 30
+			},
+            {
+				"name": "vivid daydreamer",
+				"chance": 80
 			}
         ],
         "herbs": [ ]
@@ -1194,6 +1198,10 @@
 			{
 				"name": "parroting",
 				"chance": 20
+			},
+            {
+				"name": "vivid daydreamer",
+				"chance": 80
 			}
         ],
         "herbs":[
@@ -1308,6 +1316,10 @@
             {
 				"name": "selective mutism",
 				"chance": 50
+			},
+            {
+				"name": "vivid daydreamer",
+				"chance": 80
 			}
         ],
         "herbs": [
@@ -2701,6 +2713,33 @@
         "risks": [
 			{
 				"name": "face blindness",
+				"chance": 50
+			}
+        ],
+        "herbs": []
+    },
+    "vivid daydreamer": {
+        "severity": "minor",
+        "congenital": "never",
+        "moons_until": 5,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+			{
+				"name": "vivid daydreams",
+				"chance": 10
+			},
+            {
+				"name": "hallucinations",
 				"chance": 50
 			}
         ],

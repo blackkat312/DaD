@@ -514,6 +514,7 @@ class MedDenScreen(Screens):
             "jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
             "parrot chatter": "echolalia",
+            "vivid daydreamer": "maladaptive daydreaming",
 
             "sunblindness": "light sensitivity",
 

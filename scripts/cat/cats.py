@@ -305,15 +305,7 @@ class Cat():
 
          # These things should only run when generating a new cat, rather than loading one in.
         if not loading_cat:
-            
-            # for testing conditions
-            '''
-            if game.clan:
-                new_condition=choice(["shattered soul", "budding spirit"])
-                self.get_permanent_condition(new_condition, born_with=True)
-            '''
-            
-            
+                
             # trans cat chances
             theythemdefault = game.settings["they them default"]
             self.genderalign = self.gender
@@ -404,7 +396,13 @@ class Cat():
         else:
             self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
                              load_existing_name = loading_cat)
-
+        ''' 
+        if not loading_cat:
+                # for testing conditions
+                if game.clan:
+                        new_condition=choice(["shattered soul", "budding spirit"])
+                        self.get_permanent_condition(new_condition, born_with=True)
+        '''
         # Private Sprite
         self._sprite = None
 
@@ -1492,20 +1490,23 @@ class Cat():
             self.healed_condition = True
             return False
 
-    '''
+    
     def system_core(self):
         template = {
             "ID": "0",
             "name": "",
             "gender": "",
             "role": "host",
-            "other": "cat"
+            "other": "core",
+            "origin": "core",
+            "splits": []
             }
-        #if self.pelt is not None:
-        template[name] = str(self.name)
-        template[gender] = self.genderalign
+        if game.clan:
+            if self.name:
+                template["name"] = self.name.prefix + self.name.suffix
+                template["gender"] = self.genderalign
         self.alters.append(template)
-    '''
+    
     
     def add_split(self, new_alter, origin):
         if self.alters[new_alter]:
@@ -1579,6 +1580,8 @@ class Cat():
             if splitrng < (len(self.alters) + 1):
                 template["origin"] = self.alters[(splitrng - 1)]['name']
                 self.add_split((splitrng - 1), template["name"])
+        if template["origin"] == "core":
+            self.add_split(0, template["name"])
         # print(template)
         self.alters.append(template)
 
@@ -2289,8 +2292,8 @@ class Cat():
                 "event_triggered": new_perm_condition.new,
             }
             if self.is_plural():
-                # self.system_core()
                 if len(self.alters) < 1:
+                    self.system_core()
                     self.new_alter()
             new_condition = True
         return new_condition
