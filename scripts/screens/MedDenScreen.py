@@ -9,7 +9,7 @@ from scripts.game_structure.ui_elements import (
     UIImageButton,
     UITextBoxTweaked,
 )
-from scripts.utility import get_text_box_theme, scale, get_alive_status_cats, shorten_text_to_fit, get_living_clan_cat_count
+from scripts.utility import get_text_box_theme, scale, get_alive_status_cats, shorten_text_to_fit, get_living_clan_cat_count, event_text_adjust
 from .Screens import Screens
 from ..conditions import get_amount_cat_for_one_medic, medical_cats_condition_fulfilled
 
@@ -48,6 +48,12 @@ class MedDenScreen(Screens):
         self.med_name = None
         self.current_page = None
         self.meds = None
+        self.subject_pronoun = None
+        self.object_pronoun = None
+        self.poss_pronoun = None
+        self.self_pronoun = None
+        self.do_does_pronoun = None
+        self.have_has_pronoun = None
         self.back_button = None
 
         self.tab_showing = self.in_den_tab
@@ -320,11 +326,22 @@ class MedDenScreen(Screens):
             )
             if len(self.meds) == 1:
                 insert = "medicine cat"
-                insert2 = "themself"
+                subjectp = self.subject_pronoun
+                objectp = self.object_pronoun
+                possp = self.poss_pronoun
+                selfp = self.self_pronoun
+                dodoes = self.do_does_pronoun
+                havehas = self.have_has_pronoun
             else:
                 insert = "medicine cats"
-                insert2 = "themselves"
-            meds_cover = f"Your {insert} can care for a Clan of up to {number} members, including {insert2}."
+                subjectp = "they"
+                objectp = "them"
+                possp = "their"
+                selfp = "themselves"
+                dodoes = "do"
+                havehas = "have"
+
+            meds_cover = f"Your {insert} can care for a Clan of up to {number} members, including {selfp}."
 
             if len(self.meds) >= 1 and number == 0:
                 meds_cover = f"You have no medicine cats who are able to work. Your Clan will be at a higher risk of death and disease."
@@ -336,16 +353,16 @@ class MedDenScreen(Screens):
                 med_concern = f"The herb stores are empty and bare, this does not bode well."
             elif 0 < herb_amount <= needed_amount / 4:
                 if len(self.meds) == 1:
-                    med_concern = f"The medicine cat worries over the herb stores, they don't have nearly enough for the Clan."
+                    med_concern = f"The medicine cat worries over the herb stores, {subjectp} {dodoes}n't have nearly enough for the Clan."
                 else:
-                    med_concern = f"The medicine cats worry over the herb stores, they don't have nearly enough for the Clan."
+                    med_concern = f"The medicine cats worry over the herb stores, {subjectp} {dodoes}n't have nearly enough for the Clan."
             elif needed_amount / 4 < herb_amount <= needed_amount / 2:
                 med_concern = f"The herb stores are small, but it's enough for now."
             elif needed_amount / 2 < herb_amount <= needed_amount:
                 if len(self.meds) == 1:
-                    med_concern = f"The medicine cat is content with how many herbs they have stocked up."
+                    med_concern = f"The medicine cat is content with how many herbs {subjectp} {havehas} stocked up."
                 else:
-                    med_concern = f"The medicine cats are content with how many herbs they have stocked up."
+                    med_concern = f"The medicine cats are content with how many herbs {subjectp} {havehas} stocked up."
             elif needed_amount < herb_amount <= needed_amount * 2:
                 if len(self.meds) == 1:
                     med_concern = f"The herb stores are overflowing and the medicine cat has little worry."
@@ -353,9 +370,9 @@ class MedDenScreen(Screens):
                     med_concern = f"The herb stores are overflowing and the medicine cats have little worry."
             elif needed_amount * 2 < herb_amount:
                 if len(self.meds) == 1:
-                    med_concern = f"StarClan has blessed them with plentiful herbs and the medicine cat sends their thanks to Silverpelt."
+                    med_concern = f"StarClan has blessed {objectp} with plentiful herbs and the medicine cat sends {possp} thanks to Silverpelt."
                 else:
-                    med_concern = f"StarClan has blessed them with plentiful herbs and the medicine cats send their thanks to Silverpelt."
+                    med_concern = f"StarClan has blessed {objectp} with plentiful herbs and the medicine cats send {possp} thanks to Silverpelt."
 
             med_messages.append(meds_cover)
             med_messages.append(med_concern)
@@ -414,6 +431,28 @@ class MedDenScreen(Screens):
             all_pages = []
         else:
             all_pages = self.chunks(self.meds, 1)
+
+        if len(self.meds) == 1:
+            living_meds = []
+            living_cats = [i for i in Cat.all_cats.values() if not (i.dead or i.outside)]
+            for cat in living_cats:
+                if cat.status == "medicine cat":
+                    living_meds.append(cat)
+                    break
+
+            self.subject_pronoun = "{PRONOUN/m_c/subject}"
+            self.object_pronoun = "{PRONOUN/m_c/object}"
+            self.poss_pronoun = "{PRONOUN/m_c/poss}"
+            self.self_pronoun = "{PRONOUN/m_c/self}"
+            self.do_does_pronoun = "{VERB/m_c/do/does}"
+            self.have_has_pronoun = "{VERB/m_c/have/has}"
+
+            self.subject_pronoun = event_text_adjust(Cat, self.subject_pronoun, main_cat=living_meds[0])
+            self.object_pronoun = event_text_adjust(Cat, self.object_pronoun, main_cat=living_meds[0])
+            self.poss_pronoun = event_text_adjust(Cat, self.poss_pronoun, main_cat=living_meds[0])
+            self.self_pronoun = event_text_adjust(Cat, self.self_pronoun, main_cat=living_meds[0])
+            self.do_does_pronoun = event_text_adjust(Cat, self.do_does_pronoun, main_cat=living_meds[0])
+            self.have_has_pronoun = event_text_adjust(Cat, self.have_has_pronoun, main_cat=living_meds[0])
 
         if self.current_med > len(all_pages):
             if len(all_pages) == 0:
@@ -554,7 +593,7 @@ class MedDenScreen(Screens):
             i += 1
 
     @staticmethod
-    def change_condition_name(list):
+    def change_condition_name(condition_list):
         dad_names = {
             "starwalker": "autism",
             "obsessive mind": "OCD",
@@ -586,24 +625,27 @@ class MedDenScreen(Screens):
             "spirited heart": "hyperempathy",
             "puzzled heart": "low empathy",
             "parrot chatter": "echolalia",
+            "thought blindness": "aphantasia",
 
             "sunblindness": "light sensitivity",
 
             "seasonal lethargy": "seasonal depression",
             "lethargy": "depression",
+            "turmoiled litter": "post partem",
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
-            "puppyspace": "petspace"
+            "puppyspace": "petspace",
+            "parroting": "echolalia"
         }
         length = 0
         if not game.settings["warriorified names"]:
-            while length < len(list):
-                if list[length] in dad_names:
-                    list[length] = list[length].replace(list[length], dad_names.get(list[length]))
+            while length < len(condition_list):
+                if condition_list[length] in dad_names:
+                    condition_list[length] = condition_list[length].replace(condition_list[length], dad_names.get(condition_list[length]))
                 length += 1
 
-        return list
+        return condition_list
 
     def draw_med_den(self):
         sorted_dict = dict(sorted(game.clan.herbs.items()))
