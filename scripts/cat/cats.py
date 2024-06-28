@@ -2086,6 +2086,9 @@ class Cat:
         if self.neutered and not self.vaccinated:
             self.vaccinated = True
 
+        if not self.dead_outside_display:
+            self.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
+
         if self.exiled or self.outside:
             # this is handled in events.py
             self.personality.set_kit(self.is_baby())
