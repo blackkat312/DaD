@@ -1129,7 +1129,7 @@ class Events:
         exiled cat events
         """
         if not cat.dead_outside_display or cat.dead_outside_display == "":
-            cat.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
+            cat.dead_outside_display = random.choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             print(f"{cat.name} doesn't have a dead_outside_display. Randomizing...")
             print(f"CHOSEN: {cat.dead_outside_display}")
 
@@ -1223,7 +1223,7 @@ class Events:
         and new cat events
         """
         if not cat.dead_outside_display or cat.dead_outside_display == "":
-            cat.dead_outside_display = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
+            cat.dead_outside_display = random.choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             print(f"{cat.name} doesn't have a dead_outside_display. Randomizing...")
             print(f"CHOSEN: {cat.dead_outside_display}")
 
