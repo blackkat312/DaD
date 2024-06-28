@@ -643,7 +643,7 @@ def create_new_cat_block(
                                   parent1=parent1.ID if parent1 else None,
                                   parent2=parent2.ID if parent2 else None,
                                   extrapar=generated_parents[2] if not parent2 and generated_parents else None,
-                                  is_parent="age:has_kits" in attribute_list
+                                  is_parent= "age:has_kits" in attribute_list
                                   )
 
         # NEXT
@@ -890,7 +890,7 @@ def create_new_cat(
 
         if kittypet and randint(1, 5) > 2 and age > 2:
             new_cat.neutered = True
-        elif kittypet and randint(1, 3) == 1 and age > 2:
+        elif kittypet and randint(1, 3) == 1 and age > 1:
             new_cat.vaccinated = True
         elif loner and randint(1, 7) == 1 and age > 2:
             new_cat.neutered = True
@@ -901,6 +901,7 @@ def create_new_cat(
         if new_cat.age == "adolescent":
             new_cat.update_mentor()
 
+        # Give conditions for disabling scars, if they generated.
         scar_to_condition = {
             "THREE": ["one bad eye"],
             "FOUR": ["weak leg", "no", "no"],
@@ -935,7 +936,6 @@ def create_new_cat(
         elif age == 4 or age == 5:
             cat_gain_age = randint(4, age)
 
-        # Give conditions for disabling scars, if they generated.
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
                 if game.clan.game_mode == "classic" or age < 4:
