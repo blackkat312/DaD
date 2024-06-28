@@ -343,7 +343,7 @@ class ClanScreen(Screens):
                 continue
 
             # Newborns are not meant to be placed. They are hiding.
-            if Cat.all_cats[x].status == 'newborn' or game.config['fun']['all_cats_are_newborn']:
+            if Cat.all_cats[x].status == 'newborn':
                 # No, free them
                 Cat.all_cats[x].placement = self.choose_nonoverlapping_positions(first_choices, all_dens,
                                                                                  [60, 8, 1, 1, 1, 1, 1])
