@@ -2356,23 +2356,34 @@ class Genotype:
         self.pigmentation = piggrade
 
     def ShowGenes(self):
-        specred = ""
-        if self.specialred:
-            specred = "Special Red: \"" + str(self.specialred) + "\""
-        whtgrd = "White Grade: " + str(self.whitegrade)
-        brkethrough = "Breakthrough: " + str(self.breakthrough)
-        mnxtp = "Manx Type: " + str(self.manxtype)
+        wht = str(self.white) + " (" + str(self.whitegrade) + ")"
+        brkethrough = "breakthrough tabby"
 
         self.PolyEval()
-        self.Cat_Genes = [self.furLength, self.eumelanin, self.sexgene, specred, self.dilute, self.white, whtgrd, self.pointgene, self.silver,
-                     self.agouti, self.mack, self.ticked, brkethrough, self.breeds]
-        self.Fur_Genes = [self.york, self.wirehair, self.laperm, self.cornish, self.urals, self.tenn, self.fleece, self.sedesp, self.ruhr, self.ruhrmod, self.lykoi]
-        self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.sunshine, self.karp, self.bleach, self.ghosting, self.satin, self.glitter]
-        self.Body_Genes = [self.curl, self.fold, self.manx, mnxtp, self.kab, self.toybob, self.jbob, self.kub, self.ring, self.munch, self.poly, self.altai]
-        self.Polygenes = ["Rufousing:", self.rufousing, self.ruftype, "Bengal:", self.bengal, self.bengtype, "Sokoke:", self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes, self.ticktype]
-        self.Polygenes2 = ["Wideband:", self.wideband, self.wbtype, "Refraction:", self.refraction, "Pigmentation:", self.pigmentation]
+        if self.specialred:
+            self.Cat_Genes = [self.furLength, self.eumelanin, self.sexgene, self.specialred, self.dilute, wht,
+                              self.pointgene, self.silver, self.agouti, self.mack, self.ticked]
+        else:
+            self.Cat_Genes = [self.furLength, self.eumelanin, self.sexgene, self.dilute, wht, self.pointgene,
+                              self.silver, self.agouti, self.mack, self.ticked]
+        if self.breakthrough:
+            self.Cat_Genes.append(brkethrough)
+        if self.breeds:
+            self.Cat_Genes.append(self.breeds)
+        self.Fur_Genes = [self.york, self.wirehair, self.laperm, self.cornish, self.urals, self.tenn, self.fleece,
+                          self.sedesp, self.ruhr, self.ruhrmod, self.lykoi]
+        self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.sunshine, self.karp, self.bleach,
+                             self.ghosting, self.satin, self.glitter]
+        self.Body_Genes = [self.curl, self.fold, self.manx, self.manxtype, self.kab, self.toybob, self.jbob, self.kub,
+                           self.ring, self.munch, self.poly, self.altai]
+        self.Polygenes = ["Rufousing:", self.rufousing, self.ruftype, "Bengal:", self.bengal, self.bengtype, "Sokoke:",
+                          self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes,
+                          self.ticktype]
+        self.Polygenes2 = ["Wideband:", self.wideband, self.wbtype, "Refraction:", self.refraction, "Pigmentation:",
+                           self.pigmentation]
 
-        return self.Cat_Genes, "Other Fur Genes: ", self.Fur_Genes, "Other Colour Genes: ", self.Other_Colour, "Body Mutations: ", self.Body_Genes, "Polygenes: ", self.Polygenes, self.Polygenes2
+        return (self.Cat_Genes, "Other Fur Genes:", self.Fur_Genes, "Other Color Genes:", self.Other_Colour,
+                "Body Mutations:", self.Body_Genes, "Polygenes:", self.Polygenes, self.Polygenes2)
     
     def Mutate(self):
         print("MUTATION!")
