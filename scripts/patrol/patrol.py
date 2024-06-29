@@ -492,7 +492,7 @@ class Patrol:
             if not ("medicine cat" in self.patrol_status_list or "medicine cat apprentice" in self.patrol_status_list):
                 patrol_type = random.choice(["hunting", "border", "training"])
             else:
-                patrol_type = random.choice(["hunting", "border", "training", "med", "med"])
+                patrol_type = random.choice(["hunting", "border", "training", "med", "med", "med", "med", "med", "med"])
 
             if ("medicine cat" in self.patrol_status_list or "medicine cat apprentice" in self.patrol_status_list) and game.clan.clan_settings["patrol_lock_meds"]:
                 patrol_type = "med"
