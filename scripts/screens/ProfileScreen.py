@@ -1449,12 +1449,12 @@ class ProfileScreen(Screens):
                         else:
                             output += "\nrecovering from a turmoiled birth!"
                     else:
-                        output += "\nexperiencing post partem!"
+                        output += "\nexperiencing postpartum!"
                 else:
                     if game.settings["warriorified names"]:
                         output += "recovering from a turmoiled birth!"
                     else:
-                        output += "experiencing post partem!"
+                        output += "experiencing postpartum!"
 
         return output
 
@@ -2477,12 +2477,13 @@ class ProfileScreen(Screens):
             "puzzled heart": "low empathy",
             "parrot chatter": "echolalia",
             "thought blindness": "aphantasia",
+            "vivid daydreamer": "maladaptive daydreamer",
 
             "sunblindness": "light sensitivity",
 
             "seasonal lethargy": "seasonal depression",
             "lethargy": "depression",
-            "turmoiled litter": "post partem",
+            "turmoiled litter": "postpartum",
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
