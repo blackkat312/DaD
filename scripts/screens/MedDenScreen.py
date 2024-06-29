@@ -626,12 +626,13 @@ class MedDenScreen(Screens):
             "puzzled heart": "low empathy",
             "parrot chatter": "echolalia",
             "thought blindness": "aphantasia",
+            "vivid daydreamer": "maladaptive daydreamer",
 
             "sunblindness": "light sensitivity",
 
             "seasonal lethargy": "seasonal depression",
             "lethargy": "depression",
-            "turmoiled litter": "post partem",
+            "turmoiled litter": "postpartum",
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
