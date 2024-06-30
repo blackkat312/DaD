@@ -1571,12 +1571,24 @@ class ProfileScreen(Screens):
     def toggle_genetics_tab(self):
         """Opens the User Notes portion of the History Tab"""
         self.genelist = str(self.the_cat.genotype.ShowGenes())
-        if(self.the_cat.genotype.chimera):
-            self.genelist += "\n\n" + str(self.the_cat.genotype.chimerageno.ShowGenes())
 
         self.genelist = self.genelist.replace("'", "")
         self.genelist = self.genelist.replace("\"", "")
         self.genelist = self.genelist.replace(":,", ":")
+        self.genelist = self.genelist[2:]
+        self.genelist = self.genelist[:-3]
+
+        chimgenes = ""
+        if(self.the_cat.genotype.chimera):
+            chimgenes = str(self.the_cat.genotype.chimerageno.ShowGenes())
+
+            self.chimgenes = self.chimgenes.replace("'", "")
+            self.chimgenes = self.chimgenes.replace("\"", "")
+            self.chimgenes = self.chimgenes.replace(":,", ":")
+            self.chimgenes = self.chimgenes[2:]
+            self.chimgenes = self.chimgenes[:-3]
+
+        self.genelist += "\n\n" + chimgenes
         
         self.genetic_text_box = UITextBoxTweaked(self.genelist,
                                               scale(pygame.Rect((200, 946), (1200, 298))),
@@ -3101,8 +3113,9 @@ class ProfileScreen(Screens):
 
                 self.chimgenelist = ""
                 phenotypetext = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)) + "\n"
-                self.genelist = str(self.the_cat.genotype.ShowGenes()) + "\n" + self.the_cat.genotype.FormatSomatic()
                 print("genetically: " + phenotypetext)
+                self.genelist = str(self.the_cat.genotype.ShowGenes())
+                somatictext = self.the_cat.genotype.FormatSomatic()
 
                 self.genelist = self.genelist.replace("'", "")
                 self.genelist = self.genelist.replace("\"", "")
@@ -3110,15 +3123,22 @@ class ProfileScreen(Screens):
                 self.genelist = self.genelist[2:]
                 self.genelist = self.genelist[:-3]
 
-                self.genelist = phenotypetext + self.genelist
+                self.genelist = phenotypetext + self.genelist + somatictext
 
                 if(self.the_cat.genotype.chimera):
                     chimpheno = Phenotype(self.the_cat.genotype.chimerageno)
                     chimphenotypetext = "\n\n" + str(chimpheno.PhenotypeOutput(gender=self.the_cat.genotype.chimerageno.gender, sex=self.the_cat.genotype.chimerageno.gender)) + "\n"
-                    self.chimgenelist = str(self.the_cat.genotype.chimerageno.ShowGenes())
                     print("chimerically: " + chimphenotypetext)
+                    self.chimgenelist = str(self.the_cat.genotype.chimerageno.ShowGenes())
+                    chimsomatictext = self.the_cat.genotype.FormatSomatic()
 
-                    self.chimgenelist = chimphenotypetext + self.chimgenelist
+                    self.chimgenelist = self.chimgenelist.replace("'", "")
+                    self.chimgenelist = self.chimgenelist.replace("\"", "")
+                    self.chimgenelist = self.chimgenelist.replace(":,", ":")
+                    self.chimgenelist = self.chimgenelist[2:]
+                    self.chimgenelist = self.chimgenelist[:-3]
+
+                    self.chimgenelist = chimphenotypetext + self.chimgenelist + chimsomatictext
 
                 self.genelist += self.chimgenelist
 
