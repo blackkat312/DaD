@@ -25,7 +25,7 @@
                 "weight": 5
             },
             {
-                "text": "s_c sets up an ambush, devising a clever plan to take the porcupine by surprise and attack it before it can whip its quills into anyone's pelt.  The Clan will be impressed by this hefty fresh-kill.",
+                "text": "s_c sets up an ambush, devising a clever plan to take the porcupine by surprise and attack it before it can whip its quills into anyone's pelt. The Clan will be impressed by this hefty fresh-kill.",
                 "exp": 10,
                 "weight": 20,
                 "stat_skill": ["HUNTER,2", "CLEVER,2"],
@@ -45,7 +45,7 @@
                 "weight": 20
             },
             {
-                "text": "s_c gets closer to the porcupine, intending to impress the rest of the patrol with {PRONOUN/s_c/poss} bravery. All the cats recoil as a horrible smell comes from the porcupine and they back off before it can charge at them.  The patrol returns to camp, the smelly evidence of their encounter still clinging to s_c's pelt.",
+                "text": "s_c gets closer to the porcupine, intending to impress the rest of the patrol with {PRONOUN/s_c/poss} bravery. All the cats recoil as a horrible smell comes from the porcupine and they back off before it can charge at them. The patrol returns to camp, the smelly evidence of their encounter still clinging to s_c's pelt.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["bold", "daring", "confident", "adventurous"]
@@ -106,14 +106,14 @@
                 "weight": 5
             },
             {
-                "text": "s_c sets up an ambush, devising a clever plan to take the porcupine by surprise and attack it before it can whip its quills into anyone's pelt.  The Clan will be impressed by this hefty fresh-kill.",
+                "text": "s_c sets up an ambush, devising a clever plan to take the porcupine by surprise and attack it before it can whip its quills into anyone's pelt. The Clan will be impressed by this hefty fresh-kill.",
                 "exp": 30,
                 "weight": 20,
                 "stat_skill": ["HUNTER,3", "CLEVER,3"],
                 "prey": ["huge"]
             },
             {
-                "text": "s_c has the ingenious idea to follow the porcupine from a distance and collect dropped quills to bring back to camp.  The quills could be woven into the Clan's defenses to strengthen them.",
+                "text": "s_c has the ingenious idea to follow the porcupine from a distance and collect dropped quills to bring back to camp. The quills could be woven into the Clan's defenses to strengthen them.",
                 "exp": 30,
                 "weight": 20,
                 "stat_trait": ["calm", "careful", "strange", "thoughtful", "wise"]
@@ -330,7 +330,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "s_c runs at the squirrels before anyone else can pounce, laughing at the prey's antics and playfully jumping into the middle of their game.  The squirrels scatter away at the disturbance and disappear into the canopy.",
+                "text": "s_c runs at the squirrels before anyone else can pounce, laughing at the prey's antics and playfully jumping into the middle of their game. The squirrels scatter away at the disturbance and disappear into the canopy.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["troublesome", "childish", "playful"],
@@ -455,7 +455,7 @@
                 "stat_trait": ["bold", "ambitious", "childish", "impulsive"]
             },
             {
-                "text": "Oh no! The burrow was home to a wolverine, now angry at the disturbance. r_c bolts away to escape its wrath, but doesn't quite move fast enough and is caught in its claws.  With no other cats around to help, r_c is quickly killed by the predator.",
+                "text": "Oh no! The burrow was home to a wolverine, now angry at the disturbance. r_c bolts away to escape its wrath, but doesn't quite move fast enough and is caught in its claws. With no other cats around to help, r_c is quickly killed by the predator.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["r_c"],
@@ -480,7 +480,7 @@
         },
         "weight": 20,
         "intro_text": "The patrol hears distant howling and wonders whether to investigate the noise.",
-        "decline_text": "The patrol decides not to investigate the source of the noise.  Whatever is making it will not be friendly to them.",
+        "decline_text": "The patrol decides not to investigate the source of the noise. Whatever is making it will not be friendly to them.",
         "chance_of_success": 10,
         "success_outcomes": [
             {
@@ -495,7 +495,7 @@
                 "prey": ["medium"]
             },
             {
-                "text": "The patrol follows the noise to a coyote who quickly spots them in the brush. A fight ensues and thanks to the skills of s_c, the coyote eventually runs away, deeming the carcass they had been scavenging from to not be worth the hassle.  The patrol brings back what meat had still been left.",
+                "text": "The patrol follows the noise to a coyote who quickly spots them in the brush. A fight ensues and thanks to the skills of s_c, the coyote eventually runs away, deeming the carcass they had been scavenging from to not be worth the hassle. The patrol brings back what meat had still been left.",
                 "exp": 30,
                 "weight": 20,
                 "stat_skill": ["FIGHTER,3"],
@@ -524,13 +524,13 @@
                 "weight": 20
             },
             {
-                "text": "They track the noise to a coyote. Before the patrol can investigate further, s_c whimpers in terror at the sight of the beast and dashes away.  The patrol follows anxiously, not wanting to lose sight of their Clanmate while a coyote is about.",
+                "text": "They track the noise to a coyote. Before the patrol can investigate further, s_c whimpers in terror at the sight of the beast and dashes away. The patrol follows anxiously, not wanting to lose sight of their Clanmate while a coyote is about.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["nervous", "insecure"]
             },
             {
-                "text": "The patrol finds a coyote at the source of the noise. It seems to be scavenging from an old carcass and upon seeing the cats, prove to be fiercely protective of its meal.  The patrol doesn't move fast enough and r_c is killed before they can run.",
+                "text": "The patrol finds a coyote at the source of the noise. It seems to be scavenging from an old carcass and upon seeing the cats, prove to be fiercely protective of its meal. The patrol doesn't move fast enough and r_c is killed before they can run.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["r_c"],
@@ -541,7 +541,7 @@
                 }
             },
             {
-                "text": "The sound leads them to a coyote, scavenging from a carcass. The coyote notices them before they can hide and lunges, making it clear that this food has been claimed.  r_c is momentarily caught in its jaws before the patrol retaliates and drives it off their Clanmate.",
+                "text": "The sound leads them to a coyote, scavenging from a carcass. The coyote notices them before they can hide and lunges, making it clear that this food has been claimed. r_c is momentarily caught in its jaws before the patrol retaliates and drives it off their Clanmate.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -617,13 +617,13 @@
                 "weight": 20
             },
             {
-                "text": "They track the noise to a coyote. Before the patrol can investigate further, s_c whimpers in terror at the sight of the beast and dashes away.  The patrol follows anxiously, not wanting to lose sight of their Clanmate while a coyote is about.",
+                "text": "They track the noise to a coyote. Before the patrol can investigate further, s_c whimpers in terror at the sight of the beast and dashes away. The patrol follows anxiously, not wanting to lose sight of their Clanmate while a coyote is about.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["nervous", "insecure"]
             },
             {
-                "text": "The patrol finds a coyote at the source of the noise. It seems to be scavenging from an old carcass and upon seeing the cats, prove to be fiercely protective of its meal.  The patrol doesn't move fast enough and r_c is killed before {PRONOUN/r_c/subject} can run.",
+                "text": "The patrol finds a coyote at the source of the noise. It seems to be scavenging from an old carcass and upon seeing the cats, prove to be fiercely protective of its meal. The patrol doesn't move fast enough and r_c is killed before {PRONOUN/r_c/subject} can run.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["r_c"],
@@ -634,7 +634,7 @@
                 }
             },
             {
-                "text": "The sound leads them to a coyote, scavenging from a carcass. The coyote notices them before they can hide and lunges, making it clear that this food has been claimed.  r_c is momentarily caught in its jaws before the patrol retaliates and drives it off their Clanmate.",
+                "text": "The sound leads them to a coyote, scavenging from a carcass. The coyote notices them before they can hide and lunges, making it clear that this food has been claimed. r_c is momentarily caught in its jaws before the patrol retaliates and drives it off their Clanmate.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -741,7 +741,7 @@
         },
         "weight": 20,
         "intro_text": "The patrol hears distant howling and wonders whether to investigate the noise.",
-        "decline_text": "The patrol decides not to investigate the source of the noise.  Whatever is making it will not be friendly to them.",
+        "decline_text": "The patrol decides not to investigate the source of the noise. Whatever is making it will not be friendly to them.",
         "chance_of_success": 10,
         "success_outcomes": [
             {
@@ -878,13 +878,13 @@
                 "weight": 20
             },
             {
-                "text": "They track the noise to a wolf. Before the patrol can investigate further, s_c whimpers in terror at the sight of the beast and dashes away.  The patrol follows anxiously, not wanting to lose sight of their Clanmate while a wolf is about.",
+                "text": "They track the noise to a wolf. Before the patrol can investigate further, s_c whimpers in terror at the sight of the beast and dashes away. The patrol follows anxiously, not wanting to lose sight of their Clanmate while a wolf is about.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["nervous", "insecure"]
             },
             {
-                "text": "The patrol finds a wolf pack at the source of the noise. The wolves are busy eating from the carcass of a deer, and upon seeing the cats, prove to be fiercely protective of their meal.  The patrol doesn't move fast enough and r_c is killed before {PRONOUN/r_c/subject} can run.",
+                "text": "The patrol finds a wolf pack at the source of the noise. The wolves are busy eating from the carcass of a deer, and upon seeing the cats, prove to be fiercely protective of their meal. The patrol doesn't move fast enough and r_c is killed before {PRONOUN/r_c/subject} can run.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["r_c"],
@@ -909,7 +909,7 @@
         },
         "weight": 20,
         "intro_text": "r_c hears distant howling and wonders whether to investigate the noise.",
-        "decline_text": "r_c decides not to investigate the source of the noise.  Whatever is making it will not be friendly to {PRONOUN/r_c/object} and {PRONOUN/r_c/subject} {VERB/r_c/are/is} only one cat.",
+        "decline_text": "r_c decides not to investigate the source of the noise. Whatever is making it will not be friendly to {PRONOUN/r_c/object} and {PRONOUN/r_c/subject} {VERB/r_c/are/is} only one cat.",
         "chance_of_success": 10,
         "success_outcomes": [
             {
@@ -1946,7 +1946,7 @@
                 ]
             },
             {
-                "text": "It's a strange adventure, odd and weird and a little thrilling. s_c takes the lead, but both s_c and r_c are wide eyed and a little scared, in a fun way.",
+                "text": "It's a strange adventure, odd and weird and a little thrilling. s_c takes the lead, but both s_c and r_c are wide-eyed and a little scared, in a fun way.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -2062,7 +2062,7 @@
                 ]
             },
             {
-                "text": "A friendly Twolegs makes a 'psspsspss' noise, and pours kittypet food on the ground for app2. They fetch app1, and both apprentices loudly proclaim how much better fresh-kill is, but both are also wide eyed and thrilled by the experience.",
+                "text": "A friendly Twoleg makes a 'psspsspss' noise, and pours kittypet food on the ground for app2. They fetch app1, and both apprentices loudly proclaim how much better fresh-kill is, but both are also wide-eyed and thrilled by the experience.",
                 "exp": 20,
                 "weight": 5,
                 "prey": ["very_small"],
@@ -3089,7 +3089,7 @@
         "decline_text": "Before the apprentices can pursue the fallen StarClan cat, the worst of all possibilities happens - a warrior discovers them, sending them back to camp with a loud scolding.",
         "success_outcomes": [
             {
-                "text": "Scrambling up the hill, app1 shoves app2 up a slightly too big step, both of them panting eagerly as they run. The mist swirls around them, stinking strangely as they search for the StarClan cat, until app2 bumps into a huge, tall pillar, one that blinks down with slow, glowing red eyes.",
+                "text": "Scrambling up the hill, app1 shoves app2 up a slightly too big step, both of them panting eagerly as they run. The mist swirls around them, stinking strangely as they search for the StarClan cat, until app2 bumps into a huge, tall pillar - one that blinks down with slow, glowing red eyes.",
                 "exp": 0,
                 "weight": 20
             }
@@ -3113,19 +3113,19 @@
         "max_cats": 1,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "As r_c is out alone, {PRONOUN/r_c/subject} {VERB/r_c/spot/spots} something out of the corner of {PRONOUN/r_c/poss} eye; spindly, long, and partially hidden by the undergrowth of the forest.",
+        "intro_text": "As r_c is out alone, {PRONOUN/r_c/subject} {VERB/r_c/spot/spots} something out of the corner of {PRONOUN/r_c/poss} eye: spindly, long, and partially hidden by the undergrowth of the forest.",
         "decline_text": "{PRONOUN/r_c/subject/CAP} {VERB/r_c/hurry/hurries} back to camp, a little freaked out.",
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "It leaps up onto a fallen log - whatever it is, bulbous head, long, spindly limbs, pale, hairless skin like a skink. r_c hisses, and it echoes in a whisper, skittering off into the woods.",
+                "text": "It leaps up onto a fallen log - whatever it is, with its bulbous head, long, spindly limbs, pale, hairless skin like a skink. r_c hisses and it echoes in a whisper, skittering off into the woods.",
                 "exp": 20,
                 "weight": 20
             }
         ],
         "fail_outcomes": [
             {
-                "text": "r_c doesn't want to talk about it when {PRONOUN/r_c/subject} {VERB/r_c/come/comes} back to camp. {PRONOUN/r_c/subject/CAP} {VERB/r_c/don't/doesn't} want to talk about anything..",
+                "text": "r_c doesn't want to talk about it when {PRONOUN/r_c/subject} {VERB/r_c/come/comes} back to camp. {PRONOUN/r_c/subject/CAP} {VERB/r_c/don't/doesn't} want to talk about anything...",
                 "exp": 0,
                 "weight": 20,
                 "injury": [
