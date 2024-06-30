@@ -529,8 +529,10 @@ class ListScreen(Screens):
             else "#text_box_30_horizcenter_light")
         self.display_container_elements["page_number"].set_text(f"/{self.all_pages}")
 
-        if self.death_status == "living" or self.current_group == "ur":
+        if self.death_status == "living":
             texttheme = get_text_box_theme("#text_box_30_horizcenter")
+        elif self.current_group == "ur":
+            texttheme = "#text_box_30_horizcenter"
         else:
             texttheme = "#text_box_30_horizcenter_light"
 
