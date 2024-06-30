@@ -3520,7 +3520,7 @@ class Genotype:
         if not self.somatic.get('gene', False):
             return ""
 
-        return self.somatic['gene'] + ' mutated to \'' + self.somatic['allele'] + "\' on " + body[self.somatic['base']]
+        return '\n' + self.somatic['gene'] + ' mutated to "' + self.somatic['allele'] + '" on ' + body[self.somatic['base']]
 
 
 
