@@ -143,12 +143,12 @@
         "max_cats": 6,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "As the patrol travels the territory, they come upon a strange metal forest that the Twolegs have built.  Smooth, white tree trunks rise up into the sky, completely bare apart from the very top, where three massive branches grow outwards and spin in slow circles. A low hum permeates the air.",
+        "intro_text": "As the patrol travels the territory, they come upon a strange metal forest that the Twolegs have built. Smooth, white tree trunks rise up into the sky, completely bare apart from the very top, where three massive branches grow outwards and spin in slow circles. A low hum permeates the air.",
         "decline_text": "The patrol decides to hunt elsewhere",
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "The patrol moves among the white trunks, checking the ground underneath them.  Sometimes dead birds can be found scattered about in this area and if not yet rotten, make for acceptable fresh-kill.  They manage to find some carcasses worth taking.",
+                "text": "The patrol moves among the white trunks, checking the ground underneath them. Sometimes dead birds can be found scattered about in this area and if not yet rotten, make for acceptable fresh-kill. They manage to find some carcasses worth taking.",
                 "exp": 10,
                 "weight": 20,
                 "prey": ["medium"]
@@ -177,7 +177,7 @@
         ],
         "antag_fail_outcomes": [
             {
-                "text": "The atmosphere in this place is eerie and r_c takes out {PRONOUN/r_c/poss} tenseness on one of the white trunks.  A few shallow scrapes are left on the surface, but little other evidence of {PRONOUN/r_c/poss} aggression remains.",
+                "text": "The atmosphere in this place is eerie and r_c takes out {PRONOUN/r_c/poss} tenseness on one of the white trunks. A few shallow scrapes are left on the surface, but little other evidence of {PRONOUN/r_c/poss} aggression remains.",
                 "exp": 0,
                 "weight": 20
             }
@@ -291,7 +291,7 @@
                 "stat_trait": ["bold", "ambitious", "childish", "impulsive"]
             },
             {
-                "text": "Oh no! The burrow was home to a wolverine, now angry at the disturbance. r_c bolts away to escape its wrath, but doesn't quite move fast enough and is caught in its claws.  With no other cats around to help, r_c is quickly killed by the predator.",
+                "text": "Oh no! The burrow was home to a wolverine, now angry at the disturbance. r_c bolts away to escape its wrath, but doesn't quite move fast enough and is caught in its claws. With no other cats around to help, r_c is quickly killed by the predator.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["r_c"],
@@ -1031,7 +1031,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "The patrol mostly ignores the Twolegs. As they hunt, they a yelp from r_c. {PRONOUN/r_c/subject/CAP}{VERB/r_c/'ve/'s} crawled into a metal Twolegs box, and there's nothing {PRONOUN/r_c/subject} or the rest of the patrol can do to get {PRONOUN/r_c/object} out - eventually the Twolegs notice, and r_c is taken by them.",
+                "text": "The patrol mostly ignores the Twolegs. As they hunt, they hear a yelp from r_c. {PRONOUN/r_c/subject/CAP}{VERB/r_c/'ve/'s} crawled into a metal Twolegs box, and there's nothing {PRONOUN/r_c/subject} or the rest of the patrol can do to get {PRONOUN/r_c/object} out - eventually the Twolegs notice, and r_c is taken by them.",
                 "exp": 0,
                 "weight": 10,
                 "lost_cats": ["r_c"]
@@ -1353,7 +1353,7 @@
                 ]
             },
             {
-                "text": "It's a strange adventure, odd and weird and a little thrilling. s_c takes the lead, but both s_c and r_c are wide eyed and a little scared, in a fun way.",
+                "text": "It's a strange adventure, odd and weird and a little thrilling. s_c takes the lead, but both s_c and r_c are wide-eyed and a little scared, in a fun way.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -1468,7 +1468,7 @@
                 ]
             },
             {
-                "text": "A friendly Twolegs makes a psspsspss noise, and pours kittypet food on the ground for r_c. {PRONOUN/r_c/subject/CAP} {VERB/r_c/fetch/fetches} p_l, and both apprentices loudly proclaim how much better fresh-kill is, but both are also wide eyed and thrilled by the experience.",
+                "text": "A friendly Twoleg makes a psspsspss noise, and pours kittypet food on the ground for r_c. {PRONOUN/r_c/subject/CAP} {VERB/r_c/fetch/fetches} p_l, and both apprentices loudly proclaim how much better fresh-kill is, but both are also wide-eyed and thrilled by the experience.",
                 "exp": 20,
                 "weight": 5,
                 "prey": ["very_small"],
