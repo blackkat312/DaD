@@ -1576,7 +1576,7 @@ class ProfileScreen(Screens):
         self.genelist = self.genelist.replace("\"", "")
         self.genelist = self.genelist.replace(":,", ":")
         self.genelist = self.genelist[2:]
-        self.genelist = self.genelist[:-3]
+        self.genelist = self.genelist[:-2]
 
         chimgenes = ""
         if(self.the_cat.genotype.chimera):
@@ -1586,7 +1586,7 @@ class ProfileScreen(Screens):
             self.chimgenes = self.chimgenes.replace("\"", "")
             self.chimgenes = self.chimgenes.replace(":,", ":")
             self.chimgenes = self.chimgenes[2:]
-            self.chimgenes = self.chimgenes[:-3]
+            self.chimgenes = self.chimgenes[:-2]
 
         self.genelist += "\n\n" + chimgenes
         
@@ -3121,7 +3121,7 @@ class ProfileScreen(Screens):
                 self.genelist = self.genelist.replace("\"", "")
                 self.genelist = self.genelist.replace(":,", ":")
                 self.genelist = self.genelist[2:]
-                self.genelist = self.genelist[:-3]
+                self.genelist = self.genelist[:-2]
 
                 self.genelist = phenotypetext + self.genelist + somatictext
 
@@ -3136,7 +3136,7 @@ class ProfileScreen(Screens):
                     self.chimgenelist = self.chimgenelist.replace("\"", "")
                     self.chimgenelist = self.chimgenelist.replace(":,", ":")
                     self.chimgenelist = self.chimgenelist[2:]
-                    self.chimgenelist = self.chimgenelist[:-3]
+                    self.chimgenelist = self.chimgenelist[:-2]
 
                     self.chimgenelist = chimphenotypetext + self.chimgenelist + chimsomatictext
 
