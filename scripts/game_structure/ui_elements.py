@@ -822,14 +822,20 @@ class UICatListDisplay(UIContainer):
         )
 
     def create_favor_indicator(self, i, pos_x, pos_y):
-        _favor_circle = pygame.transform.scale(
-            pygame.image.load(
-                f"resources/images/fav_marker.png"
-            ).convert_alpha(),
-            (100, 100),
-        )
         if game.settings["dark mode"]:
-            _favor_circle.set_alpha(50)
+            _favor_circle = pygame.transform.scale(
+                pygame.image.load(
+                    f"resources/images/fav_marker_dark.png"
+                ).convert_alpha(),
+                (100, 100),
+            )
+        else:
+            _favor_circle = pygame.transform.scale(
+                pygame.image.load(
+                    f"resources/images/fav_marker.png"
+                ).convert_alpha(),
+                (100, 100),
+            )
         self.favor_indicator[f"favor{i}"] = pygame_gui.elements.UIImage(
             scale(pygame.Rect((pos_x, pos_y), (100, 100))),
             _favor_circle,
