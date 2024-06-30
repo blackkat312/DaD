@@ -429,7 +429,8 @@ class Pregnancy_Events:
                                                 age=mate_age if mate_age > 14 else 15,
                                                 gender=mate_gender,
                                                 outside=True,
-                                                is_parent=True)[0]
+                                                is_parent=True,
+                                                can_be_neutered=False)[0]
                         outside_parent.thought = "Is wondering what their kits are doing"
                         if random.random() < 0.2:
                             outside_parent.set_mate(cat)
@@ -663,7 +664,8 @@ class Pregnancy_Events:
                                                     age=mate_age if mate_age > 14 else 15,
                                                     gender='masc',
                                                     outside=True,
-                                                    is_parent=True)[0]
+                                                    is_parent=True,
+                                                    can_be_neutered=False)[0]
                             out_par.thought = f"Is wondering how {cat.name} is doing"
 
                         if random.random() < 0.2:
@@ -1303,7 +1305,8 @@ class Pregnancy_Events:
                                                 thought=thought,
                                                 age=parage,
                                                 outside=True,
-                                                is_parent=True)[0]
+                                                is_parent=True,
+                                                can_be_neutered=False)[0]
                     blood_parent2 = []
 
                     for i in range(0, nr_of_parents):
@@ -1323,7 +1326,8 @@ class Pregnancy_Events:
                                                         thought=thought,
                                                         age=parage if parage > 14 else 15,
                                                         outside=True,
-                                                        is_parent=True)[0]
+                                                        is_parent=True,
+                                                        can_be_neutered=False)[0]
                         blood_par2.thought = thought
 
                         blood_parent2.append(blood_par2)
