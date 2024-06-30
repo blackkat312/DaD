@@ -1582,11 +1582,11 @@ class ProfileScreen(Screens):
         if(self.the_cat.genotype.chimera):
             chimgenes = str(self.the_cat.genotype.chimerageno.ShowGenes())
 
-            self.chimgenes = self.chimgenes.replace("'", "")
-            self.chimgenes = self.chimgenes.replace("\"", "")
-            self.chimgenes = self.chimgenes.replace(":,", ":")
-            self.chimgenes = self.chimgenes[2:]
-            self.chimgenes = self.chimgenes[:-2]
+            chimgenes = chimgenes.replace("'", "")
+            chimgenes = chimgenes.replace("\"", "")
+            chimgenes = chimgenes.replace(":,", ":")
+            chimgenes = chimgenes[2:]
+            chimgenes = chimgenes[:-2]
 
         self.genelist += "\n\n" + chimgenes
         
