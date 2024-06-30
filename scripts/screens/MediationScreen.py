@@ -449,6 +449,18 @@ class MediationScreen(Screens):
             gender_icon = image_cache.load_image(
                 "resources/images/male_big.png"
             ).convert_alpha()
+        elif cat.genderalign == "intersex":
+            gender_icon = image_cache.load_image(
+                "resources/images/intersex_big.png"
+            ).convert_alpha()
+        elif cat.gender == "intersex" and cat.genderalign == "trans molly":
+            gender_icon = image_cache.load_image(
+                "resources/images/transfem_intersex_big.png"
+            ).convert_alpha()
+        elif cat.gender == "intersex" and cat.genderalign == "trans tom":
+            gender_icon = image_cache.load_image(
+                "resources/images/transmasc_intersex_big.png"
+            ).convert_alpha()
         elif cat.genderalign == "trans molly":
             gender_icon = image_cache.load_image(
                 "resources/images/transfem_big.png"
@@ -508,7 +520,7 @@ class MediationScreen(Screens):
         else:
             col1 += " moons"
         if len(cat.personality.trait) > 15:
-            _t = cat.personality.trait[:13] + ".."
+            _t = cat.personality.trait[:12] + "..."
         else:
             _t = cat.personality.trait
         col1 += "\n" + _t
