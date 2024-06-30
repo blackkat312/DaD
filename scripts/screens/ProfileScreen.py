@@ -1575,6 +1575,11 @@ class ProfileScreen(Screens):
         self.genelist = self.genelist.replace("'", "")
         self.genelist = self.genelist.replace("\"", "")
         self.genelist = self.genelist.replace(":,", ":")
+        self.genelist = self.genelist.replace("], Other Fur Genes: [", ", Other Fur Genes: ")
+        self.genelist = self.genelist.replace("], Other Color Genes: [", ", Other Color Genes: ")
+        self.genelist = self.genelist.replace("], Body Mutations: [", ", Body Mutations: ")
+        self.genelist = self.genelist.replace("], Polygenes: [", ", Polygenes: ")
+        self.genelist = self.genelist.replace("], [Wide", ", Wide")
         self.genelist = self.genelist[2:]
         self.genelist = self.genelist[:-2]
 
@@ -1585,6 +1590,11 @@ class ProfileScreen(Screens):
             chimgenes = chimgenes.replace("'", "")
             chimgenes = chimgenes.replace("\"", "")
             chimgenes = chimgenes.replace(":,", ":")
+            chimgenes = chimgenes.replace("], Other Fur Genes: [", ", Other Fur Genes: ")
+            chimgenes = chimgenes.replace("], Other Color Genes: [", ", Other Color Genes: ")
+            chimgenes = chimgenes.replace("], Body Mutations: [", ", Body Mutations: ")
+            chimgenes = chimgenes.replace("], Polygenes: [", ", Polygenes: ")
+            chimgenes = chimgenes.replace("], [Wide", ", Wide")
             chimgenes = chimgenes[2:]
             chimgenes = chimgenes[:-2]
 
@@ -3113,13 +3123,18 @@ class ProfileScreen(Screens):
 
                 self.chimgenelist = ""
                 phenotypetext = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)) + "\n"
-                print("genetically: " + phenotypetext)
+                print("genetically: " + phenotypetext[:-1])
                 self.genelist = str(self.the_cat.genotype.ShowGenes())
                 somatictext = self.the_cat.genotype.FormatSomatic()
 
                 self.genelist = self.genelist.replace("'", "")
                 self.genelist = self.genelist.replace("\"", "")
                 self.genelist = self.genelist.replace(":,", ":")
+                self.genelist = self.genelist.replace("], Other Fur Genes: [", ", Other Fur Genes: ")
+                self.genelist = self.genelist.replace("], Other Color Genes: [", ", Other Color Genes: ")
+                self.genelist = self.genelist.replace("], Body Mutations: [", ", Body Mutations: ")
+                self.genelist = self.genelist.replace("], Polygenes: [", ", Polygenes: ")
+                self.genelist = self.genelist.replace("], [Wide", ", Wide")
                 self.genelist = self.genelist[2:]
                 self.genelist = self.genelist[:-2]
 
@@ -3128,13 +3143,18 @@ class ProfileScreen(Screens):
                 if(self.the_cat.genotype.chimera):
                     chimpheno = Phenotype(self.the_cat.genotype.chimerageno)
                     chimphenotypetext = "\n\n" + str(chimpheno.PhenotypeOutput(gender=self.the_cat.genotype.chimerageno.gender, sex=self.the_cat.genotype.chimerageno.gender)) + "\n"
-                    print("chimerically: " + chimphenotypetext)
+                    print("chimerically: " + chimphenotypetext[2:-1])
                     self.chimgenelist = str(self.the_cat.genotype.chimerageno.ShowGenes())
                     chimsomatictext = self.the_cat.genotype.FormatSomatic()
 
                     self.chimgenelist = self.chimgenelist.replace("'", "")
                     self.chimgenelist = self.chimgenelist.replace("\"", "")
                     self.chimgenelist = self.chimgenelist.replace(":,", ":")
+                    self.chimgenelist = self.chimgenelist.replace("], Other Fur Genes: [", ", Other Fur Genes: ")
+                    self.chimgenelist = self.chimgenelist.replace("], Other Color Genes: [", ", Other Color Genes: ")
+                    self.chimgenelist = self.chimgenelist.replace("], Body Mutations: [", ", Body Mutations: ")
+                    self.chimgenelist = self.chimgenelist.replace("], Polygenes: [", ", Polygenes: ")
+                    self.chimgenelist = self.chimgenelist.replace("], [Wide", ", Wide")
                     self.chimgenelist = self.chimgenelist[2:]
                     self.chimgenelist = self.chimgenelist[:-2]
 
