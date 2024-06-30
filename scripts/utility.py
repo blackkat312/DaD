@@ -311,7 +311,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     age=ages[0],
                                     gender=sex,
                                     outside=True,
-                                    is_parent=True)[0]
+                                    is_parent=True,
+                                    can_be_neutered=False)[0]
     while 'infertile' in blood_parent.permanent_condition or blood_parent.neutered:
         if(blood_parent):
             del Cat.all_cats[blood_parent.ID]
@@ -325,7 +326,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     age=ages[0],
                                     gender=sex,
                                     outside=True,
-                                    is_parent=True)[0]
+                                    is_parent=True,
+                                    can_be_neutered=False)[0]
     if cat_type != 'del':
         cat_type = choice(["loner", "rogue", "kittypet"])
         blood_parent2 = create_new_cat(Cat,
@@ -338,7 +340,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     age=ages[1] if ages[1] > 14 else 15,
                                     gender=sex,
                                     outside=True,
-                                    is_parent=True)[0]
+                                    is_parent=True,
+                                    can_be_neutered=False)[0]
         while 'infertile' in blood_parent2.permanent_condition or blood_parent2.neutered:
             if(blood_parent2):
                 del Cat.all_cats[blood_parent2.ID]
@@ -352,7 +355,8 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     age=ages[0],
                                     gender=sex,
                                     outside=True,
-                                    is_parent=True)[0]
+                                    is_parent=True,
+                                    can_be_neutered=False)[0]
     else:
         par2geno = Genotype(game.config['genetics_config'], game.settings["ban problem genes"])
         par2geno.Generator(sex)
@@ -739,7 +743,8 @@ def create_new_cat(
         parent2: str = None,
         extrapar: Genotype = None,
         adoptive_parent: list = None,
-        is_parent: bool = False
+        is_parent: bool = False,
+        can_be_neutered = True
 ) -> list:
     """
     This function creates new cats and then returns a list of those cats
@@ -888,14 +893,15 @@ def create_new_cat(
         if accessory:
             new_cat.pelt.accessory = accessory
 
-        if kittypet and randint(1, 5) > 2 and age > 2:
-            new_cat.neutered = True
-        elif kittypet and randint(1, 3) == 1 and age > 1:
+        if can_be_neutered and not is_parent:
+            if kittypet and randint(1, 5) > 2 and age > 2:
+                new_cat.neutered = True
+            elif loner and randint(1, 7) == 1 and age > 2:
+                new_cat.neutered = True
+            elif other_clan and randint(1, 12) == 1 and age > 2:
+                new_cat.neutered = True
+        if kittypet and randint(1, 3) == 1 and age > 1 and not new_cat.neutered:
             new_cat.vaccinated = True
-        elif loner and randint(1, 7) == 1 and age > 2:
-            new_cat.neutered = True
-        elif other_clan and randint(1, 12) == 1 and age > 2:
-            new_cat.neutered = True
 
         # give apprentice aged cat a mentor
         if new_cat.age == "adolescent":
