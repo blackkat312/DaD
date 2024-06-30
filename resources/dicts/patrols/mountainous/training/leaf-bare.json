@@ -954,19 +954,19 @@
                     ]
                 },
                 {
-                    "text": "The cats think they're safe on the other side of the valley. It's a well known spot for teaching, distant but with a view of the avalanche prone spot on the otherside, c_n cats have been here before. Surely they're safe. They are mistaken.",
+                    "text": "The cats think they're safe on the other side of the valley. It's a well-known spot for teaching, distant but with a view of the avalanche prone spot on the other side, c_n cats have been here before. Surely they're safe. They are mistaken.",
                     "exp": 0,
                     "weight": 1,
                     "injury": [
                         {
                             "cats": ["patrol"],
-                            "injuries": ["shivering"],
+                            "injuries": ["frostbite"],
                             "scars": []
                         }
                     ],
                     "dead_cats": ["multi"],
                     "history_text": {
-                        "scar":"m_c was scarred from the bite of the cold of an avalanche, though {PRONOUN/m_c/subject} escaped with {PRONOUN/m_c/poss} life.",
+                        "scar": "m_c was scarred from the bite of the cold of an avalanche, though {PRONOUN/m_c/subject} escaped with {PRONOUN/m_c/poss} life.",
                         "reg_death": "The view point c_n thought was safe from avalanches... was not.",
                         "lead_death": "the view point c_n thought was safe from avalanches... was not"
                     }
