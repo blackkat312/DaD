@@ -374,7 +374,7 @@ class Cat:
 
                         # First extra patch
                         if randint(1, 4) == 1:
-                            print("First extra patch!")
+                            # print("First extra patch!")
                             chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
                             while chosen_white_1 in white_pattern:
                                 chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
@@ -395,7 +395,7 @@ class Cat:
 
                         # Second extra patch
                         if randint(1, 8) == 1:
-                            print("Second extra patch!")
+                            # print("Second extra patch!")
                             chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
                             while chosen_white_2 in white_pattern:
                                 chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
@@ -416,7 +416,7 @@ class Cat:
 
                         # Third extra patch
                         if randint(1, 12) == 1:
-                            print("Third extra patch!")
+                            # print("Third extra patch!")
                             chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
                             while chosen_white_3 in white_pattern:
                                 chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
@@ -437,7 +437,7 @@ class Cat:
 
                         # Forth extra patch
                         if randint(1, 16) == 1:
-                            print("Forth extra patch!")
+                            # print("Forth extra patch!")
                             chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
                             while chosen_white_4 in white_pattern:
                                 chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
@@ -458,7 +458,7 @@ class Cat:
 
                         # Fifth extra patch
                         if randint(1, 20) == 1:
-                            print("Fifth extra patch!")
+                            # print("Fifth extra patch!")
                             chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
                             while chosen_white_5 in white_pattern:
                                 chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
@@ -596,7 +596,7 @@ class Cat:
 
                         # First extra patch
                         if randint(1, 4) == 1:
-                            print("First extra patch!")
+                            # print("First extra patch!")
                             chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
                             while chosen_white_1 in white_pattern:
                                 chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
@@ -617,7 +617,7 @@ class Cat:
 
                         # Second extra patch
                         if randint(1, 8) == 1:
-                            print("Second extra patch!")
+                            # print("Second extra patch!")
                             chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
                             while chosen_white_2 in white_pattern:
                                 chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
@@ -638,7 +638,7 @@ class Cat:
 
                         # Third extra patch
                         if randint(1, 12) == 1:
-                            print("Third extra patch!")
+                            # print("Third extra patch!")
                             chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
                             while chosen_white_3 in white_pattern:
                                 chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
@@ -659,7 +659,7 @@ class Cat:
 
                         # Forth extra patch
                         if randint(1, 16) == 1:
-                            print("Forth extra patch!")
+                            # print("Forth extra patch!")
                             chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
                             while chosen_white_4 in white_pattern:
                                 chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
@@ -680,7 +680,7 @@ class Cat:
 
                         # Fifth extra patch
                         if randint(1, 20) == 1:
-                            print("Fifth extra patch!")
+                            # print("Fifth extra patch!")
                             chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
                             while chosen_white_5 in white_pattern:
                                 chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
