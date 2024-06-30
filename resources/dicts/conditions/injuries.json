@@ -1911,8 +1911,9 @@
             "dizziness",
             "headache"
         ],
+        "cause_permanent": [
+        ],
         "herbs": [
-            
         ]
     },
     "false pregnancy": {
