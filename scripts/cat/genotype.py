@@ -3520,7 +3520,32 @@ class Genotype:
         if not self.somatic.get('gene', False):
             return ""
 
-        return '\n' + self.somatic['gene'] + ' mutated to "' + self.somatic['allele'] + '" on ' + body[self.somatic['base']]
+        name_conversion = {
+            "wirehair": "Wirehair",
+            "laperm": "LaPerm rex",
+            "cornish": "Cornish rex",
+            "urals": "Urals rex",
+            "tenn": "Tennessee rex",
+            "fleece": "Fleecy cloud rex",
+            "sedesp": "Selkirk rex/Canadian hairless/Devon rex",
+
+            'pinkdilute': "Pink-eyed dilution",
+            "ext": "Extension",
+            "sunshine": "CORIN",
+            "karp": "Karpati",
+            "bleach": "LaPerm bleaching",
+            "ghosting": "Ghosting",
+
+            'eumelanin': "Eumelanin",
+            'sexgene': "Phaeomelanin",
+            "dilute": "Dilution",
+            "white": "KIT",
+            "pointgene": "TYR",
+            "silver": "Inhibitor",
+            "agouti": "Agouti"
+        }
+
+        return '\n' + name_conversion.get(self.somatic['gene']) + ' mutated to "' + self.somatic['allele'] + '" on ' + body.get(self.somatic['base'])
 
 
 
