@@ -527,6 +527,12 @@ class RelationshipScreen(Screens):
                 gender_icon = image_cache.load_image("resources/images/female_big.png").convert_alpha()
             elif self.inspect_cat.genderalign == 'tom':
                 gender_icon = image_cache.load_image("resources/images/male_big.png").convert_alpha()
+            elif self.inspect_cat.genderalign == "intersex":
+                gender_icon = image_cache.load_image("resources/images/intersex_big.png").convert_alpha()
+            elif self.inspect_cat.gender == "intersex" and self.inspect_cat.genderalign == "trans molly":
+                gender_icon = image_cache.load_image("resources/images/transfem_intersex_big.png").convert_alpha()
+            elif self.inspect_cat.gender == "intersex" and self.inspect_cat.genderalign == "trans tom":
+                gender_icon = image_cache.load_image("resources/images/transmasc_intersex_big.png").convert_alpha()
             elif self.inspect_cat.genderalign == 'trans molly':
                 gender_icon = image_cache.load_image("resources/images/transfem_big.png").convert_alpha()
             elif self.inspect_cat.genderalign == 'trans tom':
@@ -778,6 +784,12 @@ class RelationshipScreen(Screens):
             gender_icon = image_cache.load_image("resources/images/female_big.png").convert_alpha()
         elif the_relationship.cat_to.genderalign == 'tom':
             gender_icon = image_cache.load_image("resources/images/male_big.png").convert_alpha()
+        elif the_relationship.cat_to.genderalign == "intersex":
+            gender_icon = image_cache.load_image("resources/images/intersex_big.png").convert_alpha()
+        elif the_relationship.cat_to.gender == "intersex" and the_relationship.cat_to.genderalign == "trans molly":
+            gender_icon = image_cache.load_image("resources/images/transfem_intersex_big.png").convert_alpha()
+        elif the_relationship.cat_to.gender == "intersex" and the_relationship.cat_to.genderalign == "trans tom":
+            gender_icon = image_cache.load_image("resources/images/transmasc_intersex_big.png").convert_alpha()
         elif the_relationship.cat_to.genderalign == 'trans molly':
             gender_icon = image_cache.load_image("resources/images/transfem_big.png").convert_alpha()
         elif the_relationship.cat_to.genderalign == 'trans tom':
