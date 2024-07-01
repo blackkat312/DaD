@@ -2070,7 +2070,7 @@ class Cat():
                 conditions += 1
             count += 1
 
-        while conditions:
+        while conditions > 1:
             for entry in comorbid_conditions:
                 if entry in cat.permanent_condition:
                     possible_comorbidities.append(comorbid_conditions.get(entry))
