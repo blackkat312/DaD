@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: ascii -*-
 import os
-import random
 from random import choice
 from re import sub
 
@@ -321,7 +320,7 @@ class ProfileScreen(Screens):
                     self.the_cat.genderalign = 'trans tom'
                 #intersex -> trans mollies/toms
                 elif self.the_cat.gender == "intersex" and self.the_cat.genderalign == 'intersex':
-                    self.the_cat.genderalign = random.choice(trans_list)
+                    self.the_cat.genderalign = choice(trans_list)
                 #if the cat is trans then set them to nonbinary
                 elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
                     if self.the_cat.gender == "intersex":
@@ -329,9 +328,9 @@ class ProfileScreen(Screens):
                         if intergenderchance == 1:
                             self.the_cat.genderalign = "intergender"
                         else:
-                            self.the_cat.genderalign = random.choice(genderqueer_list)
+                            self.the_cat.genderalign = choice(genderqueer_list)
                     else:
-                        self.the_cat.genderalign = random.choice(genderqueer_list)
+                        self.the_cat.genderalign = choice(genderqueer_list)
                 # pronoun handler
                 if self.the_cat.genderalign in ["molly", "trans molly"]:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[1].copy()]
@@ -881,6 +880,17 @@ class ProfileScreen(Screens):
         # PELT LENGTH
         output += "fur length: " + the_cat.pelt.length
         # NEWLINE ----------
+        output += "\n"
+
+        # BODY TYPE
+        output += "body type: " + the_cat.genotype.body_label
+        # NEWLINE ----------
+        output += "\n"
+
+        # HEIGHT
+        output += "height: " + the_cat.genotype.height_label
+        if game.clan.clan_settings["showheight"]:
+            output += " ("+ str(the_cat.genotype.shoulder_height) +"\")"
 
         # ACCESSORY
         if the_cat.pelt.accessory:
@@ -967,10 +977,6 @@ class ProfileScreen(Screens):
                     output += " others"
                 else:
                     output += " other"
-
-        if not the_cat.dead:
-            # NEWLINE ----------
-            output += "\n"
 
         return output
 
