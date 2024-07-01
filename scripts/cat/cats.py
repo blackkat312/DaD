@@ -2767,145 +2767,152 @@ class Cat:
             "bumpy skin"
         ]
         possible_comorbidities = []
-        comorbid_conditions = {
-            "paralyzed": [
-                "curved spine"
-            ],
-            "constant joint pain": [
-                "curved spine"
-            ],
-            "seizure prone": [
-                "chattering tongue", "curved spine", "face blindness", "parrot chatter"
-            ],
-            "manx syndrome": [
-                "paralyzed", "constant joint pain", "rabbit gait", "irritable bowels"
-            ],
-            "albinism": [
-                "persistent headaches", "blind", "failing eyesight"
-            ],
-            "ocular albinism": [
-                "persistent headaches", "blind", "failing eyesight"
-            ],
-            "fully hairless": [
-                "constant rash"
-            ],
-            "partially hairless": [
-                "constant rash"
-            ],
-            "narrowed chest": [
-                "constant joint pain", "curved spine"
-            ],
-            "bumpy skin": [
-                "constant rash"
-            ],
-            "starwalker": [
-                "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
-                "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
-                "selective mutism", "thought blindness"
-            ],
-            "obsessive mind": [
-                "spirited heart"
-            ],
-            "heavy soul": [
-                "shattered soul", "budding spirit"
-            ],
-            "comet spirit": [
-                "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue", "jumbled mind",
-                "counting fog", "spirited heart", "parrot chatter"
-            ],
-            "antisocial": [
-                "shattered soul", "budding spirit", "puzzled heart"
-            ],
-            "anxiety": [
-                "shattered soul", "budding spirit", "selective mutism"
-            ],
-            "constant roaming pain": [
-                "jellyfish joints", "loose body", "curved spine"
-            ],
-            "thunderous spirit": [
-                "shattered soul", "budding spirit", "spirited heart", "puzzled heart"
-            ],
-            "otherworldly mind": [
-                "shattered soul", "budding spirit"
-            ],
-            "irritable bowels": [
-                "jellyfish joints", "loose body"
-            ],
-            "jellyfish joints": [
-                "constant roaming pain", "irritable bowels", "loose body"
-            ],
-            "loose body": [
-                "constant roaming pain", "irritable bowels", "jellyfish joints"
-            ],
-            "burning light": [
-                "starwalker", "comet spirit", "jumbled noise", "disrupted senses"
-            ],
-            "jumbled noise": [
-                "starwalker", "comet spirit", "burning light", "disrupted senses"
-            ],
-            "disrupted senses": [
-                "starwalker", "comet spirit", "burning light", "jumbled noise"
-            ],
-            "chattering tongue": [
-                "seizure prone", "starwalker", "comet spirit", "parrot chatter"
-            ],
-            "shattered soul": [
-                "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
-            ],
-            "budding spirit": [
-                "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
-            ],
-            "testosterone deficiency": [
-                "infertile"
-            ],
-            "excess testosterone": [
-                "pcos", "infertile"
-            ],
-            "aneuploidy": [
-                "infertile"
-            ],
-            "mosaicism": [
-                "infertile"
-            ],
-            "chimerism": [
-                "infertile"
-            ],
-            "pcos": [
-                "infertile"
-            ],
-            "curved spine": [
-                "paralyzed", "constant joint pain", "seizure prone", "constant roaming pain"
-            ],
-            "jumbled mind": [
-                "starwalker", "comet spirit", "counting fog"
-            ],
-            "counting fog": [
-                "starwalker", "comet spirit", "jumbled mind"
-            ],
-            "spirited heart": [
-                "starwalker", "obsessive mind", "comet spirit", "thunderous spirit"
-            ],
-            "puzzled heart": [
-                "starwalker", "antisocial", "thunderous spirit"
-            ],
-            "face blindness": [
-                "seizure prone", "starwalker", "thought blindness"
-            ],
-            "parrot chatter": [
-                "seizure prone", "starwalker", "comet spirit", "chattering tongue"
-            ],
-            "selective mutism": [
-                "starwalker", "anxiety"
-            ],
-            "thought blindness": [
-                "starwalker", "face blindness"
-            ]
-        }
+        try:
+            with open("resources/dicts/conditions/comorbid_conditions.json", 'r') as read_file:
+                comorbid_conditions = ujson.loads(read_file.read())
+        except IOError:
+            comorbid_conditions = {
+                "paralyzed": [
+                    "curved spine"
+                ],
+                "constant joint pain": [
+                    "curved spine"
+                ],
+                "seizure prone": [
+                    "chattering tongue", "curved spine", "face blindness", "parrot chatter"
+                ],
+                "manx syndrome": [
+                    "paralyzed", "constant joint pain", "rabbit gait", "irritable bowels"
+                ],
+                "albinism": [
+                    "persistent headaches", "blind", "failing eyesight"
+                ],
+                "ocular albinism": [
+                    "persistent headaches", "blind", "failing eyesight"
+                ],
+                "fully hairless": [
+                    "constant rash"
+                ],
+                "partially hairless": [
+                    "constant rash"
+                ],
+                "narrowed chest": [
+                    "constant joint pain", "curved spine"
+                ],
+                "bumpy skin": [
+                    "constant rash"
+                ],
+                "starwalker": [
+                    "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
+                    "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
+                    "selective mutism", "thought blindness"
+                ],
+                "obsessive mind": [
+                    "spirited heart"
+                ],
+                "heavy soul": [
+                    "shattered soul", "budding spirit"
+                ],
+                "comet spirit": [
+                    "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue", "jumbled mind",
+                    "counting fog", "spirited heart", "parrot chatter"
+                ],
+                "antisocial": [
+                    "shattered soul", "budding spirit", "puzzled heart"
+                ],
+                "anxiety": [
+                    "shattered soul", "budding spirit", "selective mutism"
+                ],
+                "constant roaming pain": [
+                    "jellyfish joints", "loose body", "curved spine"
+                ],
+                "thunderous spirit": [
+                    "shattered soul", "budding spirit", "spirited heart", "puzzled heart"
+                ],
+                "otherworldly mind": [
+                    "shattered soul", "budding spirit"
+                ],
+                "irritable bowels": [
+                    "jellyfish joints", "loose body"
+                ],
+                "jellyfish joints": [
+                    "constant roaming pain", "irritable bowels", "loose body"
+                ],
+                "loose body": [
+                    "constant roaming pain", "irritable bowels", "jellyfish joints"
+                ],
+                "burning light": [
+                    "starwalker", "comet spirit", "jumbled noise", "disrupted senses"
+                ],
+                "jumbled noise": [
+                    "starwalker", "comet spirit", "burning light", "disrupted senses"
+                ],
+                "disrupted senses": [
+                    "starwalker", "comet spirit", "burning light", "jumbled noise"
+                ],
+                "chattering tongue": [
+                    "seizure prone", "starwalker", "comet spirit", "parrot chatter"
+                ],
+                "shattered soul": [
+                    "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
+                ],
+                "budding spirit": [
+                    "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
+                ],
+                "testosterone deficiency": [
+                    "infertile"
+                ],
+                "excess testosterone": [
+                    "pcos", "infertile"
+                ],
+                "aneuploidy": [
+                    "infertile"
+                ],
+                "mosaicism": [
+                    "infertile"
+                ],
+                "chimerism": [
+                    "infertile"
+                ],
+                "pcos": [
+                    "infertile"
+                ],
+                "curved spine": [
+                    "paralyzed", "constant joint pain", "seizure prone", "constant roaming pain"
+                ],
+                "jumbled mind": [
+                    "starwalker", "comet spirit", "counting fog"
+                ],
+                "counting fog": [
+                    "starwalker", "comet spirit", "jumbled mind"
+                ],
+                "spirited heart": [
+                    "starwalker", "obsessive mind", "comet spirit", "thunderous spirit"
+                ],
+                "puzzled heart": [
+                    "starwalker", "antisocial", "thunderous spirit"
+                ],
+                "face blindness": [
+                    "seizure prone", "starwalker", "thought blindness"
+                ],
+                "parrot chatter": [
+                    "seizure prone", "starwalker", "comet spirit", "chattering tongue"
+                ],
+                "selective mutism": [
+                    "starwalker", "anxiety"
+                ],
+                "thought blindness": [
+                    "starwalker", "face blindness"
+                ]
+            }
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
             if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
+
+        if cat.genotype.gender == "tom":
+            possible_conditions.remove("pcos")
 
         while count <= max_conditions:
             if randint(1, multiple_condition_chance) == 1:
@@ -2934,13 +2941,6 @@ class Cat:
                     if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
                         new_condition = choice(choice(possible_comorbidities))
 
-            while new_condition == "pcos" and cat.genotype.gender == "tom":
-                new_condition = choice(possible_conditions)
-                while new_condition in cat.permanent_condition:
-                    new_condition = choice(possible_conditions)
-                    if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
-                        new_condition = choice(choice(possible_comorbidities))
-
             if new_condition == "blind" and "failing eyesight" in cat.permanent_condition:
                 while new_condition == "blind":
                     new_condition = choice(possible_conditions)
@@ -2950,6 +2950,21 @@ class Cat:
                             new_condition = choice(choice(possible_comorbidities))
             if new_condition == "failing eyesight" and "blind" in cat.permanent_condition:
                 while new_condition == "failing eyesight":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+
+            if new_condition == "deaf" and "partial hearing loss" in cat.permanent_condition:
+                while new_condition == "deaf":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "partial hearing loss" and "deaf" in cat.permanent_condition:
+                while new_condition == "partial hearing loss":
                     new_condition = choice(possible_conditions)
                     while new_condition in cat.permanent_condition:
                         new_condition = choice(possible_conditions)
