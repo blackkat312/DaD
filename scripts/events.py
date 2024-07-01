@@ -2687,13 +2687,13 @@ class Events:
         if cat.genderalign == cat.gender:
             involved_cats = [cat.ID]
             if cat.age == "kitten":
-                transing_chance = random.randint(0, 85)
+                transing_chance = random.randint(0, 90)
             elif cat.age == "adolescent":
-                transing_chance = random.randint(0, 85)
+                transing_chance = random.randint(0, 90)
             elif cat.age == "young adult":
-                transing_chance = random.randint(0, 95)
+                transing_chance = random.randint(0, 100)
             elif cat.age == "adult":
-                transing_chance = random.randint(0, 110)
+                transing_chance = random.randint(0, 130)
             else:
                 # senior adult & elder
                 transing_chance = random.randint(0, 160)
@@ -2706,6 +2706,8 @@ class Events:
                 "nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby", "genderfluid",
                 "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"
             ]
+            intersex_genderqueer_list = genderqueer_list
+            intersex_genderqueer_list.append("intergender")
 
             if random.getrandbits(1):  # 50/50
                 if cat.gender == "tom":
@@ -2721,11 +2723,7 @@ class Events:
                     else:
                         cat.pronouns = [cat.default_pronouns[2].copy()]
             elif cat.gender == "intersex":
-                intergenderchance = random.randint(1, 2)
-                if intergenderchance == 1:
-                    cat.genderalign = "intergender"
-                else:
-                    cat.genderalign = random.choice(genderqueer_list)
+                cat.genderalign = random.choice(intersex_genderqueer_list)
                 cat.pronouns = [cat.default_pronouns[0].copy()]
             else:
                 cat.genderalign = random.choice(genderqueer_list)
