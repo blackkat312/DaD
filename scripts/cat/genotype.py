@@ -45,7 +45,6 @@ class Genotype:
         self.ticked = ""
         self.breakthrough = False
 
-        self.york = ["yuc", "yuc"]
         self.wirehair = ["wh", "wh"]
         self.laperm = ["lp", "lp"]
         self.cornish = ["R", "R"]
@@ -60,7 +59,7 @@ class Genotype:
         self.pinkdilute = ["Dp", "Dp"]
         self.dilutemd = ["dm", "dm"]
         self.ext = ["E", "E"]
-        self.sunshine = ["N", "N"]
+        self.corin = ["N", "N"]
         self.karp = ["k", "k"]
         self.bleach = ["Lb", "Lb"]
         self.ghosting = ["gh", "gh"]
@@ -78,7 +77,7 @@ class Genotype:
         self.ring = ["Rt", "Rt"]
         self.munch = ["mk", "mk"]
         self.poly = ["pd", "pd"]
-        self.altai = ["al", "al"]
+        self.pax3 = ["NoDBE", "NoDBE"]
 
         self.wideband = ""
         self.wbtype = ""
@@ -160,12 +159,7 @@ class Genotype:
         else:
             self.chimerageno = None    
         self.deaf = jsonstring['deaf']
-
-
-        try:
-            self.longtype = jsonstring["longtype"]
-        except:
-            self.longtype = "long"
+        self.longtype = jsonstring["longtype"]
 
         self.gender = jsonstring["gender"]
         self.dilute = jsonstring["dilute"]
@@ -179,7 +173,6 @@ class Genotype:
         self.ticked = jsonstring["ticked"]
         self.breakthrough = jsonstring["breakthrough"]
 
-        self.york = jsonstring["york"]
         self.wirehair = jsonstring["wirehair"]
         self.laperm = jsonstring["laperm"]
         self.cornish = jsonstring["cornish"]
@@ -194,7 +187,10 @@ class Genotype:
         self.pinkdilute = jsonstring["pinkdilute"]
         self.dilutemd = jsonstring["dilutemd"]
         self.ext = jsonstring["ext"]
-        self.sunshine = jsonstring["sunshine"]
+        try:
+            self.corin = jsonstring["corin"]
+        except:
+            self.corin = jsonstring["sunshine"]
         self.karp = jsonstring["karp"]
         self.bleach = jsonstring["bleach"]
         self.ghosting = jsonstring["ghosting"]
@@ -212,7 +208,15 @@ class Genotype:
         self.ring = jsonstring["ring"]
         self.munch = jsonstring["munch"]
         self.poly = jsonstring["poly"]
-        self.altai = jsonstring["altai"]
+        try:
+            self.pax3 = jsonstring["pax3"]
+        except:
+            self.pax3 = jsonstring['altai']
+            for i in range(2):
+                if self.pax3[i] == 'Al':
+                    self.pax3[i] = 'DBEalt'
+                else:
+                    self.pax3[i] = 'NoDBE'
 
         self.wideband = jsonstring["wideband"]
         #self.wbtype = jsonstring["wbtype"]
@@ -269,6 +273,7 @@ class Genotype:
         except:
             self.GenerateBody()
 
+        self.GeneSort()
         self.PolyEval()
         self.EyeColourName()
 
@@ -304,7 +309,6 @@ class Genotype:
             "ticked" : self.ticked,
             "breakthrough" : self.breakthrough,
 
-            "york" : self.york,
             "wirehair" : self.wirehair,
             "laperm" : self.laperm,
             "cornish" : self.cornish,
@@ -319,7 +323,7 @@ class Genotype:
             "pinkdilute" : self.pinkdilute,
             "dilutemd" : self.dilutemd,
             "ext" : self.ext,
-            "sunshine" : self.sunshine,
+            "corin" : self.corin,
             "karp" : self.karp,
             "bleach" : self.bleach,
             "ghosting" : self.ghosting,
@@ -337,7 +341,7 @@ class Genotype:
             "ring" : self.ring,
             "munch" : self.munch,
             "poly" : self.poly,
-            "altai" : self.altai,
+            "pax3" : self.pax3,
 
             "wideband" : self.wideband,
             "rufousing" : self.rufousing,
@@ -544,14 +548,9 @@ class Genotype:
 
         A = [0, 0, 0, 0, 0, 0, 0]
         
-        for i in range(7):
+        for i in range(6):
             a = randint(1, 1600)
             A[i] = a
-
-        if A[0] == 1:
-            self.york = ["Yuc", "Yuc"]
-        elif A[0] <= 41:
-            self.york = ["Yuc", "yuc"]
         
         if A[1] == 1:
             self.wirehair = ["Wh", "Wh"]
@@ -578,9 +577,9 @@ class Genotype:
         elif A[5] <= 41:
             self.tenn = ["Tr", "tr"]
         
-        if A[6] == 1:
+        if A[0] == 1:
             self.fleece = ["fc", "fc"]
-        elif A[6] <= 41:
+        elif A[0] <= 41:
             self.fleece = ["Fc", "fc"]
 
 
@@ -665,13 +664,13 @@ class Genotype:
             c = randint(1, 40)
 
             if a == 1:
-                self.sunshine[i] = "sh" #sunSHine
+                self.corin[i] = "sh" #sunSHine
             elif b == 1:
-                self.sunshine[i] = "sg" #Siberian Gold / extreme sunshine
+                self.corin[i] = "sg" #Siberian Gold / extreme sunshine
             elif c == 1:
-                self.sunshine[i] = "fg" #Flaxen Gold
+                self.corin[i] = "fg" #Flaxen Gold
             else:
-                self.sunshine[i] = "N" #No
+                self.corin[i] = "N" #No
 
         # karp + bleach + ghosting + satin + glitter
 
@@ -772,12 +771,12 @@ class Genotype:
         elif a <= 11:
             self.poly[0] = "Pd"
         
-        a = randint(1, 2500)
+        a = randint(1, 25)
 
         if a == 1 and not self.ban_genes:
-            self.altai = ["Al", "Al"]
+            self.pax3 = ['DBEalt', choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])]
         elif a <= 51:
-            self.altai[0] = "Al"
+            self.pax3[0] = choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
@@ -1007,14 +1006,9 @@ class Genotype:
 
         A = [0, 0, 0, 0, 0, 0, 0]
         
-        for i in range(7):
+        for i in range(6):
             a = randint(1, 100)
             A[i] = a
-
-        if A[0] == 1:
-            self.york = ["Yuc", "Yuc"]
-        elif A[0] <= 21:
-            self.york = ["Yuc", "yuc"]
         
         if A[1] == 1:
             self.wirehair = ["Wh", "Wh"]
@@ -1041,9 +1035,9 @@ class Genotype:
         elif A[5] <= 21:
             self.tenn = ["Tr", "tr"]
         
-        if A[6] == 1:
+        if A[0] == 1:
             self.fleece = ["fc", "fc"]
-        elif A[6] <= 21:
+        elif A[0] <= 21:
             self.fleece = ["Fc", "fc"]
 
 
@@ -1130,13 +1124,13 @@ class Genotype:
             c = randint(1, 20)
 
             if a == 1:
-                self.sunshine[i] = "sh" #sunSHine
+                self.corin[i] = "sh" #sunSHine
             elif b == 1:
-                self.sunshine[i] = "sg" #Siberian Gold / extreme sunshine
+                self.corin[i] = "sg" #Siberian Gold / extreme sunshine
             elif c == 1:
-                self.sunshine[i] = "fg" #Flaxen Gold
+                self.corin[i] = "fg" #Flaxen Gold
             else:
-                self.sunshine[i] = "N" #No
+                self.corin[i] = "N" #No
 
         # karp + bleach + ghosting + satin + glitter
 
@@ -1240,9 +1234,9 @@ class Genotype:
         a = randint(1, 125)
 
         if a == 1 and not self.ban_genes:
-            self.altai = ["Al", "Al"]
+            self.pax3 = ['DBEalt', choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])]
         elif a <= 26:
-            self.altai[0] = "Al"
+            self.pax3[0] = choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])
 
         self.wideband = ''
         self.rufousing = ''
@@ -1529,13 +1523,6 @@ class Genotype:
             self.ticked[1] = self.ticked[0]
             self.ticked[0] = x
 
-        self.york = [choice(par1.york), choice(par2.york)]
-
-        if(self.york[0] == "yuc"):
-            x = self.york[1]
-            self.york[1] = self.york[0]
-            self.york[0] = x
-
         self.wirehair = [choice(par1.wirehair), choice(par2.wirehair)]
 
         if(self.wirehair[0] == "wh"):
@@ -1616,7 +1603,7 @@ class Genotype:
             self.dilutemd[0] = x
 
         self.ext = [choice(par1.ext), choice(par2.ext)]
-        self.sunshine = [choice(par1.sunshine), choice(par2.sunshine)]
+        self.corin = [choice(par1.corin), choice(par2.corin)]
 
         self.karp = [choice(par1.karp), choice(par2.karp)]
 
@@ -1715,11 +1702,11 @@ class Genotype:
             self.poly[0] = self.poly[1]
             self.poly[1] = "pd"
 
-        self.altai = [choice(par1.altai), choice(par2.altai)]
+        self.pax3 = [choice(par1.pax3), choice(par2.pax3)]
 
-        if(self.altai[0] == "al"):
-            self.altai[0] = self.altai[1]
-            self.altai[1] = "al"
+        if(self.pax3[0] == "NoDBE"):
+            self.pax3[0] = self.pax3[1]
+            self.pax3[1] = "NoDBE"
 
         self.wideband = ""
         for i in range(8):
@@ -2075,15 +2062,15 @@ class Genotype:
             self.ext[1] = self.ext[0]
             self.ext[0] = "E"
 
-        if self.sunshine[0] == "sh":
-            self.sunshine[0] = self.sunshine[1]
-            self.sunshine[1] = "sh"
-        elif self.sunshine[0] == "fg":
-            self.sunshine[0] = self.sunshine[1]
-            self.sunshine[1] = "fg"
-        elif self.sunshine[0] == "sg":
-            self.sunshine[0] = self.sunshine[1]
-            self.sunshine[1] = "sg"
+        if self.corin[0] == "sh":
+            self.corin[0] = self.corin[1]
+            self.corin[1] = "sh"
+        elif self.corin[0] == "fg":
+            self.corin[0] = self.corin[1]
+            self.corin[1] = "fg"
+        elif self.corin[0] == "sg":
+            self.corin[0] = self.corin[1]
+            self.corin[1] = "sg"
 
         if self.manx[1] == "M":
             self.manx[1] = self.manx[0]
@@ -2177,13 +2164,8 @@ class Genotype:
             if randint(1, 4) < 4 and blueindex == 0:
                 self.deaf = True
         
-        if self.pointgene[0] == "cs" or ((self.pointgene == ["cb","cm"] or self.pointgene == ["cm","cm"] or self.pointgene == ["cm","c"]) and randint(0, 4)==0) or (self.altai != ["al", "al"] and randint(0, 4) == 0):
+        if self.pointgene[0] == "cs" or ((self.pointgene == ["cb","cm"] or self.pointgene == ["cm","cm"] or self.pointgene == ["cm","c"]) and randint(0, 4)==0):
             blueindex = 0
-        if self.altai[1] == 'Al':
-            if randint(0, 1) == 0:
-                blueindex = 0
-                if randint(0, 1) == 0:
-                    self.deaf = True
 
 
         if 'ws' not in self.white and 'wt' not in self.white:
@@ -2200,8 +2182,21 @@ class Genotype:
             hetindex = randint(0, 2)
             if randint(1, 8) == 1 and hetindex == 0:
                 self.deaf = True
-        if self.altai != ["al","al"] and randint(0, 4)!= 0:
-            hetindex = 0
+
+        if self.pax3[0] != 'NoDBE':
+            if 'NoDBE' not in self.pax3:
+                blueindex = 0
+                if (self.pax3 == ['DBEalt', 'DBEalt'] and random() < 0.33) or self.pax3 != ['DBEalt', 'DBEalt']:
+                    self.deaf = True
+            elif 'DBEre' not in self.pax3 and random() >= 0.1:
+                if random() < 0.33:
+                    blueindex = 0
+                else:
+                    hetindex = 0
+            elif 'DBEre' in self.pax3:
+                blueindex = 0
+                if random() < 0.33:
+                    self.deaf = True
 
         if het2index == 0 and "c" not in self.pointgene and blueindex != 0:
             tempref = randint(1, 11)
@@ -2378,8 +2373,8 @@ class Genotype:
         if self.breeds:
             self.Cat_Genes.append(self.breeds)
         self.Fur_Genes = [self.york, self.wirehair, self.laperm, self.cornish, self.urals, self.tenn, self.fleece, self.sedesp, self.ruhr, self.ruhrmod, self.lykoi]
-        self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.sunshine, self.karp, self.bleach, self.ghosting, self.satin, self.glitter]
-        self.Body_Genes = [self.curl, self.fold, self.manx, self.manxtype, self.kab, self.toybob, self.jbob, self.kub, self.ring, self.munch, self.poly, self.altai]
+        self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.corin, self.karp, self.bleach, self.ghosting, self.satin, self.glitter]
+        self.Body_Genes = [self.curl, self.fold, self.manx, self.manxtype, self.kab, self.toybob, self.jbob, self.kub, self.ring, self.munch, self.poly, self.pax3]
         self.Polygenes = ["Rufousing:", self.rufousing, self.ruftype, "Bengal:", self.bengal, self.bengtype, "Sokoke:", self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes, self.ticktype]
         self.Polygenes2 = ["Wideband:", self.wideband, self.wbtype, "Refraction:", self.refraction, "Pigmentation:", self.pigmentation]
 
@@ -2647,7 +2642,7 @@ class Genotype:
         elif(which == 'sedesp'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('re' not in self.sedesp and hell == 1):
+            if(self.sedesp[0] != 're' and hell == 1):
                 ### Selkirk ###
                 if(self.sedesp[1] == 'Se'):
                     self.sedesp[1] = choice(['Hr', 'hr', 're'])
@@ -2678,7 +2673,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('re' in self.sedesp or hell == 2):
+            elif(self.sedesp[0] == 're' or hell == 2):
                 ### Devon ###
                 if(self.sedesp[0] == 're'):
                     self.sedesp[0] = choice(['Se', 'Hr', 'hr'])
@@ -2788,7 +2783,7 @@ class Genotype:
         elif(which == 'extention'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('ec' not in self.ext and hell == 1):
+            if(self.ext[0] != 'ec' and hell == 1):
                 ### Chausie Grizzle ###
                 if(self.ext[1] == 'Eg'):
                     self.ext[1] = choice(['E', 'ea', 'er', 'ec'])
@@ -2833,7 +2828,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('ec' in self.ext or hell == 2):
+            elif(self.ext[0] == 'ec' or hell == 2):
                 ### Carnelian ###
                 if(self.ext[0] == 'ec'):
                     self.ext[0] = choice(['Eg', 'E', 'ea', 'er'])
@@ -2882,65 +2877,65 @@ class Genotype:
         elif(which == 'corin'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('fg' not in self.sunshine and hell == 1):
+            if(self.corin[0] != 'fg' and hell == 1):
                 ### Normal Coloration ###
-                if(self.sunshine[1] == 'N'):
-                    self.sunshine[1] = choice(['sg', 'sh', 'fg'])
-                elif(self.sunshine[0] == 'N'):
-                    if(self.sunshine[1] == 'sg'):
-                        self.sunshine[0] = 'sg'
-                    elif(self.sunshine[1] == 'sh'):
-                        self.sunshine[0] = choice(['sg', 'sh'])
-                    elif(self.sunshine[1] == 'fg'):
-                        self.sunshine[0] = choice(['sg', 'sh', 'fg'])
+                if(self.corin[1] == 'N'):
+                    self.corin[1] = choice(['sg', 'sh', 'fg'])
+                elif(self.corin[0] == 'N'):
+                    if(self.corin[1] == 'sg'):
+                        self.corin[0] = 'sg'
+                    elif(self.corin[1] == 'sh'):
+                        self.corin[0] = choice(['sg', 'sh'])
+                    elif(self.corin[1] == 'fg'):
+                        self.corin[0] = choice(['sg', 'sh', 'fg'])
                     else:
                         self.Mutate()
                 ### Siberian Gold ###
-                elif(self.sunshine[1] == 'sg'):
-                    self.sunshine[1] = choice(['sh', 'fg'])
-                elif(self.sunshine[0] == 'sg'):
-                    if(self.sunshine[1] == 'sh'):
-                        self.sunshine[0] = 'sh'
-                    elif(self.sunshine[1] == 'fg'):
-                        self.sunshine[0] = choice(['sh', 'fg'])
+                elif(self.corin[1] == 'sg'):
+                    self.corin[1] = choice(['sh', 'fg'])
+                elif(self.corin[0] == 'sg'):
+                    if(self.corin[1] == 'sh'):
+                        self.corin[0] = 'sh'
+                    elif(self.corin[1] == 'fg'):
+                        self.corin[0] = choice(['sh', 'fg'])
                     else:
                         self.Mutate()
                 ### Sunshine ###
-                elif(self.sunshine[1] == 'sh'):
-                    self.sunshine[1] = 'fg'
-                elif(self.sunshine[0] == 'sh'):
-                    self.sunshine[0] = 'fg'
+                elif(self.corin[1] == 'sh'):
+                    self.corin[1] = 'fg'
+                elif(self.corin[0] == 'sh'):
+                    self.corin[0] = 'fg'
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('fg' in self.sunshine or hell == 2):
+            elif(self.corin[0] == 'fg' or hell == 2):
                 ### Flaxen Gold ###
-                if(self.sunshine[0] == 'fg'):
-                    self.sunshine[0] = choice(['N', 'sg', 'sh'])
-                elif(self.sunshine[1] == 'fg'):
-                    if(self.sunshine[0] == 'N'):
-                        self.sunshine[1] = choice(['N', 'sg', 'sh'])
-                    elif(self.sunshine[0] == 'sg'):
-                        self.sunshine[1] = choice(['sg', 'sh'])
-                    elif(self.sunshine[0] == 'sh'):
-                        self.sunshine[1] = 'sh'
+                if(self.corin[0] == 'fg'):
+                    self.corin[0] = choice(['N', 'sg', 'sh'])
+                elif(self.corin[1] == 'fg'):
+                    if(self.corin[0] == 'N'):
+                        self.corin[1] = choice(['N', 'sg', 'sh'])
+                    elif(self.corin[0] == 'sg'):
+                        self.corin[1] = choice(['sg', 'sh'])
+                    elif(self.corin[0] == 'sh'):
+                        self.corin[1] = 'sh'
                     else:
                         self.Mutate()
                 ### Sunshine ###
-                elif(self.sunshine[0] == 'sh'):
-                    self.sunshine[0] = choice(['N', 'sg'])
-                elif(self.sunshine[1] == 'sh'):
-                    if(self.sunshine[0] == 'N'):
-                        self.sunshine[1] = choice(['N', 'sg'])
-                    elif(self.sunshine[0] == 'sg'):
-                        self.sunshine[1] = 'sg'
+                elif(self.corin[0] == 'sh'):
+                    self.corin[0] = choice(['N', 'sg'])
+                elif(self.corin[1] == 'sh'):
+                    if(self.corin[0] == 'N'):
+                        self.corin[1] = choice(['N', 'sg'])
+                    elif(self.corin[0] == 'sg'):
+                        self.corin[1] = 'sg'
                     else:
                         self.Mutate()
                 ### Siberian Gold ###
-                elif(self.sunshine[0] == 'sg'):
-                    self.sunshine[0] = 'N'
-                elif(self.sunshine[1] == 'sg'):
-                    self.sunshine[1] = 'N'
+                elif(self.corin[0] == 'sg'):
+                    self.corin[0] = 'N'
+                elif(self.corin[1] == 'sg'):
+                    self.corin[1] = 'N'
                 else:
                     self.Mutate()
             else:
@@ -3032,7 +3027,7 @@ class Genotype:
         elif(which == 'black'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('bl' not in self.eumelanin and hell == 1):
+            if(self.eumelanin[0] != 'bl' and hell == 1):
                 ### Black ###
                 if(self.eumelanin[1] == 'B'):
                     self.eumelanin[1] = choice(['b', 'bl'])
@@ -3051,7 +3046,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('bl' in self.eumelanin or hell == 2):
+            elif(self.eumelanin[0] == 'bl' or hell == 2):
                 ### Cinnamon ###
                 if(self.eumelanin[0] == 'bl'):
                     self.eumelanin[0] = choice(['B', 'b'])
@@ -3096,7 +3091,7 @@ class Genotype:
         elif(which == 'KIT'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('wsal' not in self.white and hell == 1):
+            if(self.white[0] != 'wsal' and hell == 1):
                 ### Dominant White ###
                 if(self.white[1] == 'W'):
                     self.white[1] = choice(['ws', 'wt', 'w', 'wg', 'wsal'])
@@ -3157,7 +3152,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('wsal' in self.white or hell == 2):
+            elif(self.white[0] == 'wsal' or hell == 2):
                 ### Salmiak ###
                 if(self.white[0] == 'wsal'):
                     self.white[0] = choice(['W', 'ws', 'wt', 'w', 'wg'])
@@ -3222,7 +3217,7 @@ class Genotype:
         elif(which == 'albino'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('c' not in self.pointgene and hell == 1):
+            if(self.pointgene[0] != 'c' and hell == 1):
                 ### Normal Coloration ###
                 if(self.pointgene[1] == 'C'):
                     self.pointgene[1] = choice(['cb', 'cs', 'cm', 'c'])
@@ -3267,7 +3262,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('c' in self.pointgene or hell == 2):
+            elif(self.pointgene[0] == 'c' or hell == 2):
                 ### Albino ###
                 if(self.pointgene[0] == 'c'):
                     self.pointgene[0] = choice(['C', 'cb', 'cs', 'cm'])
@@ -3334,7 +3329,7 @@ class Genotype:
         elif(which == 'agouti'):
             hell = randint(1, 2)
             ###### Gains the gene ######
-            if('a' not in self.agouti and hell == 1):
+            if(self.agouti[0] != 'a' and hell == 1):
                 ### Agouti ###
                 if(self.agouti[1] == 'A'):
                     self.agouti[1] = choice(['Apb', 'a'])
@@ -3353,7 +3348,7 @@ class Genotype:
                 else:
                     self.Mutate()
             ###### Loses the gene ######
-            elif('a' in self.agouti or hell == 2):
+            elif(self.agouti[0] == 'a' or hell == 2):
                 ### Solid ###
                 if(self.agouti[0] == 'a'):
                     self.agouti[0] = choice(['A', 'Apb'])
@@ -3400,16 +3395,45 @@ class Genotype:
             else:
                 self.Mutate()
         else:
-            # Gains the gene
-            if(self.altai[0] == 'al'):
-                self.altai[0] = 'Al'
-            elif(self.altai[1] == 'al' and not self.ban_genes):
-                self.altai[1] = 'Al'
-            # Loses the gene
-            elif(self.altai[1] == 'Al'):
-                self.altai[1] = 'al'
-            elif(self.altai[0] == 'Al'):
-                self.altai[0] = 'al'
+            hell = randint(1, 2)
+            ###### Gains the gene ######
+            if (self.pax3[0] != 'NoDBE' and hell == 1):
+                ### Altai ###
+                if (self.pax3[1] == 'DBEalt'):
+                    self.pax3[1] = choice(['DBEcel', 'DBEre', 'NoDBE'])
+                elif (self.pax3[0] == 'DBEalt'):
+                    if (self.pax3[1] in ['DBEcel', 'DBEre']):
+                        self.pax3[0] = choice(['DBEcel', 'DBEre'])
+                    elif (self.pax3[1] == 'NoDBE'):
+                        self.pax3[0] = choice(['DBEcel', 'DBEre', 'NoDBE'])
+                    else:
+                        self.Mutate()
+                ### Celestial/Dutch Maine Coons ###
+                elif (self.pax3[1] in ['DBEcel', 'DBEre']):
+                    self.pax3[1] = 'NoDBE'
+                elif (self.pax3[0] in ['DBEcel', 'DBEre']):
+                    self.pax3[0] = 'NoDBE'
+                else:
+                    self.Mutate()
+            ###### Loses the gene ######
+            elif (self.pax3[0] == 'NoDBE' or hell == 2):
+                ### No DBE ###
+                if (self.pax3[0] == 'NoDBE'):
+                    self.pax3[0] = choice(['DBEalt', 'DBEcel', 'DBEre'])
+                elif (self.pax3[1] == 'NoDBE'):
+                    if (self.pax3[0] == 'DBEalt'):
+                        self.pax3[1] = choice(['DBEalt', 'DBEcel', 'DBEre'])
+                    elif (self.pax3[0] in ['DBEcel', 'DBEre']):
+                        self.pax3[1] = choice(['DBEcel', 'DBEre'])
+                    else:
+                        self.Mutate()
+                ### Celestial/Dutch Maine Coons ###
+                elif (self.pax3[0] in ['DBEcel', 'DBEre']):
+                    self.pax3[0] = 'DBEalt'
+                elif (self.pax3[1] in ['DBEcel', 'DBEre']):
+                    self.pax3[1] = 'DBEalt'
+                else:
+                    self.Mutate()
             else:
                 self.Mutate()
         print(which)
@@ -3421,7 +3445,7 @@ class Genotype:
 
         possible_mutes = {
         "furtype" : ["wirehair", "laperm", "cornish", "urals", "tenn", "fleece", "sedesp"],
-        "other" : ["pinkdilute", "ext", "sunshine", "karp"],
+        "other" : ["pinkdilute", "ext", "corin", "karp"],
         "main" : ["eumelanin", "sexgene", "dilute", "white", "pointgene", "silver", "agouti"]
         }
 
@@ -3437,7 +3461,7 @@ class Genotype:
             except:
                 continue
         for gene in possible_mutes["other"]:
-            if gene == 'sunshine' and (self.agouti[0] == 'a' or self.ext[0] == 'Eg'):
+            if gene == 'corin' and (self.agouti[0] == 'a' or self.ext[0] == 'Eg'):
                 possible_mutes["other"].remove(gene)
                 continue
             elif gene in ['ext', 'karp', 'ghosting']:
