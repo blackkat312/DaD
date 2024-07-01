@@ -971,13 +971,17 @@ class Cat:
         :param skill_dict: TODO what is a skill dict exactly
         :return: None
         """
-        genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
-                            "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
+        genderqueer_list = [
+            "nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby", "genderfluid",
+            "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"
+        ]
+        intersex_genderqueer_list = genderqueer_list
+        intersex_genderqueer_list.append("intergender")
 
         # trans cat chances
         theythemdefault = game.settings["they them default"]
         self.genderalign = self.gender
-        trans_chance = randint(0, 30)
+        trans_chance = randint(0, 35)
         nb_chance = randint(0, 35)
         #newborns can't be trans, sorry babies
         if self.age in ['newborn']:
@@ -1002,11 +1006,7 @@ class Cat:
             if trans_chance == 1:
                 self.genderalign = choice(["trans tom", "trans molly"])
             elif nb_chance == 1:
-                intergenderchance = randint(1, 2)
-                if intergenderchance == 1:
-                    self.genderalign = "intergender"
-                else:
-                    self.genderalign = choice(genderqueer_list)
+                self.genderalign = choice(intersex_genderqueer_list)
             else:
                 self.genderalign = self.gender
         else:
