@@ -2762,8 +2762,10 @@ class Cat:
         comorbidity_chance = game.config["cat_generation"]["comorbidity_chance"]
         conditions = 1
         count = 1
-        genetics_exclusive = ["rabbit gait", "manx syndrome", "albinism", "ocular albinism", "fully hairless",
-                              "partially hairless", "bumpy skin"]
+        genetics_exclusive = [
+            "rabbit gait", "manx syndrome", "albinism", "ocular albinism", "fully hairless", "partially hairless",
+            "bumpy skin"
+        ]
         possible_comorbidities = []
         comorbid_conditions = {
             "paralyzed": [
@@ -2910,7 +2912,7 @@ class Cat:
                 conditions += 1
             count += 1
 
-        while conditions:
+        while conditions > 1:
             for entry in comorbid_conditions:
                 if entry in cat.permanent_condition:
                     if not (entry == "constant joint pain" and cat.genotype.fold[0] == "Fd"):
