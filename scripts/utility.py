@@ -2640,7 +2640,7 @@ def generate_sprite(
             def TabbyBase(whichcolour, whichbase, special = None):
                 whichmain = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                 whichmain.blit(sprites.sprites[whichbase + cat_sprite], (0, 0))
-                if special !='copper' and cat.moons > 12 and (genotype.silver[0] == 'I' and genotype.sunshine[0] == 'fg' and (get_current_season() == 'Leaf-fall' or get_current_season() == 'Leaf-bare')):
+                if special !='copper' and cat.moons > 12 and 'infertile' not in cat.permanent_condition and not cat.neutered and (genotype.silver[0] == 'I' and genotype.sunshine[0] == 'fg' and (get_current_season() == 'Leaf-fall' or get_current_season() == 'Leaf-bare')):
                     sunshine = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
 
                     colours = phenotype.FindRed(genotype, cat.moons, special='low')
@@ -3105,55 +3105,21 @@ def generate_sprite(
                     'beige' : 14
                 }
 
-                ### trigger_chocolate_skin start ###
-                trigger_chocolate_skin = False
                 trigger_color = False
                 trigger_point = False
+                trigger_chocolate_skin = False
 
-                if "black" in whichcolour:
-                    trigger_color = True
-                elif "sable" in whichcolour:
-                    trigger_color = True
-                elif "seal" in whichcolour:
+                if "black" in whichcolour or "sable" in whichcolour or "seal" in whichcolour:
                     trigger_color = True
 
-                if genotype.eumelanin == ["B", "B"]:
-                    trigger_color = True
-                elif genotype.eumelanin == ["B", "b"]:
-                    trigger_color = True
-                elif genotype.eumelanin == ["B", "bl"]:
-                    trigger_color = True
-
-                if genotype.pointgene == ["cb", "cb"]:
+                if genotype.pointgene[0] not in ["C", "c"] and genotype.pointgene[1] not in ["C", "c"]:
                     trigger_point = True
-                elif genotype.pointgene == ["cb", "cs"]:
-                    trigger_point = True
-                elif genotype.pointgene == ["cb", "cm"]:
-                    trigger_point = True
-                elif genotype.pointgene == ["cb", "c"]:
-                    trigger_point = True
-                # sepia end
-                elif genotype.pointgene == ["cs", "cs"]:
-                    trigger_point = True
-                elif genotype.pointgene == ["cs", "cm"]:
-                    trigger_point = True
-                elif genotype.pointgene == ["cs", "c"]:
-                    trigger_point = True
-                # point end
-                elif genotype.pointgene == ["cm", "cm"]:
-                    trigger_point = True
-                elif genotype.pointgene == ["cm", "c"]:
-                    trigger_point = True
-                # mocha end
 
                 if trigger_color and trigger_point:
                     trigger_chocolate_skin = True
 
-                if genotype.pointgene[0] == "C":
+                if "o" not in genotype.sexgene or genotype.ext[0] in ["ea", "er", "ec"]:
                     trigger_chocolate_skin = False
-                elif genotype.pointgene[0] == "c":
-                    trigger_chocolate_skin = False
-                ### trigger_chocolate_skin end ###
 
                 if(genotype.white[0] == 'W' or genotype.pointgene[0] == 'c' or genotype.white_pattern == ['full white']):
                     pads.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
@@ -3258,55 +3224,21 @@ def generate_sprite(
                 'beige' : 14
             }
 
-            ### trigger_chocolate_skin start ###
-            trigger_chocolate_skin = False
             trigger_color = False
             trigger_point = False
+            trigger_chocolate_skin = False
 
-            if "black" in phenotype.maincolour:
-                trigger_color = True
-            elif "sable" in phenotype.maincolour:
-                trigger_color = True
-            elif "seal" in phenotype.maincolour:
+            if "black" in phenotype.maincolour or "sable" in phenotype.maincolour or "seal" in phenotype.maincolour:
                 trigger_color = True
 
-            if genotype.eumelanin == ["B", "B"]:
-                trigger_color = True
-            elif genotype.eumelanin == ["B", "b"]:
-                trigger_color = True
-            elif genotype.eumelanin == ["B", "bl"]:
-                trigger_color = True
-
-            if genotype.pointgene == ["cb", "cb"]:
+            if genotype.pointgene[0] not in ["C", "c"] and genotype.pointgene[1] not in ["C", "c"]:
                 trigger_point = True
-            elif genotype.pointgene == ["cb", "cs"]:
-                trigger_point = True
-            elif genotype.pointgene == ["cb", "cm"]:
-                trigger_point = True
-            elif genotype.pointgene == ["cb", "c"]:
-                trigger_point = True
-            # sepia end
-            elif genotype.pointgene == ["cs", "cs"]:
-                trigger_point = True
-            elif genotype.pointgene == ["cs", "cm"]:
-                trigger_point = True
-            elif genotype.pointgene == ["cs", "c"]:
-                trigger_point = True
-            # point end
-            elif genotype.pointgene == ["cm", "cm"]:
-                trigger_point = True
-            elif genotype.pointgene == ["cm", "c"]:
-                trigger_point = True
-            # mocha end
 
             if trigger_color and trigger_point:
                 trigger_chocolate_skin = True
 
-            if genotype.pointgene[0] == "C":
+            if "o" not in genotype.sexgene or genotype.ext[0] in ["ea", "er", "ec"]:
                 trigger_chocolate_skin = False
-            elif genotype.pointgene[0] == "c":
-                trigger_chocolate_skin = False
-            ### trigger_chocolate_skin end ###
 
             if(genotype.white[0] == 'W' or genotype.pointgene[0] == 'c'):
                 nose.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
