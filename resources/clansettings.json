@@ -38,7 +38,7 @@
         "showheight": [
             "Show exact cat shoulder height on profile",
             "Adds exact shoulder height in inches to cats.",
-            false
+            true
         ],
         "showxp": [
             "Show exact XP and nutrition status",
