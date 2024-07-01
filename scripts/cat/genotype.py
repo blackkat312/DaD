@@ -2,6 +2,7 @@ from random import choice, randint, random
 import json
 from scripts.cat.breed_functions import breed_functions
 from operator import xor
+import math
 
 
 class Genotype:
@@ -102,6 +103,26 @@ class Genotype:
         self.tickgenes = ""
         self.ticktype = ""
         self.ticksum = 0
+
+        self.body_ranges = [1, 4, 9, 27, 9, 4, 1]
+        self.height_ranges = [1, 4, 9, 27, 81, 27, 9, 2, 2, 1]
+
+        def getindexes(m, size):
+            inds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+            for i in range(0, size):
+                for j in range(0, i+1):
+                    inds[i] += m[j]
+
+            return inds
+        self.body_indexes = getindexes(self.body_ranges, 7)
+        self.height_indexes = getindexes(self.height_ranges, 10)
+
+        self.body_value = 0
+        self.height_value = 0
+        self.shoulder_height = 0
+        self.body_label = ""
+        self.height_label = ""
 
         self.refraction = False
         self.pigmentation = False
@@ -240,6 +261,12 @@ class Genotype:
             self.somatic = json.loads(jsonstring["somatic"])
         except:
             self.somatic = {}
+        try:
+            self.body_value = json.loads(jsonstring["body_type"])
+            self.height_value = json.loads(jsonstring["height"])
+            self.shoulder_height = json.loads(jsonstring["shoulder_height"])
+        except:
+            self.GenerateBody()
 
         self.PolyEval()
         self.EyeColourName()
@@ -329,6 +356,10 @@ class Genotype:
             "extraeyetype" :self.extraeyetype,
             "extraeyecolour" : self.extraeyecolour,
 
+            "body_type" : self.body_value,
+            "height" : self.height_value,
+            "shoulder_height" : self.shoulder_height,
+
             "breeds" : json.dumps(self.breeds),
             "somatic" : json.dumps(self.somatic)
         }
@@ -342,6 +373,8 @@ class Genotype:
         a = randint(1, self.odds['vitiligo'])
         if a == 1:
             self.vitiligo = True
+
+        self.GenerateBody()
 
         # FUR LENGTH
         
@@ -861,6 +894,9 @@ class Genotype:
         a = randint(1, self.odds['vitiligo'])
         if a == 1:
             self.vitiligo = True
+
+        self.GenerateBody()
+
         # FUR LENGTH
 
         a = randint(1, 4)
@@ -1408,9 +1444,15 @@ class Genotype:
 
         self.GeneSort()
 
+        if self.body_value == 0:
+            self.body_value = randint(self.body_indexes[2]+1, self.body_indexes[3])
+        if self.height_value == 0:
+            self.height_value = randint(self.height_indexes[3]+1, self.height_indexes[4])
+
         if randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
 
+        self.PolyEval()
         self.EyeColourFinder()
 
     def KitGenerator(self, par1, par2=None):
@@ -1859,6 +1901,12 @@ class Genotype:
                 self.ticksum +=1
             self.tickgenes += str(temptick)
 
+        wobble = randint(1, int(sum(self.body_ranges) / 20))
+        self.body_value = randint(min(par1.body_value-wobble, par2.body_value-wobble), max(par1.body_value+wobble, par2.body_value+wobble))
+
+        wobble = randint(1, int(sum(self.height_ranges) / 20))
+        self.height_value = randint(min(par1.height_value-wobble, par2.height_value-wobble), max(par1.height_value+wobble, par2.height_value+wobble))
+
 
         if(randint(1, self.odds['random_mutation']) == 1):
             self.Mutate()
@@ -1867,20 +1915,21 @@ class Genotype:
 
         if randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
+
         self.PolyEval()
         self.EyeColourFinder()
 
     def KitEyes(self, par1, par2):
-        multipliers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        multipliers2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        multipliers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        multipliers2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
         def maths(par, m):
             m[par-1] += 10
             for i in range(0, par-1):
-                m[i] += 10 / 5 ** (par-i-1);
+                m[i] += 10 / 5 ** (par-i-1)
 
             for i in range(par, 11):
-                m[i] += 10 / 5 ** (i-par+1);
+                m[i] += 10 / 5 ** (i-par+1)
             return m
 
         multipliers = maths(par1.refraction, multipliers)
@@ -1894,7 +1943,7 @@ class Genotype:
         x2 = sum(multipliers2)
 
         def getindexes(m):
-            inds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            inds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
             for i in range(0, 11):
                 for j in range(0, i+1):
@@ -1908,6 +1957,15 @@ class Genotype:
         self.refraction = next((n for n in range(len(indexes)) if num < indexes[n]))
         num = random() * x2
         self.pigmentation = next((n for n in range(len(indexes2)) if num < indexes2[n]))
+
+    def GenerateBody(self):
+        x = sum(self.body_ranges)
+
+        self.body_value = randint(1, x)
+
+        x = sum(self.height_ranges)
+
+        self.height_value = randint(1, x)
 
     def PolyEval(self):
         wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
@@ -1990,7 +2048,57 @@ class Genotype:
             self.soktype = soktypes[1]
         else:
             self.soktype = soktypes[2]
-    
+
+        body_types = ['snub-nosed', 'cobby', 'semi-cobby', 'intermediate', 'semi-oriental', 'oriental', 'wedge-faced']
+        height_types = ['teacup', 'tiny', 'small', 'below average', 'average', 'above average', 'large', 'massive', 'giant', 'goliath']
+
+        index = next((n for n in range(7) if self.body_value <= self.body_indexes[n]))
+        self.body_label = body_types[index]
+
+        index = next((n for n in range(10) if self.height_value <= self.height_indexes[n]))
+        self.height_label = height_types[index]
+
+        if index == 0:
+            self.shoulder_height = 5.00
+        elif index == 1:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (6-5.01) / self.height_ranges[index]
+            self.shoulder_height = 5.01 + value * (random() * step)
+        elif index == 2:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (7.5-6.01) / self.height_ranges[index]
+            self.shoulder_height = 6.01 + value * (random() * step)
+        elif index == 3:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (8.99-7.51) / self.height_ranges[index]
+            self.shoulder_height = 7.51 + value * (random() * step)
+        elif index == 4:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (11-9) / self.height_ranges[index]
+            self.shoulder_height = 9 + value * (random() * step)
+        elif index == 5:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (12.5-11.01) / self.height_ranges[index]
+            self.shoulder_height = 11.01 + value * (random() * step)
+        elif index == 6:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (14-12.51) / self.height_ranges[index]
+            self.shoulder_height = 12.51 + value * (random() * step)
+        elif index == 7:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (14.99-14.01) / self.height_ranges[index]
+            self.shoulder_height = 14.01 + value * (random() * step)
+        elif index == 8:
+            value = self.height_value - self.height_indexes[index-1]
+            step = (15.99-15.00) / self.height_ranges[index]
+            self.shoulder_height = 15.00 + value * (random() * step)
+        elif index == 9:
+            self.shoulder_height = 16.00
+
+        if self.munch[0] == 'Mk':
+            self.shoulder_height /= 1.75
+        self.shoulder_height = round(self.shoulder_height, 2)
+
     def GeneSort(self):
         if self.eumelanin[0] == "bl":
             self.eumelanin[0] = self.eumelanin[1]
@@ -2370,20 +2478,13 @@ class Genotype:
             self.Cat_Genes.append(brkethrough)
         if self.breeds:
             self.Cat_Genes.append(self.breeds)
-        self.Fur_Genes = [self.york, self.wirehair, self.laperm, self.cornish, self.urals, self.tenn, self.fleece,
-                          self.sedesp, self.ruhr, self.ruhrmod, self.lykoi]
-        self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.sunshine, self.karp, self.bleach,
-                             self.ghosting, self.satin, self.glitter]
-        self.Body_Genes = [self.curl, self.fold, self.manx, self.manxtype, self.kab, self.toybob, self.jbob, self.kub,
-                           self.ring, self.munch, self.poly, self.altai]
-        self.Polygenes = ["Rufousing:", self.rufousing, self.ruftype, "Bengal:", self.bengal, self.bengtype, "Sokoke:",
-                          self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes,
-                          self.ticktype]
-        self.Polygenes2 = ["Wideband:", self.wideband, self.wbtype, "Refraction:", self.refraction, "Pigmentation:",
-                           self.pigmentation]
+        self.Fur_Genes = [self.york, self.wirehair, self.laperm, self.cornish, self.urals, self.tenn, self.fleece, self.sedesp, self.ruhr, self.ruhrmod, self.lykoi]
+        self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.sunshine, self.karp, self.bleach, self.ghosting, self.satin, self.glitter]
+        self.Body_Genes = [self.curl, self.fold, self.manx, self.manxtype, self.kab, self.toybob, self.jbob, self.kub, self.ring, self.munch, self.poly, self.altai]
+        self.Polygenes = ["Rufousing:", self.rufousing, self.ruftype, "Bengal:", self.bengal, self.bengtype, "Sokoke:", self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes, self.ticktype]
+        self.Polygenes2 = ["Wideband:", self.wideband, self.wbtype, "Refraction:", self.refraction, "Pigmentation:", self.pigmentation]
 
-        return (self.Cat_Genes, "Other Fur Genes:", self.Fur_Genes, "Other Color Genes:", self.Other_Colour,
-                "Body Mutations:", self.Body_Genes, "Polygenes:", self.Polygenes, self.Polygenes2)
+        return self.Cat_Genes, "Other Fur Genes:", self.Fur_Genes, "Other Color Genes:", self.Other_Colour, "Body Mutations:", self.Body_Genes, "Polygenes:", self.Polygenes, self.Polygenes2
     
     def Mutate(self):
         print("MUTATION!")
@@ -3469,7 +3570,7 @@ class Genotype:
             whichgene = ['furtype']
         for cate in whichgene:
             if len(possible_mutes[cate]) == 0:
-                whichgene.remove(cate);
+                whichgene.remove(cate)
         if len(whichgene) > 0:
             self.somatic["gene"] = choice(possible_mutes[choice(whichgene)])
 
@@ -3524,7 +3625,7 @@ class Genotype:
             "wirehair": "Wirehair",
             "laperm": "LaPerm rex",
             "cornish": "Cornish rex",
-            "urals": "Urals rex",
+            "urals": "Ural rex",
             "tenn": "Tennessee rex",
             "fleece": "Fleecy cloud rex",
             "sedesp": "Selkirk rex/Canadian hairless/Devon rex",
@@ -3545,7 +3646,7 @@ class Genotype:
             "agouti": "Agouti"
         }
 
-        return '\n' + name_conversion.get(self.somatic['gene']) + ' mutated to "' + self.somatic['allele'] + '" on ' + body.get(self.somatic['base'])
+        return '\n' + name_conversion.get(self.somatic['gene']) + ' gene mutated to "' + self.somatic['allele'] + '" on ' + body.get(self.somatic['base'])
 
 
 
