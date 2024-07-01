@@ -146,9 +146,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -163,85 +160,29 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[3])
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[4])
@@ -367,9 +308,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -387,85 +325,29 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += '2'
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "2"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '2'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
@@ -654,9 +536,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -671,87 +550,31 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += choice(genesmild)
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
-
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
 
         eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
 
@@ -1033,10 +856,7 @@ class Breed_generator:
         genoclass.ticked = ["Ta", "Ta"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
-        
+
         if random() < 0.25:
             while genoclass.wbsum < 14:
                 genoclass.wideband = ""
@@ -1044,33 +864,14 @@ class Breed_generator:
                 for i in range(0, 8):
                     genoclass.wideband += choice(genes)
                     genoclass.wbsum += int(genoclass.wideband[i])
-
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
         
         genoclass.tickgenes = ''
         genoclass.ticksum = 0
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += choice(genesmild)
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
 
@@ -1158,44 +959,18 @@ class Breed_generator:
             genoclass.dilutemd[0] = "Dm"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
-        
+
         while genoclass.wbsum > 11 or genoclass.wideband == "":
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         genoclass.spotted = ''
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
         
         genoclass.breeds["Australian Mist"] = 100
         return genoclass
@@ -1320,9 +1095,6 @@ class Breed_generator:
             genoclass.glitter[1] = "gl"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.rufousing = ''
         genoclass.rufsum = 0
@@ -1338,58 +1110,20 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += '2'
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '2'
             genoclass.bengsum += int(genoclass.bengal[i])
-
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
 
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[5])
 
@@ -1609,9 +1343,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -1629,87 +1360,27 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += choice(genes)
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Ceylon"] = 100
         return genoclass
@@ -1812,9 +1483,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -1829,87 +1497,30 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
-
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
-
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
 
         eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds[choice(["Korat", "Chartreux"])] = 100
         return genoclass
@@ -2018,9 +1629,6 @@ class Breed_generator:
                 genoclass.ext[i] = "Eg"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -2038,87 +1646,27 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += choice(genes)
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[9])
 
@@ -2359,9 +1907,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -2380,17 +1925,6 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         while genoclass.rufsum < 3 or genoclass.rufsum > 5:
             genoclass.rufousing = ""
             genoclass.rufsum = 0
@@ -2398,72 +1932,21 @@ class Breed_generator:
                 genoclass.rufousing += choice(genes)
                 genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
-
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds[choice(["Egyptian Mau", "Savannah"])] = 100
 
@@ -2613,9 +2096,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -2630,87 +2110,27 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
@@ -2871,9 +2291,6 @@ class Breed_generator:
         genoclass.ticked = ["ta", "ta"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.spotted = ''
         genoclass.spotsum = 0
@@ -2885,34 +2302,9 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
-
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
@@ -3085,9 +2477,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -3102,87 +2491,28 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Khao Manee"] = 100
         return genoclass
@@ -3372,9 +2702,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -3389,87 +2716,28 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Lin-Qing Lion cat"] = 100
         return genoclass
@@ -3603,19 +2871,10 @@ class Breed_generator:
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
         genoclass.tickgenes = ''
         genoclass.ticksum = 0
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
 
         for i in range(0, 4):
             genoclass.tickgenes += choice(genes)
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
         
         genoclass.breeds["Mandalay/Burmese"] = 100
         return genoclass
@@ -3874,7 +3133,6 @@ class Breed_generator:
         genoclass.ticked = ["ta", "ta"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
 
         genoclass.spotted = ''
         genoclass.spotsum = 0
@@ -3886,34 +3144,9 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
-
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
         
         genoclass.breeds["Ocicat"] = 100
         return genoclass
@@ -4117,9 +3350,6 @@ class Breed_generator:
             genoclass.poly[0] = "Pd"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -4137,17 +3367,6 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         while genoclass.rufsum < 3 or genoclass.rufsum > 5:
             genoclass.rufousing = ''
             genoclass.rufsum = 0
@@ -4155,72 +3374,22 @@ class Breed_generator:
                 genoclass.rufousing += choice(genes)
                 genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
-
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Pixie-Bob"] = 100
         return genoclass
@@ -4398,9 +3567,6 @@ class Breed_generator:
         genoclass.satin = ["st", "st"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -4415,87 +3581,27 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[4])
 
@@ -4575,26 +3681,13 @@ class Breed_generator:
                 genoclass.sunshine[i] = "sg" #Siberian Gold / extreme sunshine
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        
+
         while genoclass.wbsum > 11 or genoclass.wideband == "":
             genoclass.wideband = ''
             genoclass.wbsum = 0
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
 
         genoclass.height_value = randint(genoclass.height_indexes[4]+1, genoclass.height_indexes[6])
 
@@ -4693,9 +3786,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -4713,87 +3803,27 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '2'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
@@ -4916,9 +3946,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -4936,17 +3963,6 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         while genoclass.rufsum < 3 or genoclass.rufsum > 5:
             genoclass.rufousing = ""
             genoclass.rufsum = 0
@@ -4954,72 +3970,23 @@ class Breed_generator:
                 genoclass.rufousing += choice(genes)
                 genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '2'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
@@ -5158,9 +4125,6 @@ class Breed_generator:
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
         genesspot = ["2", "1", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.tickgenes = ''
         
@@ -5171,30 +4135,9 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += choice(genesspot)
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[4])
 
@@ -5309,9 +4252,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -5329,88 +4269,27 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += '2'
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '2'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Toyger"] = 100
         return genoclass
@@ -5632,9 +4511,6 @@ class Breed_generator:
 
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -5652,87 +4528,27 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
-
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             genoclass.bengal += choice(genesmild)
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Ocicat"] = 75
         genoclass.breeds["Bengal"] = 25
@@ -5890,9 +4706,6 @@ class Breed_generator:
 
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -5907,87 +4720,27 @@ class Breed_generator:
             genoclass.wideband += choice(genes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             genoclass.rufousing += choice(genes)
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[0], genoclass.body_indexes[1])
 
@@ -6226,9 +4979,6 @@ class Breed_generator:
             genoclass.ruhrmod = ["hi", "ha"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -6247,17 +4997,6 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
         while genoclass.rufsum < 3 or genoclass.rufsum > 5:
             genoclass.rufousing = ""
             genoclass.rufsum = 0
@@ -6265,72 +5004,22 @@ class Breed_generator:
                 genoclass.rufousing += choice(genes)
                 genoclass.rufsum += int(genoclass.rufousing[i])
 
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
-
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
 
         genoclass.body_value = randint(genoclass.body_indexes[4]+1, genoclass.body_indexes[5])
 
