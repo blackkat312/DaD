@@ -105,7 +105,7 @@ class Genotype:
         self.ticksum = 0
 
         self.body_ranges = [1, 4, 9, 27, 9, 4, 1]
-        self.height_ranges = [1, 4, 9, 27, 81, 27, 9, 2, 2, 1]
+        self.height_ranges = [1, 4, 9, 36, 108, 36, 9, 2, 2, 1]
 
         def getindexes(m, size):
             inds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -261,10 +261,11 @@ class Genotype:
             self.somatic = json.loads(jsonstring["somatic"])
         except:
             self.somatic = {}
+
         try:
-            self.body_value = json.loads(jsonstring["body_type"])
-            self.height_value = json.loads(jsonstring["height"])
-            self.shoulder_height = json.loads(jsonstring["shoulder_height"])
+            self.body_value = jsonstring["body_type"]
+            self.height_value = jsonstring["height"]
+            self.shoulder_height = jsonstring["shoulder_height"]
         except:
             self.GenerateBody()
 
@@ -779,9 +780,6 @@ class Genotype:
             self.altai[0] = "Al"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         self.wideband = ''
         self.rufousing = ''
@@ -796,74 +794,25 @@ class Genotype:
             self.wideband += choice(genes)
             self.wbsum += int(self.wideband[i])
 
-        if self.wbsum < 6:
-            self.wbtype = wbtypes[0]
-        elif self.wbsum < 10:
-            self.wbtype = wbtypes[1]
-        elif self.wbsum < 12: 
-            self.wbtype = wbtypes[2]
-        elif self.wbsum < 14: 
-            self.wbtype = wbtypes[3]
-        else: 
-            self.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             self.rufousing += choice(genes)
             self.rufsum += int(self.rufousing[i])
 
-        if self.rufsum < 3: 
-            self.ruftype = ruftypes[0]
-        elif self.rufsum < 6: 
-            self.ruftype = ruftypes[1]
-        else:
-            self.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             self.spotted += choice(genesspot)
             self.spotsum += int(self.spotted[i])
 
-        if self.spotsum < 1: 
-            self.spottype = spottypes[0]
-        elif self.spotsum < 3:
-            self.spottype = spottypes[1]
-        elif self.spotsum < 6:
-            self.spottype = spottypes[2]
-        elif self.spotsum < 8: 
-            self.spottype = spottypes[3]
-        else:
-            self.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             self.tickgenes += choice(genesmild)
             self.ticksum += int(self.tickgenes[i])
 
-        if self.ticksum < 4: 
-            self.ticktype = ticktypes[0]
-        elif self.ticksum < 6:
-            self.ticktype = ticktypes[1]
-        else:
-            self.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             self.bengal += choice(genesmild)
             self.bengsum += int(self.bengal[i])
-
-        if self.bengsum < 4: 
-            self.bengtype = bengtypes[0]
-        elif self.bengsum < 6:
-            self.bengtype = bengtypes[1]
-        else:
-            self.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
 
         sokgenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
 
@@ -871,14 +820,8 @@ class Genotype:
             self.sokoke += choice(sokgenes)
             self.soksum += int(self.sokoke[i])
 
-        if self.soksum < 4: 
-            self.soktype = soktypes[0]
-        elif self.soksum < 6:
-            self.soktype = soktypes[1]
-        else:
-            self.soktype = soktypes[2]
-
         self.GeneSort()
+        self.PolyEval()
 
         if randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
@@ -1311,82 +1254,30 @@ class Genotype:
         self.pigmentation = ''
         
         genes = ["2", "2", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
         for i in range(0, 8):
             self.wideband += choice(genes)
             self.wbsum += int(self.wideband[i])
 
-        if self.wbsum < 6:
-            self.wbtype = wbtypes[0]
-        elif self.wbsum < 10:
-            self.wbtype = wbtypes[1]
-        elif self.wbsum < 12: 
-            self.wbtype = wbtypes[2]
-        elif self.wbsum < 14: 
-            self.wbtype = wbtypes[3]
-        else: 
-            self.wbtype = wbtypes[4]
-
         for i in range(0, 4):
             self.rufousing += choice(genes)
             self.rufsum += int(self.rufousing[i])
 
-        if self.rufsum < 3: 
-            self.ruftype = ruftypes[0]
-        elif self.rufsum < 6: 
-            self.ruftype = ruftypes[1]
-        else:
-            self.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
         genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             self.spotted += choice(genesspot)
             self.spotsum += int(self.spotted[i])
 
-        if self.spotsum < 1: 
-            self.spottype = spottypes[0]
-        elif self.spotsum < 3:
-            self.spottype = spottypes[1]
-        elif self.spotsum < 6:
-            self.spottype = spottypes[2]
-        elif self.spotsum < 8: 
-            self.spottype = spottypes[3]
-        else:
-            self.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             self.tickgenes += choice(genesmild)
             self.ticksum += int(self.tickgenes[i])
 
-        if self.ticksum < 6: 
-            self.ticktype = ticktypes[0]
-        elif self.ticksum < 8:
-            self.ticktype = ticktypes[1]
-        else:
-            self.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
-
         for i in range(0, 4):
             self.bengal += choice(genesmild)
             self.bengsum += int(self.bengal[i])
-
-        if self.bengsum < 4: 
-            self.bengtype = bengtypes[0]
-        elif self.bengsum < 6:
-            self.bengtype = bengtypes[1]
-        else:
-            self.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
 
         sokgenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
 
@@ -1394,14 +1285,9 @@ class Genotype:
             self.sokoke += choice(sokgenes)
             self.soksum += int(self.sokoke[i])
 
-        if self.soksum < 4: 
-            self.soktype = soktypes[0]
-        elif self.soksum < 6:
-            self.soktype = soktypes[1]
-        else:
-            self.soktype = soktypes[2]
-
         self.GeneSort()
+
+        self.PolyEval()
 
         if randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
@@ -1907,6 +1793,16 @@ class Genotype:
         wobble = randint(1, int(sum(self.height_ranges) / 20))
         self.height_value = randint(min(par1.height_value-wobble, par2.height_value-wobble), max(par1.height_value+wobble, par2.height_value+wobble))
 
+        if self.body_value < 1:
+            self.body_value = 1
+        if self.body_value > sum(self.body_ranges):
+            self.body_value = sum(self.body_ranges)
+
+        if self.height_value < 1:
+            self.height_value = 1
+        if self.height_value > sum(self.height_ranges):
+            self.height_value = sum(self.height_ranges)
+
 
         if(randint(1, self.odds['random_mutation']) == 1):
             self.Mutate()
@@ -1954,9 +1850,9 @@ class Genotype:
         indexes2 = getindexes(multipliers2)
 
         num = random() * x
-        self.refraction = next((n for n in range(len(indexes)) if num < indexes[n]))
+        self.refraction = next((n for n in range(len(indexes)) if num < indexes[n])) + 1
         num = random() * x2
-        self.pigmentation = next((n for n in range(len(indexes2)) if num < indexes2[n]))
+        self.pigmentation = next((n for n in range(len(indexes2)) if num < indexes2[n])) + 1
 
     def GenerateBody(self):
         x = sum(self.body_ranges)
@@ -2057,6 +1953,9 @@ class Genotype:
 
         index = next((n for n in range(10) if self.height_value <= self.height_indexes[n]))
         self.height_label = height_types[index]
+
+        if self.shoulder_height > 0:
+            return
 
         if index == 0:
             self.shoulder_height = 5.00
@@ -2222,7 +2121,7 @@ class Genotype:
             piggrade = self.pigmentation
 
         if self.dilute[0] == "d" or self.pointgene == ["cb", "cb"] or self.pointgene == ["cb", "c"] or self.pointgene == ["cb", "cm"]:
-            if randint(1, 5) == 1:
+            if randint(1, 5) == 1 and piggrade > 1:
                 piggrade = piggrade - 1
         
         if self.pointgene == ["cb", "cs"] or piggrade == 0 or ((self.pointgene == ["cb", "cm"] or self.pointgene == ["cm", "cm"] or self.pointgene == ["cm", "c"]) and randint(1, 5) == 1):
@@ -2360,7 +2259,7 @@ class Genotype:
 
                 if het2index == 0:
                     tempref = randint(1, 11)
-                    if(randint(0,1)==0):
+                    if random() < 0.5:
                         self.lefteye = RefTypeFind(tempref, 12)
                         self.lefteyetype = SecondaryRefTypeFind(tempref, 12)
                     else:
@@ -2370,7 +2269,7 @@ class Genotype:
                     self.extraeyecolour = RefTypeFind(a[0], 12)
                     self.extraeyetype = SecondaryRefTypeFind(a[0], 12)
             elif hetindex == 0:
-                if(randint(0,1)==0):
+                if random() < 0.5:
                     self.lefteye = RefTypeFind(refgrade, 12)
                     self.lefteyetype = SecondaryRefTypeFind(refgrade, 12)
                 else:
@@ -3627,7 +3526,7 @@ class Genotype:
             "cornish": "Cornish rex",
             "urals": "Ural rex",
             "tenn": "Tennessee rex",
-            "fleece": "Fleecy cloud rex",
+            "fleece": "Fleecy cloud rexing",
             "sedesp": "Selkirk rex/Canadian hairless/Devon rex",
 
             'pinkdilute': "Pink-eyed dilution",
