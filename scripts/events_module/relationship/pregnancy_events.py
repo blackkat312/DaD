@@ -446,7 +446,7 @@ class Pregnancy_Events:
                 kits = Pregnancy_Events.get_kits(amount, cat, outside_parent, clan, backkit=backkit)
 
                 for kit in kits:
-                    if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk":
+                    if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk" or ('NoDBE' not in kit.genotype.pax3 and 'DBEalt' not in kit.genotype.pax3):
                         kit.dead = True
                         History.add_death(kit, str(kit.name) + " was stillborn.")
                         kits.remove(kit)
@@ -538,7 +538,7 @@ class Pregnancy_Events:
         thinking_amount = random.choices(
             ["correct", "incorrect", "unsure"], [4, 1, 1], k=1
         )
-        if amount <= 4:
+        if amount <= 3:
             correct_guess = "small"
         else:
             correct_guess = "large"
@@ -698,7 +698,7 @@ class Pregnancy_Events:
         kits_amount = len(kits)
 
         for kit in kits:
-            if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk":
+            if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk" or ('NoDBE' not in kit.genotype.pax3 and 'DBEalt' not in kit.genotype.pax3):
                 kit.dead = True
                 History.add_death(kit, str(kit.name) + " was stillborn.")
         Pregnancy_Events.set_biggest_family()
@@ -1235,18 +1235,18 @@ class Pregnancy_Events:
         blood_parent2 = None
          
         par2geno = Genotype(game.config["genetic_chances"], game.settings["ban problem genes"])
-        if cat and cat.gender == "tom":
-            par2geno.Generator("fem")
-        elif cat and cat.gender == "molly":
-            par2geno.Generator("masc")
+        if cat and cat.gender == 'tom':
+            par2geno.Generator('fem')
+        elif cat and cat.gender == 'molly':
+            par2geno.Generator('masc')
         elif cat:
-            par2geno.Generator(random.choice(["fem", "masc"]))
+            par2geno.Generator(random.choice(['fem', 'masc']))
         ##### SELECT BACKSTORY #####
         if backkit:
             backstory = backkit
             if 'halfclan' in backkit:
                 other_cat = None
-        elif cat and cat.gender == "molly":
+        elif cat and cat.gender == 'molly':
             backstory = choice(['halfclan1', 'outsider_roots1'])
         elif cat:
             backstory = choice(["halfclan2", "outsider_roots2"])
@@ -1346,9 +1346,9 @@ class Pregnancy_Events:
                 else:
                     kit = Cat(parent1=cat.ID, parent2=second_blood.ID, moons=0, status='newborn')
 
-                if cat.gender == "molly" or not second_blood or second_blood.outside:
+                if cat.gender == 'molly' or not second_blood or second_blood.outside:
                     kit.thought = f"Snuggles up to the belly of {cat.name}"
-                elif cat.gender == "tom" and cat.gender == "tom":
+                elif cat.gender == 'tom' and cat.gender == 'tom':
                     kit.thought = f"Snuggles up to the belly of {cat.name}"
                 else:
                     kit.thought = f"Snuggles up to the belly of {second_blood.name}"
