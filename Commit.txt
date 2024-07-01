@@ -1,2 +1,2 @@
-GeneMod: https://github.com/Chinch-Bug/clangen-genemod/commit/c24dc855f347fbe906768b68e775ddac12b49c49
+GeneMod: https://github.com/Chinch-Bug/clangen-genemod/commit/06b529a8ef562f16699bb7cf602f2f47a1f0c195
 DaD: https://github.com/Sparrow-Moon/clangen-disabilities-and-disorders-mod/commit/d1bf8b9148e610ff10b10c5bb3e095de80e2801c
