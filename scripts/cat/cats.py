@@ -1609,24 +1609,26 @@ class Cat():
                 if ("recovering from birth" not in self.injuries and "faux pregnant" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "faux pregnant" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
                     can_front.append(alter["name"])
             self.front = choice(can_front)
-            if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice", "leader"]:
+            if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
                 if game.clan.clan_settings["plural names"]:
-                    #chance of cat choosing a plural name: 1 in 100 default
+                    # chance of cat choosing a plural name: 1 in 100 default
                     if game.config["condition_related"]["plural_names"] > 1:
                         chance = randint(1, game.config["condition_related"]["plural_names"])
                         if chance == 1:
-                            #CHOOSE PLURAL NAME
+                            self.specsuffix_hidden = True
+                            # CHOOSE PLURAL NAME
                             if os.path.exists('resources/dicts/names/names.json'):
                                 with open('resources/dicts/names/names.json') as read_file:
                                     names_dict = ujson.loads(read_file.read())
-                                    if not self.name.suffix in names_dict["plural_suffixes"]:
-                        
-                                        plural = choice(names_dict["plural_suffixes"])
-                                        old_name = self.name.suffix
+                                    suffix_and_space = " " + self.name.suffix
+                                    if suffix_and_space not in [names_dict["normal_plural_suffixes"], names_dict["leader_plural_suffixes"]]:
+                                        plural = choice(names_dict["normal_plural_suffixes"])
+                                        old_suffix = self.name.suffix
+                                        if self.status == "leader":
+                                            plural = choice(names_dict["leader_plural_suffixes"])
                                         self.name.suffix = plural
-                                        text = self.name.prefix + old_name + "'s headmates have discussed things, and they've decided a collective name will suit them better, like " + self.name.prefix + self.name.suffix + "."
+                                        text = self.name.prefix + old_suffix + "'s headmates have discussed things, and they've decided that a collective name will suit them better, like " + self.name.prefix + self.name.suffix + "!"
                                         game.cur_events_list.append(Single_Event(text, ["misc"], [self.ID]))
-                        
 
         if self.permanent_condition[condition]["event_triggered"]:
             self.permanent_condition[condition]["event_triggered"] = False
