@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: ascii -*-
 import os
-from random import choice
+from random import choice, randint
 from re import sub
 
 import pygame
@@ -299,9 +299,12 @@ class ProfileScreen(Screens):
                     "nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
                     "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???",
                 ]
+                intersex_genderqueer_list = genderqueer_list
+                intersex_genderqueer_list.append("intergender")
                 trans_list = [
                     "trans molly", "trans tom",
                 ]
+
                 #if the cat is anything besides t/m/transt/transm/i then turn them back to cis
                 if self.the_cat.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
                     self.the_cat.genderalign = self.the_cat.gender
@@ -324,11 +327,7 @@ class ProfileScreen(Screens):
                 #if the cat is trans then set them to nonbinary
                 elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
                     if self.the_cat.gender == "intersex":
-                        intergenderchance = random.randint(1, 2)
-                        if intergenderchance == 1:
-                            self.the_cat.genderalign = "intergender"
-                        else:
-                            self.the_cat.genderalign = choice(genderqueer_list)
+                        self.the_cat.genderalign = choice(intersex_genderqueer_list)
                     else:
                         self.the_cat.genderalign = choice(genderqueer_list)
                 # pronoun handler
