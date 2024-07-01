@@ -113,15 +113,8 @@
     "Zinnia"
   ],
 
-  "normal_plural_suffixes": [
-    " Collective", " System", " Pack", " Colony", " Conspiracy", "  Shoal", " Swarm", " Pounce", " Clutter", " Herd",
-    " Band", " Murder", " Charm", " Skulk", " Flock", " Cloud", " Pride", " Plague", " Nest", " Pod", " Family"
-  ],
-
-  "leader_plural_suffixes": [
-    " Constellation", " Galaxy", " Belt", " Ring", " Cluster", " Nova", " Nebula", " Shooting Stars", " Meteor Shower",
-    " Asterism", " Cosmos"
-  ],
+  "plural_suffixes":[" Collective", " System", " Pack", " Colony", " Conspiracy", "  Shoal", " Swarm", " Pounce", " Clutter", " Herd",
+   " Band", " Murder", " Charm", " Skulk", " Flock", " Cloud", " Pride", " Plague", " Nest", " Pod", " Family", " Mischief"],
 
   "clan_prefixes": [
     "Air", "Ashen", "Bat", "Bleak", "Bone", "Branch", "Burn", "Burnet", "Buttercup", "Canary", "Cinder", "Cloud",
