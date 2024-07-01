@@ -232,8 +232,6 @@ class Breed_generator:
 
         soktypes = ["normal markings", "mild fading", "full sokoke"]
 
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
@@ -244,6 +242,10 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
+
+        genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[3])
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[4])
+
         return genoclass
     
     @staticmethod
@@ -465,6 +467,8 @@ class Breed_generator:
         else:
             genoclass.soktype = soktypes[2]
 
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Abyssinian"] = 100
         return genoclass
     
@@ -546,7 +550,9 @@ class Breed_generator:
         # ALBINO
 
         genoclass.pointgene = ["C", "C"]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
+
         genoclass.breeds["American Shorthair"] = 100
         return genoclass
     
@@ -746,7 +752,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
+
         genoclass.breeds["American Burmese"] = 100
         return genoclass
     
@@ -768,7 +776,9 @@ class Breed_generator:
         # ALBINO
 
         genoclass.pointgene = ["C", "C"]
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[4]+1, genoclass.height_indexes[8])
+
         genoclass.breeds["Aphrodite"] = 100
         return genoclass
     
@@ -1061,7 +1071,9 @@ class Breed_generator:
             genoclass.ticktype = ticktypes[1]
         else:
             genoclass.ticktype = ticktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
+
         genoclass.breeds["Asian/Burmese"] = 100
         return genoclass
     
@@ -1378,7 +1390,9 @@ class Breed_generator:
             genoclass.bengtype = bengtypes[1]
         else:
             genoclass.bengtype = bengtypes[2]
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[5])
+
         genoclass.breeds["Bengal"] = 100
         return genoclass
     
@@ -1471,7 +1485,10 @@ class Breed_generator:
 
         if a == 1 and not genoclass.ban_genes:
             genoclass.fold[0] = "Fd"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[6])
+
         genoclass.breeds["British"] = 100
         return genoclass
     
@@ -2102,7 +2119,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[9])
+
         genoclass.breeds["Chausie"] = 100
         return genoclass
     
@@ -2183,7 +2202,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds[choice(["Cornish Rex", "German Rex"])] = 100
         return genoclass
     
@@ -2211,7 +2232,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
+
         genoclass.breeds["Devon Rex"] = 100
         return genoclass
     
@@ -2240,7 +2263,9 @@ class Breed_generator:
             genoclass.pinkdilute = ["dp", "dp"]
         elif a <= 51:
             genoclass.pinkdilute[1] = "dp"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Donskoy"] = 100
         return genoclass
     
@@ -2441,6 +2466,10 @@ class Breed_generator:
             genoclass.soktype = soktypes[2]
         
         genoclass.breeds[choice(["Egyptian Mau", "Savannah"])] = 100
+
+        if genoclass.breeds.get('Savannah', False):
+            genoclass.height_value = randint(genoclass.height_indexes[4]+1, genoclass.height_indexes[9])
+
         return genoclass
     
     @staticmethod
@@ -2682,7 +2711,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Havana"] = 100
         return genoclass
     
@@ -2724,7 +2755,9 @@ class Breed_generator:
             genoclass.poly = ["Pd", "Pd"]
         elif random() < 0.25:
             genoclass.poly[0] = "Pd"
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[5])
+
         genoclass.breeds["Highlander"] = 100
         return genoclass
     
@@ -2880,7 +2913,9 @@ class Breed_generator:
             genoclass.spottype = spottypes[3]
         else:
             genoclass.spottype = spottypes[4]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Kanaani"] = 100
         return genoclass
     
@@ -3614,7 +3649,9 @@ class Breed_generator:
             genoclass.poly = ["Pd", "Pd"]
         elif random() < 0.125:
             genoclass.poly[0] = "Pd"
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[9])
+
         genoclass.breeds["Maine Coon"] = 100
         genoclass.longtype = 'long'
         return genoclass
@@ -3652,7 +3689,9 @@ class Breed_generator:
         #  manx + kab + toybob + jbob + kub + ring
 
         genoclass.manx = ["M", "m"]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[3])
+
         genoclass.breeds["Manx"] = 100
         return genoclass
     
@@ -3768,7 +3807,9 @@ class Breed_generator:
         for i in range(2):
             if random() < 0.125:
                 genoclass.ext[i] = "ea"
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[6])
+
         genoclass.breeds["Norwegian Forest cat"] = 100
         return genoclass
     
@@ -3912,7 +3953,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[4]+1, genoclass.body_indexes[6])
+
         genoclass.breeds["Oriental/Siamese"] = 100
         return genoclass
     
@@ -3965,7 +4008,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0], genoclass.body_indexes[1])
+
         genoclass.breeds["Persian/Exotic"] = 100
         return genoclass
     
@@ -4188,7 +4233,9 @@ class Breed_generator:
         genoclass.longtype = "long"
 
         genoclass = Breed_generator.AllColours(genoclass, special)
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
+
         genoclass.breeds["Ragamuffin"] = 100
         return genoclass
     
@@ -4233,7 +4280,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
+
         genoclass.breeds["Ragdoll"] = 100
         return genoclass
     
@@ -4447,7 +4496,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Russian"] = 100
         return genoclass
     
@@ -4481,7 +4532,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
+
         genoclass.breeds["Selkirk Rex"] = 100
         return genoclass
     
@@ -4542,7 +4595,9 @@ class Breed_generator:
             genoclass.wbtype = wbtypes[3]
         else: 
             genoclass.wbtype = wbtypes[4]
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[4]+1, genoclass.height_indexes[6])
+
         genoclass.breeds["Siberian"] = 100
         return genoclass
     
@@ -4739,7 +4794,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Singapura"] = 100
         return genoclass
     
@@ -4963,7 +5020,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Sokoke"] = 100
         return genoclass
     
@@ -4987,7 +5046,9 @@ class Breed_generator:
             genoclass.curl = ["Cu", "Cu"]
         elif random() < 0.25:
             genoclass.curl[0] = "Cu"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Sphynx"] = 100
         return genoclass
     
@@ -5011,6 +5072,8 @@ class Breed_generator:
 
         genoclass.tenn = ["tr", "tr"]
             
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[3])
+
         genoclass.breeds["Tennessee Rex"] = 100
         return genoclass
     
@@ -5132,7 +5195,9 @@ class Breed_generator:
             genoclass.ticktype = ticktypes[1]
         else:
             genoclass.ticktype = ticktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Tonkinese"] = 100
         return genoclass
     
@@ -5155,7 +5220,9 @@ class Breed_generator:
         #  manx + kab + toybob + jbob + kub + ring
 
         genoclass.toybob = ["Tb", "Tb"]
-        
+
+        genoclass.height_value = randint(genoclass.height_indexes[0], genoclass.height_indexes[1])
+
         genoclass.breeds["Toybob"] = 100
         return genoclass
     
@@ -5369,7 +5436,9 @@ class Breed_generator:
         # ALBINO
 
         genoclass.pointgene = ["C", "C"]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Turkish"] = 100
         return genoclass
     
@@ -5406,7 +5475,9 @@ class Breed_generator:
         # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
 
         genoclass.urals = ["ru", "ru"]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
+
         genoclass.breeds["Ural Rex"] = 100
         return genoclass
     
@@ -5438,7 +5509,9 @@ class Breed_generator:
         # munch + poly + altai
 
         genoclass.munch[0] = "Mk"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Sphynx"] = 75
         genoclass.breeds["Munchkin"] = 25
         return genoclass
@@ -5915,7 +5988,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0], genoclass.body_indexes[1])
+
         genoclass.breeds["Persian/Exotic"] = 50
         genoclass.breeds["British"] = 50
         return genoclass
@@ -5944,7 +6019,9 @@ class Breed_generator:
         # munch + poly + altai
 
         genoclass.munch[0] = "Mk"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
+
         genoclass.breeds["British"] = 50
         genoclass.breeds["Munchkin"] = 25
         genoclass.breeds["Persian/Exotic"] = 25
@@ -6022,7 +6099,9 @@ class Breed_generator:
         # munch + poly + altai
 
         genoclass.munch[0] = "Mk"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[0], genoclass.body_indexes[1])
+
         genoclass.breeds["Persian/Exotic"] = 75
         genoclass.breeds["Munchkin"] = 25
         return genoclass
@@ -6050,7 +6129,9 @@ class Breed_generator:
             genoclass.dilutemd = ["Dm", "Dm"]
         elif a <= 51:
             genoclass.dilutemd[0] = "Dm"
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[4]+1, genoclass.body_indexes[5])
+
         genoclass.breeds["Oriental/Siamese"] = 75
         genoclass.breeds["Donskoy"] = 25
         return genoclass
@@ -6250,7 +6331,9 @@ class Breed_generator:
             genoclass.soktype = soktypes[1]
         else:
             genoclass.soktype = soktypes[2]
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[4]+1, genoclass.body_indexes[5])
+
         genoclass.breeds["Oriental/Siamese"] = 50
         genoclass.breeds["Bengal"] = 50
         return genoclass
@@ -6488,7 +6571,7 @@ class Breed_checker:
             return False
         if genotype.white[0] in ["W", "wg"]:
             return False
-        if genotype.agouti[0] == "A" and (genotype.ticked[0] != "ta" or genotype.mack[0] == "mc" or genotype.wbsum > 11 or\
+        if genotype.agouti[0] == "A" and (genotype.ticked[0] != "ta" or genotype.mack[0] == "mc" or genotype.wbsum > 11 or
                                             genotype.ticksum > 3 or genotype.bengsum > 3 or genotype.soksum > 3):
             return False
         if 'o' not in genotype.sexgene and genotype.dilute[0] == "d":
