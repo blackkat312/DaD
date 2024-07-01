@@ -474,5 +474,41 @@
                 "anxiety"
             ]
         }
+	},
+	{
+        "id": "thought_blindness_warrior_apprentice",
+        "thoughts": [
+            "Can't visualise {PRONOUN/m_c/poss} patrol route",
+			"Is struggling to recall a specific hunting crouch",
+			"Feels like {PRONOUN/m_c/poss} technique is wrong but can't quite explain how",
+			"Thinks that there is something different about r_c",
+			"Thinks that something in the territory has changed",
+			"Got surprised by r_c",
+			"Got distracted by thinking about a mouse really intensely",
+			"Is struggling to visualise a mouse",
+			"Can only visualise a mouse by the smell of one",
+			"Feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} being too obvious",
+			"Struggling with {PRONOUN/m_c/poss} ambush training"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "thought blindness"
+            ]
+        }
+    },
+	{
+        "id": "apprentice_to_thought_blindness",
+        "thoughts": [
+            "Noticed that r_c is struggling to properly hide {PRONOUN/r_c/self}",
+			"Gets confused by how r_c describes the territory"
+        ],
+        "perm_conditions": {
+            "r_c": [
+                "thought blind"
+            ]
+        },
+		"random_status_constraint": [
+			"apprentice"
+		]
     }
 ]
