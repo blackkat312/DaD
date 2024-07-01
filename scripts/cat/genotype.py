@@ -3402,16 +3402,28 @@ class Genotype:
                 if (self.pax3[1] == 'DBEalt'):
                     self.pax3[1] = choice(['DBEcel', 'DBEre', 'NoDBE'])
                 elif (self.pax3[0] == 'DBEalt'):
-                    if (self.pax3[1] in ['DBEcel', 'DBEre']):
+                    if (self.pax3[1] == 'DBEcel'):
+                        self.pax3[0] = 'DBEcel'
+                    elif (self.pax3[1] == 'DBEre'):
                         self.pax3[0] = choice(['DBEcel', 'DBEre'])
                     elif (self.pax3[1] == 'NoDBE'):
                         self.pax3[0] = choice(['DBEcel', 'DBEre', 'NoDBE'])
                     else:
                         self.Mutate()
-                ### Celestial/Dutch Maine Coons ###
-                elif (self.pax3[1] in ['DBEcel', 'DBEre']):
+                ### Celestial ###
+                elif (self.pax3[1] == 'DBEcel'):
+                    self.pax3[1] = choice(['DBEre', 'NoDBE'])
+                elif (self.pax3[0] == 'DBEcel'):
+                    if (self.pax3[1] == 'DBEre'):
+                        self.pax3[0] = 'DBEre'
+                    elif (self.pax3[1] == 'NoDBE'):
+                        self.pax3[0] = choice(['DBEre', 'NoDBE'])
+                    else:
+                        self.Mutate()
+                ### Dutch Maine Coon ###
+                elif (self.pax3[1] == 'DBEre'):
                     self.pax3[1] = 'NoDBE'
-                elif (self.pax3[0] in ['DBEcel', 'DBEre']):
+                elif (self.pax3[0] == 'DBEre'):
                     self.pax3[0] = 'NoDBE'
                 else:
                     self.Mutate()
@@ -3423,14 +3435,26 @@ class Genotype:
                 elif (self.pax3[1] == 'NoDBE'):
                     if (self.pax3[0] == 'DBEalt'):
                         self.pax3[1] = choice(['DBEalt', 'DBEcel', 'DBEre'])
-                    elif (self.pax3[0] in ['DBEcel', 'DBEre']):
+                    elif (self.pax3[0] == 'DBEcel'):
                         self.pax3[1] = choice(['DBEcel', 'DBEre'])
+                    elif (self.pax3[0] == 'DBEre'):
+                        self.pax3[1] = 'DBEre'
                     else:
                         self.Mutate()
-                ### Celestial/Dutch Maine Coons ###
-                elif (self.pax3[0] in ['DBEcel', 'DBEre']):
+                ### Dutch Maine Coon ###
+                elif (self.pax3[0] == 'DBEre'):
+                    self.pax3[0] = choice(['DBEalt', 'DBEcel'])
+                elif (self.pax3[1] == 'DBEre'):
+                    if (self.pax3[0] == 'DBEalt'):
+                        self.pax3[1] = choice(['DBEalt', 'DBEcel'])
+                    elif (self.pax3[0] == 'DBEcel'):
+                        self.pax3[1] = 'DBEcel'
+                    else:
+                        self.Mutate()
+                ### Celestial ###
+                elif (self.pax3[0] == 'DBEcel'):
                     self.pax3[0] = 'DBEalt'
-                elif (self.pax3[1] in ['DBEcel', 'DBEre']):
+                elif (self.pax3[1] == 'DBEcel'):
                     self.pax3[1] = 'DBEalt'
                 else:
                     self.Mutate()
