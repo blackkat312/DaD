@@ -177,10 +177,12 @@ class Cat():
         self.backstory = backstory
         self.age = None
         self.skills = CatSkills(skill_dict=skill_dict)
-        self.personality = Personality(trait="troublesome", lawful=0, aggress=0,
-                                       stable=0, social=0)
+        self.personality = Personality(
+            trait="troublesome", lawful=0, aggress=0, stable=0, social=0
+        )
         self.parent1 = parent1
         self.parent2 = parent2
+
         self.adoptive_parents = []
         self.pelt = pelt if pelt else Pelt()
         self.former_mentor = []
@@ -198,7 +200,7 @@ class Cat():
         self.outside = False
         self.driven_out = False
         self.dead_for = 0  # moons
-        self.thought = ''
+        self.thought = ""
         self.genderalign = None
         self.birth_cooldown = 0
         self.illnesses = {}
@@ -211,16 +213,23 @@ class Cat():
         self.front = None
         self.df = False
         self.experience_level = None
-        
+
         # Various behavior toggles
         self.no_kits = False
         self.no_mates = False
         self.no_retire = False
-        self.prevent_fading = False  # Prevents a cat from fading.
-        
-        self.faded_offspring = []  # Stores of a list of faded offspring, for relation tracking purposes
+        self.neutered = False
+        self.already_gave_neutered_message = False
+        self.give_kittypet_message = False
+        self.vaccinated = False
 
-        self.faded = faded  # This is only used to flag cat that are faded, but won't be added to the faded list until
+        self.prevent_fading = False  # Prevents a cat from fading
+
+        self.faded_offspring = (
+            []
+        )  # Stores of a list of faded offspring, for relation tracking purposes
+
+        self.faded = faded  # This is only used to flag cats that are faded, but won't be added to the faded list until
         # the next save.
 
         self.favourite = False
@@ -1268,13 +1277,14 @@ class Cat():
             else:
                 giver = None
             outro = choice(chosen_outro["text"])
-            outro = leader_ceremony_text_adjust(Cat,
-                                                outro,
-                                                leader=self,
-                                                life_giver=giver,
-                                                )
+            outro = leader_ceremony_text_adjust(
+                Cat,
+                outro,
+                leader=self,
+                life_giver=giver,
+            )
         else:
-            outro = 'this should not appear'
+            outro = "this should not appear"
 
         full_ceremony = "<br><br>".join([intro, all_lives, outro])
         return full_ceremony
@@ -1284,13 +1294,23 @@ class Cat():
     # ---------------------------------------------------------------------------- #
 
     def one_moon(self):
-        """Handles a moon skip for an alive cat. """
+        """Handles a moon skip for an alive cat."""
+        cisgenders = [
+            "molly", "tom", "intersex"
+        ]
         old_age = self.age
         self.moons += 1
         if self.moons == 1 and self.status == "newborn":
-            self.status = 'kitten'
+            self.status = "kitten"
         self.in_camp = 1
-        
+
+        if self.genderalign != self.gender and self.genderalign in cisgenders:
+            self.genderalign = self.gender
+            print(f"{self.name} is cisgender, but their genderalign doesn't match their gender. Resetting...")
+
+        if self.neutered and not self.vaccinated:
+            self.vaccinated = True
+
         if self.exiled or self.outside:
             # this is handled in events.py
             self.personality.set_kit(self.is_baby())
@@ -3436,6 +3456,10 @@ class Cat():
                 "no_kits": self.no_kits,
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
+                "neutered": self.neutered,
+                "already_gave_neutered_message": self.already_gave_neutered_message,
+                "give_kittypet_message": self.give_kittypet_message,
+                "vaccinated": self.vaccinated,
                 "exiled": self.exiled,
                 "driven_out": self.driven_out,
                 "pelt_name": self.pelt.name,
