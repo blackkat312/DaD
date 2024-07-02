@@ -257,7 +257,7 @@ class Condition_Events:
                 )
             )
 
-            if cat.vaccinated and random.randint(1, 3) != 1:
+            if cat.vaccinated and random.randint(1, 4) != 1:
                 random_number = int(random_number * 10)
 
             if (
