@@ -793,6 +793,8 @@ class Cat:
         self.no_mates = False
         self.no_retire = False
         self.neutered = False
+        self.already_gave_neutered_message = False
+        self.give_kittypet_message = False
         self.vaccinated = False
 
         self.prevent_fading = False  # Prevents a cat from fading
@@ -4496,6 +4498,8 @@ class Cat:
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
                 "neutered": self.neutered,
+                "already_gave_neutered_message": self.already_gave_neutered_message,
+                "give_kittypet_message": self.give_kittypet_message,
                 "vaccinated": self.vaccinated,
                 "exiled": self.exiled,
                 "genotype": self.genotype.toJSON(),
