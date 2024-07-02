@@ -778,7 +778,7 @@
         ]
     },
     {
-        "id": "face_blindness_elder",
+        "id": "old_face_blindness_elder",
         "thoughts": [
             "Blames {PRONOUN/m_c/poss} lack of recognition on failing memory"
         ],
