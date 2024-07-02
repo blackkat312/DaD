@@ -104,12 +104,27 @@ class Condition_Events():
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
             random_number = int(
-                random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
-            if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
+                random.random()
+                * game.get_config_value(
+                    "condition_related", f"{game.clan.game_mode}_illness_chance"
+                )
+            )
+
+            if cat.vaccinated and random.randint(1, 4) != 1:
+                random_number = int(random_number * 10)
+
+            if (
+                not cat.dead
+                and not cat.is_ill()
+                and random_number <= 10
+                and not event_string
+            ):
 
                 # CLAN FOCUS!
                 if game.clan.clan_settings.get("rest and recover"):
-                    stopping_chance = game.config["focus"]["rest and recover"]["illness_prevent"]
+                    stopping_chance = game.config["focus"]["rest and recover"][
+                        "illness_prevent"
+                    ]
                     if not int(random.random() * stopping_chance):
                         return triggered
 
@@ -124,10 +139,10 @@ class Condition_Events():
                 random_index = int(random.random() * len(possible_illnesses))
                 chosen_illness = possible_illnesses[random_index]
                 # if a non-kitten got kittencough, switch it to whitecough instead
-                if chosen_illness == 'kittencough' and cat.status != 'kitten':
-                    chosen_illness = 'whitecough'
-                elif chosen_illness == 'nest wetting' and cat.status not in ['kitten', 'apprentice']:
-                    chosen_illness = 'night dirtmaking'
+                if chosen_illness == "kittencough" and cat.status != "kitten":
+                    chosen_illness = "whitecough"
+                elif chosen_illness == "nest wetting" and cat.status not in ['kitten', 'apprentice']:
+                    chosen_illness = "night dirtmaking"
                 # make em sick
                 cat.get_ill(chosen_illness)
 
