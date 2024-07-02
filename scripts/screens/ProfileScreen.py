@@ -1377,9 +1377,9 @@ class ProfileScreen(Screens):
 
             if "zoomies" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += "\nzoomin\""
+                    output += "\nzoomin\'"
                 else:
-                    output += "zoomin\""
+                    output += "zoomin\'"
                     already_sick_injured = True
 
             if "sleeplessness" in the_cat.illnesses:
