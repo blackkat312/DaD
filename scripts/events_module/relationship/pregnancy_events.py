@@ -63,7 +63,7 @@ class Pregnancy_Events():
         if not Pregnancy_Events.biggest_family:
             Pregnancy_Events.set_biggest_family()
 
-        #Handles if a cat is already pregnant
+        # Handles if a cat is already pregnant
         if cat.ID in clan.pregnancy_data:
             moons = clan.pregnancy_data[cat.ID]["moons"]
             if moons == 1:
@@ -84,21 +84,19 @@ class Pregnancy_Events():
             return
 
         # Handle birth cooldown outside of the check_if_can_have_kits function, so it only happens once
-        # for each cat. 
+        # for each cat.
         if cat.birth_cooldown > 0:
             cat.birth_cooldown -= 1
-        
+
         # Check if they can have kits.
-        can_have_kits = Pregnancy_Events.check_if_can_have_kits(cat, clan.clan_settings['single parentage'], 
-                                                                clan.clan_settings['affair'])
+        can_have_kits = Pregnancy_Events.check_if_can_have_kits(
+            cat, clan.clan_settings["single parentage"], clan.clan_settings["affair"]
+        )
         if not can_have_kits:
-            if clan.clan_settings["pregnancy turmoil"] and "infertile" in cat.permanent_condition:
-                skip=True
-            else:
-                return
+            return
 
         false_preg = 0
-        #FOR FALSE PREGNANCIES
+        # FOR FALSE PREGNANCIES
         if clan.clan_settings["pregnancy turmoil"]:
             odds = game.config["pregnancy"]["false_pregnancy_chance"]
             if "infertile" in cat.permanent_condition:
@@ -113,19 +111,16 @@ class Pregnancy_Events():
         can_have_kits, kits_are_adopted = Pregnancy_Events.check_second_parent(
             cat,
             second_parent,
-            clan.clan_settings['single parentage'],
-            clan.clan_settings['affair'],
+            clan.clan_settings["single parentage"],
+            clan.clan_settings["affair"],
             clan.clan_settings["same sex birth"],
-            clan.clan_settings["same sex adoption"]
+            clan.clan_settings["same sex adoption"],
         )
         if second_parent:
             if not can_have_kits:
-                if clan.clan_settings["pregnancy turmoil"] and "infertile" in second_parent.permanent_condition:
-                    skip=True
-                else:
-                    return
+                return
         else:
-            if not game.clan.clan_settings['single parentage']:
+            if not game.clan.clan_settings["single parentage"]:
                 return
 
         chance = Pregnancy_Events.get_balanced_kit_chance(cat, second_parent, is_affair, clan)
@@ -280,10 +275,10 @@ class Pregnancy_Events():
             return
         
         # additional save for no kit setting
-        if (cat and cat.no_kits) or (other_cat and other_cat.no_kits):
+        if (cat and (cat.no_kits or cat.neutered)) or (other_cat and (other_cat.no_kits or other_cat.neutered)):
             return
 
-        # here's where we check for infertility, just in case ir slipped trough
+        # here's where we check for infertility, just in case it slipped trough
         if (cat and "infertile" in cat.permanent_condition) and not (other_cat and "infertile" in other_cat.permanent_condition):
             return
 
@@ -696,15 +691,20 @@ class Pregnancy_Events():
         if cat.birth_cooldown > 0:
             return False
 
-        if 'recovering from birth' in cat.injuries:
+        if "recovering from birth" in cat.injuries:
             return False
-        
+
         if 'infertile' in cat.permanent_condition:
+            return False
+
+        if cat.neutered:
             return False
 
         # decide chances of having kits, and if it's possible at all.
         # Including - age, dead statis, having kits turned off.
-        not_correct_age = cat.age in ['newborn', 'kitten', 'adolescent'] or cat.moons < 15
+        not_correct_age = (
+            cat.age in ["newborn", "kitten", "adolescent"] or cat.moons < 15
+        )
         if not_correct_age or cat.no_kits or cat.dead:
             return False
 
@@ -712,7 +712,9 @@ class Pregnancy_Events():
         if len(cat.mate) > 0:
             for mate_id in cat.mate:
                 if mate_id not in cat.all_cats:
-                    print(f"WARNING: {cat.name}  has an invalid mate # {mate_id}. This has been unset.")
+                    print(
+                        f"WARNING: {cat.name}  has an invalid mate # {mate_id}. This has been unset."
+                    )
                     cat.mate.remove(mate_id)
 
         # If the "single parentage setting in on, we should only allow cats that have mates to have kits.
@@ -741,8 +743,8 @@ class Pregnancy_Events():
 
         # Check to see if the pair can have kits.
             
-        if "infertile" in cat.permanent_condition or "infertile" in second_parent.permanent_condition:
-            True, True
+        if "infertile" in cat.permanent_condition or "infertile" in second_parent.permanent_condition or cat.neutered or second_parent.neutered:
+            return True, True
         
         if cat.gender == 'intersex' or second_parent.gender == 'intersex':
             if same_sex_birth:
