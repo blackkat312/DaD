@@ -1,2 +1,2 @@
-Just shows the current dev commit DaD runs on for tracking purposes. If you're just an everyday player, ignore this.
-https://github.com/ClanGenOfficial/clangen/commit/f4683281325c3920a09feb5f1efdb961c69e067c
+Just lists the current dev commit DaD runs on for tracking purposes. If you're just an everyday player, ignore this.
+https://github.com/ClanGenOfficial/clangen/commit/dd42c955d524b9ae44c47bd4a3858e22c6e88336
