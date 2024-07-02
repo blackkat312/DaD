@@ -400,9 +400,9 @@ def create_new_cat(
         if kittypet and randint(1, 3) == 1 and age > 1 and not new_cat.neutered:
             new_cat.vaccinated = True
 
-        if neutered_this_moon and ((kittypet and cat.moons > 12 and random.randint(1, 10) == 1) or loner or other_clan):
-            History.add_scar(cat=cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
-            cat.pelt.scars.append("TIPPED")
+        if neutered_this_moon and ((kittypet and age > 12 and random.randint(1, 10) == 1) or loner or other_clan):
+            History.add_scar(cat=new_cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
+            new_cat.pelt.scars.append("TIPPED")
 
         # give apprentice aged cat a mentor
         if new_cat.age == "adolescent":
