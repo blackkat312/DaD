@@ -162,6 +162,8 @@ def json_load():
             new_cat.no_mates = cat["no_mates"] if "no_mates" in cat else False
             new_cat.no_retire = cat["no_retire"] if "no_retire" in cat else False
             new_cat.neutered = cat["neutered"] if "neutered" in cat else False
+            new_cat.already_gave_neutered_message = cat["already_gave_neutered_message"] if "already_gave_neutered_message" in cat else False
+            new_cat.give_kittypet_message = cat["give_kittypet_message"] if "give_kittypet_message" in cat else False
             new_cat.vaccinated = cat["vaccinated"] if "vaccinated" in cat else False
             new_cat.exiled = cat["exiled"]
             new_cat.driven_out = cat["driven_out"] if "driven_out" in cat else False
