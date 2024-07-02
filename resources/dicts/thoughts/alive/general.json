@@ -1900,7 +1900,8 @@
             "Is confused when r_c indicates birdsong",
             "Wonders what r_c sounds like",
             "Knows what r_c is saying from {PRONOUN/r_c/poss} mouth movements",
-            "Teases a Clanmate for trying to call {PRONOUN/m_c/object} out loud"
+            "Teases a Clanmate for trying to call {PRONOUN/m_c/object} out loud",
+			"Pretends to not understand r_c"
         ],
         "perm_conditions": {
             "m_c": [
