@@ -222,51 +222,55 @@ def get_other_clan(clan_name):
             return clan
 
 
-def create_new_cat(Cat,
-                   Relationship,
-                   new_name: bool = False,
-                   loner: bool = False,
-                   kittypet: bool = False,
-                   kit: bool = False,
-                   litter: bool = False,
-                   other_clan: bool = None,
-                   backstory: bool = None,
-                   status: str = None,
-                   age: int = None,
-                   gender: str = None,
-                   thought: str = 'Is looking around the camp with wonder',
-                   alive: bool = True,
-                   outside: bool = False,
-                   parent1: str = None,
-                   parent2: str = None
-                   ) -> list:
+def create_new_cat(
+        Cat,
+        Relationship,
+        new_name: bool = False,
+        loner: bool = False,
+        kittypet: bool = False,
+        kit: bool = False,
+        litter: bool = False,
+        other_clan: bool = None,
+        backstory: bool = None,
+        status: str = None,
+        age: int = None,
+        gender: str = None,
+        thought: str = 'Is looking around the camp with wonder',
+        alive: bool = True,
+        outside: bool = False,
+        parent1: str = None,
+        parent2: str = None,
+        can_be_neutered = True
+) -> list:
     """
     This function creates new cats and then returns a list of those cats
-    :param Cat: pass the Cat class
-    :params Relationship: pass the Relationship class
-    :param new_name: set True if cat(s) is a loner/rogue receiving a new Clan name - default: False
-    :param loner: set True if cat(s) is a loner or rogue - default: False
-    :param kittypet: set True if cat(s) is a kittypet - default: False
-    :param kit: set True if the cat is a lone kitten - default: False
-    :param litter: set True if a litter of kittens needs to be generated - default: False
-    :param other_clan: if new cat(s) are from a neighboring clan, set true
-    :param backstory: a list of possible backstories.json for the new cat(s) - default: None
-    :param status: set as the rank you want the new cat to have - default: None (will cause a random status to be picked)
-    :param age: set the age of the new cat(s) - default: None (will be random or if kit/litter is true, will be kitten.
-    :param gender: set the gender (BIRTH SEX) of the cat - default: None (will be random)
-    :param thought: if you need to give a custom "welcome" thought, set it here
-    :param alive: set this as False to generate the cat as already dead - default: True (alive)
-    :param outside: set this as True to generate the cat as an outsider instead of as part of the Clan - default: False (Clan cat)
-    :param parent1: Cat ID to set as the biological parent1
-    :param parent2: Cat ID object to set as the biological parert2
+    :param Cat Cat: pass the Cat class
+    :params Relationship Relationship: pass the Relationship class
+    :param bool new_name: set True if cat(s) is a loner/rogue receiving a new Clan name - default: False
+    :param bool loner: set True if cat(s) is a loner or rogue - default: False
+    :param bool kittypet: set True if cat(s) is a kittypet - default: False
+    :param bool kit: set True if the cat is a lone kitten - default: False
+    :param bool litter: set True if a litter of kittens needs to be generated - default: False
+    :param bool other_clan: if new cat(s) are from a neighboring clan, set true
+    :param bool backstory: a list of possible backstories.json for the new cat(s) - default: None
+    :param str status: set as the rank you want the new cat to have - default: None (will cause a random status to be picked)
+    :param int age: set the age of the new cat(s) - default: None (will be random or if kit/litter is true, will be kitten.
+    :param str gender: set the gender (BIRTH SEX) of the cat - default: None (will be random)
+    :param str thought: if you need to give a custom "welcome" thought, set it here
+    :param bool alive: set this as False to generate the cat as already dead - default: True (alive)
+    :param bool outside: set this as True to generate the cat as an outsider instead of as part of the Clan - default: False (Clan cat)
+    :param str parent1: Cat ID to set as the biological parent1
+    :param str parent2: Cat ID object to set as the biological parert2
     """
+    # TODO: it would be nice to rewrite this to be less bool-centric
     accessory = None
     if isinstance(backstory, list):
         backstory = choice(backstory)
 
     if backstory in (
-            BACKSTORIES["backstory_categories"]["former_clancat_backstories"] or BACKSTORIES["backstory_categories"][
-        "otherclan_categories"]):
+            BACKSTORIES["backstory_categories"]["former_clancat_backstories"]
+            or BACKSTORIES["backstory_categories"]["otherclan_categories"]
+    ):
         other_clan = True
 
     created_cats = []
@@ -283,11 +287,11 @@ def create_new_cat(Cat,
             age = randint(1, 5)
         elif status in ('apprentice', 'medicine cat apprentice', 'mediator apprentice'):
             age = randint(6, 11)
-        elif status == 'warrior':
+        elif status == "warrior":
             age = randint(23, 120)
         elif status == 'medicine cat':
             age = randint(23, 140)
-        elif status == 'elder':
+        elif status == "elder":
             age = randint(120, 130)
         else:
             age = randint(6, 120)
@@ -303,7 +307,7 @@ def create_new_cat(Cat,
         elif age >= 12:
             status = "warrior"
         elif age >= 120:
-            status = 'elder'
+            status = "elder"
 
     # cat creation and naming time
     for index in range(number_of_cats):
@@ -327,13 +331,16 @@ def create_new_cat(Cat,
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 2) == 1:
                     accessory = choice([choice(Pelt.collars), choice(Pelt.booties)])
-            elif loner and randint(1, 2) == 1:  # try to give name from full loner name list
+            elif (
+                    loner and randint(1, 2) == 1
+            ):  # try to give name from full loner name list
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 2) == 1:
                     accessory = choice(choice(Pelt.all_natural_accessories))
             else:
                 name = choice(
-                    names.names_dict["normal_prefixes"])  # otherwise give name from prefix list (more nature-y names)
+                    names.names_dict["normal_prefixes"]
+                )  # otherwise give name from prefix list (more nature-y names)
                 if randint(1, 3) > 1:
                     accessory = choice(choice(Pelt.all_natural_accessories))
 
@@ -376,10 +383,32 @@ def create_new_cat(Cat,
         if accessory:
             new_cat.pelt.accessory = accessory
 
+        neutered_this_moon = False
+        if can_be_neutered:
+            if kittypet and randint(1, 5) > 2 and age > 2:
+                new_cat.neutered = True
+                new_cat.give_kittypet_message = True
+                neutered_this_moon = True
+            elif loner and randint(1, 7) == 1 and age > 2:
+                new_cat.neutered = True
+                new_cat.already_gave_neutered_message = True
+                neutered_this_moon = True
+            elif other_clan and randint(1, 12) == 1 and age > 2:
+                new_cat.neutered = True
+                new_cat.already_gave_neutered_message = True
+                neutered_this_moon = True
+        if kittypet and randint(1, 3) == 1 and age > 1 and not new_cat.neutered:
+            new_cat.vaccinated = True
+
+        if neutered_this_moon and ((kittypet and cat.moons > 12 and random.randint(1, 10) == 1) or loner or other_clan):
+            History.add_scar(cat=cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
+            cat.pelt.scars.append("TIPPED")
+
         # give apprentice aged cat a mentor
         if new_cat.age == "adolescent":
             new_cat.update_mentor()
 
+        # Give conditions for disabling scars, if they generated.
         scar_to_condition = {
             "THREE": ["one bad eye"],
             "FOUR": ["weak leg", "no", "no"],
@@ -414,7 +443,6 @@ def create_new_cat(Cat,
         elif age == 4 or age == 5:
             cat_gain_age = randint(4, age)
 
-        # Give conditions for disabling scars, if they generated.
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
                 if game.clan.game_mode == "classic" or age < 4:
