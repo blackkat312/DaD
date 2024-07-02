@@ -497,14 +497,14 @@
         }
     },
 	{
-        "id": "apprentice_to_thought_blindness",
+        "id": "apprentice_to_thought_blindness_apprentice",
         "thoughts": [
             "Noticed that r_c is struggling to properly hide {PRONOUN/r_c/self}",
 			"Gets confused by how r_c describes the territory"
         ],
         "perm_conditions": {
             "r_c": [
-                "thought blind"
+                "thought blindness"
             ]
         },
 		"random_status_constraint": [
