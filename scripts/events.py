@@ -110,12 +110,13 @@ class Events:
         if random.randint(1, rejoin_upperbound) == 1:
             self.handle_lost_cats_return()
 
+        tnr_setting = game.clan.clan_settings["tnr"]
         # Calling of "one_moon" functions.
         for cat in Cat.all_cats.copy().values():
             if not cat.outside or cat.dead:
                 self.one_moon_cat(cat)
             else:
-                self.one_moon_outside_cat(cat)
+                self.one_moon_outside_cat(cat, tnr_setting)
 
         # Adding in any potential lead den events that have been saved
         if "lead_den_interaction" in game.clan.clan_settings:
@@ -1034,28 +1035,35 @@ class Events:
             cat_IDs.append(lost_cat.ID)
 
             text = [
-                'After a long journey, m_c has finally returned home to c_n.',
-                'm_c was found at the border, tired, but happy to be home.',
+                "After a long journey, m_c has finally returned home to c_n.",
+                "m_c was found at the border, tired, but happy to be home.",
                 "m_c strides into camp, much to the everyone's surprise. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'re/'s} home!",
                 "{PRONOUN/m_c/subject/CAP} met so many friends on {PRONOUN/m_c/poss} journey, but c_n is where m_c truly belongs. With a tearful goodbye, "
-                "{PRONOUN/m_c/subject} {VERB/m_c/return/returns} home."
+                "{PRONOUN/m_c/subject} {VERB/m_c/return/returns} home.",
             ]
             lost_cat.outside = False
             additional_cats = lost_cat.add_to_clan()
             cat_IDs.extend(additional_cats)
             text = random.choice(text)
+            if lost_cat.neutered and not lost_cat.already_gave_neutered_message:
+                if lost_cat.give_kittypet_message:
+                    text += " One of {PRONOUN/m_c/poss} ears is tipped, though."
+                    lost_cat.already_gave_neutered_message = True
+                else:
+                    text += " {PRONOUN/m_c/subject/CAP} {VERB/m_c/smell/smells} a bit different, though, and one of {PRONOUN/m_c/poss} ears is tipped."
+                    lost_cat.already_gave_neutered_message = True
 
             if additional_cats:
-                text += " {PRONOUN/m_c/subject/CAP} also {VERB/m_c/bring/brings} along {PRONOUN/m_c/poss} "
+                text += " {PRONOUN/m_c/subject/CAP} also brought along {PRONOUN/m_c/poss} "
                 if len(additional_cats) > 1:
-                    text += str(len(additional_cats)) + " children."
+                    text += str(len(additional_cats)) + "children "
                 else:
-                    text += "child."
+                    text += "child "
+                text += "with {PRONOUN/m_c/object}."
 
-            text = event_text_adjust(Cat, text, lost_cat, clan=game.clan)
+            text = event_text_adjust(Cat, text, main_cat=lost_cat, clan=game.clan)
 
-            game.cur_events_list.append(
-                Single_Event(text, "misc", cat_IDs))
+            game.cur_events_list.append(Single_Event(text, "misc", cat_IDs))
 
         # Perform a ceremony if needed
         for cat_ID in cat_IDs:
@@ -1135,14 +1143,69 @@ class Events:
                 game.cat_to_fade.append(cat.ID)
                 cat.set_faded()
 
-    def one_moon_outside_cat(self, cat):
+    def one_moon_outside_cat(self, cat, tnr_setting):
         """
         exiled cat events
         """
+        neutered_this_moon = False
+        attempted_to_be_neutered = False
+
         # aging the cat
         cat.one_moon()
         cat.manage_outside_trait()
+
         self.handle_outside_EX(cat)
+
+        # tnr
+        if not cat.dead and cat.moons > 2 and tnr_setting:
+            if cat.status == "kittypet":
+                if cat.moons <= 12 and random.randint(1, 9) == 1:
+                    cat.neutered = True
+                    cat.give_kittypet_message = True
+                    neutered_this_moon = True
+
+                elif cat.moons <= 24 and random.randint(1, 50) == 1:
+                    cat.neutered = True
+                    cat.give_kittypet_message = True
+                    neutered_this_moon = True
+
+                elif random.randint(1, 250) == 1:
+                    cat.neutered = True
+                    cat.give_kittypet_message = True
+                    neutered_this_moon = True
+
+            elif cat.status != "driven off":
+                if cat.moons <= 12 and random.randint(1, 15) == 1:
+                    cat.neutered = True
+                    neutered_this_moon = True
+                    if cat.give_kittypet_message:
+                        attempted_to_be_neutered = True
+                    if cat.status in ["loner", "rogue", "former Clancat"]:
+                        cat.already_gave_neutered_message = True
+
+                elif random.randint(1, 100) == 1:
+                    cat.neutered = True
+                    neutered_this_moon = True
+                    if cat.give_kittypet_message:
+                        attempted_to_be_neutered = True
+                    if cat.status in ["loner", "rogue", "former Clancat"]:
+                        cat.already_gave_neutered_message = True
+
+        # vaccinate
+        if not cat.dead and cat.moons > 1 and tnr_setting and not cat.neutered and cat.status == "kittypet":
+            if cat.moons <= 12 and random.randint(1, 4) == 1:
+                cat.vaccinated = True
+            elif cat.moons <= 24 and random.randint(1, 30) == 1:
+                cat.vaccinated = True
+            elif random.randint(1, 175) == 1:
+                cat.vaccinated = True
+
+        if not cat.dead and "TIPPED" not in cat.pelt.scars and neutered_this_moon and ((cat.status == "kittypet" and cat.moons > 12 and random.randint(1, 10) == 1) or cat.status not in ["kittypet", "driven off"]):
+            if attempted_to_be_neutered:
+                History.add_scar(cat=cat, scar_text="m_c was mistakenly captured by Twolegs who thought {PRONOUN/m_c/subject} needed to be neutered, so {PRONOUN/m_c/poss} ear was tipped to prevent unnecessary stress in the future.")
+            else:
+                History.add_scar(cat=cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
+            cat.pelt.scars.append("TIPPED")
 
         cat.skills.progress_skill(cat)
         Pregnancy_Events.handle_having_kits(cat, clan=game.clan)
