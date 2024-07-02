@@ -927,7 +927,13 @@ class ProfileScreen(Screens):
         # NUTRITION INFO (if the game is in the correct mode)
         if game.clan.game_mode in ["expanded", "cruel season"] and the_cat.is_alive() and FRESHKILL_ACTIVE:
             # Check to only show nutrition for clan cats
-            if str(the_cat.status) not in ["loner", "kittypet", "rogue", "former Clancat", "exiled"]:
+            if str(the_cat.status) not in [
+                "loner",
+                "kittypet",
+                "rogue",
+                "former Clancat",
+                "exiled",
+            ]:
                 nutr = None
                 if the_cat.ID in game.clan.freshkill_pile.nutrition_info:
                     nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
@@ -935,24 +941,47 @@ class ProfileScreen(Screens):
                     game.clan.freshkill_pile.add_cat_to_nutrition(the_cat)
                     nutr = game.clan.freshkill_pile.nutrition_info[the_cat.ID]
                 output += "nutrition: " + nutr.nutrition_text
-                if game.clan.clan_settings['showxp']:
-                    output += ' (' + str(int(nutr.percentage)) + ')'
+                if game.clan.clan_settings["showxp"]:
+                    output += " (" + str(int(nutr.percentage)) + ")"
                 output += "\n"
 
+        if the_cat.neutered:
+            if the_cat.is_disabled or the_cat.is_plural or the_cat.is_injured or the_cat.is_ill:
+                output += "neutered\n"
+            else:
+                output += "neutered"
+
+        already_disabled = False
         if the_cat.is_disabled():
             for condition in the_cat.permanent_condition:
-                if the_cat.permanent_condition[condition]['born_with'] is True and \
-                        the_cat.permanent_condition[condition]["moons_until"] != -2:
+                special_conditions = [
+                    "declawed"
+                ]
+                all_special = True
+                for condition2 in the_cat.permanent_condition:
+                    if condition2 not in special_conditions:
+                        all_special = False
+                    if not all_special:
+                        break
+
+                if (the_cat.permanent_condition[condition]["born_with"] is True and the_cat.permanent_condition[condition]["moons_until"] != -2) or ("excess testosterone" in the_cat.permanent_condition[condition] or "aneuploidy" in the_cat.permanent_condition[condition] or "testosterone deficiency" in the_cat.permanent_condition[condition] or "chimerism" in the_cat.permanent_condition[condition] or "mosaicism" in the_cat.permanent_condition[condition]):
                     continue
-                elif "declawed" in the_cat.permanent_condition:
-                    output += 'declawed'
-                else:
-                    output += 'has a permanent condition'
+
+                if not all_special:
+                    output += "has a permanent condition"
+                    already_disabled = True
+
+                if "declawed" in the_cat.permanent_condition:
+                    if already_disabled:
+                        output += "\ndeclawed"
+                    else:
+                        output += "declawed"
+                        already_disabled = True
 
                 # NEWLINE ----------
                 output += "\n"
                 break
-            
+
         if the_cat.is_plural():
             con = ""
             if "shattered soul" in the_cat.permanent_condition:
@@ -963,24 +992,25 @@ class ProfileScreen(Screens):
                 minmoons = -1
             else:
                 minmoons = 0
-            if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
+            if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
                 output += "fronting: "
                 if self.the_cat.front is not None:
                     output += the_cat.front
                 else:
                     output += str(the_cat.name)
-                '''
+                """
                 can_front = [str(the_cat.name)]
                 for alter in the_cat.alters:
                     can_front.append(alter["name"])
                 output += choice(can_front)
-                '''
+                """
                 output += "\n"
 
         already_sick_injured = False
         if the_cat.is_injured():
             special_conditions = [
-                "recovering from birth", "overstimulation", "understimulation", "fatigue", "fainting", "pregnant", "faux pregnant"
+                "recovering from birth", "overstimulation", "understimulation", "fatigue", "fainting", "pregnant",
+                "faux pregnant"
             ]
             all_special = True
             for condition in the_cat.injuries:
@@ -994,70 +1024,52 @@ class ProfileScreen(Screens):
                 already_sick_injured = True
 
             if "recovering from birth" in the_cat.injuries:
-                if game.settings['warriorified names']:
-                    if "turmoiled litter" in the_cat.illnesses:
-                        if already_sick_injured:
-                            output += '\nrecovering from a turmoiled birth!'
-                        else:
-                            output += 'recovering from a turmoiled birth!'                    
-                    else:
-                        if already_sick_injured:
-                            output += '\nrecovering from birth!'
-                        else:
-                            output += 'recovering from birth!'
-                            already_sick_injured = True
+                if already_sick_injured:
+                    output += "\nrecovering from birth!"
                 else:
-                    if "turmoiled litter" in the_cat.illnesses:
-                        if already_sick_injured:
-                            output += '\nrecovering from birth! Has post-partum!'
-                        else:
-                            output += 'recovering from birth! Has post-partum!'                    
-                    else:
-                        if already_sick_injured:
-                            output += '\nrecovering from birth!'
-                        else:
-                            output += 'recovering from birth!'
-                            already_sick_injured = True
+                    output += "recovering from birth!"
+                    already_sick_injured = True
 
             if "overstimulation" in the_cat.injuries:
                 if already_sick_injured:
-                    output += '\noverstimulated!'
+                    output += "\noverstimulated!"
                 else:
-                    output += 'overstimulated!'
+                    output += "overstimulated!"
                     already_sick_injured = True
 
             if "understimulation" in the_cat.injuries:
                 if already_sick_injured:
-                    output += '\nunderstimulated!'
+                    output += "\nunderstimulated!"
                 else:
-                    output += 'understimulated!'
+                    output += "understimulated!"
                     already_sick_injured = True
 
             if "fatigue" in the_cat.injuries:
                 if already_sick_injured:
-                    output += '\nfatigued!'
+                    output += "\nfatigued!"
                 else:
-                    output += 'fatigued!'
+                    output += "fatigued!"
                     already_sick_injured = True
 
             if "fainting" in the_cat.injuries:
                 if already_sick_injured:
-                    output += '\nfainted!'
+                    output += "\nfainted!"
                 else:
-                    output += 'fainted!'
+                    output += "fainted!"
                     already_sick_injured = True
 
             if "pregnant" in the_cat.injuries:
                 if already_sick_injured:
-                    output += '\npregnant!'
+                    output += "\npregnant!"
                 else:
-                    output += 'pregnant!'
+                    output += "pregnant!"
                     already_sick_injured = True
+
             if "faux pregnant" in the_cat.injuries:
                 if already_sick_injured:
-                    output += '\npregnant?'
+                    output += "\npregnant?"
                 else:
-                    output += 'pregnant?'                    
+                    output += "pregnant?"
                     already_sick_injured = True
 
         if the_cat.is_ill():
@@ -1076,170 +1088,186 @@ class ProfileScreen(Screens):
 
             if not all_special:
                 if already_sick_injured:
-                    output += '\nsick!'
+                    output += "\nsick!"
                 else:
-                    output += 'sick!'
+                    output += "sick!"
                     already_sick_injured = True
 
             if "grief stricken" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\ngrieving!'
+                    output += "\ngrieving!"
                 else:
-                    output += 'grieving!'
+                    output += "grieving!"
                     already_sick_injured = True
 
             if "fleas" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nflea-ridden!'
+                    output += "\nflea-ridden!"
                 else:
-                    output += 'flea-ridden!'
+                    output += "flea-ridden!"
                     already_sick_injured = True
 
             if "malnourished" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nmalnourished!'
+                    output += "\nmalnourished!"
                 else:
-                    output += 'malnourished!'
+                    output += "malnourished!"
                     already_sick_injured = True
 
             if "starving" in the_cat.illnesses:
                 if already_sick_injured:
                     # I don't think cats can be malnourished and starving at the same time, but jic
                     if "malnourished!" in output:
-                        output = output.replace('malnourished!', 'starving!')
+                        output = output.replace("malnourished!", "starving!")
                     else:
-                        output += '\nstarving!'
+                        output += "\nstarving!"
                 else:
-                    output += 'starving!'
+                    output += "starving!"
                     already_sick_injured = True
 
             if "paranoia" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nparanoid!'
+                    output += "\nparanoid!"
                 else:
-                    output += 'paranoid!'
+                    output += "paranoid!"
                     already_sick_injured = True
 
-            if ("lethargy" or "seasonal lethargy") in the_cat.illnesses:
+            if "lethargy" in the_cat.illnesses or "seasonal lethargy" in the_cat.illnesses:
                 if already_sick_injured:
-                    if game.settings['warriorified names']:
-                        output += '\nlethargic!'
+                    if game.settings["warriorified names"]:
+                        output += "\nlethargic!"
                     else:
-                        output += '\ndepressed!'
+                        output += "\ndepressed!"
                 else:
-                    if game.settings['warriorified names']:
-                        output += 'lethargic!'
+                    if game.settings["warriorified names"]:
+                        output += "lethargic!"
                     else:
-                        output += 'depressed!'
+                        output += "depressed!"
                     already_sick_injured = True
 
             if "special interest" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nhas a special interest'
+                    output += "\nhas a special interest"
                 else:
-                    output += 'has a special interest'
+                    output += "has a special interest"
                     already_sick_injured = True
 
             if "hyperfixation" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nhas a hyperfixation'
+                    output += "\nhas a hyperfixation"
                 else:
-                    output += 'has a hyperfixation'
+                    output += "has a hyperfixation"
                     already_sick_injured = True
 
             if "stimming" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nstimming'
+                    output += "\nstimming"
                 else:
-                    output += 'stimming'
+                    output += "stimming"
                     already_sick_injured = True
 
             if "indecision" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nindecisive!'
+                    output += "\nindecisive!"
                 else:
-                    output += 'indecisive!'
+                    output += "indecisive!"
                     already_sick_injured = True
 
             if "impulsivity" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nimpulsive!'
+                    output += "\nimpulsive!"
                 else:
-                    output += 'impulsive!'
+                    output += "impulsive!"
                     already_sick_injured = True
 
             if "zoomies" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nzoomin\''
+                    output += "\nzoomin\'"
                 else:
-                    output += 'zoomin\''
+                    output += "zoomin\'"
                     already_sick_injured = True
 
             if "sleeplessness" in the_cat.illnesses:
                 if already_sick_injured:
-                    if game.settings['warriorified names']:
-                        output += '\nsleepless!'
+                    if game.settings["warriorified names"]:
+                        output += "\nsleepless!"
                     else:
-                        output += '\ninsomniac!'
+                        output += "\ninsomniac!"
                 else:
-                    if game.settings['warriorified names']:
-                        output += 'sleepless!'
+                    if game.settings["warriorified names"]:
+                        output += "sleepless!"
                     else:
-                        output += 'insomniac!'
+                        output += "insomniac!"
                     already_sick_injured = True
 
             if "burn out" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nburnt out!'
+                    output += "\nburnt out!"
                 else:
-                    output += 'burnt out!'
+                    output += "burnt out!"
                     already_sick_injured = True
 
             if "puppyspace" in the_cat.illnesses:
                 if already_sick_injured:
-                    if game.settings['warriorified names']:
-                        output += '\nin puppyspace'
+                    if game.settings["warriorified names"]:
+                        output += "\nin puppyspace"
                     else:
-                        output += '\nin petspace'
+                        output += "\nin petspace"
                 else:
-                    if game.settings['warriorified names']:
-                        output += 'in puppyspace'
+                    if game.settings["warriorified names"]:
+                        output += "in puppyspace"
                     else:
-                        output += 'in petspace'
+                        output += "in petspace"
                     already_sick_injured = True
 
             if "kittenspace" in the_cat.illnesses:
                 if already_sick_injured:
-                    if game.settings['warriorified names']:
-                        output += '\nin kittenspace'
+                    if game.settings["warriorified names"]:
+                        output += "\nin kittenspace"
                     else:
-                        output += '\nin littlespace'
+                        output += "\nin littlespace"
                 else:
-                    if game.settings['warriorified names']:
-                        output += 'in kittenspace'
+                    if game.settings["warriorified names"]:
+                        output += "in kittenspace"
                     else:
-                        output += 'in littlespace'
+                        output += "in littlespace"
                     already_sick_injured = True
 
             if ("tics" or "tic attack") in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nticing!'
+                    output += "\nticing!"
                 else:
-                    output += 'ticing!'
+                    output += "ticing!"
                     already_sick_injured = True
 
             if "dizziness" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\ndizzy!'
+                    output += "\ndizzy!"
                 else:
-                    output += 'dizzy!'
+                    output += "dizzy!"
                     already_sick_injured = True
 
             if "nausea" in the_cat.illnesses:
                 if already_sick_injured:
-                    output += '\nnauseous!'
+                    output += "\nnauseous!"
                 else:
-                    output += 'nauseous!'
+                    output += "nauseous!"
+                    already_sick_injured = True
+
+            if "turmoiled litter" in the_cat.illnesses:
+                if already_sick_injured:
+                    if game.settings["warriorified names"]:
+                        if "recovering from birth!" in output:
+                            output = output.replace("recovering from birth!", "recovering from a turmoiled birth!")
+                        else:
+                            output += "\nrecovering from a turmoiled birth!"
+                    else:
+                        output += "\nexperiencing postpartum!"
+                else:
+                    if game.settings["warriorified names"]:
+                        output += "recovering from a turmoiled birth!"
+                    else:
+                        output += "experiencing postpartum!"
 
         return output
 
@@ -1863,16 +1891,16 @@ class ProfileScreen(Screens):
                     minmoons = -1
                 else:
                     minmoons = 0
-                if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
-                    all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
+                if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
+                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
             elif "budding spirit" in self.the_cat.permanent_condition:
                 con = "budding spirit"
                 if self.the_cat.permanent_condition[con]["born_with"] is True:
                     minmoons = -1
                 else:
                     minmoons = 0
-                if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
-                    all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
+                if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
+                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
 
         all_illness_injuries = chunks(all_illness_injuries, 4)
 
@@ -1938,35 +1966,28 @@ class ProfileScreen(Screens):
             self.condition_container.kill()
 
         self.condition_container = pygame_gui.core.UIContainer(
-            scale(pygame.Rect((178, 942), (1248, 302))),
-            MANAGER)
+            scale(pygame.Rect((178, 942), (1248, 302))), MANAGER
+        )
 
         # gather a list of all the conditions and info needed.
-        all_illness_injuries = [(i, self.get_condition_details(i)) for i in self.the_cat.permanent_condition if
-                                not (self.the_cat.permanent_condition[i]['born_with'] and
-                                     self.the_cat.permanent_condition[i]["moons_until"] != -2)]
-        '''
-        if self.the_cat.is_plural:
-            if "shattered soul" in self.the_cat.permanent_condition:
-                con = "shattered soul"
-                if self.the_cat.permanent_condition[con]["born_with"] is True:
-                    minmoons = -1
-                else:
-                    minmoons = 0
-                if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
-                    all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
-            elif "budding spirit" in self.the_cat.permanent_condition:
-                con = "budding spirit"
-                if self.the_cat.permanent_condition[con]["born_with"] is True:
-                    minmoons = -1
-                else:
-                    minmoons = 0
-                if self.the_cat.permanent_condition[con]['moons_until'] <= minmoons:
-                    all_illness_injuries.extend([(i['name'], self.get_alter_details(i)) for i in self.the_cat.alters])
-        '''
-        all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.injuries])
-        all_illness_injuries.extend([(i, self.get_condition_details(i)) for i in self.the_cat.illnesses if
-                                     i not in ("an infected wound", "a festering wound")])
+        all_illness_injuries = [
+            (i, self.get_condition_details(i))
+            for i in self.the_cat.permanent_condition
+            if not (
+                self.the_cat.permanent_condition[i]["born_with"]
+                and self.the_cat.permanent_condition[i]["moons_until"] != -2
+            )
+        ]
+        all_illness_injuries.extend(
+            [(i, self.get_condition_details(i)) for i in self.the_cat.injuries]
+        )
+        all_illness_injuries.extend(
+            [
+                (i, self.get_condition_details(i))
+                for i in self.the_cat.illnesses
+                if i not in ("an infected wound", "a festering wound")
+            ]
+        )
         all_illness_injuries = chunks(all_illness_injuries, 4)
 
         if not all_illness_injuries:
@@ -1975,7 +1996,7 @@ class ProfileScreen(Screens):
             self.left_conditions_arrow.disable()
             return
 
-        # Adjust the page number if it somehow goes out of range. 
+        # Adjust the page number if it somehow goes out of range.
         if self.conditions_page < 0:
             self.conditions_page = 0
         elif self.conditions_page > len(all_illness_injuries) - 1:
@@ -1995,20 +2016,25 @@ class ProfileScreen(Screens):
         x_pos = 30
         for con in all_illness_injuries[self.conditions_page]:
             condition_name = self.change_condition_name(con[0])
+
             # Background Box
             pygame_gui.elements.UIImage(
                 scale(pygame.Rect((x_pos, 25), (280, 276))),
-                self.condition_details_box, manager=MANAGER,
-                container=self.condition_container)
+                self.condition_details_box,
+                manager=MANAGER,
+                container=self.condition_container,
+            )
 
             y_adjust = 60
 
             name = UITextBoxTweaked(
                 condition_name,
                 scale(pygame.Rect((x_pos, 26), (272, -1))),
-                line_spacing=.90,
+                line_spacing=0.90,
                 object_id="#text_box_30_horizcenter",
-                container=self.condition_container, manager=MANAGER)
+                container=self.condition_container,
+                manager=MANAGER,
+            )
 
             y_adjust = name.get_relative_rect().height
             details_rect = scale(pygame.Rect((x_pos, 0), (276, -1)))
@@ -2017,9 +2043,11 @@ class ProfileScreen(Screens):
             UITextBoxTweaked(
                 con[1],
                 details_rect,
-                line_spacing=.90,
+                line_spacing=0.90,
                 object_id="#text_box_22_horizcenter_pad_20_20",
-                container=self.condition_container, manager=MANAGER)
+                container=self.condition_container,
+                manager=MANAGER,
+            )
 
             x_pos += 304
 
@@ -2055,25 +2083,25 @@ class ProfileScreen(Screens):
             "curved spine": "scoliosis",
             "jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
+            "spirited heart": "hyperempathy",
+            "puzzled heart": "low empathy",
             "parrot chatter": "echolalia",
-            "parroting": "echolalia",
-            "vivid daydreamer": "maladaptive daydreaming",
+            "thought blind": "aphantasia",
+            "vivid daydreamer": "maladaptive daydreamer",
 
             "sunblindness": "light sensitivity",
+            "faux pregnant": "phantom pregnancy",
 
             "seasonal lethargy": "seasonal depression",
             "lethargy": "depression",
+            "turmoiled litter": "postpartum",
             "sleeplessness": "insomnia",
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
             "puppyspace": "petspace",
-            "spirited heart": "hyperempathy",
-            "puzzled heart": "low empathy",
-            "faux pregnant": "phantom pregnancy",
-            "thought blind": "aphantasia",
-            "turmoiled litter": "post partum"
+            "parroting": "echolalia"
         }
-        if not game.settings['warriorified names']:
+        if not game.settings["warriorified names"]:
             if condition in dad_names:
                 condition = condition.replace(condition, dad_names.get(condition))
 
@@ -2106,53 +2134,57 @@ class ProfileScreen(Screens):
                     text_list.append(f"split in early kithood")
             else:
                 # moons with the condition if not born with condition
-                moons_with = game.clan.age - self.the_cat.permanent_condition[name]["moon_start"]
+                moons_with = (
+                    game.clan.age - self.the_cat.permanent_condition[name]["moon_start"]
+                )
                 if moons_with != 1:
                     text_list.append(f"has had this condition for {moons_with} moons")
                 else:
                     text_list.append(f"has had this condition for 1 moon")
 
             # is permanent
-            text_list.append('permanent condition')
-            
+            text_list.append("permanent condition")
+
             if name in ["shattered soul", "budding spirit"]:
                 alters = str(len(self.the_cat.alters))
                 text_list.append(f"alters: " + alters)
 
             # infected or festering
-            complication = self.the_cat.permanent_condition[name].get("complication", None)
+            complication = self.the_cat.permanent_condition[name].get(
+                "complication", None
+            )
             if complication is not None:
-                if 'a festering wound' in self.the_cat.illnesses:
-                    complication = 'festering'
-                text_list.append(f'is {complication}!')
+                if "a festering wound" in self.the_cat.illnesses:
+                    complication = "festering"
+                text_list.append(f"is {complication}!")
 
         # collect details for injuries
         if name in self.the_cat.injuries:
             # moons with condition
             keys = self.the_cat.injuries[name].keys()
             moons_with = game.clan.age - self.the_cat.injuries[name]["moon_start"]
-            insert = 'has been hurt for'
+            insert = "has been hurt for"
 
-            if name == 'recovering from birth':
-                insert = 'has been recovering for'
+            if name == "recovering from birth":
+                insert = "has been recovering for"
 
-            if name == 'overstimulation':
-                insert = 'has been overstimulated for'
+            if name == "overstimulation":
+                insert = "has been overstimulated for"
 
-            if name == 'understimulation':
-                insert = 'has been understimulated for'
+            if name == "understimulation":
+                insert = "has been understimulated for"
 
-            if name == 'fatigue':
-                insert = 'has been fatigued for'
+            if name == "fatigue":
+                insert = "has been fatigued for"
 
-            if name == 'fainting':
-                insert = 'has been fainted for'
+            if name == "fainting":
+                insert = "has been fainted for"
 
-            if name == 'pregnant':
-                insert = 'has been pregnant for'
+            if name == "pregnant":
+                insert = "has been pregnant for"
 
-            elif name == 'faux pregnant':
-                insert = 'has been pregnant(?) for'
+            if name == 'faux pregnant':
+                insert = 'has possibly been pregnant for'
 
             if moons_with != 1:
                 text_list.append(f"{insert} {moons_with} moons")
@@ -2160,15 +2192,15 @@ class ProfileScreen(Screens):
                 text_list.append(f"{insert} 1 moon")
 
             # infected or festering
-            if 'complication' in keys:
+            if "complication" in keys:
                 complication = self.the_cat.injuries[name]["complication"]
                 if complication is not None:
-                    if 'a festering wound' in self.the_cat.illnesses:
-                        complication = 'festering'
-                    text_list.append(f'is {complication}!')
+                    if "a festering wound" in self.the_cat.illnesses:
+                        complication = "festering"
+                    text_list.append(f"is {complication}!")
 
             # can or can't patrol
-            if self.the_cat.injuries[name]["severity"] != 'minor':
+            if self.the_cat.injuries[name]["severity"] != "minor":
                 text_list.append("Can't work with this condition")
 
         # collect details for illnesses
@@ -2177,82 +2209,82 @@ class ProfileScreen(Screens):
             moons_with = game.clan.age - self.the_cat.illnesses[name]["moon_start"]
             insert = "has been sick for"
 
-            if name == 'grief stricken':
-                insert = 'has been grieving for'
+            if name == "grief stricken":
+                insert = "has been grieving for"
 
-            if name == 'malnourished':
-                insert = 'has been malnourished for'
+            if name == "malnourished":
+                insert = "has been malnourished for"
 
-            if name == 'starving':
-                insert = 'has been starving for'
+            if name == "starving":
+                insert = "has been starving for"
 
-            if name == 'paranoia':
-                insert = 'has been paranoid for'
+            if name == "paranoia":
+                insert = "has been paranoid for"
 
-            if name in ['seasonal lethargy', 'lethargy']:
-                if game.settings['warriorified names']:
-                    insert = 'has been lethargic for'
+            if name in ["seasonal lethargy", "lethargy"]:
+                if game.settings["warriorified names"]:
+                    insert = "has been lethargic for"
                 else:
-                    insert = 'has been depressed for'
+                    insert = "has been depressed for"
 
-            if name == 'special interest':
-                insert = 'has been interested for'
+            if name == "special interest":
+                insert = "has been interested for"
 
-            if name == 'hyperfixation':
-                insert = 'has been fixated for'
+            if name == "hyperfixation":
+                insert = "has been fixated for"
 
-            if name == 'stimming':
-                insert = 'has been stimming for'
+            if name == "stimming":
+                insert = "has been stimming for"
 
-            if name == 'indecision':
-                insert = 'has been indecisive for'
+            if name == "indecision":
+                insert = "has been indecisive for"
 
-            if name == 'impulsivity':
-                insert = 'has been impulsive for'
+            if name == "impulsivity":
+                insert = "has been impulsive for"
 
-            if name == 'zoomies':
-                insert = 'has been zooming for'
+            if name == "zoomies":
+                insert = "has been zooming for"
 
-            if name == 'sleeplessness':
-                if game.settings['warriorified names']:
-                    insert = 'has been sleepless for'
+            if name == "sleeplessness":
+                if game.settings["warriorified names"]:
+                    insert = "has been sleepless for"
                 else:
-                    insert = 'has been insomniac for'
+                    insert = "has been insomniac for"
 
-            if name == 'burn out':
-                insert = 'has been burnt out for'
+            if name == "burn out":
+                insert = "has been burnt out for"
 
-            if name == 'kittenspace':
-                if game.settings['warriorified names']:
-                    insert = 'has been in kittenspace for'
+            if name == "kittenspace":
+                if game.settings["warriorified names"]:
+                    insert = "has been in kittenspace for"
                 else:
-                    insert = 'has been in littlespace for'
+                    insert = "has been in littlespace for"
 
-            if name == 'puppyspace':
-                if game.settings['warriorified names']:
-                    insert = 'has been in puppyspace for'
+            if name == "puppyspace":
+                if game.settings["warriorified names"]:
+                    insert = "has been in puppyspace for"
                 else:
-                    insert = 'has been in petspace for'
+                    insert = "has been in petspace for"
 
-            if name in ['tics', 'tic attack']:
-                insert = 'has been ticing for'
+            if name in ["tics", "tic attack"]:
+                insert = "has been ticing for"
 
-            if name == 'dizziness':
-                insert = 'has been dizzy for'
+            if name == "dizziness":
+                insert = "has been dizzy for"
 
-            if name == 'nausea':
-                insert = 'has been nauseous for'
+            if name == "nausea":
+                insert = "has been nauseous for"
 
             if moons_with != 1:
                 text_list.append(f"{insert} {moons_with} moons")
             else:
                 text_list.append(f"{insert} 1 moon")
 
-            if self.the_cat.illnesses[name]['infectiousness'] != 0:
+            if self.the_cat.illnesses[name]["infectiousness"] != 0:
                 text_list.append("infectious!")
 
             # can or can't patrol
-            if self.the_cat.illnesses[name]["severity"] != 'minor':
+            if self.the_cat.illnesses[name]["severity"] != "minor":
                 text_list.append("Can't work with this condition")
 
         text = "<br><br>".join(text_list)
