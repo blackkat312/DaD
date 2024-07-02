@@ -1393,7 +1393,7 @@
         "thoughts": [
             "Winked cheekily at another apprentice",
             "Is criticizing {PRONOUN/m_c/poss} mentor",
-            "Tells the guardian that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} doing something wrong"
+            "Tells the guardian that {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} doing something wrong"
         ],
         "main_status_constraint": [
             "apprentice",
