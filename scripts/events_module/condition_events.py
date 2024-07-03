@@ -257,7 +257,7 @@ class Condition_Events:
                 )
             )
 
-            if cat.vaccinated and random.randint(1, 4) != 1:
+            if cat.vaccinated and random.randint(1, 5) != 1:
                 random_number = int(random_number * 10)
 
             if (
@@ -512,7 +512,7 @@ class Condition_Events:
                             ]
                         ):
                             perm_condition = random.choice(possible_conditions)
-                            """if perm_condition == 'recurring shock' and injury_name == "wrenched claws":                                 
+                            """if perm_condition == "recurring shock" and injury_name == "wrenched claws":                                 
                                 if injury_name not in cat.history.possible_history:
                                     perm_condition = None
                                     print(f"Hopefully failed to give recurring shock to non-traumatised cat")
