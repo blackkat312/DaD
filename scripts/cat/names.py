@@ -100,8 +100,8 @@ class Name:
                 triple_letter = True
             # Prevent double animal names (ex. Spiderfalcon)
             double_animal = False
-            if self.prefix in self.names_dict["animal_prefixes"] and self.suffix in self.names_dict["animal_suffixes"]:
-                double_animal = True
+            # if self.prefix in self.names_dict["animal_prefixes"] and self.suffix in self.names_dict["animal_suffixes"]:
+            #    double_animal = True
             # Prevent the inappropriate names
             nono_name = self.prefix + self.suffix
             # Prevent double names (ex. Iceice)
@@ -123,9 +123,9 @@ class Name:
                 if not (all(i == possible_three_letter[0][0] for i in possible_three_letter[0]) or
                         all(i == possible_three_letter[1][0] for i in possible_three_letter[1])):
                     triple_letter = False
-                if not (self.prefix in self.names_dict["animal_prefixes"]
-                        and self.suffix in self.names_dict["animal_suffixes"]):
-                    double_animal = False
+                # if not (self.prefix in self.names_dict["animal_prefixes"]
+                #        and self.suffix in self.names_dict["animal_suffixes"]):
+                #    double_animal = False
                 i += 1
 
     # Generate possible prefix
