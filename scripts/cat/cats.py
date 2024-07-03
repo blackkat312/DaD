@@ -4193,7 +4193,7 @@ class Cat:
                         rel2.jealousy,
                         -(randint(ran[0], ran[1]) + bonus) - personality_bonus,
                     )
-                    output += "Jealousy decreased . "
+                    output += "Jealousy decreased. "
 
         return output
 
