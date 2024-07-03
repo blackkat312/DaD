@@ -453,14 +453,18 @@ class Pregnancy_Events:
 
                 insert = 'this should not display'
                 if len(kits) == 1:
-                    insert = 'a single kitten'
+                    insert = 'single kitten'
                 if len(kits) > 1:
-                    insert = f'a litter of {len(kits)} kits'
+                    insert = f'litter of {len(kits)} kits'
                 if len(kits) > 0:
-                    print_event = f"{cat.name} brought {insert} back to camp, but refused to talk about their origin."
+                    print_event = choice(Pregnancy_Events.PREGNANT_STRINGS["birth"]["affair_outsider"])
                     cats_involved = [cat.ID]
                     for kit in kits:
                         cats_involved.append(kit.ID)
+
+                    print_event = print_event.replace("{insert}", insert)
+
+                    print_event = event_text_adjust(Cat, print_event, main_cat=cat, clan=clan)
                     game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved))
                 return
 
