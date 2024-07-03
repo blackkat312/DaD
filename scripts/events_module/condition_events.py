@@ -968,8 +968,9 @@ class Condition_Events:
             "a curved spine": "scoliosis",
             "a jumbled mind": "dyslexia",
             "counting fog": "dyscalculia",
-            "spirited heart": "hyperempathy",
-            "puzzled heart": "low empathy",
+            "a spirited heart": "hyperempathetic",
+            "is a puzzled heart": "has low empathy",
+            "be a puzzled heart": "have low empathy",
             "parrot chatter": "echolalia",
 
             "sunblindness": "light sensitivity",
