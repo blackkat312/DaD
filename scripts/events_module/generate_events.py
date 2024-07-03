@@ -847,20 +847,6 @@ class GenerateEvents:
             if "age" in cat_info:
                 if cat.age not in cat_info["age"]:
                     continue
-            """has_condition_that_is_required = False
-            has_condition_that_cannot_have = False
-            if "permanent_condition" in cat_info:
-                for condition in cat.permanent_condition:
-                    if condition in cat_info["permanent_condition"]:
-                        has_condition_that_is_required = True
-                if not has_condition_that_is_required and cat_info["permanent_condition"] != ["any"]:
-                    continue
-            if "not_permanent_condition" in cat_info:
-                for condition in cat.permanent_condition:
-                    if condition in cat_info["not_permanent_condition"]:
-                        has_condition_that_cannot_have = True
-                if has_condition_that_cannot_have and cat_info["permanent_condition"] != ["none"]:
-                    continue"""
             if "trait" in cat_info:
                 if cat.personality.trait not in cat_info["trait"]:
                     continue
