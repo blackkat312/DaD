@@ -2571,6 +2571,9 @@ class Events:
         """
         TODO: DOCS
         """
+        
+        # TODO: sputer stuff
+        
         cat.outside = True
         cat.gone()
         # The outside-value must be set to True before the cat can go to cotc
