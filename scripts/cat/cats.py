@@ -3177,9 +3177,6 @@ class Cat:
         elif born_with is False:
             moons_until = 0
 
-        if not starting_moon:
-            starting_moon = game.clan.age
-
         if name == "paralyzed":
             self.pelt.paralyzed = True
 
