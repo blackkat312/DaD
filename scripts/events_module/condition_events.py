@@ -1194,11 +1194,6 @@ class Condition_Events:
                         f"WARNING: {new_condition_name} couldn't be found in the risk strings of {condition}! placeholder string was used"
                     )
                     event = f"m_c has gotten {new_condition_name}, a risk of {condition}."
-                    event = Condition_Events.change_condition_name(event)
-
-                if new_condition_name in (cat.permanent_condition or cat.illnesses or cat.injuries):
-                    print(f"the game tried to give a cat {new_condition_name}, but they already have it! Please report in #bugs-and-typos in DaD's server")
-                    event = "this should not appear"
 
                 event = Condition_Events.change_condition_name(event)
                 event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
