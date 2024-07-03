@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: ascii -*-
 import os
-from random import choice, randint
+from random import choice
 from re import sub
 
 import pygame
