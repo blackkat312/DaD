@@ -1,14 +1,13 @@
 import os
+from copy import copy
 
 import pygame
-
 import ujson
 
-from scripts.cat.names import names
 from scripts.game_structure.game_essentials import game
 
 
-class Sprites():
+class Sprites:
     cat_tints = {}
     white_patches_tints = {}
     clan_symbols = []
@@ -33,13 +32,13 @@ class Sprites():
         try:
             with open("sprites/dicts/tint.json", 'r') as read_file:
                 self.cat_tints = ujson.loads(read_file.read())
-        except:
+        except IOError:
             print("ERROR: Reading Tints")
 
         try:
             with open("sprites/dicts/white_patches_tint.json", 'r') as read_file:
                 self.white_patches_tints = ujson.loads(read_file.read())
-        except:
+        except IOError:
             print("ERROR: Reading White Patches Tints")
 
     def spritesheet(self, a_file, name):
@@ -117,8 +116,8 @@ class Sprites():
         else:
             self.size = 50  # default, what base clangen uses
             print(f"lineart.png is not 3x7, falling back to {self.size}")
-            print(
-                f"if you are a modder, please update scripts/cat/sprites.py and do a search for 'if width / 3 == height / 7:'")
+            print(f"if you are a modder, please update scripts/cat/sprites.py and "
+                  f"do a search for 'if width / 3 == height / 7:'")
 
         del width, height  # unneeded
 
@@ -324,12 +323,12 @@ class Sprites():
             ["BALL", "MOUSE", "MOSSBLANKIE", "BONE"],
             ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
         ]
-        
+
         booties_data = [
             ["CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT"],
             ["GREENBOOT", "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT"],
             ["PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"]
-        ] 
+        ]
 
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
@@ -370,7 +369,7 @@ class Sprites():
         # booties added
         for row, bootiesaccs in enumerate(booties_data):
             for col, bootiesacc in enumerate(bootiesaccs):
-                self.make_group('booties', (col, row), f'booties{bootiesacc}')         
+                self.make_group('booties', (col, row), f'booties{bootiesacc}')
 
     def load_symbols(self):
         """
@@ -401,6 +400,17 @@ class Sprites():
 
             y_pos += 1
 
+    def dark_mode_symbol(self, symbol):
+        """Change the color of the symbol to dark mode, then return it
+        :param Surface symbol: The clan symbol to convert"""
+        dark_mode_symbol = copy(symbol)
+        var = pygame.PixelArray(dark_mode_symbol)
+        var.replace((87, 76, 45), (172, 157, 114))
+        del var
+        # dark mode color (172, 157, 114)
+        # debug hot pink (255, 105, 180)
+
+        return dark_mode_symbol
 
 # CREATE INSTANCE
 sprites = Sprites()
