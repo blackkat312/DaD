@@ -364,8 +364,8 @@ class Inheritance:
         """Create a great-grandparent relationship."""
         for grand_parent_id, value in self.grand_parents.items():
             grandparent_cat = self.cat.fetch_cat(grand_parent_id)
-            greatgrandparents = self.get_parents(grandparent_cat)
-            for grand_id in greatgrandparents:
+            great_grandparents = self.get_parents(grandparent_cat)
+            for grand_id in great_grandparents:
                 if grand_id in self.parents.keys():
                     parent_relation = self.parents[grand_id]
                     if parent_relation["type"] == RelationType.BLOOD:
@@ -782,7 +782,7 @@ class Inheritance:
 
     def get_blood_great_grandparents(self) -> list:
         """Returns a list of blood related great_grandparents id's."""
-        return self.get_blood_relatives(self.greatgrandparents)
+        return self.get_blood_relatives(self.great_grandparents)
 
     def get_not_great_blood_grand_parents(self) -> list:
         """Returns a list of id's of great_grandparents, which are not related by blood to the cat."""
