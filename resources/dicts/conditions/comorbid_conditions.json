@@ -9,9 +9,9 @@
 		"chattering tongue", "curved spine", "face blindness", "parrot chatter"
 	],
 	"starwalker": [
-		"comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
-		"jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
-		"selective mutism", "thought blind"
+		"comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue", "jumbled mind",
+		"counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter", "selective mutism",
+		"thought blind"
 	],
 	"obsessive mind": [
 		"spirited heart"
@@ -108,6 +108,6 @@
 		"starwalker", "anxiety"
 	],
 	"thought blind": [
-		"face blindness", "starwalker"
+		"starwalker", "face blindness"
 	]
 }
