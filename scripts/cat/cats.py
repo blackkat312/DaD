@@ -2930,7 +2930,7 @@ class Cat:
         # Inheritance check
         if self.is_related(other_cat):
             return False
-        elif not game.clan.clan_settings["second cousin mates"]:
+        elif game.clan and not game.clan.clan_settings["second cousin mates"]:
             if self.is_second_cousin(other_cat):
                 return False
 
