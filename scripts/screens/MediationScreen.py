@@ -597,14 +597,14 @@ class MediationScreen(Screens):
                     col2 += " (littermate)"
             elif other_cat.is_cousin(cat):
                 col2 += "cousin"
-            elif cat.is_greatgrandkit(other_cat):
+            elif cat.is_great_grandkit(other_cat):
                 if cat.genderalign in ['female', 'trans female']:
                     col2 += "great-granddaughter"
                 elif cat.genderalign in ['male', 'trans male']:
                     col2 += "great-grandson"
                 else:
                     col2 += "great-grandkit"
-            elif other_cat.is_greatgrandkit(cat):
+            elif other_cat.is_great_grandkit(cat):
                 if cat.genderalign in ['female', 'trans female']:
                     col2 += "great-grandmother"
                 elif cat.genderalign in ['male', 'trans male']:
