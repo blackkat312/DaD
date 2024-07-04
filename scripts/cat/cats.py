@@ -3177,6 +3177,9 @@ class Cat:
         elif born_with is False:
             moons_until = 0
 
+        if not starting_moon and game.clan:
+            starting_moon = game.clan.age
+            
         if name == "paralyzed":
             self.pelt.paralyzed = True
 
@@ -3197,7 +3200,7 @@ class Cat:
                 "severity": new_perm_condition.severity,
                 "born_with": born_with,
                 "moons_until": new_perm_condition.moons_until,
-                "moon_start": starting_moon if starting_moon else game.clan.age,
+                "moon_start": starting_moon,
                 "mortality": new_perm_condition.current_mortality,
                 "illness_infectiousness": new_perm_condition.illness_infectiousness,
                 "risks": new_perm_condition.risks,
