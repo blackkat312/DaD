@@ -11,7 +11,7 @@ from ..cat.phenotype import Phenotype
 import pygame_gui
 import ujson
 
-from scripts.cat.cats import Cat, BACKSTORIES
+from scripts.cat.cats import Cat, handle_pronouns, BACKSTORIES
 from scripts.cat.pelts import Pelt
 from scripts.clan_resources.freshkill import FRESHKILL_ACTIVE
 from scripts.game_structure import image_cache
@@ -331,12 +331,18 @@ class ProfileScreen(Screens):
                     else:
                         self.the_cat.genderalign = choice(genderqueer_list)
                 # pronoun handler
-                if self.the_cat.genderalign in ["molly", "trans molly"]:
+                if game.settings["they them default"]:
+                    self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
+                elif self.the_cat.genderalign in ["molly", "trans molly"]:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[1].copy()]
                 elif self.the_cat.genderalign in ["tom", "trans tom"]:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[2].copy()]
                 else:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
+
+                if not game.settings["they them default"]:
+                    self.the_cat.handle_pronouns(kitty=self.the_cat)
+
                 self.clear_profile()
                 self.build_profile()
                 self.update_disabled_buttons_and_text()
