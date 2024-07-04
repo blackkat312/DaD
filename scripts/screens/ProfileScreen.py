@@ -1145,6 +1145,11 @@ class ProfileScreen(Screens):
                 output += "neutered\n"
             else:
                 output += "neutered"
+        elif the_cat.vaccinated:
+            if the_cat.is_disabled or the_cat.is_plural or the_cat.is_injured or the_cat.is_ill:
+                output += "vaccinated\n"
+            else:
+                output += "vaccinated"
 
         already_disabled = False
         if the_cat.is_disabled():
