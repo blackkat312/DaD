@@ -641,14 +641,14 @@ class RelationshipScreen(Screens):
                         col2 += " (littermate)"
                 elif self.inspect_cat.is_cousin(self.the_cat):
                     col2 += "related: cousin"
-                elif self.inspect_cat.is_greatgrandkit(self.the_cat):
+                elif self.inspect_cat.is_great_grandkit(self.the_cat):
                     if self.inspect_cat.genderalign in ['molly', 'trans molly']:
                         col2 += "related: great-granddaughter"
                     elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
                         col2 += "related: great-grandson"
                     else:
                         col2 += "related: great-grandkit"
-                elif self.the_cat.is_greatgrandkit(self.inspect_cat):
+                elif self.the_cat.is_great_grandkit(self.inspect_cat):
                     if self.inspect_cat.genderalign in ['molly', 'trans molly']:
                         col2 += "related: great-grandmother"
                     elif self.inspect_cat.genderalign in ['tom', 'trans tom']:
@@ -824,8 +824,8 @@ class RelationshipScreen(Screens):
             # FAMILY DOT
             # Only show family dot on second cousins if second cousin mates is disabled.
             check_cousins = False
-            ggp_cat = the_relationship.cat_to.get_greatgrandparents()
-            ggp_other = self.the_cat.get_greatgrandparents()
+            ggp_cat = the_relationship.cat_to.get_great_grandparents()
+            ggp_other = self.the_cat.get_great_grandparents()
 
             if not game.clan.clan_settings["second cousin mates"]:
                 for key in ggp_cat:
@@ -840,8 +840,8 @@ class RelationshipScreen(Screens):
                 or self.the_cat.is_grandparent(the_relationship.cat_to)
                 or the_relationship.cat_to.is_parent(self.the_cat)
                 or self.the_cat.is_parent(the_relationship.cat_to)
-                or self.the_cat.is_greatgrandkit(the_relationship.cat_to)
-                or the_relationship.cat_to.is_greatgrandkit(self.the_cat)
+                or self.the_cat.is_great_grandkit(the_relationship.cat_to)
+                or the_relationship.cat_to.is_great_grandkit(self.the_cat)
                 or the_relationship.cat_to.is_sibling(self.the_cat)
                 or the_relationship.cat_to.is_cousin(self.the_cat)
                 or check_cousins
