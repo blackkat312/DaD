@@ -13,7 +13,7 @@ from collections import Counter
 
 import ujson
 
-from scripts.cat.cats import Cat, cat_class, BACKSTORIES
+from scripts.cat.cats import Cat, cat_class, handle_pronouns, BACKSTORIES
 from scripts.cat.history import History
 from scripts.cat.names import Name
 from scripts.clan import HERBS
@@ -2618,15 +2618,17 @@ class Events:
             if random.getrandbits(1):  # 50/50
                 if cat.gender == "male":
                     cat.genderalign = "trans female"
-                    cat.pronouns = [cat.default_pronouns[1].copy()]
+                    if not game.settings["they them default"]:
+                        cat.pronouns = [cat.default_pronouns[1].copy()]
                 elif cat.gender == "female":
                     cat.genderalign = "trans male"
-                    cat.pronouns = [cat.default_pronouns[2].copy()]
+                    if not game.settings["they them default"]:
+                        cat.pronouns = [cat.default_pronouns[2].copy()]
                 else:
                     cat.genderalign = random.choice(["trans female", "trans male"])
-                    if cat.genderalign == "trans female":
+                    if cat.genderalign == "trans female" and not game.settings["they them default"]:
                         cat.pronouns = [cat.default_pronouns[1].copy()]
-                    else:
+                    elif not game.settings["they them default"]:
                         cat.pronouns = [cat.default_pronouns[2].copy()]
             elif cat.gender == "intersex":
                 cat.genderalign = random.choice(intersex_genderqueer_list)
@@ -2634,6 +2636,9 @@ class Events:
             else:
                 cat.genderalign = random.choice(genderqueer_list)
                 cat.pronouns = [cat.default_pronouns[0].copy()]
+
+            if not game.settings["they them default"]:
+                cat.handle_pronouns(kitty=cat)
 
             if cat.gender == "male":
                 gender = "tom"
