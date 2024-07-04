@@ -419,13 +419,10 @@ class History:
             other_cat = cat.history.possible_history[condition].get("other_cat")
             cat.history.remove_possible_history(cat, condition)
 
-        if not gain_moon:
-            gain_moon = game.clan.age
-
         cat.history.scar_events.append({
             "involved": other_cat,
             "text": scar_text,
-            "moon": gain_moon
+            "moon": gain_moon if gain_moon else game.clan.age
         })
 
     @staticmethod
