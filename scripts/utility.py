@@ -803,8 +803,11 @@ def create_new_cat(
         if kittypet and randint(1, 3) == 1 and age > 1 and not new_cat.neutered:
             new_cat.vaccinated = True
 
-        if neutered_this_moon and ((kittypet and age > 12 and random.randint(1, 10) == 1) or loner or other_clan):
-            History.add_scar(cat=new_cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
+        if neutered_this_moon and ((kittypet and age > 12 and randint(1, 10) == 1) or loner or other_clan):
+            cat_gain_age = randint(3, age)
+            clan_gain_moon = (age - cat_gain_age) + (int(game.clan.age) - cat_gain_age)
+
+            History.add_scar(cat=new_cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.", gain_moon=clan_gain_moon)
             new_cat.pelt.scars.append("TIPPED")
 
         # give apprentice aged cat a mentor
@@ -838,14 +841,12 @@ def create_new_cat(
             "DECLAWED": ["declawed"],
         }
         cat_gain_age = age
-        cat_birth_moon = int(game.clan.age) - cat_gain_age
-
         if age >= 6:
             cat_gain_age = randint(6, age)
         elif age == 4 or age == 5:
             cat_gain_age = randint(4, age)
 
-        clan_gain_moon = (age - cat_gain_age) + cat_birth_moon
+        clan_gain_moon = (age - cat_gain_age) + (int(game.clan.age) - cat_gain_age)
 
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
