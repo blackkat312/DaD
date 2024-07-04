@@ -2501,7 +2501,7 @@ class Cat:
             self.inheritance = Inheritance(self)
         return self.inheritance.parents.keys()
 
-    def get_greatgrandparents(self):
+    def get_great_grandparents(self):
         """Returns list containing great-grandparents of cat(id)."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
@@ -2525,8 +2525,8 @@ class Cat:
             self.inheritance = Inheritance(self)
         return other_cat.ID in self.inheritance.grand_kits.keys()
 
-    def is_greatgrandkit(self, other_cat: Cat):
-        """Check if the cat is the grandparent of the other cat."""
+    def is_great_grandkit(self, other_cat: Cat):
+        """Check if the cat is the great-grandkit of the other cat."""
         if not self.inheritance:
             self.inheritance = Inheritance(self)
         return other_cat.ID in self.inheritance.great_grandparents.keys()
@@ -2567,11 +2567,12 @@ class Cat:
         return other_cat.ID in self.inheritance.cousins.keys()
 
     def is_second_cousin(self, other_cat):
+        """Check if this cat and other_cat are second cousins."""
         check_cousins = False
         if not self.inheritance:
             self.inheritance = Inheritance(self)
-        ggp_cat = other_cat.get_greatgrandparents()
-        ggp_other = self.get_greatgrandparents()
+        ggp_cat = other_cat.get_great_grandparents()
+        ggp_other = self.get_great_grandparents()
         for key in ggp_cat:
             for key2 in ggp_other:
                 if key == key2:
