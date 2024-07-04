@@ -1159,18 +1159,18 @@ class Events:
 
             elif cat.status != "driven off":
                 if cat.moons <= 12 and random.randint(1, 15) == 1:
+                    if cat.give_kittypet_message and cat.neutered and cat.status not in ["loner", "rogue", "former Clancat"]:
+                        attempted_to_be_neutered = True
                     cat.neutered = True
                     neutered_this_moon = True
-                    if cat.give_kittypet_message:
-                        attempted_to_be_neutered = True
                     if cat.status in ["loner", "rogue", "former Clancat"]:
                         cat.already_gave_neutered_message = True
 
                 elif random.randint(1, 100) == 1:
+                    if cat.give_kittypet_message and cat.neutered and cat.status not in ["loner", "rogue", "former Clancat"]:
+                        attempted_to_be_neutered = True
                     cat.neutered = True
                     neutered_this_moon = True
-                    if cat.give_kittypet_message:
-                        attempted_to_be_neutered = True
                     if cat.status in ["loner", "rogue", "former Clancat"]:
                         cat.already_gave_neutered_message = True
 
@@ -2571,9 +2571,9 @@ class Events:
         """
         TODO: DOCS
         """
-        
+
         # TODO: sputer stuff
-        
+
         cat.outside = True
         cat.gone()
         # The outside-value must be set to True before the cat can go to cotc
