@@ -406,7 +406,7 @@ class History:
         })
 
     @staticmethod
-    def add_scar(cat, scar_text, gain_moon, condition=None, other_cat=None):
+    def add_scar(cat, scar_text, condition=None, other_cat=None, gain_moon=0):
         if not game.clan:
             return
         History.check_load(cat)
@@ -419,10 +419,13 @@ class History:
             other_cat = cat.history.possible_history[condition].get("other_cat")
             cat.history.remove_possible_history(cat, condition)
 
+        if not gain_moon:
+            gain_moon = game.clan.age
+
         cat.history.scar_events.append({
             "involved": other_cat,
             "text": scar_text,
-            "moon": gain_moon if gain_moon else game.clan.age
+            "moon": gain_moon
         })
 
     @staticmethod
