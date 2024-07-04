@@ -925,7 +925,7 @@ def create_new_cat(
             "NOLEFTEAR": ["partial hearing loss"],
             "NORIGHTEAR": ["partial hearing loss"],
             "NOEAR": ["partial hearing loss", "deaf"],
-            "NOPAW": ["lost a leg", "born without a leg"],
+            "NOPAW": ["lost a leg"],
             "NOTAIL": ["lost their tail"],
             "HALFTAIL": ["lost their tail"],
             "BRIGHTHEART": ["one bad eye"],
@@ -945,13 +945,14 @@ def create_new_cat(
             "DECLAWED": ["declawed"],
         }
         cat_gain_age = age
-        clan_gain_moon = int(game.clan.age)
-        cat_birth_moon = clan_gain_moon - cat_gain_age
+        cat_birth_moon = int(game.clan.age) - cat_gain_age
 
         if age >= 6:
             cat_gain_age = randint(6, age)
         elif age == 4 or age == 5:
             cat_gain_age = randint(4, age)
+
+        clan_gain_moon = (age - cat_gain_age) + cat_birth_moon
 
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
@@ -959,17 +960,10 @@ def create_new_cat(
                     new_cat.pelt.scars.remove(scar)
                 else:
                     condition = choice(scar_to_condition.get(scar))
-
                     if condition == "no":
                         continue
-                    elif condition == "born without a leg" or (condition == "constant rash" and randint(1, 2) == 1):
-                        born_with = True
-                        clan_gain_moon = cat_birth_moon
-                    else:
-                        born_with = False
-                        clan_gain_moon = (age - cat_gain_age) + cat_birth_moon
 
-                    new_cat.get_permanent_condition(condition, born_with=born_with, starting_moon=clan_gain_moon)
+                    new_cat.get_permanent_condition(condition, born_with=False, starting_moon=clan_gain_moon)
 
         # chance to give the new cat a congenital permanent condition, higher chance for found kits and litters
         if game.clan.game_mode != "classic":
