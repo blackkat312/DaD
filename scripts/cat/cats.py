@@ -4249,17 +4249,51 @@ def create_cat(status, moons=None, biome=None):
     if moons is not None:
         new_cat.moons = moons
     else:
-        if new_cat.moons >= 160:
-            new_cat.moons = randint(120, 155)
-        elif new_cat.moons == 0:
-            new_cat.moons = randint(1, 5)
+        if new_cat.moons > 160:
+            new_cat.moons = 160
+        elif new_cat.moons < 4 and randint(1, 10) == 1:
+            new_cat.moons = 0  # get potated
 
-    not_allowed_scars = ['THREE', 'NOLEFTEAR', 'NORIGHTEAR', 'NOEAR', 'NOPAW', 'NOTAIL', 'HALFTAIL', 'BRIGHTHEART',
-                         'LEFTBLIND', 'RIGHTBLIND', 'BOTHBLIND', 'MANLEG', 'RASH', 'DECLAWED']
+    # Give conditions for disabling scars, if they generated.
+    scar_to_condition = {
+        "THREE": ["one bad eye"],
+        "FOUR": ["weak leg", "no", "no"],
+        "NOLEFTEAR": ["partial hearing loss"],
+        "NORIGHTEAR": ["partial hearing loss"],
+        "NOEAR": ["partial hearing loss", "deaf"],
+        "NOPAW": ["lost a leg"],
+        "NOTAIL": ["lost their tail"],
+        "HALFTAIL": ["lost their tail"],
+        "BRIGHTHEART": ["one bad eye"],
+        "LEFTBLIND": ["one bad eye"],
+        "RIGHTBLIND": ["one bad eye"],
+        "BOTHBLIND": ["blind"],
+        "MANLEG": ["weak leg", "twisted leg"],
+        "MANTAIL": ["recurring shock", "no", "no", "no", "no"],
+        "RATBITE": ["weak leg"],
+        "NECKBITE": ["recurring shock", "no", "no", "no", "no"],
+        "LEGBITE": ["weak leg"],
+        "SNOUT": ["crooked jaw", "no", "no"],
+        "THROAT": ["recurring shock", "no", "no", "no", "no"],
+        "SIDE": ["recurring shock", "no", "no", "no", "no"],
+        "TOETRAP": ["weak leg"],
+        "RASH": ["constant rash"],
+        "DECLAWED": ["declawed"],
+    }
 
     for scar in new_cat.pelt.scars:
-        if scar in not_allowed_scars:
-            new_cat.pelt.scars.remove(scar)
+        if scar in scar_to_condition:
+            if game.clan.game_mode == "classic" or new_cat.moons < 4:
+                new_cat.pelt.scars.remove(scar)
+            else:
+                condition = choice(scar_to_condition.get(scar))
+                if condition == "no":
+                    continue
+
+                new_cat.get_permanent_condition(condition, born_with=False)
+
+    if game.clan.game_mode != "classic" and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
+        new_cat.congenital_condition(new_cat)
 
     return new_cat
 
