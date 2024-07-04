@@ -471,7 +471,7 @@ class Cat:
         else:
             self.genderalign = self.gender
 
-        if theythemdefault is True:
+        if theythemdefault:
             self.pronouns = [self.default_pronouns[0].copy()]
         elif self.genderalign in ["female", "trans female"]:
             self.pronouns = [self.default_pronouns[1].copy()]
@@ -479,6 +479,9 @@ class Cat:
             self.pronouns = [self.default_pronouns[2].copy()]
         else:
             self.pronouns = [self.default_pronouns[0].copy()]
+
+        if not theythemdefault:
+            self.handle_pronouns(kitty=self)
 
         # APPEARANCE
         self.pelt = Pelt.generate_new_pelt(
@@ -530,6 +533,9 @@ class Cat:
 
     def __hash__(self):
         return hash(self.ID)
+
+    def handle_pronouns(self, kitty):
+        """TODO: make this do something"""
 
     @property
     def mentor(self):
