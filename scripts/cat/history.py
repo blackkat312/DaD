@@ -427,7 +427,7 @@ class History:
         })
 
     @staticmethod
-    def add_scar(cat, scar_text, gain_moon, condition=None, other_cat=None):
+    def add_scar(cat, scar_text, condition=None, other_cat=None, gain_moon=0):
         if not game.clan:
             return
         History.check_load(cat)
