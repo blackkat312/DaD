@@ -8011,7 +8011,7 @@
             "any"
         ],
         "weight": 20,
-        "event_text": "m_c was captured by Twolegs, but managed to escape and return home",
+        "event_text": "m_c was captured by Twolegs, but managed to escape and return home.",
         "m_c": {
             "age": [
                 "adolescent",
