@@ -331,6 +331,7 @@ class ClanSettingsScreen(Screens):
         self.sub_menu = "stats"
 
         # Stats determination time.
+        all_cats = 0
         faded_cats = len(game.clan.faded_ids)
         living_cats = 0
         med_cats = 0
@@ -341,11 +342,14 @@ class ClanSettingsScreen(Screens):
         mediators = 0
         elders = 0
         kits = 0
+        potats = 0
         cats_outside = 0
         starclan = 0
         df = 0
         ur = 0
         for cat in Cat.all_cats_list:
+            all_cats += 1
+
             if cat.faded:
                 faded_cats += 1
                 continue
@@ -378,11 +382,15 @@ class ClanSettingsScreen(Screens):
                 mediators += 1
             elif cat.status == "elder":
                 elders += 1
-            elif cat.status in ("newborn", "kitten"):
+            elif cat.status == "kitten":
                 kits += 1
+            elif cat.status == "newborn":
+                potats += 1
 
         text = (
+            f"Total Number of Cats: {all_cats}\n"
             f"Living Clan Cats: {living_cats}\n"
+            f"Living Cats Outside of the Clan: {cats_outside}\n"
             f"StarClan Cats: {starclan}\n"
             f"Dark Forest Cats: {df}\n"
             f"Unknown Residence Cats: {ur}\n"
@@ -393,7 +401,8 @@ class ClanSettingsScreen(Screens):
             f"Mediators: {mediators}\n"
             f"Mediators Apprentices: {mediator_apprentices}\n"
             f"Elders: {elders}\n"
-            f"Kittens and Newborns: {kits}\n"
+            f"Kits: {kits}\n"
+            f"Newborn Kits: {potats}\n"
             f"Faded Cats: {faded_cats}"
         )
 
