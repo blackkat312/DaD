@@ -30,7 +30,7 @@
     }
   },
   {
-    "event_id": "bch_misc_anyprophecyapprenticeprophet1",
+    "event_id": "fst_misc_anyprophecyapprenticeprophet1",
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
@@ -46,7 +46,7 @@
     }
   },
   {
-    "event_id": "bch_misc_anyprophecymultistatusprophet1",
+    "event_id": "fst_misc_anyprophecymultistatusprophet1",
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
@@ -63,7 +63,7 @@
     }
   },
   {
-    "event_id": "bch_misc_anyprophecyleaderprophet1",
+    "event_id": "fst_misc_anyprophecyleaderprophet1",
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
@@ -78,7 +78,7 @@
     }
   },
   {
-    "event_id": "bch_misc_anyprophecyelderprophet1",
+    "event_id": "fst_misc_anyprophecyelderprophet1",
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
@@ -93,7 +93,7 @@
     }
   },
   {
-    "event_id": "bch_misc_anyomenmultistatusomen1",
+    "event_id": "fst_misc_anyomenmultistatusomen1",
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
