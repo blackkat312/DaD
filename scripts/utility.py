@@ -2594,6 +2594,19 @@ def generate_sprite(
                     sprites.sprites["collars" + cat.pelt.accessory + cat_sprite], (0, 0)
                 )
 
+            elif cat.pelt.accessory in cat.pelt.snake_accessories:
+                new_sprite.blit(
+                    sprites.sprites['acc_snake' + cat.pelt.accessory + cat_sprite], (0, 0)
+                )
+            elif cat.pelt.accessory in cat.pelt.smallAnimal_accessories:
+                new_sprite.blit(
+                    sprites.sprites['acc_smallAnimal' + cat.pelt.accessory + cat_sprite], (0, 0)
+                )
+            elif cat.pelt.accessory in cat.pelt.aliveInsect_accessories:
+                new_sprite.blit(
+                    sprites.sprites['acc_aliveInsect' + cat.pelt.accessory + cat_sprite], (0, 0)
+                )
+
             elif cat.pelt.accessory in cat.pelt.booties:
                 new_sprite.blit(
                     sprites.sprites['booties' + cat.pelt.accessory + cat_sprite], (0, 0)
