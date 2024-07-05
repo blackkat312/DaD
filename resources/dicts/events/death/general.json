@@ -5858,11 +5858,8 @@
     "weight": 10,
     "event_text": "multi_cat are taken away by Twolegs.",
     "m_c": {
-        "age": [
-            "adolescent",
-            "adult",
-            "young adult",
-            "senior adult"]
+        "age": ["any"],
+        "status": ["any"]
     }
   },
   {
