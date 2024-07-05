@@ -535,7 +535,7 @@ class Pregnancy_Events:
                 cat.get_ill("grief stricken", event_triggered=True)
             else:
                 text = choice(Pregnancy_Events.PREGNANT_STRINGS["adoption_announce"])
-            text = event_text_adjust(Cat, text, cat, clan=clan)
+            text = event_text_adjust(Cat, text, main_cat=cat, clan=clan)
             game.cur_events_list.append(Single_Event(text, "birth_death", cat.ID))
             return
 
