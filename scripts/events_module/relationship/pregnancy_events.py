@@ -221,7 +221,7 @@ class Pregnancy_Events:
         print_event = " ".join(event_list)
         print_event = print_event.replace("{insert}", insert)
 
-        print_event = event_text_adjust(Cat, print_event, cat, other_cat, clan=clan)
+        print_event = event_text_adjust(Cat, print_event, main_cat=cat, random_cat=other_cat, clan=clan)
         
         for kit in kits:
             kit.thought = f"Snuggles up to the belly of {cat.name}"
@@ -251,26 +251,26 @@ class Pregnancy_Events:
 
         if other_cat and other_cat.ID in clan.pregnancy_data:
             return
-        
+
         if not clan.clan_settings["same sex birth"] and cat.gender == "male":
             return
-            
-        
+
+
         clan.pregnancy_data[cat.ID] = {
             "second_parent": str(other_cat.ID) if other_cat else None,
             "moons": 0,
             "amount": 0,
         }
 
-        text = choice(Pregnancy_Events.PREGNANT_STRINGS["false_preg announcement"])
+        text = choice(Pregnancy_Events.PREGNANT_STRINGS["false_preg_announcement"])
         if clan.game_mode != "classic":
             severity = random.choices(["minor", "major"], [10, 0], k=1)
             cat.get_injured("faux pregnant", severity=severity[0])
             text += choice(Pregnancy_Events.PREGNANT_STRINGS[f"{severity[0]}_severity"])
-        text = event_text_adjust(Cat, text, cat, clan=clan)
+        text = event_text_adjust(Cat, text, main_cat=cat, clan=clan)
 
         game.cur_events_list.append(Single_Event(text, "birth_death", cat.ID))
-        return 
+        return
 
     @staticmethod
     def handle_zero_moon_pregnant(cat: Cat, other_cat=None, clan=game.clan):
@@ -416,7 +416,7 @@ class Pregnancy_Events:
                 cat.get_ill("grief stricken", event_triggered=True)
             else:
                 text = choice(Pregnancy_Events.PREGNANT_STRINGS["adoption_announce"])
-            text = event_text_adjust(Cat, text, cat, clan=clan)
+            text = event_text_adjust(Cat, text, main_cat=cat, clan=clan)
             game.cur_events_list.append(Single_Event(text, "birth_death", cat.ID))
             return
 
