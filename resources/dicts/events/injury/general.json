@@ -16,7 +16,6 @@
             "trait": [
                 "daring",
                 "impulsive",
-
                 "troublesome"
             ]
         },
@@ -48,7 +47,6 @@
             "trait": [
                 "daring",
                 "impulsive",
-
                 "troublesome"
             ]
         },
@@ -114,7 +112,6 @@
             "trait": [
                 "daring",
                 "impulsive",
-
                 "troublesome"
             ]
         },
@@ -146,7 +143,6 @@
             "trait": [
                 "daring",
                 "impulsive",
-
                 "troublesome"
             ]
         },
@@ -701,7 +697,6 @@
             "trait": [
                 "calm",
                 "compassionate",
-                
                 "thoughtful",
                 "wise"
             ]
@@ -804,7 +799,6 @@
             "trait": [
                 "calm",
                 "compassionate",
-                
                 "thoughtful",
                 "daring",
                 "bold",
@@ -924,7 +918,6 @@
             "trait": [
                 "calm",
                 "compassionate",
-                
                 "thoughtful",
                 "daring",
                 "bold",
@@ -1303,7 +1296,6 @@
             "trait": [
                 "daring",
                 "impulsive",
-
                 "troublesome"
             ]
         },
@@ -2079,7 +2071,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -2153,7 +2144,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -2367,7 +2357,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -2533,7 +2522,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -2621,7 +2609,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -2831,7 +2818,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -2976,7 +2962,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -3058,7 +3043,6 @@
             "trait": [
                 "compassionate",
                 "loving",
-                
                 "responsible",
                 "loyal",
                 "adventurous",
@@ -3776,6 +3760,9 @@
             ],
             "relationship_status": [
                 "app/mentor"
+            ],
+            "not_skill": [
+                "FIGHTER,0"
             ]
         },
         "r_c": {
@@ -3783,9 +3770,6 @@
                 "warrior",
                 "deputy",
                 "leader"
-            ],
-            "skill": [
-                "FIGHTER,1"
             ],
             "trait": [
                 "adventurous",
@@ -3811,7 +3795,8 @@
                     "cat bite"
                 ],
                 "scars": [
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -3891,6 +3876,9 @@
             ],
             "relationship_status": [
                 "app/mentor"
+            ],
+            "not_skill": [
+                "FIGHTER,0"
             ]
         },
         "r_c": {
@@ -3899,9 +3887,6 @@
             ],
             "status": [
                 "any"
-            ],
-            "skill": [
-                "FIGHTER,1"
             ],
             "trait": [
                 "adventurous",
@@ -3927,7 +3912,8 @@
                     "cat bite"
                 ],
                 "scars": [
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -3992,6 +3978,9 @@
             ],
             "relationship_status": [
                 "app/mentor"
+            ],
+            "not_skill": [
+                "FIGHTER,0"
             ]
         },
         "r_c": {
@@ -4000,9 +3989,6 @@
             ],
             "status": [
                 "any"
-            ],
-            "skill": [
-                "FIGHTER,1"
             ],
             "trait": [
                 "adventurous",
@@ -4028,7 +4014,9 @@
                     "bite-wound"
                 ],
                 "scars": [
-                    "LEGBITE"
+                    "LEGBITE",
+                    "NECKBITE",
+                    "BRIGHTHEART"
                 ]
             }
         ],
@@ -4087,6 +4075,9 @@
             ],
             "relationship_status": [
                 "app/mentor"
+            ],
+            "not_skill": [
+                "FIGHTER,0"
             ]
         },
         "r_c": {
@@ -4095,9 +4086,6 @@
             ],
             "status": [
                 "any"
-            ],
-            "skill": [
-                "FIGHTER,1"
             ],
             "trait": [
                 "adventurous",
@@ -4123,7 +4111,9 @@
                     "bite-wound"
                 ],
                 "scars": [
-                    "LEGBITE"
+                    "LEGBITE",
+                    "NECKBITE",
+                    "BRIGHTHEART"
                 ]
             }
         ],
@@ -4182,18 +4172,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "careful",
-                "compassionate",
-                "childish",
-                "insecure",
-                "lonesome",
-                "loving",
-                "nervous",
-                "playful",
-                "strange",
-                "thoughtful"
             ]
         },
         "r_c": {
@@ -4225,7 +4203,100 @@
                     "cat bite"
                 ],
                 "scars": [
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike",
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -5
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_clawwound_anyapprenticemultitraitappmentor1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c could not handle r_c's harsh training, and was injured as a result.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
                 ]
             }
         ],
@@ -4273,12 +4344,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "ambitious",
-                "daring",
-                "bold",
-                "loyal"
             ]
         },
         "r_c": {
@@ -4439,12 +4504,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "ambitious",
-                "daring",
-                "bold",
-                "loyal"
             ]
         },
         "r_c": {
@@ -4588,12 +4647,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "ambitious",
-                "daring",
-                "bold",
-                "loyal"
             ]
         },
         "r_c": {
@@ -4631,12 +4684,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "ambitious",
-                "daring",
-                "bold",
-                "loyal"
             ]
         },
         "r_c": {
@@ -4659,7 +4706,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_clawwoundcatbite_anydefensepunish1",
+        "event_id": "gen_injury_catbite_anydefensepunish1",
         "location": [
             "any"
         ],
@@ -4674,12 +4721,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "insecure",
-                "nervous",
-                "careful",
-                "loving"
             ]
         },
         "r_c": {
@@ -4706,12 +4747,11 @@
                     "m_c"
                 ],
                 "injuries": [
-                    "claw-wound",
                     "cat bite"
                 ],
                 "scars": [
-                    "BRIDGE",
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -4755,7 +4795,108 @@
         ]
     },
     {
-        "event_id": "gen_injury_clawwoundcatbite_anyapprenticemultitraitappmentorothercat3",
+        "event_id": "gen_injury_clawwound_anyapprenticemultitraitappmentorothercat1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 10,
+        "event_text": "m_c was hurt by r_c for not defending the territory well enough.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful",
+                "loyal"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for failing to defend the territory well enough.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -15
+            },
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike"
+                ],
+                "amount": 15
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_catbite_anyapprenticemultitraitappmentorothercat3",
         "location": [
             "any"
         ],
@@ -4796,12 +4937,11 @@
                     "m_c"
                 ],
                 "injuries": [
-                    "claw-wound",
                     "cat bite"
                 ],
                 "scars": [
-                    "TOETRAP",
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -4845,7 +4985,108 @@
         ]
     },
     {
-        "event_id": "gen_injury_clawwoundcatbite_anyapprenticemultitraitappmentorothercat2",
+        "event_id": "gen_injury_clawwound_anyapprenticemultitraitappmentorothercat3",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 10,
+        "event_text": "m_c was hurt by {PRONOUN/m_c/poss} mentor, r_c, as a punishment for accidentally wandering over the border.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful",
+                "loyal"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for accidentally crossing the border.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -10
+            },
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike"
+                ],
+                "amount": 10
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_catbite_anyapprenticemultitraitappmentorothercat2",
         "location": [
             "any"
         ],
@@ -4855,20 +5096,11 @@
         "weight": 10,
         "event_text": "m_c was hurt by {PRONOUN/m_c/poss} mentor, r_c, as a punishment for messing with a Twoleg object.",
         "m_c": {
-            "age": [
-                "adolescent"
-            ],
             "status": [
                 "apprentice"
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "troublesome",
-                "childish",
-                "playful",
-                "adventurous"
             ]
         },
         "r_c": {
@@ -4898,12 +5130,115 @@
                     "m_c"
                 ],
                 "injuries": [
-                    "claw-wound",
                     "cat bite"
                 ],
                 "scars": [
+                    "CATBITE",
+                    "CATBITETWO"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for messing with a Twoleg object.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -10
+            },
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike"
+                ],
+                "amount": 10
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_clawwound_anyapprenticemultitraitappmentorothercat2",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 10,
+        "event_text": "m_c was hurt by {PRONOUN/m_c/poss} mentor, r_c, as a punishment for messing with a Twoleg object.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful",
+                "loyal"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
                     "TAILSCAR",
-                    "CATBITE"
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
                 ]
             }
         ],
@@ -4975,9 +5310,6 @@
             "status": [
                 "any"
             ],
-            "skill": [
-                "FIGHTER,1"
-            ],
             "trait": [
                 "bloodthirsty",
                 "cold",
@@ -4998,7 +5330,20 @@
                     "claw-wound"
                 ],
                 "scars": [
-                    "RIGHTEAR"
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
                 ]
             }
         ],
@@ -5042,7 +5387,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_clawwoundcatbite_anydisobeypunish1",
+        "event_id": "gen_injury_catbite_anydisobeypunish1",
         "location": ["any"],
         "season": ["any"],
         "weight": 10,
@@ -5053,11 +5398,6 @@
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "troublesome",
-                "childish",
-                "playful"
             ]
         },
         "r_c": {
@@ -5086,12 +5426,11 @@
                     "m_c"
                 ],
                 "injuries": [
-                    "claw-wound",
                     "cat bite"
                 ],
                 "scars": [
-                    "LEFTEAR",
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -5135,7 +5474,110 @@
         ]
     },
     {
-        "event_id": "gen_injury_clawwoundcatbite_anymentorfight1",
+        "event_id": "gen_injury_clawwound_anydisobeypunish1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 10,
+        "event_text": "m_c was hurt by {PRONOUN/m_c/poss} mentor, r_c, as a punishment for disobeying {PRONOUN/r_c/object}.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for disobeying {PRONOUN/r_c/object}.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -10
+            },
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike"
+                ],
+                "amount": 10
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_catbite_anymentorfight1",
         "location": ["any"],
         "season": ["any"],
         "weight": 10,
@@ -5159,9 +5601,6 @@
             "status": [
                 "any"
             ],
-            "skill": [
-                "FIGHTER,1"
-            ],
             "trait": [
                 "bloodthirsty",
                 "cold",
@@ -5177,12 +5616,11 @@
                     "m_c"
                 ],
                 "injuries": [
-                    "claw-wound",
                     "cat bite"
                 ],
                 "scars": [
-                    "CHEEK",
-                    "CATBITE"
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -5226,33 +5664,21 @@
         ]
     },
     {
-        "event_id": "gen_injury_clawwound_anyapprenticemultitraitappmentorothercat1",
+        "event_id": "gen_injury_clawwound_anymentorfight1",
         "location": [
             "any"
         ],
         "season": [
             "any"
         ],
-        "weight": 15,
-        "event_text": "m_c could not handle {PRONOUN/m_c/poss} mentor's, r_c, harsh training, and was injured as a result.",
+        "weight": 10,
+        "event_text": "m_c fought with {PRONOUN/m_c/poss} mentor, r_c, and was injured.",
         "m_c": {
             "status": [
                 "apprentice"
             ],
             "relationship_status": [
                 "app/mentor"
-            ],
-            "trait": [
-                "careful",
-                "compassionate",
-                "childish",
-                "insecure",
-                "lonesome",
-                "loving",
-                "nervous",
-                "playful",
-                "strange",
-                "thoughtful"
             ]
         },
         "r_c": {
@@ -5284,7 +5710,111 @@
                     "claw-wound"
                 ],
                 "scars": [
-                    "BELLY"
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred after fighting with {PRONOUN/m_c/poss} mentor, r_c.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -10
+            },
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike"
+                ],
+                "amount": 10
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_catbite_anyapprenticemultitraitappmentorothercat1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 15,
+        "event_text": "m_c could not handle {PRONOUN/m_c/poss} mentor, r_c's, harsh training, and was injured as a result.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "cat bite"
+                ],
+                "scars": [
+                    "CATBITE",
+                    "CATBITETWO"
                 ]
             }
         ],
@@ -5294,6 +5824,109 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": -10
+            },
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "values": [
+                    "dislike"
+                ],
+                "amount": 10
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_clawwound_anyapprenticemultitraitappmentorothercat1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 15,
+        "event_text": "m_c could not handle {PRONOUN/m_c/poss} mentor, r_c's, harsh training, and was injured as a result.",
+        "m_c": {
+            "status": [
+                "apprentice"
+            ],
+            "relationship_status": [
+                "app/mentor"
+            ]
+        },
+        "r_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "bloodthirsty",
+                "cold",
+                "fierce",
+                "righteous",
+                "strict",
+                "vengeful"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor's harsh training.",
                 "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
             }
         ],
@@ -5373,7 +6006,10 @@
                     "mangled leg"
                 ],
                 "scars": [
-                    "MANLEG"
+                    "NOPAW",
+                    "TOETRAP",
+                    "MANLEG",
+                    "FOUR"
                 ]
             }
         ],
@@ -5413,39 +6049,6 @@
                     "dislike"
                 ],
                 "amount": 10
-            }
-        ]
-    },
-    {
-        "event_id": "gen_injury_crackedpads_anymultiage1",
-        "location": [
-            "any"
-        ],
-        "season": [
-            "any"
-        ],
-        "weight": 20,
-        "event_text": "m_c stepped on some sharp stones while walking along the shoreline.",
-        "m_c": {
-            "age": [
-                "senior",
-                "adolescent",
-                "young adult",
-                "adult",
-                "senior adult"
-            ],
-            "status": [
-                "any"
-            ]
-        },
-        "injury": [
-            {
-                "cats": [
-                    "m_c"
-                ],
-                "injuries": [
-                    "cracked pads"
-                ]
             }
         ]
     },
@@ -5981,6 +6584,96 @@
                     "torn pelt",
                     "scrapes",
                     "small cut"
+                ]
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_rash_anyskillclevermultitrait1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c was out on a walk alone when {PRONOUN/m_c/subject} heard a dog approaching! {PRONOUN/m_c/subject/CAP} crawled into a nearby bush to hide, only to discover to {PRONOUN/m_c/poss} dismay that it was poison ivy.",
+        "m_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "skill": [
+                "CLEVER,1"
+            ],
+            "trait": [
+                "nervous",
+                "wise",
+                "insecure",
+                "careful",
+                "calm",
+                "sneaky",
+                "strange"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "rash"
+                ]
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_rash_anyskillclevermultitrait2",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c was out on a walk alone when {PRONOUN/m_c/subject} heard a fox approaching! {PRONOUN/m_c/subject/CAP} crawled into a nearby bush to hide, only to discover to {PRONOUN/m_c/poss} dismay that it was poison ivy.",
+        "m_c": {
+            "age": [
+                "senior",
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult"
+            ],
+            "status": [
+                "any"
+            ],
+            "skill": [
+                "CLEVER,1"
+            ],
+            "trait": [
+                "nervous",
+                "wise",
+                "insecure",
+                "careful",
+                "calm",
+                "sneaky",
+                "strange"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "rash"
                 ]
             }
         ]
@@ -7210,6 +7903,254 @@
                     "excess"
                 ],
                 "adjust": "reduce_eighth"
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_tickbites_anyapprentice1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "In the process of helping out with the ticks in the elders den, poor m_c suffered from some tick bites {PRONOUN/m_c/self}.",
+        "m_c": {
+            "age": [
+                "any"
+            ],
+            "status": [
+                "apprentice",
+                "medicine cat apprentice"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "tick bites"
+                ]
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_subluxatedjoint_anyany1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c misstepped and slipped from a rock, subluxating a joint.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "status": [
+                "any"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "subluxated joint"
+                ]
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_subluxatedjoint_anyany2",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c slipped on some rocks and subluxated {PRONOUN/m_c/poss} leg.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "status": [
+                "any"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "subluxated joint"
+                ]
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_wrenchedclaws_anyany1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c was captured by Twolegs, but managed to escape and return home",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "status": [
+                "any"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "wrenched claws"
+                ],
+                "scars": [
+                    "DECLAWED"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred when {PRONOUN/m_c/subject} {VERB/m_c/were/was} taken by Twolegs.",
+                "reg_death": "this should not appear",
+                "lead_death": "this should not appear"
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_wrenchedclaws_anystrange1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "m_c got curious while out wandering the territory and let {PRONOUN/m_c/self} get briefly captured by Twolegs.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "strange"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "wrenched claws"
+                ],
+                "scars": [
+                    "DECLAWED"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred when {PRONOUN/m_c/subject} let {PRONOUN/m_c/self} get taken by Twolegs.",
+                "reg_death": "this should not appear",
+                "lead_death": "this should not appear"
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_wrenchedclaws_anymultitrait1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "weight": 20,
+        "event_text": "Thinking that {PRONOUN/m_c/subject} could easily fight a Twoleg, m_c went out into the territory hissing and spitting - only to come back subdued.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "status": [
+                "any"
+            ],
+            "trait": [
+                "fierce",
+                "bloodthirsty",
+                "bold",
+                "daring",
+                "ambitious",
+                "confident",
+                "arrogant",
+                "competitive",
+                "rebellious"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "wrenched claws"
+                ],
+                "scars": [
+                    "DECLAWED"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred when {PRONOUN/m_c/subject} tried to fight a Twoleg, but got taken instead.",
+                "reg_death": "this should not appear",
+                "lead_death": "this should not appear"
             }
         ]
     }
