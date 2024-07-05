@@ -13,7 +13,7 @@
 	"m_c hisses at the medicine cat, insisting that {PRONOUN/m_c/subject} must be having kits.",
 	"Recently m_c has noticed {PRONOUN/m_c/self} putting on weight and excitedly assumes it must be kits."
   ],
-  "false_preg announcement": [
+  "false_preg_announcement": [
 	"m_c announced that {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} to be expecting kits.",
 	"Uneasily m_c talks to {PRONOUN/m_c/poss} Clanmates about possibly expecting kits.",
 	"While m_c isn't entirely certain, the only explanation that makes sense is {PRONOUN/m_c/subject} {VERB/m_c/are/is} expecting kits.",
