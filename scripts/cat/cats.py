@@ -1028,7 +1028,7 @@ class Cat:
             self.pronouns = [self.default_pronouns[0].copy()]
 
         if not theythemdefault:
-            self.handle_pronouns(kitty=self)
+            self.handle_pronouns()
 
         # APPEARANCE
         self.pelt = Pelt.generate_new_pelt(self.genotype, self.phenotype, self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
@@ -1078,7 +1078,7 @@ class Cat:
     def __hash__(self):
         return hash(self.ID)
 
-    def handle_pronouns(self, kitty):
+    def handle_pronouns(self):
         """TODO: make this do something"""
 
     def genetic_conditions(self):
