@@ -1351,7 +1351,6 @@
             "poppy"
         ]
     },
-
     "poisoned": {
         "duration": 2,
         "severity": "major",
@@ -1443,26 +1442,26 @@
         ]
     },
 
-   "sound headache" : {
+   "sound headache": {
         "duration": 1,
         "severity": "major",
         "medicine_duration": 1,
         "mortality": {
-                "newborn": 0,
-                "kitten": 0,
-                "adolescent": 0,
-                "young adult": 0,
-                "adult": 0,
-                "senior": 0,
-                "senior adult": 0
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
         },
         "illness_infectiousness": [
         ],
-        "risks":[
+        "risks": [
         ],
-        "also_got":[
+        "also_got": [
         ],
-	"cause_permanent": [
+        "cause_permanent": [
         ],
         "herbs": [
             "poppy",
@@ -1495,8 +1494,7 @@
             "juniper"
         ]
     },
-
-    "rash":{
+    "rash": {
         "duration": 3,
         "severity": "minor",
         "medicine_duration": 1,
@@ -1518,7 +1516,7 @@
         ],
         "also_got": [],
         "cause_permanent": [
-		"constant rash"
+		    "constant rash"
 		],
         "herbs": [
             "poppy",
@@ -1526,7 +1524,6 @@
 	        "elder_leaves"
         ]
     },
-
     "acute pain":{
         "duration": 3,
         "severity": "major",
@@ -1553,7 +1550,6 @@
             "poppy"
         ]
     },
-
     "wrenched claws":{
         "duration": 2,
         "severity": "major",
@@ -1569,11 +1565,11 @@
         },
         "illness_infectiousness": [],
         "risks": [
-		{
-			"name": "an infected wound",
-			"chance": 20
-			}
-		],
+            {
+                "name": "an infected wound",
+                "chance": 20
+            }
+        ],
         "also_got": [
             "bruises",
             "sore",
