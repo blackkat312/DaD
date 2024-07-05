@@ -8,7 +8,7 @@ import pygame
 import pygame_gui
 import ujson
 
-from scripts.cat.cats import Cat, handle_pronouns, BACKSTORIES
+from scripts.cat.cats import Cat, BACKSTORIES
 from scripts.cat.pelts import Pelt
 from scripts.clan_resources.freshkill import FRESHKILL_ACTIVE
 from scripts.game_structure import image_cache
@@ -337,7 +337,7 @@ class ProfileScreen(Screens):
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
 
                 if not game.settings["they them default"]:
-                    self.the_cat.handle_pronouns(kitty=self.the_cat)
+                    self.the_cat.handle_pronouns()
 
                 self.clear_profile()
                 self.build_profile()
