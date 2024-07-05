@@ -355,7 +355,7 @@ class GenerateEvents:
                     continue
                 if cat.status not in event.m_c["status"] and "any" not in event.m_c["status"]:
                     continue
-                if event.m_c["permanent_condition"] and event.m_c["permanent_condition"] != ["skip"]:
+                if event.m_c["permanent_condition"]:
                     for condition in cat.permanent_condition:
                         if condition in event.m_c["permanent_condition"]:
                             has_condition_that_is_required = True
@@ -363,7 +363,7 @@ class GenerateEvents:
                         continue
                     if len(cat.permanent_condition) < 1 and event.m_c["permanent_condition"] == ["any"]:
                         continue
-                if event.m_c["not_permanent_condition"] and event.m_c["not_permanent_condition"] != ["skip"]:
+                if event.m_c["not_permanent_condition"]:
                     for condition in cat.permanent_condition:
                         if condition in event.m_c["not_permanent_condition"]:
                             has_condition_that_cannot_have = True
@@ -442,7 +442,7 @@ class GenerateEvents:
                     continue
                 if random_cat.status not in event.r_c["status"] and "any" not in event.r_c["status"]:
                     continue
-                if event.r_c["permanent_condition"] and event.r_c["permanent_condition"] != ["skip"]:
+                if event.r_c["permanent_condition"]:
                     for condition in random_cat.permanent_condition:
                         if condition in event.r_c["permanent_condition"]:
                             has_condition_that_is_required = True
@@ -450,7 +450,7 @@ class GenerateEvents:
                         continue
                     if len(random_cat.permanent_condition) < 1 and event.r_c["permanent_condition"] == ["any"]:
                         continue
-                if event.r_c["not_permanent_condition"] and event.r_c["not_permanent_condition"] != ["skip"]:
+                if event.r_c["not_permanent_condition"]:
                     for condition in random_cat.permanent_condition:
                         if condition in event.r_c["not_permanent_condition"]:
                             has_condition_that_cannot_have = True
@@ -938,9 +938,9 @@ class ShortEvent:
             if "dies" not in self.m_c:
                 self.m_c["dies"] = False
             if "permanent_condition" not in self.m_c:
-                self.m_c["permanent_condition"] = ["skip"]
+                self.m_c["permanent_condition"] = []
             if "not_permanent_condition" not in self.m_c:
-                self.m_c["not_permanent_condition"] = ["skip"]
+                self.m_c["not_permanent_condition"] = []
 
         self.r_c = r_c if r_c else {}
         if self.r_c:
@@ -965,9 +965,9 @@ class ShortEvent:
             if "dies" not in self.r_c:
                 self.r_c["dies"] = False
             if "permanent_condition" not in self.r_c:
-                self.r_c["permanent_condition"] = ["skip"]
+                self.r_c["permanent_condition"] = []
             if "not_permanent_condition" not in self.r_c:
-                self.r_c["not_permanent_condition"] = ["skip"]
+                self.r_c["not_permanent_condition"] = []
 
         self.new_cat = new_cat if new_cat else []
         self.injury = injury if injury else []
