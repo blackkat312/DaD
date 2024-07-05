@@ -1195,7 +1195,7 @@ class Events:
 
         if not cat.dead:
             OutsiderEvents.killing_outsiders(cat)
-    
+
     def kit_deaths(self, cats):
         fading_kits = []
         fading_kit_names = []
@@ -1722,7 +1722,7 @@ class Events:
                                 break
 
                         chance = game.config["roles"]["mediator_app_chance"]
-                        
+
                         # media personality
                         media_personalities = [
                             "charismatic",
@@ -2759,7 +2759,7 @@ class Events:
                 cat.pronouns = [cat.default_pronouns[0].copy()]
 
             if not game.settings["they them default"]:
-                cat.handle_pronouns(kitty=cat)
+                cat.handle_pronouns()
 
             trans = ""
             if cat.gender == "tom":
