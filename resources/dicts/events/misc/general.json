@@ -297,13 +297,13 @@
     ]
   },
   {
-    "event_id": "gen_misc_any_collar_accessory1",
+    "event_id": "gen_misc_any_twoleg_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular around {PRONOUN/m_c/poss} neck.",
-    "new_accessory": ["COLLAR"],
+    "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular that {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} know how to get off.",
+    "new_accessory": ["COLLAR", "BOOTIES"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     }
@@ -749,8 +749,8 @@
     "season": ["leaf-bare"],
     "sub_type": ["accessory"],
     "weight": 20,
-    "event_text": "m_c found a mysterious acc_singular growing in the frost and decided to wear it.",
-    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "POPPY"],
+    "event_text": "m_c found acc_singular growing in the frost and decided to wear it.",
+    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "POPPY", "LAVENDER"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -1026,7 +1026,7 @@
   {
     "event_id": "gen_misc_greenleaf_mateaccessory1",
     "location": ["any"],
-    "season": ["greenleaf"],
+    "season": ["greenleaf", "leaf-fall"],
     "sub_type": ["accessory"],
     "weight": 15,
     "event_text": "m_c and r_c spend the evening chasing cicadas around camp. m_c keeps a trophy of {PRONOUN/m_c/poss} catch on {PRONOUN/m_c/poss} pelt.",
@@ -1309,19 +1309,31 @@
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c sneaked out of camp, and brought back with {PRONOUN/m_c/object} some acc_plural from when {PRONOUN/m_c/poss} fur got snagged in a bush.",
-        "new_accessory": ["HOLLY", "JUNIPER"],
+        "new_accessory": ["BLUE BERRIES", "HOLLY", "JUNIPER"],
         "m_c": {
             "status": ["kitten"]
         }
     },
     {
-        "event_id": "gen_misc_multi_accessorykit1",
+        "event_id": "gen_misc_multi_moth_accessorykit1",
         "location": ["any"],
-        "season": ["newleaf", "greenleaf"],
+        "season": ["newleaf", "greenleaf", "leaf-fall"],
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c caught an insect while sneaking outside of the camp and proudly wears its wings as a trophy of {PRONOUN/m_c/poss} journey.",
-        "new_accessory": ["MOTH WINGS", "CICADA WINGS"],
+        "new_accessory": ["MOTH WINGS"],
+        "m_c": {
+          "status": ["kitten"]
+        }
+    },
+    {
+        "event_id": "gen_misc_multi_cicada_accessorykit1",
+        "location": ["any"],
+        "season": ["greenleaf", "leaf-fall"],
+        "sub_type": ["accessory"],
+        "weight": 15,
+        "event_text": "m_c caught an insect while sneaking outside of the camp and proudly wears its wings as a trophy of {PRONOUN/m_c/poss} journey.",
+        "new_accessory": ["CICADA WINGS"],
         "m_c": {
           "status": ["kitten"]
         }
@@ -1356,7 +1368,7 @@
         "season": ["any"],
         "sub_type": ["accessory"],
         "weight": 15,
-        "event_text": "m_c is just too cute - r_c gives {PRONOUN/m_c/object} a pretty acc_singular as a gift.",
+        "event_text": "m_c is just too cute - r_c gives {PRONOUN/m_c/object} acc_singular as a gift.",
         "new_accessory": ["WILD", "PLANT"],
         "m_c": {
           "age": ["kitten"],
@@ -1381,7 +1393,7 @@
         "season": ["any"],
         "sub_type": ["accessory"],
         "weight": 15,
-        "event_text": "r_c gives m_c a pretty acc_singular {PRONOUN/r_c/subject} found while playing.",
+        "event_text": "r_c gives m_c acc_singular {PRONOUN/r_c/subject} found while playing.",
         "new_accessory": ["WILD", "PLANT"],
         "m_c": {
             "age": ["kitten"]
@@ -1412,7 +1424,7 @@
         "season": ["any"],
         "sub_type": ["accessory"],
         "weight": 20,
-        "event_text": "m_c starts bringing a pretty acc_singular everywhere {PRONOUN/m_c/subject} {VERB/m_c/go/goes}, and r_c loudly complains that {PRONOUN/r_c/subject} {VERB/r_c/want/wants} one, too.",
+        "event_text": "m_c starts bringing acc_singular everywhere {PRONOUN/m_c/subject} {VERB/m_c/go/goes}, and r_c loudly complains that {PRONOUN/r_c/subject} {VERB/r_c/want/wants} one, too.",
         "new_accessory": ["WILD", "PLANT"],
         "m_c": {
             "age": ["kitten"]
@@ -1690,7 +1702,7 @@
     "sub_type": ["accessory", "romance"],
     "weight": 20,
     "event_text": "m_c and r_c were chatting about their day and the chores they finished when r_c mentioned {PRONOUN/r_c/subject} liked the smell of wild fruit. m_c decides to wear acc_plural on {PRONOUN/m_c/poss} pelt, hoping that r_c notices {PRONOUN/m_c/object}.",
-    "new_accessory": ["BLUE BERRIES", "HOLLY"],
+    "new_accessory": ["BLUE BERRIES", "HOLLY", "JUNIPER"],
     "m_c": {
       "age": ["adolescent"],
       "status": ["apprentice"]
@@ -1743,7 +1755,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text": "m_c is nearly blindsided by r_c as {PRONOUN/r_c/subject} {VERB/r_c/walk/walks} into camp after a long training day, listening to the kit squeak about a type of feather. r_c leads m_c to the nursery, where {PRONOUN/r_c/subject} carefully put acc_plural in m_c's fur.",
-    "new_accessory": ["BLUE FEATHERS"],
+    "new_accessory": ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"],
     "m_c": {
         "age": ["adolescent"]
     },
@@ -3678,6 +3690,132 @@
         "amount": 5
       }
     ]
+  },
+  {
+    "event_id": "gen_misc_any_toy_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "While out on an adventure, m_c found an interesting object in a nearby Twolegplace and decides to keep it.",
+    "new_accessory": [
+      "TOY"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_blankie_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c found acc_singular that {PRONOUN/m_c/subject} {VERB/m_c/find/finds} comforting and decided to wear it on {PRONOUN/m_c/poss} pelt.",
+    "new_accessory": [
+      "BLANKIE"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_disabilityflag_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c found acc_singular that makes {PRONOUN/m_c/object} happy.",
+    "new_accessory": [
+      "DISFLAG"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "permanent_condition": [
+        "any"
+      ]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_autismflag_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c found acc_singular that makes {PRONOUN/m_c/object} happy.",
+    "new_accessory": [
+      "AUTISMFLAG"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "permanent_condition": [
+        "starwalker"
+      ]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_zebraflag_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "m_c found acc_singular that makes {PRONOUN/m_c/object} happy.",
+    "new_accessory": [
+      "ZEBFLAG"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "permanent_condition": [
+        "constant roaming pain",
+        "jellyfish joints",
+        "loose body",
+        "falling paws"
+      ]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_leader_twoleg_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "After a crisis where m_c disappeared for a few days, {PRONOUN/m_c/subject} {VERB/m_c/return/returns} with acc_singular.",
+    "new_accessory": ["COLLAR", "BOOTIES"],
+    "m_c": {
+        "status": [
+          "leader"
+        ]
+    }
   },
   {
     "event_id": "gen_misc_any_spirited_heart_accessory1",
