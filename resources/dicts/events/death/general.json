@@ -2634,7 +2634,7 @@
         "history": [{
             "cats": ["m_c"],
             "reg_death": "m_c was crushed by a falling boulder.",
-            "lead_death": "{VERB/m_c/were/was} crushed by a falling boulder"
+            "lead_death": "{VERB/m_c/were/was} crushed by a falling boulder."
         }],
         "other_clan": {
             "current_rep": [
