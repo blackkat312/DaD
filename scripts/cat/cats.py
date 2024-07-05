@@ -2447,16 +2447,15 @@ class Cat:
                     if game.config["condition_related"]["plural_names"] > 1:
                         chance = randint(1, game.config["condition_related"]["plural_names"])
                         if chance == 1:
-                            self.specsuffix_hidden = True
                             # CHOOSE PLURAL NAME
                             if os.path.exists('resources/dicts/names/names.json'):
                                 with open('resources/dicts/names/names.json') as read_file:
                                     names_dict = ujson.loads(read_file.read())
-                                    suffix_and_space = " " + self.name.suffix
-                                    if suffix_and_space not in [names_dict["normal_plural_suffixes"], names_dict["leader_plural_suffixes"]]:
+                                    if self.name.suffix not in names_dict["normal_plural_suffixes"] and self.name.suffix not in names_dict["leader_plural_suffixes"]:
                                         plural = choice(names_dict["normal_plural_suffixes"])
                                         old_suffix = self.name.suffix
                                         if self.status == "leader":
+                                            self.specsuffix_hidden = True
                                             plural = choice(names_dict["leader_plural_suffixes"])
                                         self.name.suffix = plural
                                         text = self.name.prefix + old_suffix + "'s headmates have discussed things, and they've decided that a collective name will suit them better. After a bit of thinking, they've decided on " + self.name.prefix + self.name.suffix + "!"
