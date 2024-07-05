@@ -642,7 +642,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -842,7 +842,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible"
             ],
             "dies": true
@@ -985,7 +985,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible"
             ],
             "dies": true
@@ -2162,7 +2162,7 @@
                 "charismatic",
                 "confident",
                 "daring",
-                
+
                 "compassionate",
                 "loving",
                 "responsible",
@@ -2246,7 +2246,7 @@
                 "charismatic",
                 "confident",
                 "daring",
-                
+
                 "compassionate",
                 "loving",
                 "responsible",
@@ -2329,7 +2329,7 @@
                 "charismatic",
                 "confident",
                 "daring",
-                
+
                 "compassionate",
                 "loving",
                 "responsible",
@@ -2527,11 +2527,7 @@
             "dies": true
         },
         "r_c": {
-            "status": [ "apprentice", "mediator apprentice", "medicine cat apprentice", "warrior", "medicine cat", "mediator", "deputy" ],
-            "skill": [
-                "CLEVER,2",
-                "HUNTER,3"
-            ]
+            "status": [ "apprentice", "mediator apprentice", "medicine cat apprentice", "warrior", "medicine cat", "mediator", "deputy" ]
         },
         "history": [{
             "cats": ["m_c"],
@@ -2586,11 +2582,7 @@
             "dies": true
         },
         "r_c": {
-            "age": [ "adolescent", "young adult", "adult", "senior adult" ],
-            "skill": [
-                "HUNTER,3",
-                "FIGHTER,2"
-            ]
+            "age": [ "adolescent", "young adult", "adult", "senior adult" ]
         },
         "history": [{
             "cats": ["m_c"],
@@ -2642,7 +2634,7 @@
         "history": [{
             "cats": ["m_c"],
             "reg_death": "m_c was crushed by a falling boulder.",
-            "lead_death": "{VERB/m_c/were/was} crushed by a falling boulder."
+            "lead_death": "{VERB/m_c/were/was} crushed by a falling boulder"
         }],
         "other_clan": {
             "current_rep": [
@@ -2705,7 +2697,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -2718,7 +2710,7 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": ["m_c died defending r_c from a hawk"],
+            "reg_death": "m_c died defending r_c from a hawk",
             "lead_death": "defended r_c from a hawk"
         }],
         "relationships": [
@@ -2926,7 +2918,7 @@
                 "troublesome",
                 "impulsive",
                 "attention-seeker"
-                
+
             ],
             "dies": true
         },
@@ -3057,10 +3049,7 @@
         },
         "r_c": {
             "age": [ "adolescent", "young adult", "adult", "senior adult"],
-            "status": [ "apprentice", "warrior", "deputy", "leader"],
-            "skill": [
-                "FIGHTER,1"
-            ]
+            "status": [ "apprentice", "warrior", "deputy", "leader"]
         },
         "history": [{
             "cats": ["m_c"],
@@ -3117,7 +3106,7 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c ate deathberries and succumbed to the poison."
+            "reg_death": "m_c was fed deathberries by r_c."
         }],
         "relationships": [
             {
@@ -3169,7 +3158,7 @@
                 "troublesome",
                 "attention-seeker",
                 "impulsive"
-                
+
             ],
             "dies": true
         },
@@ -3282,7 +3271,7 @@
         "history": [{
             "cats": ["m_c"],
             "reg_death": "m_c was killed when o_c_n warriors broke into camp.",
-            "lead_death": "when o_c_n warrior broke into camp"
+            "lead_death": "o_c_n warrior broke into camp"
         }],
         "other_clan": {
             "current_rep": [
@@ -3320,7 +3309,7 @@
                 "ambitious",
                 "daring",
                 "fierce",
-                
+
                 "loving",
                 "loyal",
                 "responsible",
@@ -3380,7 +3369,7 @@
                 "bold",
                 "ambitious",
                 "fierce",
-                
+
                 "loving",
                 "loyal",
                 "responsible",
@@ -3619,7 +3608,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c was swept away by a flood.",
+        "event_text": "m_c was swept away by a flood and drowned.",
         "m_c": {
             "age": [
                 "adolescent",
@@ -3644,7 +3633,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c fell from the top branches of a tree.",
+        "event_text": "m_c fell from the top branches of a tree and didn't survive.",
         "m_c": {
             "age": [
                 "adolescent",
@@ -3745,7 +3734,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c was bitten by a venomous spider.",
+        "event_text": "m_c was bitten by a venomous spider and died.",
         "m_c": {
             "dies": true
         },
@@ -3826,7 +3815,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -3901,7 +3890,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -3976,7 +3965,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -4048,7 +4037,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible"
             ],
             "dies": true
@@ -4118,7 +4107,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible"
             ],
             "dies": true
@@ -4188,7 +4177,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -4267,7 +4256,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -4317,7 +4306,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible",
                 "righteous",
                 "vengeful"
@@ -4388,7 +4377,7 @@
                 "senior"
             ],
             "not_skill": [
-                "FIGHTER,1"
+                "FIGHTER,0"
             ],
             "dies": true
         },
@@ -4429,7 +4418,7 @@
                 "compassionate",
                 "confident",
                 "daring",
-                
+
                 "fierce",
                 "loving",
                 "responsible",
@@ -4574,7 +4563,7 @@
                 "fierce",
                 "loyal",
                 "loving",
-                
+
                 "responsible"
             ],
             "dies": true
@@ -5024,13 +5013,13 @@
             "status": [
                 "leader"
             ],
-            "skill": [
-                "FIGHTER,2"
-            ],
             "dies": true
         },
         "r_c": {
             "status": ["deputy"],
+            "skill": [
+                "CLEVER,1"
+            ],
             "not_skill": [
                 "CLEVER,2",
                 "CLEVER,3"
@@ -5221,7 +5210,7 @@
         "sub_type": ["war"],
         "tags": [],
         "weight": 20,
-        "event_text": "In the chaos of battle and the throes of a war, it's nearly impossible to tell friend from foe. Blinded by blood, r_c accidentally kills m_c. m_c lost one life.",
+        "event_text": "In the chaos of battle and the throes of a war, it's nearly impossible to tell friend from foe. Blinded by blood, r_c accidentally kills m_c.",
         "m_c": {
             "status": [
                 "leader"
@@ -5289,7 +5278,7 @@
             "lives_remain"
         ],
         "weight": 20,
-        "event_text": "o_c_n attempted to break into the camp. m_c died defending the nursery. r_c remained hidden beneath {PRONOUN/m_c/poss} body as StarClan brought m_c back to life.",
+        "event_text": "When o_c_n attempts to break into the camp, m_c dies defending the nursery. r_c remains hidden beneath {PRONOUN/m_c/poss} body as StarClan brings m_c back to life.",
         "m_c": {
             "age": [
                 "young adult",
@@ -5301,8 +5290,6 @@
                 "leader"
             ],
             "trait": [
-                "vengeful",
-                "bloodthirsty",
                 "loving",
                 "bold",
                 "confident",
@@ -5317,15 +5304,58 @@
         },
         "r_c": {
             "age": [
-                "newborn",
                 "kitten"
             ],
             "status": [ "any" ]
         },
+        "injury": [
+            {
+                "cats": [
+                    "r_c"
+                ],
+                "injuries": [
+                    "shock"
+                ],
+                "history:": {
+                    "reg_death": "m_c couldn't survive {PRONOUN/m_c/poss} shock from when r_c sacrificed one of {PRONOUN/r_c/poss} lives to save {PRONOUN/m_c/object}."
+                }
+            }
+        ],
         "history": [{
             "cats": ["m_c"],
             "lead_death": "defended r_c from o_c_n warriors"
         }],
+        "relationships": [
+            {
+                "cats_from": [
+                    "m_c"
+                ],
+                "cats_to": [
+                    "r_c"
+                ],
+                "mutual": false,
+                "values": [
+                    "platonic"
+                ],
+                "amount": 10
+            },
+            {
+                "cats_from": [
+                    "r_c"
+                ],
+                "cats_to": [
+                    "m_c"
+                ],
+                "mutual": false,
+                "values": [
+                    "platonic",
+                    "comfort",
+                    "trust",
+                    "respect"
+                ],
+                "amount": 15
+            }
+        ],
         "other_clan": {
             "current_rep": [
                 "hostile"
@@ -5440,27 +5470,24 @@
         "sub_type": [ "murder" ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c dies during battle training with r_c, r_c exclaims that it was all an accident.",
+        "event_text": "m_c dies during battle training with r_c - but r_c exclaims that it was all an accident.",
         "m_c": {
-            "age": [
-                "adolescent", "young adult"
-            ],
             "status": [
                 "apprentice"
             ],
             "relationship_status": ["app/mentor"],
+            "not_skill": [
+                "FIGHTER,0"
+            ],
             "dies": true
         },
         "r_c": {
             "age": [ "any" ],
-            "status": [ "any"],
-            "skill": [
-                "FIGHTER,1"
-            ]
+            "status": [ "any"]
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was killed in battle training with r_c."
+            "reg_death": "m_c was murdered by r_c while they were doing battle training."
         }],
         "relationships": [
             {
@@ -5665,7 +5692,7 @@
     "event_text": "multi_cat are killed after a fire rages through the camp.",
     "history": [
       {
-      "cats": ["all"],
+      "cats": ["multi_cat"],
       "reg_death": "m_c died in a fire that raged through camp.",
       "lead_death": "died during a fire"
       }
@@ -5798,11 +5825,8 @@
     "weight": 10,
     "event_text": "multi_cat are taken away by Twolegs.",
     "m_c": {
-        "age": [
-            "adolescent",
-            "adult",
-            "young adult",
-            "senior adult"]
+        "age": ["any"],
+        "status": ["any"]
     }
   },
   {
@@ -5872,15 +5896,15 @@
     "sub_type": ["war", "murder"],
     "tags": [],
     "weight": 20,
-    "event_text": "Within the haze of battle and blood-lust it can be far too easy to mistake friend for foe.  Or, at least, that's what r_c tells the Clan after {PRONOUN/m_c/subject} {VERB/m_c/kill/kills} m_c during a fight with o_c_n.",
+    "event_text": "Within the haze of battle and blood-lust it can be far too easy to mistake friend for foe. Or - at least, that's what r_c tells the Clan after {PRONOUN/m_c/subject} {VERB/m_c/kill/kills} m_c during a fight with o_c_n.",
     "m_c": {
-        "status": ["warrior", "deputy", "leader"],
-        "not_skill": ["FIGHTER,2"],
+        "status": ["apprentice", "warrior", "deputy", "leader"],
+        "not_skill": ["FIGHTER,1"],
         "dies": true
     },
     "r_c": {
         "status": ["warrior", "deputy", "leader"],
-        "skill": ["FIGHTER,2"]
+        "skill": ["FIGHTER,1"]
     },
     "history:": [
       {
