@@ -481,7 +481,7 @@ class Cat:
             self.pronouns = [self.default_pronouns[0].copy()]
 
         if not theythemdefault:
-            self.handle_pronouns(kitty=self)
+            self.handle_pronouns()
 
         # APPEARANCE
         self.pelt = Pelt.generate_new_pelt(
@@ -534,7 +534,7 @@ class Cat:
     def __hash__(self):
         return hash(self.ID)
 
-    def handle_pronouns(self, kitty):
+    def handle_pronouns(self):
         """TODO: make this do something"""
 
     @property
