@@ -1787,7 +1787,7 @@
             "young adult": 0,
             "adult": 0,
             "senior adult": 0,
-            "elder": 0
+            "senior": 0
         },
         "medicine_mortality": {
             "newborn": 0,
@@ -1835,7 +1835,7 @@
             "young adult": 0,
             "adult": 0,
             "senior adult": 0,
-            "elder": 0
+            "senior": 0
         },
         "duration": 1,
         "medicine_duration": 0,
@@ -1861,7 +1861,7 @@
             "young adult": 0,
             "adult": 0,
             "senior adult": 0,
-            "elder": 0
+            "senior": 0
         },
         "duration": 1,
         "medicine_duration": 0,
