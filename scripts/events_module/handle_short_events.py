@@ -121,8 +121,8 @@ class HandleShortEvents:
                     break
             if not found:
                 # this print is very spammy, but can be helpful if unsure why a debug event isn't triggering
-                # print(f"debug_ensure_event_id: {game.config['event_generation']['debug_ensure_event_id']} "
-                #      f"was not possible for {self.main_cat.name}.  {self.main_cat.name} was looking for a {event_type}: {self.sub_types} event")
+                print(f"debug_ensure_event_id: {game.config['event_generation']['debug_ensure_event_id']} "
+                      f"was not possible for {self.main_cat.name}.  {self.main_cat.name} was looking for a {event_type}: {self.sub_types} event")
                 pass
         # ---------------------------------------------------------------------------- #
         #                               do the event                                   #
@@ -290,7 +290,7 @@ class HandleShortEvents:
                 # Search for parent
                 for sub_sub in self.new_cats:
                     if sub_sub[0] != sub[0] and (
-                            sub_sub[0].gender == "molly" or game.clan.clan_settings['same sex birth']) \
+                            sub_sub[0].gender == "female" or game.clan.clan_settings['same sex birth']) \
                             and sub_sub[0].ID in (sub[0].parent1, sub[0].parent2) and not (
                             sub_sub[0].dead or sub_sub[0].outside):
                         sub_sub[0].get_injured("recovering from birth")
