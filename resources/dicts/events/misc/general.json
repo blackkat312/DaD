@@ -259,12 +259,50 @@
     ]
   },
   {
+    "event_id": "gen_misc_murderreveal_anydream1",
+    "location": ["any"],
+    "season": ["any"],
+    "tags": ["skill_trait_required"],
+    "sub_type": ["murder_reveal"],
+    "weight": 15,
+    "event_text": "As r_c wanders around in the dreams of {PRONOUN/r_c/poss} Clanmates, {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} horrified to find m_c having a nightmare replaying mur_c's death. When r_c wakes {PRONOUN/r_c/self} up to tell the leader, m_c is awake, shaking in {PRONOUN/m_c/poss} nest and crying.",
+    "m_c": {
+      "age": ["any"],
+      "status": ["any"]
+    },
+    "r_c": {
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+      "status": ["any"],
+      "skill": ["DREAM,0"],
+      "relationship_status": ["comfort_30"]
+    },
+    "injury": [
+       {
+        "cats": [
+          "m_c"
+        ],
+        "injuries": [
+          "nightmares"
+        ]
+       }
+    ],
+    "relationships": [
+      {
+        "cats_from": ["r_c"],
+        "cats_to": ["m_c"],
+        "mutual": false,
+        "values": ["trust", "comfort"],
+        "amount": -15
+      }
+    ]
+  },
+  {
     "event_id": "gen_misc_any_collar_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text":  "m_c disappears for a few days, then returns to camp with a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular around {PRONOUN/m_c/poss} neck.",
     "new_accessory": ["COLLAR"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
@@ -941,7 +979,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 15,
-    "event_text": "m_c gives r_c a acc_singular to make up for a bad fight between them.",
+    "event_text": "m_c gives r_c acc_singular to make up for a bad fight between them.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "age": ["young adult", "adult", "senior adult","senior"],
@@ -966,7 +1004,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text": "m_c gifts {PRONOUN/m_c/poss} beloved r_c with a acc_singular to wear in {PRONOUN/m_c/poss} pelt.",
+    "event_text": "m_c gifts {PRONOUN/m_c/poss} beloved r_c with acc_singular to wear in {PRONOUN/m_c/poss} pelt.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "age": ["young adult", "adult", "senior adult","senior"],
@@ -1270,7 +1308,7 @@
         "season": ["any"],
         "sub_type": ["accessory"],
         "weight": 15,
-        "event_text": "m_c sneaked out of camp, and brought back with them some acc_singular from when {PRONOUN/m_c/poss} fur got snagged in a bush.",
+        "event_text": "m_c sneaked out of camp, and brought back with {PRONOUN/m_c/object} some acc_plural from when {PRONOUN/m_c/poss} fur got snagged in a bush.",
         "new_accessory": ["HOLLY", "JUNIPER"],
         "m_c": {
             "status": ["kitten"]
@@ -1306,7 +1344,7 @@
         "season": ["leaf-fall"],
         "sub_type": ["accessory"],
         "weight": 15,
-        "event_text": "As the wind brings many fallen leaves in the camp, m_c picks a acc_singular to decorate {PRONOUN/m_c/poss} pelt.",
+        "event_text": "As the wind brings many fallen leaves in the camp, m_c picks acc_singular to decorate {PRONOUN/m_c/poss} pelt.",
         "new_accessory": ["OAK LEAVES", "MAPLE LEAF"],
         "m_c": {
             "status": ["kitten"]
@@ -2128,7 +2166,7 @@
     "m_c": {
       "age":["any"],  
       "status": ["mediator", "mediator apprentice"],
-      "trait": ["calm", "careful", "insecure", "lonesome", "loyal", "nervous", "compassionate", "faithful", "loving", "responsible", "thoughtful", "wise",  "childish", "playful"]
+      "trait": ["calm", "careful", "insecure", "lonesome", "loyal", "nervous", "compassionate", "faithful", "loving", "responsible", "thoughtful", "wise", "childish", "playful"]
     },
     "relationships": [
         {
@@ -2160,7 +2198,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c pulls r_c to the side, quietly asking {PRONOUN/r_c/object} abou {PRONOUN/r_c/poss} crush on a fellow Clanmate.",
+    "event_text": "m_c pulls r_c to the side, quietly asking {PRONOUN/r_c/object} about {PRONOUN/r_c/poss} crush on a fellow Clanmate.",
     "m_c":{
       "status":["mediator", "mediator apprentice"]
     },
@@ -2317,7 +2355,7 @@
     "event_text": "m_c visits o_c_n to converse with their medicine cats about an omen StarClan sent.",
     "m_c": {
         "status": ["medicine cat"],
-        "skill": ["OMEN,0"]
+        "skill": ["OMEN,1"]
       },
     "other_clan": {
       "current_rep": ["any"],
@@ -2331,8 +2369,7 @@
     "weight": 15,
     "event_text": "m_c visits o_c_n to congratulate them on their new medicine cat.",
     "m_c": {
-        "status": ["medicine cat"],
-        "skill": ["MEDIATOR,1"]
+        "status": ["medicine cat"]
       },
     "other_clan": {
       "current_rep": ["any"],
@@ -2379,7 +2416,7 @@
     "m_c": {
       "age":["any"],
       "status": ["medicine cat"],
-      "skill": ["OMEN,0"]
+      "skill": ["OMEN,1"]
       },
     "r_c": {
       "status": ["leader"]
@@ -2409,7 +2446,7 @@
     "event_text": "m_c walks into the dreams of {PRONOUN/m_c/poss} Clanmates while everyone sleeps.",
     "m_c": {
       "status": ["medicine cat"],
-      "skill": ["DREAM,2"]
+      "skill": ["DREAM,1"]
     }
   },
   {
@@ -2418,10 +2455,10 @@
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dreamself pads through the thoughts of {PRONOUN/m_c/poss} Clanmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
+    "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dream-self pads through the thoughts of {PRONOUN/m_c/poss} Clanmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
     "m_c": {
       "status": ["medicine cat apprentice", "medicine cat"],
-      "skill": ["DREAM,2"]
+      "skill": ["DREAM,0"]
     }
   },
   {
@@ -2433,7 +2470,7 @@
     "event_text": "m_c correctly warns the leader of an ambush, thanks to {PRONOUN/m_c/poss} clairvoyant nature.",
     "m_c": {
       "status": ["medicine cat"],
-      "skill": ["CLAIRVOYANT,2"]
+      "skill": ["CLAIRVOYANT,1"]
     }
   },
   {
@@ -2444,7 +2481,7 @@
     "event_text": "m_c spends {PRONOUN/m_c/poss} day communing with StarClan, attempting to figure out a recent prophecy.",
     "m_c": {
       "status":["medicine cat", "medicine cat apprentice"],
-      "skill": ["PROPHET,2"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
@@ -2454,12 +2491,11 @@
     "weight": 20,
     "event_text": "m_c has been worried that c_n will lose the knowledge r_c has gained through {PRONOUN/r_c/poss} long life, but by sitting with r_c and discussing {PRONOUN/r_c/poss} experiences, m_c will ensure the lessons learned in the past are never forgotten.",
     "m_c": {
-      "status":["medicine cat"],
+      "status": ["medicine cat", "medicine cat apprentice"],
       "skill": ["LORE,1"]
     },
     "r_c": {
-        "age": ["senior"],
-        "status": ["elder"]
+        "age": ["senior"]
     }
   },
   {
@@ -3639,6 +3675,86 @@
         "mutual": false,
         "values": ["platonic"],
         "amount": 5
+      }
+    ]
+  },
+  {
+    "event_id": "gen_misc_any_spirited_heart_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "While out on a walk, m_c finds acc_singular! While most cats would catch it for the fresh-kill pile, {PRONOUN/m_c/subject} {VERB/m_c/befriend/befriends} it and {VERB/m_c/protect/protects} it as if it's {PRONOUN/m_c/poss} kit.",
+    "new_accessory": [
+      "SNAKE",
+      "SMALLANIMAL"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "permanent_condition": [
+        "spirited heart"
+      ]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_spirited_heart_kit_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "r_c finds acc_singular on a walk and decides to bring it back alive for m_c to practice pouncing on. Instead, m_c feels upset that r_c would think that {PRONOUN/m_c/subject} would <i>ever</i> want to kill such a sweet thing and fiercely protects it from harm.",
+    "new_accessory": [
+      "SNAKE",
+      "SMALLANIMAL",
+      "ALIVEINSECT"
+    ],
+    "m_c": {
+      "status": [
+        "kitten"
+      ],
+      "relationship_status": [
+        "child/parent"
+      ],
+      "permanent_condition": [
+        "spirited heart"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "status": [
+        "any"
+      ],
+      "not_permanent_condition": [
+        "spirited heart"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_from": [
+          "m_c"
+        ],
+        "cats_to": [
+          "r_c"
+        ],
+        "mutual": false,
+        "values": [
+          "platonic",
+          "comfort",
+          "trust",
+          "respect"
+        ],
+        "amount": -5
       }
     ]
   }
