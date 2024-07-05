@@ -125,7 +125,8 @@ class Sprites:
             'lineart', 'lineartdf', 'lineartdead',
             'eyes', 'eyes2', 'lazyeyes', 'skin', 'blep',
             'scars', 'missingscars', 'disabilityscars',
-            'medcatherbs', 'disabilityaccs', 'booties',
+            'medcatherbs', 'snake_accessories', 'smallAnimal_accessories', 'aliveInsect_accessories', 'disabilityaccs',
+            'booties',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
             'singlecolours', 'speckledcolours', 'tabbycolours', 'bengalcolours', 'marbledcolours',
             'rosettecolours', 'smokecolours', 'tickedcolours', 'mackerelcolours', 'classiccolours',
@@ -319,6 +320,22 @@ class Sprites:
             ["PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON"]
         ]
 
+        snake_data = [
+            ["GRASS SNAKE", "BLUE RACER", "WESTERN COACHWHIP", "KINGSNAKE"]
+        ]
+
+        smallAnimal_data = [
+            ["GRAY SQUIRREL", "RED SQUIRREL", "CRAB", "WHITE RABBIT", "BLACK RABBIT", "BROWN RABBIT", "INDIAN GIANT SQUIRREL", "FAWN RABBIT", "BROWN AND WHITE RABBIT", "BLACK AND WHITE RABBIT"],
+            ["WHITE AND FAWN RABBIT", "BLACK VITILIGO RABBIT", "BROWN VITILIGO RABBIT", "FAWN VITILIGO RABBIT", "BLACKBIRD", "ROBIN", "JAY", "THRUSH", "CARDINAL", "MAGPIE"],
+            ["CUBAN TROGON", "TAN RABBIT", "TAN AND WHITE RABBIT", "TAN VITILIGO RABBIT", "RAT", "WHITE MOUSE", "BLACK MOUSE", "GRAY MOUSE", "BROWN MOUSE", "GRAY RABBIT"],
+            ["GRAY AND WHITE RABBIT", "GRAY VITILIGO RABBIT"]
+        ]
+
+        aliveInsect_data = [
+            ["BROWN SNAIL", "RED SNAIL", "WORM", "BLUE SNAIL", "ZEBRA ISOPOD", "DUCKY ISOPOD", "DAIRY COW ISOPOD", "BEETLEJUICE ISOPOD", "BEE", "RED LADYBUG"],
+            ["ORANGE LADYBUG", "YELLOW LADYBUG"]
+        ]
+
         disabilityaccs_data = [
             ["BALL", "MOUSE", "MOSSBLANKIE", "BONE"],
             ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
@@ -360,6 +377,21 @@ class Sprites:
         for row, nyloncollars in enumerate(nyloncollars_data):
             for col, nyloncollar in enumerate(nyloncollars):
                 self.make_group('nyloncollars', (col, row), f'collars{nyloncollar}')
+
+        # snake accessories
+        for row, snake_accessories in enumerate(snake_data):
+            for col, snake_accessory in enumerate(snake_accessories):
+                self.make_group('snake_accessories', (col, row), f'acc_snake{snake_accessory}')
+
+        # smallAnimal accessories
+        for row, smallAnimal_accessories in enumerate(smallAnimal_data):
+            for col, smallAnimal_accessory in enumerate(smallAnimal_accessories):
+                self.make_group('smallAnimal_accessories', (col, row), f'acc_smallAnimal{smallAnimal_accessory}')
+
+        # aliveInsect accessories
+        for row, aliveInsect_accessories in enumerate(aliveInsect_data):
+            for col, aliveInsect_accessory in enumerate(aliveInsect_accessories):
+                self.make_group('aliveInsect_accessories', (col, row), f'acc_aliveInsect{aliveInsect_accessory}')
 
         # dismod accessories
         for row, disabilityaccs in enumerate(disabilityaccs_data):
