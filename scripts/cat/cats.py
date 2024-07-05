@@ -4888,7 +4888,7 @@ def create_cat(status, moons=None, biome=None):
 
     for scar in new_cat.pelt.scars:
         if scar in scar_to_condition:
-            if (game.clan and game.clan.game_mode == "classic") or new_cat.moons < 4:
+            if (game.clan and game.clan.game_mode == "classic") or new_cat.moons < 4 or not game.clan:
                 new_cat.pelt.scars.remove(scar)
             else:
                 condition = choice(scar_to_condition.get(scar))
