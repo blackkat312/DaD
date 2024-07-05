@@ -801,12 +801,16 @@ class UICatListDisplay(UIContainer):
 
         self.show_names = show_names
 
-        self._favor_circle = pygame.transform.scale(
-            pygame.image.load(f"resources/images/fav_marker.png").convert_alpha(),
-            (100, 100),
-        )
         if game.settings["dark mode"]:
-            self._favor_circle.set_alpha(150)
+            self._favor_circle = pygame.transform.scale(
+                pygame.image.load(f"resources/images/fav_marker_dark.png").convert_alpha(),
+                (100, 100),
+            )
+        else:
+            self._favor_circle = pygame.transform.scale(
+                pygame.image.load(f"resources/images/fav_marker.png").convert_alpha(),
+                (100, 100),
+            )
 
         cell_width = floor(self.relative_rect.width / self.columns)
         cell_height = floor(self.relative_rect.height / self.rows)
