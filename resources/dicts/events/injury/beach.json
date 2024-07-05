@@ -7,11 +7,17 @@
         "event_text": "m_c went out of camp alone to practice swimming in the ocean; unfortunately, {PRONOUN/m_c/poss} inexperience led to {PRONOUN/m_c/object} being swept up by a riptide. r_c heard {PRONOUN/m_c/poss} cries and saved {PRONOUN/m_c/object}, but m_c almost drowned.",
         "m_c": {
             "status": ["apprentice"],
-            "trait": ["adventurous", "ambitious", "bold", "childish", "confident", "daring", "playful", "troublesome"]
+            "trait": ["adventurous", "ambitious", "bold", "childish", "confident", "daring", "playful", "troublesome"],
+            "not_skill": [
+                "SWIMMER,2"
+            ]
         },
         "r_c": {
             "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
-            "status": ["any"]
+            "status": ["any"],
+            "skill": [
+                "SWIMMER,2"
+            ]
         },
         "injury": [
             {
@@ -434,6 +440,9 @@
                 "adult",
                 "senior adult",
                 "senior"
+            ],
+            "not_skill": [
+                "SWIMMER,1"
             ]
         },
         "injury": [
@@ -448,5 +457,37 @@
                 "reg_death": "m_c died from water-inhalation after being dragged out to sea."
             }
         ]
-    }    
+    },
+    {
+        "event_id": "bch_injury_rash_any1",
+        "location": ["beach"],
+        "season": ["any"],
+        "weight": 30,
+        "event_text": "m_c was dragged out into the ocean by the tide, and came back with a rash from the sand stuck in {PRONOUN/m_c/poss} fur.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "not_skill": [
+                "SWIMMER,1"
+            ]
+        },
+        "injury": [
+            {
+                "cats": ["m_c"],
+                "injuries": ["rash"]
+            }
+        ],
+        "history": [
+            {
+                "cats": ["m_c"],
+                "scar": "m_c was scarred from {PRONOUN/m_c/poss} rash after being dragged out to sea.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} rash after being dragged out to sea."
+            }
+        ]
+    }
 ]
