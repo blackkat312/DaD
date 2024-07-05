@@ -4290,7 +4290,7 @@ def create_cat(status, moons=None, biome=None):
 
     for scar in new_cat.pelt.scars:
         if scar in scar_to_condition:
-            if game.clan.game_mode == "classic" or new_cat.moons < 4:
+            if (game.clan and game.clan.game_mode == "classic") or new_cat.moons < 4:
                 new_cat.pelt.scars.remove(scar)
             else:
                 condition = choice(scar_to_condition.get(scar))
@@ -4299,7 +4299,7 @@ def create_cat(status, moons=None, biome=None):
 
                 new_cat.get_permanent_condition(condition, born_with=False)
 
-    if game.clan.game_mode != "classic" and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
+    if (game.clan and game.clan.game_mode != "classic") and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
         new_cat.congenital_condition(new_cat)
 
     return new_cat
