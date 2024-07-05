@@ -13,7 +13,7 @@ from collections import Counter
 
 import ujson
 
-from scripts.cat.cats import Cat, cat_class, handle_pronouns, BACKSTORIES
+from scripts.cat.cats import Cat, cat_class, BACKSTORIES
 from scripts.cat.history import History
 from scripts.cat.names import Name
 from scripts.clan import HERBS
@@ -2638,7 +2638,7 @@ class Events:
                 cat.pronouns = [cat.default_pronouns[0].copy()]
 
             if not game.settings["they them default"]:
-                cat.handle_pronouns(kitty=cat)
+                cat.handle_pronouns()
 
             if cat.gender == "male":
                 gender = "tom"
