@@ -302,7 +302,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text":  "m_c disappears for a few days, then returns to camp with a acc_singular around {PRONOUN/m_c/poss} neck.",
+    "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular around {PRONOUN/m_c/poss} neck.",
     "new_accessory": ["COLLAR"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
@@ -979,7 +979,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 15,
-    "event_text": "m_c gives r_c a acc_singular to make up for a bad fight between them.",
+    "event_text": "m_c gives r_c acc_singular to make up for a bad fight between them.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "age": ["young adult", "adult", "senior adult","senior"],
@@ -1004,7 +1004,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text": "m_c gifts {PRONOUN/m_c/poss} beloved r_c with a acc_singular to wear in {PRONOUN/m_c/poss} pelt.",
+    "event_text": "m_c gifts {PRONOUN/m_c/poss} beloved r_c with acc_singular to wear in {PRONOUN/m_c/poss} pelt.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
       "age": ["young adult", "adult", "senior adult","senior"],
@@ -1344,7 +1344,7 @@
         "season": ["leaf-fall"],
         "sub_type": ["accessory"],
         "weight": 15,
-        "event_text": "As the wind brings many fallen leaves in the camp, m_c picks a acc_singular to decorate {PRONOUN/m_c/poss} pelt.",
+        "event_text": "As the wind brings many fallen leaves in the camp, m_c picks acc_singular to decorate {PRONOUN/m_c/poss} pelt.",
         "new_accessory": ["OAK LEAVES", "MAPLE LEAF"],
         "m_c": {
             "status": ["kitten"]
