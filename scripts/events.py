@@ -1139,56 +1139,57 @@ class Events:
 
         self.handle_outside_EX(cat)
 
-        # tnr
-        if not cat.dead and cat.moons > 2 and tnr_setting:
-            if cat.status == "kittypet":
-                if cat.moons <= 12 and random.randint(1, 9) == 1:
-                    cat.neutered = True
-                    cat.give_kittypet_message = True
-                    neutered_this_moon = True
+        if tnr_setting:
+            # tnr
+            if not cat.dead and cat.moons > 2:
+                if cat.status == "kittypet":
+                    if cat.moons <= 12 and random.randint(1, 9) == 1:
+                        cat.neutered = True
+                        cat.give_kittypet_message = True
+                        neutered_this_moon = True
 
-                elif cat.moons <= 24 and random.randint(1, 50) == 1:
-                    cat.neutered = True
-                    cat.give_kittypet_message = True
-                    neutered_this_moon = True
+                    elif cat.moons <= 24 and random.randint(1, 50) == 1:
+                        cat.neutered = True
+                        cat.give_kittypet_message = True
+                        neutered_this_moon = True
 
-                elif random.randint(1, 250) == 1:
-                    cat.neutered = True
-                    cat.give_kittypet_message = True
-                    neutered_this_moon = True
+                    elif random.randint(1, 250) == 1:
+                        cat.neutered = True
+                        cat.give_kittypet_message = True
+                        neutered_this_moon = True
 
-            elif cat.status != "driven off":
-                if cat.moons <= 12 and random.randint(1, 15) == 1:
-                    if cat.give_kittypet_message and cat.neutered and cat.status not in ["loner", "rogue", "former Clancat"]:
-                        attempted_to_be_neutered = True
-                    cat.neutered = True
-                    neutered_this_moon = True
-                    if cat.status in ["loner", "rogue", "former Clancat"]:
-                        cat.already_gave_neutered_message = True
+                elif cat.status != "driven off":
+                    if cat.moons <= 12 and random.randint(1, 15) == 1:
+                        if cat.give_kittypet_message and cat.neutered and cat.status not in ["loner", "rogue", "former Clancat"]:
+                            attempted_to_be_neutered = True
+                        cat.neutered = True
+                        neutered_this_moon = True
+                        if cat.status in ["loner", "rogue", "former Clancat"]:
+                            cat.already_gave_neutered_message = True
 
-                elif random.randint(1, 100) == 1:
-                    if cat.give_kittypet_message and cat.neutered and cat.status not in ["loner", "rogue", "former Clancat"]:
-                        attempted_to_be_neutered = True
-                    cat.neutered = True
-                    neutered_this_moon = True
-                    if cat.status in ["loner", "rogue", "former Clancat"]:
-                        cat.already_gave_neutered_message = True
+                    elif random.randint(1, 100) == 1:
+                        if cat.give_kittypet_message and cat.neutered and cat.status not in ["loner", "rogue", "former Clancat"]:
+                            attempted_to_be_neutered = True
+                        cat.neutered = True
+                        neutered_this_moon = True
+                        if cat.status in ["loner", "rogue", "former Clancat"]:
+                            cat.already_gave_neutered_message = True
 
-        # vaccinate
-        if not cat.dead and cat.moons > 1 and tnr_setting and not cat.neutered and cat.status == "kittypet":
-            if cat.moons <= 12 and random.randint(1, 4) == 1:
-                cat.vaccinated = True
-            elif cat.moons <= 24 and random.randint(1, 30) == 1:
-                cat.vaccinated = True
-            elif random.randint(1, 175) == 1:
-                cat.vaccinated = True
+            # vaccinate
+            if not cat.dead and cat.moons > 1 and not cat.neutered and cat.status == "kittypet":
+                if cat.moons <= 12 and random.randint(1, 4) == 1:
+                    cat.vaccinated = True
+                elif cat.moons <= 24 and random.randint(1, 30) == 1:
+                    cat.vaccinated = True
+                elif random.randint(1, 175) == 1:
+                    cat.vaccinated = True
 
-        if not cat.dead and "TIPPED" not in cat.pelt.scars and neutered_this_moon and ((cat.status == "kittypet" and cat.moons > 12 and random.randint(1, 10) == 1) or cat.status not in ["kittypet", "driven off"]):
-            if attempted_to_be_neutered:
-                History.add_scar(cat=cat, scar_text="m_c was mistakenly captured by Twolegs who thought {PRONOUN/m_c/subject} needed to be neutered, so {PRONOUN/m_c/poss} ear was tipped to prevent unnecessary stress in the future.")
-            else:
-                History.add_scar(cat=cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
-            cat.pelt.scars.append("TIPPED")
+            if not cat.dead and "TIPPED" not in cat.pelt.scars and neutered_this_moon and ((cat.status == "kittypet" and cat.moons > 12 and random.randint(1, 10) == 1) or cat.status not in ["kittypet", "driven off"]):
+                if attempted_to_be_neutered:
+                    History.add_scar(cat=cat, scar_text="m_c was mistakenly captured by Twolegs who thought {PRONOUN/m_c/subject} needed to be neutered, so {PRONOUN/m_c/poss} ear was tipped to prevent unnecessary stress in the future.")
+                else:
+                    History.add_scar(cat=cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.")
+                cat.pelt.scars.append("TIPPED")
 
         cat.skills.progress_skill(cat)
         Pregnancy_Events.handle_having_kits(cat, clan=game.clan)
