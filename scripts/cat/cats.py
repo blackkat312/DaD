@@ -434,7 +434,7 @@ class Cat:
             "nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby", "genderfluid",
             "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"
         ]
-        intersex_genderqueer_list = genderqueer_list
+        intersex_genderqueer_list = genderqueer_list.copy()
         intersex_genderqueer_list.append("intergender")
 
         # trans cat chances
