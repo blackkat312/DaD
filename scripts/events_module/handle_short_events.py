@@ -19,7 +19,7 @@ from scripts.utility import event_text_adjust, change_clan_relations, change_rel
 #                               Death Event Class                              #
 # ---------------------------------------------------------------------------- #
 
-class HandleShortEvents():
+class HandleShortEvents:
     """Handles generating and executing ShortEvents"""
 
     def __init__(self):
@@ -310,69 +310,64 @@ class HandleShortEvents():
         if extra_text and extra_text not in self.chosen_event.text:
             self.chosen_event.text = self.chosen_event.text + " " + extra_text
 
-    def handle_accessories(self):
+    def handle_accessories(self, pelts=Pelt):
         """
         handles giving accessories to the main_cat
         """
         if "misc" not in self.types:
             self.types.append("misc")
         acc_list = []
-        possible_accs = self.chosen_event.new_accessory
+        possible_accs = getattr(self.chosen_event, 'new_accessory', [])
         if "WILD" in possible_accs:
-            acc_list.extend(Pelt.wild_accessories)
+            acc_list.extend(pelts.wild_accessories)
         if "PLANT" in possible_accs:
-            acc_list.extend(Pelt.plant_accessories)
+            acc_list.extend(pelts.plant_accessories)
         if "COLLAR" in possible_accs:
-            acc_list.extend(Pelt.collars)
+            acc_list.extend(pelts.collars)
         # ohdan's accessories
         if "FLOWER" in possible_accs:
-            acc_list.extend(Pelt.flower_accessories)
+            acc_list.extend(pelts.flower_accessories)
         if "PLANT2" in possible_accs:
-            acc_list.extend(Pelt.plant2_accessories)
+            acc_list.extend(pelts.plant2_accessories)
         if "SNAKE" in possible_accs:
-            acc_list.extend(Pelt.snake_accessories)
+            acc_list.extend(pelts.snake_accessories)
         if "SMALLANIMAL" in possible_accs:
-            acc_list.extend(Pelt.smallAnimal_accessories)
+            acc_list.extend(pelts.smallAnimal_accessories)
         if "DEADINSECT" in possible_accs:
-            acc_list.extend(Pelt.deadInsect_accessories)
+            acc_list.extend(pelts.deadInsect_accessories)
         if "ALIVEINSECT" in possible_accs:
-            acc_list.extend(Pelt.aliveInsect_accessories)
+            acc_list.extend(pelts.aliveInsect_accessories)
         if "FRUIT" in possible_accs:
-            acc_list.extend(Pelt.fruit_accessories)
+            acc_list.extend(pelts.fruit_accessories)
         if "CRAFTED" in possible_accs:
-            acc_list.extend(Pelt.crafted_accessories)
+            acc_list.extend(pelts.crafted_accessories)
         if "TAIL2" in possible_accs:
-            acc_list.extend(Pelt.tail2_accessories)
+            acc_list.extend(pelts.tail2_accessories)
         # dad accessories
         if "BOOTIES" in possible_accs:
-            acc_list.extend(Pelt.booties)
+            acc_list.extend(pelts.booties)
         if "TOY" in possible_accs:
-            acc_list.extend(Pelt.toy_accessories)
+            acc_list.extend(pelts.toy_accessories)
         if "BLANKIE" in possible_accs:
-            acc_list.extend(Pelt.blankie_accessories)
+            acc_list.extend(pelts.blankie_accessories)
         if "FLAG" in possible_accs:
-            acc_list.extend(Pelt.flag_accessories)
+            acc_list.extend(pelts.flag_accessories)
 
         for acc in possible_accs:
             if acc not in ["WILD", "PLANT", "COLLAR", "FLOWER", "PLANT2", "SNAKE", "SMALLANIMAL", "DEADINSECT",
                            "ALIVEINSECT", "FRUIT", "CRAFTED", "TAIL2", "BOOTIES", "TOY", "BLANKIE", "FLAG"]:
                 acc_list.append(acc)
 
-        if "NOTAIL" in self.main_cat.pelt.scars or "HALFTAIL" in self.main_cat.pelt.scars or (self.main_cat.phenotype.bobtailnr > 0 and self.main_cat.phenotype.bobtailnr < 5):
+        if (hasattr(self.main_cat.pelt, "scars") and ("NOTAIL" in self.main_cat.pelt.scars or "HALFTAIL" in self.main_cat.pelt.scars)) or (self.main_cat.phenotype.bobtailnr > 0 and self.main_cat.phenotype.bobtailnr < 5):
             for acc in Pelt.tail_accessories:
-                try:
+                if acc in acc_list:
                     acc_list.remove(acc)
-                except ValueError:
-                    print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
+            for acc2 in Pelt.tail2_accessories:
+                if acc2 in acc_list:
+                    acc_list.remove(acc2)
 
-        if "NOTAIL" in self.main_cat.pelt.scars or "HALFTAIL" in self.main_cat.pelt.scars or (self.main_cat.phenotype.bobtailnr > 0 and self.main_cat.phenotype.bobtailnr < 5):
-            for acc in Pelt.tail2_accessories:
-                try:
-                    acc_list.remove(acc)
-                except ValueError:
-                    print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
-
-        self.main_cat.pelt.accessory = random.choice(acc_list)
+        if acc_list:
+            self.main_cat.pelt.accessory = random.choice(acc_list)
 
     def handle_death(self):
         """
