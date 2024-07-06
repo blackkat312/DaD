@@ -2003,12 +2003,12 @@ class Genotype:
             self.sexgene[1] = self.sexgene[0]
             self.sexgene[0] = "O"
 
-        if self.white[0] == "wg":
-            self.white[0] = self.white[1]
-            self.white[1] = "wg"
-        elif self.white[0] == "wsal" and self.white[1] != "wg":
+        if self.white[0] == "wsal":
             self.white[0] = self.white[1]
             self.white[1] = "wsal"
+        elif self.white[0] == "wg" and self.white[1] != "wsal":
+            self.white[0] = self.white[1]
+            self.white[1] = "wg"
         elif self.white[0] == "w" and self.white[1] != "wg" and self.white[1] != "wsal":
             self.white[0] = self.white[1]
             self.white[1] = "w"
@@ -3513,7 +3513,7 @@ class Genotype:
                 possible_mutes["main"].remove(gene)
 
         whichgene = ['furtype', 'other', 'main', 'other', 'main', 'main']
-        if self.white[0] == 'W':
+        if self.white[0] == 'W' or (self.white[1] in ['ws', 'wt'] and self.whitegrade == 5):
             whichgene = ['furtype']
         for cate in whichgene:
             if len(possible_mutes[cate]) == 0:
@@ -3538,7 +3538,7 @@ class Genotype:
 
             'pinkdilute' : ['dp'],
             "ext" : ['Eg', 'ec', 'er', 'ea'],
-            "sunshine" : ['sh', 'sg', 'fg'],
+            "corin" : ['sh', 'sg', 'fg'],
             "karp" : ['K'],
             "bleach" : ['lb'],
             "ghosting" : ['Gh'],
