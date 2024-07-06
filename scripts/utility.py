@@ -505,7 +505,7 @@ def create_new_cat_block(
     elif "clancat" in attribute_list:
         cat_type = "former Clancat"
     else:
-        cat_type = choice(['kittypet', 'loner', 'former Clancat'])
+        cat_type = choice(['kittypet', 'kittypet', 'loner', 'loner', 'loner', 'former Clancat'])
 
     # LITTER
     litter = False
@@ -2341,14 +2341,17 @@ def ceremony_text_adjust(
         )
     elif dead_parents:
         random_dead_parent = choice(dead_parents)
-        cat_dict["dead_par1"] = (
-            str(random_dead_parent.name),
-            choice(random_dead_parent.pronouns),
-        )
-        cat_dict["dead_par2"] = (
-            str(random_dead_parent.name),
-            choice(random_dead_parent.pronouns),
-        )
+        try:
+            cat_dict["dead_par1"] = (
+                str(random_dead_parent.name),
+                choice(random_dead_parent.pronouns),
+            )
+            cat_dict["dead_par2"] = (
+                str(random_dead_parent.name),
+                choice(random_dead_parent.pronouns),
+            )
+        except:
+            pass
 
     adjust_text = process_text(adjust_text, cat_dict)
 
@@ -2654,7 +2657,7 @@ def generate_sprite(
             def TabbyBase(whichcolour, whichbase, special = None):
                 whichmain = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                 whichmain.blit(sprites.sprites[whichbase + cat_sprite], (0, 0))
-                if special !='copper' and cat.moons > 12 and 'infertile' not in cat.permanent_condition and not cat.neutered and (genotype.silver[0] == 'I' and genotype.corin[0] == 'fg' and (get_current_season() == 'Leaf-fall' or get_current_season() == 'Leaf-bare')):
+                if special !='copper' and cat.moons > 12 and (genotype.silver[0] == 'I' and genotype.corin[0] == 'fg' and (get_current_season() == 'Leaf-fall' or get_current_season() == 'Leaf-bare' or 'infertile' in cat.permanent_condition or cat.neutered)):
                     sunshine = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
 
                     colours = phenotype.FindRed(genotype, cat.moons, special='low')
@@ -3062,7 +3065,7 @@ def generate_sprite(
                         pointbase2.blit(sprites.sprites['basecolours'+ str(solidcolours.get(whichcolour))], (0, 0))
                         if phenotype.caramel == 'caramel' and not ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour):    
                                 pointbase2.blit(sprites.sprites['caramel0'], (0, 0))
-                        whichmain = ApplySmokeEffects(whichmain)
+                        pointbase2 = ApplySmokeEffects(pointbase2)
 
                         stripebase = CreateStripes(whichcolour, "solid")
                         
