@@ -348,16 +348,16 @@
 		"rerolls": -1,
 		"comment": "Set this to -1 for it to be infinite"
 	},
-	"genetic_chances": {
+	"genetics_config": {
 		"chimera" : 250,
-		"intersex" : 60,
-		"XXX/XXY" : 70,
+		"intersex" : 50,
+		"XXX/XXY" : 75,
 		"brindled_bicolour" : 100,
 		"vitiligo" : 75,
-		"random_mutation" : 90,
+		"random_mutation" : 75,
 		"somatic_mutation" : 100,
 		"kittypet_breed" : 50,
-		"other_breed" : 100,
+		"other_breed" : 75,
 		"purebred_min" : 95,
 		"mix_min" : 25
 	},
