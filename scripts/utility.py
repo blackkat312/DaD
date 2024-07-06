@@ -786,33 +786,34 @@ def create_new_cat(
         if accessory:
             new_cat.pelt.accessory = accessory
 
-        neutered_this_moon = False
-        if can_be_neutered and not is_parent:
-            if kittypet and randint(1, 5) > 2 and age > 2:
-                new_cat.neutered = True
-                new_cat.give_kittypet_message = True
-                neutered_this_moon = True
-            elif loner and randint(1, 7) == 1 and age > 2:
-                new_cat.neutered = True
-                new_cat.already_gave_neutered_message = True
-                neutered_this_moon = True
-            elif other_clan and randint(1, 12) == 1 and age > 2:
-                new_cat.neutered = True
-                new_cat.already_gave_neutered_message = True
-                neutered_this_moon = True
-        if kittypet and randint(1, 3) == 1 and age > 1 and not new_cat.neutered:
-            new_cat.vaccinated = True
+        if game.clan.clan_settings["tnr"]:
+            neutered_this_moon = False
+            if can_be_neutered and not is_parent:
+                if kittypet and randint(1, 5) > 2 and age > 2:
+                    new_cat.neutered = True
+                    new_cat.give_kittypet_message = True
+                    neutered_this_moon = True
+                elif loner and randint(1, 7) == 1 and age > 2:
+                    new_cat.neutered = True
+                    new_cat.already_gave_neutered_message = True
+                    neutered_this_moon = True
+                elif other_clan and randint(1, 12) == 1 and age > 2:
+                    new_cat.neutered = True
+                    new_cat.already_gave_neutered_message = True
+                    neutered_this_moon = True
+            if kittypet and randint(1, 3) == 1 and age > 1 and not new_cat.neutered:
+                new_cat.vaccinated = True
 
-        if neutered_this_moon and ((kittypet and age > 12 and randint(1, 10) == 1) or loner or other_clan):
-            cat_gain_age = randint(3, age)
-            clan_gain_moon = (age - cat_gain_age) + (int(game.clan.age) - age)
-            if clan_gain_moon < 0:
-                clan_gain_moon = 0
-            elif clan_gain_moon > int(game.clan.age):
-                clan_gain_moon = int(game.clan.age)
+            if neutered_this_moon and ((kittypet and age > 12 and randint(1, 10) == 1) or loner or other_clan):
+                cat_gain_age = randint(3, age)
+                clan_gain_moon = (age - cat_gain_age) + (int(game.clan.age) - age)
+                if clan_gain_moon < 0:
+                    clan_gain_moon = 0
+                elif clan_gain_moon > int(game.clan.age):
+                    clan_gain_moon = int(game.clan.age)
 
-            History.add_scar(cat=new_cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.", gain_moon=clan_gain_moon)
-            new_cat.pelt.scars.append("TIPPED")
+                History.add_scar(cat=new_cat, scar_text="m_c's ear was tipped when {PRONOUN/m_c/subject} {VERB/m_c/were/was} neutered.", gain_moon=clan_gain_moon)
+                new_cat.pelt.scars.append("TIPPED")
 
         # give apprentice aged cat a mentor
         if new_cat.age == "adolescent":
