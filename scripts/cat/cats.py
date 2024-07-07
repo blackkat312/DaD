@@ -500,7 +500,7 @@ class Cat:
             "inposs": "theirs",
             "self": "themselves",
             "conju": 1,
-            "tags": ["pleopronoun", "special"]
+            "tags": ["special"]
         },
         {
             "subject": "thon",
