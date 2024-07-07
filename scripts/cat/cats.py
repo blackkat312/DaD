@@ -1480,7 +1480,7 @@ class Cat:
         else:
             self.pronouns = [self.default_pronouns[0].copy()]
 
-        if not theythemdefault:
+        if not theythemdefault and self.age != "newborn":
             self.handle_pronouns()
 
         # APPEARANCE
@@ -1533,19 +1533,8 @@ class Cat:
 
     def handle_pronouns(self):
         all_pronouns = self.default_pronouns.copy()
-        common = []
-        pleo = []
-        noun = []
-        special = []
-        for pronoun in self.default_pronouns:
-            if "common" in pronoun.get("tags"):
-                common.append(pronoun)
-            if "pleopronoun" in pronoun.get("tags"):
-                pleo.append(pronoun)
-            if "nounself" in pronoun.get("tags"):
-                noun.append(pronoun)
-            if "special" in pronoun.get("tags"):
-                special.append(pronoun)
+        current_pronoun = 0
+        list_indexes = len(all_pronouns) - 1
 
         unique_pronoun = 0
         unique_category = randint(1, 14)
@@ -1564,17 +1553,17 @@ class Cat:
 
         # 1/num chances
         if self.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
-            unique_pronoun = 10
+            unique_pronoun = 5
             first_new_pronoun = 5
             second_new_pronoun = 10
             third_new_pronoun = 15
             fourth_new_pronoun = 20
         elif self.genderalign in ["trans molly", "trans tom"]:
-            unique_pronoun = 30
+            unique_pronoun = 37
             first_new_pronoun = 15
-            second_new_pronoun = 25
-            third_new_pronoun = 35
-            fourth_new_pronoun = 45
+            second_new_pronoun = 30
+            third_new_pronoun = 45
+            fourth_new_pronoun = 60
         elif self.genderalign in ["molly", "tom", "intersex"]:
             unique_pronoun = 42
             first_new_pronoun = 20
@@ -1582,21 +1571,160 @@ class Cat:
             third_new_pronoun = 50
             fourth_new_pronoun = 65
 
-        chosen = []
         if randint(1, unique_pronoun) == 1:
             self.pronouns = []  # I don't think this is needed, but jic
+            current_pronoun = randint(0, list_indexes)
             if unique_category in [1, 2, 3, 4, 5]:
-                chosen = choice(common)
-                self.pronouns = [chosen]
+                while "common" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
             elif unique_category in [6, 7, 8, 9]:
-                chosen = choice(pleo)
-                self.pronouns = [chosen]
+                while "pleopronoun" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
             elif unique_category in [10, 11, 12]:
-                chosen = choice(noun)
-                self.pronouns = [chosen]
-            else:  # 13 and 14
-                chosen = choice(all_pronouns)
-                self.pronouns = [chosen]
+                while "nounself" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            # 13 and 14 are any category
+
+            if (self.is_plural() and randint(1, 20) == 1) or (not self.is_plural() and randint(1, 35) == 1):
+                while "special" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+
+            self.pronouns = [all_pronouns[current_pronoun]]
+            if current_pronoun == 0:
+                all_pronouns = all_pronouns[1:]
+            elif current_pronoun == list_indexes:
+                all_pronouns = all_pronouns[:-1]
+            else:
+                all_pronouns = all_pronouns[:current_pronoun] + all_pronouns[(current_pronoun + 1):]
+            list_indexes = len(all_pronouns) - 1
+
+        if randint(1, first_new_pronoun) == 1:
+            current_pronoun = randint(0, list_indexes)
+            if first_category in [1, 2, 3, 4, 5]:
+                while "common" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif first_category in [6, 7, 8, 9]:
+                while "pleopronoun" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif first_category in [10, 11, 12]:
+                while "nounself" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            # 13 and 14 are any category
+            save_current = current_pronoun
+
+            counter = 0
+            if (self.is_plural() and randint(1, 20) == 1) or (not self.is_plural() and randint(1, 35) == 1):
+                while "special" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+                    counter += 1
+                    if counter == 20:
+                        current_pronoun = save_current
+                        break
+
+            self.pronouns.append(all_pronouns[current_pronoun])
+            if current_pronoun == 0:
+                all_pronouns = all_pronouns[1:]
+            elif current_pronoun == list_indexes:
+                all_pronouns = all_pronouns[:-1]
+            else:
+                all_pronouns = all_pronouns[:current_pronoun] + all_pronouns[(current_pronoun + 1):]
+            list_indexes = len(all_pronouns) - 1
+
+        if randint(1, second_new_pronoun) == 1:
+            current_pronoun = randint(0, list_indexes)
+            if second_category in [1, 2, 3, 4, 5]:
+                while "common" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif second_category in [6, 7, 8, 9]:
+                while "pleopronoun" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif second_category in [10, 11, 12]:
+                while "nounself" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            # 13 and 14 are any category
+            save_current = current_pronoun
+
+            counter = 0
+            if (self.is_plural() and randint(1, 20) == 1) or (not self.is_plural() and randint(1, 35) == 1):
+                while "special" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+                    counter += 1
+                    if counter == 20:
+                        current_pronoun = save_current
+                        break
+
+            self.pronouns.append(all_pronouns[current_pronoun])
+            if current_pronoun == 0:
+                all_pronouns = all_pronouns[1:]
+            elif current_pronoun == list_indexes:
+                all_pronouns = all_pronouns[:-1]
+            else:
+                all_pronouns = all_pronouns[:current_pronoun] + all_pronouns[(current_pronoun + 1):]
+            list_indexes = len(all_pronouns) - 1
+
+        if randint(1, third_new_pronoun) == 1:
+            current_pronoun = randint(0, list_indexes)
+            if third_category in [1, 2, 3, 4, 5]:
+                while "common" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif third_category in [6, 7, 8, 9]:
+                while "pleopronoun" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif third_category in [10, 11, 12]:
+                while "nounself" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            # 13 and 14 are any category
+            save_current = current_pronoun
+
+            counter = 0
+            if (self.is_plural() and randint(1, 20) == 1) or (not self.is_plural() and randint(1, 35) == 1):
+                while "special" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+                    counter += 1
+                    if counter == 20:
+                        current_pronoun = save_current
+                        break
+
+            self.pronouns.append(all_pronouns[current_pronoun])
+            if current_pronoun == 0:
+                all_pronouns = all_pronouns[1:]
+            elif current_pronoun == list_indexes:
+                all_pronouns = all_pronouns[:-1]
+            else:
+                all_pronouns = all_pronouns[:current_pronoun] + all_pronouns[(current_pronoun + 1):]
+            list_indexes = len(all_pronouns) - 1
+
+        if randint(1, fourth_new_pronoun) == 1:
+            current_pronoun = randint(0, list_indexes)
+            if fourth_category in [1, 2, 3, 4, 5]:
+                while "common" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif fourth_category in [6, 7, 8, 9]:
+                while "pleopronoun" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            elif fourth_category in [10, 11, 12]:
+                while "nounself" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+            # 13 and 14 are any category
+            save_current = current_pronoun
+
+            counter = 0
+            if (self.is_plural() and randint(1, 20) == 1) or (not self.is_plural() and randint(1, 35) == 1):
+                while "special" not in all_pronouns[current_pronoun].get("tags"):
+                    current_pronoun = randint(0, list_indexes)
+                    counter += 1
+                    if counter == 20:
+                        current_pronoun = save_current
+                        break
+
+            self.pronouns.append(all_pronouns[current_pronoun])
+            if current_pronoun == 0:
+                all_pronouns = all_pronouns[1:]
+            elif current_pronoun == list_indexes:
+                all_pronouns = all_pronouns[:-1]
+            else:
+                all_pronouns = all_pronouns[:current_pronoun] + all_pronouns[(current_pronoun + 1):]
+            list_indexes = len(all_pronouns) - 1
 
     def genetic_conditions(self):
         already_gave_condition = False
