@@ -2655,6 +2655,21 @@ class Events:
             else:
                 trans = cat.genderalign
             text = f"{cat.name} has realized that \"{gender}\" doesn't describe how they feel anymore - {trans} does it much better."
+
+            if not game.settings["they them default"]:
+                pronoun_text = " They now use "
+                if len(cat.pronouns) == 1:
+                    if cat.pronouns[0].get("subject") == cat.pronouns[0].get("object"):
+                        pronoun_text += cat.pronouns[0].get("subject") + "/" + cat.pronouns[0].get("poss")
+                    else:
+                        pronoun_text += cat.pronouns[0].get("subject") + "/" + cat.pronouns[0].get("object")
+                else:
+                    for pronoun in cat.pronouns:
+                        pronoun_text += pronoun.get("subject") + "/"
+                    if pronoun_text[-1] == "/":
+                        pronoun_text = pronoun_text[:-1]
+                text += pronoun_text + "."
+
             game.cur_events_list.append(Single_Event(text, "misc", involved_cats))
             # game.misc_events_list.append(text)
 
