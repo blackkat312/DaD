@@ -3367,7 +3367,7 @@ def generate_sprite(
                     gensprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0))
 
         # draw line art
-        if game.settings['shaders'] and not dead:
+        if game.settings['shaders']:
             gensprite.blit(sprites.sprites['shaders' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             gensprite.blit(sprites.sprites['lighting' + cat_sprite], (0, 0))
 
