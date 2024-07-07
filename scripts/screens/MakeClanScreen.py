@@ -1001,6 +1001,19 @@ class MakeClanScreen(Screens):
 
             self.elements["cat_name"].set_text(str(selected.name))
             self.elements["cat_name"].show()
+
+            pronoun_text = ""
+            if len(selected.pronouns) == 1:
+                if selected.pronouns[0].get("subject") == selected.pronouns[0].get("object"):
+                    pronoun_text += selected.pronouns[0].get("subject") + "/" + selected.pronouns[0].get("poss")
+                else:
+                    pronoun_text += selected.pronouns[0].get("subject") + "/" + selected.pronouns[0].get("object")
+            else:
+                for pronoun in selected.pronouns:
+                    pronoun_text += pronoun.get("subject") + "/"
+                if pronoun_text[-1] == "/":
+                    pronoun_text = pronoun_text[:-1]
+
             if selected.permanent_condition:
                 perm_cond_text = "condition"
                 if len(selected.permanent_condition) > 1:
@@ -1014,6 +1027,8 @@ class MakeClanScreen(Screens):
                 self.elements["cat_info"].set_text(
                     str(selected.gender)
                     + "\n"
+                    + str(pronoun_text)
+                    + "\n"
                     + str(selected.age)
                     + "\n"
                     + str(selected.personality.trait)
@@ -1026,6 +1041,8 @@ class MakeClanScreen(Screens):
             else:
                 self.elements["cat_info"].set_text(
                     str(selected.gender)
+                    + "\n"
+                    + str(pronoun_text)
                     + "\n"
                     + str(selected.age)
                     + "\n"
