@@ -229,18 +229,18 @@ class Pregnancy_Events:
         if not cat.outside and other_cat is None:
             event_list.append(choice(events["adoption"]["unmated_parent"]))
         elif not affair and not dead_mate and not all_mates_outside:
-            involved_cats.append(random_choice.ID)
+            cats_involved.append(random_choice.ID)
             event_list.append(choice(events["adoption"]["two_parents"]))
         elif not affair and dead_mate or all_mates_outside:
             if who_died != 0:
-                involved_cats.append(who_died.ID)
+                cats_involved.append(who_died.ID)
                 random_choice = who_died
             event_list.append(choice(events["adoption"]["dead_mate"]))
         elif len(cat.mate) < 1 and both_unmated and not dead_mate:
-            involved_cats.append(random_choice.ID)
+            cats_involved.append(random_choice.ID)
             event_list.append(choice(events["adoption"]["both_unmated"]))
         elif (len(cat.mate) > 0 and affair) or (affair and len(which_aff.mate) > 0 and cat.ID not in which_aff.mate and not which_aff.dead):
-            involved_cats.append(which_aff.ID)
+            cats_involved.append(which_aff.ID)
             random_choice = which_aff
             event_list.append(choice(events["adoption"]["affair"]))
         else:
