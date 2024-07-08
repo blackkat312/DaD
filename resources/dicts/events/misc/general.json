@@ -1089,7 +1089,7 @@
     "location": ["any"],
     "season": ["greenleaf", "newleaf"],
     "weight": 15,
-    "event_text": "m_c picks some flowers around the camp to bring back to the medicine den.",
+    "event_text": "m_c picks some flowers around the camp to bring back to the healers' den.",
     "m_c": {
       "status": ["kitten"]
     }
@@ -2350,7 +2350,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c visits the other medicine cats.",
+    "event_text": "m_c visits the medicine cats.",
     "m_c": {
         "status": ["medicine cat"]
     },
@@ -3533,7 +3533,7 @@
     "season": ["any"],
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
-    "event_text": "r_c feels so lucky to have {PRONOUN/r_c/poss} own sibling become a medicine cat apprentice. Knowing how time consuming it is to gather herbs, r_c spends a long time gathering up acc_plural to help out m_c. While m_c appreciates the efforts, none of these are particularly useful. Instead m_c uses the acc_plural to decorate {PRONOUN/m_c/poss} pelt.",
+    "event_text": "r_c feels so lucky to have {PRONOUN/r_c/poss} own sibling become a healer apprentice. Knowing how time consuming it is to gather herbs, r_c spends a long time gathering up acc_plural to help out m_c. While m_c appreciates the efforts, none of these are particularly useful. Instead m_c uses the acc_plural to decorate {PRONOUN/m_c/poss} pelt.",
     "new_accessory": ["HERBS", "DRY HERBS"],
     "m_c": {
       "status": ["medicine cat apprentice"],
