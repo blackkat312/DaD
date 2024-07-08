@@ -23,7 +23,7 @@
   ],
 
   "adoption_announce": [
-    "While m_c is disappointed to hear the medicine cat confirm that {PRONOUN/m_c/subject} really {VERB/m_c/are/is}n't expecting kits, there's still hope that {PRONOUN/m_c/subject} could adopt.",
+    "While m_c is disappointed to hear the healer confirm that {PRONOUN/m_c/subject} really {VERB/m_c/are/is}n't expecting kits, there's still hope that {PRONOUN/m_c/subject} could adopt.",
     "Even if m_c won't be having {PRONOUN/m_c/poss} own kits anytime soon, {PRONOUN/m_c/subject} {VERB/m_c/purr/purrs} at the thought of adopting.",
     "m_c has been looking into the option of adopting a litter of kits from outsiders.",
     "To the surprise of the whole Clan, m_c announces that {PRONOUN/m_c/subject} might be adopting soon.",
@@ -35,7 +35,7 @@
     "m_c is longingly imagining {PRONOUN/m_c/self} surrounded by kits.",
     "Even if part of m_c knew it was too good to be true, {PRONOUN/m_c/subject} still {VERB/m_c/find/finds} {PRONOUN/m_c/self} crying for the kits that never were.",
     "m_c struggles to clean up the nest {PRONOUN/m_c/subject} had half-made for kits who never came.",
-    "With the confirmation from the medicine cat that there are no kits, m_c hasn't been seen for a few days.",
+    "With the confirmation from the healer that there are no kits, m_c hasn't been seen for a few days.",
     "m_c is torn on whether to be happy or sad about the fact {PRONOUN/m_c/subject} {VERB/m_c/were/was} never pregnant after all.",
     "Even with nothing to grieve, m_c sits a quiet vigil for the kits that never were.",
     "m_c's nest feels too empty for {PRONOUN/m_c/object}.",
@@ -125,8 +125,8 @@
       "The newly arrived {insert} that m_c has just given birth to looks suspiciously like r_c. "
     ],
     "death": [
-      "Later, as the medicine cat wails with m_c's blood streaked through their pelt and a warrior comes to move the body for {PRONOUN/m_c/poss} vigil, no one knows what to do with the {insert}.",
-      "As the sun tracks across the sky, m_c's bleeding gets worse and worse. It was still worth it, m_c decides, even as the medicine cat fights an impossible battle to keep {PRONOUN/m_c/object} out of StarClan. Still so worth it.",
+      "Later, as the healer wails with m_c's blood streaked through their pelt and a warrior comes to move the body for {PRONOUN/m_c/poss} vigil, no one knows what to do with the {insert}.",
+      "As the sun tracks across the sky, m_c's bleeding gets worse and worse. It was still worth it, m_c decides, even as the healers fight an impossible battle to keep {PRONOUN/m_c/object} out of StarClan. Still so worth it.",
       "The birth was stressful and m_c is exhausted, still bleeding and really just wanting to sleep. Unfortunately, {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} ever wake up again.",
       "m_c wasn't expecting {PRONOUN/m_c/poss} birth to be so incredibly painful. As the day wears on, {PRONOUN/m_c/poss} condition deteriorates, leaving {PRONOUN/m_c/poss} {insert} mewling and trying to suckle a cooling body.",
       "It breaks {PRONOUN/m_c/poss} heart that {PRONOUN/m_c/subject} won't get to be with {PRONOUN/m_c/poss} {insert} as they grow. m_c pants out instructions and pleads to {PRONOUN/m_c/poss} friends around {PRONOUN/m_c/object} as the blood loss from birth slowly takes {PRONOUN/m_c/poss} life.",
@@ -164,7 +164,7 @@
 	],
 	"outside_death": [
 		"Some say m_c didn't make it.",
-		"Some say m_c would have needed a medicine cat to survive."
+		"Some say m_c would have needed a healer to survive."
 	],
 	"lead_death": [
 		"m_c lost one of {PRONOUN/m_c/poss} nine lives, but gave birth to a {insert}.",
@@ -182,7 +182,7 @@
 	  "m_c seems completely unphased about potentially raising the {insert} {PRONOUN/m_c/subject} found on {PRONOUN/m_c/poss} own.",
 	  "m_c looks forwards to parenting the {insert} {PRONOUN/m_c/subject} found.",
 	  "m_c has officially adopted a {insert}.",
-	  "After talking with the medicine cat, m_c has officially adopted a {insert}.",
+	  "After talking with the healers, m_c has officially adopted a {insert}.",
 	  "m_c is so grateful that {PRONOUN/m_c/subject} {VERB/m_c/were/was} able to adopt a {insert}.",
 	  "m_c is practically vibrating when told {PRONOUN/m_c/subject} may adopt the {insert} recently found in the territory."
     ],
