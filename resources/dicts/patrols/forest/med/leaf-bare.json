@@ -100,7 +100,7 @@
             "normal adult": [-1, -1]
         },
         "weight": 20,
-        "intro_text": "p_l heads out, leading a patrol of medicine cats to go find any fresh herbs that have survived leaf-bare so far.",
+        "intro_text": "p_l heads out, leading a patrol of healers to go find any fresh herbs that have survived leaf-bare so far.",
         "decline_text": "... And they're called back almost immediately, as one of the elders has started hacking something up.",
         "chance_of_success": 60,
         "success_outcomes": [
@@ -772,7 +772,7 @@
                 ]
             },
             {
-                "text": "It's very difficult, especially with the plant's leafy top-half gone until newleaf, but p_l somehow manages to find a burdock plant and bring its roots home. Laying the thin roots out in a neat pile in the herb stores makes p_l's entire body thrum with a contented purr, and their Clanmates smile, appreciating their hard-working medicine cat.",
+                "text": "It's very difficult, especially with the plant's leafy top-half gone until newleaf, but p_l somehow manages to find a burdock plant and bring its roots home. Laying the thin roots out in a neat pile in the herb stores makes p_l's entire body thrum with a contented purr, and their Clanmates smile, appreciating their hard-working healer.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["burdock"],
@@ -1146,7 +1146,7 @@
                 ]
             },
             {
-                "text": "It's not just spotting things that s_c is talented at - finding daisies in leaf-bare is hard enough, but finding good, non-wilted leaves is next to impossible, and it's a mark of s_c's unique skills that they manage it. It reminds everyone on the patrol just how lucky c_n is to have s_c as a medicine cat.",
+                "text": "It's not just spotting things that s_c is talented at - finding daisies in leaf-bare is hard enough, but finding good, non-wilted leaves is next to impossible, and it's a mark of s_c's unique skills that they manage it. It reminds everyone on the patrol just how lucky c_n is to have s_c as a healer.",
                 "exp": 10,
                 "weight": 20,
                 "stat_skill": ["SENSE,2"],
@@ -1333,7 +1333,7 @@
                 ]
             },
             {
-                "text": "It's a truly miserable, gray day, but even the colds of leaf-bare can't dampen app1's happiness when they manage to uncover a couple good dandelion plants. Watching them find joy in safeguarding the Clan gives p_l a swoop of pride and affection for the apprentice. The path of a medicine cat suits the young cat well.",
+                "text": "It's a truly miserable, gray day, but even the colds of leaf-bare can't dampen app1's happiness when they manage to uncover a couple good dandelion plants. Watching them find joy in safeguarding the Clan gives p_l a swoop of pride and affection for the apprentice. The path of a healer suits the young cat well.",
                 "exp": 40,
                 "weight": 5,
                 "herbs": ["dandelion"],
@@ -1499,7 +1499,7 @@
                 ]
             },
             {
-                "text": "It's not just spotting things that s_c is talented at - finding dandelions in leaf-bare is hard enough, but finding good, non-wilted leaves is next to impossible, and it's a mark of s_c's unique skills that they manage it. It reminds everyone on the patrol just how lucky c_n is to have s_c as a medicine cat.",
+                "text": "It's not just spotting things that s_c is talented at - finding dandelions in leaf-bare is hard enough, but finding good, non-wilted leaves is next to impossible, and it's a mark of s_c's unique skills that they manage it. It reminds everyone on the patrol just how lucky c_n is to have s_c as a healer.",
                 "exp": 10,
                 "weight": 20,
                 "stat_skill": ["SENSE,2"],
