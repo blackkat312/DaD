@@ -230,7 +230,7 @@
         ],
         "antag_fail_outcomes": [
             {
-                "text": "r_c leaps for the rabbit! And promptly trips over a rock. The rabbit hops away and r_c sheepishly picks {PRONOUN/r_c/self} up before noticing the o_c_n cat watching {PRONOUN/r_c/object} from the other side of the border. The other cat laughs at the pathetic display and turns to walk deeper into their own territory.  They seem to be unfazed and unimpressed by the sad attempt.",
+                "text": "r_c leaps for the rabbit! And promptly trips over a rock. The rabbit hops away and r_c sheepishly picks {PRONOUN/r_c/self} up before noticing the o_c_n cat watching {PRONOUN/r_c/object} from the other side of the border. The other cat laughs at the pathetic display and turns to walk deeper into their own territory. They seem to be unfazed and unimpressed by the sad attempt.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -290,7 +290,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l starts to step over the border but a hiss stops {PRONOUN/p_l/object} in {PRONOUN/p_l/poss} tracks. A o_c_n patrol is padding their way. Though the patrol seems to calm down as they recognize p_l, they look gravely at the medicine cat and explain that they can't spare any herbs - their medicine cat sent them to collect the last of the berries. p_l nods and thanks them anyway.",
+                "text": "p_l starts to step over the border but a hiss stops {PRONOUN/p_l/object} in {PRONOUN/p_l/poss} tracks. A o_c_n patrol is padding their way. Though the patrol seems to calm down as they recognize p_l, they look gravely at the healer and explain that they can't spare any herbs - their medicine cat sent them to collect the last of the berries. p_l nods and thanks them anyway.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -386,7 +386,7 @@
         ],
         "antag_fail_outcomes": [
             {
-                "text": "How dare they trespass! The patrol bounds after the scent, hoping to find the source of it, eventually finding that it leads to the c_n camp. Inside they find the o_c_n medicine cat conversing with your own medicine cat. They tell the patrol off for so hastily jumping to conclusions.  The other medicine cat was only looking to borrow some herbs.",
+                "text": "How dare they trespass! The patrol bounds after the scent, hoping to find the source of it, eventually finding that it leads to the c_n camp. Inside they find the o_c_n medicine cat conversing with c_n's healers. They tell the patrol off for so hastily jumping to conclusions. The medicine cat was only looking to borrow some herbs.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -413,7 +413,7 @@
         "min_max_status": {},
         "weight": 20,
         "intro_text": "As p_l is checking the border lines, they notice that a o_c_n scent has strayed into their territory. o_c_n is their ally, but this is a bit suspicious.",
-        "decline_text": "p_l decides that it isn't important. After all, o_c_n wouldn't do anything to jeopardize the alliance.  Maybe an apprentice simply lost their way.",
+        "decline_text": "p_l decides that it isn't important. After all, o_c_n wouldn't do anything to jeopardize the alliance. Maybe an apprentice simply lost their way.",
         "chance_of_success": 60,
         "success_outcomes": [
             {
@@ -429,7 +429,7 @@
                 "other_clan_rep": 2
             },
             {
-                "text": "p_l follows the scent and finds a wounded o_c_n warrior. It seems the cat had been caught by a dog and chased into c_n territory.  The dog is gone now, but the warrior can't make it back across the border on their own. s_c insists on escorting the warrior back to the o_c_n camp and the o_c_n leader is grateful for the service.",
+                "text": "p_l follows the scent and finds a wounded o_c_n warrior. It seems the cat had been caught by a dog and chased into c_n territory. The dog is gone now, but the warrior can't make it back across the border on their own. s_c insists on escorting the warrior back to the o_c_n camp and the o_c_n leader is grateful for the service.",
                 "exp": 10,
                 "weight": 20,
                 "stat_trait": ["altruistic", "compassionate", "empathetic", "calm"],
@@ -438,7 +438,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l decides to follow the scent, but only ends up walking in circles. Either the trespasser is good at concealing their trail or the patrol just needs to work on their tracking skills.  It doesn't matter now, the whole day has been wasted. p_l decides that they should just return to camp and report the strange scent.",
+                "text": "p_l decides to follow the scent, but only ends up walking in circles. Either the trespasser is good at concealing their trail or the patrol just needs to work on their tracking skills. It doesn't matter now, the whole day has been wasted. p_l decides that they should just return to camp and report the strange scent.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
@@ -483,7 +483,7 @@
         ],
         "antag_fail_outcomes": [
             {
-                "text": "How dare they trespass! p_l bounds after the scent, hoping to find the source of it, eventually finding that it leads to the c_n camp. Inside they find the o_c_n medicine cat conversing with your own medicine cat. They tell p_l off for so hastily jumping to conclusions. The other medicine cat was only looking to borrow some herbs.",
+                "text": "How dare they trespass! p_l bounds after the scent, hoping to find the source of it, eventually finding that it leads to the c_n camp. Inside they find the o_c_n medicine cat conversing with c_n's healers. They tell p_l off for so hastily jumping to conclusions. The medicine cat was only looking to borrow some herbs.",
                 "exp": 0,
                 "weight": 20,
                 "other_clan_rep": -1
