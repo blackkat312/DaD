@@ -3,7 +3,7 @@
     "newborn": "kit",
     "kitten": "kit",
     "apprentice": "paw",
-    "medicine cat apprentice": "paw",
+    "medicine cat apprentice": "bud",
     "mediator apprentice": "paw"
     },
   "normal_suffixes" : [
@@ -15,7 +15,7 @@
     "heart", "heart", "heart", "heart", "heart", "heart", "heart", "heart",
     "arch", "ash", "aster", "back", "badger", "bark", "bat", "beak", "beam", "bee", "beetle", "bellow", "belly", "berry",
     "billow", "bird", "bite", "blaze", "blink", "bloom", "blossom", "blotch", "blur", "bone", "bounce", "bracken", "bramble",
-    "branch", "break", "breeze", "briar", "bright", "brook", "bubble", "bud", "bumble", "burn", "burr", "burst", "bush", "buzz",
+    "branch", "break", "breeze", "briar", "bright", "brook", "bubble", "bumble", "burn", "burr", "burst", "bush", "buzz",
     "call", "catcher", "chase", "chaser", "chasm", "chest", "chill", "chirp", "chomp", "cinder", "clash", "cloud", "clover",
     "crackle", "crash", "crawl", "creek", "crest", "cry", "curl", "current", "daisy", "dance", "dapple", "dart", "dash", "dawn",
     "daze", "dazzle", "dew", "dream", "drift", "drizzle", "drop", "dusk", "dust", "eagle", "ear", "ears", "echo", "egg", "ember",
@@ -77,7 +77,7 @@
     "Badger", "Barley", "Basil", "Bass", "Bay", "Beam", "Bear", "Beaver", "Bee", "Beech", "Beetle", "Berry", "Big", "Billow", "Birch",
     "Bird", "Bite", "Bitter", "Bittern", "Bliss", "Blizzard", "Bloom", "Blossom", "Blotch", "Bluebell", "Bluff", "Bog", "Borage",
     "Bough", "Boulder", "Bounce", "Bracken", "Bramble", "Brave", "Breeze", "Briar", "Bright", "Brindle", "Bristle", "Brook",
-    "Brush", "Bubbling", "Bud", "Bug", "Bumble", "Burdock", "Burr", "Burrow", "Bush", "Butterfly", "Buzzard",
+    "Brush", "Bubbling", "Bug", "Bumble", "Burdock", "Burr", "Burrow", "Bush", "Butterfly", "Buzzard",
     "Carnation", "Carp", "Caterpillar", "Cave", "Cedar", "Chaffinch", "Chasing", "Cherry", "Chervil", "Chestnut", "Chirp", "Chive",
     "Cicada", "Claw", "Clay", "Clear", "Cliff", "Clover", "Comfrey", "Condor", "Cone", "Conifer", "Conker", "Copse", "Cougar",
     "Coyote", "Crag", "Crane", "Creek", "Cress", "Crest", "Crested", "Cricket", "Crouch", "Curl", "Curlew", "Curly",
