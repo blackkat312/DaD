@@ -59,7 +59,7 @@
     },
     "mangled leg": {
         "an infected wound": [
-            "r_c wonders if {PRONOUN/r_c/subject} might need to consult with a medicine cat from another Clan. m_c's mangled leg has become infected and swollen - {PRONOUN/r_c/subject} {VERB/r_c/need/needs} more ideas.",
+            "r_c wonders if {PRONOUN/r_c/subject} might need to consult with a medicine cat from a neighbouring Clan. m_c's mangled leg has become infected and swollen - {PRONOUN/r_c/subject} {VERB/r_c/need/needs} more ideas.",
             "As if the injury wasn't bad enough, the skin around m_c's mangled leg has started to swell and feel feverish."
         ]
     },
@@ -212,12 +212,12 @@
 		"an infected wound": [
 			"Much to m_c's distress {PRONOUN/m_c/poss} paw has started to get more and more sore. When {PRONOUN/m_c/subject} {VERB/m_c/go/goes} to complain to r_c about it, {PRONOUN/r_c/subject} {VERB/r_c/look/looks} quite worried and explains it might be infected.",
 			"m_c's paws look all swollen and have begun to smell a bit around where {PRONOUN/m_c/poss} claws have been pulled.",
-			"Hissing m_c awkwardly pads {PRONOUN/m_c/poss} way over to the medicine den. {PRONOUN/m_c/poss} poor paws feeling set aflame."
+			"Hissing m_c awkwardly pads {PRONOUN/m_c/poss} way over to the healers' den. {PRONOUN/m_c/poss} poor paws feeling set aflame."
 		]
 	},
 	"understimulation": {
 		"anxiety attack": [
-			"m_c creeps into the medicine den to talk to r_c, troubles spinning around in {PRONOUN/m_c/poss} head chasing each other in circles.",
+			"m_c creeps into the healers' den to talk to r_c, troubles spinning around in {PRONOUN/m_c/poss} head chasing each other in circles.",
 			"Due to the lack of stimulous and the unreal feeling of the world around m_c, anxieties have clouded over.",
 			"m_c feels like the whole world is dangerous at the moment, anxious thoughts echoing over and over in {PRONOUN/m_c/poss} head."
 		]
@@ -244,7 +244,7 @@
 			"Poor m_c's been suffering from some nightmares recently."
 		],
 		"dizziness": [
-			"r_c gently helps m_c to lie down in one of the spare nests in the medicine den. It's better than letting {PRONOUN/m_c/object} stumble around the camp.",
+			"r_c gently helps m_c to lie down in one of the spare nests in the healers' den. It's better than letting {PRONOUN/m_c/object} stumble around the camp.",
 			"m_c feels a little bit dizzy from the tiredness weighing {PRONOUN/m_c/object} down.",
 			"Due to how overtired m_c's been, {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} stood up and needed to sit back down with a spinning head."
 		]
