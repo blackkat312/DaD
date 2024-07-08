@@ -14,7 +14,7 @@
     "greencough": {
         "yellowcough": [
              "There has to be a solution - if r_c tries hard enough, surely {PRONOUN/r_c/subject} can still save m_c from the yellowcough {PRONOUN/m_c/poss} greencough has progressed to.",
-             "m_c sits miserably in the medicine cat den, coughing so hard it feels like {PRONOUN/m_c/subject} can barely get a breath in. The outlook looks grim as {PRONOUN/m_c/poss} greencough has progressed to yellowcough."
+             "m_c sits miserably in the healers' den, coughing so hard it feels like {PRONOUN/m_c/subject} can barely get a breath in. The outlook looks grim as {PRONOUN/m_c/poss} greencough has progressed to yellowcough."
         ],
 		"longcough": [
 			"Despite all of m_c's tiredness and fever having left {PRONOUN/m_c/object}, r_c struggles to help get rid of the last lingering cough... it seems like it might never leave.",
@@ -23,8 +23,8 @@
     },
     "kittencough": {
         "silvercough": [
-            "r_c quietly tells m_c's parent that {PRONOUN/r_c/subject} {VERB/r_c/need/needs} to move m_c to the medicine cat den. m_c's kittencough has progressed to silvercough.",
-            "m_c coughs pathetically, wondering why it's not getting better - and why {PRONOUN/m_c/subject} {VERB/m_c/have/has} to be in the stinky medicine cat den now."
+            "r_c quietly tells m_c's parent that {PRONOUN/r_c/subject} {VERB/r_c/need/needs} to move m_c to the healers' den. m_c's kittencough has progressed to silvercough.",
+            "m_c coughs pathetically, wondering why it's not getting better - and why {PRONOUN/m_c/subject} {VERB/m_c/have/has} to be in the stinky healers' den now."
         ]
     },
     "an infected wound": {
@@ -35,8 +35,8 @@
     },
     "running nose": {
         "whitecough": [
-            "r_c moves m_c to the medicine cat den, where the whitecough that {PRONOUN/m_c/poss} running nose has turned into can be more easily monitored.",
-            "m_c brings {PRONOUN/m_c/self} to the medicine cat den, concerned {PRONOUN/m_c/poss} running nose only seems to be getting worse.",
+            "r_c moves m_c to the healers' den, where the whitecough that {PRONOUN/m_c/poss} running nose has turned into can be more easily monitored.",
+            "m_c brings {PRONOUN/m_c/self} to the healers' den, concerned {PRONOUN/m_c/poss} running nose only seems to be getting worse.",
 			"Despite {PRONOUN/m_c/poss} running nose only getting worse, m_c refuses to stay in the medicine den because it's only a little whitecough."
         ],
 		"silvercough": [
@@ -75,7 +75,7 @@
     },
     "stomachache": {
         "diarrhea": [
-            "Embarrassed, m_c reports to r_c that {PRONOUN/m_c/poss} stomachache is now having consequences at the other end of {PRONOUN/m_c/poss} digestive system. r_c, as unsqueamish as all medicine cats, tells m_c that it's now very important {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} drinking water, as the diarrhea will make {PRONOUN/m_c/object} lose it quickly.",
+            "Embarrassed, m_c reports to r_c that {PRONOUN/m_c/poss} stomachache is now having consequences at the other end of {PRONOUN/m_c/poss} digestive system. r_c, as unsqueamish as all healers, tells m_c that it's now very important {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} drinking water, as the diarrhea will make {PRONOUN/m_c/object} lose it quickly.",
             "m_c is now spending more time at the dirtplace than in camp, as {PRONOUN/m_c/poss} stomachache has progressed to diarrhea."
         ],
 		"constipation": [
@@ -345,7 +345,7 @@
 	},
 	"ear infection": {
 		"dizziness": [
-			"While in the medicine cat den for {PRONOUN/m_c/poss} ear infection, r_c has discovered that m_c has become dizzy!",
+			"While in the healers' den for {PRONOUN/m_c/poss} ear infection, r_c has discovered that m_c has become dizzy!",
 			"m_c has become dizzy because of {PRONOUN/m_c/poss} ear infection!",
 			"m_c finds that the world tips and crashes around {PRONOUN/m_c/subject} when {PRONOUN/m_c/subject} {VERB/m_c/try/tries} to stand.",
 			"m_c has gotten dizzy because of {PRONOUN/m_c/poss} ear infection."
