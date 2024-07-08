@@ -158,7 +158,7 @@
   "sleeplessness": [
     "m_c died from having too little sleep.",
     "m_c's lack of sleep killed {PRONOUN/m_c/object}.",
-    "Although m_c's lack of sleep really did a number on {PRONOUN/m_c/poss} body, the medicine cat didn't think it would kill {PRONOUN/m_c/object}."
+    "Although m_c's lack of sleep really did a number on {PRONOUN/m_c/poss} body, the healers didn't think it would kill {PRONOUN/m_c/object}."
   ],
   "sleep paralysis": [
     "this should not appear! m_c died of sleep paralysis?"
