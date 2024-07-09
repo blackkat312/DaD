@@ -26,7 +26,7 @@
             "Is eating some fresh-kill",
             "Is heading to the dirtplace",
             "Is rethinking {PRONOUN/m_c/poss} life choices",
-            "Is in the medicine den",
+            "Is in the healers' den",
             "Is having a good day",
             "Is having a hard day",
             "Is talking to {PRONOUN/m_c/self}",
@@ -85,14 +85,14 @@
         "id": "gen_alive_not_working_insteadinthemedden",
         "not_working": true,
         "thoughts": [
-            "Misses {PRONOUN/m_c/poss} own nest, despite the ones in the medicine den being... fine",
+            "Misses {PRONOUN/m_c/poss} own nest, despite the ones in the healers' den being... fine",
             "Can't get the sharp smell of the herb stores out of {PRONOUN/m_c/poss} nose",
             "Feeling confined and cooped up",
             "Just wants to sleep",
             "Wonders why recovering is so exhausting",
-            "Basking in the sun at the medicine den entrance",
+            "Basking in the sun at the healers' den entrance",
             "Feeling frustrated at {PRONOUN/m_c/poss} own exhaustion",
-            "Doesn't think {PRONOUN/m_c/subject} should have to sleep in the medicine den",
+            "Doesn't think {PRONOUN/m_c/subject} should have to sleep in the healers' den",
             "Eats some prey because {PRONOUN/m_c/subject} know {PRONOUN/m_c/subject} should, not because of hunger",
             "Stands up for a second and feels lightheaded",
             "Isn't having a fun time"
@@ -225,8 +225,8 @@
         "id": "gen_to_alive_med_cat_app",
         "thoughts": [
             "Is grateful for the treatment r_c gave {PRONOUN/m_c/object}",
-            "Is in awe of r_c's growth as a medicine cat apprentice",
-            "Thinks r_c will make a good medicine cat",
+            "Is in awe of r_c's growth as a healer apprentice",
+            "Thinks r_c will make a good healer",
             "Has doubts about r_c's abilities",
             "Saw r_c almost use the wrong herbs"
         ],
@@ -281,7 +281,7 @@
         "thoughts": [
             "Is grateful to r_c for {PRONOUN/m_c/poss} treatment",
             "Wonders if StarClan has given r_c any prophecies lately",
-            "Chats with r_c about what it's like to be a medicine cat"
+            "Chats with r_c about what it's like to be a healer"
         ],
         "main_status_constraint": [
             "kitten",
@@ -946,7 +946,7 @@
     {
         "id": "apprentice_alive_med_cat",
         "thoughts": [
-            "Is at the medicine cat den after a small injury"
+            "Is at the healers' den after a small injury"
         ],
         "main_status_constraint": [
             "apprentice",
@@ -959,8 +959,8 @@
     {
         "id": "apprentice_alive_med_cat_app",
         "thoughts": [
-            "Wants to visit r_c at the medicine cat den",
-            "Is speaking with r_c about what being a medicine cat apprentice is like"
+            "Wants to visit r_c at the healers' den",
+            "Is speaking with r_c about what being a healer apprentice is like"
         ],
         "main_status_constraint": [
             "apprentice",
@@ -2242,9 +2242,9 @@
             "Collected some deathberries and refuses to throw them out because they're pretty",
             "Is talking all about deathberries",
             "Wonders if the death tree is an omen",
-            "Is studying herb lore with the medicine cat",
+            "Is studying herb lore with the healers",
             "Wonders if {PRONOUN/m_c/subject} should be a mediator",
-            "Wonders if {PRONOUN/m_c/subject} should be a medicine cat",
+            "Wonders if {PRONOUN/m_c/subject} should be a healer",
             "Wonders if {PRONOUN/m_c/subject} should be a warrior",
             "Is mad at r_c for something small",
             "Is mad at r_c for stepping on {PRONOUN/m_c/poss} collection",
@@ -2254,7 +2254,7 @@
             "Is talking with r_c about how it would feel to fly",
             "Is squishing {PRONOUN/m_c/poss} paws in mud on purpose",
             "Wandered off for a swim and is still damp",
-            "Is rolling in the medicine den's catmint",
+            "Is rolling in the healers' den's catmint",
             "Is telling stories to the kits",
             "Thinks that rats are great, actually",
             "Wonders if {PRONOUN/m_c/subject} {VERB/m_c/need/needs} a service rat",
@@ -2379,8 +2379,8 @@
             "Sometimes wonders why {PRONOUN/m_c/subject} couldn't be born 'normal'",
             "Is talking to r_c about some concerns",
             "Doesn't think that r_c believes in {PRONOUN/m_c/object}",
-            "Doesn't like the smell of the medicine den",
-            "Likes the smell of the medicine den"
+            "Doesn't like the smell of the healers' den",
+            "Likes the smell of the healers' den"
         ],
         "perm_conditions": {
             "m_c": [
@@ -2411,7 +2411,7 @@
             "Refuses to leave {PRONOUN/m_c/poss} nest",
             "Is overgrooming",
             "Sits and worries with {PRONOUN/m_c/poss} paws",
-            "Goes to the medicine cat to talk about {PRONOUN/m_c/poss} anxieties",
+            "Goes to a healer to talk about {PRONOUN/m_c/poss} anxieties",
             "Is talking with r_c while {PRONOUN/m_c/poss} tail twitches",
             "Has too many thoughts and is breathing harshly",
             "Is struggling to deal with {PRONOUN/m_c/poss} emotions",
@@ -2523,7 +2523,7 @@
             "Wonders if {PRONOUN/m_c/subject} might have kits one day",
             "Feels a longing for {PRONOUN/m_c/poss} kithood days",
             "Is purring while listening to r_c talk about {PRONOUN/r_c/poss} day",
-            "Is listening to the medicine cat despite not wanting to",
+            "Is listening to a healer despite not wanting to",
             "Is worried about the future",
             "Wonders what it would be like to mentor an apprentice",
             "Wishes that r_c would slow down a little bit",
@@ -2654,7 +2654,7 @@
             "Forgot what {PRONOUN/m_c/subject} {VERB/m_c/were/was} doing in the middle of a task",
             "Walked into a tree and hopes nobody noticed",
             "Is seeing double of all {PRONOUN/m_c/poss} Clanmates",
-            "Is scared to talk to the medicine cat about {PRONOUN/m_c/poss} sleeping habits",
+            "Is scared to talk to a healer about {PRONOUN/m_c/poss} sleeping habits",
             "Missed what should have been an easy catch",
             "Forgot that r_c was one of {PRONOUN/m_c/poss} Clanmates the other day",
             "Forgot r_c existed the other day",
@@ -2876,7 +2876,7 @@
             "Is talking to r_c about empathy",
             "Is trying to explain {PRONOUN/m_c/subject} {VERB/m_c/do/does} care, {PRONOUN/m_c/subject} just {VERB/m_c/don't/doesn't} know how to express it",
             "Is trying to explain {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} care about the subject, but aren't trying to be rude",
-            "Is talking with the medicine cat about empathy",
+            "Is talking with a healer about empathy",
             "Worries {PRONOUN/m_c/subject} {VERB/m_c/are/is} not committed enough to c_n",
             "Feels out of control",
             "Feels alone",
@@ -3057,7 +3057,7 @@
         "id": "gen_constant_rash",
         "thoughts": [
             "Is feeling like {PRONOUN/m_c/subject} {VERB/m_c/have/has} fleas",
-			"Fogot to put on {PRONOUN/m_c/poss} herbal paste one time...",
+			"Forgot to put on {PRONOUN/m_c/poss} herbal paste one time...",
 			"Thought {PRONOUN/m_c/subject} {VERB/m_c/were/was} finally free from the rash",
 			"It feeling incredibly itchy",
 			"Complains to r_c about the itchiness",
@@ -3498,7 +3498,7 @@
             "Is used to {PRONOUN/m_c/poss} pain",
             "Isn't sure why {PRONOUN/m_c/poss} joints are hurting today",
             "Compares {PRONOUN/m_c/poss} joints to jellyfish",
-            "Pops a joint back in place without visiting a medicine cat"
+            "Pops a joint back in place without visiting a healer"
         ],
         "perm_conditions": {
             "m_c": [
@@ -3608,7 +3608,7 @@
             "Is staring at the herbs in confused frustration",
 			"Struggles to describe a needed herb to r_c",
 			"Is carefully sorting the herbs into proper piles",
-			"Makes sure that the medicine den is properly sorted",
+			"Makes sure that the healers' den is properly sorted",
 			"Is having a hard moon",
 			"Is getting frustrated by some of the similar looking herbs",
 			"Cries when the wind scatters the herbs",
