@@ -413,8 +413,8 @@
 		"id": "platonic_app_med5",
 		"interactions": [
 			"m_c gently grooms some cobwebs off r_c's fur.",
-			"m_c tells r_c that {PRONOUN/r_c/subject}'ll be an amazing medicine cat someday.",
-			"m_c believes in r_c, and reassures r_c that {PRONOUN/r_c/subject} made the right choice by becoming a medicine cat apprentice."
+			"m_c tells r_c that {PRONOUN/r_c/subject}'ll be an amazing healer someday.",
+			"m_c believes in r_c, and reassures r_c that {PRONOUN/r_c/subject} made the right choice by becoming a healer apprentice."
 		],
 		"relationship_constraint": [
 			"platonic_40"
