@@ -994,6 +994,10 @@ class ProfileScreen(Screens):
 
         if the_cat.status == "leader":
             rank = "guardian"
+        elif the_cat.status == "medicine cat":
+            rank = "healer"
+        elif the_cat.status == "medicine cat apprentice":
+            rank = "healer apprentice"
         else:
             rank = the_cat.status
 
