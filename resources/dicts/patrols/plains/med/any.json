@@ -280,7 +280,7 @@
                 ]
             },
             {
-                "text": "The entire patrol mutely agrees to grit their teeth and bear it, but that doesn't stop the relief everyone feels when they settle into their nests to dry off, a rather motley assortment of herbs refreshing the medicine cat den's stocks.",
+                "text": "The entire patrol mutely agrees to grit their teeth and bear it, but that doesn't stop the relief everyone feels when they settle into their nests to dry off, a rather motley assortment of herbs refreshing the healers' den's stocks.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["random_herbs"],
@@ -477,7 +477,7 @@
         "chance_of_success": 30,
         "success_outcomes": [
             {
-                "text": "p_l mrrps with laughter, watching r_c parade around with such a big bundle of cobwebs that {PRONOUN/r_c/subject} {VERB/r_c/keep/keeps} colliding with things in {PRONOUN/r_c/poss} path {PRONOUN/r_c/subject} can't see. The entire patrol has gotten a wonderful haul, and it's a very pleased medicine cat that leads them back to camp.",
+                "text": "p_l mrrps with laughter, watching r_c parade around with such a big bundle of cobwebs that {PRONOUN/r_c/subject} {VERB/r_c/keep/keeps} colliding with things in {PRONOUN/r_c/poss} path {PRONOUN/r_c/subject} can't see. The entire patrol has gotten a wonderful haul, and it's a very pleased healer that leads them back to camp.",
                 "exp": 20,
                 "weight": 20,
                 "herbs": ["cobwebs"],
@@ -499,7 +499,7 @@
                 ]
             },
             {
-                "text": "The patrol brings back a truly massive haul, and return in good humor, laughing as they set down their sticks of spun-up webbing in the medicine cat den. p_l joins everyone as they sit down to share tongues, ridding their pelts of dust and the odd spider as the cats catch up with each other and enjoy the day.",
+                "text": "The patrol brings back a truly massive haul, and return in good humor, laughing as they set down their sticks of spun-up webbing in the healers' den. p_l joins everyone as they sit down to share tongues, ridding their pelts of dust and the odd spider as the cats catch up with each other and enjoy the day.",
                 "exp": 20,
                 "weight": 5,
                 "herbs": ["many_herbs", "cobwebs"],
@@ -588,7 +588,7 @@
         "chance_of_success": 70,
         "success_outcomes": [
             {
-                "text": "As a plant that grows without losing any of its green in leaf-bare, while <i>also</i> having a crucial herbal use in stopping blood-loss, horsetail is a welcome sight in any well-stocked medicine cat den.",
+                "text": "As a plant that grows without losing any of its green in leaf-bare, while <i>also</i> having a crucial herbal use in stopping blood-loss, horsetail is a welcome sight in any well-stocked healers' den.",
                 "exp": 10,
                 "weight": 20,
                 "herbs": ["horsetail"]
@@ -637,7 +637,7 @@
         "chance_of_success": 70,
         "success_outcomes": [
             {
-                "text": "p_l doesn't know why horsetail plants lack leaves, but they encourage app1's interest in the topic. As a plant that grows without losing any of its green in leaf-bare, while <i>also</i> having a crucial herbal use in stopping blood-loss, horsetail is a welcome sight in any well-stocked medicine cat den.",
+                "text": "p_l doesn't know why horsetail plants lack leaves, but they encourage app1's interest in the topic. As a plant that grows without losing any of its green in leaf-bare, while <i>also</i> having a crucial herbal use in stopping blood-loss, horsetail is a welcome sight in any well-stocked healers' den.",
                 "exp": 20,
                 "weight": 20,
                 "herbs": ["horsetail"],
@@ -659,7 +659,7 @@
                 ]
             },
             {
-                "text": "Snapping off the thick horsetail stem near the base of the plant allows p_l to drag an entire big, long shoot back to camp, where app1 processes it down further into small stem sections that are easily stored, making a neat pile in the medicine cat den with them.",
+                "text": "Snapping off the thick horsetail stem near the base of the plant allows p_l to drag an entire big, long shoot back to camp, where app1 processes it down further into small stem sections that are easily stored, making a neat pile in the healers' den with them.",
                 "exp": 20,
                 "weight": 5,
                 "herbs": ["many_herbs", "horsetail"],
@@ -747,7 +747,7 @@
         "chance_of_success": 30,
         "success_outcomes": [
             {
-                "text": "As a plant that grows without losing any of its green in leaf-bare, while <i>also</i> having a crucial herbal use in stopping blood-loss, horsetail is a welcome sight in any well-stocked medicine cat den. Having other cats to help {PRONOUN/p_l/object} makes the patrol an easy afternoon's work.",
+                "text": "As a plant that grows without losing any of its green in leaf-bare, while <i>also</i> having a crucial herbal use in stopping blood-loss, horsetail is a welcome sight in any well-stocked healers' den. Having other cats to help {PRONOUN/p_l/object} makes the patrol an easy afternoon's work.",
                 "exp": 10,
                 "weight": 20,
                 "herbs": ["horsetail"],
@@ -851,7 +851,7 @@
             "healer cats": [1, 6]
         },
         "weight": 20,
-        "intro_text": "p_l notices that the moss in the medicine den is getting old. {PRONOUN/p_l/subject/CAP} {VERB/p_l/need/needs} to go and gather some more.",
+        "intro_text": "p_l notices that the moss in the healers' den is getting old. {PRONOUN/p_l/subject/CAP} {VERB/p_l/need/needs} to go and gather some more.",
         "decline_text": "A cat requires {PRONOUN/p_l/poss} attention just as {PRONOUN/p_l/subject} go to leave. Moss will have to wait.",
         "chance_of_success": 70,
         "success_outcomes": [
@@ -887,7 +887,7 @@
             "normal adult": [-1, -1]
         },
         "weight": 20,
-        "intro_text": "p_l notices that the moss in the medicine den is getting old, calling over app1, they set out to gather more.",
+        "intro_text": "p_l notices that the moss in the healers' den is getting old, calling over app1, they set out to gather more.",
         "decline_text": "A cat requires their attention just as they go to leave. Moss will have to wait.",
         "chance_of_success": 70,
         "success_outcomes": [
@@ -953,7 +953,7 @@
             "normal adult": [1, 6]
         },
         "weight": 20,
-        "intro_text": "p_l notices that the moss in the medicine den is getting old. They need to go and gather some more and they take a warrior with them to help.",
+        "intro_text": "p_l notices that the moss in the healers' den is getting old. They need to go and gather some more and they take a warrior with them to help.",
         "decline_text": "A cat requires their attention just as they go to leave. Moss will have to wait.",
         "chance_of_success": 70,
         "success_outcomes": [
@@ -1019,7 +1019,7 @@
             "normal adult": [1, 6]
         },
         "weight": 20,
-        "intro_text": "p_l notices that the moss in the medicine den is getting old. They need to go and gather more so they call over some warriors to help them.",
+        "intro_text": "p_l notices that the moss in the healers' den is getting old. They need to go and gather more so they call over some warriors to help them.",
         "decline_text": "A cat requires their attention just as they go to leave. Moss will have to wait.",
         "chance_of_success": 40,
         "success_outcomes": [
@@ -1073,7 +1073,7 @@
             "normal adult": [-1, -1]
         },
         "weight": 20,
-        "intro_text": "p_l has to attend to one of their grimmer jobs as a medicine cat - the grounds where c_n goes to mourn their dead need to be tended to. They're bringing along app1 as their assistant for this trip, and the two cats head out in relative silence.",
+        "intro_text": "p_l has to attend to one of their grimmer jobs as a healer - the grounds where c_n goes to mourn their dead need to be tended to. They're bringing along app1 as their assistant for this trip, and the two cats head out in relative silence.",
         "decline_text": "Just before the two can leave, a cat calls for their attention.",
         "chance_of_success": 60,
         "success_outcomes": [
@@ -1122,7 +1122,7 @@
             "normal adult": [1, 6]
         },
         "weight": 20,
-        "intro_text": "p_l has to attend to one of {PRONOUN/p_l/poss} grimmer jobs as a medicine cat - the grounds where c_n goes to mourn their dead need to be tended to. {PRONOUN/p_l/subject/CAP}{VERB/p_l/'re/'s} bringing along r_c as {PRONOUN/p_l/poss} assistant for this trip, and the two cats head out in relative silence.",
+        "intro_text": "p_l has to attend to one of {PRONOUN/p_l/poss} grimmer jobs as a healer - the grounds where c_n goes to mourn their dead need to be tended to. {PRONOUN/p_l/subject/CAP}{VERB/p_l/'re/'s} bringing along r_c as {PRONOUN/p_l/poss} assistant for this trip, and the two cats head out in relative silence.",
         "decline_text": "Just before the two can leave, a cat calls for their attention.",
         "chance_of_success": 60,
         "success_outcomes": [
@@ -1193,7 +1193,7 @@
                 ]
             },
             {
-                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans and return to camp to discuss them with the guardian and deputy.",
+                "text": "Carefully plucking some herbs, they discuss the latest signs from StarClan and ponder what to do about them. They manage to think up some tentative plans and return to camp to discuss them with the guardian.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["random_herbs"],
@@ -1355,7 +1355,7 @@
                 ]
             },
             {
-                "text": "p_l and r_c decide on a little friendly competition - one medicine cat to another, like all those silly bets the warriors make about hunting prey. They reunite when the sun is going down and walk into camp purring and playfully shoving each other with both their mouths full of herbs.",
+                "text": "p_l and r_c decide on a little friendly competition - one healer to another, like all those silly bets the warriors make about hunting prey. They reunite when the sun is going down and walk into camp purring and playfully shoving each other with both their mouths full of herbs.",
                 "exp": 10,
                 "weight": 5,
                 "herbs": ["random_herbs"],
@@ -1841,7 +1841,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the medicine cat den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
+                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the healers' den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -1930,7 +1930,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the medicine cat den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
+                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the healers' den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -2019,7 +2019,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the medicine cat den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
+                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the healers' den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -2108,7 +2108,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the medicine cat den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
+                "text": "p_l is disgusted with the general disdain they feel from the other apprentices, and how hypocritical it is to tell them herb gathering is easy when the patrol hasn't found <i>any</i> cobwebs! They stalk back to the healers' den in a huff, unable to bear being near the other apprentices for any longer than they have been.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -2413,7 +2413,7 @@
             "all apprentices": [3, 3]
         },
         "weight": 20,
-        "intro_text": "The apprentices are sent off into the territory to gather moss for the medicine cat den.",
+        "intro_text": "The apprentices are sent off into the territory to gather moss for the healers' den.",
         "decline_text": "They're called back to camp, needed for other chores.",
         "chance_of_success": 30,
         "success_outcomes": [
