@@ -1734,7 +1734,7 @@ class Cat:
         intersex_conditions = []
         for condition in PERMANENT:
             intersex = PERMANENT[condition]
-            if intersex["congenital"] in ['intersex'] and intersex not in ["chimerism", "aneuploidy"]:
+            if intersex["congenital"] in ['intersex'] and intersex != "chimerism" and intersex != "aneuploidy":
                 intersex_conditions.append(condition)
 
         if "intersex" not in self.conditions_already_attempted:
