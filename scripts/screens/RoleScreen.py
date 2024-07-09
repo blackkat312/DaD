@@ -439,10 +439,10 @@ class RoleScreen(Screens):
                      f"before appointment.  " \
                      f"The deputy succeeds the guardian if they die or retire. "
         elif self.the_cat.status == "medicine cat":
-            output = f"{self.the_cat.name} is a <b>medicine cat</b>. Medicine cats are the healers of the Clan. " \
-                     f"They treat " \
-                     f"injuries and illnesses with herbal remedies. Unlike warriors, medicine cats are not expected " \
-                     f"to hunt and fight for the Clan. In addition to their healing duties, medicine cats also have " \
+            output = f"{self.the_cat.name} is a <b>healer</b>, also sometimes known as <b>flowers</b>. Healers are " \
+                     f"the doctors of the Clan. They treat " \
+                     f"injuries and illnesses with herbal remedies. Unlike warriors, healers are not expected " \
+                     f"to hunt and fight for the Clan. In addition to their healing duties, healers also have " \
                      f"a special connection to StarClan. Every half-moon, they travel to their Clan's holy place " \
                      f"to commune with StarClan. "
         elif self.the_cat.status == "mediator":
@@ -455,7 +455,7 @@ class RoleScreen(Screens):
             output = f"{self.the_cat.name} is an <b>elder</b>. They have spent many moons serving their Clan, " \
                      f"and have earned " \
                      f"many moons of rest. Elders are essential to passing down the oral tradition of the Clan. " \
-                     f"Elders are held in high esteem in the Clan, and always eat before warriors and medicine cats. "
+                     f"Elders are held in high esteem in the Clan, and always eat before warriors and healers. "
         elif self.the_cat.status == "apprentice":
             output = f"{self.the_cat.name} is an <b>apprentice</b>, in training to become a warrior. " \
                      f"Kits can be made warrior apprentices at six moons of age, where they will learn how " \
@@ -464,11 +464,11 @@ class RoleScreen(Screens):
                      f"the unpleasant and grunt tasks of Clan life. Apprentices take the suffix \"paw\", " \
                      f"to represent the path their paws take towards adulthood. "
         elif self.the_cat.status == "medicine cat apprentice":
-            output = f"{self.the_cat.name} is a <b>medicine cat apprentice</b>, training to become a full medicine cat. " \
-                     f"Kits can be made medicine cat apprentices at six moons of age, where they will learn how to " \
-                     f"heal their Clanmates and commune with StarClan. Medicine cat apprentices are typically chosen " \
+            output = f"{self.the_cat.name} is a <b>healer apprentice</b>, training to become a full healer. " \
+                     f"Kits can be made healer apprentices at six moons of age, where they will learn how to " \
+                     f"heal their Clanmates and commune with StarClan. Healer apprentices are typically chosen " \
                      f"for their interest in healing and/or their connecting to StarClan. Apprentices take the suffix " \
-                     f"\"paw\", to represent the path their paws take towards adulthood. "
+                     f"\"bud\", to represent them soon opening and becoming a beautiful flower. "
         elif self.the_cat.status == "mediator apprentice":
             output = f"{self.the_cat.name} is a <b>mediator apprentice</b>, training to become a full mediator. " \
                      f"Mediators are in charge of handling disagreements both within the Clan and between Clans. " \
