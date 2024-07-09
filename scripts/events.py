@@ -270,7 +270,7 @@ class Events:
             )
             if not med_fullfilled:
                 string = (
-                    f"{game.clan.name}Clan does not have enough healthy medicine cats! Cats will be sick/hurt "
+                    f"{game.clan.name}Clan does not have enough healthy healers! Cats will be sick/hurt "
                     f"for longer and have a higher chance of dying. "
                 )
                 game.cur_events_list.insert(0, Single_Event(string, "health"))
@@ -282,7 +282,7 @@ class Events:
                 for cat in Cat.all_cats.values()
             )
             if not has_med:
-                string = f"{game.clan.name}Clan has no medicine cat!"
+                string = f"{game.clan.name}Clan has no healers!"
                 game.cur_events_list.insert(0, Single_Event(string, "health"))
 
         # Clear the list of cats that died this moon.
@@ -2984,9 +2984,11 @@ class Events:
                 )
 
             else:
+                """
                 game.cur_events_list.insert(
                     0, Single_Event(f"{game.clan.name}Clan has no deputy!")
                 )
+                """
 
 
 events_class = Events()
