@@ -170,13 +170,13 @@ class AllegiancesScreen(Screens):
                 ["<b><u>DEPUTY</u></b>", self.generate_one_entry(game.clan.deputy)]
             )
 
-        # Medicine Cat Box:
+        # Healer Box:
         if living_meds:
             _box = ["", ""]
             if len(living_meds) == 1:
-                _box[0] = "<b><u>MEDICINE CAT</u></b>"
+                _box[0] = "<b><u>HEALER</u></b>"
             else:
-                _box[0] = "<b><u>MEDICINE CATS</u></b>"
+                _box[0] = "<b><u>HEALERS</u></b>"
 
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_meds])
             outputs.append(_box)
