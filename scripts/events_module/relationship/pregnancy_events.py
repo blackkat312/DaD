@@ -397,7 +397,7 @@ class Pregnancy_Events:
                                         and i.genotype.gender != cat.genotype.gender))
                                         and not i.neutered and not cat.neutered
                                         and "infertile" not in i.permanent_condition and "infertile" not in cat.permanent_condition
-                                        and len(i.mate) == 0]
+                                        and len(i.mate) == 0 and not i.birth_cooldown]
                 if(random.random() < 0.75 or len(possible_affair_partners) < 1):
                     if(randint(1, 4) > 1):
                         cat_type = choice(['loner', 'rogue', 'kittypet'])
@@ -419,7 +419,10 @@ class Pregnancy_Events:
                             mate_gender = "masc"
                         else:
                             mate_gender = random.choice(["fem", "masc"])
-                        outside_parent = create_new_cat(Cat,
+                        while not outside_parent or 'infertile' in outside_parent.permanent_condition or outside_parent.neutered:
+                            if(outside_parent):
+                                del Cat.all_cats[outside_parent]
+                            outside_parent = create_new_cat(Cat,
                                                 loner=cat_type in ["loner", "rogue"],
                                                 kittypet=cat_type == "kittypet",
                                                 other_clan=cat_type == 'former Clancat',
@@ -432,6 +435,7 @@ class Pregnancy_Events:
                                                 is_parent=True,
                                                 can_be_neutered=False)[0]
                         outside_parent.thought = "Is wondering what their kits are doing"
+                        outside_parent.birth_cooldown = game.config["pregnancy"]["birth_cooldown"]
                         if random.random() < 0.2:
                             outside_parent.set_mate(cat)
                             cat.set_mate(outside_parent)
@@ -542,12 +546,22 @@ class Pregnancy_Events:
         thinking_amount = random.choices(
             ["correct", "incorrect", "unsure"], [4, 1, 1], k=1
         )
+
+        unsure_litter = []
+        for entry in Pregnancy_Events.PREGNANT_STRINGS["litter_guess"]:
+            unsure_litter.append(entry)
+        unsure_litter = unsure_litter[2:]
+
         if amount <= 3:
             correct_guess = "small"
+        elif amount <= 6:
+            correct_guess = "unsure"
         else:
             correct_guess = "large"
 
-        if thinking_amount[0] == "correct":
+        if correct_guess == "unsure":
+            text = choice(unsure_litter)
+        elif thinking_amount[0] == "correct":
             if correct_guess == "small":
                 text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][0]
             else:
@@ -558,7 +572,7 @@ class Pregnancy_Events:
             else:
                 text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][0]
         else:
-            text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][2]
+            text = choice(unsure_litter)
 
         if clan.game_mode != "classic":
             try:
