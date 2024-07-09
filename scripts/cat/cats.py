@@ -683,6 +683,7 @@ class Cat:
 
         self.pelt = pelt if pelt else Pelt(self.genotype, self.phenotype)
 
+        self.conditions_already_attempted = []
         self.former_mentor = []
         self.patrol_with_mentor = 0
         self.apprentice = []
@@ -1730,42 +1731,41 @@ class Cat:
             list_indexes = len(all_pronouns) - 1
 
     def genetic_conditions(self):
-        already_gave_condition = False
-        intersex_conditions = []
-        for condition in PERMANENT:
-            intersex = PERMANENT[condition]
-            if intersex["congenital"] in ['intersex'] and intersex != "chimerism":
-                intersex_conditions.append(condition)
-        for x in self.permanent_condition:
-            if x in intersex_conditions:
-                already_gave_condition = True
-                break
+        if "intersex" not in self.conditions_already_attempted:
+            if self.genotype.gender == "intersex":
+                if self.genotype.chimera:
+                    self.get_permanent_condition("chimerism", born_with=True)
+                else:
+                    intersex_condition = choice([choice(intersex_conditions), choice(intersex_conditions),
+                                                 choice(intersex_conditions), choice(intersex_conditions), "chimerism"])
+                    self.get_permanent_condition(intersex_condition, born_with=True)
+                self.conditions_already_attempted.append("intersex")
+            elif self.genotype.chimera:
+                if self.gender == self.genderalign:
+                    self.genderalign = "intersex"
+                self.gender = "intersex"
+                self.genotype.gender = "intersex"
+                self.get_permanent_condition("chimerism", born_with=True)
+                self.conditions_already_attempted.append("intersex")
 
-        if self.genotype.gender == "intersex" and self.genotype.chimera:
-            self.get_permanent_condition("chimerism", born_with=True)
-        elif self.genotype.gender != "intersex" and self.genotype.chimera:
-            if self.gender == self.genderalign:
-                self.genderalign = "intersex"
-            self.gender = "intersex"
-            self.genotype.gender = "intersex"
-            self.get_permanent_condition("chimerism", born_with=True)
-        elif self.genotype.gender == "intersex" and self.genotype.chimera and not already_gave_condition:
-            intersex_condition = choice([choice(intersex_conditions), choice(intersex_conditions),
-                                         choice(intersex_conditions), choice(intersex_conditions), "chimerism"])
-            self.get_permanent_condition(intersex_condition, born_with=True)
+        if "blue-eyed hearing problems" not in self.conditions_already_attempted:
+            if self.genotype.deaf:
+                if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
+                    self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
+                elif 'partial hearing loss' not in self.permanent_condition:
+                    self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
+                self.conditions_already_attempted.append("blue-eyed hearing problems")
 
-        if self.genotype.deaf:
-            if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
-                self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
-            elif 'partial hearing loss' not in self.permanent_condition:
-                self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
-        if ('M' in self.genotype.manx):
-            if(random() > ((self.phenotype.bobtailnr + 1) * 0.2)):
-                self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
+        if "manx syndrome" not in self.conditions_already_attempted:
+            if ('M' in self.genotype.manx):
+                if(random() > ((self.phenotype.bobtailnr + 1) * 0.2)):
+                    self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
+                self.conditions_already_attempted.append("manx syndrome")
 
-
-        if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
-            self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
+        if "manx without a tail" not in self.conditions_already_attempted:
+            if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
+                self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
+                self.conditions_already_attempted.append("manx without a tail")
 
         if self.genotype.fold[0] == 'Fd' or ('manx syndrome' in self.permanent_condition and ((self.phenotype.bobtailnr < 2 and randint(1, 10) == 1 and "constant joint pain" not in self.permanent_condition) or (self.phenotype.bobtailnr > 1 and randint(1, 15) == 1 and "constant joint pain" not in self.permanent_condition))):
             self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
@@ -5186,6 +5186,7 @@ class Cat:
                 "reverse": self.pelt.reverse,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
+                "conditions_already_attempted": self.conditions_already_attempted if self.conditions_already_attempted else [],
                 "accessory": self.pelt.accessory,
                 "experience": self.experience,
                 "dead_moons": self.dead_for,
