@@ -679,7 +679,7 @@ class Cat:
         self.phenotype.PhenotypeOutput(gender=self.genotype.gender, sex=self.genotype.gender)
         if self.genotype.chimerageno:
             self.chimerapheno = Phenotype(self.genotype.chimerageno)
-            self.chimerapheno.PhenotypeOutput(gender=self.chimerageno.genotype.gender, sex=self.chimerageno.genotype.gender)
+            self.chimerapheno.PhenotypeOutput(gender=self.genotype.chimerageno.gender, sex=self.genotype.chimerageno.gender)
 
         self.pelt = pelt if pelt else Pelt(self.genotype, self.phenotype)
 
