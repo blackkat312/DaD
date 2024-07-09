@@ -467,7 +467,7 @@
             "Is worried that {PRONOUN/m_c/subject}'ll never get any better", 
             "Got scared of the mouse {PRONOUN/m_c/subject} {VERB/m_c/were/was} supposed to catch", 
             "Is worried about the clouds in the sky", 
-            "Wonders if {PRONOUN/m_c/subject} should have been a medicine cat apprentice instead"
+            "Wonders if {PRONOUN/m_c/subject} should have been a healer apprentice instead"
         ],
         "perm_conditions": {
             "m_c": [
