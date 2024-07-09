@@ -4,12 +4,20 @@ from random import choice, randint, random
 class Breed_generator:
     @staticmethod
     def AllColours(genoclass, special):
+        # FUR LENGTH
+
+        for i in range(2):
+            if randint(1, genoclass.odds["longhair"]) > 3:
+                genoclass.furLength[i] = "l"
+            else:
+                genoclass.furLength[i] = "L"
+
         # EUMELANIN
 
         for i in range(2):
-            if randint(1, 10) == 1:
+            if randint(1, genoclass.odds["cinnamon"]) == 1:
                 genoclass.eumelanin[i] = "bl"
-            elif randint(1, 5) == 1:
+            elif randint(1, genoclass.odds["chocolate"]) == 1:
                 genoclass.eumelanin[i] = "b"
             else:
                 genoclass.eumelanin[i] = "B"
@@ -22,12 +30,12 @@ class Breed_generator:
                 genoclass.sexgene = ["", "", "Y"]
             
                 for i in range(2):
-                    if randint(1, 4) == 1:
+                    if randint(1, genoclass.odds["red"]) == 1:
                         genoclass.sexgene[i] = "O"
                     else:
                         genoclass.sexgene[i] = "o"
             else:
-                if randint(1, 4) == 1:
+                if randint(1, genoclass.odds["red"]) == 1:
                     genoclass.sexgene[0] = "O"
                 else:
                     genoclass.sexgene[0] = "o"
@@ -40,13 +48,13 @@ class Breed_generator:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 genoclass.sexgene = ["", "", ""]
                 for i in range(3):
-                    if randint(1, 4) == 1:
+                    if randint(1, genoclass.odds["red"]) == 1:
                         genoclass.sexgene[i] = "O"
                     else:
                         genoclass.sexgene[i] = "o"
             else:
                 for i in range(2):
-                    if randint(1, 4) == 1:
+                    if randint(1, genoclass.odds["red"]) == 1:
                         genoclass.sexgene[i] = "O"
                     else:
                         genoclass.sexgene[i] = "o"
@@ -55,25 +63,27 @@ class Breed_generator:
                 genoclass.gender = "intersex"
             else:
                 genoclass.gender = "molly"
+
+        if 'o' in genoclass.sexgene and 'O' in genoclass.sexgene and randint(1, genoclass.odds['brindled_bicolour'])==1:
+            genoclass.brindledbi = True
         
+        if(random() < 0.05):
+            genoclass.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-red', 'blue-tipped', 'blue-tipped', 'cinnamon'])
+
         # DILUTE
 
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
+        for i in range(2):
+            if randint(1, genoclass.odds["dilute"]) > 3:
+                genoclass.dilute[i] = "d"
+            else:
+                genoclass.dilute[i] = "D"
 
         # WHITE
 
         for i in range(2):
-
-            if randint(1, 20) == 1:
+            if randint(1, genoclass.odds["dominant white"]) == 1:
                 genoclass.white[i] = "W"
-            elif randint(1, 2) == 1:
+            elif randint(1, genoclass.odds["white spotting"]) == 1:
                 genoclass.white[i] = "ws"
             else:
                 genoclass.white[i] = "w"
@@ -81,60 +91,45 @@ class Breed_generator:
         # ALBINO
 
         for i in range(2):
-            c = randint(1, 10)
-            d = randint(1, 5)
-
-            if c == 1:
+            if randint(1, genoclass.odds["sepia"]) == 1:
                 genoclass.pointgene[i] = "cb"
-            elif d == 1:
+            elif randint(1, genoclass.odds["colourpoint"]) == 1:
                 genoclass.pointgene[i] = "cs"
             else:
                 genoclass.pointgene[i] = "C"
 
         # SILVER
 
-        a = randint(1, 100)
-
-        if a == 1:
-            genoclass.silver = ["I", "I"]
-        elif a < 12:
-            genoclass.silver = ["I", "i"]
-        else:
-            genoclass.silver = ["i", "i"]
+        for i in range(2):
+            if randint(1, genoclass.odds["silver"]) == 1:
+                genoclass.silver[i] = "I"
+            else:
+                genoclass.silver[i] = "i"
 
         # AGOUTI
 
         for i in range(2):
-            b = randint(1, 2)
-            if b == 1:
-                genoclass.agouti[i] = "A"
-            else:
+            if randint(1, genoclass.odds["solid"]) > 3:
                 genoclass.agouti[i] = "a"
+            else:
+                genoclass.agouti[i] = "A"
 
         # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
+        for i in range(2):
+            if randint(1, genoclass.odds["blotched"]) == 1:
+                genoclass.mack[i] = "mc"
+            else:
+                genoclass.mack[i] = "Mc"
 
         # TICKED
+        for i in range(2):
+            if randint(1, genoclass.odds["ticked"]) == 1:
+                genoclass.ticked[i] = "Ta"
+            else:
+                genoclass.ticked[i] = "ta"
 
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-
-        #ruhr + ruhrmod + lykoi
+        if randint(1, genoclass.odds["breakthrough"]) == 1:
+            genoclass.breakthrough = True
 
         a = randint(1, 4)
 
@@ -169,8 +164,6 @@ class Breed_generator:
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
-
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -356,16 +349,6 @@ class Breed_generator:
     
     @staticmethod
     def AmBob(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -379,16 +362,6 @@ class Breed_generator:
     
     @staticmethod
     def AmCurl(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -583,16 +556,6 @@ class Breed_generator:
     
     @staticmethod
     def Aphrodite(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -824,16 +787,6 @@ class Breed_generator:
     
     @staticmethod
     def Asian(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -1181,16 +1134,6 @@ class Breed_generator:
     
     @staticmethod
     def British(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a < 3:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -1675,16 +1618,6 @@ class Breed_generator:
     
     @staticmethod
     def Clippercat(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2139,16 +2072,6 @@ class Breed_generator:
     
     @staticmethod
     def Highlander(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2183,16 +2106,6 @@ class Breed_generator:
     
     @staticmethod
     def JapBob(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2313,16 +2226,6 @@ class Breed_generator:
     
     @staticmethod
     def Karel(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2519,16 +2422,6 @@ class Breed_generator:
     
     @staticmethod
     def Kuril(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2559,16 +2452,6 @@ class Breed_generator:
     
     @staticmethod
     def LaPerm(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2744,16 +2627,6 @@ class Breed_generator:
     
     @staticmethod
     def Lykoi(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -2917,18 +2790,7 @@ class Breed_generator:
     
     @staticmethod
     def Manx(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
 
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
-
-        
         genoclass = Breed_generator.AllColours(genoclass, special)
 
         # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
@@ -2982,16 +2844,6 @@ class Breed_generator:
     
     @staticmethod
     def Munchkin(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -3011,16 +2863,6 @@ class Breed_generator:
     
     @staticmethod
     def NewZeal(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -3153,19 +2995,9 @@ class Breed_generator:
     
     @staticmethod
     def Oriental(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-        genoclass.longtype = "medium"
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
+        genoclass.longtype = "medium"
 
         # ALBINO
 
@@ -3251,14 +3083,11 @@ class Breed_generator:
     def Pixiebob(genoclass, special):
         # FUR LENGTH
         
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
+        for i in range(2):
+            if randint(1, 2) == 1:
+                genoclass.furLength[i] = "l"
+            else:
+                genoclass.furLength[i] = "L"
 
         # EUMELANIN
 
@@ -3610,17 +3439,6 @@ class Breed_generator:
     
     @staticmethod
     def Selkirk(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
-
         
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4021,17 +3839,6 @@ class Breed_generator:
     
     @staticmethod
     def Tenn(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
-
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4146,17 +3953,6 @@ class Breed_generator:
     
     @staticmethod
     def Toybob(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
-
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4323,16 +4119,6 @@ class Breed_generator:
     
     @staticmethod
     def Ural(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4558,14 +4344,11 @@ class Breed_generator:
     def Foldex(genoclass, special):
         # FUR LENGTH
         
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
+        for i in range(2):
+            if randint(1, 2) == 1:
+                genoclass.furLength[i] = "l"
+            else:
+                genoclass.furLength[i] = "L"
 
         # EUMELANIN
 
@@ -4750,18 +4533,6 @@ class Breed_generator:
     
     @staticmethod
     def Gaelic(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
-
-        
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4782,16 +4553,6 @@ class Breed_generator:
     
     @staticmethod
     def Kinkalow(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4810,16 +4571,6 @@ class Breed_generator:
     
     @staticmethod
     def Lambkin(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
@@ -4836,16 +4587,6 @@ class Breed_generator:
     
     @staticmethod
     def Napoleon(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
         
@@ -5029,16 +4770,6 @@ class Breed_generator:
     
     @staticmethod
     def Skookum(genoclass, special):
-        # FUR LENGTH
-        
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.furLength = ["L", "L"]
-        elif a == 4:
-            genoclass.furLength = ["l", "l"]
-        else:
-            genoclass.furLength = ["L", "l"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
