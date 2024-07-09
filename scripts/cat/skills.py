@@ -129,7 +129,7 @@ class SkillPath(Enum):
         "decor master",
     )
     LEADERSHIP = (
-        "medicine cat's helper",
+        "healers' helper",
         "leads patrols",
         "guardian's accomplice",
         "assiduous",
