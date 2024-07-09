@@ -345,7 +345,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "The patrol launches into battle, but r_c is caught with a nasty bite, and the cats give up on challenging for the food in favor of quickly helping r_c back to the medicine cat den.",
+                "text": "The patrol launches into battle, but r_c is caught with a nasty bite, and the cats give up on challenging for the food in favor of quickly helping r_c back to the healers' den.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -481,7 +481,7 @@
                 "prey": ["very_small"]
             },
             {
-                "text": "The patrol launches into battle, but r_c is caught with a nasty bite, and the cats give up on challenging for the food in favor of quickly helping r_c back to the medicine cat den.",
+                "text": "The patrol launches into battle, but r_c is caught with a nasty bite, and the cats give up on challenging for the food in favor of quickly helping r_c back to the healers' den.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -1429,7 +1429,7 @@
         },
         "weight": 20,
         "intro_text": "The patrol heads out at sunhigh, trying to press the weak warmth of the sun into their pelts. p_l is a little irritated to see that app1 is more focused on app2 than the challenge of hunting during leaf-bare.",
-        "decline_text": "The cats are called back to camp - there's something the deputy needs to discuss with them.",
+        "decline_text": "The cats are called back to camp - there's something the guardian needs to discuss with them.",
         "chance_of_success": 30,
         "success_outcomes": [
             {
@@ -1518,7 +1518,7 @@
         "min_max_status": {},
         "weight": 20,
         "intro_text": "r_c suggests the patrol hunts close to home - there's no use exhausting themselves pushing through the high snowdrifts.",
-        "decline_text": "The cats are called back to camp - there's something the deputy needs to discuss with them.",
+        "decline_text": "The cats are called back to camp - there's something the guardian needs to discuss with them.",
         "chance_of_success": 40,
         "success_outcomes": [
             {
