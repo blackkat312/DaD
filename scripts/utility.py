@@ -2965,6 +2965,7 @@ def generate_sprite(
                                     whichmain.blit(pointbase, (0, 0))
                                     pointbase.blit(whichmain, (0, 0))
                                     coloursurface = pointbase
+                                    colour = whichcolour
                                     
                                     whichmain = ApplySmokeEffects(whichmain)
                             else:
@@ -3051,6 +3052,7 @@ def generate_sprite(
                             whichmain.blit(pointbase, (0, 0))
                             coloursurface = whichmain
                             whichmain = ApplySmokeEffects(whichmain)
+                            colour = whichcolour
 
                         else:
                             whichmain.blit(sprites.sprites['lightbasecolours0'], (0, 0))
