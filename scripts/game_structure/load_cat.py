@@ -117,6 +117,8 @@ def json_load():
                 if cat["specialty2"] is not None:
                     new_cat.pelt.scars.append(cat["specialty2"])
 
+            new_cat.conditions_already_attempted = cat["conditions_already_attempted"] if "conditions_already_attempted" in cat else []
+
             new_cat.adoptive_parents = (
                 cat["adoptive_parents"] if "adoptive_parents" in cat else []
             )
