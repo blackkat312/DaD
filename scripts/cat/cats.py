@@ -1741,7 +1741,7 @@ class Cat:
             if self.genotype.gender == "intersex":
                 if self.genotype.chimera:
                     self.get_permanent_condition("chimerism", born_with=True)
-                if len(self.genotype.sexgene) > 2 or (self.genotype.chimera and self.genotype.chimerageno.sexgene) > 2:
+                if len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2):
                     self.get_permanent_condition("aneuploidy", born_with=True)
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
                     if randint(1, 50) != 1:
