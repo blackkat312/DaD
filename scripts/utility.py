@@ -2639,14 +2639,14 @@ def generate_sprite(
                     stripebase.blit(surf, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 
                 middle = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
-                if(genotype.soktype == "full sokoke" and not pattern):
+                if(genotype.soktype == "full sokoke" and not pattern and 'agouti' not in phenotype.tabby):
                     middle.blit(stripebase, (0, 0))
                     stripebase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                     middle.set_alpha(150)
                     stripebase.blit(middle, (0, 0))
                     middle = CreateStripes(stripecolour, whichbase, coloursurface, pattern=phenotype.GetTabbySprite(special='redbar'))
                     stripebase.blit(middle, (0, 0))
-                elif(genotype.soktype == "mild fading" and not pattern):
+                elif(genotype.soktype == "mild fading" and not pattern and 'agouti' not in phenotype.tabby):
                     middle.blit(stripebase, (0, 0))
                     stripebase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                     middle.set_alpha(204)
@@ -3145,7 +3145,7 @@ def generate_sprite(
                     pads.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 elif trigger_chocolate_skin:
                     pads.blit(sprites.sprites['nosecolours4'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                elif ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour):
+                elif 'amber' not in phenotype.colour and ('russet' in phenotype.colour or 'carnelian' in phenotype.colour or 'red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour):
                     pads.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 else:
                     pads.blit(sprites.sprites['nosecolours' + str(pad_dict.get(whichcolour))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
