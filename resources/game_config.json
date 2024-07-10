@@ -356,8 +356,8 @@
 
 		"chimera" : 250,
 		"intersex" : 50,
-		"XXX/XXY" : 75,
-		"brindled_bicolour" : 100,
+		"XXX/XXY" : 100,
+		"brindled_bicolour" : 150,
 		"vitiligo" : 75,
 		"random_mutation" : 75,
 		"somatic_mutation" : 100,
@@ -422,7 +422,7 @@
 		"ringtail" : 60,
 		"munchkin" : 70,
 		"polydactyl" : 20,
-		"DBE" : 50
+		"DBE" : 40
 	},
 	"graduation": {
 		"base_app_timeskip_ex": [[3, 12],[5, 6]],
