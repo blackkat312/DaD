@@ -1557,23 +1557,23 @@ class Cat:
 
         # 1/num chances
         if self.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
-            unique_pronoun = 5
-            first_new_pronoun = 5
-            second_new_pronoun = 10
-            third_new_pronoun = 15
-            fourth_new_pronoun = 20
-        elif self.genderalign in ["trans molly", "trans tom"]:
-            unique_pronoun = 37
+            unique_pronoun = 15
             first_new_pronoun = 15
-            second_new_pronoun = 30
-            third_new_pronoun = 45
-            fourth_new_pronoun = 60
+            second_new_pronoun = 20
+            third_new_pronoun = 25
+            fourth_new_pronoun = 30
+        elif self.genderalign in ["trans molly", "trans tom"]:
+            unique_pronoun = 47
+            first_new_pronoun = 25
+            second_new_pronoun = 40
+            third_new_pronoun = 55
+            fourth_new_pronoun = 70
         elif self.genderalign in ["molly", "tom", "intersex"]:
-            unique_pronoun = 42
-            first_new_pronoun = 20
-            second_new_pronoun = 35
-            third_new_pronoun = 50
-            fourth_new_pronoun = 65
+            unique_pronoun = 52
+            first_new_pronoun = 30
+            second_new_pronoun = 45
+            third_new_pronoun = 60
+            fourth_new_pronoun = 75
 
         if randint(1, unique_pronoun) == 1:
             self.pronouns = []  # I don't think this is needed, but jic
