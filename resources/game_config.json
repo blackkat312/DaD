@@ -351,8 +351,6 @@
 	"genetics_config": {
 		"kittypet_breed" : 50,
 		"other_breed" : 75,
-		"purebred_min" : 95,
-		"mix_min" : 25,
 		"multi-sire_chance" : 10,
 		"multi-sire_max_sires" : 5,
 
