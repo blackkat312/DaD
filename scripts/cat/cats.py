@@ -1822,7 +1822,7 @@ class Cat:
                 self.conditions_already_attempted.append("albinism")
 
         if "ocular albinism" not in self.conditions_already_attempted:
-            if(('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or self.genotype.pinkdilute[0] == 'dp') or (self.genotype.chimera and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype or self.genotype.chimerageno.pinkdilute[0] == 'dp'))) and not (self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c')):
+            if(('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or (self.genotype.extraeye and 'albino' in self.genotype.extraeyetype) or self.genotype.pinkdilute[0] == 'dp') or (self.genotype.chimera and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype or (self.genotype.chimerageno.extraeye and 'albino' in self.genotype.chimerageno.extraeyetype) or self.genotype.chimerageno.pinkdilute[0] == 'dp'))) and not (self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c')):
                 self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
                 self.conditions_already_attempted.append("ocular albinism")
 
