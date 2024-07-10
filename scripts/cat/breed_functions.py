@@ -140,7 +140,8 @@ class Breed_generator:
         else:
             genoclass.ruhrmod = ["hi", "ha"]
 
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
+        widegenes = ["0", "0", "1", "1", "1", "2", "2"]
+        genesspot = ["2", "1", "0"]
 
         genoclass.wideband = ''
         genoclass.rufousing = ''
@@ -152,30 +153,43 @@ class Breed_generator:
         genoclass.pigmentation = ''
         
         for i in range(0, 8):
-            genoclass.wideband += choice(genes)
+            genoclass.wideband += choice(widegenes)
             genoclass.wbsum += int(genoclass.wideband[i])
 
         for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
+            genoclass.rufousing += choice(genesspot)
             genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        for i in range(0, 4):
-            genoclass.tickgenes += '0'
-            genoclass.ticksum += int(genoclass.tickgenes[i])
+        genesmild = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
+        sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
 
-        for i in range(0, 4):
-            genoclass.bengal += '0'
-            genoclass.bengsum += int(genoclass.bengal[i])
+        while genoclass.ticksum > 3:
+            for i in range(0, 4):
+                genoclass.tickgenes += choice(genesmild)
+                genoclass.ticksum += int(genoclass.tickgenes[i])
+            if genoclass.ticksum > 3:
+                genoclass.tickgenes = ""
+                genoclass.ticksum = 0
 
-        for i in range(0, 4):
-            genoclass.sokoke += '0'
-            genoclass.soksum += int(genoclass.sokoke[i])
+        while genoclass.bengsum > 3:
+            for i in range(0, 4):
+                genoclass.bengal += choice(genesmild)
+                genoclass.bengsum += int(genoclass.bengal[i])
+            if genoclass.bengsum > 3:
+                genoclass.bengal = ""
+                genoclass.bengsum = 0
+
+        while genoclass.soksum > 3:
+            for i in range(0, 4):
+                genoclass.sokoke += choice(genesmild)
+                genoclass.soksum += int(genoclass.sokoke[i])
+            if genoclass.soksum > 3:
+                genoclass.sokoke = ""
+                genoclass.soksum = 0
 
         genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[3])
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[4])
