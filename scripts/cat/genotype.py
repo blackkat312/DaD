@@ -1984,7 +1984,7 @@ class Genotype:
                 if random() < 0.33:
                     self.deaf = True
 
-        if het2index == 0 and "c" not in self.pointgene and blueindex != 0:
+        if het2index == 0 and not ("c" in self.pointgene and self.pointgene[0] != "C") and blueindex != 0 and not (self.pointgene == ["C", "c"] and randint(1, 10) > 7):
             tempref = randint(1, 11)
             temppig = randint(1, 12)
             if randint(1, 2)==1:
@@ -2009,11 +2009,13 @@ class Genotype:
             if(sectoralindex == 0):
                 self.extraeye = 'sectoral' + str(randint(1, 6))
             a = [randint(1, 11), randint(1, 12)]
+            if "c" in self.pointgene and self.pointgene[0] != "C" or (self.pointgene == ["C", "c"] and randint(1, 10) > 7):
+                a[1] = 13
             self.extraeyecolour = RefTypeFind(a[0], a[1])
             self.extraeyetype = SecondaryRefTypeFind(a[0], a[1])
 
 
-            if "c" in self.pointgene:
+            if (self.pointgene == ["C", "c"] and randint(1, 10) > 7) or ("c" in self.pointgene and self.pointgene[0] != "C"):
                 self.lefteye = RefTypeFind(refgrade, 13)
                 self.righteye = RefTypeFind(refgrade, 13)
 
@@ -2144,6 +2146,9 @@ class Genotype:
         self.pigmentation = piggrade
 
     def ShowGenes(self):
+        """
+        TODO: add sectoral heterochromia
+        """
         wht = str(self.white) + " (" + str(self.whitegrade) + ")"
         brkethrough = "breakthrough tabby"
 
