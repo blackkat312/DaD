@@ -167,29 +167,285 @@ class Breed_generator:
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
         sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
 
-        while genoclass.ticksum > 3:
-            for i in range(0, 4):
-                genoclass.tickgenes += choice(genesmild)
-                genoclass.ticksum += int(genoclass.tickgenes[i])
-            if genoclass.ticksum > 3:
-                genoclass.tickgenes = ""
-                genoclass.ticksum = 0
+        #
 
-        while genoclass.bengsum > 3:
-            for i in range(0, 4):
-                genoclass.bengal += choice(genesmild)
-                genoclass.bengsum += int(genoclass.bengal[i])
-            if genoclass.bengsum > 3:
-                genoclass.bengal = ""
-                genoclass.bengsum = 0
+        #
 
-        while genoclass.soksum > 3:
-            for i in range(0, 4):
-                genoclass.sokoke += choice(genesmild)
-                genoclass.soksum += int(genoclass.sokoke[i])
-            if genoclass.soksum > 3:
-                genoclass.sokoke = ""
-                genoclass.soksum = 0
+        # TICK START
+        int1 = choice(genesmild)
+        int2 = choice(genesmild)
+        int3 = choice(genesmild)
+        int4 = choice(genesmild)
+
+        genoclass.tickgenes += int1
+        if int1 == "2":
+            int2 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+        genoclass.tickgenes += int2
+
+        if genoclass.tickgenes[0] == "1":
+            if genoclass.tickgenes[1] == "1":
+                int3 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+            elif genoclass.tickgenes[1] == "2":
+                int3 = "0"
+            elif genoclass.tickgenes[1] != "0":
+                int3 = "0"
+                print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+        elif genoclass.tickgenes[0] == "2":
+            if genoclass.tickgenes[1] == "1":
+                int3 = "0"
+            elif genoclass.tickgenes[1] != "0":
+                int3 = "0"
+                print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+        genoclass.tickgenes += int3
+
+        if genoclass.tickgenes[0] == "0":
+            if genoclass.tickgenes[1] == "0":
+                if genoclass.tickgenes[2] == "2":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.tickgenes[2] != "0" and genoclass.tickgenes[2] != "1":
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+            elif genoclass.tickgenes[1] == "1":
+                if genoclass.tickgenes[2] == "1":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.tickgenes[2] == "2":
+                    int4 = "0"
+                elif genoclass.tickgenes[2] != "0":
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+            elif genoclass.tickgenes[1] == "2":
+                if genoclass.tickgenes[2] == "0":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.tickgenes[2] == "1":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+            else:
+                int4 = "0"
+                print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+        elif genoclass.tickgenes[0] == "1":
+            if genoclass.tickgenes[1] == "1":
+                if genoclass.tickgenes[2] == "0":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.tickgenes[2] == "1":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+            elif genoclass.tickgenes[1] == "2":
+                if genoclass.tickgenes[2] == "0":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+            elif genoclass.tickgenes[1] != "0":
+                int4 = "0"
+                print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+        elif genoclass.tickgenes[0] == "2":
+            if genoclass.tickgenes[1] == "1":
+                if genoclass.tickgenes[2] == "0":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+            elif genoclass.tickgenes[1] != "0":
+                int4 = "0"
+                print("ERROR! In breed_functions.py, ticked polygenes got messed up somehow")
+        genoclass.tickgenes += int4
+        # TICK STOP
+
+        #
+
+        #
+
+        # BENGAL START
+        int1 = choice(genesmild)
+        int2 = choice(genesmild)
+        int3 = choice(genesmild)
+        int4 = choice(genesmild)
+
+        genoclass.bengal += int1
+        if int1 == "2":
+            int2 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+        genoclass.bengal += int2
+
+        if genoclass.bengal[0] == "1":
+            if genoclass.bengal[1] == "1":
+                int3 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+            elif genoclass.bengal[1] == "2":
+                int3 = "0"
+            elif genoclass.bengal[1] != "0":
+                int3 = "0"
+                print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+        elif genoclass.bengal[0] == "2":
+            if genoclass.bengal[1] == "1":
+                int3 = "0"
+            elif genoclass.bengal[1] != "0":
+                int3 = "0"
+                print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+        genoclass.bengal += int3
+
+        if genoclass.bengal[0] == "0":
+            if genoclass.bengal[1] == "0":
+                if genoclass.bengal[2] == "2":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.bengal[2] != "0" and genoclass.bengal[2] != "1":
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+            elif genoclass.bengal[1] == "1":
+                if genoclass.bengal[2] == "1":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.bengal[2] == "2":
+                    int4 = "0"
+                elif genoclass.bengal[2] != "0":
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+            elif genoclass.bengal[1] == "2":
+                if genoclass.bengal[2] == "0":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.bengal[2] == "1":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+            else:
+                int4 = "0"
+                print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+        elif genoclass.bengal[0] == "1":
+            if genoclass.bengal[1] == "1":
+                if genoclass.bengal[2] == "0":
+                    int4 = choice(["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"])
+                elif genoclass.bengal[2] == "1":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+            elif genoclass.bengal[1] == "2":
+                if genoclass.bengal[2] == "0":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+            elif genoclass.bengal[1] != "0":
+                int4 = "0"
+                print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+        elif genoclass.bengal[0] == "2":
+            if genoclass.bengal[1] == "1":
+                if genoclass.bengal[2] == "0":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+            elif genoclass.bengal[1] != "0":
+                int4 = "0"
+                print("ERROR! In breed_functions.py, bengal polygenes got messed up somehow")
+        genoclass.bengal += int4
+        # BENGAL STOP
+
+        #
+
+        #
+
+        # SOKOKE START
+        int1 = choice(sokgenes)
+        int2 = choice(sokgenes)
+        int3 = choice(sokgenes)
+        int4 = choice(sokgenes)
+
+        genoclass.sokoke += int1
+        if int1 == "2":
+            int2 = choice(["1", "1", "1", "0", "0", "0", "0"])
+        genoclass.sokoke += int2
+
+        if genoclass.sokoke[0] == "1":
+            if genoclass.sokoke[1] == "1":
+                int3 = choice(["1", "1", "1", "0", "0", "0", "0"])
+            elif genoclass.sokoke[1] == "2":
+                int3 = "0"
+            elif genoclass.sokoke[1] != "0":
+                int3 = "0"
+                print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+        elif genoclass.sokoke[0] == "2":
+            if genoclass.sokoke[1] == "1":
+                int3 = "0"
+            elif genoclass.sokoke[1] != "0":
+                int3 = "0"
+                print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+        genoclass.sokoke += int3
+
+        if genoclass.sokoke[0] == "0":
+            if genoclass.sokoke[1] == "0":
+                if genoclass.sokoke[2] == "2":
+                    int4 = choice(["1", "1", "1", "0", "0", "0", "0"])
+                elif genoclass.sokoke[2] != "0" and genoclass.sokoke[2] != "1":
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+            elif genoclass.sokoke[1] == "1":
+                if genoclass.sokoke[2] == "1":
+                    int4 = choice(["1", "1", "1", "0", "0", "0", "0"])
+                elif genoclass.sokoke[2] == "2":
+                    int4 = "0"
+                elif genoclass.sokoke[2] != "0":
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+            elif genoclass.sokoke[1] == "2":
+                if genoclass.sokoke[2] == "0":
+                    int4 = choice(["1", "1", "1", "0", "0", "0", "0"])
+                elif genoclass.sokoke[2] == "1":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+            else:
+                int4 = "0"
+                print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+        elif genoclass.sokoke[0] == "1":
+            if genoclass.sokoke[1] == "1":
+                if genoclass.sokoke[2] == "0":
+                    int4 = choice(["1", "1", "1", "0", "0", "0", "0"])
+                elif genoclass.sokoke[2] == "1":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+            elif genoclass.sokoke[1] == "2":
+                if genoclass.sokoke[2] == "0":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+            elif genoclass.sokoke[1] != "0":
+                int4 = "0"
+                print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+        elif genoclass.sokoke[0] == "2":
+            if genoclass.sokoke[1] == "1":
+                if genoclass.sokoke[2] == "0":
+                    int4 = "0"
+                else:
+                    int4 = "0"
+                    print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+            elif genoclass.sokoke[1] != "0":
+                int4 = "0"
+                print("ERROR! In breed_functions.py, sokoke polygenes got messed up somehow")
+        genoclass.sokoke += int4
+        # SOKOKE STOP
+
+        #
+
+        #
+
+        for i in range(0, 4):
+            genoclass.ticksum += int(genoclass.tickgenes[i])
+            genoclass.bengsum += int(genoclass.bengal[i])
+            genoclass.soksum += int(genoclass.sokoke[i])
+
+        if genoclass.ticksum > 3:
+            print("Somehow, ticked polygenes sum is too much in breed_functions.py")
+        if genoclass.bengsum > 3:
+            print("Somehow, bengal polygenes sum is too much in breed_functions.py")
+        if genoclass.soksum > 3:
+            print("Somehow, sokoke polygenes sum is too much in breed_functions.py")
 
         genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[3])
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[4])
