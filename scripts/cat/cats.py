@@ -1557,17 +1557,17 @@ class Cat:
 
         # 1/num chances
         if self.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
-            unique_pronoun = 15
-            first_new_pronoun = 15
-            second_new_pronoun = 20
-            third_new_pronoun = 25
-            fourth_new_pronoun = 30
+            unique_pronoun = 10
+            first_new_pronoun = 10
+            second_new_pronoun = 15
+            third_new_pronoun = 20
+            fourth_new_pronoun = 25
         elif self.genderalign in ["trans molly", "trans tom"]:
-            unique_pronoun = 47
-            first_new_pronoun = 25
-            second_new_pronoun = 40
-            third_new_pronoun = 55
-            fourth_new_pronoun = 70
+            unique_pronoun = 42
+            first_new_pronoun = 20
+            second_new_pronoun = 35
+            third_new_pronoun = 50
+            fourth_new_pronoun = 65
         elif self.genderalign in ["molly", "tom", "intersex"]:
             unique_pronoun = 52
             first_new_pronoun = 30
@@ -1746,6 +1746,8 @@ class Cat:
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
                     if randint(1, 50) != 1:
                         intersex_condition = choice(intersex_conditions)
+                        while intersex_condition == "chimerism" or intersex_condition == "aneuploidy":
+                            intersex_condition = choice(intersex_conditions)
                     else:
                         intersex_condition = "chimerism"
                     self.get_permanent_condition(intersex_condition, born_with=True)
