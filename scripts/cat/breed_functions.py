@@ -6452,8 +6452,8 @@ class Breed_checker:
 
 
 def find_my_breed(genotype, phenotype, config):
-    purebred_range = config.get("purebred_min", 75)
-    mix_range = config.get("mix_min", 12.5)
+    purebred_range = 95
+    mix_range = 12.5
 
     hybrids = {
         "Bambino" : genotype.breeds.get("Munchkin", 0) + genotype.breeds.get("Sphynx", 0), 
