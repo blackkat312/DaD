@@ -164,54 +164,140 @@ class Breed_generator:
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
-        sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
-        nomildtwos = ["1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
-        nosoktwos = ["1", "1", "1", "0", "0", "0", "0"]
+        # genesmild = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
+        # sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
 
-        wiptick = []
-        wipbeng = []
-        wipsok = []
-        onenum = 0
-        twonum = 0
-        threenum = 0
-        fournum = 0
+        ticklist = []
+        benglist = []
+        soklist = []
 
+        # TICKED
+        # one
         if randint(1, 14) <= 6:
-            wiptick.append("1")
+            ticklist.append("1")
             onenum = 1
         else:
-            wiptick.append("0")
+            ticklist.append("0")
             onenum = 0
 
+        # two
         if randint(1, 14) <= 6:
-            wiptick.append("1")
+            ticklist.append("1")
             twonum = 1
         else:
-            wiptick.append("0")
+            ticklist.append("0")
             twonum = 0
 
+        # three
         if randint(1, 14) <= 6:
-            wiptick.append("1")
+            ticklist.append("1")
             threenum = 1
         else:
-            wiptick.append("0")
+            ticklist.append("0")
             threenum = 0
 
-        if randint(1, 14) <= 6 and not ((onenum + twonum + threenum) == 3):
-            wiptick.append("1")
+        # four
+        if randint(1, 14) <= 6 and ((onenum + twonum + threenum) != 3):
+            ticklist.append("1")
             fournum = 1
         else:
-            wiptick.append("0")
+            ticklist.append("0")
             fournum = 0
 
-        # genoclass.tickgenes
-        # genoclass.bengal
-        # genoclass.sokoke
+        randomindex = randint(0, 3)
+        # changing to 2
+        if randint(1, 16) <= 2 and ((((onenum + twonum + threenum + fournum) < 2) and ticklist[randomindex] == "0") or (((onenum + twonum + threenum + fournum) < 3) and ticklist[randomindex] == "1")):
+            ticklist[randomindex] = "2"
 
-        # genoclass.ticksum
-        # genoclass.bengsum
-        # genoclass.soksum
+        # BENGAL
+        # one
+        if randint(1, 14) <= 6:
+            benglist.append("1")
+            onenum = 1
+        else:
+            benglist.append("0")
+            onenum = 0
+
+        # two
+        if randint(1, 14) <= 6:
+            benglist.append("1")
+            twonum = 1
+        else:
+            benglist.append("0")
+            twonum = 0
+
+        # three
+        if randint(1, 14) <= 6:
+            benglist.append("1")
+            threenum = 1
+        else:
+            benglist.append("0")
+            threenum = 0
+
+        # four
+        if randint(1, 14) <= 6 and ((onenum + twonum + threenum) != 3):
+            benglist.append("1")
+            fournum = 1
+        else:
+            benglist.append("0")
+            fournum = 0
+
+        randomindex = randint(0, 3)
+        # changing to 2
+        if randint(1, 16) <= 2 and ((((onenum + twonum + threenum + fournum) < 2) and benglist[randomindex] == "0") or (((onenum + twonum + threenum + fournum) < 3) and benglist[randomindex] == "1")):
+            benglist[randomindex] = "2"
+
+        # SOKOKE
+        # one
+        if randint(1, 7) <= 3:
+            soklist.append("1")
+            onenum = 1
+        else:
+            soklist.append("0")
+            onenum = 0
+
+        # two
+        if randint(1, 7) <= 3:
+            soklist.append("1")
+            twonum = 1
+        else:
+            soklist.append("0")
+            twonum = 0
+
+        # three
+        if randint(1, 7) <= 3:
+            soklist.append("1")
+            threenum = 1
+        else:
+            soklist.append("0")
+            threenum = 0
+
+        # four
+        if randint(1, 7) <= 3 and ((onenum + twonum + threenum) != 3):
+            soklist.append("1")
+            fournum = 1
+        else:
+            soklist.append("0")
+            fournum = 0
+
+        randomindex = randint(0, 3)
+        # changing to 2
+        if randint(1, 9) <= 2 and ((((onenum + twonum + threenum + fournum) < 2) and soklist[randomindex] == "0") or (((onenum + twonum + threenum + fournum) < 3) and soklist[randomindex] == "1")):
+            soklist[randomindex] = "2"
+
+        index = 0
+        while index != 4:
+            genoclass.tickgenes += ticklist[index]
+            genoclass.bengal += benglist[index]
+            genoclass.sokoke += soklist[index]
+            index += 1
+
+        index = 0
+        while index != 4:
+            genoclass.ticksum += int(genoclass.tickgenes[index])
+            genoclass.bengsum += int(genoclass.bengal[index])
+            genoclass.soksum += int(genoclass.sokoke[index])
+            index += 1
 
         genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[3])
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[4])
