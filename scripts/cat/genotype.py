@@ -667,7 +667,8 @@ class Genotype:
         elif randint(1, self.odds["DBE"]) == 1 and not self.ban_genes:
             self.pax3[0] = choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])
 
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
+        widegenes = ["0", "0", "1", "1", "1", "2", "2"]
+        genesspot = ["2", "1", "0"]
 
         self.wideband = ''
         self.rufousing = ''
@@ -679,14 +680,12 @@ class Genotype:
         self.pigmentation = ''
         
         for i in range(0, 8):
-            self.wideband += choice(genes)
+            self.wideband += choice(widegenes)
             self.wbsum += int(self.wideband[i])
 
         for i in range(0, 4):
-            self.rufousing += choice(genes)
+            self.rufousing += choice(genesspot)
             self.rufsum += int(self.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             self.spotted += choice(genesspot)
@@ -702,7 +701,7 @@ class Genotype:
             self.bengal += choice(genesmild)
             self.bengsum += int(self.bengal[i])
 
-        sokgenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
+        sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             self.sokoke += choice(sokgenes)
@@ -1023,18 +1022,17 @@ class Genotype:
         self.sokoke = ''
         self.refraction = ''
         self.pigmentation = ''
-        
-        genes = ["2", "2", "1", "1", "1", "1", "0", "0"]
+
+        widegenes = ["0", "0", "1", "1", "1", "2", "2"]
+        genesspot = ["2", "1", "0"]
 
         for i in range(0, 8):
-            self.wideband += choice(genes)
+            self.wideband += choice(widegenes)
             self.wbsum += int(self.wideband[i])
 
         for i in range(0, 4):
-            self.rufousing += choice(genes)
+            self.rufousing += choice(genesspot)
             self.rufsum += int(self.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             self.spotted += choice(genesspot)
@@ -1050,7 +1048,7 @@ class Genotype:
             self.bengal += choice(genesmild)
             self.bengsum += int(self.bengal[i])
 
-        sokgenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
+        sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             self.sokoke += choice(sokgenes)
