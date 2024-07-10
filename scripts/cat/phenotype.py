@@ -513,7 +513,7 @@ class Phenotype():
         if breed:
             breed = " " + breed + " "
 
-        if self.genotype.pointgene == ['C', 'c']:
+        if self.genotype.pointgene == ['C', 'c'] and ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or (self.genotype.extraeye and "albino" in self.genotype.extraeyetype)):
             outputs = "a " + self.length + " albinistic " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
         else:
             outputs = "a " + self.length + " " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
