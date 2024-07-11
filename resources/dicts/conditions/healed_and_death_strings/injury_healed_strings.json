@@ -263,5 +263,9 @@
         "m_c woke up after fainting.",
         "m_c blinks awake on the ground.",
         "m_c blinks awake where {PRONOUN/m_c/subject} {VERB/m_c/were/was}."
-    ]
+    ],
+    "knee locking": [
+		"m_c's knees are free to bend now.",
+		"m_c's knee unlocks."
+	]
 }
