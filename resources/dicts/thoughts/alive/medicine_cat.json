@@ -425,11 +425,11 @@
 	{
         "id": "anxiety_med_cat",
         "thoughts": [
-            "Is smelling some lavender to help {PRONOUN/m_c/object} stay calm",
-            "Is smelling some mint to help {PRONOUN/m_c/object} stay calm",
+            "Smells some lavender to help {PRONOUN/m_c/object} stay calm",
+            "Smells some mint to help {PRONOUN/m_c/object} stay calm",
             "Finds the herbal scents of the healers' den calming",
-            "Is telling r_c about how much {PRONOUN/m_c/subject} like the smell of lavender",
-            "Is telling r_c about how much {PRONOUN/m_c/subject} like the smell of mint"
+            "Tells r_c about how much {PRONOUN/m_c/subject} {VERB/m_c/like/likes} the smell of lavender",
+            "Tells r_c about how much {PRONOUN/m_c/subject} {VERB/m_c/like/likes} the smell of mint"
         ],
         "perm_conditions": {
             "m_c": [
@@ -437,15 +437,7 @@
             ]
         },
         "random_status_constraint": [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -454,7 +446,7 @@
 	{
         "id": "face_blindness_med_cat",
         "thoughts": [
-            "Is stressing about keeping track of which herbs go to which cat",
+            "Stresses about keeping track of which herbs go to which cat",
 			"Verbally confirms {PRONOUN/m_c/subject} {VERB/m_c/are/is} talking to r_c",
 			"Piles up the herbs by cat name",
 			"Recognizes r_c by scent",
@@ -466,15 +458,7 @@
             ]
         },
         "random_status_constraint": [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
