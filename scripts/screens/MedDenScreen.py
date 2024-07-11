@@ -627,6 +627,8 @@ class MedDenScreen(Screens):
             "parrot chatter": "echolalia",
             "thought blindness": "aphantasia",
             "vivid daydreamer": "maladaptive daydreamer",
+            "frequent fainting": "vasovagal syncope",
+            "flooded paws": "POTS",
 
             "sunblindness": "light sensitivity",
 

@@ -2743,5 +2743,79 @@
 			}
         ],
         "herbs": []
+    },
+    "frequent fainting": {
+        "severity": "minor",
+        "congenital": "always",
+        "moons_until": 5,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+                "name": "dizziness",
+                "chance": 10
+            },
+            {
+                "name": "headache",
+                "chance": 30
+            },
+            {
+                "name": "fainting",
+                "chance": 25
+            },
+            {
+                "name": "seizure",
+                "chance": 80
+            }
+        ],
+        "herbs": []
+    },
+    "flooded paws": {
+        "severity": "minor",
+        "congenital": "always",
+        "moons_until": 8,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+                "name": "dizziness",
+                "chance": 15
+            },
+            {
+                "name": "headache",
+                "chance": 30
+            },
+            {
+                "name": "fainting",
+                "chance": 60
+            },
+            {
+				"name": "fatigue",
+				"chance": 50
+			},
+            {
+                "name": "nausea",
+                "chance": 30
+            }
+        ],
+        "herbs": []
     }
 }

@@ -481,6 +481,8 @@ class Condition_Events:
             "face blindness",
             "parrot chatter",
             "selective mutism",
+            "frequent fainting",
+            "flooded paws"
         ]
 
         got_condition = False
@@ -971,6 +973,8 @@ class Condition_Events:
             "is a puzzled heart": "has low empathy",
             "be a puzzled heart": "have low empathy",
             "parrot chatter": "echolalia",
+            "frequent fainting": "vasovagal syncope",
+            "flooded paws": "POTS",
 
             "sunblindness": "light sensitivity",
 
