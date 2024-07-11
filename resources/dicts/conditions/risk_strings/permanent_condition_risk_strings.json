@@ -702,8 +702,7 @@
     		"m_c vents to the medicine cat that sometimes, it feels like {PRONOUN/m_c/poss} body isn't {PRONOUN/m_c/poss} own. {PRONOUN/m_c/subject/CAP} may be a budding spirit."
   		],
 		"nausea": [
-			"m_c decided to try an old favorite food of {PRONOUN/m_c/inposs}, but {PRONOUN/m_c/subject} ended up not liking it. In fact, its texture and taste made m_c feel nauseous, and {PRONOUN/m_c/subject} now {VERB/m_c/lie/lies} in {PRONOUN/m_c/poss} nest, curled up and hoping that this feeling will go away soon.",
-    		"m_c decided to try an old favorite food of {PRONOUN/m_c/inposs}, but {PRONOUN/m_c/subject} ended up not liking it. In fact, its texture and taste made m_c feel nauseous, and {PRONOUN/m_c/subject} now {VERB/m_c/lie/lies} in {PRONOUN/m_c/poss} nest, curled up and hoping that this feeling will go away soon."
+			"m_c decided to try an old favorite food of {PRONOUN/m_c/inposs}, but {PRONOUN/m_c/subject} ended up not liking it. In fact, its texture and taste made m_c feel nauseous, and {PRONOUN/m_c/subject} now {VERB/m_c/lie/lies} in {PRONOUN/m_c/poss} nest, curled up and hoping that this feeling will go away soon."
   		],
 		"parroting": [
 			"With more than some amusement r_c has been sitting with m_c while {PRONOUN/m_c/subject} {VERB/m_c/parrot/parrots} {PRONOUN/r_c/poss} own words right back to {PRONOUN/r_c/object}.",
@@ -1656,5 +1655,50 @@
             "Sometimes when m_c is half asleep, it feels as if there are creatures climbing up over {PRONOUN/m_c/poss} body, conspiring to keep {PRONOUN/m_c/object} awake.",
             "m_c admits to a Clanmate that {PRONOUN/m_c/subject} {VERB/m_c/are/is} not sure if {PRONOUN/m_c/subject} can actually trust {PRONOUN/m_c/poss} ears and what {PRONOUN/m_c/subject} {VERB/m_c/are/is} hearing anymore."
         ]
-    }
+    },
+	"frequent fainting": {
+		"dizziness":[
+			"r_c helps m_c stay on {PRONOUN/m_c/poss} paws as {PRONOUN/r_c/subject} {VERB/r_c/guide/guides} {PRONOUN/m_c/object} towards the medicine den to rest in until this period of dizziness passes.",
+			"m_c quickly sits back down and takes a deep breath. This stops {PRONOUN/m_c/object} from faiting, but the dizziness doesn't subside.",
+			"m_c stands up too quickly and finds the world spinning around {PRONOUN/m_c/object}."
+		],
+		"fainting":[
+			"r_c makes sure that the nest is nice and soft, set aside for m_c to rest in once {PRONOUN/m_c/subject} {VERB/m_c/recover/recovers} from {PRONOUN/m_c/poss} fainting spell.",
+			"m_c stood up too fast and ended up crashing back down to the distress of {PRONOUN/m_c/poss} Clanmates.",
+			"m_c fainted trying to power through the day.",
+			"m_c thought {PRONOUN/m_c/subject} could ride out the wave of dizziness, only to wake up on the ground.",
+			"m_c assures {PRONOUN/m_c/poss} clanmates that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} fine. The fainting spell only lasted a few moments."
+		],
+		"headache":[
+			"m_c knows the day isn't starting well when there's a dull thumping in {PRONOUN/m_c/poss} head.",
+			"This headache is awful, but m_c's just grateful {PRONOUN/m_c/subject} didn't faint.",
+			"While it's only a minor irritation at best, m_c still goes to talk to r_c about the dull ache in {PRONOUN/m_c/poss} head."
+		],
+		"seizure":[
+			"m_c doesn't remember falling down, but when {PRONOUN/m_c/subject} {VERB/m_c/blink/blinks} {PRONOUN/m_c/poss} eyes dizzily, {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} looking up at the sky above.",
+			"r_c is used to m_c's fainting spells, but not when {PRONOUN/m_c/poss} body begins spasming afterwards."
+		]
+	},
+	"flooded paws": {
+		"dizziness":[
+			"m_c stands up too quickly and finds the world spinning around {PRONOUN/m_c/object}.",
+			"r_c helps m_c stay on {PRONOUN/m_c/poss} paws as {PRONOUN/r_c/subject} {VERB/r_c/guide/guides} {PRONOUN/m_c/object} towards the medicine den to rest in until this period of dizziness passes.",
+			"It seems every time m_c moves too suddenly, a new wave of dizziness hits {PRONOUN/m_c/object}."
+		],
+		"fainting":[
+			"m_c stood up too fast and ended up crashing back down to the distress of {PRONOUN/m_c/poss} Clanmates.",
+			"m_c assures {PRONOUN/m_c/poss} clanmates that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} fine. The fainting spell only lasted a few moments.",
+			"m_c thought {PRONOUN/m_c/subject} could ride out the wave of dizziness, only to wake up on the ground."
+		],
+		"headache":[
+			"m_c knows the day isn't starting well when there's a dull thumping in {PRONOUN/m_c/poss} head.",
+			"While it's only a minor irritation at best, m_c still goes to talk to r_c about the dull ache in {PRONOUN/m_c/poss} head."
+		],
+		"fatigue":[
+			"r_c's noticed that m_c has been more tired than usual lately. After talking with {PRONOUN/m_c/object} about it, it seems as if m_c's just experiencing some fatigue."
+		],
+		"nausea":[
+			"When m_c tries to stand up, {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like {PRONOUN/m_c/subject} might throw up."
+		]
+	}	
 }

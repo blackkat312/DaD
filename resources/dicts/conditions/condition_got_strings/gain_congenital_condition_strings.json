@@ -303,5 +303,14 @@
 		"When talking with r_c about {PRONOUN/m_c/poss} dreams for the future m_c reveals {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} have any image of what it might look like.",
 		"When m_c's talking with {PRONOUN/m_c/poss} clanmates {PRONOUN/m_c/subject} increasingly {VERB/m_c/get/gets} frustrated when trying to visualise what they describe.",
 		"m_c has come to the realisation that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} thought blind."
-	]
+	],
+  "frequent fainting":[
+    "r_c is shocked to find m_c collapsed on the ground. {PRONOUN/m_c/subject} {VERB/m_c/reveal/reveals} that this isn't the first time {PRONOUN/m_c} {VERB/m_c/have/has} fainted.",
+    "After the third time m_c faints, {PRONOUN/m_c/subject} finally {VERB/m_c/go/goes} to the medicine cat.",
+    "r_c panicks seeing m_c faint in front of {PRONOUN/r_c/object}. m_c admits this happens to {PRONOUN/m_c/object} whenever {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} dehydrated."
+  ],
+  "flooded paws":[
+    "Everytime m_c stands up too quickly, {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like {PRONOUN/m_c/poss} heart is going to burst.",
+    "m_c can feel {PRONOUN/m_c/poss} blood pool in {PRONOUN/m_c/poss} paws whenever {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} up after resting."
+  ]
 }
