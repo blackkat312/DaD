@@ -702,6 +702,7 @@
     		"m_c vents to the medicine cat that sometimes, it feels like {PRONOUN/m_c/poss} body isn't {PRONOUN/m_c/poss} own. {PRONOUN/m_c/subject/CAP} may be a budding spirit."
   		],
 		"nausea": [
+			"m_c decided to try an old favorite food of {PRONOUN/m_c/inposs}, but {PRONOUN/m_c/subject} ended up not liking it. In fact, its texture and taste made m_c feel nauseous, and {PRONOUN/m_c/subject} now {VERB/m_c/lie/lies} in {PRONOUN/m_c/poss} nest, curled up and hoping that this feeling will go away soon.",
 			"m_c decided to try an old favorite food of {PRONOUN/m_c/inposs}, but {PRONOUN/m_c/subject} ended up not liking it. In fact, its texture and taste made m_c feel nauseous, and {PRONOUN/m_c/subject} now {VERB/m_c/lie/lies} in {PRONOUN/m_c/poss} nest, curled up and hoping that this feeling will go away soon."
   		],
 		"parroting": [
@@ -1695,10 +1696,12 @@
 			"While it's only a minor irritation at best, m_c still goes to talk to r_c about the dull ache in {PRONOUN/m_c/poss} head."
 		],
 		"fatigue":[
-			"r_c's noticed that m_c has been more tired than usual lately. After talking with {PRONOUN/m_c/object} about it, it seems as if m_c's just experiencing some fatigue."
+			"r_c's noticed that m_c has been more tired than usual lately. After talking with {PRONOUN/m_c/object} about it, it seems as if m_c's just experiencing some fatigue.",
+			"Today, m_c woke up feeling fatigued due to {PRONOUN/m_c/poss} flooded paws."
 		],
 		"nausea":[
-			"When m_c tries to stand up, {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like {PRONOUN/m_c/subject} might throw up."
+			"When m_c tries to stand up, {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like {PRONOUN/m_c/subject} might throw up.",
+			"Today, m_c woke up feeling nauseous due to {PRONOUN/m_c/poss} flooded paws."
 		]
 	}	
 }
