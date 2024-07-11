@@ -234,6 +234,9 @@
         ],
         "random_status_constraint": [
             "apprentice"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
