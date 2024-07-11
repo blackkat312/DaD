@@ -312,5 +312,10 @@
   "flooded paws":[
     "Everytime m_c stands up too quickly, {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like {PRONOUN/m_c/poss} heart is going to burst.",
     "m_c can feel {PRONOUN/m_c/poss} blood pool in {PRONOUN/m_c/poss} paws whenever {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} up after resting."
+  ],
+  "bad knee": [
+    "As m_c grows, {PRONOUN/m_c/poss} knee starts to ache. r_c sighs and tells {PRONOUN/m_c/object} that {PRONOUN/m_c/subject} {VERB/m_c/have/has} a bad knee.",
+    "m_c's knee always lock up and make {PRONOUN/m_c/object} trip. m_c's has a bad knee.",
+    "m_c's parents had always had assumed {PRONOUN/m_c/poss} knee being painful was because {PRONOUN/m_c/subject} {VERB/m_c/were/was} having growing pains. It turns out, m_c has a bad knee."
   ]
 }

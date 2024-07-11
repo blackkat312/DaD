@@ -2438,6 +2438,7 @@ class ProfileScreen(Screens):
             "vivid daydreamer": "maladaptive daydreamer",
             "frequent fainting": "vasovagal syncope",
             "flooded paws": "POTS",
+            "bad knee": "meniscus tear",
 
             "sunblindness": "light sensitivity",
             "faux pregnant": "phantom pregnancy",
