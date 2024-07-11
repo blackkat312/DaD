@@ -666,7 +666,6 @@
             "Is hoping that StarClan protects {PRONOUN/m_c/poss} loved ones...",
             "Thanks StarClan for {PRONOUN/m_c/poss} catch out on a hunting patrol today",
             "Prays to StarClan that next season will be a good one",
-            "Goes to the medicine cat to ask for spiritual advice",
             "Wonders if StarClan can hear {PRONOUN/m_c/object}",
             "Leaves fresh-kill at the grave of a dead loved one"
         ],
@@ -1284,9 +1283,9 @@
         }
     },
     {
-        "id": "recurring shock",
+        "id": "recurring_shock_warrior",
         "thoughts": [
-            "Visits the medicine cat den for thyme",
+            "Visits the medicine den for thyme",
             "Wakes up screaming after a nightmare",
             "Panics after hearing a noise",
             "Is seen trembling and looking around nervously",
