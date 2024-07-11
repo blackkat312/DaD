@@ -327,33 +327,30 @@
         "thoughts": [
             "Is fretting about who to put on patrols",
 			"Is dancing around saying anyone's name",
-			"Definitely knows who is who in the clan",
+			"Definitely knows who is who in the Clan",
 			"Struggles to remember what r_c is best at",
-			"Is not sure {PRONOUN/m_c/subject} {VERB/m_c/wish/wishes} to be deputy anymore",
-			"Feels like the whole clan is judging {PRONOUN/m_c/object}",
+			"Isn't sure {PRONOUN/m_c/subject} {VERB/m_c/wish/wishes} to be deputy anymore",
+			"Feels like the whole Clan is judging {PRONOUN/m_c/object}",
 			"Sets up yet more border patrols",
-			"Is relieved that c_n is patient with {PRONOUN/m_c/object}",
+			"Feels relieved that c_n is patient with {PRONOUN/m_c/object}",
 			"Feels in control",
-			"Doesn't need to know who is who to manage the clan smoothly",
-			"Mixed up names in an announcement",
-			"Accidentally mixes up two cats into multiple patrols",
-			"Calls r_c the wrong name trying to speak to {PRONOUN/r_c/object}",
-			"Is worrying about the future"
+			"Doesn't need to know who is who to manage the Clan smoothly",
+			"Mixes up names in an announcement",
+			"Accidentally mixes up two cats and puts one on multiple patrols",
+			"Calls r_c the wrong name when trying to speak to {PRONOUN/r_c/object}",
+			"Worries about the future"
         ],
         "perm_conditions": {
             "m_c": [
                 "face blindness"
             ]
         },
-        "random_status_constraint": [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader"
+        "random_age_constraint": [
+            "adolescent",
+            "young adult",
+            "adult",
+            "senior adult",
+            "senior"
         ],
         "random_living_status": [
             "living"
