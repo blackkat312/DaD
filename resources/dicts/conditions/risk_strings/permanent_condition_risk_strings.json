@@ -1703,5 +1703,24 @@
 			"When m_c tries to stand up, {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like {PRONOUN/m_c/subject} might throw up.",
 			"Today, m_c woke up feeling nauseous due to {PRONOUN/m_c/poss} flooded paws."
 		]
+	},
+	"bad knees": {
+		"sore": [
+			"r_c has to tell m_c to slow down and get sore rest when r_c notices m_c limping.",
+			"m_c's knees are sore again."
+		],
+		"joint pain": [
+			"m_c asks a clanmate to get r_c to help {PRONOUN/m_c/object} stretch out {PRONOUN/m_c/poss} legs.",
+			"m_c groans in pain when {PRONOUN/m_c/poss} knees hurt too much to get up.",
+			"A hiss comes from m_c's den as {PRONOUN/m_c/subject} {VERB/m_c/try/tries} to get {PRONOUN/m_c/poss} legs comfortable."
+		],
+		"acute pain": [
+			"r_c grabs the poppy seeds to help the groaning pain from m_c.",
+			"A lot of m_c's Clanmates are worried about {PRONOUN/m_c/object} due to how m_c refuses to move from the sheer pain of it."
+		],
+		"knee locking": [
+			"r_c moves m_c to the medicine cat den when {PRONOUN/m_c/poss} knees lock up from pain in the middle of the camp.",
+			"m_c tries to get up from {PRONOUN/m_c/poss} nest but collapses back down into it before calling for the medicine cat."
+		]
 	}	
 }

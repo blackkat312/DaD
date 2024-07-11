@@ -437,6 +437,7 @@
             "lost a leg",
             "weak leg",
             "twisted leg",
+            "bad knees",
             "recurring shock"
         ],
         "herbs": [
@@ -559,6 +560,7 @@
         "risks": [],
         "also_got": [],
         "cause_permanent": [
+            "bad knees"
         ],
         "herbs": [
             "elder_leaves",
@@ -1793,6 +1795,42 @@
         "cause_permanent": [
         ],
         "herbs": [
+        ]
+    },
+    "knee locking": {
+        "duration": 1,
+        "severity": "major",
+        "medicine_duration": 1,
+        "mortality": {
+            "newborn": 10000,
+            "kitten": 10000,
+            "adolescent": 1000,
+            "young adult": 1000,
+            "adult": 1000,
+            "senior adult": 1000,
+            "senior": 100
+        },
+        "illness_infectiousness": [
+        ],
+        "risks": [
+            {
+                "name": "broken bone",
+                "chance": 100
+            },
+            {
+                "name":"head damage",
+                "chance": 100
+            }
+        ],
+        "also_got": [
+            "scrapes",
+            "bruises",
+            "torn pelt"
+        ],
+        "cause_permanent": [
+        ],
+        "herbs": [
+            "moss"
         ]
     },
     "faux pregnant": {
