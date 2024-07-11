@@ -621,24 +621,6 @@
         ]
     },
     {
-        "id": "missing_tail_gen_retired_to_alive_gen",
-        "thoughts": [
-            "Is training {PRONOUN/m_c/poss} balance with r_c"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost their tail",
-                "born without tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "any"
-        ]
-    },
-    {
         "id": "missing_tail_gen_retired_to_alive_kit",
         "thoughts": [
             "Is being grumped at by a kit because {PRONOUN/m_c/subject} {VERB/m_c/have/has} no tail to chomp on",
