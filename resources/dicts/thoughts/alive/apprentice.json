@@ -477,6 +477,7 @@
             "Got distracted by an ornate flower",
             "Wonders if Twolegs can speak cat",
             "Found a kittypet's bell and played with it for most of the afternoon",
+            "Is upset because the other apprentices aren't training the way {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} is correct",
             "Feels a bit overwhelmed by all of the new sensations",
             "Loves studying the behavior of different birds",
             "Feels entranced by a kingfisher catching fish"
@@ -486,6 +487,23 @@
                 "starwalker"
             ]
         }
+    },
+    {
+        "id": "starwalker_warrior_apprentice_to_alive_mentor",
+        "thoughts": [
+            "Asks {PRONOUN/m_c/poss} mentor if {PRONOUN/m_c/subject} could train alone today"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "starwalker"
+            ]
+        },
+        "relationship_constraint": [
+            "app/mentor"
+        ],
+        "random_living_status": [
+            "living"
+        ]
     },
 	{
         "id": "anxious_warrior_apprentice",
