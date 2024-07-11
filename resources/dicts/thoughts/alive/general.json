@@ -2177,19 +2177,19 @@
             "Baps r_c because {PRONOUN/r_c/subject} came slightly too close",
             "Wishes that r_c would leave {PRONOUN/m_c/object} alone for a minute",
             "Is having a moment of peace in a sunbeam",
-            "Wonders if {PRONOUN/m_c/subject} could make it out of camp today",
+            "Wonders if {PRONOUN/m_c/subject} can make it out of camp today",
             "Wonders if it would be better if {PRONOUN/m_c/subject} had an injury to explain the pain",
-            "Is making up stories for why {PRONOUN/m_c/subject} {VERB/m_c/are/is} in pain all the time",
-            "Wishes that r_c could be in {PRONOUN/m_c/poss} paws for the day",
+            "Is making up stories for why {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} in pain all the time",
+            "Wishes that r_c could be in {PRONOUN/m_c/poss} paws for a day",
             "Is trying {PRONOUN/m_c/poss} best",
             "Doesn't want to take {PRONOUN/m_c/poss} painkiller herbs today for fear of being fuzzy",
             "Is wincing as {PRONOUN/m_c/subject} {VERB/m_c/walk/walks} around camp",
             "Doesn't want to leave the nest today",
             "Is curled up and crying about the pain",
             "Is surprised to discover a new injury and struggling to remember where {PRONOUN/m_c/subject} got it",
-			"Is feeling generally sore",
+			"Is feeling sore all over",
 			"Is feeling exhausted and pleased",
-			"Doesn't want to admit {PRONOUN/m_c/subject} {VERB/m_c/are/is} in big pain",
+			"Doesn't want to admit {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} in a lot of pain",
 			"Curls up in the den extra tightly"
         ],
         "perm_conditions": {
@@ -2198,16 +2198,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2268,8 +2259,8 @@
             "Is running back and forth across camp",
             "Is pacing back and forth, seemingly stuck in a daydream",
             "Is awkwardly rocking {PRONOUN/m_c/self} back and forth",
-            "meowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeow",
-            "woofbarkwoofbarkwooooooooooooooooooooooooof",
+            "Meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow",
+            "Woof bark woof bark wooooooooooooooooooooooooof",
             "Holds in the urge to bark like a dog",
             "Is processing a question r_c just asked",
             "Gags and spits out the mouthful of prey {PRONOUN/m_c/subject} {VERB/m_c/were/was} eating because the texture was suddenly different",
@@ -2353,16 +2344,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2470,16 +2452,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2573,16 +2546,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2627,16 +2591,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2697,16 +2652,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2746,16 +2692,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2783,11 +2720,11 @@
 			"apprentice",
 			"warrior"
 		],
-			"perm_conditions": {
-				"m_c": [
-					"declawed"
-				]
-			}
+        "perm_conditions": {
+            "m_c": [
+                "declawed"
+            ]
+        }
 	},
     {
         "id": "otherworldly_mind_to_alive_gen",
@@ -2806,16 +2743,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2839,16 +2767,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2895,16 +2814,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2934,16 +2844,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -2988,16 +2889,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -3038,16 +2930,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -3075,16 +2958,7 @@
             ]
         },
         "random_status_constraint": [
-            "kitten",
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+            "any"
         ],
         "random_living_status": [
             "living"
@@ -3184,7 +3058,8 @@
 			"Cloudgazes with wide eyes",
 			"Is waving {PRONOUN/m_c/poss} paws in the sky happily",
 			"Looks incredibly grumpy",
-			"Does the rat shudder"
+			"Does the rat shudder",
+            "Can't stop meowing 'beep'"
         ],
         "has_injuries": {
             "m_c": [
@@ -3192,14 +3067,10 @@
             ]
         },
         "random_status_constraint": [
-			"apprentice",
-			"medicine cat apprentice",
-			"warrior",
-            "medicine cat",
-            "mediator",
-            "deputy",
-            "leader",
-            "elder"
+			"any"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3223,6 +3094,9 @@
         },
         "random_status_constraint": [
 			"kitten"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3248,7 +3122,10 @@
                 "kitten regressor",
 				"puppy regressor"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     },
     {
         "id": "gen_verbal_shutdown",
@@ -3299,6 +3176,9 @@
             "deputy",
             "leader",
             "elder"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3318,6 +3198,9 @@
         },
         "random_status_constraint": [
 			"kitten"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3357,7 +3240,10 @@
             "m_c": [
                 "word loss"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     },
     {
         "id": "gen_mute",
@@ -3406,11 +3292,11 @@
             "deputy",
             "leader"
         ],
-        "random_living_status": [
-            "living"
-        ],
         "random_age_constraint": [
             "any"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3440,11 +3326,11 @@
                 "face blindness"
             ]
         },
-        "random_living_status": [
-            "living"
-        ],
         "random_age_constraint": [
             "any"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
 	{
@@ -3473,6 +3359,9 @@
         ],
         "relationship_constraint": [
             "app/mentor"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3504,7 +3393,10 @@
             "m_c": [
                 "jellyfish joints"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     },
     {
         "id": "gen_jumbled_noise_to_alive_noisy_kit",
@@ -3524,6 +3416,9 @@
         ],
         "random_age_constraint": [
             "kitten"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3559,6 +3454,9 @@
         ],
         "random_age_constraint": [
             "kitten"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -3582,9 +3480,12 @@
         ],
         "perm_conditions": {
             "m_c": [
-                "thought blind"
+                "thought blindness"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     },
     {
         "id": "thought_blindness_apprentice",
@@ -3598,9 +3499,15 @@
 		],
         "perm_conditions": {
             "m_c": [
-                "thought blind"
+                "thought blindness"
             ]
-        }
+        },
+        "relationship_constraint": [
+            "app/mentor"
+        ],
+        "random_living_status": [
+            "living"
+        ]
     },
     {
         "id": "thought_blindness_medicine_cat",
@@ -3620,9 +3527,12 @@
 		],
         "perm_conditions": {
             "m_c": [
-                "thought blind"
+                "thought blindness"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     },
     {
         "id": "gen_infertile",
@@ -3636,6 +3546,9 @@
             "m_c": [
                 "infertile"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     }
 ]
