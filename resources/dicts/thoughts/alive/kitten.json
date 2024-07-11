@@ -101,6 +101,9 @@
         "random_status_constraint": [
             "medicine cat",
             "medicine cat apprentice"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -537,14 +540,14 @@
         ]
     },
     {
-        "id": "otherworldly_mind_to_alive_gen",
+        "id": "otherworldly_mind_kit",
         "thoughts": [
             "Wants the monsters to go away",
             "Is scared of the monster following {PRONOUN/m_c/object} around",
-            "Is making friends with the monster following {PRONOUN/m_c/object} around",
-            "Is talking to a cat that is invisible",
-            "Is having a conversation with a bird",
-            "Is hiding from something the other kits can't see"
+            "Makes friends with the monster following {PRONOUN/m_c/object} around",
+            "Talks to a cat that's invisible",
+            "Haves a conversation with a bird",
+            "Hides from something the other kits can't see"
         ],
         "perm_conditions": {
             "m_c": [
@@ -553,7 +556,7 @@
         }
     },
     {
-        "id": "thunderous_spirit_to_alive_gen",
+        "id": "thunderous_spirit_kit_to_alive_gen",
         "thoughts": [
             "Can't stop crying",
             "Had a nightmare that r_c abandoned {PRONOUN/m_c/object}",
@@ -587,11 +590,11 @@
         }
     },
 	{
-        "id": "face_blindness_kitten",
+        "id": "face_blindness_kit",
         "thoughts": [
             "Is surrounded by familiar strangers",
 			"Can't identify {PRONOUN/m_c/poss} parents",
-			"Is crying out for someone familiar"
+			"Cries out for someone familiar"
         ],
         "perm_conditions": {
             "m_c": [
