@@ -421,8 +421,8 @@ class Pregnancy_Events:
                         else:
                             mate_gender = random.choice(["fem", "masc"])
                         while not outside_parent or 'infertile' in outside_parent.permanent_condition or outside_parent.neutered:
-                            if(outside_parent):
-                                del Cat.all_cats[outside_parent]
+                            if outside_parent and Cat.all_cats[outside_parent.ID]:
+                                del Cat.all_cats[outside_parent.ID]
                             outside_parent = create_new_cat(Cat,
                                                 loner=cat_type in ["loner", "rogue"],
                                                 kittypet=cat_type == "kittypet",
@@ -671,8 +671,8 @@ class Pregnancy_Events:
                     if cat_type != 'Clancat':
                         out_par = None
                         while not out_par or "infertile" in out_par.permanent_condition or out_par.neutered:
-                            if(out_par):
-                                del Cat.all_cats[out_par]
+                            if out_par and Cat.all_cats[out_par.ID]:
+                                del Cat.all_cats[out_par.ID]
                             out_par = create_new_cat(Cat,
                                                     loner=cat_type in ["loner", "rogue"],
                                                     kittypet=cat_type == "kittypet",
@@ -1334,7 +1334,7 @@ class Pregnancy_Events:
                         blood_par2 = None
                         parage = parage + randint(0, 24) - 12
                         while not blood_par2 or "infertile" in blood_par2.permanent_condition or blood_par2.neutered:
-                            if(blood_par2):
+                            if blood_par2 and Cat.all_cats[blood_par2.ID]:
                                 del Cat.all_cats[blood_par2.ID]
                             cat_type = random.choice(["loner", "kittypet"])
                             blood_par2 = create_new_cat(Cat,
