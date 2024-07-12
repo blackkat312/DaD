@@ -283,6 +283,11 @@
 		"sleep paralysis": [
 			"r_c is surprised to find m_c coming to talk to {PRONOUN/r_c/object}. Slowly m_c explains that {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} that cats of the dark forest are trying to drag {PRONOUN/m_c/object} there.",
 			"In the early hours of the morning poor m_c finds {PRONOUN/m_c/self} frozen, feeling like a creature is crawling all over {PRONOUN/m_c/object} that {PRONOUN/m_c/subject} can't quite see."
+		],
+		"fainting": [
+			"Poor m_c came to r_c feeling rather faint due to {PRONOUN/m_c/poss} lack of sleep.",
+			"It would seem that m_c's body is at it's absolute limit making {PRONOUN/m_c/object} faint now.",
+			"m_c has had a case of fainting, most likely due to {PRONOUN/m_c/poss} lack of sleep."
 		]
 	},
 	"sleep paralysis": {
