@@ -3766,7 +3766,7 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon=0, custom_reveal=None):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon="", custom_reveal=None):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
             PERMANENT = ujson.loads(read_file.read())
         if name not in PERMANENT:
@@ -3889,8 +3889,12 @@ class Cat:
         elif born_with is False:
             moons_until = 0
 
-        if not starting_moon and game.clan:
+        if starting_moon == "start":
+            starting_moon = 0
+        elif not starting_moon and game.clan:
             starting_moon = game.clan.age
+        else:
+            starting_moon = int(starting_moon)
 
         if name == "paralyzed":
             self.pelt.paralyzed = True
@@ -5601,7 +5605,7 @@ def create_cat(status, moons=None, biome=None):
                 if condition == "no":
                     continue
 
-                new_cat.get_permanent_condition(condition, born_with=False)
+                new_cat.get_permanent_condition(condition, born_with=False, starting_moon="start")
 
     if (game.clan and game.clan.game_mode != "classic") and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
         new_cat.congenital_condition(new_cat)
