@@ -980,7 +980,7 @@ class MakeClanScreen(Screens):
                 perm_cond_text = perm_cond_text[:-1]
 
                 self.elements["cat_info"].set_text(
-                    str(selected.gender)
+                    str(selected.genderalign)
                     + "\n"
                     + str(pronoun_text)
                     + "\n"
@@ -995,7 +995,7 @@ class MakeClanScreen(Screens):
                 )
             else:
                 self.elements["cat_info"].set_text(
-                    str(selected.gender)
+                    str(selected.genderalign)
                     + "\n"
                     + str(pronoun_text)
                     + "\n"
