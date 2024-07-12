@@ -71,6 +71,11 @@
           "{PRONOUN/m_c/poss/CAP} twisted limb frustrates {PRONOUN/m_c/object} constantly, but m_c tells {PRONOUN/m_c/self} it could've been worse. At least {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} still there to feel irritated by it.",
           "m_c has to hold {PRONOUN/m_c/poss} healed, but twisted limb up as near to {PRONOUN/m_c/poss} body as {PRONOUN/m_c/subject} {VERB/m_c/hop/hops} around camp. {PRONOUN/m_c/subject/CAP} survived {PRONOUN/m_c/poss} injury but the leg will never comfortably support {PRONOUN/m_c/poss} weight."
         ],
+        "bad knee": [
+            "r_c says that while m_c's leg has healed, {PRONOUN/m_c/poss} knee has been damaged.",
+            "Before m_c's knee locks up for the first time, {PRONOUN/m_c/subject} just thought that {PRONOUN/m_c/subject} had a sprain.",
+            "m_c's leg has mostly healed... keyword - mostly."
+        ],
         "recurring shock": [
             "After looking at m_c's behavior, r_c found that m_c has gotten recurring shock because of {PRONOUN/m_c/poss} mangled leg.",
             "m_c keeps flinching when cats touch {PRONOUN/m_c/poss} leg."
@@ -90,7 +95,13 @@
             "m_c needs pain relief far more often these days, the joint {PRONOUN/m_c/subject} subluxated giving {PRONOUN/m_c/object} trouble."
         ]
     },
-    "mangled tail":{
+    "sprain": {
+        "bad knees": [
+            "Even after m_c's sprain healed, {PRONOUN/m_c/poss} knees don't feel the same. r_c says {PRONOUN/m_c/poss} knees will likely never feel the same ever again.",
+            "m_c yelps when {PRONOUN/m_c/poss} knees suddenly lock up. It looks like they'll never be the same again."
+        ]
+    },
+    "mangled tail": {
         "lost their tail": [
           "r_c helps m_c bury {PRONOUN/m_c/poss} tail wordlessly, hoping the ritual brings {PRONOUN/m_c/object} closure from the trauma of losing it.",
             "When m_c wakes up, r_c has to explain to {PRONOUN/m_c/object} that {PRONOUN/r_c/subject} removed m_c's tail as a last resort. The damage was too great.",
