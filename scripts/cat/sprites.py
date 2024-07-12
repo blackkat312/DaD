@@ -244,6 +244,7 @@ class Sprites:
         self.make_group('Other/grizzle', (0, 0), 'grizzle')
         self.make_group('Other/smoke', (0, 0), 'smoke')
         self.make_group('Other/bleach', (0, 0), 'bleach')
+        self.make_group('Other/lycoisatin', (0, 0), 'lycoisatin', 1, 1)
         self.make_group('Other/lykoi', (0, 0), 'lykoi')
         self.make_group('Other/hairless', (0, 0), 'hairless')
         self.make_group('Other/donskoy', (0, 0), 'donskoy')
