@@ -2527,6 +2527,9 @@ class ProfileScreen(Screens):
             "parrot chatter": "echolalia",
             "thought blindness": "aphantasia",
             "vivid daydreamer": "maladaptive daydreamer",
+            "frequent fainting": "vasovagal syncope",
+            "flooded paws": "POTS",
+            "bad knee": "meniscus tear",
 
             "sunblindness": "light sensitivity",
 
