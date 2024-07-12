@@ -1759,7 +1759,7 @@ class Cat:
                 self.genotype.gender = "intersex"
                 self.get_permanent_condition("chimerism", born_with=True)
                 self.conditions_already_attempted.append("intersex")
-            if (len(self.genotype.sexgene) > 2 or (self.genotype.chimera and self.genotype.chimerageno.sexgene) > 2) and self.genotype.gender != "intersex":
+            if (len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2)) and self.genotype.gender != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
                 self.gender = "intersex"
