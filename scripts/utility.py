@@ -3325,14 +3325,15 @@ def generate_sprite(
             if cat.genotype.sedesp == ['hr', 're'] or (cat.genotype.sedesp[0] == 're' and sprite_age < 12) or (cat.genotype.laperm[0] == 'Lp' and sprite_age < 4):
                 gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
                 gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+                gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
             elif(cat.pelt.length == 'hairless'):
+                gensprite.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
                 gensprite.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
                 gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
             elif('patchy ' in cat.phenotype.furtype):
                 gensprite.blit(sprites.sprites['donskoy' + cat_sprite], (0, 0))
 
             if('sparse' in cat.phenotype.furtype):
-                gensprite.blit(sprites.sprites['satin0'], (0, 0))
                 gensprite.blit(sprites.sprites['satin0'], (0, 0))
                 gensprite.blit(sprites.sprites['lykoi' + cat_sprite], (0, 0))
 
