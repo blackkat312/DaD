@@ -3211,6 +3211,8 @@ class Cat:
             moon_start = 0
         elif not starting_moon and game.clan:
             moon_start = game.clan.age
+        elif not starting_moon:
+            moon_start = 0
         else:
             moon_start = int(starting_moon)
 
