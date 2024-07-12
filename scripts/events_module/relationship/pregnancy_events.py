@@ -1,6 +1,7 @@
 import random
 from operator import xor
 from random import choice, randint
+from copy import deepcopy
 
 import ujson
 
@@ -1063,18 +1064,18 @@ class Pregnancy_Events:
             if len(second_parent) < 1:
                 return False, False
 
-            second_parent_copy = second_parent
+            second_parent_copy = deepcopy(second_parent)
 
             for x in second_parent:
                 if not xor(cat.gender == "tom", x.gender == "tom") or x.gender == "intersex":
                     if not same_sex_birth:
-                        second_parent.remove(x)
+                        second_parent_copy.remove(x)
 
-            if len(second_parent) < 1:
+            if len(second_parent_copy) < 1:
                 if same_sex_adoption:
-                    return True, True, second_parent_copy
+                    return True, True, second_parent
                 else:
-                    return False, False, second_parent_copy
+                    return False, False, second_parent
 
             return True, False, second_parent
 
@@ -1106,10 +1107,12 @@ class Pregnancy_Events:
                 mate = [cat.fetch_cat(mate)]
 
         # if the sex does matter, choose the best solution to allow kits
-        if not samesex and mate and cat.gender == "molly" and clan.clan_settings['multisire']:
+        if not samesex and mate and cat.gender == "molly":
             opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "tom", cat.gender == "tom")]
             if len(opposite_mate) > 0:
                 mate = opposite_mate
+                if not clan.clan_settings['multisire']:
+                    mate = [choice(opposite_mate)]
         elif not samesex and mate and cat.gender == "tom":
             opposite_mate = [cat.fetch_cat(mate_id) for mate_id in cat.mate if xor(cat.fetch_cat(mate_id).gender == "molly", cat.gender == "molly")]
             if len(opposite_mate) > 0:
