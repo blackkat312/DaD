@@ -964,6 +964,11 @@ def create_new_cat(
         elif clan_gain_moon > int(game.clan.age):
             clan_gain_moon = int(game.clan.age)
 
+        if clan_gain_moon == 0:
+            clan_gain_moon = "start"
+        else:
+            clan_gain_moon = str(clan_gain_moon)
+
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
                 if game.clan.game_mode == "classic" or age < 4:
