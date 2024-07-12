@@ -3208,11 +3208,11 @@ class Cat:
             moons_until = 0
 
         if starting_moon == "start":
-            starting_moon = 0
+            moon_start = 0
         elif not starting_moon and game.clan:
-            starting_moon = game.clan.age
+            moon_start = game.clan.age
         else:
-            starting_moon = int(starting_moon)
+            moon_start = int(starting_moon)
 
         if name == "paralyzed":
             self.pelt.paralyzed = True
@@ -3222,7 +3222,7 @@ class Cat:
             severity=condition["severity"],
             congenital=condition["congenital"],
             moons_until=moons_until,
-            moon_start=starting_moon,
+            moon_start=moon_start,
             mortality=mortality,
             risks=condition["risks"],
             illness_infectiousness=condition["illness_infectiousness"],
