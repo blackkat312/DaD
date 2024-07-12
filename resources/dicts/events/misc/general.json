@@ -3896,5 +3896,91 @@
         "amount": -5
       }
     ]
+  },
+  {
+    "event_id": "gen_misc_any_starwalker_kit_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "r_c knows that m_c struggles with voicing when {PRONOUN/m_c/subject} {VERB/m_c/have/has} a problem. One of the healers suggests using an emotional support companion.",
+    "new_accessory": [
+      "SNAKE",
+      "SMALLANIMAL"
+    ],
+    "m_c": {
+      "status": [
+        "kitten"
+      ],
+      "relationship_status": [
+        "child/parent"
+      ],
+      "permanent_condition": [
+        "starwalker"
+      ]
+    },
+    "r_c": {
+      "age": [
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "status": [
+        "any"
+      ]
+    },
+    "relationships": [
+      {
+        "cats_from": [
+          "m_c"
+        ],
+        "cats_to": [
+          "r_c"
+        ],
+        "mutual": false,
+        "values": [
+          "platonic",
+          "comfort",
+          "trust",
+          "respect"
+        ],
+        "amount": 15
+      }
+    ]
+  },
+  {
+    "event_id": "gen_misc_any_ESA_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 20,
+    "event_text": "With r_c's assistance, m_c finds acc_singular to serve as an emotional support companion.",
+    "new_accessory": [
+      "SNAKE",
+      "SMALLANIMAL"
+    ],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ],
+      "permanent_condition": [
+        "starwalker",
+        "comet spirit",
+        "thunderous spirit",
+        "otherworldy mind",
+        "heavy soul"
+      ]
+    },
+    "r_c": {
+      "status": [
+        "medicine cat apprentice",
+        "medicine cat"
+      ]
+    }
   }
 ]
