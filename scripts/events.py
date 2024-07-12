@@ -1365,9 +1365,9 @@ class Events:
         white_text2 = ""
         has_break_white = False
         break_white = [
-            "break/left back mitten", "break/left ear", "break/left face", "break/left front mitten", "break/nose1",
-            "break/piebald1", "break/piebald2", "break/right back mitten", "break/right ear", "break/right face",
-            "break/right front mitten", "break/tail band", "break/tail rings", "break/tail tip"
+            "break\/left back mitten", "break\/left ear", "break\/left face", "break\/left front mitten", "break\/nose1",
+            "break\/piebald1", "break\/piebald2", "break\/right back mitten", "break\/right ear", "break\/right face",
+            "break\/right front mitten", "break\/tail band", "break\/tail rings", "break\/tail tip"
         ]
 
         if cat.genotype.white_pattern and cat.genotype.white_pattern != "No":
@@ -2077,6 +2077,65 @@ class Events:
             except KeyError:
                 random_honor = "hard work"
 
+            #if cat.name.suffix and game.clan.clan_settings['alt_suffixes']:
+            if cat.name.suffix and False:
+                resource_dir = "resources/dicts/names/"
+                with open(
+                    f"{resource_dir}alt_suffixes.json", encoding="ascii"
+                ) as read_file:
+                    SUFFIXES = ujson.loads(read_file.read())
+
+                combined = []
+
+                combined.append(SUFFIXES['skill'][cat.skills.primary.path.name])
+                combined.append(SUFFIXES['skill'][cat.skills.primary.path.name])
+                combined.append(SUFFIXES['skill'][cat.skills.primary.path.name])
+                combined.append(SUFFIXES['skill'][cat.skills.primary.path.name])
+
+                if cat.skills.secondary:
+                    combined.append(SUFFIXES['skill'].get(cat.skills.secondary.path.name, []))
+                    combined.append(SUFFIXES['skill'].get(cat.skills.secondary.path.name, []))
+
+
+                combined.append(SUFFIXES['trait'][cat.personality.trait]['general'])
+                combined.append(SUFFIXES['trait'][cat.personality.trait]['general'])
+                combined.append(SUFFIXES['trait'][cat.personality.trait].get(random_honor, []))
+                combined.append(SUFFIXES['trait'][cat.personality.trait].get(random_honor, []))
+
+                combined.append(SUFFIXES['other']['special'])
+                combined.append(SUFFIXES['other']['special'])
+                combined.append(SUFFIXES['other']['special'])
+                combined.append(SUFFIXES['other']['common'])
+                combined.append(SUFFIXES['other']['common'])
+                combined.append(SUFFIXES['other']['common'])
+                combined.append(SUFFIXES['other']['common'])
+                combined.append(SUFFIXES['other']['common'])
+
+                if cat.phenotype.tabby != "" and (cat.genotype.white[1] not in ['ws', 'wt'] or cat.genotype.whitegrade < 4):
+                    if cat.genotype.ticked[0] == 'Ta' and (not cat.genotype.breakthrough or cat.genotype.mack[0] != 'mc'):
+                        combined.append(SUFFIXES['other']['appearance']['ticked'])
+                    if 'spotted' in cat.phenotype.tabby or 'servaline' in cat.phenotype.tabby:
+                        combined.append(SUFFIXES['other']['appearance']['spotted'])
+                    if 'classic' in cat.phenotype.tabby or 'marbled' in cat.phenotype.tabby:
+                        combined.append(SUFFIXES['other']['appearance']['swirled'])
+                    if 'mackerel' in cat.phenotype.tabby or 'braided' in cat.phenotype.tabby or 'pinstripe' in cat.phenotype.tabby:
+                        combined.append(SUFFIXES['other']['appearance']['striped'])
+                    if 'rosette' in cat.phenotype.tabby:
+                        combined.append(SUFFIXES['other']['appearance']['patchy'])
+                if (cat.phenotype.tortie and (cat.genotype.white[1] not in ['ws', 'wt'] or cat.genotype.whitegrade < 4)) or\
+                    (cat.genotype.white[1] in ['ws', 'wt'] and cat.genotype.whitegrade < 4) or\
+                    (cat.genotype.white[0] in ['ws', 'wt'] and cat.genotype.white[1] not in ['ws', 'wt'] and cat.genotype.whitegrade > 2):
+                    combined.append(SUFFIXES['other']['appearance']['patchy'])
+                if (cat.phenotype.point and (cat.genotype.white[1] not in ['ws', 'wt'] or cat.genotype.whitegrade < 4)):
+                    combined.append(SUFFIXES['other']['appearance']['pointed'])
+                cat.name.suffix = None
+
+                while not cat.name.suffix:
+                    try:
+                        cat.name.suffix = random.choice(random.choice(combined))
+                    except:
+                        continue
+
         if cat.status in ["warrior", "medicine cat", "mediator"]:
             History.add_app_ceremony(cat, random_honor)
 
@@ -2715,16 +2774,16 @@ class Events:
         if cat.genderalign == cat.gender:
             involved_cats = [cat.ID]
             if cat.age == "kitten":
-                transing_chance = random.randint(0, 100)
-            elif cat.age == "adolescent":
-                transing_chance = random.randint(0, 100)
-            elif cat.age == "young adult":
                 transing_chance = random.randint(0, 110)
+            elif cat.age == "adolescent":
+                transing_chance = random.randint(0, 110)
+            elif cat.age == "young adult":
+                transing_chance = random.randint(0, 120)
             elif cat.age == "adult":
-                transing_chance = random.randint(0, 140)
+                transing_chance = random.randint(0, 150)
             else:
                 # senior adult & elder
-                transing_chance = random.randint(0, 170)
+                transing_chance = random.randint(0, 180)
 
             if transing_chance:
                 # transing_chance != 0, no trans kitties today...    L
