@@ -756,11 +756,12 @@ class Pelt:
             self.accessory = None
             return
 
-        acc_display_choice = random.randint(0, 80)
         if age in ['kitten', 'adolescent']:
-            acc_display_choice = random.randint(0, 180)
+            acc_display_choice = random.randint(0, 20)
         elif age in ['young adult', 'adult']:
-            acc_display_choice = random.randint(0, 100)
+            acc_display_choice = random.randint(0, 30)
+        else:
+            acc_display_choice = random.randint(0, 40)
 
         if acc_display_choice == 1:
             self.accessory = choice([
@@ -774,8 +775,7 @@ class Pelt:
                 choice(Pelt.aliveInsect_accessories),
                 choice(Pelt.fruit_accessories),
                 choice(Pelt.crafted_accessories),
-                choice(Pelt.tail2_accessories),
-                choice(Pelt.flag_accessories)
+                choice(Pelt.tail2_accessories)
             ])
         else:
             self.accessory = None
