@@ -3231,8 +3231,18 @@ def generate_sprite(
 
             if (genotype.bleach[0] == "lb" and sprite_age > 3) or 'masked' in phenotype.silvergold:
                 gensprite.blit(sprites.sprites['bleach' + cat_sprite], (0, 0))
-            
-            
+
+            if cat.genotype.sedesp == ['hr', 're'] or (cat.genotype.sedesp[0] == 're' and sprite_age < 12) or (cat.genotype.laperm[0] == 'Lp' and sprite_age < 4):
+                gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+            elif(cat.pelt.length == 'hairless'):
+                gensprite.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
+            elif('patchy ' in cat.phenotype.furtype):
+                gensprite.blit(sprites.sprites['donskoy' + cat_sprite], (0, 0))
+
+            if('sparse' in cat.phenotype.furtype):
+                gensprite.blit(sprites.sprites['lycoisatin0'], (0, 0))
+                gensprite.blit(sprites.sprites['lykoi' + cat_sprite], (0, 0))
+
             nose = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
             nose.blit(sprites.sprites['nose' + cat_sprite], (0, 0))
 
@@ -3320,22 +3330,6 @@ def generate_sprite(
                     gensprite.blit(sprites.sprites['dorsal1' + cat_sprite], (0, 0))
                 elif 'dorsal2' in genotype.white_pattern:
                     gensprite.blit(sprites.sprites['dorsal2' + cat_sprite], (0, 0))
-
-
-            if cat.genotype.sedesp == ['hr', 're'] or (cat.genotype.sedesp[0] == 're' and sprite_age < 12) or (cat.genotype.laperm[0] == 'Lp' and sprite_age < 4):
-                gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-                gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-                gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-            elif(cat.pelt.length == 'hairless'):
-                gensprite.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
-                gensprite.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
-                gensprite.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-            elif('patchy ' in cat.phenotype.furtype):
-                gensprite.blit(sprites.sprites['donskoy' + cat_sprite], (0, 0))
-
-            if('sparse' in cat.phenotype.furtype):
-                gensprite.blit(sprites.sprites['satin0'], (0, 0))
-                gensprite.blit(sprites.sprites['lykoi' + cat_sprite], (0, 0))
 
             gensprite.blit(nose2, (0, 0))
 
