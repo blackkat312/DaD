@@ -411,13 +411,13 @@ class Condition_Events:
 
         # dict of possible physical conditions that can be acquired from relevant scars
         scar_to_condition = {
-            "LEGBITE": ["weak leg"],
+            "LEGBITE": ["weak leg", "bad knee"],
             "THREE": ["one bad eye"],
             "NOPAW": ["lost a leg"],
             "TOETRAP": ["weak leg"],
             "NOTAIL": ["lost their tail"],
             "HALFTAIL": ["lost their tail"],
-            "MANLEG": ["weak leg", "twisted leg"],
+            "MANLEG": ["weak leg", "twisted leg", "bad knee"],
             "BRIGHTHEART": ["one bad eye"],
             "NOLEFTEAR": ["partial hearing loss"],
             "NORIGHTEAR": ["partial hearing loss"],
@@ -486,6 +486,8 @@ class Condition_Events:
             "face blindness",
             "parrot chatter",
             "selective mutism",
+            "frequent fainting",
+            "flooded paws"
         ]
 
         got_condition = False
@@ -972,6 +974,9 @@ class Condition_Events:
             "is a puzzled heart": "has low empathy",
             "be a puzzled heart": "have low empathy",
             "parrot chatter": "echolalia",
+            "frequent fainting": "vasovagal syncope",
+            "flooded paws": "POTS",
+            "bad knee": "meniscus tear",
 
             "sunblindness": "light sensitivity",
 
