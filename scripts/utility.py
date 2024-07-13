@@ -851,16 +851,11 @@ def create_new_cat(
         elif age == 4 or age == 5:
             cat_gain_age = randint(4, age)
 
-        clan_gain_moon = (age - cat_gain_age) + (int(game.clan.age) - age)
-        if clan_gain_moon < 0:
-            clan_gain_moon = 0
-        elif clan_gain_moon > int(game.clan.age):
-            clan_gain_moon = int(game.clan.age)
-
-        if clan_gain_moon == 0:
-            clan_gain_moon = "start"
-        else:
-            clan_gain_moon = str(clan_gain_moon)
+        clan_gain_moon = (age - cat_gain_age) + (game.clan.age - age)
+        if clan_gain_moon <= 0:
+            clan_gain_moon = -1
+        elif clan_gain_moon > game.clan.age:
+            clan_gain_moon = game.clan.age
 
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
