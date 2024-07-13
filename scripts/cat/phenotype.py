@@ -449,7 +449,7 @@ class Phenotype():
 
         if(self.genotype.extraeye):
             eyes = eyes.replace(" eye, and one ", " eye, one ")
-            eyes += ", and sectoral heterochromia"
+            eyes += ", and insert sectoral heterochromia"
 
         withword = self.specwhite
         if (self.eartype !="" or self.tailtype!="" or self.pawtype!="" or furtype!="" or self.vitiligo != ""):
@@ -476,17 +476,18 @@ class Phenotype():
                 else:
                     withword += " and "
         else:
-            if ", and sectoral " in eyes and " eye, one " not in eyes:
-                eyes = eyes.replace(", and sectoral ", " and sectoral ")
-            elif "eye, and one " in eyes and ", and sectoral " not in eyes:
+            if ", and insert sectoral " in eyes and " eye, one " not in eyes:
+                eyes = eyes.replace(", and insert sectoral ", " and insert sectoral ")
+            elif "eye, and one " in eyes and ", and insert sectoral " not in eyes:
                 eyes = eyes.replace(" eye, and one ", " eye and one ")
 
+        eyes = eyes.replace("insert", self.genotype.extraeyecolour)
         withword = " with " + withword + eyes.lower()
 
         sextext = " "
         if not sex or (sex and sex != "intersex"):  # everything else
             sextext = " "
-        elif sex == "intersex":  # jic though
+        elif sex == "intersex":  # specifying jic though
             sextext = sex + " "
 
         if not gender:
