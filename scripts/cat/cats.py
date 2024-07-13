@@ -3104,7 +3104,7 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, starting_moon=""):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, starting_moon=0):
         if name not in PERMANENT:
             print(
                 str(self.name),
@@ -3204,15 +3204,15 @@ class Cat:
 
         if born_with and self.status not in ["kitten", "newborn"]:
             moons_until = -2
-        elif born_with is False:
+        elif not born_with:
             moons_until = 0
 
-        if starting_moon == "start":
+        if starting_moon == -1:
             starting_moon = 0
         elif not starting_moon and game.clan:
             starting_moon = game.clan.age
-        else:
-            starting_moon = int(starting_moon)
+        elif not starting_moon:
+            starting_moon = 0
 
         if name == "paralyzed":
             self.pelt.paralyzed = True
@@ -4945,7 +4945,7 @@ def create_cat(status, moons=None, biome=None):
                 if condition == "no":
                     continue
 
-                new_cat.get_permanent_condition(condition, born_with=False, starting_moon="start")
+                new_cat.get_permanent_condition(condition, born_with=False, starting_moon=-1)
 
     if (game.clan and game.clan.game_mode != "classic") and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
         new_cat.congenital_condition(new_cat)
