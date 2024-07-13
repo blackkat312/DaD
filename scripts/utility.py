@@ -292,9 +292,9 @@ def change_clan_relations(other_clan, difference):
     # setting it in the Clan save
     game.clan.all_clans[y].relations = clan_relations
 
-def create_bio_parents(Cat, cat_type, sex=None):
-    if not sex:
-        sex = choice(["fem", "masc"])
+def create_bio_parents(Cat, cat_type, flip=None, second_parent=True):
+    if not flip:
+        flip = choice(["fem", "masc"])
     thought = "Is happy their kits are safe"
     ages = [randint(15,120), 0]
     ages[1] = ages[0] + randint(0, 24) - 12
@@ -309,7 +309,7 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     alive=True,
                                     thought=thought,
                                     age=ages[0],
-                                    gender=sex,
+                                    gender=flip,
                                     outside=True,
                                     is_parent=True,
                                     can_be_neutered=False)[0]
@@ -324,11 +324,11 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     alive=True,
                                     thought=thought,
                                     age=ages[0],
-                                    gender=sex,
+                                    gender=flip,
                                     outside=True,
                                     is_parent=True,
                                     can_be_neutered=False)[0]
-    if cat_type != 'del':
+    if second_parent:
         cat_type = choice(["loner", "rogue", "kittypet"])
         blood_parent2 = create_new_cat(Cat,
                                     loner=cat_type in ["loner", "rogue"],
@@ -338,12 +338,12 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     alive=True,
                                     thought=thought,
                                     age=ages[1] if ages[1] > 14 else 15,
-                                    gender=sex,
+                                    gender=flip,
                                     outside=True,
                                     is_parent=True,
                                     can_be_neutered=False)[0]
         while 'infertile' in blood_parent2.permanent_condition or blood_parent2.neutered:
-            if(blood_parent2):
+            if blood_parent2 and Cat.all_cats[blood_parent2.ID]:
                 del Cat.all_cats[blood_parent2.ID]
             blood_parent = create_new_cat(Cat,
                                     loner=cat_type in ["loner", "rogue"],
@@ -353,13 +353,13 @@ def create_bio_parents(Cat, cat_type, sex=None):
                                     alive=True,
                                     thought=thought,
                                     age=ages[0],
-                                    gender=sex,
+                                    gender=flip,
                                     outside=True,
                                     is_parent=True,
                                     can_be_neutered=False)[0]
     else:
         par2geno = Genotype(game.config['genetics_config'], game.settings["ban problem genes"])
-        par2geno.Generator(sex)
+        par2geno.Generator(flip)
 
     return [blood_parent, blood_parent2, par2geno]
 
@@ -624,7 +624,7 @@ def create_new_cat_block(
                 sex = "masc"
             else:
                 sex = choice(["fem", "masc"])
-            generated_parents = create_bio_parents(Cat, cat_type, sex=sex)
+            generated_parents = create_bio_parents(Cat, cat_type, flip=sex, second_parent=not parent1)
             if not parent1:
                 parent1 = generated_parents[1]
             if not parent2:
