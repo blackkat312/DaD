@@ -3766,7 +3766,7 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon="", custom_reveal=None):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon=0, custom_reveal=None):
         with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
             PERMANENT = ujson.loads(read_file.read())
         if name not in PERMANENT:
@@ -3886,17 +3886,15 @@ class Cat:
 
         if born_with and self.status not in ["kitten", "newborn"]:
             moons_until = -2
-        elif born_with is False:
+        elif not born_with:
             moons_until = 0
 
-        if starting_moon == "start":
-            moon_start = 0
+        if starting_moon == -1:
+            starting_moon = 0
         elif not starting_moon and game.clan:
-            moon_start = game.clan.age
+            starting_moon = game.clan.age
         elif not starting_moon:
-            moon_start = 0
-        else:
-            moon_start = int(starting_moon)
+            starting_moon = 0
 
         if name == "paralyzed":
             self.pelt.paralyzed = True
@@ -3906,7 +3904,7 @@ class Cat:
             severity=condition["severity"],
             congenital=condition["congenital"],
             moons_until=moons_until,
-            moon_start=moon_start,
+            moon_start=starting_moon,
             mortality=mortality,
             risks=condition["risks"],
             illness_infectiousness=condition["illness_infectiousness"],
@@ -5607,7 +5605,7 @@ def create_cat(status, moons=None, biome=None):
                 if condition == "no":
                     continue
 
-                new_cat.get_permanent_condition(condition, born_with=False, starting_moon="start")
+                new_cat.get_permanent_condition(condition, born_with=False, starting_moon=-1)
 
     if (game.clan and game.clan.game_mode != "classic") and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
         new_cat.congenital_condition(new_cat)
