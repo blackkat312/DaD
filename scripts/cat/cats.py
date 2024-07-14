@@ -662,18 +662,24 @@ class Cat:
                 self.genotype.gender = "intersex"
                 if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
                     self.genotype.gender = 'molly'
+                elif(randint(1, 25) == 1 and 'Y' not in self.genotype.sexgene):
+                    self.genotype.gender = 'tom'
         elif kittypet or status == 'kittypet':
             self.genotype.AltGenerator(special=self.gender)
             if(randint(1, game.config['genetics_config']['intersex']) == 1):
                 self.genotype.gender = "intersex"
                 if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
                     self.genotype.gender = 'molly'
+                elif(randint(1, 25) == 1 and 'Y' not in self.genotype.sexgene):
+                    self.genotype.gender = 'tom'
         else:
             self.genotype.Generator(special=self.gender)
             if(randint(1, game.config['genetics_config']['intersex']) == 1):
                 self.genotype.gender = "intersex"
                 if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
                     self.genotype.gender = 'molly'
+                elif(randint(1, 25) == 1 and 'Y' not in self.genotype.sexgene):
+                    self.genotype.gender = 'tom'
 
         self.phenotype = Phenotype(self.genotype)
         self.phenotype.PhenotypeOutput(gender=self.genotype.gender, sex=self.genotype.gender)
