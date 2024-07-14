@@ -756,6 +756,7 @@ class Pregnancy_Events:
         Affair = False
         Which_Aff = 0
         RandomChoice = None
+        is_mate = True
 
         if other_cat:
             RandomChoice = choice(other_cat)
@@ -768,6 +769,7 @@ class Pregnancy_Events:
                 if len(x.mate) > 0:
                     Both_Unmated = False
                 if (x.ID not in cat.mate):
+                    is_mate = False
                     Affair = True
                     Which_Aff = x
 
@@ -778,17 +780,17 @@ class Pregnancy_Events:
         event_list = []
 
 
-        if not cat.outside and backkit:
+        if not cat.outside and backkit and not is_mate:
             event_list.append(choice(events["birth"]["unmated_parent"]))
         elif cat.outside:
             adding_text = choice(events["birth"]["outside_alone"])
             if other_cat and not All_Mates_Outside:
                 adding_text = choice(events["birth"]["outside_in_clan"])
             event_list.append(adding_text)
-        elif not Affair and not Dead_Mate and not All_Mates_Outside:
+        elif not Affair and not Dead_Mate and not All_Mates_Outside and is_mate:
             involved_cats.append(RandomChoice.ID)
             event_list.append(choice(events["birth"]["two_parents"]))
-        elif not Affair and Dead_Mate or All_Mates_Outside:
+        elif not Affair and (Dead_Mate or All_Mates_Outside) and is_mate:
             if WhoDied != 0:
                 involved_cats.append(WhoDied.ID)
                 RandomChoice = WhoDied
@@ -796,8 +798,7 @@ class Pregnancy_Events:
         elif len(cat.mate) < 1 and Both_Unmated and not Dead_Mate:
             involved_cats.append(RandomChoice.ID)
             event_list.append(choice(events["birth"]["both_unmated"]))
-        elif (len(cat.mate) > 0 and Affair) or\
-            (Affair and len(Which_Aff.mate) > 0 and cat.ID not in Which_Aff.mate and not Which_Aff.dead):
+        elif (len(cat.mate) > 0 and Affair) or (Affair and len(Which_Aff.mate) > 0 and cat.ID not in Which_Aff.mate and not Which_Aff.dead):
             involved_cats.append(Which_Aff.ID)
             RandomChoice = Which_Aff
             event_list.append(choice(events["birth"]["affair"]))
@@ -1406,7 +1407,7 @@ class Pregnancy_Events:
                 if cat_id == kit.ID:
                     continue
                 the_cat = Cat.all_cats.get(cat_id)
-                if the_cat.dead or the_cat.outside:
+                if not the_cat or the_cat.dead or the_cat.outside:
                     continue
                 if the_cat.ID in kit.get_parents():
                     if "turmoiled litter" in the_cat.illnesses:
