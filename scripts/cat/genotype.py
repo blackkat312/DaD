@@ -1872,8 +1872,8 @@ class Genotype:
         "R3" : ["Lemonade Yellow", "Straw Yellow", "Dandelion Yellow", "Banana Yellow", "Sunglow Yellow", "Copal", "Dull Orange", "Rust Orange", "Topaz", "Chocolate", "Burgundy", "Sky Blue", "Magenta"],
         "R4" : ["Light Celadon", "Pale Chartreuse", "Pear Green", "Brass Yellow", "Golden Green", "Butterscotch", "Dusty Orange", "Tawny", "Jasper", "Light Brown", "Earth", "Cyan", "Periwinkle"],
         "R5" : ["Light Jade", "Pale Lime", "Spring Bud", "Chartreuse", "Pale Hazel", "Yellow Hazel", "Golden Flourite", "Beaver Brown", "Sienna", "Chestnut", "Umber", "Baby Blue", "Violet"],
-        "R6" : ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Glass"],
-        "R7" : ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Moonstone"],
+        "R6" : ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Albino Glass"],
+        "R7" : ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Albino Moonstone"],
         "R8" : ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Albino Ice Blue"],
         "R9" : ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Albino Aquamarine"],
         "R10" : ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Albino Sky Blue"],
@@ -2067,8 +2067,8 @@ class Genotype:
         "R3" : ["Lemonade Yellow", "Straw Yellow", "Dandelion Yellow", "Banana Yellow", "Sunglow Yellow", "Copal", "Dull Orange", "Rust Orange", "Topaz", "Chocolate", "Burgundy", "Sky Blue", "Magenta"],
         "R4" : ["Light Celadon", "Pale Chartreuse", "Pear Green", "Brass Yellow", "Golden Green", "Butterscotch", "Dusty Orange", "Tawny", "Jasper", "Light Brown", "Earth", "Cyan", "Periwinkle"],
         "R5" : ["Light Jade", "Pale Lime", "Spring Bud", "Chartreuse", "Pale Hazel", "Yellow Hazel", "Golden Flourite", "Beaver Brown", "Sienna", "Chestnut", "Umber", "Baby Blue", "Violet"],
-        "R6" : ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Glass"],
-        "R7" : ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Moonstone"],
+        "R6" : ["Light Flourite", "Mantis Green", "Spring Green", "Lime", "Green Tea", "Hazel", "Golden Brown", "Dark Copal", "Cinnamon", "Raw Umber", "Sepia", "Aqua", "Albino Glass"],
+        "R7" : ["Pale Emerald", "Apple Green", "Shamrock", "Lemon-Lime", "Peridot", "Antique Brass", "Dark Hazel", "Brown-Green", "Hazel Brown", "Bronze", "Bistre Brown", "Cerulean", "Albino Moonstone"],
         "R8" : ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Albino Ice Blue"],
         "R9" : ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Albino Aquamarine"],
         "R10" : ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Albino Sky Blue"],
@@ -2186,11 +2186,13 @@ class Genotype:
             self.MainCoatmutation()
 
     def Bodymutation(self):
-        whichgene = ["curl", "fold", "manx", "karel", "kuril", "toybob", "japanese", "ringtail", "munchkin", "polydactyl", "polydactyl", "polydactyl", "polydactyl"]
+        whichgene = ["curl", "fold", "manx", "karel", "toybob", "japanese", "kuril", "ringtail", "munchkin",
+                     "polydactyl", "polydactyl", "polydactyl", "polydactyl"]
 
         if self.ban_genes:
-            whichgene.remove("fold")
-            whichgene.remove("munchkin")
+            for i in range(1, 20):
+                whichgene.remove("fold")
+                whichgene.remove("munchkin")
 
         which = choice(whichgene)
 
@@ -2234,7 +2236,7 @@ class Genotype:
                     self.manx[0] = 'ab'
                 else:
                     self.Mutate()
-            elif self.manx[0].lower() == "m" and not self.ban_genes:
+            elif self.manx[0].lower() == "m":
                 # Gains the gene
                 if(self.manx[0] == 'm'):
                     self.manx[0] = 'M'
@@ -2249,6 +2251,37 @@ class Genotype:
                     self.Mutate()
             else:
                 self.Mutate()
+            if self.ban_genes:
+                if self.manx == ["M", "M"]:
+                    self.manx = ["M", "m"]
+                elif self.manx == ["Ab", "Ab"]:
+                    self.manx = ["Ab", "ab"]
+        elif (which == 'karel'):
+            # Gains the gene
+            if (self.kab[1] == 'Kab'):
+                self.kab[1] = 'kab'
+            elif (self.kab[0] == 'Kab'):
+                self.kab[0] = 'kab'
+            # Loses the gene
+            elif (self.kab[0] == 'kab'):
+                self.kab[0] = 'Kab'
+            elif (self.kab[1] == 'kab'):
+                self.kab[1] = 'Kab'
+            else:
+                self.Mutate()
+        elif (which == 'toybob'):
+            # Gains the gene
+            if (self.toybob[0] == 'tb'):
+                self.toybob[0] = 'Tb'
+            elif (self.toybob[1] == 'tb'):
+                self.toybob[1] = 'Tb'
+            # Loses the gene
+            elif (self.toybob[1] == 'Tb'):
+                self.toybob[1] = 'tb'
+            elif (self.toybob[0] == 'Tb'):
+                self.toybob[0] = 'tb'
+            else:
+                self.Mutate()
         elif(which == 'japanese'):
             # Gains the gene
             if(self.jbob[1] == 'Jb'):
@@ -2260,32 +2293,6 @@ class Genotype:
                 self.jbob[0] = 'Jb'
             elif(self.jbob[1] == 'jb'):
                 self.jbob[1] = 'Jb'
-            else:
-                self.Mutate()
-        elif(which == 'toybob'):
-            # Gains the gene
-            if(self.toybob[0] == 'tb'):
-                self.toybob[0] = 'Tb'
-            elif(self.toybob[1] == 'tb'):
-                self.toybob[1] = 'Tb'
-            # Loses the gene
-            elif(self.toybob[1] == 'Tb'):
-                self.toybob[1] = 'tb'
-            elif(self.toybob[0] == 'Tb'):
-                self.toybob[0] = 'tb'
-            else:
-                self.Mutate()
-        elif(which == 'karel'):
-            # Gains the gene
-            if(self.kab[1] == 'Kab'):
-                self.kab[1] = 'kab'
-            elif(self.kab[0] == 'Kab'):
-                self.kab[0] = 'kab'
-            # Loses the gene
-            elif(self.kab[0] == 'kab'):
-                self.kab[0] = 'Kab'
-            elif(self.kab[1] == 'kab'):
-                self.kab[1] = 'Kab'
             else:
                 self.Mutate()
         elif(which == 'kuril'):
@@ -2327,7 +2334,7 @@ class Genotype:
                 self.munch[0] = 'mk'
             else:
                 self.Mutate()
-        else:
+        else:  # polydactyl
             # Gains the gene
             if(self.poly[0] == 'pd'):
                 self.poly[0] = 'Pd'
@@ -2344,11 +2351,13 @@ class Genotype:
         print(which)
     
     def FurTypemutation(self):
-        whichgene = ["wirehair", "laperm", "cornish", "urals", "tennessee", "fleecy", "sedesp", "sedesp", "sedesp", "lykoi", "rus mod", "russian"]
+        whichgene = ["wirehair", "laperm", "cornish", "urals", "tennessee", "fleecy", "sedesp", "sedesp", "sedesp",
+                     "russian", "russian mod", "lykoi"]
 
         if self.ban_genes:
-            whichgene.remove("lykoi")
-            whichgene.remove("russian")
+            for i in range(1, 20):
+                whichgene.remove("russian")
+                whichgene.remove("lykoi")
 
         which = choice(whichgene)
 
@@ -2496,33 +2505,7 @@ class Genotype:
                     self.Mutate()
             else:
                 self.Mutate()
-        elif(which == 'lykoi'):
-            # Gains the gene
-            if(self.lykoi[1] == 'Ly'):
-                self.lykoi[1] = 'ly'
-            elif(self.lykoi[0] == 'Ly'):
-                self.lykoi[0] = 'ly'
-            # Loses the gene
-            elif(self.lykoi[0] == 'ly'):
-                self.lykoi[0] = 'Ly'
-            elif(self.lykoi[1] == 'ly'):
-                self.lykoi[1] = 'Ly'
-            else:
-                self.Mutate()
-        elif(which == 'rus mod'):
-            # Gains the gene
-            if(self.lykoi[1] == 'hi'):
-                self.lykoi[1] = 'ha'
-            elif(self.lykoi[0] == 'hi'):
-                self.lykoi[0] = 'ha'
-            # Loses the gene
-            elif(self.lykoi[0] == 'ha'):
-                self.lykoi[0] = 'hi'
-            elif(self.lykoi[1] == 'ha'):
-                self.lykoi[1] = 'hi'
-            else:
-                self.Mutate()
-        else:
+        elif(which == 'russian'):
             # Gains the gene
             if(self.ruhr[0] == 'hrbd'):
                 self.ruhr[0] = 'Hrbd'
@@ -2535,13 +2518,41 @@ class Genotype:
                 self.ruhr[0] = 'hrbd'
             else:
                 self.Mutate()
+        elif(which == 'russian mod'):
+            # Gains the gene
+            if(self.lykoi[1] == 'hi'):
+                self.lykoi[1] = 'ha'
+            elif(self.lykoi[0] == 'hi'):
+                self.lykoi[0] = 'ha'
+            # Loses the gene
+            elif(self.lykoi[0] == 'ha'):
+                self.lykoi[0] = 'hi'
+            elif(self.lykoi[1] == 'ha'):
+                self.lykoi[1] = 'hi'
+            else:
+                self.Mutate()
+        else:  # lykoi
+            # Gains the gene
+            if (self.lykoi[1] == 'Ly'):
+                self.lykoi[1] = 'ly'
+            elif (self.lykoi[0] == 'Ly'):
+                self.lykoi[0] = 'ly'
+            # Loses the gene
+            elif (self.lykoi[0] == 'ly'):
+                self.lykoi[0] = 'Ly'
+            elif (self.lykoi[1] == 'ly'):
+                self.lykoi[1] = 'Ly'
+            else:
+                self.Mutate()
         print(which)
 
     def OtherCoatmutation(self):
-        whichgene = ["dilute mod", "pinkdilute", "extention", "corin", "karpati", "bleaching", "ghosting", "satin", "glitter"]
+        whichgene = ["pinkdilute", "dilute mod", "extention", "corin", "karpati", "bleaching", "ghosting", "satin",
+                     "glitter"]
 
         if self.ban_genes:
-            whichgene.remove("pinkdilute")
+            for i in range(1, 20):
+                whichgene.remove("pinkdilute")
 
         which = choice(whichgene)
 
@@ -2783,7 +2794,7 @@ class Genotype:
                 self.satin[1] = 'St'
             else:
                 self.Mutate()
-        elif(which == 'glitter'):
+        else:  # glitter
             # Gains the gene
             if(self.glitter[1] == 'Gl'):
                 self.glitter[1] = 'gl'
@@ -2799,7 +2810,9 @@ class Genotype:
         print(which)
     
     def MainCoatmutation(self):
-        whichgene = ["furlength", "black", "red", "dilute", "KIT", "albino", "silver", "agouti", "mackerel", "ticked", 'altai']
+        whichgene = ["furlength", "black", "red", "dilute", "white", "point", "silver", "agouti", "mackerel", "ticked",
+                     "DBE"]
+
         which = choice(whichgene)
 
         if(which == 'furlength'):
@@ -2879,7 +2892,7 @@ class Genotype:
                 self.dilute[1] = 'D'
             else:
                 self.Mutate()
-        elif(which == 'KIT'):
+        elif(which == 'white'):
             hell = randint(1, 2)
             ###### Gains the gene ######
             if(self.white[0] != 'wsal' and hell == 1):
@@ -3005,7 +3018,7 @@ class Genotype:
                     self.Mutate()
             else:
                 self.Mutate()
-        elif(which == 'albino'):
+        elif(which == 'point'):
             hell = randint(1, 2)
             ###### Gains the gene ######
             if(self.pointgene[0] != 'c' and hell == 1):
