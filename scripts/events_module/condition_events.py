@@ -1202,7 +1202,12 @@ class Condition_Events:
                 event = Condition_Events.change_condition_name(event)
                 event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
 
-                event_list.append(event)
+                if new_condition_name not in [cat.permanent_condition, cat.illnesses, cat.injuries]:
+                    event_list.append(event)
+                else:
+                    if new_condition_name in cat.permanent_condition:
+                        print(f"tried to give {cat.name} a permanent condition they already have, canceling")
+                    break
 
                 # we add the condition to this game switch, this is so we can ensure it's skipped over for this moon
                 game.switches["skip_conditions"].append(new_condition_name)
