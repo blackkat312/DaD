@@ -1739,10 +1739,13 @@ class Cat:
 
         if "intersex" not in self.conditions_already_attempted:
             if self.genotype.gender == "intersex":
+                # Chimeras
                 if self.genotype.chimera:
                     self.get_permanent_condition("chimerism", born_with=True)
+                # Aneuploidy
                 if len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2):
                     self.get_permanent_condition("aneuploidy", born_with=True)
+                # Other
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
                     if randint(1, 50) != 1:
                         intersex_condition = choice(intersex_conditions)
@@ -1752,6 +1755,7 @@ class Cat:
                         intersex_condition = "chimerism"
                     self.get_permanent_condition(intersex_condition, born_with=True)
                 self.conditions_already_attempted.append("intersex")
+            # Chimeras
             if self.genotype.chimera and self.genotype.gender != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
@@ -1759,12 +1763,17 @@ class Cat:
                 self.genotype.gender = "intersex"
                 self.get_permanent_condition("chimerism", born_with=True)
                 self.conditions_already_attempted.append("intersex")
+            # Aneuploidy
             if (len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2)) and self.genotype.gender != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
                 self.gender = "intersex"
                 self.genotype.gender = "intersex"
                 self.get_permanent_condition("aneuploidy", born_with=True)
+            # XY mollies
+            if (self.genotype.sexgene == ["o", "Y"] or self.genotype.sexgene == ["O", "Y"]) and self.genotype.gender == "molly":
+                self.get_permanent_condition("testosterone deficiency", born_with=True)
+                self.conditions_already_attempted.append("intersex")
 
         if "blue-eyed hearing" not in self.conditions_already_attempted:
             if self.genotype.deaf:
