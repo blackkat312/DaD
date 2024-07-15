@@ -83,7 +83,7 @@ class Breed_generator:
         for i in range(2):
             if randint(1, genoclass.odds["dominant white"]) == 1:
                 genoclass.white[i] = "W"
-            elif randint(1, genoclass.odds["white spotting"]) == 1:
+            elif randint(1, genoclass.odds["white spotting"]) > 3:
                 genoclass.white[i] = "ws"
             else:
                 genoclass.white[i] = "w"
