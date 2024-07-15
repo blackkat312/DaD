@@ -138,6 +138,10 @@
             {
                 "name": "raspy lungs",
                 "chance": 120
+            },
+            {
+                "name": "nosebleed",
+                "chance": 90
             }
         ],
         "herbs": [
@@ -181,6 +185,10 @@
             {
                 "name": "raspy lungs",
                 "chance": 180
+            },
+            {
+                "name": "nosebleed",
+                "chance": 90
             }
         ],
         "herbs": [
@@ -287,6 +295,10 @@
             {
                 "name": "raspy lungs",
                 "chance": 60
+            },
+            {
+                "name": "nosebleed",
+                "chance": 5
             }
         ],
         "herbs": [
@@ -328,10 +340,14 @@
                 "name": "whitecough",
                 "chance": 15
             },
-		    {
-		        "name": "silvercough",
-		        "chance": 15
-		    }
+            {
+                "name": "silvercough",
+                "chance": 15
+            },
+            {
+                "name": "nosebleed",
+                "chance": 90
+            }
         ],
         "herbs": [
             "ragwort",
@@ -370,7 +386,11 @@
             {
                 "name": "silvercough",
                 "chance": 5
-            }			
+            },
+            {
+                "name": "nosebleed",
+                "chance": 90
+            }
         ],
         "herbs": [
             "catmint",
@@ -410,6 +430,10 @@
             {
                 "name": "greencough",
                 "chance": 18
+            },
+            {
+                "name": "nosebleed",
+                "chance": 90
             }
         ],
         "herbs": [
@@ -454,6 +478,10 @@
             {
                 "name": "raspy lungs",
                 "chance": 80
+            },
+            {
+                "name": "nosebleed",
+                "chance": 45
             }
         ],
         "herbs": [
@@ -517,7 +545,12 @@
         "duration": 1,
         "medicine_duration": 1,
         "infectiousness": 0,
-        "risks": [],
+        "risks": [
+            {
+                "name": "fainting",
+                "chance": 25
+            }
+        ],
         "herbs": [
             "juniper",
             "ragwort",
@@ -551,6 +584,10 @@
             {
                 "name": "heat stroke",
                 "chance": 5
+            },
+            {
+                "name": "nosebleed",
+                "chance": 3
             }
         ],
         "herbs": [
@@ -587,14 +624,18 @@
                 "name": "diarrhea",
                 "chance": 8
             },
-			{
-				"name": "constipation",
-				"chance": 10
-			},
-			{
-				"name": "irritable bowels",
-				"chance": 100
-			}
+            {
+                "name": "constipation",
+                "chance": 10
+            },
+            {
+                "name": "irritable bowels",
+                "chance": 100
+            },
+            {
+                "name": "nausea",
+                "chance": 15
+            }
         ],
         "herbs": [
             "juniper",
@@ -773,10 +814,10 @@
                 "name": "panic attack",
                 "chance": 50
             },
-			{
-				"name": "paranoia",
-				"chance": 50
-			},
+            {
+                "name": "paranoia",
+                "chance": 50
+            },
             {
                 "name": "tics",
                 "chance": 60
@@ -784,12 +825,16 @@
             {
                 "name": "tic attack",
                 "chance": 80
+            },
+            {
+                "name": "nausea",
+                "chance": 20
             }
-			],
+        ],
         "herbs": [
             "catmint",
-			"thyme",
-			"betony"
+            "thyme",
+            "betony"
         ]
     },	
     "panic attack": {
@@ -820,22 +865,22 @@
                 "name": "nightmares",
                 "chance": 15
             },
-			{
+            {
                 "name": "shock",
                 "chance": 15
             },
-			{
-				"name": "anxiety",
-				"chance": 120
-			},
-			{
-				"name": "paranoia",
-				"chance": 50
-			},
-			{
-				"name": "dizziness",
-				"chance": 15
-			},
+            {
+                "name": "anxiety",
+                "chance": 120
+            },
+            {
+                "name": "paranoia",
+                "chance": 50
+            },
+            {
+                "name": "dizziness",
+                "chance": 15
+            },
             {
                 "name": "tics",
                 "chance": 80
@@ -844,11 +889,11 @@
                 "name": "tic attack",
                 "chance": 60
             }
-		],
+        ],
         "herbs": [
             "catmint",
-			"thyme",
-			"betony"
+            "thyme",
+            "betony"
         ]
     },
     "paranoia": {
@@ -879,23 +924,23 @@
                 "name": "nightmares",
                 "chance": 15
             },
-			{
+            {
                 "name": "shock",
                 "chance": 15
             },
-			{
-				"name": "lethargy",
-				"chance": 15
-			},
-			{
-				"name": "verbal shutdown",
-				"chance": 50
-			}
-		],
+            {
+                "name": "lethargy",
+                "chance": 15
+            },
+            {
+                "name": "verbal shutdown",
+                "chance": 50
+            }
+        ],
         "herbs": [
             "catmint",
-			"thyme",
-			"betony"
+            "thyme",
+            "betony"
         ]
     },
 	"absence": {
@@ -921,9 +966,7 @@
         "duration": 1,
         "medicine_duration": 1,
         "infectiousness": 0,
-        "risks": [
-
-        ],
+        "risks": [],
         "herbs": [
             "juniper",
             "poppy",
@@ -959,7 +1002,7 @@
                 "name": "bruises",
                 "chance": 15
             },
-			{
+            {
                 "name": "sore",
                 "chance": 15
             }
@@ -1026,11 +1069,11 @@
         "medicine_duration": 4,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "heavy soul",
-				"chance": 100
-			}
-			],
+            {
+                "name": "heavy soul",
+                "chance": 100
+            }
+        ],
         "herbs": [
             "juniper",
             "thyme",
@@ -1091,15 +1134,15 @@
         "medicine_duration": 2,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "mute",
-				"chance": 90
-			}
-		],
+            {
+                "name": "mute",
+                "chance": 90
+            }
+        ],
         "herbs": [
-			"honey",
-			"chamomile",
-			"betony"
+            "honey",
+            "chamomile",
+            "betony"
         ]
     },	
     "special interest": {
@@ -1178,15 +1221,15 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "parroting",
-				"chance": 5
-			},
-			{
-				"name": "body biter",
-				"chance": 50
-			}
-		],
+            {
+                "name": "parroting",
+                "chance": 5
+            },
+            {
+                "name": "body biter",
+                "chance": 50
+            }
+        ],
         "herbs": [
             "catmint"
         ]
@@ -1216,9 +1259,9 @@
         "infectiousness": 0,
         "risks": [],
         "herbs": [
-			"chamomile",
-			"thyme"
-		]
+            "chamomile",
+            "thyme"
+        ]
     },
     "impulsivity": {
         "severity": "minor",
@@ -1245,9 +1288,9 @@
         "infectiousness": 0,
         "risks": [],
         "herbs": [
-			"chamomile",
-			"thyme"
-		]
+            "chamomile",
+            "thyme"
+        ]
     },	
     "vivid daydreams": {
         "severity": "minor",
@@ -1273,18 +1316,18 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "hallucinations",
-				"chance": 120
-			},
             {
-				"name": "vivid daydreamer",
-				"chance": 120
-			}
-		],
+                "name": "hallucinations",
+                "chance": 120
+            },
+            {
+                "name": "vivid daydreamer",
+                "chance": 120
+            }
+        ],
         "herbs": [
-			"chamomile",
-			"thyme"
+            "chamomile",
+            "thyme"
         ]
     },
     "hallucinations": {
@@ -1315,7 +1358,7 @@
             "juniper",
             "thyme",
             "poppy",
-			"rosemary"
+            "rosemary"
         ]
     },
     "zoomies": {
@@ -1342,16 +1385,16 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "bruises",
-				"chance": 30
-			}
-		],
+            {
+                "name": "bruises",
+                "chance": 30
+            }
+        ],
         "herbs": [
             "juniper",
             "thyme",
             "poppy",
-			"rosemary"
+            "rosemary"
         ]
     },
     "compulsions": {
@@ -1378,16 +1421,16 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "bruises",
-				"chance": 30
-			}
-		],
+            {
+                "name": "bruises",
+                "chance": 30
+            }
+        ],
         "herbs": [
             "juniper",
             "thyme",
             "poppy",
-			"rosemary"
+            "rosemary"
         ]
     },	
 	"turmoiled litter": {
@@ -1413,8 +1456,7 @@
         "duration": 3,
         "medicine_duration": 2,
         "infectiousness": 0,
-        "risks": [
-		],
+        "risks": [],
         "herbs": [
             "juniper",
             "thyme",
@@ -1445,31 +1487,31 @@
         "medicine_duration": 2,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "ongoing sleeplessness",
-				"chance": 90
-			},
-			{
-				"name": "hallucinations",
-				"chance": 50
-			},
-			{
-				"name": "dizziness",
-				"chance": 25
-			},
-			{
-				"name": "nightmares",
-				"chance": 25
-			},
-			{
-				"name": "sleep paralysis",
-				"chance": 25
-			},
-			{
-				"name": "fainting",
-				"chance": 25
-			}
-		],
+            {
+                "name": "ongoing sleeplessness",
+                "chance": 90
+            },
+            {
+                "name": "hallucinations",
+                "chance": 50
+            },
+            {
+                "name": "dizziness",
+                "chance": 25
+            },
+            {
+                "name": "nightmares",
+                "chance": 25
+            },
+            {
+                "name": "sleep paralysis",
+                "chance": 25
+            },
+            {
+                "name": "fainting",
+                "chance": 25
+            }
+        ],
         "herbs": [
             "honey",
             "chamomile",
@@ -1500,14 +1542,14 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "nightmares",
-				"chance": 25
-			},
-			{
-				"name": "constant nightmares",
-				"chance": 75
-			}
+            {
+                "name": "nightmares",
+                "chance": 25
+            },
+            {
+                "name": "constant nightmares",
+                "chance": 75
+            }
         ],
         "herbs": [
             "juniper",
@@ -1540,9 +1582,9 @@
         "infectiousness": 0,
         "risks": [],
         "herbs": [
-			"chamomile",
-			"thyme"
-		]
+            "chamomile",
+            "thyme"
+        ]
     },
     "ear buzzing": {
         "severity": "major",
@@ -1569,10 +1611,10 @@
         "infectiousness": 0,
         "risks": [],
         "herbs": [
-			"chamomile",
-			"thyme",
-			"daisy"
-		]
+            "chamomile",
+            "thyme",
+            "daisy"
+        ]
     },
     "ear infection": {
         "severity": "major",
@@ -1605,17 +1647,13 @@
             {
                 "name": "ear buzzing",
                 "chance": 20
-            },
-            {
-                "name": "earache",
-                "chance": 25
             }
         ],
         "herbs": [
-			"chamomile",
-			"thyme",
-			"daisy"
-		]
+            "chamomile",
+            "thyme",
+            "daisy"
+        ]
     },
     "kittenspace": {
         "severity": "major",
@@ -1641,8 +1679,7 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [],
-        "herbs": [
-		]
+        "herbs": []
     },
     "puppyspace": {
         "severity": "major",
@@ -1668,8 +1705,7 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [],
-        "herbs": [
-		]
+        "herbs": []
     },
     "nest wetting": {
         "severity": "minor",
@@ -1695,15 +1731,15 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "sleeplessness",
-				"chance": 45
-			}
-		],
+            {
+                "name": "sleeplessness",
+                "chance": 45
+            }
+        ],
         "herbs": [
-			"juniper",
-			"poppy"
-		]
+            "juniper",
+            "poppy"
+        ]
     },
     "night dirtmaking": {
         "severity": "minor",
@@ -1729,15 +1765,15 @@
         "medicine_duration": 1,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "sleeplessness",
-				"chance": 20
-			}
-		],
+            {
+                "name": "sleeplessness",
+                "chance": 20
+            }
+        ],
         "herbs": [
-			"juniper",
-			"poppy"
-		]
+            "juniper",
+            "poppy"
+        ]
     },
     "tics": {
         "severity": "minor",
@@ -1894,10 +1930,10 @@
         "infectiousness": 0,
         "risks": [],
         "herbs": [
-			"chamomile",
-			"thyme",
-			"daisy"
-		]
+            "chamomile",
+            "thyme",
+            "daisy"
+        ]
     },
     "nausea": {
         "severity": "major",
@@ -1958,15 +1994,15 @@
         "medicine_duration": 2,
         "infectiousness": 0,
         "risks": [
-			{
-				"name": "parrot chatter",
-				"chance": 70
-			}
-		],
+            {
+                "name": "parrot chatter",
+                "chance": 70
+            }
+        ],
         "herbs": [
-			"chamomile",
-			"goldenrod"
-		]
+            "chamomile",
+            "goldenrod"
+        ]
     },
     "strong attachment": {
         "severity": "major",
@@ -1991,8 +2027,7 @@
         "duration": 3,
         "medicine_duration": 2,
         "infectiousness": 0,
-        "risks": [
-        ],
+        "risks": [],
         "herbs": [
             "poppy",
             "chamomile",
@@ -2022,8 +2057,7 @@
         "duration": 3,
         "medicine_duration": 2,
         "infectiousness": 0,
-        "risks": [
-        ],
+        "risks": [],
         "herbs": [
             "chamomile",
             "thyme"
