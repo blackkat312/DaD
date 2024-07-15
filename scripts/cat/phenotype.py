@@ -585,27 +585,26 @@ class Phenotype():
         return pattern
 
     def ChooseTortiePattern(self, spec=None):
-        tortie_patterns = ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO',
-                           'MINIMALTHREE', 'MINIMALFOUR', 'HALF', 'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT',
-                           'BANDANA', 'PACMAN', 'STREAMSTRIKE', 'ORIOLE', 'CHIMERA', 'DAUB', 'EMBER', 'BLANKET',
-                           'ROBIN', 'BRINDLE', 'PAIGE', 'ROSETAIL', 'SAFI', 'SMUDGED', 'DAPPLENIGHT', 'STREAK', 'MASK',
-                           'CHEST', 'ARMTAIL', 'SMOKE', 'GRUMPYFACE', 'BRIE', 'BELOVED', 'BODY', 'SHILOH', 'FRECKLED',
-                           'HEARTBEAT',
-
-                           'MINKANY', 'MINKTUXEDO', 'MINKVAN', 'MINKANYTWO', 'MINKSAVANNAH', 'MINKPEBBLESHINE',
-                           'MINKBROKEN', 'MINKLIGHTTUXEDO', 'MINKLIGHTSONG', 'MINKBLACKSTAR', 'MINKPIEBALD',
-                           'MINKCURVED', 'MINKPETAL', 'MINKSHIBAINU', 'MINKOWL', 'MINKTIP', 'MINKFANCY', 'MINKFRECKLES',
-                           'MINKRINGTAIL', 'MINKHALFFACE', 'MINKPANTSTWO', 'MINKGOATEE', 'MINKMITAINE',
-                           'MINKBROKENBLAZE', 'MINKTAIL', 'MINKPRINCE', 'MINKUNDERS', 'MINKFAROFA', 'MINKMISTER',
-                           'MINKTOPCOVER', 'MINKAPRON', 'MINKCAPSADDLE', 'MINKMASKMANTLE', 'MINKSQUEAKS', 'MINKSTAR',
-                           'MINKSKUNK', 'MINKKARPATI', 'MINKHALFWHITE', 'MINKAPPALOOSA', 'MINKDAPPLEPAW', 'MINKHEART',
-                           'MINKLILTWO', 'MINKGLASS', 'MINKMOORISH', 'MINKSEALPOINT', 'MINKMAO', 'MINKWINGS',
-                           'MINKPAINTED', 'MINKHEARTTWO', 'MINKWOODPECKER', 'MINKBOOTS', 'MINKMISS', 'MINKCOW',
-                           'MINKCOWTWO', 'MINKBUB', 'MINKBOWTIE', 'MINKREVERSEHEART', 'MINKSPARROW', 'MINKVEST',
-                           'MINKLOVEBUG', 'MINKTRIXIE', 'MINKSAMMY', 'MINKSHOOTINGSTAR', 'MINKREVERSEEYE', 'MINKFRONT',
-                           'MINKBLOSSOMSTEP', 'MINKPEBBLE', 'MINKTAILTWO', 'MINKBUDDY', 'MINKBULLSEYE', 'MINKFINN',
-                           'MINKDIGIT', 'MINKKROPKA', 'MINKFCONE', 'MINKMIA', 'MINKSCAR', 'MINKBUSTER', 'MINKSMOKEY',
-                           'MINKHAWKBLAZE', 'MINKCAKE', 'MINKPRINCESS', 'MINKDOUGIE', 'MINKEXTRA']
+        tortie_patterns = [
+            'ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE',
+            'MINIMALFOUR', 'HALF', 'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN',
+            'STREAMSTRIKE', 'ORIOLE', 'CHIMERA', 'DAUB', 'EMBER', 'BLANKET', 'ROBIN', 'BRINDLE', 'PAIGE', 'ROSETAIL',
+            'SAFI', 'SMUDGED', 'DAPPLENIGHT', 'STREAK', 'MASK', 'CHEST', 'ARMTAIL', 'SMOKE', 'GRUMPYFACE', 'BRIE',
+            'BELOVED', 'BODY', 'SHILOH', 'FRECKLED', 'HEARTBEAT',
+            # Mink's
+            'MINKANY', 'MINKTUXEDO', 'MINKVAN', 'MINKANYTWO', 'MINKSAVANNAH', 'MINKPEBBLESHINE', 'MINKBROKEN',
+            'MINKLIGHTTUXEDO', 'MINKLIGHTSONG', 'MINKBLACKSTAR', 'MINKPIEBALD', 'MINKCURVED', 'MINKPETAL',
+            'MINKSHIBAINU', 'MINKOWL', 'MINKTIP', 'MINKFANCY', 'MINKFRECKLES', 'MINKRINGTAIL', 'MINKHALFFACE',
+            'MINKPANTSTWO', 'MINKGOATEE', 'MINKMITAINE', 'MINKBROKENBLAZE', 'MINKTAIL', 'MINKPRINCE', 'MINKUNDERS',
+            'MINKFAROFA', 'MINKMISTER', 'MINKTOPCOVER', 'MINKAPRON', 'MINKCAPSADDLE', 'MINKMASKMANTLE', 'MINKSQUEAKS',
+            'MINKSTAR', 'MINKSKUNK', 'MINKHALFWHITE', 'MINKAPPALOOSA', 'MINKDAPPLEPAW', 'MINKHEART', 'MINKLILTWO',
+            'MINKGLASS', 'MINKMOORISH', 'MINKMAO', 'MINKWINGS', 'MINKPAINTED', 'MINKHEARTTWO', 'MINKWOODPECKER',
+            'MINKBOOTS', 'MINKMISS', 'MINKCOW', 'MINKCOWTWO', 'MINKBUB', 'MINKBOWTIE', 'MINKREVERSEHEART',
+            'MINKSPARROW', 'MINKVEST', 'MINKLOVEBUG', 'MINKTRIXIE', 'MINKSAMMY', 'MINKSHOOTINGSTAR', 'MINKREVERSEEYE',
+            'MINKFRONT', 'MINKBLOSSOMSTEP', 'MINKPEBBLE', 'MINKTAILTWO', 'MINKBUDDY', 'MINKBULLSEYE', 'MINKFINN',
+            'MINKDIGIT', 'MINKKROPKA', 'MINKFCONE', 'MINKMIA', 'MINKSCAR', 'MINKBUSTER', 'MINKHAWKBLAZE', 'MINKCAKE',
+            'MINKPRINCESS', 'MINKDOUGIE', 'MINKEXTRA'
+        ]
 
         chosen = choice(tortie_patterns)
 
@@ -691,8 +690,51 @@ class Phenotype():
                         self.patchmain = main[0]
                         self.patchcolour = main[1]
             else:
+                lowlist = [
+                    'MINKBLAZE', 'MINKESTRELLA', 'MINKLEFTEAR', 'MINKLOCKET', 'MINKLUNA', 'MINKSCOURGE', 'MINKTAILTIP',
+                    'MINKTOES', 'MINKRIGHTEAR', 'MINKBLAZEMASK', 'MINKBEARD', 'MINKBIB', 'MINKBROKENBLAZE',
+                    'MINKBUZZARDFANG', 'MINKEYEBAGS', 'MINKHONEY', 'MINKLIGHTTUXEDO', 'MINKLILTWO', 'MINKLITTLE',
+                    'MINKMUSTACHE', 'MINKPAWS', 'MINKRAVENPAW', 'MINKREVERSEEYE', 'MINKREVERSEHEART', 'MINKSPARKLE',
+                    'MINKTEARS', 'MINKTIP', 'MINKTOESTAIL', 'MINKVEE', 'MINKTUXEDO', 'MINKSAVANNAH', 'MINKFANCY',
+                    'MINKDIVA', 'MINKBEARD', 'MINKDAMIEN', 'MINKBELLY', 'MINKSQUEAKS', 'MINKSTAR', 'MINKMISS',
+                    'MINKBOWTIE', 'MINKFCTWO', 'MINKFCONE', 'MINKMIA', 'MINKPRINCESS', 'MINKDOUGIE', 'MINKEXTRA',
+                    'MINKMITAINE', 'MINKWOODPECKER', 'MINKDAPPLEPAW', 'MINKTUXEDO', 'MINKSAVANNAH', 'MINKFANCY',
+                    'MINKDIVA', 'MINKBEARD', 'MINKDAMIEN', 'MINKBELLY', 'MINKSQUEAKS', 'MINKSTAR', 'MINKMISS',
+                    'MINKBOWTIE', 'MINKFCTWO', 'MINKFCONE', 'MINKMIA', 'MINKPRINCESS', 'MINKDOUGIE', 'MINKEXTRA',
+                    'MINKMITAINE', 'MINKWOODPECKER', 'MINKDAPPLEPAW'
+                ]
+                medlist = [
+                    'MINKTUXEDO', 'MINKSAVANNAH', 'MINKRINGTAIL', 'MINKUNDERS', 'MINKFAROFA', 'MINKFRONT',
+                    'MINKBLOSSOMSTEP', 'MINKDIGIT', 'MINKHAWKBLAZE', 'MINKTOPCOVER', 'MINKANY', 'MINKSHIBAINU',
+                    'MINKFAROFA', 'MINKMISTER', 'MINKTRIXIE', 'MINKWINGS', 'MINKANY', 'MINKSHIBAINU', 'MINKMAO',
+                    'MINKTRIXIE', 'MINKWINGS', 'MINKANY', 'MINKFRECKLES', 'MINKMASKMANTLE', 'MINKMAO', 'MINKBUB',
+                    'MINKSCAR'
+                ]
+                highlist = [
+                    'MINKANYTWO', 'MINKPEBBLESHINE', 'MINKBROKEN', 'MINKPIEBALD', 'MINKFRECKLES', 'MINKHALFFACE',
+                    'MINKGOATEE', 'MINKPRINCE', 'MINKCAPSADDLE', 'MINKGLASS', 'MINKCOWTWO', 'MINKSAMMY', 'MINKBUSTER',
+                    'MINKCAKE', 'MINKVAN', 'MINKPEBBLESHINE', 'MINKLIGHTSONG', 'MINKCURVED', 'MINKGOATEE', 'MINKTAIL',
+                    'MINKAPRON', 'MINKHALFWHITE', 'MINKAPPALOOSA', 'MINKHEART', 'MINKMOORISH', 'MINKCOW',
+                    'MINKSHOOTINGSTAR', 'MINKTAILTWO', 'MINKBUDDY', 'MINKKROPKA', 'MINKONEEAR', 'MINKLIGHTSONG',
+                    'MINKBLACKSTAR', 'MINKPETAL', 'MINKCHESTSPECK', 'MINKHEARTTWO', 'MINKBOOTS', 'MINKSHOOTINGSTAR',
+                    'MINKEYESPOT', 'MINKKROPKA'
+                ]
+                mink = False
+                patterntype = "error"
+
                 self.tortpattern = self.ChooseTortiePattern()
-                if randint(1, 10) == 1:
+                if "MINK" in self.tortpattern:
+                    mink = True
+                    if self.tortpattern in lowlist:
+                        patterntype = "low"
+                    elif self.tortpattern in medlist:
+                        patterntype = "med"
+                    elif self.tortpattern in highlist:
+                        patterntype = "high"
+                    else:
+                        print(f"ERROR: cat has an unknown tortie patch: {self.tortpattern}")
+
+                if ((not mink or (mink and patterntype == "low")) and randint(1, 10) == 1) or (mink and patterntype == "med" and randint(1, 2) == 1) or (mink and patterntype == "high" and randint(1, 10) != 1):
                     self.tortpattern = 'rev'+self.tortpattern
                     if(self.genotype.brindledbi):
                         self.maincolour = "white"
