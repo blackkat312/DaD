@@ -1563,8 +1563,8 @@ class Cat:
 
         # 1/num chances
         if self.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
-            unique_pronoun = 10
-            first_new_pronoun = 10
+            unique_pronoun = 5
+            first_new_pronoun = 5
             second_new_pronoun = 15
             third_new_pronoun = 20
             fourth_new_pronoun = 25
