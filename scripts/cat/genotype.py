@@ -828,7 +828,7 @@ class Genotype:
                 self.white[i] = "wsal"
             elif randint(1, self.odds["dominant white"]) == 1:
                 self.white[i] = "W"
-            elif randint(1, self.odds["white spotting"]) == 1:
+            elif randint(1, self.odds["white spotting"]) > 3:
                 self.white[i] = "ws"
             else:
                 self.white[i] = "w"
