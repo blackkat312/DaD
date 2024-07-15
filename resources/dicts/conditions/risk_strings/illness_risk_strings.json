@@ -19,13 +19,22 @@
 		"longcough": [
 			"Despite all of m_c's tiredness and fever having left {PRONOUN/m_c/object}, r_c struggles to help get rid of the last lingering cough... it seems like it might never leave.",
 			"While m_c's greencough seems to be gone, the coughing itself stubbornly lingers. {PRONOUN/m_c/subject/CAP} {VERB/m_c/don't/doesn't} know if it'll ever go away coming in bursts randomly."
+		],
+		"nosebleed": [
+			"r_c reassures m_c that {PRONOUN/m_c/subject} just {VERB/m_c/have/has} a simple nosebleed.",
+			"In the midst of all m_c's coughing and sneezing {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gotten a nosebleed.",
+			"All of m_c's attempts to clear {PRONOUN/m_c/poss} nose has resulted in a nosebleed."
 		]
     },
     "kittencough": {
         "silvercough": [
             "r_c quietly tells m_c's parent that {PRONOUN/r_c/subject} {VERB/r_c/need/needs} to move m_c to the medicine den. m_c's kittencough has progressed to silvercough.",
             "m_c coughs pathetically, wondering why it's not getting better - and why {PRONOUN/m_c/subject} {VERB/m_c/have/has} to be in the stinky medicine den now."
-        ]
+        ],
+		"nosebleed": [
+			"r_c reassures m_c's worried parents that {PRONOUN/m_c/poss} bleeding nose is not redcough.",
+			"m_c's kittencough appears to have come along with a nosebleed."
+		]
     },
     "an infected wound": {
         "a festering wound": [
@@ -33,6 +42,12 @@
             "m_c swears {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} been cleaning it, but {PRONOUN/m_c/poss} wound has begun to fester like week-old prey."
         ]
     },
+	"redcough": {
+		"nosebleed": [
+			"It's all that r_c can do to help m_c with the additional nosebleed alongside {PRONOUN/m_c/poss} redcough.",
+			"m_c's struggle to breathe only becomes worse as {PRONOUN/m_c/poss} nose freely bleeds."
+		]	
+	},
     "running nose": {
         "whitecough": [
             "r_c moves m_c to the medicine den, where the whitecough that {PRONOUN/m_c/poss} running nose has turned into can be more easily monitored.",
@@ -43,6 +58,10 @@
 			"r_c herds m_c gently to the medicine den as {PRONOUN/m_c/subject} {VERB/m_c/cough/coughs}. There the silvercough can be more easily monitored and treated.",
 			"m_c brings {PRONOUN/m_c/self} to the medicine den, not only is {PRONOUN/m_c/poss} running nose not going away, it seems to be getting worse instead.",
 			"Miserably, m_c coughs and sneezing {PRONOUN/m_c/poss} way to the medicine den, it seems {PRONOUN/m_c/poss} running nose has turned into silvercough."
+		],
+		"nosebleed": [
+			"Concerned m_c goed to r_c about the nosebleed that {PRONOUN/m_c/poss} running nose has turned into.",
+			"m_c has noticed that the fluid running from {PRONOUN/m_c/poss} nose appears to be blood."
 		]
     },
     "whitecough": {
@@ -53,26 +72,52 @@
 		"silvercough": [
 			"r_c herds m_c to the medicine den, scolding {PRONOUN/m_c/object} for the lack of care for {PRONOUN/m_c/self}. Now the whitecough has become a more severe silvercough.",
 			"Due to the stubborn lack of nestrest m_c is now miserably curled up in the medicine den, coughing with silvercough instead."
+		],
+		"nosebleed": [
+			"r_c reassures m_c that {PRONOUN/m_c/subject} just {VERB/m_c/have/has} a simple nosebleed.",
+			"In the midst of all m_c's coughing and sneezing {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gotten a nosebleed.",
+			"All of m_c's attempts to clear {PRONOUN/m_c/poss} nose has resulted in a nosebleed."
 		]
     },
     "silvercough": {
         "greencough":[
             "r_c searches through {PRONOUN/r_c/poss} herb stores. m_c's silvercough has progressed to greencough, greatly worrying {PRONOUN/r_c/object}.",
             "m_c coughs, feeling like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} hacking up half {PRONOUN/m_c/poss} lungs. This is definitely worse than silvercough ever gets."
-        ]
+        ],
+		"nosebleed": [
+			"r_c reassures m_c that {PRONOUN/m_c/subject} just {VERB/m_c/have/has} a simple nosebleed.",
+			"In the midst of all m_c's coughing and sneezing {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gotten a nosebleed.",
+			"All of m_c's attempts to clear {PRONOUN/m_c/poss} nose has resulted in a nosebleed."
+		]
     },
     "yellowcough": {
         "redcough": [
              "r_c spots the specks of blood in the bedding where m_c has been coughing and swallows a wail of despair. If {PRONOUN/m_c/poss} yellowcough has progressed to redcough, it's practically a death sentence.",
              "m_c is going to be fine. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'re/'s} sure of it. {PRONOUN/m_c/poss/CAP} lungs don't hurt nearly as much anymore, and if there's blood in {PRONOUN/m_c/poss} mouth when {PRONOUN/m_c/subject} {VERB/m_c/finish/finishes} a coughing fit, what of it?"
-        ]
+        ],
+		"nosebleed": [
+			"r_c reassures m_c that {PRONOUN/m_c/subject} just {VERB/m_c/have/has} a simple nosebleed.",
+			"In the midst of all m_c's coughing and sneezing {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gotten a nosebleed.",
+			"All of m_c's attempts to clear {PRONOUN/m_c/poss} nose has resulted in a nosebleed."
+		]
     },
     "heat exhaustion": {
         "heat stroke": [
             "r_c presses damp moss onto m_c's forehead as {PRONOUN/m_c/subject} {VERB/m_c/lie/lies} completely drained and panting. This is more than heat exhaustion now, m_c will need time to recover from heat stroke.",
             "m_c rolls around dazedly in {PRONOUN/m_c/poss} nest, searching for a cooler spot. {PRONOUN/m_c/poss/CAP} exhaustion is beyond just a little thing and {PRONOUN/m_c/poss} confused brain still has enough observational power to recognise full heat stroke."
-        ]
+        ],
+		"nosebleed": [
+			"r_c desperately presses the damp moss to m_c's forehead, calling for a Clanmate to assist and get cleaner moss as {PRONOUN/m_c/poss} nose starts to bleed.",
+			"Weakly m_c pants, struggling to cleanly breathe as {PRONOUN/m_c/poss} nose begins to bleed.",
+			"The heat exhaustion that m_c has led to a nosebleed."
+		]
     },
+	"heat stroke": {
+		"fainting": [
+			"As if m_c's heat stroke isn't already terrifying, r_c now has to monitor {PRONOUN/m_c/object} through a fainting spell.",
+			"m_c's fainted from the effects of {PRONOUN/m_c/poss} heat stroke."
+		]
+	},
     "stomachache": {
         "diarrhea": [
             "Embarrassed, m_c reports to r_c that {PRONOUN/m_c/poss} stomachache is now having consequences at the other end of {PRONOUN/m_c/poss} digestive system. r_c, as unsqueamish as all medicine cats, tells m_c that it's now very important {PRONOUN/m_c/subject} {VERB/m_c/keep/keeps} drinking water, as the diarrhea will make {PRONOUN/m_c/object} lose it quickly.",
@@ -85,6 +130,10 @@
 		"irritable bowels": [
 			"m_c uncomfortably talks with r_c about how even after the stomachache's passed something still seems to be a bit irritated i {PRONOUN/m_c/poss} belly.",
 			"While m_c's stomachache has passed there's a lingering sense that something within is wrong. {PRONOUN/m_c/subject/CAP} still {VERB/m_c/feel/feels} a bit bloated and off."
+		],
+		"nausea": [
+			"r_c has noticed that m_c is struggling to eat, it appears that {PRONOUN/m_c/poss} stomachache has left {PRONOUN/m_c/object} with nausea.",
+			"The aching in m_c's stomache has resulted in nausea."
 		]
 	},
     "nightmares": {
@@ -168,6 +217,10 @@
 		"tic attack":[
 			"r_c calmly explains that what m_c is experincing is a tic attack.",
 			"m_c can't control {PRONOUN/m_c/poss} movement during {PRONOUN/m_c/poss} anxiety attack."
+		],
+		"nausea": [
+			"m_c admits to r_c that due to {PRONOUN/m_c/poss} anxiety {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} incredibly nauseous.",
+			"All of m_c's anxieties have left {PRONOUN/m_c/object} feeling rather nauseous."
 		]
 	},
 	"panic attack": {
@@ -359,10 +412,6 @@
 			"When m_c asks about why {PRONOUN/m_c/subject} {VERB/m_c/hear/hears} a ringing, r_c says that it might be ear buzzing.",
 			"m_c has had a buzzing like fly in {PRONOUN/m_c/poss} ears ever since {PRONOUN/m_c/subject} have gotten an ear infection.",
 			"m_c's ears have been buzzing lately."
-		],
-		"earache": [
-			"m_c's ears have had pressure on them making {PRONOUN/m_c/poss} ears ache.",
-			"m_c has gotten an ear ache!"
 		]
 	},
 	"nausea": {
