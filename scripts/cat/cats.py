@@ -736,7 +736,7 @@ class Cat:
 
                 '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
                       'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                      'DAPPLEPAW'
+                      'DAPPLEPAW',
                       # Mink's torties
                       'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE'],
 
@@ -787,7 +787,7 @@ class Cat:
 
             low3 = ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
                     'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                    'DAPPLEPAW' 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
+                    'DAPPLEPAW', 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
 
             low4 = ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT', 'HAWKBLAZE',
                     'TOPCOVER', 'MINKEYEDOT']
@@ -1769,6 +1769,9 @@ class Cat:
                 self.genotype.gender = "intersex"
                 self.get_permanent_condition("chimerism", born_with=True)
                 self.conditions_already_attempted.append("intersex")
+                self.pronouns = [self.default_pronouns[0].copy()]
+                if not theythemdefault and self.age != "newborn":
+                    self.handle_pronouns()
             # Aneuploidy
             if (len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2)) and self.genotype.gender != "intersex":
                 if self.gender == self.genderalign:
@@ -1776,6 +1779,9 @@ class Cat:
                 self.gender = "intersex"
                 self.genotype.gender = "intersex"
                 self.get_permanent_condition("aneuploidy", born_with=True)
+                self.pronouns = [self.default_pronouns[0].copy()]
+                if not theythemdefault and self.age != "newborn":
+                    self.handle_pronouns()
             # XY mollies
             if (self.genotype.sexgene == ["o", "Y"] or self.genotype.sexgene == ["O", "Y"]) and self.genotype.gender == "molly":
                 self.get_permanent_condition("testosterone deficiency", born_with=True)
