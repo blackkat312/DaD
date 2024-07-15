@@ -2450,7 +2450,8 @@ class ProfileScreen(Screens):
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
             "puppyspace": "petspace",
-            "parroting": "echolalia"
+            "parroting": "echolalia",
+            "ashcough": "smoke inhalation"
         }
         if not game.settings["warriorified names"]:
             if condition in dad_names:

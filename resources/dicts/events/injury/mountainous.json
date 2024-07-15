@@ -115,7 +115,35 @@
                 "cats": ["m_c"],
                 "scar": "m_c was scarred after falling from a tall cliff.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after falling from a tall cliff."
-        }
+			}
+        ]
+    },
+    {
+        "event_id": "mtn_injury_ashcough_greenleafany1",
+        "location": ["mountainous"],
+        "season": ["greenleaf"],
+        "weight": 30,
+        "event_text": "While exploring a new cave system m_c failed to notice how choking the air was and now {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} struggling to catch {PRONOUN/m_c/poss} breath.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ]
+        },
+        "injury": [
+            {
+                "cats": ["m_c"],
+                "injuries": ["ashcough"]
+            }
+        ],
+        "history": [
+            {
+                "cats": ["m_c"],
+                "reg_death": "m_c died from inhaling smoke in the mountain tunnels."
+			}
         ]
     }    
 ]

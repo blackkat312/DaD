@@ -324,6 +324,10 @@
 			{
 				"name": "fainting",
 				"chance": 20
+			},
+			{
+				"name": "nosebleed",
+				"chance": 50
 			}
         ],
         "herbs": [
@@ -447,6 +451,10 @@
 			{
 				"name": "word loss",
 				"chance": 20
+			},
+			{
+				"name": "earache",
+				"chance": 30
 			}
         ],
         "herbs": []
@@ -482,6 +490,10 @@
 			{
 				"name": "word loss",
 				"chance": 20
+			},
+			{
+				"name": "earache",
+				"chance": 30
 			}
         ],
         "herbs": []
@@ -588,6 +600,10 @@
 			{
 				"name": "fainting",
 				"chance": 90
+			},
+			{
+				"name": "nosebleed",
+				"chance": 45
 			}
         ],
         "herbs": []
@@ -623,7 +639,15 @@
 			{
 				"name": "fainting",
 				"chance": 50
-			}
+			},
+			{
+				"name": "earache",
+				"chance": 25
+			},
+            {
+                "name": "nausea",
+                "chance": 30
+            }
         ],
         "herbs": []
     },
@@ -1382,6 +1406,10 @@
 			{
 				"name": "fatigue",
 				"chance": 25
+			},
+			{
+				"name": "earache",
+				"chance": 50
 			}
 	],
 	"herbs": [
@@ -1465,6 +1493,14 @@
 			{
 				"name": "fainting",
 				"chance": 45
+			},
+			{
+				"name": "nosebleed",
+				"chance": 60
+			},
+			{
+				"name": "earache",
+				"chance": 45
 			}
         ],
         "herbs": [
@@ -1512,6 +1548,18 @@
 			{
 				"name": "stimming",
 				"chance": 20
+			},
+			{
+				"name": "nosebleed",
+				"chance": 30
+			},
+			{
+				"name": "earache",
+				"chance": 50
+			},
+			{
+				"name": "ear infection",
+				"chance": 70
 			}
         ],
         "herbs": [
@@ -1770,6 +1818,10 @@
 			{
 				"name": "nest wetting",
 				"chance": 25
+			},
+			{
+				"name": "nausea",
+				"chance": 10
 			}
         ],
         "herbs": [
@@ -1806,6 +1858,10 @@
 			{
 				"name": "fatigue",
 				"chance": 15
+			},
+			{
+				"name": "nosebleed",
+				"chance": 45
 			}
         ],
         "herbs": [
@@ -1942,22 +1998,26 @@
 		},
 		"illness_infectiousness": [],
 		"risks": [
-		{
-			"name": "headache",
-			"chance": 50
-		},
-        {
-		    "name": "sound headache",
-            "chance": 20
-        },
-        {
-            "name": "information loss",
-            "chance": 40
-        },
-        {
-            "name": "word loss",
-            "chance": 40
-        }
+			{
+				"name": "headache",
+				"chance": 50
+			},
+			{
+				"name": "sound headache",
+				"chance": 20
+			},
+			{
+				"name": "information loss",
+				"chance": 40
+			},
+			{
+				"name": "word loss",
+				"chance": 40
+			},
+			{
+				"name": "earache",
+				"chance": 45
+			}
         ],
         "herbs": []
     },
@@ -2089,6 +2149,10 @@
 			{
 				"name": "whitecough",
 				"chance": 35
+			},
+			{
+				"name": "earache",
+				"chance": 45
 			}
         ],
         "herbs": [

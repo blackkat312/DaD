@@ -284,5 +284,61 @@
                 "injuries": [ "headache" ]
             }
         ]
+    },
+    {
+        "event_id": "fst_injury_ashcough_greenleafany1",
+        "location": ["forest"],
+        "season": ["greenleaf"],
+        "weight": 30,
+        "event_text": "A fire rages through the forest. m_c manages to escape, but struggles to fully breathe due to the exposure to the smoke.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ]
+        },
+        "injury": [
+            {
+                "cats": ["m_c"],
+                "injuries": ["ashcough"]
+            }
+        ],
+        "history": [
+            {
+                "cats": ["m_c"],
+                "reg_death": "m_c died from smoke inhalation after a fire."
+            }
+        ]
+    },
+    {
+        "event_id": "fst_injury_ashcough_greenleafany2",
+        "location": ["forest"],
+        "season": ["greenleaf"],
+        "weight": 30,
+        "event_text": "After a fire breaks out in the camp, m_c's been coughing and wheezing, struggling with ash caught in {PRONOUN/m_c/poss} throat and lungs.",
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ]
+        },
+        "injury": [
+            {
+                "cats": ["m_c"],
+                "injuries": ["ashcough"]
+            }
+        ],
+        "history": [
+            {
+                "cats": ["m_c"],
+                "reg_death": "m_c died from smoke inhalation after a fire."
+            }
+        ]
     }
 ]

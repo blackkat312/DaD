@@ -540,6 +540,21 @@
         ]
     },
     {
+        "id": "comet_spirit_kit",
+        "thoughts": [
+            "Is constantly losing things",
+			"Really upset about something",
+			"Refuses to stay still for grooming",
+			"Attempts to sneak out of camp constantly",
+			"Wants to be free to explore"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "comet spririt"
+            ]
+        }
+    },
+    {
         "id": "otherworldly_mind_kit",
         "thoughts": [
             "Wants the monsters to go away",

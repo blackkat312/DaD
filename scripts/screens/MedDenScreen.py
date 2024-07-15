@@ -640,7 +640,8 @@ class MedDenScreen(Screens):
             "ear buzzing": "tinnitus",
             "kittenspace": "littlespace",
             "puppyspace": "petspace",
-            "parroting": "echolalia"
+            "parroting": "echolalia",
+            "ashcough": "smoke inhalation"
         }
         length = 0
         if not game.settings["warriorified names"]:

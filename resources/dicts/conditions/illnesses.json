@@ -134,7 +134,11 @@
 		    {
 		        "name": "longcough",
 		        "chance": 120
-		    }
+		    },
+			{
+				"name": "nosebleed",
+				"chance": 90
+			}
         ],
         "herbs": [
             "catmint",
@@ -173,7 +177,11 @@
             {
                 "name": "silvercough",
                 "chance": 10
-            }
+            },
+			{
+				"name": "nosebleed",
+				"chance": 90
+			}
         ],
         "herbs": [
             "catmint",
@@ -275,7 +283,12 @@
         "duration": 50,
         "medicine_duration": 40,
         "infectiousness": 0,
-        "risks": [],
+        "risks": [
+			{
+				"name": "nosebleed",
+				"chance": 5
+			}
+		],
         "herbs": [
             "lungwort",
             "mullein",
@@ -318,7 +331,11 @@
 		    {
 		        "name": "silvercough",
 		        "chance": 15
-		    }
+		    },
+			{
+				"name": "nosebleed",
+				"chance": 90
+			}
         ],
         "herbs": [
             "ragwort",
@@ -357,7 +374,11 @@
             {
                 "name": "silvercough",
                 "chance": 5
-            }			
+            },
+			{
+				"name": "nosebleed",
+				"chance": 90
+			}			
         ],
         "herbs": [
             "catmint",
@@ -397,7 +418,11 @@
             {
                 "name": "greencough",
                 "chance": 18
-            }
+            },
+			{
+				"name": "nosebleed",
+				"chance": 90
+			}
         ],
         "herbs": [
             "catmint",
@@ -437,7 +462,11 @@
             {
                 "name": "redcough",
                 "chance": 80
-            }
+            },
+			{
+				"name": "nosebleed",
+				"chance": 45
+			}
         ],
         "herbs": [
             "lungwort"
@@ -500,7 +529,12 @@
         "duration": 1,
         "medicine_duration": 1,
         "infectiousness": 0,
-        "risks": [],
+        "risks": [
+			{
+				"name": "fainting",
+				"chance": 25
+			}
+		],
         "herbs": [
             "juniper",
             "ragwort",
@@ -534,7 +568,11 @@
             {
                 "name": "heat stroke",
                 "chance": 5
-            }
+            },
+			{
+				"name": "nosebleed",
+				"chance": 3
+			}
         ],
         "herbs": [
             "juniper",
@@ -577,6 +615,10 @@
 			{
 				"name": "irritable bowels",
 				"chance": 100
+			},
+			{
+				"name": "nausea",
+				"chance": 15
 			}
         ],
         "herbs": [
@@ -767,8 +809,12 @@
             {
                 "name": "tic attack",
                 "chance": 80
-            }
-			],
+            },
+			{
+				"name": "nausea",
+				"chance": 20
+			}
+		],
         "herbs": [
             "catmint",
 			"thyme",
@@ -1588,10 +1634,6 @@
             {
                 "name": "ear buzzing",
                 "chance": 20
-            },
-            {
-                "name": "earache",
-                "chance": 25
             }
         ],
         "herbs": [
