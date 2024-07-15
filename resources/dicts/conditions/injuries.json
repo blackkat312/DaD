@@ -54,8 +54,7 @@
             "senior adult": 60,
             "senior": 15
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -96,8 +95,7 @@
             "senior adult": 60,
             "senior": 15
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -138,8 +136,7 @@
             "senior adult": 60,
             "senior": 15
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -180,8 +177,7 @@
             "senior adult": 60,
             "senior": 15
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -300,8 +296,7 @@
             "senior": 15
         },
         "illness_infectiousness": [],
-        "risks": [
-        ],
+        "risks": [],
         "also_got": [
             "shock"
         ],
@@ -531,10 +526,8 @@
         },
         "illness_infectiousness": [],
         "risks": [],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "marigold",
             "ragwort",
@@ -628,8 +621,7 @@
         "illness_infectiousness": [],
         "risks": [],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": []
     },
 
@@ -654,8 +646,7 @@
             }
         ],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "oak_leaves",
             "marigold",
@@ -680,8 +671,7 @@
         "illness_infectiousness": [],
         "risks": [],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "daisy",
             "dandelion",
@@ -707,8 +697,7 @@
         "illness_infectiousness": [],
         "risks": [],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "dandelion",
             "poppy",
@@ -737,8 +726,7 @@
             }
         ],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "cobwebs",
             "marigold",
@@ -768,8 +756,7 @@
             }
         ],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "marigold",
             "oak_leaves",
@@ -797,10 +784,8 @@
                 "chance": 25
             }
         ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "cobwebs",
             "goldenrod",
@@ -912,8 +897,7 @@
         "also_got": [
             "blood loss"
         ],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "oak_leaves",
             "juniper",
@@ -993,10 +977,10 @@
             }
         ],
         "also_got": [
-            "shock"
+            "shock",
+			"ashcough"
         ],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "cobwebs",
             "marigold",
@@ -1031,7 +1015,8 @@
             }
         ],
         "also_got": [
-            "shock"
+            "shock",
+			"ashcough"
         ],
         "cause_permanent": [
             "lost their tail",
@@ -1072,8 +1057,7 @@
             }
         ],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "thyme",
             "juniper",
@@ -1096,8 +1080,7 @@
             "senior": 0
         },
         "illness_infectiousness": [],
-        "risks": [
-        ],
+        "risks": [],
         "also_got": [],
         "cause_permanent": [
             "recurring shock",
@@ -1144,8 +1127,7 @@
         "also_got": [
             "frostbite"
         ],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "juniper",
             "ragwort",
@@ -1166,8 +1148,7 @@
             "senior adult": 50,
             "senior": 20
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "heat exhaustion",
@@ -1177,8 +1158,7 @@
         "also_got": [
             "heat exhaustion"
         ],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "ragwort",
             "juniper",
@@ -1199,8 +1179,7 @@
             "senior adult": 40,
             "senior": 20
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "headache",
@@ -1248,8 +1227,7 @@
             "senior adult": 70,
             "senior": 50
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -1292,8 +1270,7 @@
             "senior adult": 50,
             "senior": 30
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -1303,8 +1280,7 @@
         "also_got": [
             "torn pelt"
         ],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "cobwebs",
             "goldenrod",
@@ -1331,8 +1307,7 @@
             "senior adult": 25,
             "senior": 10
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "an infected wound",
@@ -1366,8 +1341,7 @@
             "senior adult": 20,
             "senior": 15
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "redcough",
@@ -1402,14 +1376,10 @@
             "senior adult": 50,
             "senior": 30
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "blackberry",
             "dandelion",
@@ -1430,14 +1400,10 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "poppy",
             "juniper"
@@ -1457,14 +1423,10 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "poppy",
             "juniper"
@@ -1483,14 +1445,10 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "poppy",
             "juniper"
@@ -1508,14 +1466,10 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "cobwebs",
             "marigold",
@@ -1540,14 +1494,10 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "cobwebs",
             "marigold",
@@ -1575,10 +1525,8 @@
         },
         "illness_infectiousness": [],
         "risks": [],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "marigold",
             "ragwort",
@@ -1606,10 +1554,8 @@
                 "chance": 4
             }
         ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
+        "also_got": [],
+        "cause_permanent": [],
         "herbs": [
             "marigold",
             "burdock",
@@ -1663,8 +1609,7 @@
         "illness_infectiousness": [],
         "risks": [],
         "also_got": [],
-        "cause_permanent": [
-        ],
+        "cause_permanent": [],
         "herbs": [
             "daisy",
             "dandelion",
@@ -1722,11 +1667,9 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [],
-        "also_got": [
-        ],
+        "also_got": [],
         "cause_permanent": [
             "failing eyesight",
 	        "burning light"
@@ -1756,11 +1699,10 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
 			{
-				"name": "an infected wound",
+				"name": "ear infection",
 				"chance": 25
 			},
 			{
@@ -1794,11 +1736,9 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [],
-        "also_got": [
-        ],
+        "also_got": [],
         "cause_permanent": [
             "burning light",
 	        "disrupted senses"
@@ -1824,16 +1764,14 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
 			{
 				"name": "anxiety attack",
 				"chance": 10
 			}
 		],
-        "also_got": [
-        ],
+        "also_got": [],
         "cause_permanent": [
 			"disrupted senses"
         ],
@@ -1858,8 +1796,7 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
 			{
 				"name": "sleeplessness",
@@ -1874,8 +1811,7 @@
 				"chance": 20
 			}
 		],
-        "also_got": [
-        ],
+        "also_got": [],
         "cause_permanent": [
 			"constant fatigue"
         ],
@@ -1899,8 +1835,7 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "head damage",
@@ -1913,10 +1848,8 @@
             "dizziness",
             "headache"
         ],
-        "cause_permanent": [
-        ],
-        "herbs": [
-        ]
+        "cause_permanent": [],
+        "herbs": []
     },
     "knee locking": {
         "duration": 1,
@@ -1924,15 +1857,14 @@
         "medicine_duration": 1,
         "mortality": {
             "newborn": 0,
-            "kitten": 70,
-            "adolescent": 90,
-            "young adult": 100,
-            "adult": 100,
-            "senior adult": 90,
-            "senior": 70
+            "kitten": 80,
+            "adolescent": 100,
+            "young adult": 110,
+            "adult": 110,
+            "senior adult": 100,
+            "senior": 80
         },
-        "illness_infectiousness": [
-        ],
+        "illness_infectiousness": [],
         "risks": [
             {
                 "name": "broken bone",
@@ -1948,9 +1880,103 @@
             "bruises",
             "torn pelt"
         ],
+        "cause_permanent": [],
+        "herbs": [
+            "moss"
+        ]
+    },
+    "severe tick bites":{
+        "duration": 2,
+        "severity": "major",
+        "medicine_duration": 1,
+        "mortality": {
+            "newborn": 40,
+            "kitten": 40,
+            "adolescent": 50,
+            "young adult": 60,
+            "adult": 60,
+            "senior adult": 50,
+            "senior": 40
+        },
+        "illness_infectiousness": [],
+        "risks": [
+            {
+                "name": "an infected wound",
+                "chance": 40
+            },
+			{
+				"name": "spasms",
+				"chance": 40
+			}
+        ],
+        "also_got": [
+			"dizziness"
+		],
         "cause_permanent": [
+            "paralyzed"
+		],
+        "herbs": [
+            "moss",
+            "plantain",
+			"comfrey"
+        ]
+    },
+    "nosebleed": {
+        "duration": 2,
+        "severity": "minor",
+        "medicine_duration": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [
+			"blood loss"
+        ],
+        "cause_permanent": [],
+        "herbs": [
+            "horsetail",
+            "marigold",
+            "ragwort",
+            "juniper",
+			"moss",
+			"cobwebs"
+        ]
+    },
+    "ashcough": {
+        "duration": 3,
+        "severity": "severe",
+        "medicine_duration": 2,
+        "mortality": {
+            "newborn": 10,
+            "kitten": 20,
+            "adolescent": 25,
+            "young adult": 30,
+            "adult": 30,
+            "senior adult": 20,
+            "senior": 10
+        },
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [
+			"longcough",
+			"raspy lungs"
         ],
         "herbs": [
+            "catmint",
+            "plantain",
+            "tansy",
+            "mullein",
+            "juniper",
+            "ragwort",
+            "poppy",
             "moss"
         ]
     },
@@ -1966,16 +1992,11 @@
             "senior adult": 0,
             "senior": 0
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
-        "herbs": [
-        ]
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
+        "herbs": []
     },
     "pregnant": {
         "duration": 2,
@@ -1989,16 +2010,11 @@
             "senior adult": 30,
             "senior": 20
         },
-        "illness_infectiousness": [
-        ],
-        "risks": [
-        ],
-        "also_got": [
-        ],
-        "cause_permanent": [
-        ],
-        "herbs": [
-        ]
+        "illness_infectiousness": [],
+        "risks": [],
+        "also_got": [],
+        "cause_permanent": [],
+        "herbs": []
     }
 }
 
