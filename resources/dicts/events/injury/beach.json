@@ -486,7 +486,58 @@
             {
                 "cats": ["m_c"],
                 "scar": "m_c was scarred from {PRONOUN/m_c/poss} rash after being dragged out to sea.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} rash after being dragged out to sea."
+                "reg_death": "this should not appear",
+                "lead_death": "this should not appear"
+            }
+        ]
+    },
+    {
+        "event_id": "bch_injury_earache_any1",
+        "location": ["beach"],
+        "season": ["any"],
+        "weight": 10,
+        "event_text": "Poor m_c has been suffering from an earache due to water trapped in {PRONOUN/m_c/poss} ears.",
+        "m_c": {
+            "age": [
+                "any"
+            ],
+            "status": [
+                "any"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "earache"
+                ]
+            }
+        ]
+    },
+    {
+        "event_id": "bch_injury_earache_any2",
+        "location": ["beach"],
+        "season": ["any"],
+        "weight": 10,
+        "event_text": "m_c has been complaining about water getting trapped in {PRONOUN/m_c/poss} ears.",
+        "m_c": {
+            "age": [
+                "any"
+            ],
+            "status": [
+                "any"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "earache"
+                ]
             }
         ]
     }
