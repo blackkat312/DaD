@@ -549,8 +549,12 @@
             "r_c feeds m_c disgusting herbs with {PRONOUN/m_c/poss} supper, concerned over {PRONOUN/m_c/poss} running nose. m_c thinks {PRONOUN/r_c/subject} should be more concerned with ruining {PRONOUN/m_c/poss} appetite!",
             "m_c's nose has been running perpetually all moon."
         ],
+		"whitecough": [
+            "r_c fears have been realized: whitecough has infected m_c, thanks to {PRONOUN/m_c/poss} narrowed chest.",
+            "m_c's narrowed chest has left {PRONOUN/m_c/object} coughing and wheezing this moon, unable to resist potential sickness."
+        ],
 		"silvercough": [
-            "r_c worst fears have been realized: silvercough has infected m_c, thanks to {PRONOUN/m_c/poss} narrowed chest.",
+            "r_c fears have been realized: silvercough has infected m_c, thanks to {PRONOUN/m_c/poss} narrowed chest.",
             "m_c's narrowed chest has left {PRONOUN/m_c/object} coughing and wheezing this moon, unable to resist potential sickness."
         ],
         "greencough": [
