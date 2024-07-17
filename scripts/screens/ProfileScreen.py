@@ -2494,57 +2494,9 @@ class ProfileScreen(Screens):
 
     @staticmethod
     def change_condition_name(condition):
-        dad_names = {
-            "starwalker": "autism",
-            "obsessive mind": "OCD",
-            "heavy soul": "chronic depression",
-            "comet spirit": "ADHD",
-            "antisocial": "ASPD",
-            "constant roaming pain": "fibromyalgia",
-            "ongoing sleeplessness": "chronic insomnia",
-            "body biter": "BFRD",
-            "thunderous spirit": "BPD",
-            "otherworldly mind": "schizophrenia",
-            "snow vision": "visual snow",
-            "kitten regressor": "age regressor",
-            "puppy regressor": "pet regressor",
-            "irritable bowels": "IBS",
-            "jellyfish joints": "HSD",
-            "loose body": "hEDS",
-            "burning light": "chronic light sensitivity",
-            "jumbled noise": "APD",
-            "disrupted senses": "SPD",
-            "constant rash": "eczema",
-            "chattering tongue": "tourette's",
-            "falling paws": "orthostatic hypotension",
-            "shattered soul": "DID",
-            "budding spirit": "OSDD",
-            "curved spine": "scoliosis",
-            "jumbled mind": "dyslexia",
-            "counting fog": "dyscalculia",
-            "spirited heart": "hyperempathy",
-            "puzzled heart": "low empathy",
-            "parrot chatter": "echolalia",
-            "thought blindness": "aphantasia",
-            "vivid daydreamer": "maladaptive daydreamer",
-            "frequent fainting": "vasovagal syncope",
-            "flooded paws": "POTS",
-            "bad knee": "meniscus tear",
-
-            "sunblindness": "light sensitivity",
-
-            "seasonal lethargy": "seasonal depression",
-            "lethargy": "depression",
-            "turmoiled litter": "postpartum",
-            "sleeplessness": "insomnia",
-            "ear buzzing": "tinnitus",
-            "kittenspace": "littlespace",
-            "puppyspace": "petspace",
-            "parroting": "echolalia"
-        }
         if not game.settings["warriorified names"]:
-            if condition in dad_names:
-                condition = condition.replace(condition, dad_names.get(condition))
+            if condition in Cat.dad_names:
+                condition = condition.replace(condition, Cat.dad_names.get(condition))
 
         if condition == "false pregnancy":
             condition = "pregnant?"
