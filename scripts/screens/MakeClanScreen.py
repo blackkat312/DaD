@@ -1001,8 +1001,15 @@ class MakeClanScreen(Screens):
 
             self.elements["cat_name"].set_text(str(selected.name))
             self.elements["cat_name"].show()
-
+            moon_text = ""
             pronoun_text = ""
+            special_text = ""
+
+            if selected.moons == 1:
+                moon_text = " (1 moon)"
+            elif selected.moons != 0:
+                moon_text = f" ({str(selected.moons)} moons)"
+
             if len(selected.pronouns) == 1:
                 if selected.pronouns[0].get("subject") == selected.pronouns[0].get("object"):
                     pronoun_text += selected.pronouns[0].get("subject") + "/" + selected.pronouns[0].get("poss")
@@ -1013,6 +1020,37 @@ class MakeClanScreen(Screens):
                     pronoun_text += pronoun.get("subject") + "/"
                 if pronoun_text[-1] == "/":
                     pronoun_text = pronoun_text[:-1]
+
+            if (selected.genotype.somatic and selected.genotype.somatic != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}"):
+                special_text += "has a somatic mutation!"
+
+            if special_text:
+                special_text += "\nX"
+            else:
+                special_text += "X"
+            if selected.genotype.sexgene[1] == "O" or selected.genotype.sexgene[1] == "o":
+                special_text += "X"
+            else:
+                special_text += "Y"
+            if len(selected.genotype.sexgene) > 2:
+                if selected.genotype.sexgene[2] == "O" or selected.genotype.sexgene[2] == "o":
+                    special_text += "X"
+                else:
+                    special_text += "Y"
+
+            if selected.genotype.chimera:
+                special_text = "chimera!\n" + special_text
+
+                special_text += "/X"
+                if selected.genotype.chimerageno.sexgene[1] == "O" or selected.genotype.chimerageno.sexgene[1] == "o":
+                    special_text += "X"
+                else:
+                    special_text += "Y"
+                if len(selected.genotype.chimerageno.sexgene) > 2:
+                    if selected.genotype.chimerageno.sexgene[2] == "O" or selected.genotype.chimerageno.sexgene[2] == "o":
+                        special_text += "X"
+                    else:
+                        special_text += "Y"
 
             if selected.permanent_condition:
                 perm_cond_text = "condition"
@@ -1029,7 +1067,9 @@ class MakeClanScreen(Screens):
                     + "\n"
                     + str(pronoun_text)
                     + "\n"
-                    + str(selected.age)
+                    + str(special_text)
+                    + "\n"
+                    + str(selected.age) + moon_text
                     + "\n"
                     + str(selected.personality.trait)
                     + "\n"
@@ -1044,7 +1084,9 @@ class MakeClanScreen(Screens):
                     + "\n"
                     + str(pronoun_text)
                     + "\n"
-                    + str(selected.age)
+                    + str(special_text)
+                    + "\n"
+                    + str(selected.age) + moon_text
                     + "\n"
                     + str(selected.personality.trait)
                     + "\n"
