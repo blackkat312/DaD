@@ -3272,19 +3272,19 @@ class Genotype:
                                     'right back bicolour2', 'left back bicolour2'])
 
         possible_mutes = {
-        "furtype" : ["wirehair", "laperm", "cornish", "urals", "tenn", "fleece", "sedesp"],
+        "furtype" : ["tenn", "sedesp"],
         "other" : ["pinkdilute", "ext", "corin", "karp"],
         "main" : ["eumelanin", "sexgene", "dilute", "white", "pointgene", "silver", "agouti"]
         }
 
         for gene in possible_mutes["furtype"]:
-            if gene in ['wirehair', 'laperm', 'sedesp']:
-                if self[gene][0] in ['Wh', 'Lp', 'Se', 'hr', 're']:
+            if gene == 'sedesp':
+                if self[gene][0] in ['Se', 'hr', 're']:
                     possible_mutes["furtype"].remove(gene)
             try:
-                if self[gene][0] in ['r', 'ru', 'tr', 'fc']:
+                if self[gene][0] == 'tr':
                     possible_mutes["furtype"].remove(gene)
-                elif self[gene][1] in ['R', 'Ru', 'Tr', 'Fc']:
+                elif self[gene][1] == 'Tr':
                     possible_mutes["furtype"].remove(gene)
             except:
                 continue
@@ -3332,12 +3332,7 @@ class Genotype:
             self.somatic["base"] = "Somatic/tail"
 
         alleles = {
-            "wirehair" : ['Wh'],
-            "laperm" : ['Lp'],
-            "cornish" : ['r'],
-            "urals" : ['ru'],
             "tenn" : ['tr'],
-            "fleece" : ['fc'],
             "sedesp" : ['Se'],
 
             'pinkdilute' : ['dp'],
@@ -3373,12 +3368,7 @@ class Genotype:
             return ""
 
         name_conversion = {
-            "wirehair": "Wirehair",
-            "laperm": "LaPerm rex",
-            "cornish": "Cornish rex",
-            "urals": "Ural rex",
             "tenn": "Tennessee rex",
-            "fleece": "Fleecy cloud rexing",
             "sedesp": "Selkirk rex/Canadian hairless/Devon rex",
 
             'pinkdilute': "Pink-eyed dilution",
