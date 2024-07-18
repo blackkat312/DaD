@@ -1805,7 +1805,7 @@ class Cat:
                     self.get_permanent_condition("aneuploidy", born_with=True)
                 # Other
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
-                    if randint(1, 200) != 1:
+                    if randint(1, 250) != 1:
                         intersex_condition = choice(intersex_conditions)
                         while intersex_condition == "chimerism" or intersex_condition == "aneuploidy":
                             intersex_condition = choice(intersex_conditions)
