@@ -723,7 +723,7 @@ class Phenotype():
                     else:
                         print(f"ERROR: cat has an unknown tortie patch: {self.tortpattern}")
 
-                if ((not mink or (mink and patterntype == "low")) and randint(1, 10) == 1) or (mink and patterntype == "med" and randint(1, 2) == 1) or (mink and patterntype == "high" and randint(1, 10) != 1):
+                if ((not mink or (mink and patterntype == "low")) and randint(1, 10) == 1) or (mink and patterntype in ["med", "error"] and randint(1, 2) == 1) or ((self.tortpattern == "BODY" or (mink and patterntype == "high")) and randint(1, 10) != 1):
                     self.tortpattern = 'rev'+self.tortpattern
                     if(self.genotype.brindledbi):
                         self.maincolour = "white"
