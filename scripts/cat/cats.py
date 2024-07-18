@@ -1502,7 +1502,7 @@ class Cat:
         trans_chance = randint(0, 35)
         nb_chance = randint(0, 35)
         #newborns can't be trans, sorry babies
-        if self.age in ['newborn']:
+        if self.moons == 0 or self.age == "newborn":
             trans_chance = 0
             nb_chance = 0
         self.genderalign = ""
@@ -1539,7 +1539,7 @@ class Cat:
         else:
             self.pronouns = [self.default_pronouns[0].copy()]
 
-        if not theythemdefault and self.age != "newborn":
+        if not theythemdefault and not (self.moons == 0 or self.age == "newborn"):
             self.handle_pronouns()
 
         # APPEARANCE
@@ -1591,6 +1591,9 @@ class Cat:
         return hash(self.ID)
 
     def handle_pronouns(self):
+        if self.moons == 0 or self.age == "newborn":
+            pass
+
         all_pronouns = self.default_pronouns.copy()
         current_pronoun = 0
         list_indexes = len(all_pronouns) - 1
@@ -1802,7 +1805,7 @@ class Cat:
                     self.get_permanent_condition("aneuploidy", born_with=True)
                 # Other
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
-                    if randint(1, 50) != 1:
+                    if randint(1, 200) != 1:
                         intersex_condition = choice(intersex_conditions)
                         while intersex_condition == "chimerism" or intersex_condition == "aneuploidy":
                             intersex_condition = choice(intersex_conditions)
@@ -5629,6 +5632,9 @@ class Personality:
 
 # Creates a random cat
 def create_cat(status, moons=None, biome=None):
+    if status == "kitten" and randint(1, 15) == 1:
+        status = "newborn"  # get potated
+
     new_cat = Cat(status=status, biome=biome)
 
     if moons is not None:
@@ -5636,8 +5642,6 @@ def create_cat(status, moons=None, biome=None):
     else:
         if new_cat.moons > 160:
             new_cat.moons = 160
-        elif new_cat.moons < 4 and randint(1, 10) == 1:
-            new_cat.moons = 0  # get potated
 
     # Give conditions for disabling scars, if they generated.
     scar_to_condition = {
@@ -5667,8 +5671,10 @@ def create_cat(status, moons=None, biome=None):
     }
 
     for scar in new_cat.pelt.scars:
-        if scar in scar_to_condition:
-            if (game.clan and game.clan.game_mode == "classic") or new_cat.moons < 4 or not game.clan:
+        if new_cat.moons == 0:
+            new_cat.pelt.scars.remove(scar)
+        elif scar in scar_to_condition:
+            if (game.clan and game.clan.game_mode == "classic") or not game.clan or new_cat.moons < 4:
                 new_cat.pelt.scars.remove(scar)
             else:
                 condition = choice(scar_to_condition.get(scar))
