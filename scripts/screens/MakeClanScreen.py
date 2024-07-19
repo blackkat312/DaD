@@ -1001,9 +1001,17 @@ class MakeClanScreen(Screens):
 
             self.elements["cat_name"].set_text(str(selected.name))
             self.elements["cat_name"].show()
+            gender_text = str(selected.genderalign)
             moon_text = ""
             pronoun_text = ""
             special_text = ""
+            perm_cond_text = ""
+
+            if selected.gender == "intersex" and selected.genderalign != "intersex":
+                if selected.genderalign in ["demimolly", "demitom", "demienby", "trans molly", "trans tom"]:
+                    gender_text = "intersex " + gender_text
+                elif selected.genderalign != "intergender":
+                    gender_text += " and intersex"
 
             if selected.moons == 1:
                 moon_text = " (1 moon)"
@@ -1021,39 +1029,28 @@ class MakeClanScreen(Screens):
                 if pronoun_text[-1] == "/":
                     pronoun_text = pronoun_text[:-1]
 
-            if (selected.genotype.somatic and selected.genotype.somatic != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}"):
-                special_text += "has a somatic mutation!"
-
-            if special_text:
-                special_text += "\nX"
-            else:
-                special_text += "X"
-            if selected.genotype.sexgene[1] == "O" or selected.genotype.sexgene[1] == "o":
-                special_text += "X"
-            else:
-                special_text += "Y"
-            if len(selected.genotype.sexgene) > 2:
-                if selected.genotype.sexgene[2] == "O" or selected.genotype.sexgene[2] == "o":
-                    special_text += "X"
-                else:
-                    special_text += "Y"
-
             if selected.genotype.chimera:
-                special_text = "chimera!\n" + special_text
-
-                special_text += "/X"
-                if selected.genotype.chimerageno.sexgene[1] == "O" or selected.genotype.chimerageno.sexgene[1] == "o":
-                    special_text += "X"
+                special_text += "chimera!"
+            if (selected.genotype.somatic and selected.genotype.somatic != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}"):
+                if special_text:
+                    special_text += "\nhas a somatic mutation!"
                 else:
-                    special_text += "Y"
-                if len(selected.genotype.chimerageno.sexgene) > 2:
-                    if selected.genotype.chimerageno.sexgene[2] == "O" or selected.genotype.chimerageno.sexgene[2] == "o":
-                        special_text += "X"
-                    else:
-                        special_text += "Y"
+                    special_text += "has a somatic mutation!"
+            if selected.genotype.sexgene[1] == "Y" and selected.genotype.gender == "molly":
+                if special_text:
+                    special_text += "\nXY molly!"
+                else:
+                    special_text += "XY molly!"
+            elif (selected.genotype.sexgene[1] == "O" or selected.genotype.sexgene[1] == "o") and selected.genotype.gender == "tom":
+                if special_text:
+                    special_text += "\nXX tom!"
+                else:
+                    special_text += "XX tom!"
+            if special_text:
+                special_text += "\n"
 
             if selected.permanent_condition:
-                perm_cond_text = "condition"
+                perm_cond_text = "\n\ncondition"
                 if len(selected.permanent_condition) > 1:
                     perm_cond_text += "s:\n"
                 else:
@@ -1062,36 +1059,19 @@ class MakeClanScreen(Screens):
                     perm_cond_text += self.change_condition_name(str(condition)) + "\n"
                 perm_cond_text = perm_cond_text[:-1]
 
-                self.elements["cat_info"].set_text(
-                    str(selected.genderalign)
-                    + "\n"
-                    + str(pronoun_text)
-                    + "\n"
-                    + str(special_text)
-                    + "\n"
-                    + str(selected.age) + moon_text
-                    + "\n"
-                    + str(selected.personality.trait)
-                    + "\n"
-                    + str(selected.skills.skill_string())
-                    + "\n"
-                    + "\n"
-                    + str(perm_cond_text)
-                )
-            else:
-                self.elements["cat_info"].set_text(
-                    str(selected.genderalign)
-                    + "\n"
-                    + str(pronoun_text)
-                    + "\n"
-                    + str(special_text)
-                    + "\n"
-                    + str(selected.age) + moon_text
-                    + "\n"
-                    + str(selected.personality.trait)
-                    + "\n"
-                    + str(selected.skills.skill_string())
-                )
+            self.elements["cat_info"].set_text(
+                str(gender_text)
+                + "\n"
+                + str(pronoun_text)
+                + "\n"
+                + str(special_text)
+                + str(selected.age) + moon_text
+                + "\n"
+                + str(selected.personality.trait)
+                + "\n"
+                + str(selected.skills.skill_string())
+                + str(perm_cond_text)
+            )
             self.elements["cat_info"].show()
         else:
             self.elements["next_step"].disable()
