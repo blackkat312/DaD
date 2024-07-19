@@ -4,7 +4,7 @@ from re import sub
 import pygame
 import pygame_gui
 
-from scripts.utility import get_text_box_theme, scale
+from scripts.utility import get_text_box_theme, scale, event_text_adjust
 from scripts.clan import Clan
 from scripts.cat.cats import create_example_cats, create_cat, Cat
 from scripts.cat.names import names
@@ -1031,11 +1031,40 @@ class MakeClanScreen(Screens):
 
             if selected.genotype.chimera:
                 special_text += "chimera!"
-            if (selected.genotype.somatic and selected.genotype.somatic != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}"):
+            if selected.genotype.somatic and selected.genotype.somatic != "{}":
+                somatic = {
+                    "Somatic/leftface": "{PRONOUN/m_c/poss} face",
+                    "Somatic/rightface": "{PRONOUN/m_c/poss} face",
+                    "Somatic/tail": "{PRONOUN/m_c/poss} tail",
+                    "underbelly1": "{PRONOUN/m_c/poss} underbelly",
+                    "right front bicolour2": "one of {PRONOUN/m_c/poss} front legs",
+                    "left front bicolour2": "one of {PRONOUN/m_c/poss} front legs",
+                    "right back bicolour2": "one of {PRONOUN/m_c/poss} back legs",
+                    "left back bicolour2": "one of {PRONOUN/m_c/poss} back legs"
+                }
                 if special_text:
-                    special_text += "\nhas a somatic mutation!"
+                    special_text += "\nhas a somatic mutation on " + somatic.get(selected.genotype.somatic["base"]) + "!"
                 else:
-                    special_text += "has a somatic mutation!"
+                    special_text += "has a somatic mutation on " + somatic.get(selected.genotype.somatic["base"]) + "!"
+
+                special_text = event_text_adjust(Cat, special_text, main_cat=selected)
+            elif selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}":
+                somatic = {
+                    "Somatic/leftface": "{PRONOUN/m_c/poss} face",
+                    "Somatic/rightface": "{PRONOUN/m_c/poss} face",
+                    "Somatic/tail": "{PRONOUN/m_c/poss} tail",
+                    "underbelly1": "{PRONOUN/m_c/poss} underbelly",
+                    "right front bicolour2": "one of {PRONOUN/m_c/poss} front legs",
+                    "left front bicolour2": "one of {PRONOUN/m_c/poss} front legs",
+                    "right back bicolour2": "one of {PRONOUN/m_c/poss} back legs",
+                    "left back bicolour2": "one of {PRONOUN/m_c/poss} back legs"
+                }
+                if special_text:
+                    special_text += "\nhas a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
+                else:
+                    special_text += "has a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
+
+                special_text = event_text_adjust(Cat, special_text, main_cat=selected)
             if selected.genotype.sexgene[1] == "Y" and selected.genotype.gender == "molly":
                 if special_text:
                     special_text += "\nXY molly!"
