@@ -641,11 +641,12 @@ class Pregnancy_Events:
         else:
             other_cat = None
 
-        for id in affair_partner_id:
-            other_cat.append(Cat.all_cats.get(id))
-            affair_partners.append(Cat.all_cats.get(id))
-        if affair_partners:
-            RandomAffair = choice(affair_partners)
+        if affair_partner_id:
+            for id in affair_partner_id:
+                other_cat.append(Cat.all_cats.get(id))
+                affair_partners.append(Cat.all_cats.get(id))
+            if affair_partners:
+                RandomAffair = choice(affair_partners)
 
         backkit = None
         if not other_cat:
@@ -903,107 +904,50 @@ class Pregnancy_Events:
                                second_parent: Cat,
                                same_sex_adoption: bool):
         # only if same sex is OFF
-        can_have_kits = []
-        is_adopted = []
-        for x in second_parent:
-            if cat.gender == "intersex":
-                if x.gender == "tom":
-                    if "excess testosterone" in cat.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "aneuploidy" in cat.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "chimerism" in cat.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    else:
-                        if not same_sex_adoption:
-                            can_have_kits.append("no")
-                            is_adopted.append("no")
-                        else:
-                            can_have_kits.append("yes")
-                            is_adopted.append("yes")
-                elif x.gender == "molly":
-                    if "testosterone deficiency" in cat.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "chimerism" in cat.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "mosaicism" in cat.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    else:
-                        if not same_sex_adoption:
-                            can_have_kits.append("no")
-                            is_adopted.append("no")
-                        else:
-                            can_have_kits.append("yes")
-                            is_adopted.append("yes")
+        if cat.gender == "intersex":
+            if second_parent.gender == "tom":
+                if "excess testosterone" in cat.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "aneuploidy" in cat.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "chimerism" in cat.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
                 else:
-                    if "chimerism" in cat.permanent_condition or "chimerism" in x.permanent_condition:
+                    if not same_sex_adoption:
+                        can_have_kits.append("no")
+                        is_adopted.append("no")
+                    else:
+                        can_have_kits.append("yes")
+                        is_adopted.append("yes")
+            elif second_parent.gender == "molly":
+                if "testosterone deficiency" in cat.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "chimerism" in cat.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "mosaicism" in cat.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                else:
+                    if not same_sex_adoption:
+                        can_have_kits.append("no")
+                        is_adopted.append("no")
+                    else:
+                        can_have_kits.append("yes")
+                        is_adopted.append("yes")
+            else:
+                if "chimerism" in cat.permanent_condition or "chimerism" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "mosaicism" in cat.permanent_condition:
+                    if "excess testosterone" in second_parent.permanent_condition:
                         can_have_kits.append("yes")
                         is_adopted.append("no")
-                    elif "mosaicism" in cat.permanent_condition:
-                        if "excess testosterone" in x.permanent_condition:
-                            can_have_kits.append("yes")
-                            is_adopted.append("no")
-                        elif "mosaicism" in x.permanent_condition:
-                            can_have_kits.append("yes")
-                            is_adopted.append("no")
-                        else:
-                            if not same_sex_adoption:
-                                can_have_kits.append("no")
-                                is_adopted.append("no")
-                            else:
-                                can_have_kits.append("yes")
-                                is_adopted.append("yes")
-                    elif "aneuploidy" in cat.permanent_condition:
-                        if "testosterone deficiency" in x.permanent_condition:
-                            can_have_kits.append("yes")
-                            is_adopted.append("no")
-                        else:
-                            if not same_sex_adoption:
-                                can_have_kits.append("no")
-                                is_adopted.append("no")
-                            else:
-                                can_have_kits.append("yes")
-                                is_adopted.append("yes")
-                    elif "testosterone deficiency" in cat.permanent_condition:
-                        if "excess testosterone" in x.permanent_condition:
-                            can_have_kits.append("yes")
-                            is_adopted.append("no")
-                        elif "mosaicism" in x.permanent_condition:
-                            can_have_kits.append("yes")
-                            is_adopted.append("no")
-                        else:
-                            if not same_sex_adoption:
-                                can_have_kits.append("no")
-                                is_adopted.append("no")
-                            else:
-                                can_have_kits.append("yes")
-                                is_adopted.append("yes")
-                    elif "excess testosterone" in cat.permanent_condition:
-                        if "testosterone deficiency" in x.permanent_condition:
-                            can_have_kits.append("yes")
-                            is_adopted.append("no")
-                        else:
-                            if not same_sex_adoption:
-                                can_have_kits.append("no")
-                                is_adopted.append("no")
-                            else:
-                                can_have_kits.append("yes")
-                                is_adopted.append("yes")
-            elif x.gender == "intersex":
-                if cat.gender == "tom":
-                    if "excess testosterone" in x.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "aneuploidy" in x.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "chimerism" in x.permanent_condition:
+                    elif "mosaicism" in second_parent.permanent_condition:
                         can_have_kits.append("yes")
                         is_adopted.append("no")
                     else:
@@ -1013,14 +957,8 @@ class Pregnancy_Events:
                         else:
                             can_have_kits.append("yes")
                             is_adopted.append("yes")
-                elif cat.gender == "molly":
-                    if "testosterone deficiency" in x.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "chimerism" in x.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
-                    elif "mosaicism" in x.permanent_condition:
+                elif "aneuploidy" in cat.permanent_condition:
+                    if "testosterone deficiency" in second_parent.permanent_condition:
                         can_have_kits.append("yes")
                         is_adopted.append("no")
                     else:
@@ -1030,9 +968,68 @@ class Pregnancy_Events:
                         else:
                             can_have_kits.append("yes")
                             is_adopted.append("yes")
+                elif "testosterone deficiency" in cat.permanent_condition:
+                    if "excess testosterone" in second_parent.permanent_condition:
+                        can_have_kits.append("yes")
+                        is_adopted.append("no")
+                    elif "mosaicism" in second_parent.permanent_condition:
+                        can_have_kits.append("yes")
+                        is_adopted.append("no")
+                    else:
+                        if not same_sex_adoption:
+                            can_have_kits.append("no")
+                            is_adopted.append("no")
+                        else:
+                            can_have_kits.append("yes")
+                            is_adopted.append("yes")
+                elif "excess testosterone" in cat.permanent_condition:
+                    if "testosterone deficiency" in second_parent.permanent_condition:
+                        can_have_kits.append("yes")
+                        is_adopted.append("no")
+                    else:
+                        if not same_sex_adoption:
+                            can_have_kits.append("no")
+                            is_adopted.append("no")
+                        else:
+                            can_have_kits.append("yes")
+                            is_adopted.append("yes")
+        elif second_parent.gender == "intersex":
+            if cat.gender == "tom":
+                if "excess testosterone" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "aneuploidy" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "chimerism" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                else:
+                    if not same_sex_adoption:
+                        can_have_kits.append("no")
+                        is_adopted.append("no")
+                    else:
+                        can_have_kits.append("yes")
+                        is_adopted.append("yes")
+            elif cat.gender == "molly":
+                if "testosterone deficiency" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "chimerism" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                elif "mosaicism" in second_parent.permanent_condition:
+                    can_have_kits.append("yes")
+                    is_adopted.append("no")
+                else:
+                    if not same_sex_adoption:
+                        can_have_kits.append("no")
+                        is_adopted.append("no")
+                    else:
+                        can_have_kits.append("yes")
+                        is_adopted.append("yes")
 
-        if not can_have_kits or not is_adopted:
-            return False, False
+        return False, False
 
     @staticmethod
     def check_if_can_have_kits(cat, single_parentage, allow_affair):
@@ -1092,12 +1089,18 @@ class Pregnancy_Events:
         """
 
         if not second_parent or len(second_parent) == 1:
-        # Checks for second parent alone:
+            # Checks for second parent alone:
             if not Pregnancy_Events.check_if_can_have_kits(second_parent[0] if second_parent else None, single_parentage, allow_affair):
                 return False, False, second_parent
 
             # Check to see if the pair can have kits.
-            if not xor(cat.gender == "tom", second_parent[0].gender == "tom"):
+            if cat.gender == "intersex" or second_parent[0].gender == "intersex":
+                if same_sex_birth:
+                    return True, False
+                else:
+                    return Pregnancy_Events.check_intersex_parents(cat, second_parent, same_sex_adoption)
+
+            if cat.gender == second_parent[0].gender:
                 if same_sex_birth:
                     return True, False, second_parent
                 elif not same_sex_adoption:
@@ -1117,7 +1120,7 @@ class Pregnancy_Events:
             second_parent_copy = []
 
             for x in second_parent:
-                if xor(cat.gender == "tom", x.gender == "tom") or same_sex_birth:
+                if cat.gender != x.gender or same_sex_birth:
                     second_parent_copy.append(x)
 
             if len(second_parent_copy) < 1:
