@@ -502,8 +502,8 @@
     },
 	"fully hairless" : {
         "body sunburn" : [
-            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn",
-            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn"
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn.",
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn."
         ],
         "ear infection": [
             "Without hair to keep things out of {PRONOUN/m_c/poss} ears, m_c has been complaining about pain inside them.",
@@ -514,7 +514,7 @@
             "Lately, m_c's eyes have been sore, and {PRONOUN/m_c/poss} vision less clear. It's annoying, but {PRONOUN/m_c/subject}'ll have to learn to deal with it."
         ],
         "rash" : [
-            "m_c can't stop scratching at {PRONOUN/m_c/poss} itchy skin",
+            "m_c can't stop scratching at {PRONOUN/m_c/poss} itchy skin.",
             "m_c struggles to listen to the warnings not to scratch the itchy spots of skin."
         ],
         "shivering" : [
@@ -528,11 +528,11 @@
     },
     "partially hairless" : {
         "body sunburn" : [
-            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn",
-            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn"
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn.",
+            "m_c's skin is warm and red, aching from {PRONOUN/m_c/poss} new sunburn."
         ],
         "rash" : [
-            "m_c can't stop scratching at {PRONOUN/m_c/poss} itchy skin",
+            "m_c can't stop scratching at {PRONOUN/m_c/poss} itchy skin.",
             "m_c struggles to listen to the warnings not to scratch the itchy spots of skin."
         ],
         "shivering" : [
@@ -574,7 +574,7 @@
     },
 	"manx syndrome" : {
         "paralyzed": [
-            "m_c's hindlegs have always felt a bit numb. But lately, they've been getting more and more numb, and r_c has to tell {PRONOUN/m_c/object} that {PRONOUN/m_c/poss} hindlegs will likely never have the same sensations as before.",
+            "m_c's hindlegs have always felt a bit numb and occasionally cramp up - but lately, they've been getting number and number and cramping up much more frequently. r_c says that {PRONOUN/m_c/poss} shortened tail may have caused this paralysis.",
             "Lately, m_c has been noticing that {PRONOUN/m_c/poss} hindlegs haven't been telling {PRONOUN/m_c/object} if they're hurt - or really, anything at all."
         ],
         "constant joint pain": [
