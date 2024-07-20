@@ -1074,7 +1074,7 @@ class Pregnancy_Events:
             # Check to see if the pair can have kits.
             if cat.gender == "intersex" or second_parent[0].gender == "intersex":
                 if same_sex_birth:
-                    return True, False
+                    return True, False, second_parent
                 else:
                     return Pregnancy_Events.check_intersex_parents(cat, second_parent, same_sex_adoption)
 
