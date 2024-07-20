@@ -289,7 +289,7 @@ class Pregnancy_Events:
                 if x.ID in clan.pregnancy_data:
                     return
 
-        if not clan.clan_settings["same sex birth"] and (cat.genotype.gender == "male" or cat.genotype.gender == "intersex" or "infertile" in cat.permanent_condition or cat.neutered):
+        if not clan.clan_settings["same sex birth"] and (cat.genotype.gender == "tom" or (cat.genotype.gender == "intersex" and "excess testosterone" not in cat.permanent_condition and "aneuploidy" not in cat.permanent_condition and "chimerism" not in cat.permanent_condition) or "infertile" in cat.permanent_condition or cat.neutered):
             return
 
         ids = []
@@ -364,7 +364,7 @@ class Pregnancy_Events:
 
             game.cur_events_list.append(Single_Event(text, "birth_death", cat.ID))
         else:
-            if not other_cat and (cat.gender == "tom" or cat.gender == "intersex"):
+            if not other_cat and (cat.gender == "tom" or (cat.gender == "intersex" and ("testosterone deficiency" in cat.permanent_condition or ("chimerism" in cat.permanent_condition and randint(1, 2) == 1) or "mosaicism" in cat.permanent_condition))):
 
                 amount = Pregnancy_Events.get_amount_of_kits(cat, clan)
                 stillborn_chance = 0
@@ -392,9 +392,10 @@ class Pregnancy_Events:
                 possible_affair_partners = [i for i in unknowns if
                                         i.is_potential_mate(cat, for_love_interest=True, outsider=True)
                                         and (clan.clan_settings['same sex birth']
-                                        or (xor(i.genotype.gender == "tom", cat.genotype.gender == "tom")
-                                        and i.genotype.gender != "intersex" and cat.genotype.gender != "intersex"
-                                        and i.genotype.gender != cat.genotype.gender))
+                                        or (cat.gender != i.gender
+                                        or ((cat.gender == "intersex" or i.gender == "intersex")
+                                        and Pregnancy_Events.check_intersex_parents(cat, i, False)[0]
+                                        and not Pregnancy_Events.check_intersex_parents(cat, i, False)[1])))
                                         and not i.neutered and not cat.neutered
                                         and "infertile" not in i.permanent_condition and "infertile" not in cat.permanent_condition
                                         and len(i.mate) == 0 and not i.birth_cooldown]
@@ -413,7 +414,9 @@ class Pregnancy_Events:
                     mate_age = cat.moons + randint(0, 24)-12
                     outside_parent = None
                     if cat_type != 'Clancat':
-                        if cat.gender == "tom":
+                        if game.clan.clan_settings["same sex birth"]:
+                            mate_gender = random.choice(["fem", "masc"])
+                        elif cat.gender == "tom":
                             mate_gender = "fem"
                         elif cat.gender == "molly":
                             mate_gender = "masc"
@@ -478,8 +481,12 @@ class Pregnancy_Events:
             pregnant_cat = cat
             second_parent = other_cat
             affair_partner = []
+            skip = False
             if second_parent:
                 for x in second_parent:
+                    if (cat.gender == "intersex" or x.gender == "intersex") and not (Pregnancy_Events.check_intersex_parents(cat, x, False)[0] and not Pregnancy_Events.check_intersex_parents(cat, x, False)[1]):
+                        skip = True
+                        break
                     if cat.gender == "tom" and x.gender == "molly":
                         pregnant_cat = x
                         second_parent.remove(x)
@@ -491,6 +498,10 @@ class Pregnancy_Events:
                     ids.append(x.ID)
                     if x.ID not in pregnant_cat.mate:
                         affair_partner.append(x.ID)
+
+            if skip:
+                print("Intersex cat " + cat.name + " can't have bio kits, pregnancy prevented")
+                return
 
             clan.pregnancy_data[pregnant_cat.ID] = {
                 "second_parent": ids if second_parent else None,
@@ -660,9 +671,10 @@ class Pregnancy_Events:
             possible_affair_partners = [i for i in unknowns if
                                     i.is_potential_mate(cat, for_love_interest=True, outsider=True)
                                     and (clan.clan_settings['same sex birth']
-                                    or (xor(i.genotype.gender == "tom", cat.genotype.gender == "tom")
-                                    and i.genotype.gender != "intersex" and cat.genotype.gender != "intersex"
-                                    and i.genotype.gender != cat.genotype.gender))
+                                    or (cat.gender != i.gender
+                                    or ((cat.gender == "intersex" or i.gender == "intersex")
+                                    and Pregnancy_Events.check_intersex_parents(cat, i, False)[0]
+                                    and not Pregnancy_Events.check_intersex_parents(cat, i, False)[1])))
                                     and not i.neutered and not cat.neutered
                                     and "infertile" not in i.permanent_condition and "infertile" not in cat.permanent_condition
                                     and len(i.mate) == 0]
@@ -907,127 +919,93 @@ class Pregnancy_Events:
         if cat.gender == "intersex":
             if second_parent.gender == "tom":
                 if "excess testosterone" in cat.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "aneuploidy" in cat.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "chimerism" in cat.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 else:
                     if not same_sex_adoption:
-                        can_have_kits.append("no")
-                        is_adopted.append("no")
+                        return False, False
                     else:
-                        can_have_kits.append("yes")
-                        is_adopted.append("yes")
+                        return True, True
             elif second_parent.gender == "molly":
                 if "testosterone deficiency" in cat.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "chimerism" in cat.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "mosaicism" in cat.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 else:
                     if not same_sex_adoption:
-                        can_have_kits.append("no")
-                        is_adopted.append("no")
+                        return False, False
                     else:
-                        can_have_kits.append("yes")
-                        is_adopted.append("yes")
+                        return True, True
             else:
                 if "chimerism" in cat.permanent_condition or "chimerism" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "mosaicism" in cat.permanent_condition:
                     if "excess testosterone" in second_parent.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
+                        return True, False
                     elif "mosaicism" in second_parent.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
+                        return True, False
                     else:
                         if not same_sex_adoption:
-                            can_have_kits.append("no")
-                            is_adopted.append("no")
+                            return False, False
                         else:
-                            can_have_kits.append("yes")
-                            is_adopted.append("yes")
+                            return True, True
                 elif "aneuploidy" in cat.permanent_condition:
                     if "testosterone deficiency" in second_parent.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
+                        return True, False
                     else:
                         if not same_sex_adoption:
-                            can_have_kits.append("no")
-                            is_adopted.append("no")
+                            return False, False
                         else:
-                            can_have_kits.append("yes")
-                            is_adopted.append("yes")
+                            return True, True
                 elif "testosterone deficiency" in cat.permanent_condition:
                     if "excess testosterone" in second_parent.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
+                        return True, False
                     elif "mosaicism" in second_parent.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
+                        return True, False
                     else:
                         if not same_sex_adoption:
-                            can_have_kits.append("no")
-                            is_adopted.append("no")
+                            return False, False
                         else:
-                            can_have_kits.append("yes")
-                            is_adopted.append("yes")
+                            return True, True
                 elif "excess testosterone" in cat.permanent_condition:
                     if "testosterone deficiency" in second_parent.permanent_condition:
-                        can_have_kits.append("yes")
-                        is_adopted.append("no")
+                        return True, False
                     else:
                         if not same_sex_adoption:
-                            can_have_kits.append("no")
-                            is_adopted.append("no")
+                            return False, False
                         else:
-                            can_have_kits.append("yes")
-                            is_adopted.append("yes")
+                            return True, True
+
         elif second_parent.gender == "intersex":
             if cat.gender == "tom":
                 if "excess testosterone" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "aneuploidy" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "chimerism" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 else:
                     if not same_sex_adoption:
-                        can_have_kits.append("no")
-                        is_adopted.append("no")
+                        return False, False
                     else:
-                        can_have_kits.append("yes")
-                        is_adopted.append("yes")
+                        return True, True
             elif cat.gender == "molly":
                 if "testosterone deficiency" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "chimerism" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 elif "mosaicism" in second_parent.permanent_condition:
-                    can_have_kits.append("yes")
-                    is_adopted.append("no")
+                    return True, False
                 else:
                     if not same_sex_adoption:
-                        can_have_kits.append("no")
-                        is_adopted.append("no")
+                        return False, False
                     else:
-                        can_have_kits.append("yes")
-                        is_adopted.append("yes")
+                        return True, True
 
         return False, False
 
@@ -1089,7 +1067,7 @@ class Pregnancy_Events:
         """
 
         if not second_parent or len(second_parent) == 1:
-            # Checks for second parent alone:
+        # Checks for second parent alone:
             if not Pregnancy_Events.check_if_can_have_kits(second_parent[0] if second_parent else None, single_parentage, allow_affair):
                 return False, False, second_parent
 
@@ -1118,9 +1096,12 @@ class Pregnancy_Events:
                 return False, False
 
             second_parent_copy = []
+            must_be_adopted = False
 
             for x in second_parent:
-                if cat.gender != x.gender or same_sex_birth:
+                if (cat.gender != x.gender or ((cat.gender == "intersex" or x.gender == "intersex") and Pregnancy_Events.check_intersex_parents(cat, x, same_sex_adoption)[0])) or same_sex_birth:
+                    if Pregnancy_Events.check_intersex_parents(cat, x, same_sex_adoption)[0] and Pregnancy_Events.check_intersex_parents(cat, x, same_sex_adoption)[1]:
+                        must_be_adopted = True
                     second_parent_copy.append(x)
 
             if len(second_parent_copy) < 1:
@@ -1128,8 +1109,10 @@ class Pregnancy_Events:
                     return True, True, second_parent
                 else:
                     return False, False, second_parent
-
-            return True, False, second_parent
+            elif must_be_adopted:
+                return True, True, second_parent
+            else:
+                return True, False, second_parent
 
 
 
@@ -1228,7 +1211,11 @@ class Pregnancy_Events:
                 i
                 for i in Cat.all_cats_list
                 if i.is_potential_mate(cat, for_love_interest=True)
-                and (samesex or (i.gender != cat.gender and (i.gender != "intersex" and cat.gender != "intersex")))
+                and (samesex
+                or (cat.gender != i.gender
+                or ((cat.gender == "intersex" or i.gender == "intersex")
+                and Pregnancy_Events.check_intersex_parents(cat, i, False)[0]
+                and not Pregnancy_Events.check_intersex_parents(cat, i, False)[1])))
                 and i.ID not in cat.mate
             ]
             if special_affair:
@@ -1272,7 +1259,11 @@ class Pregnancy_Events:
                 mate_relation, highest_romantic_relation
             )
             if not chance_love_affair or not int(random.random() * chance_love_affair):
-                if samesex or (cat.gender != highest_romantic_relation.cat_to.gender and (cat.gender != "intersex" and highest_romantic_relation.cat_to.gender != "intersex")):
+                if (samesex
+                        or (cat.gender != highest_romantic_relation.cat_to.gender
+                            or ((cat.gender == "intersex" or highest_romantic_relation.cat_to.gender == "intersex")
+                                and Pregnancy_Events.check_intersex_parents(cat, highest_romantic_relation.cat_to, False)[0]
+                                and not Pregnancy_Events.check_intersex_parents(cat, highest_romantic_relation.cat_to, False)[1]))):
                     return highest_romantic_relation.cat_to
         elif highest_romantic_relation:
             # Love affair change if the cat doesn't have a mate:
@@ -1280,7 +1271,11 @@ class Pregnancy_Events:
                 highest_romantic_relation
             )
             if not chance_love_affair or not int(random.random() * chance_love_affair):
-                if samesex or (cat.gender != highest_romantic_relation.cat_to.gender and (cat.gender != "intersex" and highest_romantic_relation.cat_to.gender != "intersex")):
+                if (samesex
+                        or (cat.gender != highest_romantic_relation.cat_to.gender
+                            or ((cat.gender == "intersex" or highest_romantic_relation.cat_to.gender == "intersex")
+                                and Pregnancy_Events.check_intersex_parents(cat, highest_romantic_relation.cat_to, False)[0]
+                                and not Pregnancy_Events.check_intersex_parents(cat, highest_romantic_relation.cat_to, False)[1]))):
                     return highest_romantic_relation.cat_to
 
         return None
