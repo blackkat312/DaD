@@ -415,7 +415,7 @@ class Genotype:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
+        if (random() <= 0.5 and special != "fem") or special == "masc":
             self.sexgene = ["", "Y"]
             if randint(1, self.odds['XXX/XXY']) == 1:
                 self.sexgene = ["", "", "Y"]
@@ -762,7 +762,7 @@ class Genotype:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
+        if (random() <= 0.5 and special != "fem") or special == "masc":
             self.sexgene = ["", "Y"]
             if randint(1, self.odds['XXX/XXY']) == 1:
                 self.sexgene = ["", "", "Y"]
@@ -1155,107 +1155,75 @@ class Genotype:
             self.furLength[0] = x
         
         self.eumelanin = [choice(par1.eumelanin), choice(par2.eumelanin)]
-        no_y_par = ["", ""]
-        y_par = ["", "Y"]
-        if not xor('Y' in par1.sexgene, 'Y' in par2.sexgene):
-            if('Y' in par1.sexgene):
-                if(randint(1, 2) == 1):
-                    no_y_par[0] = par1.sexgene[0]
-                    no_y_par[1] = no_y_par[0]
-                    y_par[0] = par2.sexgene[0]
-                else:
-                    no_y_par[0] = par2.sexgene[0]
-                    no_y_par[1] = no_y_par[0]
-                    y_par[0] = par1.sexgene[0]
-            else:
-                if len(par1.sexgene) > 2:
-                    no_y_par[0] = par1.sexgene[0]
-                    no_y_par[1] = par1.sexgene[1]
-                    no_y_par.append(par1.sexgene[2])
-                    y_par[0] = par2.sexgene[0]
-                elif len(par2.sexgene) > 2:
-                    no_y_par[0] = par2.sexgene[0]
-                    no_y_par[1] = par2.sexgene[1]
-                    no_y_par.append(par2.sexgene[2])
-                    y_par[0] = par2.sexgene[0]
-                else:
-                    if('O' in par1.sexgene and 'o' in par1.sexgene):
-                        no_y_par[0] = par1.sexgene[0]
-                        no_y_par[1] = par1.sexgene[1]
-                        y_par[0] = par2.sexgene[0]
-                    elif ('O' in par2.sexgene and 'o' in par2.sexgene):
-                        no_y_par[0] = par2.sexgene[0]
-                        no_y_par[1] = par2.sexgene[1]
-                        y_par[0] = par1.sexgene[0]
-                    else:
-                        if(random() < 0.5):
-                            no_y_par[0] = par2.sexgene[0]
-                            no_y_par[1] = par2.sexgene[1]
-                            y_par[0] = par1.sexgene[0]
-                        else:
-                            no_y_par[0] = par1.sexgene[0]
-                            no_y_par[1] = par1.sexgene[1]
-                            y_par[0] = par2.sexgene[0]
 
-        elif('Y' in par1.sexgene):
-            no_y_par = par2.sexgene
-            y_par = par1.sexgene
-        else:
-            no_y_par = par1.sexgene
-            y_par = par2.sexgene
+        #
 
+        # SEXGENE
+
+        #
 
         if randint(1, self.odds['XXX/XXY']) == 1:
-            self.sexgene = ["", "", ""]
-            self.gender = 'intersex'
-            if randint(1, 2) == 1:
-                if randint(1, 2) == 1:
-                    self.sexgene[0] = choice(no_y_par)
-                    self.sexgene[1] = y_par[0]
-                    self.sexgene[2] = 'Y'
-                else:
-                    self.sexgene[2] = 'Y'
-                    if len(no_y_par) < 3:
-                        self.sexgene[0] = no_y_par[0]
-                        self.sexgene[1] = no_y_par[1]
-                    else:
-                        a = randint(0, 2)
-                        b = randint(0, 2)
-                        while b == a:
-                            b = randint(0, 2)
-                        
-                        self.sexgene[0] = no_y_par[a]
-                        self.sexgene[1] = no_y_par[b]
-            else:
-                if len(no_y_par) < 3:
-                    self.sexgene[0] = no_y_par[0]
-                    self.sexgene[1] = no_y_par[1]
-                else:
-                    a = randint(0, 2)
-                    b = randint(0, 2)
-                    while b == a:
-                        b = randint(0, 2)
-                    
-                    self.sexgene[0] = no_y_par[a]
-                    self.sexgene[1] = no_y_par[b]
-                self.sexgene[2] = y_par[0]
-
+            egg1 = choice(["XX", "null"])
         else:
-            if(randint(1, 2) == 1):
-                self.sexgene[1] = "Y"
-                self.sexgene[0] = choice(no_y_par)
-                self.gender = "tom"
-            else:
-                self.sexgene = [choice(no_y_par), y_par[0]]
-                self.gender = "molly"
+            egg1 = "X"
+        if randint(1, self.odds['XXX/XXY']) == 1:
+            egg2 = choice(["XX", "null"])
+        else:
+            egg2 = "X"
+        if randint(1, self.odds['XXX/XXY']) == 1:
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+        else:
+            sperm1 = choice(["X", "Y"])
+        if randint(1, self.odds['XXX/XXY']) == 1:
+            sperm2 = choice(["XX", "XY", "YY", "null"])
+        else:
+            sperm2 = choice(["X", "Y"])
 
+        while sperm1 == "Y" and sperm2 == "Y":
+            sperm1 = choice(["X", "Y"])
+            sperm2 = choice(["X", "Y"])
+        while sperm1 == "Y" and sperm2 in ["YY", "null"]:
+            sperm1 = choice(["X", "Y"])
+            sperm2 = choice(["XX", "XY", "YY", "null"])
+        while sperm1 in ["YY", "null"] and sperm2 == "Y":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            sperm2 = choice(["X", "Y"])
+
+        while egg1 == "null" and egg2 == "null":
+            egg1 = choice(["XX", "null"])
+            egg2 = choice(["XX", "null"])
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 in ["YY", "null"] and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 in ["YY", "null"] and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        #
+
+        if len(par1.sexgene) == 2 and len(par2.sexgene) == 2:
+            if "Y" in par1.sexgene and "Y" in par2.sexgene:
+                print("hello world!")
+
+        #
+
+        # END SEXGENE
+
+        #
 
         if 'o' in self.sexgene and 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
         
         if(par1.specialred and random() < 0.2):
             self.specialred = par1.specialred
-        if(par2.specialred and random() < 0.2):
+        elif(par2.specialred and random() < 0.2):
             self.specialred = par2.specialred
         elif(random() < 0.05):
             self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-red', 'blue-tipped', 'blue-tipped', 'cinnamon'])
