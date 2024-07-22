@@ -707,28 +707,60 @@ class Cat:
                     print(e)
                     self.genotype.Generator()
 
-            if(randint(1, game.config['genetics_config']['intersex']) == 1):
+            if randint(1, game.config["genetics_config"]["intersex"]) == 1:
                 self.genotype.gender = "intersex"
-                if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
-                    self.genotype.gender = 'molly'
-                elif(randint(1, 25) == 1 and 'Y' not in self.genotype.sexgene):
-                    self.genotype.gender = 'tom'
+                if randint(1, 25) == 1 and len(self.genotype.sexgene) == 2:
+                    if "Y" in self.genotype.sexgene:
+                        self.genotype.gender = "molly"
+                    else:
+                        self.genotype.gender = "tom"
+            elif (self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"]):
+                self.genotype.gender = "intersex"
+            else:
+                if "Y" in self.genotype.sexgene:
+                    self.genotype.gender = "tom"
+                else:
+                    self.genotype.gender = "molly"
+
+            print("KitGenerator part: " + str(self.genotype.gender) + " " + str(self.genotype.sexgene))
         elif kittypet or status == 'kittypet':
             self.genotype.AltGenerator(special=self.gender)
-            if(randint(1, game.config['genetics_config']['intersex']) == 1):
+
+            if randint(1, game.config["genetics_config"]["intersex"]) == 1:
                 self.genotype.gender = "intersex"
-                if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
-                    self.genotype.gender = 'molly'
-                elif(randint(1, 25) == 1 and 'Y' not in self.genotype.sexgene):
-                    self.genotype.gender = 'tom'
+                if randint(1, 25) == 1 and len(self.genotype.sexgene) == 2:
+                    if "Y" in self.genotype.sexgene:
+                        self.genotype.gender = "molly"
+                    else:
+                        self.genotype.gender = "tom"
+            elif (self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"]):
+                self.genotype.gender = "intersex"
+            else:
+                if "Y" in self.genotype.sexgene:
+                    self.genotype.gender = "tom"
+                else:
+                    self.genotype.gender = "molly"
+
+            print("AltGenerator part: " + str(self.genotype.gender) + " " + str(self.genotype.sexgene))
         else:
             self.genotype.Generator(special=self.gender)
-            if(randint(1, game.config['genetics_config']['intersex']) == 1):
+
+            if randint(1, game.config["genetics_config"]["intersex"]) == 1:
                 self.genotype.gender = "intersex"
-                if(randint(1, 25) == 1 and 'Y' in self.genotype.sexgene):
-                    self.genotype.gender = 'molly'
-                elif(randint(1, 25) == 1 and 'Y' not in self.genotype.sexgene):
-                    self.genotype.gender = 'tom'
+                if randint(1, 25) == 1 and len(self.genotype.sexgene) == 2:
+                    if "Y" in self.genotype.sexgene:
+                        self.genotype.gender = "molly"
+                    else:
+                        self.genotype.gender = "tom"
+            elif (self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"]):
+                self.genotype.gender = "intersex"
+            else:
+                if "Y" in self.genotype.sexgene:
+                    self.genotype.gender = "tom"
+                else:
+                    self.genotype.gender = "molly"
+
+            print("Generator part: " + str(self.genotype.gender) + " " + str(self.genotype.sexgene))
 
         self.phenotype = Phenotype(self.genotype)
         self.phenotype.PhenotypeOutput(gender=self.genotype.gender, sex=self.genotype.gender)
