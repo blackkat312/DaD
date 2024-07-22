@@ -501,7 +501,7 @@ class Pregnancy_Events:
                         affair_partner.append(x.ID)
 
             if skip:
-                print("Intersex cat " + cat.name + " can't have bio kits, pregnancy prevented")
+                print("Intersex cat " + str(cat.prefix) + str(cat.suffix) + " can't have bio kits, pregnancy prevented")
                 return
 
             clan.pregnancy_data[pregnant_cat.ID] = {
