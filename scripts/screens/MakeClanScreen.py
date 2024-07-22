@@ -1075,6 +1075,11 @@ class MakeClanScreen(Screens):
                     special_text += "\nXX tom!"
                 else:
                     special_text += "XX tom!"
+            if selected.genotype.sexgene != ["o", "o"] and selected.genotype.sexgene != ["O", "o"] and selected.genotype.sexgene != ["O", "O"] and selected.genotype.sexgene != ["o", "Y"] and selected.genotype.sexgene != ["O", "Y"]:
+                if special_text:
+                    special_text += "\nsex chromosome abnormality!"
+                else:
+                    special_text += "sex chromosome abnormality!"
             if special_text:
                 special_text += "\n"
 
