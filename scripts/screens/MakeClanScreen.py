@@ -1065,21 +1065,27 @@ class MakeClanScreen(Screens):
                     special_text += "has a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
 
                 special_text = event_text_adjust(Cat, special_text, main_cat=selected)
-            if selected.genotype.sexgene[1] == "Y" and selected.genotype.gender == "molly":
+            if len(selected.genotype.sexgene) == 2 and selected.genotype.sexgene[1] == "Y" and selected.genotype.gender == "molly":
                 if special_text:
                     special_text += "\nXY molly!"
                 else:
                     special_text += "XY molly!"
-            elif (selected.genotype.sexgene[1] == "O" or selected.genotype.sexgene[1] == "o") and selected.genotype.gender == "tom":
+            elif len(selected.genotype.sexgene) == 2 and (selected.genotype.sexgene[1] == "O" or selected.genotype.sexgene[1] == "o") and selected.genotype.gender == "tom":
                 if special_text:
                     special_text += "\nXX tom!"
                 else:
                     special_text += "XX tom!"
             if selected.genotype.sexgene != ["o", "o"] and selected.genotype.sexgene != ["O", "o"] and selected.genotype.sexgene != ["O", "O"] and selected.genotype.sexgene != ["o", "Y"] and selected.genotype.sexgene != ["O", "Y"]:
                 if special_text:
-                    special_text += "\nsex chromosome abnormality!"
+                    special_text += "\nhas aneuploidy!"
                 else:
-                    special_text += "sex chromosome abnormality!"
+                    special_text += "has aneuploidy!"
+            elif selected.genotype.chimera and selected.genotype.chimerageno.sexgene != ["o", "o"] and selected.genotype.chimerageno.sexgene != ["O", "o"] and selected.genotype.chimerageno.sexgene != ["O", "O"] and selected.genotype.chimerageno.sexgene != ["o", "Y"] and selected.genotype.chimerageno.sexgene != ["O", "Y"]:
+                if special_text:
+                    special_text += "\nhas aneuploidy!"
+                else:
+                    special_text += "has aneuploidy!"
+
             if special_text:
                 special_text += "\n"
 
@@ -1093,6 +1099,7 @@ class MakeClanScreen(Screens):
                     perm_cond_text += self.change_condition_name(str(condition)) + "\n"
                 perm_cond_text = perm_cond_text[:-1]
 
+            print(selected.genotype.sexgene)
             self.elements["cat_info"].set_text(
                 str(gender_text)
                 + "\n"
