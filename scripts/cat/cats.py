@@ -3329,7 +3329,7 @@ class Cat:
 
     def is_littermate(self, other_cat: Cat):
         """Check if the cats are littermates."""
-        if not other_cat or (other_cat and (self.inheritance and self.inheritance.siblings and other_cat.ID not in self.inheritance.siblings.keys())):
+        if not other_cat or (other_cat and (self.inheritance and self.inheritance.siblings and other_cat.ID not in self.inheritance.siblings.keys())) or not self.inheritance or not self.inheritance.siblings:
             return False
         litter_mates = [
             key
