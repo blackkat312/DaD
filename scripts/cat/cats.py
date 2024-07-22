@@ -1792,7 +1792,7 @@ class Cat:
         intersex_conditions = []
         for condition in PERMANENT:
             intersex = PERMANENT[condition]
-            if intersex["congenital"] in ['intersex'] and intersex != "chimerism" and intersex != "aneuploidy":
+            if intersex["congenital"] in ['intersex']:
                 intersex_conditions.append(condition)
 
         if "intersex" not in self.conditions_already_attempted:
@@ -1801,7 +1801,7 @@ class Cat:
                 if self.genotype.chimera:
                     self.get_permanent_condition("chimerism", born_with=True)
                 # Aneuploidy
-                if len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2):
+                if (self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"]):
                     self.get_permanent_condition("aneuploidy", born_with=True)
                 # Other
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
@@ -1825,7 +1825,7 @@ class Cat:
                 if not game.settings["they them default"] and self.age != "newborn":
                     self.handle_pronouns()
             # Aneuploidy
-            if (len(self.genotype.sexgene) > 2 or (self.genotype.chimera and len(self.genotype.chimerageno.sexgene) > 2)) and self.genotype.gender != "intersex":
+            if ((self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"])) and self.genotype.gender != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
                 self.gender = "intersex"
@@ -3572,8 +3572,7 @@ class Cat:
         conditions = 1
         count = 1
         genetics_exclusive = [
-            "rabbit gait", "manx syndrome", "albinism", "ocular albinism", "fully hairless", "partially hairless",
-            "bumpy skin"
+            "manx syndrome", "albinism", "ocular albinism", "fully hairless", "partially hairless", "bumpy skin"
         ]
         possible_comorbidities = []
         try:
@@ -3613,8 +3612,8 @@ class Cat:
                 ],
                 "starwalker": [
                     "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
-                    "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
-                    "selective mutism", "thought blindness"
+                    "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness",
+                    "parrot chatter", "selective mutism", "thought blindness"
                 ],
                 "obsessive mind": [
                     "spirited heart"
@@ -3623,8 +3622,8 @@ class Cat:
                     "shattered soul", "budding spirit"
                 ],
                 "comet spirit": [
-                    "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue", "jumbled mind",
-                    "counting fog", "spirited heart", "parrot chatter"
+                    "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
+                    "jumbled mind", "counting fog", "spirited heart", "parrot chatter"
                 ],
                 "antisocial": [
                     "shattered soul", "budding spirit", "puzzled heart"
@@ -3854,8 +3853,6 @@ class Cat:
         if name in intersex_exclusive and self.genotype.gender != "intersex":
             return
 
-        if (name == "rabbit gait" or name == "manx syndrome") and "M" not in self.genotype.manx:
-            return
         if name == "albinism" and not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == "c")):
             return
         elif name == "ocular albinism" and not ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or self.genotype.pinkdilute[0] == "dp" or (self.genotype.chimera and ("albino" in self.genotype.chimerageno.lefteyetype or "albino" in self.genotype.chimerageno.righteyetype or self.genotype.chimerageno.pinkdilute[0] == "dp"))):
