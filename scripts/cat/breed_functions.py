@@ -24,6 +24,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -378,6 +379,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -647,6 +649,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -858,6 +861,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1174,6 +1178,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1336,6 +1341,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1612,6 +1618,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1820,6 +1827,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2018,6 +2026,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2358,6 +2367,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2591,6 +2601,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2860,6 +2871,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3029,6 +3041,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3312,6 +3325,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3518,6 +3532,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3849,6 +3864,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4079,6 +4095,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4341,6 +4358,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4624,6 +4642,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4848,6 +4867,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -5193,6 +5213,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -5472,6 +5493,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -5691,6 +5713,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -6023,6 +6046,7 @@ class Breed_generator:
 
         # RED GENE
 
+        genoclass.sexgene = []
         if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
