@@ -1048,7 +1048,7 @@ class MakeClanScreen(Screens):
                     special_text += "has a somatic mutation on " + somatic.get(selected.genotype.somatic["base"]) + "!"
 
                 special_text = event_text_adjust(Cat, special_text, main_cat=selected)
-            elif selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}":
+            if selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}":
                 somatic = {
                     "Somatic/leftface": "{PRONOUN/m_c/poss} face",
                     "Somatic/rightface": "{PRONOUN/m_c/poss} face",
@@ -1060,11 +1060,19 @@ class MakeClanScreen(Screens):
                     "left back bicolour2": "one of {PRONOUN/m_c/poss} back legs"
                 }
                 if special_text:
-                    special_text += "\nhas a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
+                    if "has a somatic mutation" in special_text:
+                        special_text += "\nhas another somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
+                    else:
+                        special_text += "\nhas a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
                 else:
                     special_text += "has a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
 
                 special_text = event_text_adjust(Cat, special_text, main_cat=selected)
+            if (selected.genotype.breeds and selected.genotype.breeds != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.breeds and selected.genotype.chimerageno.breeds != "{}"):
+                if special_text:
+                    special_text += "\nhas a breed!"
+                else:
+                    special_text += "has a breed!"
             if len(selected.genotype.sexgene) == 2 and selected.genotype.sexgene[1] == "Y" and selected.genotype.gender == "molly":
                 if special_text:
                     special_text += "\nXY molly!"
@@ -1075,12 +1083,7 @@ class MakeClanScreen(Screens):
                     special_text += "\nXX tom!"
                 else:
                     special_text += "XX tom!"
-            if selected.genotype.sexgene != ["o", "o"] and selected.genotype.sexgene != ["O", "o"] and selected.genotype.sexgene != ["O", "O"] and selected.genotype.sexgene != ["o", "Y"] and selected.genotype.sexgene != ["O", "Y"]:
-                if special_text:
-                    special_text += "\nhas aneuploidy!"
-                else:
-                    special_text += "has aneuploidy!"
-            elif selected.genotype.chimera and selected.genotype.chimerageno.sexgene != ["o", "o"] and selected.genotype.chimerageno.sexgene != ["O", "o"] and selected.genotype.chimerageno.sexgene != ["O", "O"] and selected.genotype.chimerageno.sexgene != ["o", "Y"] and selected.genotype.chimerageno.sexgene != ["O", "Y"]:
+            if (selected.genotype.sexgene != ["o", "o"] and selected.genotype.sexgene != ["O", "o"] and selected.genotype.sexgene != ["O", "O"] and selected.genotype.sexgene != ["o", "Y"] and selected.genotype.sexgene != ["O", "Y"]) or (selected.genotype.chimera and selected.genotype.chimerageno.sexgene != ["o", "o"] and selected.genotype.chimerageno.sexgene != ["O", "o"] and selected.genotype.chimerageno.sexgene != ["O", "O"] and selected.genotype.chimerageno.sexgene != ["o", "Y"] and selected.genotype.chimerageno.sexgene != ["O", "Y"]):
                 if special_text:
                     special_text += "\nhas aneuploidy!"
                 else:
@@ -1099,7 +1102,6 @@ class MakeClanScreen(Screens):
                     perm_cond_text += self.change_condition_name(str(condition)) + "\n"
                 perm_cond_text = perm_cond_text[:-1]
 
-            print(selected.genotype.sexgene)
             self.elements["cat_info"].set_text(
                 str(gender_text)
                 + "\n"
