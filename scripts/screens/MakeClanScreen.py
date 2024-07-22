@@ -1068,7 +1068,7 @@ class MakeClanScreen(Screens):
                     special_text += "has a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
 
                 special_text = event_text_adjust(Cat, special_text, main_cat=selected)
-            if selected and ((selected.genotype.breeds and selected.genotype.breeds != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.breeds and selected.genotype.chimerageno.breeds != "{}")):
+            if selected.genotype and ((selected.genotype.breeds and selected.genotype.breeds != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.breeds and selected.genotype.chimerageno.breeds != "{}")):
                 if special_text:
                     special_text += "\nhas a breed!"
                 else:
