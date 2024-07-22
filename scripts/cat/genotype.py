@@ -1279,16 +1279,7 @@ class Genotype:
             sperm2 = choice(["X", "Y"])
 
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
-            while sperm1 == "Y" and sperm2 == "Y":
-                sperm1 = choice(["X", "Y"])
-                sperm2 = choice(["X", "Y"])
-            while sperm1 == "Y" and (sperm2 == "YY" or sperm2 == "null"):
-                sperm1 = choice(["X", "Y"])
-                sperm2 = choice(["XX", "XY", "YY", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and sperm2 == "Y":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                sperm2 = choice(["X", "Y"])
-            while (sperm1 == "YY" or sperm1 == "null") and (sperm2 == "YY" or sperm2 == "null"):
+            while sperm1 == "null" and sperm2 == "null":
                 sperm1 = choice(["XX", "XY", "YY", "null"])
                 sperm2 = choice(["XX", "XY", "YY", "null"])
 
@@ -1298,37 +1289,9 @@ class Genotype:
                 egg2 = choice(["XX", "null"])
 
         else:
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
             while sperm1 == "null" and egg1 == "null":
                 sperm1 = choice(["XX", "XY", "YY", "null"])
                 egg1 = choice(["XX", "null"])
-                while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                    sperm1 = choice(["XX", "XY", "YY", "null"])
-                    egg1 = choice(["XX", "null"])
-
-        # ordering part 1
-        just_flip = False
-        xyx = False
-        xyxx = False
-        xyxy = False
-        yyxy = False
-
-        if "Y" in par1.sexgene and "Y" in par2.sexgene:
-            if (sperm1 == "Y" or sperm1 == "YY") and (sperm2 == "X" or sperm2 == "XX"):
-                just_flip = True
-            elif sperm1 == "XY" and sperm2 == "X":
-                xyx = True
-            elif sperm1 == "XY" and sperm2 == "XX":
-                xyxx = True
-            elif sperm1 == "XY" and sperm2 == "XY":
-                xyxy = True
-            elif sperm1 == "YY" and sperm2 == "XY":
-                yyxy = True
 
         # setting inheritance
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
@@ -1490,46 +1453,21 @@ class Genotype:
                 sperm2.append("Y")
 
         # setting sexgene
-        if just_flip:
-            for gene in sperm2:
-                self.sexgene.append(str(gene))
+        if "Y" in par1.sexgene and "Y" in par2.sexgene:
             for gene in sperm1:
                 self.sexgene.append(str(gene))
-        elif xyx:
-            self.sexgene = sperm1[0]
-            self.sexgene.append(sperm2)
-            self.sexgene.append("Y")
-        elif xyxx:
-            self.sexgene = sperm1[0]
             for gene in sperm2:
                 self.sexgene.append(str(gene))
-            self.sexgene.append("Y")
-        elif xyxy:
-            self.sexgene = sperm1[0]
-            self.sexgene.append(sperm2[0])
-            self.sexgene.append("Y")
-            self.sexgene.append("Y")
-        elif yyxy:
-            self.sexgene = sperm2[0]
-            self.sexgene.append("Y")
-            self.sexgene.append("Y")
-            self.sexgene.append("Y")
+        elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
+            for gene in egg1:
+                self.sexgene.append(str(gene))
+            for gene in egg2:
+                self.sexgene.append(str(gene))
         else:
-            if "Y" in par1.sexgene and "Y" in par2.sexgene:
-                for gene in sperm1:
-                    self.sexgene.append(str(gene))
-                for gene in sperm2:
-                    self.sexgene.append(str(gene))
-            elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
-                for gene in egg1:
-                    self.sexgene.append(str(gene))
-                for gene in egg2:
-                    self.sexgene.append(str(gene))
-            else:
-                for gene in egg1:
-                    self.sexgene.append(str(gene))
-                for gene in sperm2:
-                    self.sexgene.append(str(gene))
+            for gene in egg1:
+                self.sexgene.append(str(gene))
+            for gene in sperm2:
+                self.sexgene.append(str(gene))
 
         for i in range(1, 20):
             if "" in self.sexgene:
@@ -1543,8 +1481,6 @@ class Genotype:
             if "l" in self.sexgene:
                 self.sexgene.remove("l")
 
-        if self.sexgene[0] == "Y":
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py KitGenerator")
         if len(self.sexgene) > 4:
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in genotype.py KitGenerator")
 
