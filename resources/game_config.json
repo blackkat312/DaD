@@ -356,7 +356,7 @@
 
 		"chimera" : 250,
 		"intersex" : 50,
-		"XXX/XXY" : 150,
+		"XXX/XXY" : 300,
 		"brindled_bicolour" : 125,
 		"vitiligo" : 75,
 		"random_mutation" : 75,
