@@ -24,47 +24,140 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-            
-                for i in range(2):
-                    if randint(1, genoclass.odds["red"]) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, genoclass.odds["red"]) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, genoclass.odds["red"]) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, genoclass.odds["red"]) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code base")
+                genoclass.gender = "intersex"
 
-        if 'o' in genoclass.sexgene and 'O' in genoclass.sexgene and randint(1, genoclass.odds['brindled_bicolour'])==1:
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, genoclass.odds["red"]) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
+
+        if 'O' in genoclass.sexgene and randint(1, genoclass.odds['brindled_bicolour'])==1:
             genoclass.brindledbi = True
         
         if(random() < 0.05):
@@ -329,45 +422,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    if randint(1, 10) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 10) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, 10) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, 10) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Aby")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 10) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -549,33 +735,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code AmBurm")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -702,49 +990,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                if randint(1, 4) == 1:
-                    for i in range(2):
-                        genoclass.sexgene[i] = "O"
-                else:
-                    for i in range(2):
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                if randint(1, 4) == 1:
-                    for i in range(3):
-                        genoclass.sexgene[i] = "O"
-                else:
-                    for i in range(3):
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 4) == 1:
-                    for i in range(2):
-                        genoclass.sexgene[i] = "O"
-                else:
-                    for i in range(2):
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
-        
+                print("ERROR in breed_functions.py, sex assignment code Arab")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 4) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
 
         # DILUTE
 
@@ -973,33 +1350,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code AusMist")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
 
         # WHITE
 
@@ -1077,45 +1556,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    if randint(1, 25) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 25) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, 25) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, 25) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Bengal")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 25) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -1304,45 +1876,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Ceylon")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 4) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -1463,33 +2128,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Chartreux")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -1603,33 +2370,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Chausie")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -1885,33 +2754,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Egyptian")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -2060,33 +3031,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Havana")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -2271,33 +3344,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Kanaani")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -2382,45 +3557,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Khao")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 4) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -2616,33 +3884,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Lin")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -2764,45 +4134,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    if randint(1, 10) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 10) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, 10) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, 10) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Lykoi")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 10) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
 
         # AGOUTI
 
@@ -3046,33 +4509,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Ocicat")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
 
         # WHITE
 
@@ -3218,33 +4783,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Pixiebob")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -3422,33 +5089,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Russian")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -3647,33 +5416,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Singapura")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -3813,33 +5684,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Sokoke")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -4100,33 +6073,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Toyger")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -4321,33 +6396,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Cheetoh")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -4482,45 +6659,138 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[0] = "O"
-                else:
-                    genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    if randint(1, 4) == 1:
-                        genoclass.sexgene[i] = "O"
-                    else:
-                        genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Foldex")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            if randint(1, 4) == 1:
+                tempsexgene.append("O")
+            else:
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
@@ -4765,33 +7035,135 @@ class Breed_generator:
 
         # RED GENE
 
-        if (random() < 0.5 and special != "fem") or special == "masc":
-            genoclass.sexgene = ["", "Y"]
+        if special == "fem":
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", "Y"]
-
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                genoclass.sexgene[0] = "o"
+                egg1 = "X"
 
-            if special == "intersex":
-                genoclass.gender = "intersex"
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "null"])
             else:
-                genoclass.gender = "tom"
+                sperm1 = "X"
+            genoclass.gender = "molly"
+        elif special == "masc":
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                egg1 = choice(["XX", "null"])
+            else:
+                egg1 = "X"
+
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XY", "YY"])
+            else:
+                sperm1 = "Y"
+            genoclass.gender = "tom"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                genoclass.sexgene = ["", "", ""]
-                for i in range(3):
-                    genoclass.sexgene[i] = "o"
+                egg1 = choice(["XX", "null"])
             else:
-                for i in range(2):
-                    genoclass.sexgene[i] = "o"
+                egg1 = "X"
 
+            if randint(1, genoclass.odds['XXX/XXY']) == 1:
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+            else:
+                sperm1 = choice(["X", "Y"])
             if special == "intersex":
                 genoclass.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    genoclass.gender = "tom"
+                else:
+                    genoclass.gender = "molly"
             else:
-                genoclass.gender = "molly"
+                print("ERROR in breed_functions.py, sex assignment code Serengeti")
+                genoclass.gender = "intersex"
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                egg1 = choice(["XX", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+
+        randnum = randint(1, 100)
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+            randnum = randint(1, 100)
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and egg1 == "null":
+                sperm1 = choice(["X", "Y"])
+                egg1 = choice(["XX", "null"])
+
+        number_of_xs = 0
+        number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
+        if egg1[0] == "X":
+            number_of_xs += 1
+        if len(egg1) == 2 and egg1[1] == "X":
+            number_of_xs += 1
+
+        if sperm1[0] == "Y":
+            number_of_ys += 1
+        elif sperm1[0] == "X":
+            number_of_xs += 1
+        if len(sperm1) == 2 and sperm1[1] == "Y":
+            number_of_ys += 1
+        elif len(sperm1) == 2 and sperm1[1] == "X":
+            number_of_xs += 1
+
+        while number_of_xs != 0:
+            number_of_xs -= 1
+            tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            genoclass.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            genoclass.sexgene.append("o")
+
+        while number_of_ys != 0:
+            number_of_ys -= 1
+            genoclass.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in genoclass.sexgene:
+                genoclass.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in genoclass.sexgene:
+                genoclass.sexgene.remove("")
         
         # DILUTE
 
