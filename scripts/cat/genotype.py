@@ -2079,20 +2079,19 @@ class Genotype:
             self.eumelanin[0] = self.eumelanin[1]
             self.eumelanin[1] = "b"
 
-        """index = len(self.sexgene) - 1
-        while index >= 0:
-            if index != (len(self.sexgene) - 1):
-                if self.sexgene[index] == "Y" and (self.sexgene[index + 1] == "o" or self.sexgene[index + 1] == "O"):
-                    self.sexgene[index] = self.sexgene[index + 1]
-                    self.sexgene[index + 1] = "Y"
-            index -= 1
-        index = len(self.sexgene) - 1
-        while index >= 0:
-            if index != (len(self.sexgene) - 1):
-                if self.sexgene[index] == "o" and self.sexgene[index + 1] == "O":
-                    self.sexgene[index] = "O"
-                    self.sexgene[index + 1] = "o"
-            index -= 1"""
+        index = 0
+        while index < len(self.sexgene):
+            if self.sexgene[index] == "Y":
+                self.sexgene[index] = "y"
+            index += 1
+
+        self.sexgene.sort()
+
+        index = 0
+        while index < len(self.sexgene):
+            if self.sexgene[index] == "y":
+                self.sexgene[index] = "Y"
+            index += 1
 
         if self.white[0] == "wsal":
             self.white[0] = self.white[1]
