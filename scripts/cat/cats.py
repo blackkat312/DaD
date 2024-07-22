@@ -721,8 +721,6 @@ class Cat:
                     self.genotype.gender = "tom"
                 else:
                     self.genotype.gender = "molly"
-
-            print("KitGenerator part: " + str(self.genotype.gender) + " " + str(self.genotype.sexgene))
         elif kittypet or status == 'kittypet':
             self.genotype.AltGenerator(special=self.gender)
 
@@ -740,8 +738,6 @@ class Cat:
                     self.genotype.gender = "tom"
                 else:
                     self.genotype.gender = "molly"
-
-            print("AltGenerator part: " + str(self.genotype.gender) + " " + str(self.genotype.sexgene))
         else:
             self.genotype.Generator(special=self.gender)
 
@@ -759,8 +755,6 @@ class Cat:
                     self.genotype.gender = "tom"
                 else:
                     self.genotype.gender = "molly"
-
-            print("Generator part: " + str(self.genotype.gender) + " " + str(self.genotype.sexgene))
 
         self.phenotype = Phenotype(self.genotype)
         self.phenotype.PhenotypeOutput(gender=self.genotype.gender, sex=self.genotype.gender)
