@@ -416,7 +416,6 @@ class Genotype:
         # RED GENE
 
         if special == "fem":
-            self.gender = "molly"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -426,8 +425,8 @@ class Genotype:
                 sperm1 = choice(["XX", "null"])
             else:
                 sperm1 = "X"
+            self.gender = "molly"
         elif special == "masc":
-            self.gender = "tom"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -437,8 +436,8 @@ class Genotype:
                 sperm1 = choice(["XY", "YY"])
             else:
                 sperm1 = "Y"
+            self.gender = "tom"
         else:
-            self.gender = "intersex"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -448,6 +447,16 @@ class Genotype:
                 sperm1 = choice(["XX", "XY", "YY", "null"])
             else:
                 sperm1 = choice(["X", "Y"])
+            if special == "intersex":
+                self.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    self.gender = "tom"
+                else:
+                    self.gender = "molly"
+            else:
+                print("ERROR in genotype.py, sex assignment code 1")
+                self.gender = "intersex"
 
         while sperm1 == "Y" and egg1 == "null":
             sperm1 = choice(["X", "Y"])
@@ -478,30 +487,66 @@ class Genotype:
 
         number_of_xs = 0
         number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
         if egg1[0] == "X":
             number_of_xs += 1
-        if len(egg1) > 1 and egg1[1] == "X":
+        if len(egg1) == 2 and egg1[1] == "X":
             number_of_xs += 1
 
         if sperm1[0] == "Y":
             number_of_ys += 1
         elif sperm1[0] == "X":
             number_of_xs += 1
-        if len(sperm1) > 1 and sperm1[1] == "Y":
+        if len(sperm1) == 2 and sperm1[1] == "Y":
             number_of_ys += 1
-        elif len(sperm1) > 1 and sperm1[1] == "X":
+        elif len(sperm1) == 2 and sperm1[1] == "X":
             number_of_xs += 1
 
         while number_of_xs != 0:
             number_of_xs -= 1
             if randint(1, self.odds["red"]) == 1:
-                self.sexgene.append("O")
+                tempsexgene.append("O")
             else:
-                self.sexgene.append("o")
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            self.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            self.sexgene.append("o")
 
         while number_of_ys != 0:
             number_of_ys -= 1
             self.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in self.sexgene:
+                self.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in self.sexgene:
+                self.sexgene.remove("")
 
         if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
@@ -811,7 +856,6 @@ class Genotype:
         # RED GENE
 
         if special == "fem":
-            self.gender = "molly"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -821,8 +865,8 @@ class Genotype:
                 sperm1 = choice(["XX", "null"])
             else:
                 sperm1 = "X"
+            self.gender = "molly"
         elif special == "masc":
-            self.gender = "tom"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -832,8 +876,8 @@ class Genotype:
                 sperm1 = choice(["XY", "YY"])
             else:
                 sperm1 = "Y"
+            self.gender = "tom"
         else:
-            self.gender = "intersex"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -843,6 +887,16 @@ class Genotype:
                 sperm1 = choice(["XX", "XY", "YY", "null"])
             else:
                 sperm1 = choice(["X", "Y"])
+            if special == "intersex":
+                self.gender = "intersex"
+            elif not special:
+                if "Y" in sperm1:
+                    self.gender = "tom"
+                else:
+                    self.gender = "molly"
+            else:
+                print("ERROR in genotype.py, sex assignment code 2")
+                self.gender = "intersex"
 
         while sperm1 == "Y" and egg1 == "null":
             sperm1 = choice(["X", "Y"])
@@ -873,30 +927,66 @@ class Genotype:
 
         number_of_xs = 0
         number_of_ys = 0
+        number_of_smalls = 0
+        number_of_bigs = 0
+        tempsexgene = []
         if egg1[0] == "X":
             number_of_xs += 1
-        if len(egg1) > 1 and egg1[1] == "X":
+        if len(egg1) == 2 and egg1[1] == "X":
             number_of_xs += 1
 
         if sperm1[0] == "Y":
             number_of_ys += 1
         elif sperm1[0] == "X":
             number_of_xs += 1
-        if len(sperm1) > 1 and sperm1[1] == "Y":
+        if len(sperm1) == 2 and sperm1[1] == "Y":
             number_of_ys += 1
-        elif len(sperm1) > 1 and sperm1[1] == "X":
+        elif len(sperm1) == 2 and sperm1[1] == "X":
             number_of_xs += 1
 
         while number_of_xs != 0:
             number_of_xs -= 1
             if randint(1, self.odds["red"]) == 1:
-                self.sexgene.append("O")
+                tempsexgene.append("O")
             else:
-                self.sexgene.append("o")
+                tempsexgene.append("o")
+
+        if tempsexgene[0] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "o":
+            number_of_smalls += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "o":
+            number_of_smalls += 1
+
+        if tempsexgene[0] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 2 and tempsexgene[1] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 3 and tempsexgene[2] == "O":
+            number_of_bigs += 1
+        if len(tempsexgene) >= 4 and tempsexgene[3] == "O":
+            number_of_bigs += 1
+
+        while number_of_bigs != 0:
+            number_of_bigs -= 1
+            self.sexgene.append("O")
+
+        while number_of_smalls != 0:
+            number_of_smalls -= 1
+            self.sexgene.append("o")
 
         while number_of_ys != 0:
             number_of_ys -= 1
             self.sexgene.append("Y")
+
+        for i in range(1, 10):
+            if "null" in self.sexgene:
+                self.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in self.sexgene:
+                self.sexgene.remove("")
                 
         if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
@@ -1530,7 +1620,11 @@ class Genotype:
                     self.sexgene.append(str(gene))
 
         for i in range(1, 10):
-            self.sexgene.remove("null")
+            if "null" in self.sexgene:
+                self.sexgene.remove("null")
+        for i in range(1, 10):
+            if "" in self.sexgene:
+                self.sexgene.remove("")
 
         #
 
@@ -2062,16 +2156,6 @@ class Genotype:
         elif self.eumelanin[0] == "b" and self.eumelanin[1] != "bl":
             self.eumelanin[0] = self.eumelanin[1]
             self.eumelanin[1] = "b"
-
-        if len(self.sexgene) > 2 and self.sexgene[2] == "O" and self.sexgene[0] == "o":
-            self.sexgene[2] = self.sexgene[0]
-            self.sexgene[0] = "O"
-        elif len(self.sexgene) > 2 and self.sexgene[2] == "O":
-            self.sexgene[2] = self.sexgene[1]
-            self.sexgene[1] = "O"
-        elif self.sexgene[1] == "O":
-            self.sexgene[1] = self.sexgene[0]
-            self.sexgene[0] = "O"
 
         if self.white[0] == "wsal":
             self.white[0] = self.white[1]
@@ -3159,14 +3243,7 @@ class Genotype:
             else:
                 self.Mutate()
         elif(which == 'red'):
-            if('o' not in self.sexgene):
-                self.Mutate()
-            if(self.sexgene[0] == 'o'):
-                self.sexgene[0] = 'O'
-            elif(self.sexgene[1] == 'o'):
-                self.sexgene[1] = 'O'
-            else:
-                self.sexgene[2] = 'O'
+            self.Mutate()
         elif(which == 'dilute'):
             # Gains the gene
             if(self.dilute[1] == 'D'):
