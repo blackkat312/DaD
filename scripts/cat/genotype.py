@@ -416,6 +416,7 @@ class Genotype:
         # RED GENE
 
         if special == "fem":
+            self.gender = "molly"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -426,6 +427,7 @@ class Genotype:
             else:
                 sperm1 = "X"
         elif special == "masc":
+            self.gender = "tom"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -436,6 +438,7 @@ class Genotype:
             else:
                 sperm1 = "Y"
         else:
+            self.gender = "intersex"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -467,7 +470,7 @@ class Genotype:
         randnum = randint(1, 100)
         while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
             randnum = randint(1, 100)
-            sperm1 = choice("XY")
+            sperm1 = choice(["X", "Y"])
             egg1 = choice(["XX", "null"])
             while sperm1 == "Y" and egg1 == "null":
                 sperm1 = choice(["X", "Y"])
@@ -808,6 +811,7 @@ class Genotype:
         # RED GENE
 
         if special == "fem":
+            self.gender = "molly"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -818,6 +822,7 @@ class Genotype:
             else:
                 sperm1 = "X"
         elif special == "masc":
+            self.gender = "tom"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -828,6 +833,7 @@ class Genotype:
             else:
                 sperm1 = "Y"
         else:
+            self.gender = "intersex"
             if randint(1, self.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
             else:
@@ -869,16 +875,16 @@ class Genotype:
         number_of_ys = 0
         if egg1[0] == "X":
             number_of_xs += 1
-        if egg1[1] == "X":
+        if len(egg1) > 1 and egg1[1] == "X":
             number_of_xs += 1
 
         if sperm1[0] == "Y":
             number_of_ys += 1
         elif sperm1[0] == "X":
             number_of_xs += 1
-        if sperm1[1] == "Y":
+        if len(sperm1) > 1 and sperm1[1] == "Y":
             number_of_ys += 1
-        elif sperm1[1] == "X":
+        elif len(sperm1) > 1 and sperm1[1] == "X":
             number_of_xs += 1
 
         while number_of_xs != 0:
