@@ -1294,6 +1294,11 @@ class Genotype:
 
         #
 
+        egglist1 = []
+        egglist2 = []
+        spermlist1 = []
+        spermlist2 = []
+
         # deciding eggs and sperm
         if randint(1, self.odds['XXX/XXY']) == 1:
             egg1 = choice(["XX", "null"])
@@ -1392,226 +1397,215 @@ class Genotype:
             # par1
             if sperm1 == "X":
                 if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
-                    sperm1 = [choice([par1.sexgene[0], par1.sexgene[1]])]
+                    spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                 elif len(par1.sexgene) == 4:
                     if par1.sexgene[2] == "Y":
-                        sperm1 = [choice([par1.sexgene[0], par1.sexgene[1]])]
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                     elif par1.sexgene[3] == "Y":
-                        sperm1 = [choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]])]
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
                 else:
-                    sperm1 = [par1.sexgene[0]]
+                    spermlist1.append(par1.sexgene[0])
 
             elif sperm1 == "XX":
                 if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
-                    sperm1 = [choice([par1.sexgene[0], par1.sexgene[1]])]
+                    spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                 elif len(par1.sexgene) == 4:
                     if par1.sexgene[2] == "Y":
-                        sperm1 = [choice([par1.sexgene[0], par1.sexgene[1]])]
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                     elif par1.sexgene[3] == "Y":
-                        sperm1 = [choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]])]
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
                 else:
-                    sperm1 = [par1.sexgene[0]]
+                    spermlist1.append(par1.sexgene[0])
 
                 if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
-                    sperm1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
+                    spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                 elif len(par1.sexgene) == 4:
                     if par1.sexgene[2] == "Y":
-                        sperm1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                     elif par1.sexgene[3] == "Y":
-                        sperm1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
                 else:
-                    sperm1.append(par1.sexgene[0])
+                    spermlist1.append(par1.sexgene[0])
 
             elif sperm1 == "XY":
                 if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
-                    sperm1 = [choice([par1.sexgene[0], par1.sexgene[1]])]
+                    spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                 elif len(par1.sexgene) == 4:
                     if par1.sexgene[2] == "Y":
-                        sperm1 = [choice([par1.sexgene[0], par1.sexgene[1]])]
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
                     elif par1.sexgene[3] == "Y":
-                        sperm1 = [choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]])]
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
                 else:
-                    sperm1 = [par1.sexgene[0]]
-                sperm1.append("Y")
+                    spermlist1.append(par1.sexgene[0])
+                spermlist1.append("Y")
 
             # par2
             if sperm2 == "X":
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
+                    spermlist2.append(par2.sexgene[0])
 
             elif sperm2 == "XX":
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
+                    spermlist2.append(par2.sexgene[0])
 
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2.append(par2.sexgene[0])
+                    spermlist2.append(par2.sexgene[0])
 
             elif sperm2 == "XY":
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
-                sperm2.append("Y")
+                    spermlist2.append(par2.sexgene[0])
+                spermlist2.append("Y")
 
-            if sperm1 == "null" and sperm2 in ["Y", "YY"]:
-                yy = False
-                if sperm2 == "YY":
-                    yy = True
-
-                if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
-                elif len(par2.sexgene) == 4:
-                    if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
-                    elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
-                else:
-                    sperm2 = [par2.sexgene[0]]
-                if yy:
-                    sperm2.append("Y")
             if sperm1 in ["Y", "YY"] and sperm2 == "null":
-                yy = False
+                spermlist1 = []
+                if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
+                    spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
+                elif len(par1.sexgene) == 4:
+                    if par1.sexgene[2] == "Y":
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
+                    elif par1.sexgene[3] == "Y":
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
+                else:
+                    spermlist1.append(par1.sexgene[0])
                 if sperm1 == "YY":
-                    yy = True
-
+                    spermlist1.append("Y")
+            if sperm1 == "null" and sperm2 in ["Y", "YY"]:
+                spermlist2 = []
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm1 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm1 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm1 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm1 = [par2.sexgene[0]]
-                if yy:
-                    sperm1.append("Y")
+                    spermlist2.append(par2.sexgene[0])
+                if sperm2 == "YY":
+                    spermlist2.append("Y")
 
         elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
             # par1
-            if egg1 == "X":
-                egg1 = [choice(par1.sexgene)]
-            elif egg1 == "XX":
-                egg1 = [choice(par1.sexgene)]
-                egg1.append(choice(par1.sexgene))
+            if "X" in egg1:
+                egglist1.append(choice(par1.sexgene))
+                if egg1 == "XX":
+                    egglist1.append(choice(par1.sexgene))
 
-            if egg2 == "X":
-                egg2 = [choice(par2.sexgene)]
-            elif egg2 == "XX":
-                egg2 = [choice(par2.sexgene)]
-                egg2.append(choice(par2.sexgene))
+            # par2
+            if "X" in egg2:
+                egglist2.append(choice(par2.sexgene))
+                if egg2 == "XX":
+                    egglist2.append(choice(par2.sexgene))
 
         else:
             # par1
-            if egg1 == "X":
-                egg1 = [choice(par1.sexgene)]
-            elif egg1 == "XX":
-                egg1 = [choice(par1.sexgene)]
-                egg1.append(choice(par1.sexgene))
+            if "X" in egg1:
+                egglist1.append(choice(par1.sexgene))
+                if egg1 == "XX":
+                    egglist1.append(choice(par1.sexgene))
 
             # par2
             if sperm2 == "X":
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
+                    spermlist2.append(par2.sexgene[0])
 
             elif sperm2 == "XX":
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
+                    spermlist2.append(par2.sexgene[0])
 
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2.append(par2.sexgene[0])
+                    spermlist2.append(par2.sexgene[0])
 
             elif sperm2 == "XY":
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
-                sperm2.append("Y")
+                    spermlist2.append(par2.sexgene[0])
+                spermlist2.append("Y")
 
             if egg1 == "null" and sperm2 in ["Y", "YY"]:
-                yy = False
-                if sperm2 == "YY":
-                    yy = True
-
+                spermlist2 = []
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
-                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                 elif len(par2.sexgene) == 4:
                     if par2.sexgene[2] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
                     elif par2.sexgene[3] == "Y":
-                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                        spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]]))
                 else:
-                    sperm2 = [par2.sexgene[0]]
-                if yy:
-                    sperm2.append("Y")
+                    spermlist2.append(par2.sexgene[0])
+                if sperm2 == "YY":
+                    spermlist2.append("Y")
 
         self.sexgene = []  # why is it thinking that it's a string??
         # setting sexgene
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
-            for gene in sperm1:
+            for gene in spermlist1:
                 self.sexgene.append(str(gene))
-            for gene in sperm2:
+            for gene in spermlist2:
                 self.sexgene.append(str(gene))
         elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
-            for gene in egg1:
+            for gene in egglist1:
                 self.sexgene.append(str(gene))
-            for gene in egg2:
+            for gene in egglist2:
                 self.sexgene.append(str(gene))
         else:
-            for gene in egg1:
+            for gene in egglist1:
                 self.sexgene.append(str(gene))
-            for gene in sperm2:
+            for gene in spermlist2:
                 self.sexgene.append(str(gene))
 
         for i in range(1, 20):
