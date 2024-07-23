@@ -1394,6 +1394,7 @@ class Genotype:
 
         # setting inheritance
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
+            print("made it 1")
             # par1
             if sperm1 == "X":
                 if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
@@ -1484,7 +1485,8 @@ class Genotype:
                     spermlist2.append(par2.sexgene[0])
                 spermlist2.append("Y")
 
-            if sperm1 in ["Y", "YY"] and sperm2 == "null":
+            if (sperm1 == "Y" or sperm1 == "YY") and sperm2 == "null":
+                print("got here 1")
                 spermlist1 = []
                 if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
                     spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
@@ -1497,7 +1499,10 @@ class Genotype:
                     spermlist1.append(par1.sexgene[0])
                 if sperm1 == "YY":
                     spermlist1.append("Y")
-            if sperm1 == "null" and sperm2 in ["Y", "YY"]:
+            else:
+                print("didn't get here 1")
+            if sperm1 == "null" and (sperm2 == "Y" or sperm2 == "YY"):
+                print("got here 2")
                 spermlist2 = []
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
                     spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
@@ -1510,8 +1515,27 @@ class Genotype:
                     spermlist2.append(par2.sexgene[0])
                 if sperm2 == "YY":
                     spermlist2.append("Y")
+            else:
+                print("didn't get here 2")
+            if (sperm1 == "Y" or sperm1 == "YY") and (sperm2 == "Y" or sperm2 == "YY"):
+                print("got here 3")
+                spermlist1 = []
+                if len(par1.sexgene) == 3 and par1.sexgene[1] != "Y":
+                    spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
+                elif len(par1.sexgene) == 4:
+                    if par1.sexgene[2] == "Y":
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1]]))
+                    elif par1.sexgene[3] == "Y":
+                        spermlist1.append(choice([par1.sexgene[0], par1.sexgene[1], par1.sexgene[2]]))
+                else:
+                    spermlist1.append(par1.sexgene[0])
+                if sperm1 == "YY":
+                    spermlist1.append("Y")
+            else:
+                print("didn't get here 3")
 
         elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
+            print("made it 2")
             # par1
             if "X" in egg1:
                 egglist1.append(choice(par1.sexgene))
@@ -1525,6 +1549,7 @@ class Genotype:
                     egglist2.append(choice(par2.sexgene))
 
         else:
+            print("made it 3")
             # par1
             if "X" in egg1:
                 egglist1.append(choice(par1.sexgene))
@@ -1576,7 +1601,8 @@ class Genotype:
                     spermlist2.append(par2.sexgene[0])
                 spermlist2.append("Y")
 
-            if egg1 == "null" and sperm2 in ["Y", "YY"]:
+            if egg1 == "null" and (sperm2 == "Y" or sperm2 == "YY"):
+                print("got here 4")
                 spermlist2 = []
                 if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
                     spermlist2.append(choice([par2.sexgene[0], par2.sexgene[1]]))
@@ -1589,6 +1615,8 @@ class Genotype:
                     spermlist2.append(par2.sexgene[0])
                 if sperm2 == "YY":
                     spermlist2.append("Y")
+            else:
+                print("didn't get here 4")
 
         self.sexgene = []  # why is it thinking that it's a string??
         # setting sexgene
@@ -1621,7 +1649,7 @@ class Genotype:
                 self.sexgene.remove("l")
 
         if self.sexgene[0] == "Y":
-            self.sexgene = [par1.sexgene[0]]
+            # self.sexgene = [par1.sexgene[0]]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py KitGenerator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
@@ -3766,7 +3794,7 @@ class Genotype:
 
             'pinkdilute': "Pink-eyed dilution",
             "ext": "Extension",
-            "sunshine": "CORIN",
+            "corin": "CORIN",
             "karp": "Karpati",
             "bleach": "LaPerm bleaching",
             "ghosting": "Ghosting",
@@ -3780,7 +3808,7 @@ class Genotype:
             "agouti": "Agouti"
         }
 
-        return '\n' + name_conversion.get(self.somatic['gene']) + ' gene mutated to "' + self.somatic['allele'] + '" on ' + body.get(self.somatic['base'])
+        return "\n" + str(name_conversion.get(self.somatic["gene"])) + " gene mutated to \"" + str(self.somatic["allele"]) + "\" on " + str(body.get(self.somatic["base"]))
 
 
 
