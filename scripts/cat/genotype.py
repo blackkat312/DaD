@@ -384,6 +384,11 @@ class Genotype:
                 self.manx[1] = self.manx[1].lower()
             if 'NoDBE' not in self.pax3 and 'DBEalt' not in self.pax3:
                 self.pax3[0] = 'DBEalt'
+            if self.sexgene[0] == "Y":
+                if randint(1, self.odds["red"]) == 1:
+                    self.sexgene[0] = "O"
+                else:
+                    self.sexgene[0] = "o"
 
             return
 
@@ -779,6 +784,11 @@ class Genotype:
                 self.manx[1] = self.manx[1].lower()
             if 'NoDBE' not in self.pax3 and 'DBEalt' not in self.pax3:
                 self.pax3[0] = 'DBEalt'
+            if self.sexgene[0] == "Y":
+                if randint(1, self.odds["red"]) == 1:
+                    self.sexgene[0] = "O"
+                else:
+                    self.sexgene[0] = "o"
 
             return
 
