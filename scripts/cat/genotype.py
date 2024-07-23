@@ -507,7 +507,14 @@ class Genotype:
         if self.sexgene[0] == "Y":
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py Generator")
         if len(self.sexgene) > 4:
+            self.sexgene = self.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in genotype.py Generator")
+        if not self.sexgene:
+            if randint(1, self.odds["red"]) == 1:
+                self.sexgene = ["O"]
+            else:
+                self.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py Generator")
 
         if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
@@ -908,7 +915,14 @@ class Genotype:
         if self.sexgene[0] == "Y":
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py AltGenerator")
         if len(self.sexgene) > 4:
+            self.sexgene = self.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in genotype.py AltGenerator")
+        if not self.sexgene:
+            if randint(1, self.odds["red"]) == 1:
+                self.sexgene = ["O"]
+            else:
+                self.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py AltGenerator")
                 
         if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
@@ -1492,7 +1506,11 @@ class Genotype:
                 self.sexgene.remove("l")
 
         if len(self.sexgene) > 4:
+            self.sexgene = self.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in genotype.py KitGenerator")
+        if not self.sexgene:
+            self.sexgene = par1.sexgene[0]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py KitGenerator")
 
         #
 
