@@ -478,6 +478,7 @@ class Genotype:
                 sperm1 = choice(["X", "Y"])
                 egg1 = choice(["XX", "null"])
 
+        self.sexgene = []  # why is it thinking that it's a string??
         for entry in egg1:
             self.sexgene.append(entry)
         for entry in sperm1:
@@ -886,6 +887,7 @@ class Genotype:
                 sperm1 = choice(["X", "Y"])
                 egg1 = choice(["XX", "null"])
 
+        self.sexgene = []  # why is it thinking that it's a string??
         for entry in egg1:
             self.sexgene.append(entry)
         for entry in sperm1:
@@ -1302,20 +1304,80 @@ class Genotype:
         else:
             sperm2 = choice(["X", "Y"])
 
-        if "Y" in par1.sexgene and "Y" in par2.sexgene:
-            while sperm1 == "null" and sperm2 == "null":
+        while sperm1 == "Y" and sperm2 == "Y":
+            sperm1 = choice(["X", "Y"])
+            sperm2 = choice(["X", "Y"])
+        while sperm1 == "Y" and (sperm2 == "YY" or sperm2 == "null"):
+            sperm1 = choice(["X", "Y"])
+            sperm2 = choice(["XX", "XY", "YY", "null"])
+        while (sperm1 == "YY" or sperm1 == "null") and sperm2 == "Y":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            sperm2 = choice(["X", "Y"])
+        while (sperm1 == "YY" or sperm1 == "null") and (sperm2 == "YY" or sperm2 == "null"):
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            sperm2 = choice(["XX", "XY", "YY", "null"])
+
+        while egg1 == "null" and egg2 == "null":
+            egg1 = choice(["XX", "null"])
+            egg2 = choice(["XX", "null"])
+
+        while sperm1 == "Y" and egg1 == "null":
+            sperm1 = choice(["X", "Y"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and sperm2 == "Y":
+                sperm1 = choice(["X", "Y"])
+                sperm2 = choice(["X", "Y"])
+            while sperm1 == "Y" and (sperm2 == "YY" or sperm2 == "null"):
+                sperm1 = choice(["X", "Y"])
+                sperm2 = choice(["XX", "XY", "YY", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and sperm2 == "Y":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                sperm2 = choice(["X", "Y"])
+            while (sperm1 == "YY" or sperm1 == "null") and (sperm2 == "YY" or sperm2 == "null"):
                 sperm1 = choice(["XX", "XY", "YY", "null"])
                 sperm2 = choice(["XX", "XY", "YY", "null"])
-
-        elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
             while egg1 == "null" and egg2 == "null":
                 egg1 = choice(["XX", "null"])
                 egg2 = choice(["XX", "null"])
-
-        else:
-            while sperm1 == "null" and egg1 == "null":
+        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and sperm2 == "Y":
+                sperm1 = choice(["X", "Y"])
+                sperm2 = choice(["X", "Y"])
+            while sperm1 == "Y" and (sperm2 == "YY" or sperm2 == "null"):
+                sperm1 = choice(["X", "Y"])
+                sperm2 = choice(["XX", "XY", "YY", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and sperm2 == "Y":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                sperm2 = choice(["X", "Y"])
+            while (sperm1 == "YY" or sperm1 == "null") and (sperm2 == "YY" or sperm2 == "null"):
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                sperm2 = choice(["XX", "XY", "YY", "null"])
+            while egg1 == "null" and egg2 == "null":
+                egg1 = choice(["XX", "null"])
+                egg2 = choice(["XX", "null"])
+        while sperm1 == "null" and egg1 == "null":
+            sperm1 = choice(["XX", "XY", "YY", "null"])
+            egg1 = choice(["XX", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
                 sperm1 = choice(["XX", "XY", "YY", "null"])
                 egg1 = choice(["XX", "null"])
+            while sperm1 == "Y" and sperm2 == "Y":
+                sperm1 = choice(["X", "Y"])
+                sperm2 = choice(["X", "Y"])
+            while sperm1 == "Y" and (sperm2 == "YY" or sperm2 == "null"):
+                sperm1 = choice(["X", "Y"])
+                sperm2 = choice(["XX", "XY", "YY", "null"])
+            while (sperm1 == "YY" or sperm1 == "null") and sperm2 == "Y":
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                sperm2 = choice(["X", "Y"])
+            while (sperm1 == "YY" or sperm1 == "null") and (sperm2 == "YY" or sperm2 == "null"):
+                sperm1 = choice(["XX", "XY", "YY", "null"])
+                sperm2 = choice(["XX", "XY", "YY", "null"])
+            while egg1 == "null" and egg2 == "null":
+                egg1 = choice(["XX", "null"])
+                egg2 = choice(["XX", "null"])
 
         # setting inheritance
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
@@ -1476,6 +1538,7 @@ class Genotype:
                     sperm2 = [par2.sexgene[0]]
                 sperm2.append("Y")
 
+        self.sexgene = []  # why is it thinking that it's a string??
         # setting sexgene
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
             for gene in sperm1:
@@ -1505,6 +1568,9 @@ class Genotype:
             if "l" in self.sexgene:
                 self.sexgene.remove("l")
 
+        if self.sexgene[0] == "Y":
+            self.sexgene = par1.sexgene[0]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py KitGenerator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in genotype.py KitGenerator")
