@@ -1344,8 +1344,7 @@ class Cat:
         self.faded = faded  # This is only used to flag cats that are faded, but won't be added to the faded list until
         # the next save.
 
-        randnum = randint(1, 100)
-        if self.genotype.munch[1] == "Mk" or self.genotype.fold[1] == "Fd" or (self.genotype.manx[1] == "Ab" or self.genotype.manx[1] == "M") or ('NoDBE' not in self.genotype.pax3 and 'DBEalt' not in self.genotype.pax3) or self.genotype.sexgene[0] == "Y" or (len(self.genotype.sexgene) < 2 and not ((self.genotype.sexgene[0] == "o" or self.genotype.sexgene[0] == "O") and ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37))):
+        if self.genotype.munch[1] == "Mk" or self.genotype.fold[1] == "Fd" or (self.genotype.manx[1] == "Ab" or self.genotype.manx[1] == "M") or ('NoDBE' not in self.genotype.pax3 and 'DBEalt' not in self.genotype.pax3) or self.genotype.sexgene[0] == "Y":
             self.dead = True
 
         self.favourite = False
