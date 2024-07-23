@@ -506,6 +506,10 @@ class Genotype:
             index += 1
 
         if self.sexgene[0] == "Y":
+            if randint(1, self.odds["red"]) == 1:
+                self.sexgene = ["O"]
+            else:
+                self.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py Generator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
@@ -915,6 +919,10 @@ class Genotype:
             index += 1
 
         if self.sexgene[0] == "Y":
+            if randint(1, self.odds["red"]) == 1:
+                self.sexgene = ["O"]
+            else:
+                self.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py AltGenerator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
@@ -1471,6 +1479,39 @@ class Genotype:
                     sperm2 = [par2.sexgene[0]]
                 sperm2.append("Y")
 
+            if sperm1 == "null" and sperm2 in ["Y", "YY"]:
+                yy = False
+                if sperm2 == "YY":
+                    yy = True
+
+                if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
+                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                elif len(par2.sexgene) == 4:
+                    if par2.sexgene[2] == "Y":
+                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    elif par2.sexgene[3] == "Y":
+                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                else:
+                    sperm2 = [par2.sexgene[0]]
+                if yy:
+                    sperm2.append("Y")
+            if sperm1 in ["Y", "YY"] and sperm2 == "null":
+                yy = False
+                if sperm1 == "YY":
+                    yy = True
+
+                if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
+                    sperm1 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                elif len(par2.sexgene) == 4:
+                    if par2.sexgene[2] == "Y":
+                        sperm1 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    elif par2.sexgene[3] == "Y":
+                        sperm1 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                else:
+                    sperm1 = [par2.sexgene[0]]
+                if yy:
+                    sperm1.append("Y")
+
         elif "Y" not in par1.sexgene and "Y" not in par2.sexgene:
             # par1
             if egg1 == "X":
@@ -1538,6 +1579,23 @@ class Genotype:
                     sperm2 = [par2.sexgene[0]]
                 sperm2.append("Y")
 
+            if egg1 == "null" and sperm2 in ["Y", "YY"]:
+                yy = False
+                if sperm2 == "YY":
+                    yy = True
+
+                if len(par2.sexgene) == 3 and par2.sexgene[1] != "Y":
+                    sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                elif len(par2.sexgene) == 4:
+                    if par2.sexgene[2] == "Y":
+                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1]])]
+                    elif par2.sexgene[3] == "Y":
+                        sperm2 = [choice([par2.sexgene[0], par2.sexgene[1], par2.sexgene[2]])]
+                else:
+                    sperm2 = [par2.sexgene[0]]
+                if yy:
+                    sperm2.append("Y")
+
         self.sexgene = []  # why is it thinking that it's a string??
         # setting sexgene
         if "Y" in par1.sexgene and "Y" in par2.sexgene:
@@ -1569,13 +1627,13 @@ class Genotype:
                 self.sexgene.remove("l")
 
         if self.sexgene[0] == "Y":
-            self.sexgene = par1.sexgene[0]
+            self.sexgene = [par1.sexgene[0]]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py KitGenerator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in genotype.py KitGenerator")
         if not self.sexgene:
-            self.sexgene = par1.sexgene[0]
+            self.sexgene = [par1.sexgene[0]]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py KitGenerator")
 
         #
