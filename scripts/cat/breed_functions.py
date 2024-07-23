@@ -26,25 +26,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -108,11 +94,22 @@ class Breed_generator:
                 else:
                     genoclass.sexgene[index] = "o"
             index += 1
-            
+
         if genoclass.sexgene[0] == "Y":
+            if randint(1, genoclass.odds["red"]) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py base")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py base")
+        if not genoclass.sexgene:
+            if randint(1, genoclass.odds["red"]) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py base")
 
         if 'O' in genoclass.sexgene and randint(1, genoclass.odds['brindled_bicolour'])==1:
             genoclass.brindledbi = True
@@ -381,25 +378,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -465,9 +448,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 10) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Aby")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Aby")
+        if not genoclass.sexgene:
+            if randint(1, 10) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Aby")
         
         # DILUTE
 
@@ -651,25 +645,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -732,9 +712,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py AmBurm")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py AmBurm")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py AmBurm")
         
         # DILUTE
 
@@ -863,25 +848,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -947,9 +918,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Arab")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Arab")
+        if not genoclass.sexgene:
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Arab")
 
         # DILUTE
 
@@ -1180,25 +1162,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1261,9 +1229,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py AusMist")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py AusMist")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py AusMist")
 
         # WHITE
 
@@ -1343,25 +1316,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1427,9 +1386,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 25) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Bengal")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Bengal")
+        if not genoclass.sexgene:
+            if randint(1, 25) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Bengal")
         
         # DILUTE
 
@@ -1620,25 +1590,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1704,9 +1660,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Ceylon")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Ceylon")
+        if not genoclass.sexgene:
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Ceylon")
         
         # DILUTE
 
@@ -1829,25 +1796,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -1910,9 +1863,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Chartreux")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Chartreux")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Chartreux")
         
         # DILUTE
 
@@ -2028,25 +1986,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2109,9 +2053,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Chausie")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Chausie")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Chausie")
         
         # DILUTE
 
@@ -2369,25 +2318,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2450,9 +2385,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Egyptian")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Egyptian")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Egyptian")
         
         # DILUTE
 
@@ -2603,25 +2543,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2684,9 +2610,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Havana")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Havana")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Havana")
         
         # DILUTE
 
@@ -2873,25 +2804,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -2954,9 +2871,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Kanaani")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Kanaani")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Kanaani")
         
         # DILUTE
 
@@ -3043,25 +2965,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3127,9 +3035,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Khao")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Khao")
+        if not genoclass.sexgene:
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Khao")
         
         # DILUTE
 
@@ -3327,25 +3246,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3408,9 +3313,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Lin")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Lin")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Lin")
         
         # DILUTE
 
@@ -3534,25 +3444,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3618,9 +3514,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 10) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Lykoi")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Lykoi")
+        if not genoclass.sexgene:
+            if randint(1, 10) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Lykoi")
 
         # AGOUTI
 
@@ -3866,25 +3773,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -3947,9 +3840,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Ocicat")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Ocicat")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Ocicat")
 
         # WHITE
 
@@ -4097,25 +3995,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4178,9 +4062,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Pixiebob")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Pixiebob")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Pixiebob")
         
         # DILUTE
 
@@ -4360,25 +4249,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4441,9 +4316,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Russian")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Russian")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Russian")
         
         # DILUTE
 
@@ -4644,25 +4524,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4725,9 +4591,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Singapura")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Singapura")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Singapura")
         
         # DILUTE
 
@@ -4869,25 +4740,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -4950,9 +4807,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Sokoke")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Sokoke")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Sokoke")
         
         # DILUTE
 
@@ -5215,25 +5077,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -5296,9 +5144,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Toyger")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Toyger")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Toyger")
         
         # DILUTE
 
@@ -5495,25 +5348,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -5576,9 +5415,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Cheetoh")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Cheetoh")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Cheetoh")
         
         # DILUTE
 
@@ -5715,25 +5559,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -5799,9 +5629,20 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Foldex")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Foldex")
+        if not genoclass.sexgene:
+            if randint(1, 4) == 1:
+                genoclass.sexgene = ["O"]
+            else:
+                genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Foldex")
         
         # DILUTE
 
@@ -6048,25 +5889,11 @@ class Breed_generator:
 
         genoclass.sexgene = []
         if special == "fem":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "null"])
-            else:
-                sperm1 = "X"
+            egg1 = "X"
+            sperm1 = "X"
         elif special == "masc":
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XY", "YY"])
-            else:
-                sperm1 = "Y"
+            egg1 = "X"
+            sperm1 = "Y"
         else:
             if randint(1, genoclass.odds['XXX/XXY']) == 1:
                 egg1 = choice(["XX", "null"])
@@ -6129,9 +5956,14 @@ class Breed_generator:
             index += 1
             
         if genoclass.sexgene[0] == "Y":
+            genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Serengeti")
         if len(genoclass.sexgene) > 4:
+            genoclass.sexgene = genoclass.sexgene[:4]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Serengeti")
+        if not genoclass.sexgene:
+            genoclass.sexgene = ["o"]
+            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Serengeti")
         
         # DILUTE
 
