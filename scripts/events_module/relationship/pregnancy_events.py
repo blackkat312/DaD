@@ -454,6 +454,8 @@ class Pregnancy_Events:
 
                 for kit in kits:
                     randnum = randint(1, 100)
+                    if kit.neutered:
+                        randnum = 100
                     if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk" or ('NoDBE' not in kit.genotype.pax3 and 'DBEalt' not in kit.genotype.pax3) or kit.genotype.sexgene[0] == "Y" or (len(kit.genotype.sexgene) < 2 and not ((kit.genotype.sexgene[0] == "o" or kit.genotype.sexgene[0] == "O") and ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37))):
                         kit.dead = True
                         History.add_death(kit, str(kit.name) + " was stillborn.")
@@ -750,6 +752,8 @@ class Pregnancy_Events:
 
         for kit in kits:
             randnum = randint(1, 100)
+            if kit.neutered:
+                randnum = 100
             if random.random() < stillborn_chance or kit.genotype.manx[1] == "Ab" or kit.genotype.manx[1] == "M" or kit.genotype.fold[1] == "Fd" or kit.genotype.munch[1] == "Mk" or ('NoDBE' not in kit.genotype.pax3 and 'DBEalt' not in kit.genotype.pax3) or kit.genotype.sexgene[0] == "Y" or (len(kit.genotype.sexgene) < 2 and not ((kit.genotype.sexgene[0] == "o" or kit.genotype.sexgene[0] == "O") and ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37))):
                 kit.dead = True
                 History.add_death(kit, str(kit.name) + " was stillborn.")
