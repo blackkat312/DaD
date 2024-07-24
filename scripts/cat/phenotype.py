@@ -477,7 +477,7 @@ class Phenotype():
                     withword += " and "
         else:
             if ", and insertsectoral sectoral" in eyes and "one insertleft eye, one insertright eye" not in eyes:
-                eyes = eyes.replace(", and insertsectoral sectoral", "and insertsectoral sectoral")
+                eyes = eyes.replace(", and insertsectoral sectoral", " and insertsectoral sectoral")
             elif "one insertleft eye, and one insertright eye" in eyes and ", and insertsectoral sectoral" not in eyes:
                 eyes = eyes.replace("one insertleft eye, and one insertright eye", "one insertleft eye and one insertright eye")
 
