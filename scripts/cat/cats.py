@@ -4356,6 +4356,9 @@ class Cat:
             return False
 
         # check for age
+        if self.age == "newborn" or other_cat.age == "newborn":
+            return False
+
         if age_restriction:
             if (self.moons < 14 or other_cat.moons < 14) and not for_love_interest:
                 return False
@@ -4373,7 +4376,7 @@ class Cat:
                 ):
                     return False
 
-        age_restricted_ages = ["newborn", "kitten", "adolescent"]
+        age_restricted_ages = ["kitten", "adolescent"]
         if self.age in age_restricted_ages or other_cat.age in age_restricted_ages:
             if self.age != other_cat.age:
                 return False
@@ -4801,7 +4804,7 @@ class Cat:
         mates = rel1.cat_from.ID in rel1.cat_to.mate
 
         pos_traits = ["platonic", "respect", "comfortable", "trust"]
-        if allow_romantic and (mates or cat1.is_potential_mate(cat2)):
+        if allow_romantic and (mates or cat1.is_potential_mate(cat2, for_love_interest=True)):
             pos_traits.append("romantic")
 
         neg_traits = ["dislike", "jealousy"]
