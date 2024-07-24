@@ -14,7 +14,6 @@ class Breed_generator:
 
         # EUMELANIN
 
-        for i in range(2):
             if randint(1, genoclass.odds["cinnamon"]) == 1:
                 genoclass.eumelanin[i] = "bl"
             elif randint(1, genoclass.odds["chocolate"]) == 1:
@@ -110,12 +109,9 @@ class Breed_generator:
             else:
                 genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py base")
-
-        if 'O' in genoclass.sexgene and randint(1, genoclass.odds['brindled_bicolour'])==1:
-            genoclass.brindledbi = True
         
         if(random() < 0.05):
-            genoclass.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-red', 'blue-tipped', 'blue-tipped', 'cinnamon'])
+            genoclass.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-tipped', 'blue-tipped'])
 
         # DILUTE
 
@@ -127,7 +123,6 @@ class Breed_generator:
 
         # WHITE
 
-        for i in range(2):
             if randint(1, genoclass.odds["dominant white"]) == 1:
                 genoclass.white[i] = "W"
             elif randint(1, genoclass.odds["white spotting"]) > 3:
@@ -137,7 +132,6 @@ class Breed_generator:
 
         # ALBINO
 
-        for i in range(2):
             if randint(1, genoclass.odds["sepia"]) == 1:
                 genoclass.pointgene[i] = "cb"
             elif randint(1, genoclass.odds["colourpoint"]) == 1:
@@ -147,7 +141,6 @@ class Breed_generator:
 
         # SILVER
 
-        for i in range(2):
             if randint(1, genoclass.odds["silver"]) == 1:
                 genoclass.silver[i] = "I"
             else:
@@ -155,21 +148,18 @@ class Breed_generator:
 
         # AGOUTI
 
-        for i in range(2):
             if randint(1, genoclass.odds["solid"]) > 3:
                 genoclass.agouti[i] = "a"
             else:
                 genoclass.agouti[i] = "A"
 
         # MACKEREL
-        for i in range(2):
             if randint(1, genoclass.odds["blotched"]) == 1:
                 genoclass.mack[i] = "mc"
             else:
                 genoclass.mack[i] = "Mc"
 
         # TICKED
-        for i in range(2):
             if randint(1, genoclass.odds["ticked"]) == 1:
                 genoclass.ticked[i] = "Ta"
             else:
