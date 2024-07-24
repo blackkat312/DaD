@@ -410,7 +410,6 @@ class Genotype:
 
         # EUMELANIN
 
-        for i in range(2):
             if randint(1, self.odds["cinnamon"]) == 1:
                 self.eumelanin[i] = "bl"
             elif randint(1, self.odds["chocolate"]) == 1:
@@ -520,11 +519,7 @@ class Genotype:
                 self.dilute[i] = "d"
             else:
                 self.dilute[i] = "D"
-
         # WHITE
-
-        for i in range(2):
-
             if randint(1, self.odds["birman gloving"]) == 1:
                 self.white[i] = "wg"
             elif randint(1, self.odds["thai white"]) == 1:
@@ -540,7 +535,6 @@ class Genotype:
 
         # ALBINO
 
-        for i in range(2):
             if randint(1, self.odds["albino"]) == 1 and not self.ban_genes:
                 self.pointgene[i] = "c"
             elif randint(1, self.odds["mocha"]) == 1:
@@ -554,7 +548,6 @@ class Genotype:
 
         # SILVER
 
-        for i in range(2):
             if randint(1, self.odds["silver"]) == 1:
                 self.silver[i] = "I"
             else:
@@ -562,7 +555,6 @@ class Genotype:
 
         # AGOUTI
 
-        for i in range(2):
             if randint(1, self.odds["charcoal"]) == 1:
                 self.agouti[i] = "Apb"
             elif randint(1, self.odds["solid"]) > 3:
@@ -571,14 +563,12 @@ class Genotype:
                 self.agouti[i] = "A"
 
         # MACKEREL
-        for i in range(2):
             if randint(1, self.odds["blotched"]) == 1:
                 self.mack[i] = "mc"
             else:
                 self.mack[i] = "Mc"
 
         # TICKED
-        for i in range(2):
             if randint(1, self.odds["ticked"]) == 1:
                 self.ticked[i] = "Ta"
             else:
@@ -605,8 +595,7 @@ class Genotype:
 
 
         #SELKIRK/DEVON/HAIRLESS
-    
-        for i in range(2):
+
             if randint(1, self.odds["canadian hairless"]) == 1:
                 self.sedesp[i] = "hr"
             elif randint(1, self.odds["devon"]) == 1:
@@ -616,7 +605,6 @@ class Genotype:
 
 
         #ruhr + ruhrmod + lykoi
-        for i in range(2):
             if randint(1, self.odds["russian hairless"]) == 1 and not self.ban_genes:
                 self.ruhr[i] = "Hrbd"
             if randint(1, self.odds["lykoi"]) == 1:
@@ -641,7 +629,6 @@ class Genotype:
 
         # ext
 
-        for i in range(2):
             if randint(1, self.odds["grizzle"]) == 1:
                 self.ext[i] = "Eg"
             elif randint(1, self.odds["carnelian"]) == 1:
@@ -653,7 +640,6 @@ class Genotype:
 
         #sunshine
 
-        for i in range(2):
             if randint(1, self.odds["sunshine"]) == 1:
                 self.corin[i] = "sh" #sunSHine
             elif randint(1, self.odds["extreme sunshine"]) == 1:
@@ -665,7 +651,6 @@ class Genotype:
 
         # karp + bleach + ghosting + satin + glitter
 
-        for i in range(2):
             if randint(1, self.odds["karpati"]) == 1:
                 self.karp[i] = "K"
             if randint(1, self.odds["bleaching"]) == 1:
@@ -679,7 +664,6 @@ class Genotype:
 
         # curl + fold
 
-        for i in range(2):
             if randint(1, self.odds["curl"]) == 1:
                 self.curl[i] = "Cu"
 
@@ -809,7 +793,6 @@ class Genotype:
 
         # EUMELANIN
 
-        for i in range(2):
             if randint(1, round(self.odds["cinnamon"]/2)) == 1:
                 self.eumelanin[i] = "bl"
             elif randint(1, round(self.odds["chocolate"]/2)) == 1:
@@ -936,7 +919,6 @@ class Genotype:
 
         # WHITE
 
-        for i in range(2):
 
             if randint(1, round(self.odds["birman gloving"]/2)) == 1:
                 self.white[i] = "wg"
@@ -953,7 +935,6 @@ class Genotype:
 
         # ALBINO
 
-        for i in range(2):
             if randint(1, round(self.odds["albino"]/2)) == 1 and not self.ban_genes:
                 self.pointgene[i] = "c"
             elif randint(1, round(self.odds["mocha"]/2)) == 1:
@@ -967,7 +948,6 @@ class Genotype:
 
         # SILVER
 
-        for i in range(2):
             if randint(1, self.odds["silver"]) == 1:
                 self.silver[i] = "I"
             else:
@@ -975,7 +955,6 @@ class Genotype:
 
         # AGOUTI
 
-        for i in range(2):
             if randint(1, round(self.odds["charcoal"]/2)) == 1:
                 self.agouti[i] = "Apb"
             elif randint(1, self.odds["solid"]) > 3:
@@ -984,14 +963,12 @@ class Genotype:
                 self.agouti[i] = "A"
 
         # MACKEREL
-        for i in range(2):
             if randint(1, self.odds["blotched"]) == 1:
                 self.mack[i] = "mc"
             else:
                 self.mack[i] = "Mc"
 
         # TICKED
-        for i in range(2):
             if randint(1, self.odds["ticked"]) == 1:
                 self.ticked[i] = "Ta"
             else:
@@ -1018,8 +995,7 @@ class Genotype:
 
 
         #SELKIRK/DEVON/HAIRLESS
-    
-        for i in range(2):
+
             if randint(1, round(self.odds["canadian hairless"]/2)) == 1:
                 self.sedesp[i] = "hr"
             elif randint(1, round(self.odds["devon"]/2)) == 1:
@@ -1029,7 +1005,6 @@ class Genotype:
 
 
         #ruhr + ruhrmod + lykoi
-        for i in range(2):
             if randint(1, round(self.odds["russian hairless"]/2)) == 1 and not self.ban_genes:
                 self.ruhr[i] = "Hrbd"
             if randint(1, round(self.odds["lykoi"]/2)) == 1:
@@ -1054,7 +1029,6 @@ class Genotype:
 
         # ext
 
-        for i in range(2):
             if randint(1, round(self.odds["grizzle"]/2)) == 1:
                 self.ext[i] = "Eg"
             elif randint(1, round(self.odds["carnelian"]/2)) == 1:
@@ -1066,7 +1040,6 @@ class Genotype:
 
         #sunshine
 
-        for i in range(2):
             if randint(1, round(self.odds["sunshine"]/2)) == 1:
                 self.corin[i] = "sh" #sunSHine
             elif randint(1, round(self.odds["extreme sunshine"]/2)) == 1:
@@ -1078,7 +1051,6 @@ class Genotype:
 
         # karp + bleach + ghosting + satin + glitter
 
-        for i in range(2):
             if randint(1, round(self.odds["karpati"]/2)) == 1:
                 self.karp[i] = "K"
             if randint(1, round(self.odds["bleaching"]/2)) == 1:
@@ -1092,7 +1064,6 @@ class Genotype:
 
         # curl + fold
 
-        for i in range(2):
             if randint(1, round(self.odds["curl"]/2)) == 1:
                 self.curl[i] = "Cu"
 
@@ -1724,8 +1695,13 @@ class Genotype:
 
         #
 
-        if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
-            self.brindledbi = True 
+        if 'O' in self.sexgene:
+            if par1.brindledbi and random() < 0.05:
+                self.brindledbi = True
+            elif par2.brindledbi and random() < 0.05:
+                self.brindledbi = True
+            elif randint(1, self.odds['brindled_bicolour']) == 1:
+                self.brindledbi = True
         
         if(par1.specialred and random() < 0.2):
             self.specialred = par1.specialred
