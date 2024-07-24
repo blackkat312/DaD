@@ -891,7 +891,7 @@ def create_new_cat(
                               kittypet=kittypet)
 
         # give em a collar if they got one
-        if accessory:
+        if accessory and not (("NOTAIL" in new_cat.pelt.scars or "HALFTAIL" in new_cat.pelt.scars or (new_cat.phenotype.bobtailnr > 0 and new_cat.phenotype.bobtailnr < 5)) and accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "SEAWEED", "DAISY CORSAGE"]):
             new_cat.pelt.accessory = accessory
 
         if game.clan.clan_settings["tnr"]:
@@ -2681,18 +2681,6 @@ def generate_sprite(
                 unders.set_alpha(int(cat_unders[1] * 2.55))
                 whichmain.blit(unders, (0, 0))
 
-                # Saving this for later
-                """if("rufoused" in whichcolour or 'medium' in whichcolour or 'low' in whichcolour) and ('red' in whichbase or 'cream' in whichbase or 'honey' in whichbase or 'ivory' in whichbase):
-                    if(genotype.ext[0] != "Eg" and (genotype.ext[0] == "ec" and genotype.agouti[0] != "a" and 'o' in genotype.sexgene)):
-                        if("chinchilla" in whichbase):
-                            whichmain.blit(sprites.sprites["unders_" + stripecolourdict.get(whichcolour, whichcolour).replace('rufoused', '').replace('medium', '').replace('low', '')+ "silver" + "chinchilla" + cat_sprite], (0, 0))
-                        elif("shaded" in whichbase):
-                            whichmain.blit(sprites.sprites["unders_" + stripecolourdict.get(whichcolour, whichcolour).replace('rufoused', '').replace('medium', '').replace('low', '')+ "silver" + "shaded" + cat_sprite], (0, 0))
-                        else:
-                            whichmain.blit(sprites.sprites["unders_" + stripecolourdict.get(whichcolour, whichcolour).replace('rufoused', '').replace('medium', '').replace('low', '')+ "silver" + genotype.wbtype + cat_sprite], (0, 0))
-                    elif(not (genotype.ext[0] == "ec" and genotype.agouti[0] == "a" and 'o' in genotype.sexgene)):
-                        whichmain.blit(sprites.sprites["unders_" + whichbase + cat_sprite], (0, 0))"""
-
                 if phenotype.caramel == 'caramel' and not ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour):
                     whichmain.blit(sprites.sprites['caramel0'], (0, 0))
 
@@ -2731,7 +2719,7 @@ def generate_sprite(
             def ApplySmokeEffects(whichmain):
                 if(genotype.ext[0] == 'Eg' and genotype.agouti[0] != 'a'):
                     whichmain.blit(sprites.sprites['grizzle' + cat_sprite], (0, 0))
-                if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and genotype.furLength[0] == 'l'):
+                if genotype.ghosting[0] == 'Gh' or (genotype.silver[0] == 'I' and cat.pelt.length == 'long'):
                     ghostingbase = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
                     ghostingbase.blit(sprites.sprites['ghost' + cat_sprite], (0, 0))
                     if(sprite_age < 4):
@@ -2740,8 +2728,8 @@ def generate_sprite(
                     whichmain.blit(ghostingbase, (0, 0))
                 if (genotype.silver[0] == 'I'):
                     whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
-                    if(phenotype.silvergold == ' light smoke '):
-                        whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
+                if('light smoke' in phenotype.silvergold):
+                    whichmain.blit(sprites.sprites['smoke' + cat_sprite], (0, 0))
 
                 return whichmain
 
