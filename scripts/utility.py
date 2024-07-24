@@ -659,6 +659,8 @@ def create_new_cat_block(
         for n_c in new_cats:
 
             randnum = randint(1, 100)
+            if n_c.neutered:
+                randnum = 100
             if n_c.genotype.manx[1] == "Ab" or n_c.genotype.manx[1] == "M" or n_c.genotype.fold[1] == "Fd" or n_c.genotype.munch[1] == "Mk" or ('NoDBE' not in n_c.genotype.pax3 and 'DBEalt' not in n_c.genotype.pax3) or n_c.genotype.sexgene[0] == "Y" or (len(n_c.genotype.sexgene) < 2 and not ((n_c.genotype.sexgene[0] == "o" or n_c.genotype.sexgene[0] == "O") and ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37))):
                 n_c.moons = 0
                 n_c.status = "newborn"
@@ -894,7 +896,7 @@ def create_new_cat(
         if accessory and not (("NOTAIL" in new_cat.pelt.scars or "HALFTAIL" in new_cat.pelt.scars or (new_cat.phenotype.bobtailnr > 0 and new_cat.phenotype.bobtailnr < 5)) and accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "SEAWEED", "DAISY CORSAGE"]):
             new_cat.pelt.accessory = accessory
 
-        if game.clan.clan_settings["tnr"]:
+        if game.clan.clan_settings["tnr"] and not (new_cat.genotype.manx[1] == "Ab" or new_cat.genotype.manx[1] == "M" or new_cat.genotype.fold[1] == "Fd" or new_cat.genotype.munch[1] == "Mk" or ('NoDBE' not in new_cat.genotype.pax3 and 'DBEalt' not in new_cat.genotype.pax3) or new_cat.genotype.sexgene[0] == "Y"):
             neutered_this_moon = False
             if can_be_neutered and not is_parent:
                 if kittypet and randint(1, 5) > 2 and age > 2:
