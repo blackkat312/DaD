@@ -352,7 +352,7 @@
 		"kittypet_breed" : 40,
 		"other_breed" : 65,
 		"multi-sire_chance" : 20,
-		"multi-sire_max_sires" : 3,
+		"multi-sire_max_sires" : 4,
 
 		"chimera" : 250,
 		"intersex" : 50,
