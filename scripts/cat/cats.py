@@ -1815,11 +1815,15 @@ class Cat:
             list_indexes = len(all_pronouns) - 1
 
     def genetic_conditions(self):
+        aneuploidy = False
         intersex_conditions = []
         for condition in PERMANENT:
             intersex = PERMANENT[condition]
             if intersex["congenital"] in ['intersex']:
                 intersex_conditions.append(condition)
+
+        if (self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"]):
+            aneuploidy = True
 
         if "intersex" not in self.conditions_already_attempted:
             if self.genotype.gender == "intersex":
@@ -1827,7 +1831,7 @@ class Cat:
                 if self.genotype.chimera:
                     self.get_permanent_condition("chimerism", born_with=True)
                 # Aneuploidy
-                if (self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"]):
+                if aneuploidy:
                     self.get_permanent_condition("aneuploidy", born_with=True)
                 # Other
                 if "chimerism" not in self.permanent_condition and "aneuploidy" not in self.permanent_condition:
@@ -1851,7 +1855,7 @@ class Cat:
                 if not game.settings["they them default"] and self.age != "newborn":
                     self.handle_pronouns()
             # Aneuploidy
-            if ((self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]) or (self.genotype.chimera and self.genotype.chimerageno.sexgene != ["o", "o"] and self.genotype.chimerageno.sexgene != ["O", "o"] and self.genotype.chimerageno.sexgene != ["O", "O"] and self.genotype.chimerageno.sexgene != ["o", "Y"] and self.genotype.chimerageno.sexgene != ["O", "Y"])) and self.genotype.gender != "intersex":
+            if aneuploidy and self.genotype.gender != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
                 self.gender = "intersex"
@@ -1864,6 +1868,46 @@ class Cat:
             if (self.genotype.sexgene == ["o", "Y"] or self.genotype.sexgene == ["O", "Y"]) and self.genotype.gender == "molly":
                 self.get_permanent_condition("testosterone deficiency", born_with=True)
                 self.conditions_already_attempted.append("intersex")
+
+        if "aneuploidy" not in self.conditions_already_attempted:
+            if aneuploidy:
+                if len(self.genotype.sexgene) == 1:
+                    turner_list = [
+                        "born without a leg", "weak leg", "twisted leg", "paralyzed", "partial hearing loss",
+                        "constant joint pain", "rabbit gait", "curved spine"
+                    ]
+                    self.get_permanent_condition("infertile", born_with=True)
+                    if randint(1, 4) != 1:
+                        self.get_permanent_condition("wasting disease", born_with=True)
+                    if randint(1, 4) == 1:
+                        self.genotype.vitiligo = True
+                        tempwhite = [choice(Pelt.vit)]
+                        for white in self.genotype.white_pattern:
+                            tempwhite.append(white)
+                        self.genotype.white_pattern = tempwhite
+
+                    counter = 0
+                    while counter != 3:
+                        counter += 1
+                        if randint(1, 5) > 3:
+                            chosen = choice(turner_list)
+                            while chosen in cat.permanent_condition:
+                                chosen = choice(turner_list)
+                            self.get_permanent_condition(chosen, born_with=True)
+                elif len(self.genotype.sexgene) == 3:
+                    if "Y" not in self.genotype.sexgene and randint(1, 2) == 1:  # triplo-X
+                        self.get_permanent_condition("infertile", born_with=True)
+                    elif self.genotype.sexgene[1] == "Y":  # klinefelter
+                        self.get_permanent_condition("infertile", born_with=True)
+                        if randint(1, 50) != 1:
+                            self.get_permanent_condition("wasting disease", born_with=True)
+                else:
+                    if randint(1, 3) == 1:
+                        self.get_permanent_condition("infertile", born_with=True)
+                    if randint(1, 10) == 1:
+                        self.get_permanent_condition("wasting disease", born_with=True)
+
+                self.conditions_already_attempted.append("aneuploidy")
 
         if "blue-eyed hearing" not in self.conditions_already_attempted:
             if self.genotype.deaf:
