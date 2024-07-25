@@ -2703,12 +2703,7 @@
             "senior": 0
         },
         "illness_infectiousness": [],
-        "risks": [
-            {
-                "name": "infertile",
-                "chance": 20
-            }
-        ],
+        "risks": [],
         "herbs": []
     },
     "mosaicism": {
