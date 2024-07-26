@@ -451,12 +451,12 @@ class Genotype:
                 egg1 = choice(["XX", "null"])
 
         randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
             randnum = randint(1, 100)
             sperm1 = choice(["XX", "XY", "YY", "null"])
 
         randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
             randnum = randint(1, 100)
             sperm1 = choice(["X", "Y"])
             egg1 = choice(["XX", "null"])
@@ -848,12 +848,12 @@ class Genotype:
                 egg1 = choice(["XX", "null"])
 
         randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
             randnum = randint(1, 100)
             sperm1 = choice(["XX", "XY", "YY", "null"])
 
         randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37):
+        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
             randnum = randint(1, 100)
             sperm1 = choice(["X", "Y"])
             egg1 = choice(["XX", "null"])
