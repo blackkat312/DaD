@@ -980,7 +980,7 @@ def create_new_cat(
                     new_cat.pelt.scars.remove(scar)
                 else:
                     condition = choice(scar_to_condition.get(scar))
-                    if condition == "no":
+                    if condition == "no" or (condition == "lost a leg" and "born without a leg" in new_cat.permanent_condition):
                         continue
 
                     new_cat.get_permanent_condition(condition, born_with=False, starting_moon=clan_gain_moon)
