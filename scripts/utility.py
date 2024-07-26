@@ -661,7 +661,7 @@ def create_new_cat_block(
             randnum = randint(1, 100)
             if n_c.neutered:
                 randnum = 100
-            if n_c.genotype.manx[1] == "Ab" or n_c.genotype.manx[1] == "M" or n_c.genotype.fold[1] == "Fd" or n_c.genotype.munch[1] == "Mk" or ('NoDBE' not in n_c.genotype.pax3 and 'DBEalt' not in n_c.genotype.pax3) or n_c.genotype.sexgene[0] == "Y" or (len(n_c.genotype.sexgene) < 2 and not ((n_c.genotype.sexgene[0] == "o" or n_c.genotype.sexgene[0] == "O") and ((randnum <= 37 and randint(1, 50) == 1) or not randnum <= 37))):
+            if n_c.genotype.manx[1] == "Ab" or n_c.genotype.manx[1] == "M" or n_c.genotype.fold[1] == "Fd" or n_c.genotype.munch[1] == "Mk" or ('NoDBE' not in n_c.genotype.pax3 and 'DBEalt' not in n_c.genotype.pax3) or n_c.genotype.sexgene[0] == "Y" or (len(n_c.genotype.sexgene) < 2 and not ((n_c.genotype.sexgene[0] == "o" or n_c.genotype.sexgene[0] == "O") and ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37))):
                 n_c.moons = 0
                 n_c.status = "newborn"
                 n_c.dead = True
