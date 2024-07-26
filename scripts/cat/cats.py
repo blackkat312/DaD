@@ -1879,20 +1879,25 @@ class Cat:
                     self.get_permanent_condition("infertile", born_with=True)
                     if randint(1, 4) != 1:
                         self.get_permanent_condition("wasting disease", born_with=True)
-                    if randint(1, 4) == 1:
+                    if randint(1, 4) == 1 and not self.genotype.vitiligo:
+                        print(self.genotype.white_pattern)
                         self.genotype.vitiligo = True
                         tempwhite = [choice(Pelt.vit)]
+                        print(tempwhite)
                         for white in self.genotype.white_pattern:
                             tempwhite.append(white)
                         self.genotype.white_pattern = tempwhite
+                        print(self.genotype.white_pattern)
 
                     counter = 0
                     while counter != 3:
                         counter += 1
                         if randint(1, 5) > 3:
                             chosen = choice(turner_list)
-                            while chosen in cat.permanent_condition:
+                            while chosen in self.permanent_condition:
                                 chosen = choice(turner_list)
+                            if chosen == "born without a leg" and "NOPAW" not in self.pelt.scars:
+                                self.pelt.scars.append("NOPAW")
                             self.get_permanent_condition(chosen, born_with=True)
                 elif len(self.genotype.sexgene) == 3:
                     if "Y" not in self.genotype.sexgene and randint(1, 2) == 1:  # triplo-X
