@@ -1893,7 +1893,6 @@ class Cat:
                     self.get_permanent_condition("infertile", born_with=True)
 
                     if randint(1, 50) != 1:
-                        counter += 1
                         self.get_permanent_condition("wasting disease", born_with=True)
 
                     if randint(1, 3) == 1 and not self.genotype.vitiligo:
@@ -1904,10 +1903,12 @@ class Cat:
                             for white in self.genotype.white_pattern:
                                 tempwhite.append(white)
                         self.genotype.white_pattern = tempwhite
+                    if "wasting disease" not in self.permanent_condition and counter != 0:
+                        counter -= 1
 
                     while counter != 3:
                         counter += 1
-                        if randint(1, 3) == 1:
+                        if randint(1, 20) <= 11:
                             chosen = choice(turner_list)
                             while chosen in self.permanent_condition:
                                 chosen = choice(turner_list)
@@ -1918,9 +1919,38 @@ class Cat:
                     if "Y" not in self.genotype.sexgene and randint(1, 2) == 1:  # triplo-X
                         self.get_permanent_condition("infertile", born_with=True)
                     elif "Y" in self.genotype.sexgene and self.genotype.sexgene[1] != "Y":  # klinefelter
+                        klinefelter_list = [
+                            choice([
+                                "weak leg", "twisted leg", "rabbit gait"
+                            ]),
+                            choice([
+                                "weak leg", "twisted leg", "rabbit gait"
+                            ]),
+                            choice([
+                                "weak leg", "twisted leg", "rabbit gait"
+                            ]),
+                            choice([
+                                "weak leg", "twisted leg", "rabbit gait"
+                            ]),
+                            choice([
+                                "born without a leg", "curved spine"
+                            ])
+                        ]
+                        counter = 0
                         self.get_permanent_condition("infertile", born_with=True)
+
                         if randint(1, 50) != 1:
                             self.get_permanent_condition("wasting disease", born_with=True)
+
+                        while counter != 3:
+                            counter += 1
+                            if randint(1, 20) <= 11:
+                                chosen = choice(klinefelter_list)
+                                while chosen in self.permanent_condition:
+                                    chosen = choice(klinefelter_list)
+                                if chosen == "born without a leg" and "NOPAW" not in self.pelt.scars:
+                                    self.pelt.scars.append("NOPAW")
+                                self.get_permanent_condition(chosen, born_with=True)
                 elif not (len(self.genotype.sexgene) == 3 and "Y" in self.genotype.sexgene and self.genotype.sexgene[1] == "Y"):
                     if randint(1, 3) == 1:
                         self.get_permanent_condition("infertile", born_with=True)
