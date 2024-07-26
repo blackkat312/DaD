@@ -1873,26 +1873,41 @@ class Cat:
             if aneuploidy:
                 if len(self.genotype.sexgene) == 1:
                     turner_list = [
-                        "born without a leg", "weak leg", "twisted leg", "paralyzed", "partial hearing loss",
-                        "constant joint pain", "rabbit gait", "curved spine"
+                        choice([
+                            "weak leg", "twisted leg", "partial hearing loss", "constant joint pain", "rabbit gait"
+                        ]),
+                        choice([
+                            "weak leg", "twisted leg", "partial hearing loss", "constant joint pain", "rabbit gait"
+                        ]),
+                        choice([
+                            "weak leg", "twisted leg", "partial hearing loss", "constant joint pain", "rabbit gait"
+                        ]),
+                        choice([
+                            "weak leg", "twisted leg", "partial hearing loss", "constant joint pain", "rabbit gait"
+                        ]),
+                        choice([
+                            "born without a leg", "paralyzed", "curved spine"
+                        ])
                     ]
+                    counter = 0
                     self.get_permanent_condition("infertile", born_with=True)
-                    if randint(1, 4) != 1:
+
+                    if randint(1, 50) != 1:
+                        counter += 1
                         self.get_permanent_condition("wasting disease", born_with=True)
-                    if randint(1, 4) == 1 and not self.genotype.vitiligo:
-                        print(self.genotype.white_pattern)
+
+                    if randint(1, 3) == 1 and not self.genotype.vitiligo:
+                        counter += 1
                         self.genotype.vitiligo = True
                         tempwhite = [choice(Pelt.vit)]
-                        print(tempwhite)
-                        for white in self.genotype.white_pattern:
-                            tempwhite.append(white)
+                        if self.genotype.white_pattern != "No":
+                            for white in self.genotype.white_pattern:
+                                tempwhite.append(white)
                         self.genotype.white_pattern = tempwhite
-                        print(self.genotype.white_pattern)
 
-                    counter = 0
                     while counter != 3:
                         counter += 1
-                        if randint(1, 5) > 3:
+                        if randint(1, 3) == 1:
                             chosen = choice(turner_list)
                             while chosen in self.permanent_condition:
                                 chosen = choice(turner_list)
@@ -1902,11 +1917,11 @@ class Cat:
                 elif len(self.genotype.sexgene) == 3:
                     if "Y" not in self.genotype.sexgene and randint(1, 2) == 1:  # triplo-X
                         self.get_permanent_condition("infertile", born_with=True)
-                    elif self.genotype.sexgene[1] == "Y":  # klinefelter
+                    elif "Y" in self.genotype.sexgene and self.genotype.sexgene[1] != "Y":  # klinefelter
                         self.get_permanent_condition("infertile", born_with=True)
                         if randint(1, 50) != 1:
                             self.get_permanent_condition("wasting disease", born_with=True)
-                else:
+                elif not (len(self.genotype.sexgene) == 3 and "Y" in self.genotype.sexgene and self.genotype.sexgene[1] == "Y"):
                     if randint(1, 3) == 1:
                         self.get_permanent_condition("infertile", born_with=True)
                     if randint(1, 10) == 1:
@@ -5753,7 +5768,7 @@ def create_cat(status, moons=None, biome=None):
                 new_cat.pelt.scars.remove(scar)
             else:
                 condition = choice(scar_to_condition.get(scar))
-                if condition == "no":
+                if condition == "no" or (condition == "lost a leg" and "born without a leg" in new_cat.permanent_condition):
                     continue
 
                 new_cat.get_permanent_condition(condition, born_with=False, starting_moon=-1)
