@@ -3854,9 +3854,6 @@ class Cat:
                 "excess testosterone": [
                     "pcos", "infertile"
                 ],
-                "aneuploidy": [
-                    "infertile"
-                ],
                 "mosaicism": [
                     "infertile"
                 ],
