@@ -1364,32 +1364,28 @@ class Events:
         white_text1 = ""
         white_text2 = ""
         has_break_white = False
-        break_white = [
-            "break\/left back mitten", "break\/left ear", "break\/left face", "break\/left front mitten", "break\/nose1",
-            "break\/piebald1", "break\/piebald2", "break\/right back mitten", "break\/right ear", "break\/right face",
-            "break\/right front mitten", "break\/tail band", "break\/tail rings", "break\/tail tip"
-        ]
 
         if cat.genotype.white_pattern and cat.genotype.white_pattern != "No":
-            for entry in break_white:
-                if entry in cat.genotype.white_pattern:
+            for entry in cat.genotype.white_pattern:
+                if "break" in entry:
                     has_break_white = True
                     break
 
         if cat.genotype.white[0] == 'W' or ('full white' in cat.genotype.white_pattern and not has_break_white) or cat.genotype.pointgene[0] == 'c' or 'o' not in cat.genotype.sexgene:
             return
 
-        if 'ws' in cat.genotype.white or 'wt' in cat.genotype.white or 'wg' in cat.genotype.white or 'wsal' in cat.genotype.white:
+        if ('ws' in cat.genotype.white or 'wt' in cat.genotype.white or 'wg' in cat.genotype.white or 'wsal' in cat.genotype.white) and cat.genotype.white_pattern and cat.genotype.white_pattern != "No":
             white_text1 = ", apart from the white"
             white_text2 = " the colored part of "
-        if cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':
-            red_colour = "orange"
-        elif cat.genotype.dilute[0] == 'd' and cat.genotype.pinkdilute[0] == 'Dp':
+
+        if cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'Dp':  # red
+            red_colour = "ginger"
+        elif cat.genotype.dilute[0] == 'd' and cat.genotype.pinkdilute[0] == 'Dp':  # cream
             red_colour = "cream"
-        elif cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'dp':
-            red_colour = "yellow"
-        else:
-            red_colour = 'creamy white'
+        elif cat.genotype.dilute[0] == 'D' and cat.genotype.pinkdilute[0] == 'dp':  # honey
+            red_colour = "cream"
+        else:  # ivory
+            red_colour = 'white'
 
         if cat.genotype.ext[0] == 'ec' and cat.genotype.agouti[0] == 'a' and cat.moons == 6:
             event_text = "Throughout kithood, m_c has gotten many comments about {PRONOUN/m_c/poss} unique coat. Well, it looks by now to have turned completely " + red_colour + white_text1 + "!"
