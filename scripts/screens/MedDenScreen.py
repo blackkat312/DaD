@@ -436,7 +436,7 @@ class MedDenScreen(Screens):
             living_meds = []
             living_cats = [i for i in Cat.all_cats.values() if not (i.dead or i.outside)]
             for cat in living_cats:
-                if cat.status == "medicine cat":
+                if cat.status == "medicine cat" or cat.status == "medicine cat apprentice":
                     living_meds.append(cat)
                     break
 
