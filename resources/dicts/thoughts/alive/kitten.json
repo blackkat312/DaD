@@ -616,5 +616,21 @@
                 "face blindness"
             ]
         }
+    },
+    {
+        "id": "starwalker_kit",
+        "thoughts": [
+            "Tells r_c the differences between a crow and a raven",
+            "Plans out an elaborate story in {PRONOUN/m_c/poss} mind",
+            "Feels exhausted from talking to the other kits"
+        ],
+        "perm_conditions": {
+            "m_c": [
+                "starwalker"
+            ]
+        },
+        "random_living_status": [
+            "living"
+        ]
     }
 ]
