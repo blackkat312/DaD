@@ -3969,7 +3969,7 @@
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
-    "weight": 20,
+    "weight": 30,
     "event_text": "With r_c's assistance, m_c finds acc_singular to serve as an emotional support companion.",
     "new_accessory": [
       "SNAKE",
