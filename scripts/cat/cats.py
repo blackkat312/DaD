@@ -901,6 +901,7 @@ class Cat:
                         white_pattern.append(choice(["dorsal1", "dorsal2"]))
                     else:
                         white_pattern.append("dorsal2")
+                    white_pattern.append("thai tail")
 
                 if KIT[0] == "wg" and 'NoDBE' in pax3:
                     for mark in ["left front mitten", "left back mitten", "right front mitten", "right back mitten"]:
@@ -1067,6 +1068,7 @@ class Cat:
                                     white_pattern.append(order[i] + pawtype)
                                 else:
                                     white_pattern.append(order[i] + choice([' toes', ' mitten', ' mitten', ' low sock']))
+                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None, None, None, None, None, None, None]))
 
                             #face
                             if 'beard' in white_pattern:
@@ -1074,7 +1076,7 @@ class Cat:
 
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
+                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
 
                             clean_white()
                     elif KITgrade == 4:
@@ -1085,6 +1087,7 @@ class Cat:
                             #belly
                             if 'underbelly1' not in white_pattern:
                                 white_pattern.append('belly')
+                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None, None, None]))
 
                             #paws
                             nropaws = choice([4, 4, 4, 4, 3, 3, 2, 2, 1, 0])
@@ -1099,19 +1102,24 @@ class Cat:
                                 else:
                                     white_pattern.append(order[i] + choice([' mitten', ' low sock', ' high sock']))
 
+                            for i in range(randint(0, 2)):
+                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
+
                             #face
                             if 'beard' or 'underbelly1' in white_pattern:
                                 white_pattern.append(choice(['chin', 'chin', 'muzzle', 'muzzle', 'blaze', None, None]))
+                            white_pattern.append(choice(['break/chin', None, None, None, None, None]))
 
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
+                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
 
                             clean_white()
                     else:
                         while len(white_pattern) < 4:
                             #chest
                             white_pattern.append('underbelly1')
+                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None]))
 
                             #paws
                             nropaws = 4
@@ -1126,12 +1134,15 @@ class Cat:
                                 else:
                                     white_pattern.append(order[i] + choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2']))
 
+                            for i in range(randint(0, 2)):
+                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
                             #face
                             white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze']))
+                            white_pattern.append(choice(['break/chin', None, None, None, None, None]))
 
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
+                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
 
                             clean_white()
                 else:
@@ -1253,6 +1264,7 @@ class Cat:
                         while len(white_pattern) < 4:
                             #chest
                             white_pattern.append('underbelly1')
+                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None]))
 
                             #paws
                             nropaws = 4
@@ -1267,17 +1279,23 @@ class Cat:
                                 else:
                                     white_pattern.append(order[i] + choice([' bicolour1', ' bicolour2', ' bicolour2']))
 
+                            for i in range(randint(0, 2)):
+                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
                             #face
                             white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze', 'blaze']))
+                            white_pattern.append(choice(['break/chin', None, None, None, None, None]))
 
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, 'break/nose1']))
+                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
 
                             clean_white()
                     elif KITgrade == 2:
-                        #chest
+                        #body
                         white_pattern.append(choice(['underbelly1', 'mask n mantle']))
+
+                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None]))
 
                         #paws
                         nropaws = 4
@@ -1288,29 +1306,51 @@ class Cat:
                         for i in range(nropaws):
                             white_pattern.append(order[i] + ' bicolour2')
 
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
                         #face
                         white_pattern.append(choice(['muzzle', 'muzzle', 'blaze', 'blaze']))
+                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
 
                         #tail
                         white_pattern.append(choice(['tail tip', None, None, None, None]))
-                        white_pattern.append(choice([None, None, None, 'break/nose1']))
                         clean_white()
                     elif KITgrade == 3:
                         white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'full white']))
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None]))
                         white_pattern.append(choice(['break/piebald1', 'break/piebald2']))
-                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/tail rings', 'break/left face', 'break/right face']))
+                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/tail rings', 'break/left face', 'break/right face', 'break/bowl cut']))
+                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
                         clean_white()
                     elif KITgrade == 4:
                         white_pattern.append(choice(['van1', 'van2', 'van3']))
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
                         white_pattern.append(choice([None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
-                        white_pattern.append(choice([None, None, None, None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
+                        white_pattern.append(choice([None, None, None, None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut'])]))
+                        white_pattern.append(choice([None, None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
 
                         clean_white()
                     else:
                         white_pattern.append(choice(["full white", 'van3']))
+                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
 
-                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face']))
-                        white_pattern.append(choice([None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
+                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/chin']))
+                        white_pattern.append(choice([None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut', 'break/chin'])]))
+
+                        if random() < 0.02:
+                            white_pattern = ["full white", "break/inverse thai"]
 
                         clean_white()
 
