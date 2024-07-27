@@ -787,6 +787,11 @@ def create_new_cat(
     else:
         number_of_cats = choices([2, 3, 4, 5], [5, 4, 1, 1], k=1)[0]
 
+    if number_of_cats == 1 and (litter or kit):
+        parent1.thought.replace('kits are safe', 'kit is safe')
+        parent2.thought.replace('kits are safe', 'kit is safe')
+
+
     if not isinstance(age, int):
         if status == "newborn":
             age = 0
@@ -840,18 +845,18 @@ def create_new_cat(
             if kittypet:
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 2) == 1:
-                    accessory = choice([choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.booties)])
+                    accessory = choice([choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.booties)])
             elif (
-                    loner and randint(1, 2) == 1
+                    loner and randint(1, 3) == 1
             ):  # try to give name from full loner name list
                 name = choice(names.names_dict["loner_names"])
-                if randint(1, 2) == 1:
+                if randint(1, 5) == 1:
                     accessory = choice(choice(Pelt.all_natural_accessories))
             else:
                 name = choice(
                     names.names_dict["normal_prefixes"]
                 )  # otherwise give name from prefix list (more nature-y names)
-                if randint(1, 3) > 1:
+                if randint(1, 5) > 2:
                     accessory = choice(choice(Pelt.all_natural_accessories))
 
             # now we make the cats
@@ -2663,6 +2668,13 @@ def generate_sprite(
                     stripebase.blit(middle, (0, 0))
                     middle = CreateStripes(stripecolour, whichbase, coloursurface, pattern=phenotype.GetTabbySprite(special='redbar'))
                     stripebase.blit(middle, (0, 0))
+
+                if cat.pelt.length == 'long':
+                    size = stripebase.get_size()
+                    scale_size = (int(size[0]*0.9), int(size[1]*0.9))
+                    stripebase = pygame.transform.smoothscale(stripebase, scale_size)
+                    stripebase = pygame.transform.smoothscale(stripebase, size)
+
                 return stripebase
 
             def TabbyBase(whichcolour, whichbase, cat_unders, special = None):
