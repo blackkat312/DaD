@@ -67,7 +67,10 @@ class Phenotype():
         elif self.genotype.sedesp[0] == "hr":
             self.length = 'fur-pointed'
         elif self.genotype.furLength[0] == "l":
-            self.length = "longhaired"
+            if self.genotype.longtype == "medium":
+                self.length = "mediumhaired"
+            else:
+                self.length = "longhaired"
         else:
             self.length = "shorthaired"
 
@@ -200,7 +203,7 @@ class Phenotype():
                     self.tortie = " " + self.tortie
                 self.colour = 'agouti carnelian'
                 if(self.genotype.agouti[0] == 'a'):
-                    self.colour = "non" + self.colour
+                    self.colour = "non-" + self.colour
                 if(self.genotype.dilute[0] == 'd' or self.genotype.pinkdilute[0] == 'dp'):
                     self.colour = "light " + self.colour
 
