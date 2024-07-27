@@ -267,7 +267,7 @@ class Pelt:
                 self.cat_sprites['young adult'] += 3
                 self.cat_sprites['senior adult'] += 3
         elif phenotype.length != 'hairless':
-            if phenotype.length == "longhaired":
+            if phenotype.length == "mediumhaired":
                 self.length = 'medium'
             else:
                 self.length="short"
@@ -311,7 +311,7 @@ class Pelt:
         """Checks for old-type properties for the appearance-related properties
         that are stored in Pelt, and converts them. To be run when loading a cat in. """
 
-        #First, convert from some old names that may be in white_patches.
+        # First, convert from some old names that may be in white_patches.
         if self.white_patches == 'POINTMARK':
             self.white_patches = "SEALPOINT"
         elif self.white_patches == 'PANTS2':
