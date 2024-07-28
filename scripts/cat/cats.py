@@ -4710,7 +4710,7 @@ class Cat:
             # if the cat already has (somehow) a relationship with the inter cat
             if inter_cat.ID in self.relationships:
                 continue
-            # if they dead (dead cats have no relationships)
+            # if they dead
             if self.dead or inter_cat.dead:
                 continue
             # if they are not outside of the Clan at the same time
