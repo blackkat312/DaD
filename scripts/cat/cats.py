@@ -4711,7 +4711,7 @@ class Cat:
             if inter_cat.ID in self.relationships:
                 continue
             # if they dead
-            if self.dead or inter_cat.dead:
+            if inter_cat.dead:
                 continue
             # if they are not outside of the Clan at the same time
             if (
