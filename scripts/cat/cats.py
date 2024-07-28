@@ -849,9 +849,11 @@ class Cat:
         #white patterns
 
         def GenerateWhite(KIT, KITgrade, vit, white_pattern, pax3):
-            def clean_white():
+            def clean_white(white_pattern):
+                white_pattern = list(set(white_pattern))
                 while None in white_pattern:
                     white_pattern.remove(None)
+                return white_pattern
 
             low1 = ['BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
                     'MINKEMBER']
@@ -915,7 +917,7 @@ class Cat:
                         rand_kit_4 = randint(1, KITgrade)
                         rand_kit_5 = randint(1, KITgrade)
 
-                    if(randint(1, 4) >= 3):
+                    if randint(1, 2) == 1:
                         white_pattern.append(choice(maingame_white["low"].get(str(KITgrade))))
 
                         # First extra patch
@@ -1026,13 +1028,9 @@ class Cat:
                         KITgrade = int(KITgrade)
                         if KITgrade > 5:
                             KITgrade = 5
-
-                        clean_white()
-
                     elif KITgrade == 1:
                         grade1list = ['chest tuft', 'belly tuft', 'chest tuft', 'belly tuft', None]
                         white_pattern.append(choice(grade1list))
-                        clean_white()
                     elif KITgrade == 2:
                         while len(white_pattern) == 0:
                             #chest
@@ -1047,7 +1045,6 @@ class Cat:
 
                             for i in range(nropaws):
                                 white_pattern.append(order[i] + choice([' toes', ' toes', ' toes', ' mitten']))
-                        clean_white()
                     elif KITgrade == 3:
                         while len(white_pattern) < 4:
                             #chest
@@ -1077,8 +1074,6 @@ class Cat:
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
                             white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-
-                            clean_white()
                     elif KITgrade == 4:
                         while len(white_pattern) < 4:
                             #chest
@@ -1113,8 +1108,6 @@ class Cat:
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
                             white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-
-                            clean_white()
                     else:
                         while len(white_pattern) < 4:
                             #chest
@@ -1143,11 +1136,8 @@ class Cat:
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
                             white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-
-                            clean_white()
                 else:
-
-                    if(randint(1, 4) >= 3):
+                    if randint(1, 2) == 1:
                         white_pattern.append(choice(maingame_white["high"].get(str(KITgrade))))
 
                         # First extra patch
@@ -1258,8 +1248,6 @@ class Cat:
                         KITgrade = int(KITgrade)
                         if KITgrade > 5:
                             KITgrade = 5
-
-                        clean_white()
                     elif KITgrade == 1:
                         while len(white_pattern) < 4:
                             #chest
@@ -1288,8 +1276,6 @@ class Cat:
                             #tail
                             white_pattern.append(choice(['tail tip', None, None, None, None]))
                             white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-
-                            clean_white()
                     elif KITgrade == 2:
                         #body
                         white_pattern.append(choice(['underbelly1', 'mask n mantle']))
@@ -1315,7 +1301,6 @@ class Cat:
 
                         #tail
                         white_pattern.append(choice(['tail tip', None, None, None, None]))
-                        clean_white()
                     elif KITgrade == 3:
                         white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'full white']))
                         for i in range(randint(0, 2)):
@@ -1326,7 +1311,6 @@ class Cat:
                         white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/tail rings', 'break/left face', 'break/right face', 'break/bowl cut']))
                         white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
                         white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-                        clean_white()
                     elif KITgrade == 4:
                         white_pattern.append(choice(['van1', 'van2', 'van3']))
                         for i in range(randint(0, 2)):
@@ -1337,11 +1321,8 @@ class Cat:
                         white_pattern.append(choice([None, None, None, None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut'])]))
                         white_pattern.append(choice([None, None, None, None, choice(['break/nose1', 'break/nose2'])]))
                         white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-
-                        clean_white()
                     else:
                         white_pattern.append(choice(["full white", 'van3']))
-                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
                         for i in range(randint(0, 2)):
                             white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
 
@@ -1351,14 +1332,11 @@ class Cat:
 
                         if random() < 0.02:
                             white_pattern = ["full white", "break/inverse thai"]
-
-                        clean_white()
-
             elif white_pattern is None and vit:
                 white_pattern = [choice(vitiligo)]
-            if white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit and 'DBEre' not in pax3 and 'NoDBE' in pax3):
-                white_pattern = "No"
-            return white_pattern
+            if white_pattern == "No" or white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit and 'DBEre' not in pax3 and 'NoDBE' in pax3):
+                return "No"
+            return clean_white(white_pattern)
 
         self.genotype.white_pattern = GenerateWhite(self.genotype.white, self.genotype.whitegrade, self.genotype.vitiligo, white_pattern, self.genotype.pax3)
 
