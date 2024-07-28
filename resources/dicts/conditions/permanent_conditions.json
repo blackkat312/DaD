@@ -1135,7 +1135,11 @@
             {
                 "name": "shattered soul",
                 "chance": 70
-            }
+            },
+			{
+				"name": "brain fog",
+				"chance": 20
+			}
         ],
         "herbs": [ 
             "thyme",
@@ -1410,6 +1414,10 @@
 			{
 				"name": "earache",
 				"chance": 50
+			},
+			{
+				"name": "brain fog",
+				"chance": 15
 			}
 	],
 	"herbs": [
@@ -1501,6 +1509,10 @@
 			{
 				"name": "earache",
 				"chance": 45
+			},
+			{
+				"name": "brain fog",
+				"chance": 10
 			}
         ],
         "herbs": [
@@ -2072,6 +2084,14 @@
 			{
 				"name": "fatigue",
 				"chance": 45
+			},
+			{
+				"name": "earache",
+				"chance": 20
+			},
+			{
+				"name": "brain fog",
+				"chance": 20
 			}
         ],
         "herbs":[]
@@ -2200,6 +2220,10 @@
 			{
 				"name": "sleep paralysis",
 				"chance": 50
+			},
+			{
+				"name": "brain fog",
+				"chance": 20
 			}
         ],
         "herbs": [
