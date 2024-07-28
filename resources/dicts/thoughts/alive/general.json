@@ -3751,7 +3751,7 @@
         "main_age_constraint": [
             "adolescent",
 			"adult",
-			"young adult"
+			"young adult",
 			"senior adult"
         ],
         "has_injuries": {
