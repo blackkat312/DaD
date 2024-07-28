@@ -422,7 +422,7 @@ class Game:
 
             # Don't save conditions for classic condition. This
             # should allow closing and reloading to clear conditions on
-            # classic, just in case a condition is accidently applied.
+            # classic, just in case a condition is accidentally applied.
             if game.game_mode != "classic":
                 inter_cat.save_condition()
 
@@ -430,8 +430,7 @@ class Game:
                 inter_cat.save_history(directory + "/history")
                 # after saving, dump the history info
                 inter_cat.history = None
-            if not inter_cat.dead:
-                inter_cat.save_relationship_of_cat(directory + "/relationships")
+            inter_cat.save_relationship_of_cat(directory + "/relationships")
 
         self.safe_save(f"{get_save_dir()}/{clanname}/clan_cats.json", clan_cats)
 
