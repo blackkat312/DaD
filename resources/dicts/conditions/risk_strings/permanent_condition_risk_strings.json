@@ -662,7 +662,12 @@
     		"m_c realizes that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} a budding spirit when one of {PRONOUN/m_c/poss} alters says it out loud!",
     		"m_c is starting to suspect that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} a budding spirit because of the voices {PRONOUN/m_c/subject} {VERB/m_c/hear/hears}.",
     		"m_c vents to one of the healers that sometimes, it feels like {PRONOUN/m_c/poss} body isn't {PRONOUN/m_c/poss} own. {PRONOUN/m_c/subject/CAP} may be a budding spirit."
-  		]
+  		],
+		"brain fog": [
+			"m_c comes into the healers' den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
+			"m_c has some brain fog.",
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
+		]
     },
     "comet spirit": {
 		"zoomies": [
@@ -758,7 +763,7 @@
         "parrot chatter": [
             "When r_c mews hello to m_c, m_c mews it back a dozen times. It seems {PRONOUN/m_c/subject}{VERB/m_c/have/has} parrot chatter.",
             "m_c often catches {PRONOUN/m_c/self} repeating the same word over and over. One of the healers suggests it might be parrot chatter.",
-            "The healers assure that m_c's frequent repetition of words is common for an otherworldly mind."
+            "The healers assure that m_c's frequent repetition of words is common for a comet spirit."
         ],
         "vivid daydreamer": [
             "Sometimes, m_c seems to lose hours staring at the sky, imagining stories the elders recited to {PRONOUN/m_c/object}.",
@@ -921,7 +926,7 @@
         "parrot chatter": [
             "When r_c mews hello to m_c, m_c mews it back a dozen times. It seems {PRONOUN/m_c/subject}{VERB/m_c/have/has} parrot chatter.",
             "m_c often catches {PRONOUN/m_c/self} repeating the same word over and over. One of the healers suggests it might be parrot chatter.",
-            "The healers assure that m_c's frequent repetition of words is common for an otherworldly mind."
+            "The healers assure that m_c's frequent repetition of words is common for a starwalker."
         ],
         "selective mutism": [
             "Sometimes m_c's voice feels stuck in {PRONOUN/m_c/poss} chest, where the words clog and stifle {PRONOUN/m_c/object}. Sometimes its easier just not to talk at all.",
@@ -1161,6 +1166,11 @@
 			"m_c complains to r_c about the sharp repeating pain within {PRONOUN/m_c/poss} ears.",
 			"m_c keeps shaking {PRONOUN/m_c/poss} head, uselessly trying to dull the pain coming from {PRONOUN/m_c/poss} ears.",
 			"m_c complains to a Clanmate about the earache that's plaguing {PRONOUN/m_c/object} this moon."
+		],
+		"brain fog": [
+			"m_c comes into the healers' den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
+			"m_c has some brain fog.",
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
     "ongoing sleeplessness": {
@@ -1229,6 +1239,11 @@
 		"earache": [
 			"m_c complains to r_c about an earache.",
 			"Frustrated, m_c buries {PRONOUN/m_c/poss} head into moss, hoping it'll dull the pain in {PRONOUN/m_c/poss} ears."
+		],
+		"brain fog": [
+			"m_c comes into the healers' den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
+			"m_c has some brain fog.",
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
 	"body biter": {
@@ -1548,6 +1563,11 @@
 			"m_c complains to r_c that all the jumbled sounds around {PRONOUN/m_c/object} {VERB/m_c/have/has} left {PRONOUN/m_c/poss} ears aching.",
 			"Poor m_c is wincing around camp, extra sensitive due to an earache.",
 			"While sounds are already hard for m_c to discern, it's even harder when {PRONOUN/m_c/poss} ears have a sharp pain within."
+		],
+		"brain fog": [
+			"m_c comes into the healers' den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
+			"m_c has some brain fog.",
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
 	},
 	"jumbled noise": {
@@ -1662,6 +1682,11 @@
 				"m_c goes to r_c with questions on how to keep Dark Forest cats from stalking {PRONOUN/m_c/object}.",
 				"m_c's been seeing monsters in the early hours of the day recently, they loom over {PRONOUN/m_c/object} when {PRONOUN/m_c/subject} first {VERB/m_c/awake/awakes}.",
 				"No matter how much sleep m_c gets, {PRONOUN/m_c/subject} still {VERB/m_c/find/finds} {PRONOUN/m_c/self} unable to fully wake up properly and struggling against incomprehensible figures that grip {PRONOUN/m_c/object} painfully."
+		],
+		"brain fog": [
+			"m_c comes into the healers' den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
+			"m_c has some brain fog.",
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
 	"lazy eye": {
