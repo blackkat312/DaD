@@ -1809,6 +1809,10 @@
 			{
 				"name": "dizziness",
 				"chance": 20
+			},
+			{
+				"name": "brain fog",
+				"chance": 20
 			}
 		],
         "also_got": [],
