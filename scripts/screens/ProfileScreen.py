@@ -764,7 +764,7 @@ class ProfileScreen(Screens):
         if self.open_tab == "history" and self.open_sub_tab == "user notes":
             self.load_user_notes()
 
-        if self.the_cat.status == "leader" and not self.the_cat.dead:
+        if self.the_cat.status == "leader":
             self.profile_elements["leader_ceremony"] = UIImageButton(
                 scale(pygame.Rect((766, 220), (68, 68))),
                 "",
@@ -772,6 +772,8 @@ class ProfileScreen(Screens):
                 tool_tip_text="Guardian Ceremony",
                 manager=MANAGER,
             )
+            if self.the_cat.dead and History.get_lead_ceremony(self.the_cat) == "None":
+                self.profile_elements["leader_ceremony"].disable()
         elif self.the_cat.status in ["mediator", "mediator apprentice"]:
             self.profile_elements["mediation"] = UIImageButton(
                 scale(pygame.Rect((766, 220), (68, 68))),
@@ -2838,11 +2840,10 @@ class ProfileScreen(Screens):
         if self.open_tab is None:
             pass
         elif self.open_tab == "relations":
-            if self.the_cat.dead:
-                self.see_relationships_button.disable()
+            self.see_relationships_button.enable()
+            if self.the_cat.exiled or self.the_cat.outside:
                 self.change_adoptive_parent_button.disable()
             else:
-                self.see_relationships_button.enable()
                 self.change_adoptive_parent_button.enable()
 
             if (
@@ -2857,7 +2858,7 @@ class ProfileScreen(Screens):
 
         # Roles Tab
         elif self.open_tab == "roles":
-            if self.the_cat.dead or self.the_cat.outside:
+            if self.the_cat.outside:
                 self.manage_roles.disable()
             else:
                 self.manage_roles.enable()
