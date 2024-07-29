@@ -556,7 +556,7 @@ class History:
         :param cat: cat object
         """
         History.check_load(cat)
-        if not cat.history.lead_ceremony:
+        if not cat.history.lead_ceremony and not cat.dead:
             History.add_lead_ceremony(cat)
         return str(cat.history.lead_ceremony)
 
