@@ -832,12 +832,13 @@ class ChooseAdoptiveParentScreen(Screens):
         valid_parents = [
             inter_cat
             for inter_cat in Cat.all_cats_list
-            if not (
-                inter_cat.dead or inter_cat.outside or inter_cat.exiled
-            )  # Adoptive parents cant be dead or outside
+            if
+            not (inter_cat.dead and not self.the_cat.dead)
+            and not (self.the_cat.dead and not inter_cat.dead)
+            and not (inter_cat.outside or inter_cat.exiled)  # Adoptive parents can't be outside
             and inter_cat.ID != self.the_cat.ID  # Can't be your own adoptive parent
             and inter_cat.moons - self.the_cat.moons
-            >= 14  # Adoptive parent must be at least 14 moons older. -> own child can't adopt you
+            >= 12  # Adoptive parent must be at least 12 moons older. -> own child can't adopt you
             and inter_cat.ID
             not in self.the_cat.mate  # Can't set your mate your adoptive parent.
             and inter_cat.ID
