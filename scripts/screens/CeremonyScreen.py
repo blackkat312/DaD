@@ -40,9 +40,8 @@ class CeremonyScreen(Screens):
             self.header = pygame_gui.elements.UITextBox(str(self.the_cat.name) + ' has no ceremonies to view.',
                                                         scale(pygame.Rect((200, 180), (1200, -1))),
                                                         object_id=get_text_box_theme(), manager=MANAGER)
-        if self.the_cat.status == 'leader' and not self.the_cat.dead:
+        if self.the_cat.status == 'leader':
             self.life_text = History.get_lead_ceremony(self.the_cat)
-
         else:
             self.life_text = ""
 
