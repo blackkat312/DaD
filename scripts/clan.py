@@ -412,18 +412,19 @@ class Clan:
             Cat.all_cats[deputy.ID].status_change("deputy")
             self.deputy_predecessors += 1
 
-    def new_medicine_cat(self, medicine_cat):
+    def new_medicine_cat(self, medicine_cat, rolescreen=False):
         """
         TODO: DOCS
         """
         if medicine_cat:
             if medicine_cat.status != 'medicine cat':
                 Cat.all_cats[medicine_cat.ID].status_change('medicine cat')
-            if medicine_cat.ID not in self.med_cat_list:
-                self.med_cat_list.append(medicine_cat.ID)
-            medicine_cat = self.med_cat_list[0]
-            self.medicine_cat = Cat.all_cats[medicine_cat]
-            self.med_cat_number = len(self.med_cat_list)
+            if not (rolescreen and medicine_cat.dead):
+                if medicine_cat.ID not in self.med_cat_list:
+                    self.med_cat_list.append(medicine_cat.ID)
+                medicine_cat = self.med_cat_list[0]
+                self.medicine_cat = Cat.all_cats[medicine_cat]
+                self.med_cat_number = len(self.med_cat_list)
 
     def remove_med_cat(self, medicine_cat):
         """
