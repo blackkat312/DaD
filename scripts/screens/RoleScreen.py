@@ -40,7 +40,7 @@ class RoleScreen(Screens):
             elif event.ui_element == self.promote_leader:
                 if self.the_cat == game.clan.deputy:
                     game.clan.deputy = None
-                game.clan.new_leader(self.the_cat)
+                game.clan.new_leader(self.the_cat, rolescreen=True)
                 if game.sort_type == "rank":
                     Cat.sort_cats()
                 self.update_selected_cat()
@@ -243,16 +243,6 @@ class RoleScreen(Screens):
         else:
             self.previous_cat_button.enable()
 
-        if game.clan.leader:
-            leader_invalid = game.clan.leader.dead or game.clan.leader.outside
-        else:
-            leader_invalid = True
-
-        if game.clan.deputy:
-            deputy_invalid = game.clan.deputy.dead or game.clan.deputy.outside
-        else:
-            deputy_invalid = True
-
         if self.the_cat.status == "apprentice":
             # LEADERSHIP
             self.promote_leader.disable()
@@ -270,15 +260,8 @@ class RoleScreen(Screens):
             self.switch_mediator_app.enable()
         elif self.the_cat.status == "warrior":
             # LEADERSHIP
-            if leader_invalid:
-                self.promote_leader.enable()
-            else:
-                self.promote_leader.disable()
-
-            if deputy_invalid:
-                self.promote_deputy.enable()
-            else:
-                self.promote_deputy.disable()
+            self.promote_leader.enable()
+            self.promote_deputy.disable()
 
             # ADULT CAT ROLES
             self.switch_warrior.disable()
@@ -291,11 +274,8 @@ class RoleScreen(Screens):
             self.switch_warrior_app.disable()
             self.switch_mediator_app.disable()
         elif self.the_cat.status == "deputy":
-            if leader_invalid:
-                self.promote_leader.enable()
-            else:
-                self.promote_leader.disable()
-
+            # LEADERSHIP
+            self.promote_leader.enable()
             self.promote_deputy.disable()
 
             # ADULT CAT ROLES
@@ -309,9 +289,11 @@ class RoleScreen(Screens):
             self.switch_warrior_app.disable()
             self.switch_mediator_app.disable()
         elif self.the_cat.status == "medicine cat":
+            # LEADERSHIP
             self.promote_leader.disable()
             self.promote_deputy.disable()
 
+            # ADULT CAT ROLES
             self.switch_warrior.enable()
             self.switch_med_cat.disable()
             self.switch_mediator.enable()
@@ -322,16 +304,11 @@ class RoleScreen(Screens):
             self.switch_warrior_app.disable()
             self.switch_mediator_app.disable()
         elif self.the_cat.status == "mediator":
-            if leader_invalid:
-                self.promote_leader.enable()
-            else:
-                self.promote_leader.disable()
+            # LEADERSHIP
+            self.promote_leader.enable()
+            self.promote_deputy.disable()
 
-            if deputy_invalid:
-                self.promote_deputy.enable()
-            else:
-                self.promote_deputy.disable()
-
+            # ADULT CAT ROLES
             self.switch_warrior.enable()
             self.switch_med_cat.enable()
             self.switch_mediator.disable()
@@ -342,15 +319,9 @@ class RoleScreen(Screens):
             self.switch_warrior_app.disable()
             self.switch_mediator_app.disable()
         elif self.the_cat.status == "elder":
-            if leader_invalid:
-                self.promote_leader.enable()
-            else:
-                self.promote_leader.disable()
-
-            if deputy_invalid:
-                self.promote_deputy.enable()
-            else:
-                self.promote_deputy.disable()
+            # LEADERSHIP
+            self.promote_leader.enable()
+            self.promote_deputy.disable()
 
             # ADULT CAT ROLES
             self.switch_warrior.enable()
@@ -363,6 +334,7 @@ class RoleScreen(Screens):
             self.switch_warrior_app.disable()
             self.switch_mediator_app.disable()
         elif self.the_cat.status == "medicine cat apprentice":
+            # LEADERSHIP
             self.promote_leader.disable()
             self.promote_deputy.disable()
 
@@ -377,6 +349,7 @@ class RoleScreen(Screens):
             self.switch_warrior_app.enable()
             self.switch_mediator_app.enable()
         elif self.the_cat.status == "mediator apprentice":
+            # LEADERSHIP
             self.promote_leader.disable()
             self.promote_deputy.disable()
 
@@ -391,6 +364,7 @@ class RoleScreen(Screens):
             self.switch_warrior_app.enable()
             self.switch_mediator_app.disable()
         elif self.the_cat.status == "leader":
+            # LEADERSHIP
             self.promote_leader.disable()
             self.promote_deputy.disable()
 
@@ -405,11 +379,12 @@ class RoleScreen(Screens):
             self.switch_warrior_app.disable()
             self.switch_mediator_app.disable()
         else:
+            # LEADERSHIP
             self.promote_leader.disable()
             self.promote_deputy.disable()
 
             # ADULT CAT ROLES
-            self.switch_warrior.disable()
+            self.switch_warrior.enable()
             self.switch_med_cat.disable()
             self.switch_mediator.disable()
             self.retire.disable()
@@ -432,12 +407,7 @@ class RoleScreen(Screens):
                      f"StarClan has given them four lives."
         elif self.the_cat.status == "deputy":
             output = f"{self.the_cat.name} is {game.clan.name}Clan's <b>deputy</b>. " \
-                     f"The deputy is the second in command, " \
-                     f"just below the guardian. They advise the guardian and organize daily patrols, " \
-                     f"alongside normal warrior duties. Typically, a deputy is personally appointed by the current " \
-                     f"guardian. As dictated by the Warrior Code, all deputies must train at least one apprentice " \
-                     f"before appointment.  " \
-                     f"The deputy succeeds the guardian if they die or retire. "
+                     f"This should not appear. "
         elif self.the_cat.status == "medicine cat":
             output = f"{self.the_cat.name} is a <b>healer</b>, also sometimes known as <b>flowers</b>. Healers are " \
                      f"the doctors of the Clan. They treat " \
@@ -464,11 +434,12 @@ class RoleScreen(Screens):
                      f"the unpleasant and grunt tasks of Clan life. Apprentices take the suffix \"paw\", " \
                      f"to represent the path their paws take towards adulthood. "
         elif self.the_cat.status == "medicine cat apprentice":
-            output = f"{self.the_cat.name} is a <b>healer apprentice</b>, training to become a full healer. " \
-                     f"Kits can be made healer apprentices at six moons of age, where they will learn how to " \
-                     f"heal their Clanmates and commune with StarClan. Healer apprentices are typically chosen " \
-                     f"for their interest in healing and/or their connecting to StarClan. Apprentices take the suffix " \
-                     f"\"bud\", to represent them soon opening and becoming a beautiful flower. "
+            output = f"{self.the_cat.name} is a <b>healer apprentice</b>, also sometimes known as <b>buds</b>, " \
+                     f"training to become a full healer. Kits can be made healer apprentices at six moons of age, " \
+                     f"where they will learn how to heal their Clanmates and commune with StarClan. " \
+                     f"Healer apprentices are typically chosen for their interest in healing. " \
+                     f"Apprentices take the suffix \"bud\", to represent them soon opening and becoming " \
+                     f"a beautiful flower. "
         elif self.the_cat.status == "mediator apprentice":
             output = f"{self.the_cat.name} is a <b>mediator apprentice</b>, training to become a full mediator. " \
                      f"Mediators are in charge of handling disagreements both within the Clan and between Clans. " \
