@@ -202,9 +202,13 @@ class Clan:
         the program starts
         """
 
-        self.instructor = Cat(status=choice(["apprentice", "mediator apprentice", "medicine cat apprentice", "warrior",
-                                             "medicine cat", "leader", "mediator", "deputy", "elder"]),
-                              )
+        self.instructor = Cat(status=choice(
+            [
+                "apprentice", "mediator apprentice", "medicine cat apprentice", "medicine cat apprentice", "warrior",
+                "warrior", "medicine cat", "medicine cat", "medicine cat", "medicine cat", "medicine cat", "leader",
+                "mediator", "elder"
+            ])
+        )
         self.instructor.dead = True
         self.instructor.dead_for = randint(0, 1000)
         self.add_cat(self.instructor)
