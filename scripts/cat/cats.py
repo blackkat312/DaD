@@ -2513,7 +2513,7 @@ class Cat:
 
         elif self.status == "medicine cat":
             if game.clan is not None:
-                game.clan.new_medicine_cat(self)
+                game.clan.new_medicine_cat(self, rolescreen=rolescreen)
 
         elif self.status == "elder" and not (rolescreen and self.dead):
             if old_status == "leader":
