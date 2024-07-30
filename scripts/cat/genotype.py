@@ -1825,11 +1825,10 @@ class Genotype:
         if self.height_value > sum(self.height_ranges):
             self.height_value = sum(self.height_ranges)
 
+        self.GeneSort()
 
         if(randint(1, self.odds['random_mutation']) == 1):
             self.Mutate()
-
-        self.GeneSort()
 
         if self.sexgene[0] == "Y":
             # self.sexgene = [par1.sexgene[0]]
