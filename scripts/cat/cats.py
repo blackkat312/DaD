@@ -2470,7 +2470,7 @@ class Cat:
 
         return ids
 
-    def status_change(self, new_status, resort=False):
+    def status_change(self, new_status, resort=False, rolescreen=False):
         """ Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
             new_status = The new status of a cat. Can be 'apprentice', 'medicine cat apprentice', 'warrior'
                         'medicine cat', 'elder'.
@@ -2480,11 +2480,12 @@ class Cat:
         self.status = new_status
         self.name.status = new_status
 
-        self.update_mentor()
-        for app in self.apprentice.copy():
-            fetched_cat = Cat.fetch_cat(app)
-            if isinstance(fetched_cat, Cat):
-                fetched_cat.update_mentor()
+        if not self.dead:
+            self.update_mentor()
+            for app in self.apprentice.copy():
+                fetched_cat = Cat.fetch_cat(app)
+                if isinstance(fetched_cat, Cat):
+                    fetched_cat.update_mentor()
 
         # If they have any apprentices, make sure they are still valid:
         if old_status == "medicine cat":
@@ -2497,7 +2498,7 @@ class Cat:
         elif self.status == 'medicine cat apprentice':
             pass
 
-        elif self.status == "warrior":
+        elif self.status == "warrior" and not (rolescreen and self.dead):
             if old_status == "leader":
                 if game.clan.leader:
                     if game.clan.leader.ID == self.ID:
@@ -2514,7 +2515,7 @@ class Cat:
             if game.clan is not None:
                 game.clan.new_medicine_cat(self)
 
-        elif self.status == "elder":
+        elif self.status == "elder" and not (rolescreen and self.dead):
             if old_status == "leader":
                 if game.clan.leader:
                     if game.clan.leader.ID == self.ID:
