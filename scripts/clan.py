@@ -386,16 +386,17 @@ class Clan:
         else:
             return "No Clan"
 
-    def new_leader(self, leader):
+    def new_leader(self, leader, rolescreen=False):
         """
         TODO: DOCS
         """
         if leader:
-            self.history.add_lead_ceremony(leader)
-            self.leader = leader
             Cat.all_cats[leader.ID].status_change("leader")
-            self.leader_predecessors += 1
-            self.leader_lives = 4
+            if not (rolescreen and leader.dead):
+                self.history.add_lead_ceremony(leader)
+                self.leader = leader
+                self.leader_predecessors += 1
+                self.leader_lives = 4
         game.switches["new_leader"] = None
 
     def new_deputy(self, deputy):
