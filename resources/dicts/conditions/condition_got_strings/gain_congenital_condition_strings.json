@@ -251,7 +251,9 @@
   "excess testosterone": [
     "r_c carefully soothes over all of m_c's parent's worries. Being intersex is perfectly normal and m_c will do fine!",
     "While checking in on the nursery, one of the healers notices something slightly different about m_c. It seems that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} intersex.",
-    "m_c doesn't fully look like a molly, it looks like {PRONOUN/m_c/subject} {VERB/m_c/have/has} some excess testosterone - and that's okay!"
+    "m_c doesn't fully look like a molly, it looks like {PRONOUN/m_c/subject} {VERB/m_c/have/has} some excess testosterone - and that's okay!",
+    "The fur around m_c's face is scruffy and rougher than most mollies.",
+    "m_c's tail lashes when another cat teases {PRONOUN/m_c/object} about the roughness of the fur on {PRONOUN/m_c/poss} face, which has been that way since {PRONOUN/m_c/subject} {VERB/m_c/were/was} a kit. It takes one of m_c's loved ones telling {PRONOUN/m_c/object} that {PRONOUN/m_c/poss} face fur is beautiful to calm {PRONOUN/m_c/object} down."
   ],
   "aneuploidy": [
     "r_c carefully soothes over all of m_c's parent's worries. Being intersex is perfectly normal and m_c will do fine!",
