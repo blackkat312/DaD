@@ -937,7 +937,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_1 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_1)
 
@@ -958,7 +958,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_2 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_2)
 
@@ -979,7 +979,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_3 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_3)
 
@@ -1000,7 +1000,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_4 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_4)
 
@@ -1021,7 +1021,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_5 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_5)
 
@@ -1157,7 +1157,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_1 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_1)
 
@@ -1178,7 +1178,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_2 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_2)
 
@@ -1199,7 +1199,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_3 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_3)
 
@@ -1220,7 +1220,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_4 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_4)
 
@@ -1241,7 +1241,7 @@ class Cat:
                                 kit_addition += 3.5
                             elif chosen_white_5 in low5 or high5:
                                 kit_addition += 4.5
-                            KITgrade = KITgrade + kit_addition
+                            KITgrade += kit_addition
 
                             white_pattern.append(chosen_white_5)
 
