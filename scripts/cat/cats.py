@@ -850,10 +850,10 @@ class Cat:
 
         def GenerateWhite(KIT, KITgrade, vit, white_pattern, pax3):
             def clean_white(white_pattern):
-                white_pattern = list(set(white_pattern))
-                while None in white_pattern:
-                    white_pattern.remove(None)
-                return white_pattern
+                new_white_pattern = white_pattern.copy()
+                while None in new_white_pattern:
+                    new_white_pattern.remove(None)
+                return new_white_pattern
 
             low1 = ['BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
                     'MINKEMBER']
