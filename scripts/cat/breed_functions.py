@@ -186,8 +186,6 @@ class Breed_generator:
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
         
         for i in range(0, 8):
             genoclass.wideband += choice(widegenes)
@@ -201,140 +199,36 @@ class Breed_generator:
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
-        # genesmild = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0"]
-        # sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
+        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
+        sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
+        wanted_numbers = [0, 1, 2, 3]
+        genoclass.ticksum = 100
+        genoclass.bengsum = 100
+        genoclass.soksum = 100
 
-        ticklist = []
-        benglist = []
-        soklist = []
+        while genoclass.ticksum not in wanted_numbers:
+            if genoclass.ticksum not in wanted_numbers:
+                genoclass.tickgenes = ""
+                genoclass.ticksum = 0
+            for i in range(0, 4):
+                genoclass.tickgenes += choice(genesmild)
+                genoclass.ticksum += int(genoclass.tickgenes[i])
 
-        # TICKED
-        # one
-        if randint(1, 14) <= 6:
-            ticklist.append("1")
-            onenum = 1
-        else:
-            ticklist.append("0")
-            onenum = 0
+        while genoclass.bengsum not in wanted_numbers:
+            if genoclass.bengsum not in wanted_numbers:
+                genoclass.bengal = ""
+                genoclass.bengsum = 0
+            for i in range(0, 4):
+                genoclass.bengal += choice(genesmild)
+                genoclass.bengsum += int(genoclass.bengal[i])
 
-        # two
-        if randint(1, 14) <= 6:
-            ticklist.append("1")
-            twonum = 1
-        else:
-            ticklist.append("0")
-            twonum = 0
-
-        # three
-        if randint(1, 14) <= 6:
-            ticklist.append("1")
-            threenum = 1
-        else:
-            ticklist.append("0")
-            threenum = 0
-
-        # four
-        if randint(1, 14) <= 6 and ((onenum + twonum + threenum) != 3):
-            ticklist.append("1")
-            fournum = 1
-        else:
-            ticklist.append("0")
-            fournum = 0
-
-        randomindex = randint(0, 3)
-        # changing to 2
-        if randint(1, 16) <= 2 and ((((onenum + twonum + threenum + fournum) < 2) and ticklist[randomindex] == "0") or (((onenum + twonum + threenum + fournum) < 3) and ticklist[randomindex] == "1")):
-            ticklist[randomindex] = "2"
-
-        # BENGAL
-        # one
-        if randint(1, 14) <= 6:
-            benglist.append("1")
-            onenum = 1
-        else:
-            benglist.append("0")
-            onenum = 0
-
-        # two
-        if randint(1, 14) <= 6:
-            benglist.append("1")
-            twonum = 1
-        else:
-            benglist.append("0")
-            twonum = 0
-
-        # three
-        if randint(1, 14) <= 6:
-            benglist.append("1")
-            threenum = 1
-        else:
-            benglist.append("0")
-            threenum = 0
-
-        # four
-        if randint(1, 14) <= 6 and ((onenum + twonum + threenum) != 3):
-            benglist.append("1")
-            fournum = 1
-        else:
-            benglist.append("0")
-            fournum = 0
-
-        randomindex = randint(0, 3)
-        # changing to 2
-        if randint(1, 16) <= 2 and ((((onenum + twonum + threenum + fournum) < 2) and benglist[randomindex] == "0") or (((onenum + twonum + threenum + fournum) < 3) and benglist[randomindex] == "1")):
-            benglist[randomindex] = "2"
-
-        # SOKOKE
-        # one
-        if randint(1, 7) <= 3:
-            soklist.append("1")
-            onenum = 1
-        else:
-            soklist.append("0")
-            onenum = 0
-
-        # two
-        if randint(1, 7) <= 3:
-            soklist.append("1")
-            twonum = 1
-        else:
-            soklist.append("0")
-            twonum = 0
-
-        # three
-        if randint(1, 7) <= 3:
-            soklist.append("1")
-            threenum = 1
-        else:
-            soklist.append("0")
-            threenum = 0
-
-        # four
-        if randint(1, 7) <= 3 and ((onenum + twonum + threenum) != 3):
-            soklist.append("1")
-            fournum = 1
-        else:
-            soklist.append("0")
-            fournum = 0
-
-        randomindex = randint(0, 3)
-        # changing to 2
-        if randint(1, 9) <= 2 and ((((onenum + twonum + threenum + fournum) < 2) and soklist[randomindex] == "0") or (((onenum + twonum + threenum + fournum) < 3) and soklist[randomindex] == "1")):
-            soklist[randomindex] = "2"
-
-        index = 0
-        while index != 4:
-            genoclass.tickgenes += ticklist[index]
-            genoclass.bengal += benglist[index]
-            genoclass.sokoke += soklist[index]
-            index += 1
-
-        index = 0
-        while index != 4:
-            genoclass.ticksum += int(genoclass.tickgenes[index])
-            genoclass.bengsum += int(genoclass.bengal[index])
-            genoclass.soksum += int(genoclass.sokoke[index])
-            index += 1
+        while genoclass.soksum not in wanted_numbers:
+            if genoclass.soksum not in wanted_numbers:
+                genoclass.sokoke = ""
+                genoclass.soksum = 0
+            for i in range(0, 4):
+                genoclass.sokoke += choice(sokgenes)
+                genoclass.soksum += int(genoclass.sokoke[i])
 
         genoclass.body_value = randint(genoclass.body_indexes[2]+1, genoclass.body_indexes[3])
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[4])
@@ -506,8 +400,6 @@ class Breed_generator:
         else:
             genoclass.ruhrmod = ["hi", "ha"]
 
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
         genoclass.wideband = ''
         genoclass.rufousing = ''
         genoclass.spotted = ''
@@ -516,37 +408,65 @@ class Breed_generator:
         genoclass.sokoke = ''
         genoclass.refraction = ''
         genoclass.pigmentation = ''
-        
-        while genoclass.wbsum > 11 or genoclass.wbsum < 6:
-            genoclass.wideband = ""
-            genoclass.wbsum = 0
-            for i in range(0, 8):
-                genoclass.wideband += choice(genes)
-                genoclass.wbsum += int(genoclass.wideband[i])
 
-        for i in range(0, 4):
-            genoclass.rufousing += '2'
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "2"]
+        genesspot = ["2", "1", "0"]
 
         for i in range(0, 4):
             genoclass.spotted += choice(genesspot)
             genoclass.spotsum += int(genoclass.spotted[i])
 
+        widegenes = ["0", "0", "1", "1", "1", "2", "2"]
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
+        sokgenes = ["2", "2", "1", "1", "1", "0", "0", "0", "0"]
 
-        for i in range(0, 4):
-            genoclass.tickgenes += '2'
-            genoclass.ticksum += int(genoclass.tickgenes[i])
+        wanted_numbers_wide = [6, 7, 8, 9, 10, 11]
+        wanted_numbers_ruf_tick = [6, 7, 8, 9]
+        wanted_numbers_beng_sok = [0, 1, 2, 3]
+        genoclass.wbsum = 100
+        genoclass.rufsum = 100
+        genoclass.ticksum = 100
+        genoclass.bengsum = 100
+        genoclass.soksum = 100
 
-        for i in range(0, 4):
-            genoclass.bengal += '0'
-            genoclass.bengsum += int(genoclass.bengal[i])
+        while genoclass.wbsum not in wanted_numbers_wide:
+            if genoclass.wbsum not in wanted_numbers_wide:
+                genoclass.wideband = ""
+                genoclass.wbsum = 0
+            for i in range(0, 8):
+                genoclass.wideband += choice(widegenes)
+                genoclass.wbsum += int(genoclass.wideband[i])
 
-        for i in range(0, 4):
-            genoclass.sokoke += '0'
-            genoclass.soksum += int(genoclass.sokoke[i])
+        while genoclass.rufsum not in wanted_numbers_ruf_tick:
+            if genoclass.rufsum not in wanted_numbers_ruf_tick:
+                genoclass.rufousing = ""
+                genoclass.rufsum = 0
+            for i in range(0, 4):
+                genoclass.rufousing += choice(genesspot)
+                genoclass.rufsum += int(genoclass.rufousing[i])
+
+        while genoclass.ticksum not in wanted_numbers_ruf_tick:
+            if genoclass.ticksum not in wanted_numbers_ruf_tick:
+                genoclass.tickgenes = ""
+                genoclass.ticksum = 0
+            for i in range(0, 4):
+                genoclass.tickgenes += choice(genesmild)
+                genoclass.ticksum += int(genoclass.tickgenes[i])
+
+        while genoclass.bengsum not in wanted_numbers_beng_sok:
+            if genoclass.bengsum not in wanted_numbers_beng_sok:
+                genoclass.bengal = ""
+                genoclass.bengsum = 0
+            for i in range(0, 4):
+                genoclass.bengal += choice(genesmild)
+                genoclass.bengsum += int(genoclass.bengal[i])
+
+        while genoclass.soksum not in wanted_numbers_beng_sok:
+            if genoclass.soksum not in wanted_numbers_beng_sok:
+                genoclass.sokoke = ""
+                genoclass.soksum = 0
+            for i in range(0, 4):
+                genoclass.sokoke += choice(sokgenes)
+                genoclass.soksum += int(genoclass.sokoke[i])
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
