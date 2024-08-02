@@ -1029,8 +1029,10 @@ class MakeClanScreen(Screens):
                 if pronoun_text[-1] == "/":
                     pronoun_text = pronoun_text[:-1]
 
+            # chimeras
             if selected.genotype.chimera:
                 special_text += "chimera!"
+            # somatic mutations
             if selected.genotype.somatic and selected.genotype.somatic != "{}":
                 somatic = {
                     "Somatic/leftface": "{PRONOUN/m_c/poss} face",
@@ -1043,9 +1045,8 @@ class MakeClanScreen(Screens):
                     "left back bicolour2": "one of {PRONOUN/m_c/poss} back legs"
                 }
                 if special_text:
-                    special_text += "\nhas a somatic mutation on " + somatic.get(selected.genotype.somatic["base"]) + "!"
-                else:
-                    special_text += "has a somatic mutation on " + somatic.get(selected.genotype.somatic["base"]) + "!"
+                    special_text += "\n"
+                special_text += "has a somatic mutation on " + somatic.get(selected.genotype.somatic["base"]) + "!"
 
                 special_text = event_text_adjust(Cat, special_text, main_cat=selected)
             if selected.genotype.chimera and selected.genotype.chimerageno.somatic and selected.genotype.chimerageno.somatic != "{}":
@@ -1068,26 +1069,25 @@ class MakeClanScreen(Screens):
                     special_text += "has a somatic mutation on " + somatic.get(selected.genotype.chimerageno.somatic["base"]) + "!"
 
                 special_text = event_text_adjust(Cat, special_text, main_cat=selected)
+            # breeds
             if (selected.genotype.breeds and selected.genotype.breeds != "{}") or (selected.genotype.chimera and selected.genotype.chimerageno.breeds and selected.genotype.chimerageno.breeds != "{}"):
                 if special_text:
-                    special_text += "\nhas a breed!"
-                else:
-                    special_text += "has a breed!"
+                    special_text += "\n"
+                special_text += "has a breed!"
+            # "flipped" chromosomes
             if len(selected.genotype.sexgene) == 2 and selected.genotype.sexgene[1] == "Y" and selected.genotype.gender == "molly":
                 if special_text:
-                    special_text += "\nXY molly!"
-                else:
-                    special_text += "XY molly!"
+                    special_text += "\n"
+                special_text += "XY molly!"
             elif len(selected.genotype.sexgene) == 2 and (selected.genotype.sexgene[1] == "O" or selected.genotype.sexgene[1] == "o") and selected.genotype.gender == "tom":
                 if special_text:
-                    special_text += "\nXX tom!"
-                else:
-                    special_text += "XX tom!"
+                    special_text += "\n"
+                special_text += "XX tom!"
+            # aneuploidy
             if (selected.genotype.sexgene != ["o", "o"] and selected.genotype.sexgene != ["O", "o"] and selected.genotype.sexgene != ["O", "O"] and selected.genotype.sexgene != ["o", "Y"] and selected.genotype.sexgene != ["O", "Y"]) or (selected.genotype.chimera and selected.genotype.chimerageno.sexgene != ["o", "o"] and selected.genotype.chimerageno.sexgene != ["O", "o"] and selected.genotype.chimerageno.sexgene != ["O", "O"] and selected.genotype.chimerageno.sexgene != ["o", "Y"] and selected.genotype.chimerageno.sexgene != ["O", "Y"]):
                 if special_text:
-                    special_text += "\nhas aneuploidy!"
-                else:
-                    special_text += "has aneuploidy!"
+                    special_text += "\n"
+                special_text += "has aneuploidy!"
 
             if special_text:
                 special_text += "\n"
