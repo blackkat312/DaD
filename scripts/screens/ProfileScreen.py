@@ -914,26 +914,26 @@ class ProfileScreen(Screens):
 
         # PARENTS
         all_parents = [Cat.fetch_cat(i) for i in the_cat.get_parents()]
+        parent_text = ""
         if all_parents: 
-            output += "\n"
+            parent_text += "\n"
             if len(all_parents) == 1:
-                output += "parent: " + str(all_parents[0].name)
+                parent_text += "parent: " + str(all_parents[0].name)
             elif len(all_parents) > 2:
-                output += (
+                parent_text += (
                     "parents: "
                     + ", ".join([str(i.name) for i in all_parents[:2]])
                     + f", and {len(all_parents) - 2} "
                 )
                 if len(all_parents) - 2 == 1:
-                    output += "other"
+                    parent_text += "other"
                 else:
-                    output += "others"
+                    parent_text += "others"
             else:
-                output += "parents: " + ", ".join([str(i.name) for i in all_parents])
-        if "parent: Unknown" in output:
-            output.replace("parent: Unknown", "parent: unknown")
-        elif "parents: Unknown, Unknown" in output:
-            output.replace("parents: Unknown, Unknown", "parents: unknown")
+                parent_text += "parents: " + ", ".join([str(i.name) for i in all_parents])
+            parent_text = parent_text.replace("Unknown, Unknown", "unknown")
+            parent_text = parent_text.replace("Unknown", "unknown")
+            output += parent_text
 
         # MOONS
         output += "\n"
