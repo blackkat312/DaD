@@ -6397,9 +6397,9 @@ class Breed_checker:
         if genotype.silver[0] == 'I' or genotype.pointgene[0] != "C":
             return False
         
-        if genotype.breeds.get("Chartreux", 0) >= 95:
+        if genotype.breeds.get("Chartreux", 0) >= 100:
             return "Chartreux"
-        if genotype.breeds.get("Korat", 0) >= 95:
+        if genotype.breeds.get("Korat", 0) >= 100:
             return "Korat"
 
         return "Huh????"
@@ -6470,11 +6470,11 @@ class Breed_checker:
         if (('cm' in genotype.pointgene or 'c' in genotype.pointgene) and genotype.pointgene[0] != "C"):
             return False
     
-        if genotype.breeds.get("Cornish Rex", 0) >= 95:
+        if genotype.breeds.get("Cornish Rex", 0) >= 100:
             if genotype.furLength[0] == "l":
                 return "Californian Rex"
             return "Cornish Rex"
-        if genotype.breeds.get("German Rex", 0) >= 95:
+        if genotype.breeds.get("German Rex", 0) >= 100:
             if genotype.furLength[0] == "l":
                 return False
             return "German Rex"
@@ -6550,9 +6550,9 @@ class Breed_checker:
             return False
     
         
-        if genotype.breeds.get("Egyptian Mau", 0) >= 95:
+        if genotype.breeds.get("Egyptian Mau", 0) >= 100:
             return "Egyptian Mau"
-        if genotype.breeds.get("Savannah", 0) >= 95:
+        if genotype.breeds.get("Savannah", 0) >= 100:
             return "Savannah"
 
         return "Huh????"
@@ -7534,7 +7534,7 @@ class Breed_checker:
 
 
 def find_my_breed(genotype, phenotype, config):
-    purebred_range = 95
+    purebred_range = 100
     mix_range = 12.5
 
     hybrids = {
