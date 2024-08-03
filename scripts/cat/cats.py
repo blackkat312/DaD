@@ -2100,10 +2100,10 @@ class Cat:
 
         if "ocular albinism" not in self.conditions_already_attempted:
             if (
-                    ('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or (self.genotype.extraeye and 'albino' in self.genotype.extraeyetype) or self.genotype.pinkdilute[0] == 'dp')
+                    (('albino' in self.genotype.lefteyetype or 'albino' in self.genotype.righteyetype or (self.genotype.extraeye and 'albino' in self.genotype.extraeyetype) or self.genotype.pinkdilute[0] == 'dp')
                     or (self.genotype.chimera and ('albino' in self.genotype.chimerageno.lefteyetype or 'albino' in self.genotype.chimerageno.righteyetype or (self.genotype.chimerageno.extraeye and 'albino' in self.genotype.chimerageno.extraeyetype) or self.genotype.chimerageno.pinkdilute[0] == 'dp'))
-                    or (self.genotype.somatic and self.genotype.somatic != "{}" and ())
-                    or (self.genotype.chimera and self.genotype.chimerageno.somatic and self.genotype.chimerageno.somatic != "{}" and ())
+                    or (self.genotype.somatic and self.genotype.somatic != "{}" and "face" in self.genotype.somatic["base"] and self.genotype.somatic["gene"] == "pinkdilute" and self.genotype.pinkdilute == ["Dp", "dp"])
+                    or (self.genotype.chimera and self.genotype.chimerageno.somatic and self.genotype.chimerageno.somatic != "{}" and "face" in self.genotype.chimerageno.somatic["base"] and self.genotype.chimerageno.somatic["gene"] == "pinkdilute" and self.genotype.chimerageno.pinkdilute == ["Dp", "dp"]))
                     and not (self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c'))
             ):
                 self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
