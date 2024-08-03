@@ -861,6 +861,8 @@ class ProfileScreen(Screens):
             output += str(the_cat.genderalign)
         if output == "molly and intersex" or output == "tom and intersex":
             output = "this should not appear"
+        elif output == "placeholder":
+            output = "unknown"
         # NEWLINE ----------
         output += "\n"
 
@@ -928,7 +930,10 @@ class ProfileScreen(Screens):
                     output += "others"
             else:
                 output += "parents: " + ", ".join([str(i.name) for i in all_parents])
-
+        if "parent: Unknown" in output:
+            output.replace("parent: Unknown", "parent: unknown")
+        elif "parents: Unknown, Unknown" in output:
+            output.replace("parents: Unknown, Unknown", "parents: unknown")
 
         # MOONS
         output += "\n"
