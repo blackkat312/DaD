@@ -852,8 +852,10 @@ class Phenotype():
             if ('masked' in self.silvergold and genes.wbsum > 15) or (genes.agouti[0] != "a" and genes.ext[0] != "Eg") or (genes.ext[0] not in ['Eg', 'E']):
                 if genes.silver[0] == "I" or genes.brindledbi or (moons < 3 and genes.karp[0] == "K"):
                     rufousing = "silver"
-                elif genes.pointgene[0] != "C" or genes.agouti[0] == "Apb":
+                elif (genes.pointgene[0] != "C" or genes.agouti[0] == "Apb") and genes.ruftype == "medium":
                     rufousing = "low"
+                elif (genes.pointgene[0] != "C" or genes.agouti[0] == "Apb") and genes.ruftype == "rufoused":
+                    rufousing = "medium"
                 else:
                     rufousing = genes.ruftype
 
