@@ -3173,7 +3173,8 @@ class Cat:
             self, other_cat, game_mode, biome, season, camp
         )
 
-        chosen_thought = event_text_adjust(Cat, chosen_thought, main_cat=self, random_cat=other_cat, clan=game.clan)
+        if self.status != "unknown":
+            chosen_thought = event_text_adjust(Cat, chosen_thought, main_cat=self, random_cat=other_cat, clan=game.clan)
 
         # insert thought
         self.thought = str(chosen_thought)
