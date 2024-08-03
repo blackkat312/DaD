@@ -1010,19 +1010,37 @@ class ProfileScreen(Screens):
 
         # STATUS
         if the_cat.dead and not the_cat.df and not the_cat.outside:
-            output += f"<font color='#FFBCCC'>StarClan {rank}</font>"
+            if the_cat.status == "unknown":
+                output += "<font color='#FFBCCC'>StarClan resident</font>"
+            else:
+                output += f"<font color='#FFBCCC'>StarClan {rank}</font>"
         elif the_cat.dead and the_cat.df and not the_cat.outside:
-            output += f"<font color='#BEFDE4'>Dark Forest {rank}</font>"
+            if the_cat.status == "unknown":
+                output += "<font color='#BEFDE4'>Dark Forest resident</font>"
+            else:
+                output += f"<font color='#BEFDE4'>Dark Forest {rank}</font>"
         elif the_cat.dead and not the_cat.df and the_cat.outside and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]:
-            output += f"<font color='#FFBCCC'>ghost {rank}</font>"
+            if the_cat.status == "unknown":
+                output += "<font color='#FFBCCC'>ghost</font>"
+            else:
+                output += f"<font color='#FFBCCC'>ghost {rank}</font>"
         elif the_cat.dead and not the_cat.df and the_cat.outside:
-            output += f"<font color='#FFBCCC'>{the_cat.dead_outside_display} {rank}</font>"
+            if the_cat.status == "unknown":
+                if the_cat.dead_outside_display == "ghost":
+                    output += "<font color='#FFBCCC'>ghost</font>"
+                else:
+                    output += f"<font color='#FFBCCC'>{the_cat.dead_outside_display}</font>"
+            else:
+                output += f"<font color='#FFBCCC'>{the_cat.dead_outside_display} {rank}</font>"
         elif (
             the_cat.outside
             and not the_cat.exiled
             and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]
         ):
-            output += f"<font color='#FF0000'>lost {rank}</font>"
+            if the_cat.status == "unknown":
+                output += "<font color='#FF0000'>lost</font>"
+            else:
+                output += f"<font color='#FF0000'>lost {rank}</font>"
         elif the_cat.exiled:
             output += "<font color='#FF0000'>exiled</font>"
         else:
