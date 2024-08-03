@@ -3546,7 +3546,7 @@ class Cat:
         litter_mates = [
             key
             for key, value in self.inheritance.siblings.items()
-            if "litter mates" in value["additional"]
+            if "littermates" in value["additional"]
         ]
         return other_cat.ID in litter_mates
 
