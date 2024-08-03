@@ -302,8 +302,12 @@ class Thoughts:
 
         # newborns only pull from their status thoughts. this is done for convenience
         try:
-            if main_cat.age == 'newborn':
+            if main_cat.age == "newborn":
                 with open(f"{base_path}{life_dir}{spec_dir}/newborn.json", 'r') as read_file:
+                    thoughts = ujson.loads(read_file.read())
+                loaded_thoughts = thoughts
+            elif main_cat.status == "unknown":
+                with open(f"{base_path}{life_dir}{spec_dir}/unknown.json", 'r') as read_file:
                     thoughts = ujson.loads(read_file.read())
                 loaded_thoughts = thoughts
             else:
