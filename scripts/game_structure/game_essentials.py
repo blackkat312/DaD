@@ -422,7 +422,7 @@ class Game:
 
             # Don't save conditions for classic condition. This
             # should allow closing and reloading to clear conditions on
-            # classic, just in case a condition is accidentally applied.
+            # classic, just in case a condition is accidently applied.
             if game.game_mode != "classic":
                 inter_cat.save_condition()
 
@@ -673,7 +673,9 @@ def load_manager(res: tuple):
         manager.get_theme().load_theme("resources/theme/text_boxes_small.json")
         manager.get_theme().load_theme("resources/theme/text_boxes_dark_small.json")
         manager.get_theme().load_theme("resources/theme/vertical_scroll_bar_small.json")
-        manager.get_theme().load_theme("resources/theme/horizontal_scroll_bar_small.json")
+        manager.get_theme().load_theme(
+            "resources/theme/horizontal_scroll_bar_small.json"
+        )
         manager.get_theme().load_theme("resources/theme/window_base_small.json")
         manager.get_theme().load_theme("resources/theme/tool_tips_small.json")
 
