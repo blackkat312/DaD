@@ -68,7 +68,9 @@
             "Is frightened after hearing a scary story",
             "Wants to be big someday",
             "Wants to have fun",
-            "Is playing pretend"
+            "Is playing pretend",
+            "Discovers that {PRONOUN/m_c/subject} {VERB/m_c/have/has} a tail",
+            "Has a yawn so big that {PRONOUN/m_c/subject} {VERB/m_c/topple/topples} over"
         ]
     },
     {
