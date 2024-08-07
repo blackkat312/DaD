@@ -445,13 +445,12 @@ class Phenotype():
         for i in self.furtype:
             furtype += i
 
-        if(self.genotype.lefteye == self.genotype.righteye):
+        if self.genotype.lefteye == self.genotype.righteye:
             eyes = "insertleft eyes"
         else:
             eyes = "one insertleft eye, and one insertright eye"
 
-        if(self.genotype.extraeye):
-            eyes = eyes.replace(" one insertleft eye, and one insertright eye ", " one insertleft eye, one insertright eye ")
+        if self.genotype.extraeye:
             eyes += ", and insertsectoral sectoral heterochromia"
 
         withword = self.specwhite
@@ -467,23 +466,18 @@ class Phenotype():
                 if(withword == withword.replace(", , ", ", ")):
                     nochange = True
 
-        if(withword != ""):
-            if ", " in withword:
-                if "insertright" in eyes:
-                    withword += ", "
-                else:
-                    withword += ", and "
-            else:
-                if "insertright" in eyes:
-                    withword += ", "
-                else:
-                    withword += " and "
+        if withword != "":
+            if ", " in withword and eyes != "insertleft eyes":
+                withword += ", "
+            elif eyes == "insertleft eyes":
+                if ", " in withword:
+                    withword += ","
+                withword += " and "
         else:
-            if ", and insertsectoral sectoral" in eyes and "one insertleft eye, one insertright eye" not in eyes:
-                eyes = eyes.replace(", and insertsectoral sectoral", " and insertsectoral sectoral")
-            elif "one insertleft eye, and one insertright eye" in eyes and ", and insertsectoral sectoral" not in eyes:
-                eyes = eyes.replace("one insertleft eye, and one insertright eye", "one insertleft eye and one insertright eye")
+            eyes = eyes.replace("one insertleft eye, and one insertright eye", "one insertleft eye and one insertright eye")
+            eyes = eyes.replace("insertleft eyes, and insertsectoral sectoral heterochromia", "insertleft eyes and insertsectoral sectoral heterochromia")
 
+        eyes = eyes.replace("one insertleft eye, and one insertright eye, and insertsectoral sectoral heterochromia", "one insertleft eye, one insertright eye, and insertsectoral sectoral heterochromia")
         eyes = eyes.replace("insertleft", self.genotype.lefteye)
         eyes = eyes.replace("insertright", self.genotype.righteye)
         eyes = eyes.replace("insertsectoral", self.genotype.extraeyecolour)
@@ -494,6 +488,8 @@ class Phenotype():
             sextext = " "
         elif sex == "intersex":  # specifying jic though
             sextext = sex + " "
+        else:
+            sextext = " "
 
         if not gender:
             gendera = "cat"
@@ -852,10 +848,12 @@ class Phenotype():
             if ('masked' in self.silvergold and genes.wbsum > 15) or (genes.agouti[0] != "a" and genes.ext[0] != "Eg") or (genes.ext[0] not in ['Eg', 'E']):
                 if genes.silver[0] == "I" or genes.brindledbi or (moons < 3 and genes.karp[0] == "K"):
                     rufousing = "silver"
-                elif (genes.pointgene[0] != "C" or genes.agouti[0] == "Apb") and genes.ruftype == "medium":
-                    rufousing = "low"
+                elif (genes.pointgene[0] != "C" or genes.agouti[0] == "Apb") and genes.ruftype == "rufoused" and genes.rufsum == 8:
+                    rufousing = "rufoused"
                 elif (genes.pointgene[0] != "C" or genes.agouti[0] == "Apb") and genes.ruftype == "rufoused":
                     rufousing = "medium"
+                elif genes.pointgene[0] != "C" or genes.agouti[0] == "Apb":
+                    rufousing = "low"
                 else:
                     rufousing = genes.ruftype
 
