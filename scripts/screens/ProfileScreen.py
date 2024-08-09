@@ -2016,6 +2016,7 @@ class ProfileScreen(Screens):
         cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
         apprenticeship_history = influence_history + " " + graduation_history
         apprenticeship_history = process_text(apprenticeship_history, cat_dict)
+        apprenticeship_history = apprenticeship_history.replace("  ", " ")
         return apprenticeship_history
 
 
