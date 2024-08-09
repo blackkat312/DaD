@@ -892,10 +892,16 @@ class Cat:
             kit_addition = 0
             low_high = ["low", "low", "low", "high"]
 
+            if vit:
+                if white_pattern is None:
+                    white_pattern = [choice(vitiligo)]
+                else:
+                    hasVitiligo = [p for p in white_pattern if p in vitiligo]
+                    if len(hasVitiligo) == 0:
+                        white_pattern.append(choice(vitiligo))
+
             if white_pattern is None and ((KIT[0] != "W" and KIT[0] != "w" and KIT[0] != 'wsal') or 'NoDBE' not in pax3 or 'DBEre' in pax3):
                 white_pattern = []
-                if(vit):
-                    white_pattern.append(choice(vitiligo))
                 if KIT[0] == 'wt' or KIT[1] == 'wt':
                     if KIT[1] not in ['ws', 'wt'] and KITgrade < 3:
                         white_pattern.append("dorsal1")
@@ -908,9 +914,12 @@ class Cat:
                 if KIT[0] == "wg" and 'NoDBE' in pax3:
                     for mark in ["left front mitten", "left back mitten", "right front mitten", "right back mitten"]:
                         white_pattern.append(mark)
-                elif (KIT[0] in ["ws", "wt"] or 'DBEre' in pax3) and KIT[1] not in ["ws", "wt"] and 'NoDBE' in pax3:
+                elif (KIT[0] in ["ws", "wt"] or pax3[0] != 'NoDBE') and KIT[1] not in ["ws", "wt"] and 'NoDBE' in pax3:
                     if not KIT[0] in ["ws", "wt"]:
-                        KITgrade = min(KITgrade, 3)
+                        if 'DBEre' in pax3[0]:
+                            KITgrade = min(KITgrade, 3)
+                        else:
+                            KITgrade = randint(1, 2)
                         rand_kit_1 = randint(1, KITgrade)
                         rand_kit_2 = randint(1, KITgrade)
                         rand_kit_3 = randint(1, KITgrade)
@@ -1332,9 +1341,8 @@ class Cat:
 
                         if random() < 0.02:
                             white_pattern = ["full white", "break/inverse thai"]
-            elif white_pattern is None and vit:
-                white_pattern = [choice(vitiligo)]
-            if white_pattern == "No" or white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit and 'DBEre' not in pax3 and 'NoDBE' in pax3):
+
+            if white_pattern == "No" or white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit and pax3 == ['NoDBE', 'NoDBE']):
                 return "No"
             return clean_white(white_pattern)
 
