@@ -1038,30 +1038,7 @@ class Pelt:
     @staticmethod
     def describe_appearance(cat, short=False):
 
-        color_name = cat.phenotype.PhenotypeOutput(gender=cat.genderalign, pattern=cat.genotype.white_pattern)
-
-
-        scar_details = {
-            "NOTAIL": "a stubby tail",
-            "HALFTAIL": "half a tail",
-            "NOPAW": "three paws",
-            "NOLEFTEAR": "a missing ear",
-            "NORIGHTEAR": "a missing ear",
-            "NOEAR": "no ears"
-        }
-
-        additional_details = []
-        for scar in cat.pelt.scars:
-            if scar in scar_details and scar_details[scar] not in additional_details:
-                additional_details.append(scar_details[scar])
-
-        if len(additional_details) > 1:
-            color_name = f"{color_name}, with {', '.join(additional_details[:-1])} and {additional_details[-1]}"
-        elif additional_details:
-            color_name = f"{color_name}, with {additional_details[0]}"
-
-        if len(cat.pelt.scars) >= 3:
-            color_name = f"scarred {color_name}"
+        color_name = cat.phenotype.PhenotypeOutput(gender=cat.genderalign, pattern=cat.genotype.white_pattern, scars=cat.pelt.scars)
 
         return color_name
 
