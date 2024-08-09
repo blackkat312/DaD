@@ -3124,7 +3124,7 @@ class ProfileScreen(Screens):
                     self.genetic_text_box.kill()
 
                 self.chimgenelist = ""
-                phenotypetext = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender)) + "\n"
+                phenotypetext = str(self.the_cat.phenotype.PhenotypeOutput(gender=self.the_cat.genderalign, sex=self.the_cat.genotype.gender, scars=self.the_cat.pelt.scars)) + "\n"
                 print("genetically: " + phenotypetext[:-1])
                 self.genelist = str(self.the_cat.genotype.ShowGenes())
                 somatictext = self.the_cat.genotype.FormatSomatic()
