@@ -418,7 +418,7 @@ class Phenotype():
         if(self.tailtype != ''):
             self.tailtype += "tail"
 
-    def PhenotypeOutput(self, gender=None, sex=None, pattern=None):
+    def PhenotypeOutput(self, gender=None, sex=None, pattern=None, scars=None):
         self.FurtypeFinder()
         self.MainColourFinder()
         self.PointFinder()
@@ -453,6 +453,26 @@ class Phenotype():
         if self.genotype.extraeye:
             eyes += ", and insertsectoral sectoral heterochromia"
 
+        if scars:
+            if "NOTAIL" in scars and (self.bobtailnr == 0 or self.bobtailnr > 2):
+                self.tailtype = "a stubby tail"
+            elif "HALFTAIL" in scars and (self.bobtailnr == 0 or self.bobtailnr > 3):
+                self.tailtype = "half a tail"
+
+            if "NOPAW" in scars:
+                if self.pawtype:
+                    self.pawtype += ", "
+                self.pawtype += "three paws"
+
+            if "NOEAR" in scars:
+                self.eartype = "no ears"
+            elif "NOLEFTEAR" in scars or "NORIGHTEAR" in scars:
+                if self.eartype:
+                    self.eartype = self.eartype.replace("ears", "ear")
+                    self.eartype = "a " + self.eartype
+                else:
+                    self.eartype = "one ear"
+
         withword = self.specwhite
         if (self.eartype !="" or self.tailtype!="" or self.pawtype!="" or furtype!="" or self.vitiligo != ""):
             withword += ", " + self.vitiligo + ", " + furtype + ", " + self.eartype + ", " + self.tailtype + ", " + self.pawtype
@@ -467,23 +487,34 @@ class Phenotype():
                     nochange = True
 
         if withword != "":
-            if ", " in withword and eyes != "insertleft eyes":
+            if "," in withword and eyes != "insertleft eyes":
                 withword += ", "
             elif eyes == "insertleft eyes":
-                if ", " in withword:
+                if "," in withword or scars and len(scars) > 2:
                     withword += ","
                 withword += " and "
         else:
             eyes = eyes.replace("one insertleft eye, and one insertright eye", "one insertleft eye and one insertright eye")
             eyes = eyes.replace("insertleft eyes, and insertsectoral sectoral heterochromia", "insertleft eyes and insertsectoral sectoral heterochromia")
 
+        if scars and len(scars) > 2:
+            withword = withword.replace("and", "")
+            eyes = eyes.replace("and", "")
+            if withword == "" and eyes == "insertleft eyes":
+                eyes += " and"
+            else:
+                eyes += ", and"
+
         eyes = eyes.replace("one insertleft eye, and one insertright eye, and insertsectoral sectoral heterochromia", "one insertleft eye, one insertright eye, and insertsectoral sectoral heterochromia")
         eyes = eyes.replace("insertleft", self.genotype.lefteye)
         eyes = eyes.replace("insertright", self.genotype.righteye)
         eyes = eyes.replace("insertsectoral", self.genotype.extraeyecolour)
         withword = " with " + withword + eyes.lower()
+        if scars and len(scars) > 2:
+            withword += " several scars"
+        elif scars and len(scars) > 4:
+            withword += " many scars"
 
-        sextext = " "
         if not sex or (sex and sex != "intersex"):  # everything else
             sextext = " "
         elif sex == "intersex":  # specifying jic though
@@ -515,10 +546,11 @@ class Phenotype():
         if breed:
             breed = " " + breed + " "
 
+        albinistic = " "
         if self.genotype.pointgene == ['C', 'c'] and ("albino" in self.genotype.lefteyetype or "albino" in self.genotype.righteyetype or (self.genotype.extraeye and "albino" in self.genotype.extraeyetype)):
-            outputs = "a " + self.length + " albinistic " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
-        else:
-            outputs = "a " + self.length + " " + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
+            albinistic = " albinistic "
+
+        outputs = "a " + self.length + albinistic + self.highwhite + self.fade + self.colour + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + gendera + withword
 
         while "  " in outputs:
             outputs = outputs.replace("  ", " ")
