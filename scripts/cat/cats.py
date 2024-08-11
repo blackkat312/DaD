@@ -793,6 +793,7 @@ class Cat:
         self.alters = []
         self.front = None
         self.df = False
+        self.df_trainee = False
         self.experience_level = None
 
         white_pattern = white_patterns
@@ -2241,7 +2242,12 @@ class Cat:
         ):
             self.grief(body)
 
-        if not self.outside:
+        if self.df_trainee and randint(1, 10) == 1:
+            self.df = True
+            game.clan.add_to_darkforest(self)
+        elif randint(1, 20) == 1:
+            game.clan.add_to_unknown(self)
+        elif not self.outside:
             Cat.dead_cats.append(self)
             if game.clan.instructor.df is False:
                 self.df = False
@@ -5545,6 +5551,7 @@ class Cat:
                 "current_apprentice": [appr for appr in self.apprentice],
                 "former_apprentices": [appr for appr in self.former_apprentices],
                 "df": self.df,
+                "df_trainee": self.df_trainee,
                 "outside": self.outside,
                 "dead_outside_display": self.dead_outside_display,
                 "faded_offspring": self.faded_offspring,
