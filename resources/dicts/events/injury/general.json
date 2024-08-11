@@ -8590,6 +8590,9 @@
         "event_id": "gen_injury_clawwound_anytrainee1",
         "location": ["any"],
         "season": ["any"],
+        "tags": [
+            "main_trainee_random_not_trainee"
+        ],
         "weight": 10,
         "event_text": "m_c wakes r_c long before sunup, asking for cobwebs to treat the claw-wound {PRONOUN/m_c/subject} just got. {PRONOUN/m_c/subject/CAP} {VERB/m_c/dodge/dodges} {PRONOUN/r_c/poss} questions of where it came from, though, and r_c feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} hiding something from {PRONOUN/r_c/object}.",
         "new_accessory": [],
@@ -8600,15 +8603,13 @@
                 "adult",
                 "senior adult",
                 "senior"
-            ],
-            "df_trainee": "yes"
+            ]
         },
         "r_c": {
             "status": [
                 "medicine cat",
                 "medicine cat apprentice"
-            ],
-            "df_trainee": "no"
+            ]
         },
         "injury": [
             {
@@ -8666,6 +8667,9 @@
         "event_id": "gen_injury_clawwound_anytraineedark1",
         "location": ["any"],
         "season": ["any"],
+        "tags": [
+            "main_trainee_random_not_trainee"
+        ],
         "weight": 10,
         "event_text": "m_c wakes r_c long before sunup, asking for cobwebs to treat the claw-wound {PRONOUN/m_c/subject} just got. {PRONOUN/m_c/subject/CAP} {VERB/m_c/dodge/dodges} {PRONOUN/r_c/poss} questions of where it came from, though, and r_c feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} hiding something from {PRONOUN/r_c/object}.",
         "new_accessory": [],
@@ -8679,15 +8683,13 @@
             ],
             "skill": [
                 "DARK,1"
-            ],
-            "df_trainee": "yes"
+            ]
         },
         "r_c": {
             "status": [
                 "medicine cat",
                 "medicine cat apprentice"
-            ],
-            "df_trainee": "no"
+            ]
         },
         "injury": [
             {
@@ -8745,6 +8747,9 @@
         "event_id": "gen_injury_fatigue_anytrainee1",
         "location": ["any"],
         "season": ["any"],
+        "tags": [
+            "main_trainee_random_not_trainee"
+        ],
         "weight": 15,
         "event_text": "Despite seemingly sleeping throughout the night, m_c still looks and feels exhausted. When r_c asks for ideas as to why it might be, {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} nervous and fidgety, and r_c feels like m_c is hiding something from {PRONOUN/r_c/object}.",
         "new_accessory": [],
@@ -8755,15 +8760,13 @@
                 "adult",
                 "senior adult",
                 "senior"
-            ],
-            "df_trainee": "yes"
+            ]
         },
         "r_c": {
             "status": [
                 "medicine cat",
                 "medicine cat apprentice"
-            ],
-            "df_trainee": "no"
+            ]
         },
         "injury": [
             {
@@ -8795,6 +8798,9 @@
         "event_id": "gen_injury_fatigue_anytraineedark1",
         "location": ["any"],
         "season": ["any"],
+        "tags": [
+            "main_trainee_random_not_trainee"
+        ],
         "weight": 15,
         "event_text": "Despite seemingly sleeping throughout the night, m_c still looks and feels exhausted. When r_c asks for ideas as to why it might be, {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} nervous and fidgety, and r_c feels like m_c is hiding something from {PRONOUN/r_c/object}.",
         "new_accessory": [],
@@ -8808,15 +8814,13 @@
             ],
             "skill": [
                 "DARK,1"
-            ],
-            "df_trainee": "yes"
+            ]
         },
         "r_c": {
             "status": [
                 "medicine cat",
                 "medicine cat apprentice"
-            ],
-            "df_trainee": "no"
+            ]
         },
         "injury": [
             {
