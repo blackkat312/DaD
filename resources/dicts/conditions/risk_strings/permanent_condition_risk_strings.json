@@ -1761,7 +1761,7 @@
 		"headache": [
 			"r_c notices m_c wince after standing up.",
 			"m_c sighs and ignores the headache {PRONOUN/m_c/subject} {VERB/m_c/get/gets} from {PRONOUN/m_c/poss} blood rushing to {PRONOUN/m_c/poss} head.",
-			"m_c feels cold and dizy for a second before getting a headache.",
+			"m_c feels cold and dizzy for a second before getting a headache.",
 			"m_c shakes the cobwebs out of {PRONOUN/m_c/poss} head when {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} up and {PRONOUN/m_c/subject} {VERB/m_c/get/gets} a headache."
 		],
 		"fainting": [
