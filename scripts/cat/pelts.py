@@ -676,15 +676,19 @@ class Pelt:
             return
 
         if age in ['kitten', 'adolescent']:
-            scar_choice = random.randint(0, 50)  # 2%
-        elif age in ['young adult', 'adult']:
             scar_choice = random.randint(0, 20)  # 5%
+        elif age in ['young adult', 'adult']:
+            scar_choice = random.randint(0, 10)  # 10%
         else:
-            scar_choice = random.randint(0, 15)  # 6.67%
+            scar_choice = random.randint(0, 5)  # 20%
 
         if scar_choice == 1:
+            newscars2 = Pelt.scars2.copy()
+            newscars2.remove("TIPPED")
+
             self.scars.append(choice([
                 choice(Pelt.scars1),
+                choice(newscars2),
                 choice(Pelt.scars3)
             ]))
 
@@ -696,17 +700,17 @@ class Pelt:
             self.accessory = None
             return
 
-        acc_display_choice = random.randint(0, 80)
         if age in ['kitten', 'adolescent']:
-            acc_display_choice = random.randint(0, 180)
+            acc_display_choice = random.randint(0, 20)
         elif age in ['young adult', 'adult']:
-            acc_display_choice = random.randint(0, 100)
+            acc_display_choice = random.randint(0, 30)
+        else:
+            acc_display_choice = random.randint(0, 40)
 
         if acc_display_choice == 1:
             self.accessory = choice([
                 choice(Pelt.plant_accessories),
-                choice(Pelt.wild_accessories),
-                choice(Pelt.flag_accessories)
+                choice(Pelt.wild_accessories)
             ])
         else:
             self.accessory = None
