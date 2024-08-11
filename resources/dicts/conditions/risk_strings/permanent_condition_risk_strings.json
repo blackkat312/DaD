@@ -534,9 +534,9 @@
     		"m_c vents to the medicine cat that sometimes, it feels like {PRONOUN/m_c/poss} body isn't {PRONOUN/m_c/poss} own. {PRONOUN/m_c/subject/CAP} may be a budding spirit."
   		],
 		"brain fog": [
-			"m_c comes into r_c's den looking very confused, admitting {PRONOUN/m_c/subject} {VERB/m_c/are/is} very tired and losing track of things.",
+			"m_c comes into the medicine den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
 			"m_c has some brain fog.",
-			"The clan has noticed that m_c seems distracted unable to hold onto {PRONOUN/m_c/poss} thoughts."
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
     "comet spirit": {
@@ -603,7 +603,7 @@
     		"m_c vents to the medicine cat that sometimes, it feels like {PRONOUN/m_c/poss} body isn't {PRONOUN/m_c/poss} own. {PRONOUN/m_c/subject/CAP} may be a budding spirit."
   		],
 		"stimming": [
-			"m_c has been zooming around r_c's medicine den all moon. Jumping up and down, chattering and generally waving {PRONOUN/m_c/poss} paws around chasing extra stimulation.",
+			"m_c has been zooming around r_c's den all moon. Jumping up and down, chattering and generally waving {PRONOUN/m_c/poss} paws around chasing extra stimulation.",
 			"m_c's been stimming more and more recently, bouncing and pacing around camp with the best of them.",
 			"While m_c knows some of {PRONOUN/m_c/poss} Clanmates don't like it when {PRONOUN/m_c/subject} {VERB/m_c/pace/paces} around camp, {PRONOUN/m_c/subject} {VERB/m_c/need/needs} the extra stimulation."
 		],
@@ -633,7 +633,7 @@
         "parrot chatter": [
             "When r_c mews hello to m_c, m_c mews it back a dozen times. It seems {PRONOUN/m_c/subject}{VERB/m_c/have/has} parrot chatter.",
             "m_c often catches {PRONOUN/m_c/self} repeating the same word over and over. The medicine cat suggests it might be parrot chatter.",
-            "The medicine cat assures that m_c's frequent repetition of words is common for an otherworldly mind."
+            "The medicine cat assures that m_c's frequent repetition of words is common for a comet spirit."
         ],
         "vivid daydreamer": [
             "Sometimes, m_c seems to lose hours staring at the sky, imagining stories the elders recited to {PRONOUN/m_c/object}.",
@@ -796,7 +796,7 @@
         "parrot chatter": [
             "When r_c mews hello to m_c, m_c mews it back a dozen times. It seems {PRONOUN/m_c/subject}{VERB/m_c/have/has} parrot chatter.",
             "m_c often catches {PRONOUN/m_c/self} repeating the same word over and over. The medicine cat suggests it might be parrot chatter.",
-            "The medicine cat assures that m_c's frequent repetition of words is common for an otherworldly mind."
+            "The medicine cat assures that m_c's frequent repetition of words is common for a starwalker."
         ],
         "selective mutism": [
             "Sometimes m_c's voice feels stuck in {PRONOUN/m_c/poss} chest, where the words clog and stifle {PRONOUN/m_c/object}. Sometimes its easier just not to talk at all.",
@@ -1038,9 +1038,9 @@
 			"m_c complains to a Clanmate about the earache that's plaguing {PRONOUN/m_c/object} this moon."
 		],
 		"brain fog": [
-			"m_c comes into r_c's den looking very confused, admitting {PRONOUN/m_c/subject} {VERB/m_c/are/is} very tired and losing track of things.",
+			"m_c comes into the medicine den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
 			"m_c has some brain fog.",
-			"The clan has noticed that m_c seems distracted unable to hold onto {PRONOUN/m_c/poss} thoughts."
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
     "ongoing sleeplessness": {
@@ -1111,9 +1111,9 @@
 			"Frustrated, m_c buries {PRONOUN/m_c/poss} head into moss, hoping it'll dull the pain in {PRONOUN/m_c/poss} ears."
 		],
 		"brain fog": [
-			"m_c comes into r_c's den looking very confused, admitting {PRONOUN/m_c/subject} {VERB/m_c/are/is} very tired and losing track of things.",
+			"m_c comes into the medicine den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
 			"m_c has some brain fog.",
-			"The clan has noticed that m_c seems distracted unable to hold onto {PRONOUN/m_c/poss} thoughts."
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
 	"body biter": {
@@ -1440,9 +1440,9 @@
 			"While sounds are already hard for m_c to discern, it's even harder when {PRONOUN/m_c/poss} ears have a sharp pain within."
 		],
 		"brain fog": [
-			"m_c comes into r_c's den looking very confused, admitting {PRONOUN/m_c/subject} {VERB/m_c/are/is} very tired and losing track of things.",
+			"m_c comes into the medicine den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
 			"m_c has some brain fog.",
-			"The clan has noticed that m_c seems distracted unable to hold onto {PRONOUN/m_c/poss} thoughts."
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
 	},
 	"jumbled noise": {
@@ -1559,9 +1559,9 @@
 				"No matter how much sleep m_c gets, {PRONOUN/m_c/subject} still {VERB/m_c/find/finds} {PRONOUN/m_c/self} unable to fully wake up properly and struggling against incomprehensible figures that grip {PRONOUN/m_c/object} painfully."
 		],
 		"brain fog": [
-			"m_c comes into r_c's den looking very confused, admitting {PRONOUN/m_c/subject} {VERB/m_c/are/is} very tired and losing track of things.",
+			"m_c comes into the medicine den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
 			"m_c has some brain fog.",
-			"The clan has noticed that m_c seems distracted unable to hold onto {PRONOUN/m_c/poss} thoughts."
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
     },
 	"lazy eye": {
