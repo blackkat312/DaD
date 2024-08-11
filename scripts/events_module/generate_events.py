@@ -289,6 +289,68 @@ class GenerateEvents:
             if game.clan.game_mode in ["classic", "expanded"] and "cruel_season" in event.tags:
                 continue
 
+            discard = False
+            for tag in event.tags:
+                if "trainee" in tag:
+                    if tag == "main_trainee" and not cat.df_trainee:
+                        print("discard 1")
+                        discard = True
+                    elif tag == "main_trainee" and cat.df_trainee:
+                        print("given 1")
+                    if tag == "main_not_trainee" and cat.df_trainee:
+                        print("discard 2")
+                        discard = True
+                    elif tag == "main_not_trainee" and not cat.df_trainee:
+                        print("given 2")
+                    if tag == "random_trainee" and not random_cat.df_trainee:
+                        print("discard 3")
+                        discard = True
+                    elif tag == "random_trainee" and random_cat.df_trainee:
+                        print("given 3")
+                    if tag == "random_not_trainee" and random_cat.df_trainee:
+                        print("discard 4")
+                        discard = True
+                    elif tag == "random_not_trainee" and not random_cat.df_trainee:
+                        print("given 4")
+                    if tag == "main_trainee_random_trainee" and not (cat.df_trainee and random_cat.df_trainee):
+                        print("discard 5")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_trainee_random_trainee" and cat.df_trainee and random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 5")
+                    if tag == "main_not_trainee_random_not_trainee" and not (not cat.df_trainee and not random_cat.df_trainee):
+                        print("discard 6")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_not_trainee_random_not_trainee" and not cat.df_trainee and not random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 6")
+                    if tag == "main_trainee_random_not_trainee" and not (cat.df_trainee and not random_cat.df_trainee):
+                        print("discard 7")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_trainee_random_not_trainee" and cat.df_trainee and not random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 7")
+                    if tag == "main_not_trainee_random_trainee" and not (not cat.df_trainee and random_cat.df_trainee):
+                        print("discard 8")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_not_trainee_random_trainee" and not cat.df_trainee and random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 8")
+            if discard:
+                continue
+
             # make complete leader death less likely until the leader is over 150 moons (or unless it's a murder)
             if cat.status == "leader":
                 if "all_lives" in event.tags and "murder" not in event.sub_type:
@@ -370,9 +432,6 @@ class GenerateEvents:
                     if has_condition_that_cannot_have:
                         continue
                     if len(cat.permanent_condition) > 0 and event.m_c["not_permanent_condition"] == ["any"]:
-                        continue
-                if event.m_c["df_trainee"]:
-                    if (event.m_c["df_trainee"] == "yes" and not cat.df_trainee) or (event.m_c["df_trainee"] == "no" and cat.df_trainee):
                         continue
                 if event.m_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
@@ -460,9 +519,6 @@ class GenerateEvents:
                     if has_condition_that_cannot_have:
                         continue
                     if len(random_cat.permanent_condition) > 0 and event.r_c["not_permanent_condition"] == ["any"]:
-                        continue
-                if event.r_c["df_trainee"]:
-                    if (event.r_c["df_trainee"] == "yes" and not random_cat.df_trainee) or (event.r_c["df_trainee"] == "no" and random_cat.df_trainee):
                         continue
                 if event.r_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
@@ -947,8 +1003,6 @@ class ShortEvent:
                 self.m_c["permanent_condition"] = []
             if "not_permanent_condition" not in self.m_c:
                 self.m_c["not_permanent_condition"] = []
-            if "df_trainee" not in self.m_c:
-                self.m_c["df_trainee"] = "either"
 
         self.r_c = r_c if r_c else {}
         if self.r_c:
@@ -976,8 +1030,6 @@ class ShortEvent:
                 self.r_c["permanent_condition"] = []
             if "not_permanent_condition" not in self.r_c:
                 self.r_c["not_permanent_condition"] = []
-            if "df_trainee" not in self.r_c:
-                self.r_c["df_trainee"] = "either"
 
         self.new_cat = new_cat if new_cat else []
         self.injury = injury if injury else []
