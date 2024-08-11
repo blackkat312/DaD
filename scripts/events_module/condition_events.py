@@ -250,23 +250,12 @@ class Condition_Events:
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
-            random_number = int(
-                random.random()
-                * game.get_config_value(
-                    "condition_related", f"{game.clan.game_mode}_illness_chance"
-                )
-            )
+            random_number = int(random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
 
-            if cat.vaccinated and random.randint(1, 5) != 1:
-                random_number = int(random_number * 10)
+            if cat.vaccinated and not random.randint(1, 20) <= 3:  # 85%
+                random_number = int(random_number * 5)
 
-            if (
-                not cat.dead
-                and not cat.is_ill()
-                and random_number <= 10
-                and not event_string
-            ):
-
+            if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
                 # CLAN FOCUS!
                 if game.clan.clan_settings.get("rest and recover"):
                     stopping_chance = game.config["focus"]["rest and recover"][
@@ -290,6 +279,18 @@ class Condition_Events:
                     chosen_illness = "whitecough"
                 elif chosen_illness == "nest wetting" and cat.status not in ['kitten', 'apprentice']:
                     chosen_illness = "night dirtmaking"
+
+                # vaccinated cats
+                if cat.vaccinated:
+                    if chosen_illness == "yellowcough" and random.randint(1, 7) != 1:
+                        chosen_illness = "greencough"
+
+                    if chosen_illness == "greencough" and random.randint(1, 4) != 1:
+                        chosen_illness = "silvercough"
+
+                    if chosen_illness == "silvercough" and cat.status != "kitten" and random.randint(1, 3) == 1:
+                        chosen_illness = "whitecough"
+
                 # make em sick
                 cat.get_ill(chosen_illness)
 
