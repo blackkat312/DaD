@@ -68,7 +68,9 @@
             "Is frightened after hearing a scary story",
             "Wants to be big someday",
             "Wants to have fun",
-            "Is playing pretend"
+            "Is playing pretend",
+            "Discovers that {PRONOUN/m_c/subject} {VERB/m_c/have/has} a tail",
+            "Has a yawn so big that {PRONOUN/m_c/subject} {VERB/m_c/topple/topples} over"
         ]
     },
     {
@@ -198,7 +200,6 @@
             "Is sneaking into the leader's nest",
             "Sticks {PRONOUN/m_c/poss} paw into an old snake hole",
             "Isn't afraid of the dark at all"
-
         ],
         "main_trait_constraint": [
             "fearless"
@@ -622,12 +623,15 @@
         "thoughts": [
             "Tells r_c the differences between a crow and a raven",
             "Plans out an elaborate story in {PRONOUN/m_c/poss} mind",
-            "Feels exhausted from talking to other kits"
+            "Feels exhausted from talking to the other kits"
         ],
         "perm_conditions": {
             "m_c": [
                 "starwalker"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     }
 ]
