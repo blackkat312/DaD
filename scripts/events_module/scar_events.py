@@ -112,7 +112,7 @@ class Scar_Events():
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
 
-        if len(cat.pelt.scars) < 5 and random.randint(1, 2) == 1:
+        if len(cat.pelt.scars) < 7 and random.randint(1, 2) == 1:
 
             # move potential scar text into displayed scar text
 
