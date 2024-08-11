@@ -539,7 +539,7 @@ def create_new_cat_block(
     elif "clancat" in attribute_list:
         cat_type = "former Clancat"
     else:
-        cat_type = choice(['kittypet', 'kittypet', 'loner', 'loner', 'loner', 'loner', 'former Clancat', 'former Clancat'])
+        cat_type = choice(['kittypet', 'loner', 'loner', 'loner', 'loner', 'former Clancat', 'former Clancat'])
 
     # LITTER
     litter = False
