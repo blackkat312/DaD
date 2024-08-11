@@ -310,6 +310,9 @@
         "random_status_constraint": [
             "medicine cat",
             "medicine cat apprentice"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -374,7 +377,7 @@
     {
         "id": "careful_warrior_to_deputy",
         "thoughts": [
-            "Asks the deputy to send out some more hunting patrols, just to be sure"
+            "Asks the deputy about sending out some more hunting patrols - just to be sure"
         ],
         "main_trait_constraint": [
             "careful"
@@ -394,6 +397,9 @@
         "random_status_constraint": [
             "medicine cat",
             "medicine cat apprentice"
+        ],
+        "random_living_status": [
+            "living"
         ]
     },
     {
@@ -984,10 +990,10 @@
         "main_trait_constraint": [
             "responsible"
         ],
-        "random_status_constraint":[
+        "random_status_constraint": [
             "kitten"
         ],
-        "random_living_status":[
+        "random_living_status": [
             "living"
         ]
     },
@@ -1300,6 +1306,9 @@
             "m_c": [
                 "recurring shock"
             ]
-        }
+        },
+        "random_living_status": [
+            "living"
+        ]
     }
 ]
