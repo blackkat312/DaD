@@ -9,8 +9,8 @@ class SkillPath(Enum):
     FIGHTER = (
         "avid play-fighter",
         "good fighter",
+        "adept fighter",
         "formidable fighter",
-        "unusually strong fighter",
     )
     RUNNER = (
         "never sits still",
