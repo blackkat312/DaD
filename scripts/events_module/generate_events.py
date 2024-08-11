@@ -371,6 +371,9 @@ class GenerateEvents:
                         continue
                     if len(cat.permanent_condition) > 0 and event.m_c["not_permanent_condition"] == ["any"]:
                         continue
+                if event.m_c["df_trainee"]:
+                    if (event.m_c["df_trainee"] == "yes" and not cat.df_trainee) or (event.m_c["df_trainee"] == "no" and cat.df_trainee):
+                        continue
                 if event.m_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
                                                     filter_types=event.m_c["relationship_status"],
@@ -457,6 +460,9 @@ class GenerateEvents:
                     if has_condition_that_cannot_have:
                         continue
                     if len(random_cat.permanent_condition) > 0 and event.r_c["not_permanent_condition"] == ["any"]:
+                        continue
+                if event.r_c["df_trainee"]:
+                    if (event.r_c["df_trainee"] == "yes" and not random_cat.df_trainee) or (event.r_c["df_trainee"] == "no" and random_cat.df_trainee):
                         continue
                 if event.r_c["relationship_status"]:
                     if not filter_relationship_type(group=[cat, random_cat],
@@ -941,6 +947,8 @@ class ShortEvent:
                 self.m_c["permanent_condition"] = []
             if "not_permanent_condition" not in self.m_c:
                 self.m_c["not_permanent_condition"] = []
+            if "df_trainee" not in self.m_c:
+                self.m_c["df_trainee"] = "either"
 
         self.r_c = r_c if r_c else {}
         if self.r_c:
@@ -968,6 +976,8 @@ class ShortEvent:
                 self.r_c["permanent_condition"] = []
             if "not_permanent_condition" not in self.r_c:
                 self.r_c["not_permanent_condition"] = []
+            if "df_trainee" not in self.r_c:
+                self.r_c["df_trainee"] = "either"
 
         self.new_cat = new_cat if new_cat else []
         self.injury = injury if injury else []
