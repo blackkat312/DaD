@@ -794,6 +794,8 @@ class Cat:
         self.front = None
         self.df = False
         self.df_trainee = False
+        self.trainee_start_moon = -1
+        self.trainee_end_moon = -1
         self.experience_level = None
 
         white_pattern = white_patterns
@@ -3113,6 +3115,53 @@ class Cat:
         # Set personality to correct type
         self.personality.set_kit(self.is_baby())
         # Upon age-change
+
+        join_chance = 200
+        leave_chance = 250
+        mentor = Cat.fetch_cat(self.mentor) if self.mentor else None
+
+        if self.personality.stability < 6 or self.personality.lawfulness < 6 or self.personality.aggression > 10:
+            join_chance -= 25
+            leave_chance += 25
+
+        if self.age == "adolescent":
+            if self.moons < 9:
+                join_chance -= 30
+                leave_chance += 30
+            if self.status == "apprentice":
+                join_chance -= 50
+                leave_chance += 50
+            elif self.status in ["mediator apprentice", "medicine cat apprentice"]:
+                join_chance -= 40
+                leave_chance += 40
+        elif self.status in ["apprentice", "mediator apprentice"]:
+            join_chance -= 60
+            leave_chance += 60
+        elif self.status == "medicine cat apprentice":
+            join_chance -= 45
+            leave_chance += 45
+        if mentor and mentor.df_trainee:
+            if self.moons < 9:
+                join_chance -= 40
+                leave_chance += 40
+            else:
+                join_chance -= 30
+                leave_chance += 30
+        for skill in self.skills:
+            if "DARK" in skill:
+                join_chance -= 50
+                leave_chance += 50
+
+        if not self.df_trainee and self.trainee_end_moon == -1:
+            if randint(1, join_chance) == 1:
+                print(f"{self.name} joined the Dark Forest")
+                self.df_trainee = True
+                self.trainee_start_moon = game.clan.age
+        elif self.df_trainee:
+            if randint(1, leave_chance) == 1:
+                print(f"{self.name} left the Dark Forest")
+                self.df_trainee = False
+                self.trainee_end_moon = game.clan.age
 
         if self.status in ['apprentice', 'mediator apprentice', 'medicine cat apprentice']:
             self.update_mentor()
@@ -5552,6 +5601,8 @@ class Cat:
                 "former_apprentices": [appr for appr in self.former_apprentices],
                 "df": self.df,
                 "df_trainee": self.df_trainee,
+                "trainee_start_moon": self.trainee_start_moon,
+                "trainee_end_moon": self.trainee_end_moon,
                 "outside": self.outside,
                 "dead_outside_display": self.dead_outside_display,
                 "faded_offspring": self.faded_offspring,
