@@ -199,7 +199,7 @@
 	"anxiety attack": {
 		"panic attack": [
 			"r_c carefully remains outside of m_c's personal space and attempts to count with {PRONOUN/m_c/object}, desperately hoping the distraction will prevent {PRONOUN/m_c/poss} anxiety from further progressing to full panic.",
-			"m_c's tail lashes, eyes darting around the camp. {PRONOUN/m_c/poss/CAP} paws dig into the dirt of the den floor and {PRONOUN/m_c/subject} {VERB/m_c/look/looks} moments away from bolting at the slightest movement.",
+			"m_c's tail lashes, eyes darting around camp. {PRONOUN/m_c/poss/CAP} paws dig into the dirt of the den floor and {PRONOUN/m_c/subject} {VERB/m_c/look/looks} moments away from bolting at the slightest movement.",
 			"Instead of fading the anxiety only seems to build and build until m_c feels like {PRONOUN/m_c/subject} can't breathe, everything is dangerous and wrong and {PRONOUN/m_c/subject} {VERB/m_c/need/needs} out, out.",
 			"It's irrational, there's nothing there, {PRONOUN/m_c/subject} {VERB/m_c/are/is} not in any danger here. m_c keeps reminding {PRONOUN/m_c/self} over and over as {PRONOUN/m_c/poss} chest grows tighter and tighter.",
 			"{PRONOUN/m_c/subject} can't breathe, m_c can't breathe drowning on land, drowning in the panic that floods {PRONOUN/m_c/poss} body putting all {PRONOUN/m_c/poss} fur on end."
@@ -241,7 +241,7 @@
 		"paranoia": [
 			"m_c refuses to take the herbs that r_c is offering {PRONOUN/m_c/object}, convinced that they might be dangerous and not actually helpful.",
 			"After all the panic and anxiety, m_c has been twitching, muttering things that sound more and more paranoid.",
-			"{PRONOUN/m_c/subject/CAP} {VERB/m_c/are/is} just double checking things, just making sure the camp is secure m_c tells {PRONOUN/m_c/self}.",
+			"{PRONOUN/m_c/subject/CAP} {VERB/m_c/are/is} just double checking things, just making sure that camp is secure m_c tells {PRONOUN/m_c/self}.",
 			"m_c noses at {PRONOUN/m_c/poss} food and bedding for the third time today convinced that there's something in it that will harm {PRONOUN/m_c/object}."
 		],
 		"dizziness": [
@@ -263,7 +263,7 @@
 	"seasonal lethargy": {
 		"heavy soul": [
 			"Something is wrong, m_c looks up at r_c, something is wrong and the heavy blanket of tiredness hasn't left yet. r_c can only shake {PRONOUN/r_c/poss} head, it would appear that {PRONOUN/m_c/poss} soul has become weighted down and heavy.",
-			"m_c watches the camp change, {PRONOUN/m_c/subject} {VERB/m_c/watch/watches} as the dawn rises and just wonder why {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} feel any lighter yet.",
+			"m_c watches camp change, {PRONOUN/m_c/subject} {VERB/m_c/watch/watches} as the dawn rises and just wonder why {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} feel any lighter yet.",
 			"Usually with the warmth and the frost m_c finds that the heavy weight of exhaustion has left, but now all {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} like is curling back up again and never leaving the den.",
 			"Something in m_c's chest feels tight, feels numb really. A weight that {PRONOUN/m_c/subject} {VERB/m_c/have/has} to carry around for the rest of {PRONOUN/m_c/poss} life."
 		]
@@ -278,6 +278,11 @@
 			"r_c lightly scolds m_c when {PRONOUN/r_c/subject} {VERB/r_c/notice/notices} that in all of {PRONOUN/m_c/poss} stimming, {PRONOUN/m_c/poss} {VERB/m_c/have/has} become a body biter.",
 			"Reluctantly, m_c has to admit {PRONOUN/m_c/subject} might have a problem with body biting.",
 			"m_c stares at {PRONOUN/m_c/poss} bleeding paws with the realisation that it's self inflicted."
+		],
+		"bruises": [
+			"r_c sighs when m_c comes to {PRONOUN/r_c/object} for bruising.",
+			"m_c has stimmed so hard that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} bruised {PRONOUN/m_c/self}.",
+			"m_c winces when {PRONOUN/m_c/subject} {VERB/m_c/stim/stims} now."
 		]
 	},
 	"verbal shutdown": {
@@ -326,7 +331,7 @@
 		"dizziness": [
 			"From m_c's lack of sleep r_c has noticed that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} struggling to remain upright.",
 			"Worried m_c has noticed that {PRONOUN/m_c/subject} {VERB/m_c/feel/feels} more floaty than usual on {PRONOUN/m_c/poss} paws and dizzy.",
-			"m_c wishes the world would remain still as {PRONOUN/m_c/subject} walked around the camp."
+			"m_c wishes the world would remain still as {PRONOUN/m_c/subject} walked around camp."
 		],
 		"nightmares": [
 			"r_c worriedly watches over m_c as in the first bit of sleep {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} managed to get for a while {PRONOUN/m_c/subject} {VERB/m_c/thrash/thrashes} and whimpers in the grasp of a nightmare.",
@@ -418,6 +423,64 @@
 		"stomachache": [
 			"Although {PRONOUN/m_c/poss} nausea is gone, m_c now has a stomachache.",
 			"m_c's nausea has turned into a stomachache."
+		]
+	},
+	"meltdown": {
+		"stimming": [
+			"r_c tries to stop m_c from throwing {PRONOUN/m_c/self} into a tree, but a Clanmate that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} close with stops {PRONOUN/r_c/subject}. This is how m_c copes with being overwhelmed.",
+			"During {PRONOUN/m_c/poss} meltdown, m_c starts kicking well meaning, albeit slightly foolish Clanmates away. {PRONOUN/m_c/subject/CAP} {VERB/m_c/need/needs} to be alone for this.",
+			"m_c can't stop clawing; the ground, a rock, {PRONOUN/m_c/poss} nest, all of it gets scratched up because of {PRONOUN/m_c/poss} meltdown."
+		],
+		"verbal shutdown": [
+			"m_c stops speaking during {PRONOUN/m_c/poss} meltdown.",
+			"m_c can't speak during {PRONOUN/m_c/poss} meltdown.",
+			"m_c is so overwhelmed that {PRONOUN/m_c/subject} can no longer speak.",
+			"Words become useless when m_c is this upset."
+		],
+		"overstimulation": [
+			"r_c realized that the cause of m_c's meltdown is overstimulation and moves {PRONOUN/m_c/object} to a less stimulating place.",
+			"The cause of m_c's meltdown is overstimulation.",
+			"The Clan realizes that to prevent m_c from melting down like that again, they need to be more careful with how camp is managed."
+		],
+		"understimulation": [
+			"r_c realized that the cause of m_c's meltdown is understimulation and makes sure to talk to the guardian about giving {PRONOUN/m_c/object} more patrols to do.",
+			"m_c's Clanmates realize that they might need to take m_c off of guard duty to prevent {PRONOUN/m_c/object} from melting down again.",
+			"The cause of m_c's meltdown is understimulation."
+		],
+		"brain fog": [
+			"During {PRONOUN/m_c/poss} meltdown, m_c starts feeling numb. It's hard to think.",
+			"m_c's thoughts melt away as {PRONOUN/m_c/subject} {VERB/m_c/melt/melts} down.",
+			"Thoughts don't work anymore. m_c is too overwhelmed.",
+			"It's hard to think when m_c is so overwhelmed."
+		]
+	},
+	"shutdown": {
+		"stimming": [
+			"m_c can't stop rocking back and forth. {PRONOUN/m_c/poss/CAP} mind is too clouded to think, so instead, {PRONOUN/m_c/subject} {VERB/m_c/rock/rocks}.",
+			"m_c sways back and forth like a branch in the wind.",
+			"m_c feels like {PRONOUN/m_c/subject} can't move - apart from {PRONOUN/m_c/poss} tail tip. {PRONOUN/m_c/poss/CAP} tail tip doesn't stop moving; it doesn't stop tapping on the ground."
+		],
+		"verbal shutdown": [
+			"The world is too much for m_c, so {PRONOUN/m_c/subject} try to speak less to help that.",
+			"m_c can't speak anymore due to {PRONOUN/m_c/poss} shutdown.",
+			"m_c stops talking during {PRONOUN/m_c/poss} shutdown.",
+			"{PRONOUN/m_c/poss/CAP} Clanmates try to get a helpful word out of m_c, only to be greeted with nothing..."
+		],
+		"overstimulation": [
+			"r_c has a talk with some of m_c's Clanmates about not making {PRONOUN/m_c/object} clean the dirtplace. After all, the last time they made m_c dig a new dirtplace trench, {PRONOUN/m_c/subject} had a shutdown, and we all don't want that to happen again. <b>Right?</b>",
+			"The cause of m_c's shutdown is overstimulation.",
+			"The Clan realizes that to prevent m_c from shutting down like that again, they need to be more careful with how camp is managed."
+		],
+		"understimulation": [
+			"r_c has a talk with the guardian about giving m_c more to do and a greater variety of things to do. Battle training and hunting might work well, but guarding camp for hours on end? Maybe not.",
+			"The reason that m_c has gotten quiet is because of nothing happening in camp.",
+			"There is nothing in camp that would have caused m_c to shut down due to overstimulation. Nothing. So much of nothing, that m_c's Clanmates have decided that it's because of <i>understimulation</i> that {PRONOUN/m_c/subject} shut down."
+		],
+		"brain fog": [
+			"During {PRONOUN/m_c/poss} meltdown, m_c starts feeling numb. It's hard to think.",
+			"m_c's thoughts melt away as {PRONOUN/m_c/subject} {VERB/m_c/shut/shuts} down.",
+			"Thoughts don't work anymore. m_c is too overwhelmed.",
+			"It's hard to think when m_c is so overwhelmed."
 		]
 	}
 }
