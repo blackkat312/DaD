@@ -1938,6 +1938,13 @@ class ChangeCatToggles(UIWindow):
             container=self,
         )
 
+        self.text_5 = pygame_gui.elements.UITextBox(
+            "Prevent becoming a Dark Forest trainee",
+            scale(pygame.Rect(110, 260, -1, 50)),
+            object_id="#text_box_30_horizleft_pad_0_8",
+            container=self,
+        )
+
         # Text
 
     def refresh_checkboxes(self):
@@ -1957,7 +1964,6 @@ class ChangeCatToggles(UIWindow):
             box_type = "#unchecked_checkbox"
             tool_tip = "Prevent the cat from fading away after being dead for 25 moons."
 
-        # Fading
         self.checkboxes["prevent_fading"] = UIImageButton(
             scale(pygame.Rect(45, 50, 68, 68)),
             "",
@@ -2009,7 +2015,7 @@ class ChangeCatToggles(UIWindow):
             tool_tip_text=tool_tip,
         )
 
-        # No mates
+        # No Mates
         if self.the_cat.no_mates:
             box_type = "#checked_checkbox"
             tool_tip = "Allow the cat to automatically take a mate, break up, or have romantic interactions with non-mates."
@@ -2019,6 +2025,22 @@ class ChangeCatToggles(UIWindow):
 
         self.checkboxes["prevent_mates"] = UIImageButton(
             scale(pygame.Rect(45, 200, 68, 68)),
+            "",
+            container=self,
+            object_id=box_type,
+            tool_tip_text=tool_tip,
+        )
+
+        # Prevent Trainee
+        if self.the_cat.prevent_trainee:
+            box_type = "#checked_checkbox"
+            tool_tip = "Allow the cat to train in the Place of No Stars."
+        else:
+            box_type = "#unchecked_checkbox"
+            tool_tip = "Prevent the cat from training in the Place of No Stars."
+
+        self.checkboxes["prevent_trainee"] = UIImageButton(
+            scale(pygame.Rect(45, 250, 68, 68)),
             "",
             container=self,
             object_id=box_type,
@@ -2043,6 +2065,13 @@ class ChangeCatToggles(UIWindow):
                 self.refresh_checkboxes()
             elif event.ui_element == self.checkboxes["prevent_mates"]:
                 self.the_cat.no_mates = not self.the_cat.no_mates
+                self.refresh_checkboxes()
+            elif event.ui_element == self.checkboxes["prevent_trainee"]:
+                if self.the_cat.df_trainee and not self.the_cat.prevent_trainee:
+                    self.the_cat.df_trainee = False
+                    self.the_cat.trainee_start_moon = -1
+                    self.the_cat.trainee_end_moon = -1
+                self.the_cat.prevent_trainee = not self.the_cat.prevent_trainee
                 self.refresh_checkboxes()
 
         return super().process_event(event)
