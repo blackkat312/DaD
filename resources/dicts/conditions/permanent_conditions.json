@@ -997,9 +997,18 @@
             {
 				"name": "vivid daydreamer",
 				"chance": 80
-			}
+			},
+            {
+                "name": "meltdown",
+                "chance": 50
+            },
+            {
+                "name": "shutdown",
+                "chance": 50
+            }
         ],
-        "herbs": [ ]
+        "herbs": [
+        ]
     },
     "obsessive mind": {
         "severity": "minor",

@@ -807,7 +807,17 @@
         "vivid daydreamer": [
             "Sometimes, m_c seems to lose hours staring at the sky, imagining stories the elders recited to {PRONOUN/m_c/object}.",
             "On rough days, m_c finds it easier to picture fantastical scenarios in {PRONOUN/m_c/poss} mind than face the stresses of the Clan."
-        ]
+        ],
+		"meltdown": [
+			"r_c finds m_c yowling into the sky and crying. r_c doesn't know <i>why</i> m_c is having this reaction, but it's clear that m_c is having a meltdown.",
+			"m_c has been trying to trudge through but just <i>can't.</i>",
+			"Sometimes, starwalkers can't control {PRONOUN/m_c/self} when things get overwhelming for {PRONOUN/m_c/object}, this time, it is clear that m_c can't."
+		],
+		"shutdown": [
+			"r_c finds m_c quite and numb. Looks like things have gotten too overwhelming for {PRONOUN/m_c/object}.",
+			"m_c has gone silent. {PRONOUN/m_c/subject/CAP} don't know what's going on with {PRONOUN/m_c/object}, but {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} having a shutdown.",
+			"m_c looks like they have zoned out but internally, m_c is just trying to keep {PRONOUN/m_c/poss} ears from falling off."
+		]
     },
     "obsessive mind": {
 		"anxiety attack": [
@@ -1631,7 +1641,8 @@
 			"m_c staggers when {PRONOUN/m_c/subject} {VERB/m_c/try/tries} to stand up.",
 			"The world tilts around m_c when {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} up.",
 			"m_c gets dizzy again.",
-			"m_c feels cold and dizzy when {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} up."
+			"m_c feels cold and dizzy when {PRONOUN/m_c/subject} {VERB/m_c/stand/stands} up.",
+			"m_c hisses when a warrior says that {PRONOUN/m_c/subject} should just be more careful when {PRONOUN/m_c/subject} stand up."
 		],
 		"headache": [
 			"r_c notices m_c wince after standing up.",
@@ -1824,7 +1835,8 @@
 		"dizziness":[
 			"r_c helps m_c stay on {PRONOUN/m_c/poss} paws as {PRONOUN/r_c/subject} {VERB/r_c/guide/guides} {PRONOUN/m_c/object} towards the medicine den to rest in until this period of dizziness passes.",
 			"m_c quickly sits back down and takes a deep breath. This stops {PRONOUN/m_c/object} from faiting, but the dizziness doesn't subside.",
-			"m_c stands up too quickly and finds the world spinning around {PRONOUN/m_c/object}."
+			"m_c stands up too quickly and finds the world spinning around {PRONOUN/m_c/object}.",
+			"m_c hisses when a warrior says that {PRONOUN/m_c/subject} should just be more careful when {PRONOUN/m_c/subject} stand up."
 		],
 		"fainting":[
 			"r_c makes sure that the nest is nice and soft, set aside for m_c to rest in once {PRONOUN/m_c/subject} {VERB/m_c/recover/recovers} from {PRONOUN/m_c/poss} fainting spell.",
@@ -1845,9 +1857,10 @@
 	},
 	"flooded paws": {
 		"dizziness":[
-			"m_c stands up too quickly and finds the world spinning around {PRONOUN/m_c/object}.",
 			"r_c helps m_c stay on {PRONOUN/m_c/poss} paws as {PRONOUN/r_c/subject} {VERB/r_c/guide/guides} {PRONOUN/m_c/object} towards the medicine den to rest in until this period of dizziness passes.",
-			"It seems every time m_c moves too suddenly, a new wave of dizziness hits {PRONOUN/m_c/object}."
+			"m_c stands up too quickly and finds the world spinning around {PRONOUN/m_c/object}.",
+			"It seems every time m_c moves too suddenly, a new wave of dizziness hits {PRONOUN/m_c/object}.",
+			"m_c hisses when a warrior says that {PRONOUN/m_c/subject} should just be more careful when {PRONOUN/m_c/subject} stand up."
 		],
 		"fainting":[
 			"m_c stood up too fast and ended up crashing back down to the distress of {PRONOUN/m_c/poss} Clanmates.",

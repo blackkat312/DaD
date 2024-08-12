@@ -274,6 +274,19 @@
     ],
 	"brain fog": [
 		"r_c is reassured by m_c that {PRONOUN/m_c/poss} brain fog has passed.",
-		"m_c is no longer experiencing brain fog."
+		"m_c is no longer experiencing brain fog.",
+		"m_c has stopped feeling so numb, and {PRONOUN/m_c/poss} brain fog has lifted."
+	],
+	"meltdown": [
+		"m_c is so grateful that r_c has come to check on {PRONOUN/m_c/object} after {PRONOUN/m_c/poss} meltdown.",
+		"m_c lies numb in {PRONOUN/m_c/poss} nest after {PRONOUN/m_c/poss} meltdown is over.",
+		"m_c is grateful to be alone after {PRONOUN/m_c/poss} meltdown.",
+		"m_c has regained control and has calmed down."
+	],
+	"shutdown": [
+		"m_c is so grateful that r_c has come to check on {PRONOUN/m_c/object} after {PRONOUN/m_c/poss} shutdown.",
+		"m_c's clanmates are glad to see {PRONOUN/m_c/object} talking about after {PRONOUN/m_c/poss} shutdown.",
+		"m_c is grateful to be alone after {PRONOUN/m_c/poss} shutdown.",
+		"m_c has regained control and has calmed down."
 	]
 }
