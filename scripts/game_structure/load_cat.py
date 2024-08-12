@@ -198,7 +198,10 @@ def json_load():
             new_cat.apprentice = cat["current_apprentice"]
             new_cat.former_apprentices = cat["former_apprentices"]
             new_cat.df = cat["df"] if "df" in cat else False
+
             new_cat.df_trainee = cat["df_trainee"] if "df_trainee" in cat else False
+            new_cat.trainee_start_moon = cat["trainee_start_moon"] if "trainee_start_moon" in cat else -1
+            new_cat.trainee_end_moon = cat["trainee_end_moon"] if "trainee_end_moon" in cat else -1
 
             new_cat.outside = cat["outside"] if "outside" in cat else False
             new_cat.dead_outside_display = cat["dead_outside_display"] if "dead_outside_display" in cat else new_dead_outside
