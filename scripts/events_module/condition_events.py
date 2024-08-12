@@ -383,10 +383,17 @@ class Condition_Events:
                         print(f"rest and recover - injury prevented for {cat.name}")
                         return False
 
-                handle_short_events.handle_event(event_type="health",
-                                                 main_cat=cat,
-                                                 random_cat=random_cat,
-                                                 freshkill_pile=game.clan.freshkill_pile)
+                if (cat.df_trainee or (random_cat and random_cat.df_trainee)) and random.randint(1, game.config["event_generation"]["df_trainee_injury_event_denominator"]) <= game.config["event_generation"]["df_trainee_injury_event_compare"]:
+                    handle_short_events.handle_event(event_type="health",
+                                                     main_cat=cat,
+                                                     random_cat=random_cat,
+                                                     freshkill_pile=game.clan.freshkill_pile,
+                                                     sub_type=["dark_forest"])
+                else:
+                    handle_short_events.handle_event(event_type="health",
+                                                     main_cat=cat,
+                                                     random_cat=random_cat,
+                                                     freshkill_pile=game.clan.freshkill_pile)
 
 
         # just double-checking that trigger is only returned True if the cat is dead
