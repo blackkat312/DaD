@@ -3119,12 +3119,19 @@ class Cat:
         join_chance = 200
         leave_chance = 250
         mentor = Cat.fetch_cat(self.mentor) if self.mentor else None
+        skills_string = str(self.skills)
 
         if self.personality.stability < 6 or self.personality.lawfulness < 6 or self.personality.aggression > 10:
             join_chance -= 25
             leave_chance += 25
 
-        if self.age == "adolescent":
+        if self.age == "kitten":
+            join_chance += 100
+            leave_chance -= 100
+        elif self.age in ["senior adult", "senior"]:
+            join_chance += 50
+            leave_chance -= 50
+        elif self.age == "adolescent":
             if self.moons < 9:
                 join_chance -= 30
                 leave_chance += 30
@@ -3147,10 +3154,9 @@ class Cat:
             else:
                 join_chance -= 30
                 leave_chance += 30
-        for skill in self.skills:
-            if "DARK" in skill:
-                join_chance -= 50
-                leave_chance += 50
+        if "DARK" in skills_string:
+            join_chance -= 50
+            leave_chance += 50
 
         if not self.df_trainee and self.trainee_end_moon == -1:
             if randint(1, join_chance) == 1:
