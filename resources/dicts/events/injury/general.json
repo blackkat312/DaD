@@ -7927,7 +7927,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_anysenioradultsenior1",
+        "event_id": "gen_injury_severetickbites_anymultiage1",
         "location": ["any"],
         "season": ["any"],
         "weight": 5,
@@ -7962,7 +7962,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_anysenioradultsenior2",
+        "event_id": "gen_injury_severetickbites_anymultitraitmultiage1",
         "location": ["any"],
         "season": ["any"],
         "weight": 5,
@@ -8006,7 +8006,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_anysenioradultsenior3",
+        "event_id": "gen_injury_severetickbites_anymultitraitmultiage2",
         "location": ["any"],
         "season": ["any"],
         "tags": ["clan:apprentice"],
@@ -8051,7 +8051,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_anysenioradultsenior4",
+        "event_id": "gen_injury_severetickbites_anymultitraitmultiage3",
         "location": ["any"],
         "season": ["any"],
         "weight": 5,
@@ -8095,7 +8095,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_tickbites_anyapprentice1",
+        "event_id": "gen_injury_tickbites_anymultistatus1",
         "location": [
             "any"
         ],
@@ -8110,6 +8110,7 @@
             ],
             "status": [
                 "apprentice",
+				"medicine cat",
                 "medicine cat apprentice"
             ]
         },
@@ -8125,7 +8126,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_tickbites_anyapprentice2",
+        "event_id": "gen_injury_tickbites_anymultistatus2",
         "location": ["any"],
         "season": ["any"],
         "weight": 20,
@@ -8136,6 +8137,7 @@
             ],
             "status": [
 				"apprentice",
+				"medicine cat",
 				"medicine cat apprentice"
 			]
         },
@@ -8151,7 +8153,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_helper1",
+        "event_id": "gen_injury_severetickbites_anymultistatus1",
         "location": ["any"],
         "season": ["any"],
         "weight": 20,
@@ -8162,8 +8164,8 @@
             ],
             "status": [
 				"apprentice",
-				"medicine cat apprentice",
-				"medicine cat"
+				"medicine cat",
+				"medicine cat apprentice"
 			],
             "trait": [
                 "any"
@@ -8198,7 +8200,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_helper2",
+        "event_id": "gen_injury_severetickbites_anymultitraitmultistatus1",
         "location": ["any"],
         "season": ["any"],
         "weight": 20,
@@ -8209,13 +8211,12 @@
             ],
             "status": [
 				"apprentice",
-				"medicine cat apprentice",
-				"medicine cat"
+				"medicine cat",
+				"medicine cat apprentice"
 			],
             "trait": [
                 "calm",
                 "compassionate",
-                "dreamer",
 				"faithful",
 				"loving"
             ]
@@ -8250,7 +8251,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_severetickbites_helper3",
+        "event_id": "gen_injury_severetickbites_anymultitraitmultistatus2",
         "location": ["any"],
         "season": ["any"],
         "tags": ["clan:medicine cat"],
@@ -8262,8 +8263,8 @@
             ],
             "status": [
 				"apprentice",
-				"medicine cat apprentice",
-				"medicine cat"
+				"medicine cat",
+				"medicine cat apprentice"
 			],
             "trait": [
                 "troublesome",
@@ -8511,7 +8512,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_earache_any1",
+        "event_id": "gen_injury_earache_anyany1",
         "location": ["any"],
         "season": ["any"],
         "weight": 10,
@@ -8536,7 +8537,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_earache_any2",
+        "event_id": "gen_injury_earache_anyany2",
         "location": ["any"],
         "season": ["any"],
         "tags": ["clan:medicine cat"],
@@ -8561,7 +8562,7 @@
         ]
     },
     {
-        "event_id": "gen_injury_fatigue_any",
+        "event_id": "gen_injury_fatigue_anyany1",
         "location": ["any"],
         "season": ["any"],
         "weight": 20,
@@ -8582,6 +8583,272 @@
                 "injuries": [
                     "fatigue"
                 ]
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_clawwound_anytrainee1",
+        "location": ["any"],
+        "season": ["any"],
+        "tags": [
+            "main_trainee",
+            "random_not_trainee"
+        ],
+        "weight": 10,
+        "event_text": "m_c wakes r_c long before sunup, asking for cobwebs to treat the claw-wound {PRONOUN/m_c/subject} just got. {PRONOUN/m_c/subject/CAP} {VERB/m_c/dodge/dodges} {PRONOUN/r_c/poss} questions of where it came from, though, and r_c feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} hiding something from {PRONOUN/r_c/object}.",
+        "new_accessory": [],
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "medicine cat",
+                "medicine cat apprentice"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred from an intense training session in the Place of No Stars.",
+                "reg_death": "m_c couldn't survive {PRONOUN/m_c/poss} wounds from an intense training session in the Place of No Stars.",
+                "lead_death": "couldn't survive {PRONOUN/m_c/poss} wounds from an intense training session in the Place of No Stars"
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "r_c"
+                ],
+                "cats_to": [
+                    "m_c"
+                ],
+                "mutual": false,
+                "values": [
+                    "trust"
+                ],
+                "amount": -5
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_clawwound_anytraineedark1",
+        "location": ["any"],
+        "season": ["any"],
+        "tags": [
+            "main_trainee",
+            "random_not_trainee"
+        ],
+        "weight": 10,
+        "event_text": "m_c wakes r_c long before sunup, asking for cobwebs to treat the claw-wound {PRONOUN/m_c/subject} just got. {PRONOUN/m_c/subject/CAP} {VERB/m_c/dodge/dodges} {PRONOUN/r_c/poss} questions of where it came from, though, and r_c feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} hiding something from {PRONOUN/r_c/object}.",
+        "new_accessory": [],
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "skill": [
+                "DARK,1"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "medicine cat",
+                "medicine cat apprentice"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "claw-wound"
+                ],
+                "scars": [
+                    "ONE",
+                    "TWO",
+                    "SNOUT",
+                    "TAILSCAR",
+                    "CHEEK",
+                    "SIDE",
+                    "THROAT",
+                    "TAILBASE",
+                    "BELLY",
+                    "FACE",
+                    "BRIDGE",
+                    "HINDLEG",
+                    "BACK",
+                    "SCRATCHSIDE"
+                ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred from an intense training session in the Place of No Stars.",
+                "reg_death": "m_c couldn't survive {PRONOUN/m_c/poss} wounds from an intense training session in the Place of No Stars.",
+                "lead_death": "couldn't survive {PRONOUN/m_c/poss} wounds from an intense training session in the Place of No Stars"
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "r_c"
+                ],
+                "cats_to": [
+                    "m_c"
+                ],
+                "mutual": false,
+                "values": [
+                    "trust"
+                ],
+                "amount": -5
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_fatigue_anytrainee1",
+        "location": ["any"],
+        "season": ["any"],
+        "tags": [
+            "main_trainee",
+            "random_not_trainee"
+        ],
+        "weight": 15,
+        "event_text": "Despite seemingly sleeping throughout the night, m_c still looks and feels exhausted. When r_c asks for ideas as to why it might be, {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} nervous and fidgety, and r_c feels like m_c is hiding something from {PRONOUN/r_c/object}.",
+        "new_accessory": [],
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "medicine cat",
+                "medicine cat apprentice"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "fatigue"
+                ]
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "r_c"
+                ],
+                "cats_to": [
+                    "m_c"
+                ],
+                "mutual": false,
+                "values": [
+                    "trust"
+                ],
+                "amount": -5
+            }
+        ]
+    },
+    {
+        "event_id": "gen_injury_fatigue_anytraineedark1",
+        "location": ["any"],
+        "season": ["any"],
+        "tags": [
+            "main_trainee",
+            "random_not_trainee"
+        ],
+        "weight": 15,
+        "event_text": "Despite seemingly sleeping throughout the night, m_c still looks and feels exhausted. When r_c asks for ideas as to why it might be, {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} nervous and fidgety, and r_c feels like m_c is hiding something from {PRONOUN/r_c/object}.",
+        "new_accessory": [],
+        "m_c": {
+            "age": [
+                "adolescent",
+                "young adult",
+                "adult",
+                "senior adult",
+                "senior"
+            ],
+            "skill": [
+                "DARK,1"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "medicine cat",
+                "medicine cat apprentice"
+            ]
+        },
+        "injury": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "injuries": [
+                    "fatigue"
+                ]
+            }
+        ],
+        "relationships": [
+            {
+                "cats_from": [
+                    "r_c"
+                ],
+                "cats_to": [
+                    "m_c"
+                ],
+                "mutual": false,
+                "values": [
+                    "trust"
+                ],
+                "amount": -5
             }
         ]
     }
