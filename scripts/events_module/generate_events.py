@@ -289,6 +289,68 @@ class GenerateEvents:
             if game.clan.game_mode in ["classic", "expanded"] and "cruel_season" in event.tags:
                 continue
 
+            discard = False
+            for tag in event.tags:
+                if "trainee" in tag:
+                    if tag == "main_trainee" and not cat.df_trainee:
+                        print("discard 1")
+                        discard = True
+                    elif tag == "main_trainee" and cat.df_trainee:
+                        print("given 1")
+                    if tag == "main_not_trainee" and cat.df_trainee:
+                        print("discard 2")
+                        discard = True
+                    elif tag == "main_not_trainee" and not cat.df_trainee:
+                        print("given 2")
+                    if tag == "random_trainee" and not random_cat.df_trainee:
+                        print("discard 3")
+                        discard = True
+                    elif tag == "random_trainee" and random_cat.df_trainee:
+                        print("given 3")
+                    if tag == "random_not_trainee" and random_cat.df_trainee:
+                        print("discard 4")
+                        discard = True
+                    elif tag == "random_not_trainee" and not random_cat.df_trainee:
+                        print("given 4")
+                    if tag == "main_trainee_random_trainee" and not (cat.df_trainee and random_cat.df_trainee):
+                        print("discard 5")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_trainee_random_trainee" and cat.df_trainee and random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 5")
+                    if tag == "main_not_trainee_random_not_trainee" and not (not cat.df_trainee and not random_cat.df_trainee):
+                        print("discard 6")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_not_trainee_random_not_trainee" and not cat.df_trainee and not random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 6")
+                    if tag == "main_trainee_random_not_trainee" and not (cat.df_trainee and not random_cat.df_trainee):
+                        print("discard 7")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_trainee_random_not_trainee" and cat.df_trainee and not random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 7")
+                    if tag == "main_not_trainee_random_trainee" and not (not cat.df_trainee and random_cat.df_trainee):
+                        print("discard 8")
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        discard = True
+                    elif tag == "main_not_trainee_random_trainee" and not cat.df_trainee and random_cat.df_trainee:
+                        print(cat.df_trainee)
+                        print(random_cat.df_trainee)
+                        print("given 8")
+            if discard:
+                continue
+
             # make complete leader death less likely until the leader is over 150 moons (or unless it's a murder)
             if cat.status == "leader":
                 if "all_lives" in event.tags and "murder" not in event.sub_type:

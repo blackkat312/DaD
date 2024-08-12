@@ -1608,6 +1608,11 @@ class ProfileScreen(Screens):
             if mentor_history:
                 life_history.append(mentor_history)
 
+            # now get DF trainee history and add that if any exists
+            trainee_history = self.get_trainee_text()
+            if trainee_history:
+                life_history.append(trainee_history)
+
             # now go get the scar history and add that if any exists
             body_history = []
             scar_history = self.get_scar_text()
@@ -1900,6 +1905,7 @@ class ProfileScreen(Screens):
         cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
         apprenticeship_history = influence_history + " " + graduation_history
         apprenticeship_history = process_text(apprenticeship_history, cat_dict)
+        apprenticeship_history = apprenticeship_history.replace("  ", " ")
         return apprenticeship_history
 
 
@@ -1942,6 +1948,25 @@ class ProfileScreen(Screens):
 
         return text
 
+    def get_trainee_text(self):
+        """
+        returns adjusted Dark Forest trainee history text
+        """
+        text = ""
+
+        if self.the_cat.df_trainee or self.the_cat.trainee_end_moon != -1:
+            if self.the_cat.trainee_end_moon != -1:
+                text = f"{self.the_cat.name} formerly trained in the Place of No Stars."
+                if game.switches["show_history_moons"]:
+                    text += f" (Moons {self.the_cat.trainee_start_moon}&#8211;{self.the_cat.trainee_end_moon})"
+            elif self.the_cat.trainee_start_moon != -1:
+                text = f"{self.the_cat.name} currently trains in the Place of No Stars."
+                if game.switches["show_history_moons"]:
+                    text += f" (Moon {self.the_cat.trainee_start_moon})"
+            else:
+                text = "blackkat312: the best and worse coder ever /silly"
+
+        return text
 
     def get_text_for_murder_event(self, event, death):
         """ Returns the adjusted murder history text for the victim """

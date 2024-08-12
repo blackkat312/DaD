@@ -265,26 +265,50 @@
     "tags": ["skill_trait_required"],
     "sub_type": ["murder_reveal"],
     "weight": 15,
-    "event_text": "As r_c wanders around in the dreams of {PRONOUN/r_c/poss} Clanmates, {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} horrified to find m_c having a nightmare replaying mur_c's death. When r_c wakes {PRONOUN/r_c/self} up to tell the leader, m_c is awake, shaking in {PRONOUN/m_c/poss} nest and crying.",
+    "event_text": "As r_c wanders around in the dreams of {PRONOUN/r_c/poss} Clanmates, {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} horrified to come across m_c having a nightmare replaying mur_c's death. When r_c wakes {PRONOUN/r_c/self} up to tell the leader, m_c is awake, shaking in {PRONOUN/m_c/poss} nest and crying. r_c's heart aches for {PRONOUN/m_c/object} and goes to comfort {PRONOUN/m_c/object}, wondering if m_c had actually wanted to murder mur_c and if it would be better to protect {PRONOUN/m_c/poss} secret.",
     "m_c": {
       "age": ["any"],
-      "status": ["any"]
+      "status": ["any"],
+      "trait": [
+        "compassionate",
+        "thoughtful",
+        "calm",
+        "loving",
+        "wise",
+        "sincere"
+      ]
     },
     "r_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
       "status": ["any"],
       "skill": ["DREAM,0"],
-      "relationship_status": ["comfort_30"]
+      "relationship_status": ["comfort_50"],
+      "trait": [
+        "compassionate",
+        "thoughtful",
+        "calm",
+        "loving",
+        "wise",
+        "sincere"
+      ]
     },
     "injury": [
-       {
+      {
         "cats": [
           "m_c"
         ],
         "injuries": [
           "nightmares"
         ]
-       }
+      },
+      {
+        "cats": [
+          "m_c"
+        ],
+        "injuries": [
+          "shock"
+        ]
+      }
     ],
     "relationships": [
       {
@@ -292,7 +316,7 @@
         "cats_to": ["m_c"],
         "mutual": false,
         "values": ["trust", "comfort"],
-        "amount": -15
+        "amount": -10
       }
     ]
   },
@@ -641,7 +665,7 @@
     "event_text": "m_c finds acc_plural while out on a walk and decides to keep them.",
     "new_accessory": ["WILD","PLANT"],
     "m_c":{
-      "age": ["any"],
+      "age": ["adolescent", "young adult","adult","senior","senior adult"],
       "status": ["any"]
     }
   },
@@ -665,9 +689,9 @@
         {
           "cats_from": ["r_c"],
           "cats_to": ["m_c"],
-          "mutual": true,
-          "values": ["platonic","comfort","respect"],
-          "amount": -5
+          "mutual": false,
+          "values": ["jealousy"],
+          "amount": 5
         }
     ]
   }, 
@@ -1026,7 +1050,7 @@
   {
     "event_id": "gen_misc_greenleaf_mateaccessory1",
     "location": ["any"],
-    "season": ["greenleaf", "leaf-fall"],
+    "season": ["greenleaf"],
     "sub_type": ["accessory"],
     "weight": 15,
     "event_text": "m_c and r_c spend the evening chasing cicadas around camp. m_c keeps a trophy of {PRONOUN/m_c/poss} catch on {PRONOUN/m_c/poss} pelt.",
@@ -1315,7 +1339,7 @@
         }
     },
     {
-        "event_id": "gen_misc_multi_moth_accessorykit1",
+        "event_id": "gen_misc_multi_mothwing_accessorykit1",
         "location": ["any"],
         "season": ["newleaf", "greenleaf", "leaf-fall"],
         "sub_type": ["accessory"],
@@ -1327,9 +1351,9 @@
         }
     },
     {
-        "event_id": "gen_misc_multi_cicada_accessorykit1",
+        "event_id": "gen_misc_greenleaf_cicadawing_accessorykit1",
         "location": ["any"],
-        "season": ["greenleaf", "leaf-fall"],
+        "season": ["greenleaf"],
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c caught an insect while sneaking outside of the camp and proudly wears its wings as a trophy of {PRONOUN/m_c/poss} journey.",
@@ -1826,7 +1850,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
-    "event_text": "m_c was seen touching noses with a kittypet. Scandalous!",
+    "event_text": "m_c was seen touching noses with a kittypet.",
     "m_c": {
         "age": ["young adult", "adult", "senior adult", "senior"]
     },
@@ -1926,7 +1950,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c was seen touching noses with someone from o_c_n. Scandalous!",
+    "event_text": "m_c was seen touching noses with someone from o_c_n.",
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
@@ -2019,7 +2043,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text": "m_c was seen touching noses with a loner. Scandalous!",
+    "event_text": "m_c was seen touching noses with a loner.",
     "m_c": {
         "age": ["young adult", "adult", "senior adult", "senior"]
     },
@@ -2103,7 +2127,7 @@
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
-    "event_text":  "m_c was seen touching noses with a rogue. Scandalous!",
+    "event_text":  "m_c was seen touching noses with a rogue.",
     "m_c": {
         "age": ["young adult", "adult", "senior adult", "senior"]
     },
@@ -2397,7 +2421,7 @@
     "event_text": "r_c presents m_c with acc_plural as a congratulations.",
     "new_accessory": ["WILD", "PLANT"],
     "m_c": {
-      "status": ["medicine cat"]
+      "status": ["medicine cat", "medicine cat apprentice"]
     },
     "r_c": {
       "status": ["medicine cat"]
@@ -2420,84 +2444,91 @@
     ]
   },
   {
-    "event_id": "gen_misc_any_medicinecatleaderomen1",
+    "event_id": "gen_misc_any_anymedcatleaderomen1",
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
     "event_text": "m_c speaks to r_c about an omen {PRONOUN/m_c/subject} saw while on patrol recently.",
     "m_c": {
-      "age":["any"],
-      "status": ["medicine cat"],
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+      "status": ["any"],
       "skill": ["OMEN,1"]
       },
     "r_c": {
-      "status": ["leader"]
+      "status": ["medicine cat", "medicine cat apprentice", "leader"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatmedcatomen1",
+    "event_id": "gen_misc_any_adolescentmedcatomen1",
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
     "event_text": "m_c speaks to r_c about a potential omen and what it means.",
     "m_c": {
-      "age":["any"],
-      "status": ["medicine cat"],
+      "age": ["adolescent"],
+      "status": ["any"],
       "skill": ["OMEN,0"]
       },
     "r_c": {
-      "status": ["medicine cat"]
+      "status": ["medicine cat", "medicine cat apprentice"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatdream1",
+    "event_id": "gen_misc_any_anydream1",
     "location": ["any"],
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
     "event_text": "m_c walks into the dreams of {PRONOUN/m_c/poss} Clanmates while everyone sleeps.",
     "m_c": {
-      "status": ["medicine cat"],
-      "skill": ["DREAM,1"]
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+      "status": ["any"],
+      "skill": ["DREAM,0"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatdream2",
+    "event_id": "gen_misc_any_anydream2",
     "location": ["any"],
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
     "event_text": "m_c tosses in {PRONOUN/m_c/poss} sleep as {PRONOUN/m_c/poss} dream-self pads through the thoughts of {PRONOUN/m_c/poss} Clanmates, picking up snippets of dream_list. {PRONOUN/m_c/subject/CAP} slowly {VERB/m_c/blink/blinks} awake, wondering whose dreams {PRONOUN/m_c/subject} walked in.",
     "m_c": {
-      "status": ["medicine cat apprentice", "medicine cat"],
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+      "status": ["any"],
       "skill": ["DREAM,0"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatclairvoy1",
+    "event_id": "gen_misc_any_anyclairvoyant1",
     "location": ["any"],
     "season": ["any"],
     "tags": ["skill_trait_required"],
     "weight": 10,
-    "event_text": "m_c correctly warns the leader of an ambush, thanks to {PRONOUN/m_c/poss} clairvoyant nature.",
+    "event_text": "m_c correctly warns the guardian of an ambush, thanks to {PRONOUN/m_c/poss} clairvoyant nature.",
     "m_c": {
-      "status": ["medicine cat"],
-      "skill": ["CLAIRVOYANT,1"]
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+      "status": ["any"],
+      "skill": ["CLAIRVOYANT,0"]
+    },
+    "r_c": {
+      "status": ["leader"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatprophet1",
+    "event_id": "gen_misc_any_anyprophet1",
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
     "event_text": "m_c spends {PRONOUN/m_c/poss} day communing with StarClan, attempting to figure out a recent prophecy.",
     "m_c": {
-      "status":["medicine cat", "medicine cat apprentice"],
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+      "status": ["any"],
       "skill": ["PROPHET,1"]
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatelderlore1",
+    "event_id": "gen_misc_any_medicinecatelderhistorian1",
     "location": ["any"],
     "season": ["any"],
     "weight": 20,
@@ -2511,7 +2542,7 @@
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatscandolous1",
+    "event_id": "gen_misc_any_medicinecatscandalous1",
     "location": ["any"],
     "season": ["any"],
     "weight": 15,
@@ -2525,7 +2556,7 @@
     }
   },
   {
-    "event_id": "gen_misc_any_medicinecatscandolous2",
+    "event_id": "gen_misc_any_medicinecatscandalous2",
     "location": ["any"],
     "season": ["any"],
     "weight": 10,
@@ -3954,7 +3985,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 30,
-    "event_text": "With the medicine cat's assistance, m_c finds acc_singular to serve as an emotional support companion.",
+    "event_text": "With r_c's assistance, m_c finds acc_singular to serve as an emotional support companion.",
     "new_accessory": [
       "SNAKE",
       "SMALLANIMAL"
@@ -3974,15 +4005,21 @@
         "otherworldy mind",
         "heavy soul"
       ]
+    },
+    "r_c": {
+      "status": [
+        "medicine cat apprentice",
+        "medicine cat"
+      ]
     }
   },
   {
-    "event_id": "gen_misc_service_animal_OI",
+    "event_id": "gen_misc_any_OISA_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 20,
-    "event_text": "The medicine cat helps m_c find a companion to alert the clan when {PRONOUN/m_c/subject} faint.",
+    "event_text": "r_c helps m_c find a companion to alert the Clan when {PRONOUN/m_c/subject} {VERB/m_c/faint/faints}.",
     "new_accessory": [
       "SNAKE",
       "SMALLANIMAL"
@@ -4001,15 +4038,21 @@
         "falling paws",
         "seizure prone"
       ]
+    },
+    "r_c": {
+      "status": [
+        "medicine cat apprentice",
+        "medicine cat"
+      ]
     }
   },
   {
-    "event_id": "gen_misc_service_animal_OI",
+    "event_id": "gen_misc_any_SSA_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 20,
-    "event_text": "The medicine cat helps m_c find a companion to alert the clan when {PRONOUN/m_c/subject} {VERB/m_c/have/has} a seizure.",
+    "event_text": "r_c helps m_c find a companion to alert the Clan when {PRONOUN/m_c/subject} {VERB/m_c/have/has} a seizure.",
     "new_accessory": [
       "SNAKE",
       "SMALLANIMAL"
@@ -4026,15 +4069,21 @@
         "frequent fainting",
         "seizure prone"
       ]
+    },
+    "r_c": {
+      "status": [
+        "medicine cat apprentice",
+        "medicine cat"
+      ]
     }
   },
   {
-    "event_id": "gen_misc_service_animal_mobility",
+    "event_id": "gen_misc_any_MSA_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 20,
-    "event_text": "With some help from the medicine cat, m_c find a trained companion to help {PRONOUN/m_c/object} travel on bad days.",
+    "event_text": "With some help from r_c, m_c finds a trained companion to help {PRONOUN/m_c/object} travel on bad days.",
     "new_accessory": [
       "SMALLANIMAL"
     ],
@@ -4055,6 +4104,12 @@
         "lost a leg",
         "twisted leg",
         "constant roaming pain"
+      ]
+    },
+    "r_c": {
+      "status": [
+        "medicine cat apprentice",
+        "medicine cat"
       ]
     }
   }

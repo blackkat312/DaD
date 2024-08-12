@@ -9,8 +9,8 @@ class SkillPath(Enum):
     FIGHTER = (
         "avid play-fighter",
         "good fighter",
+        "adept fighter",
         "formidable fighter",
-        "unusually strong fighter",
     )
     RUNNER = (
         "never sits still",
@@ -552,7 +552,7 @@ class CatSkills:
                     elif self.primary:
                         self.primary.points += amount_effect
 
-            elif the_cat.moons > 120:
+            elif the_cat.moons > 120 and the_cat.status == "elder":
                 # for old cats, we want to check if the skills start to degrade at all, age is the great equalizer
 
                 self.primary.interest_only = False

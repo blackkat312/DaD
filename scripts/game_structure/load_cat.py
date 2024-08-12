@@ -39,7 +39,7 @@ def json_load():
         with open(clan_cats_json_path, "r") as read_file:
             cat_data = ujson.loads(read_file.read())
     except PermissionError as e:
-        game.switches["error_message"] = f"Can\t open {clan_cats_json_path}!"
+        game.switches["error_message"] = f"Can't open {clan_cats_json_path}!"
         game.switches["traceback"] = e
         raise
     except ujson.JSONDecodeError as e:
@@ -186,6 +186,7 @@ def json_load():
             new_cat.no_kits = cat["no_kits"]
             new_cat.no_mates = cat["no_mates"] if "no_mates" in cat else False
             new_cat.no_retire = cat["no_retire"] if "no_retire" in cat else False
+            new_cat.prevent_trainee = cat["prevent_trainee"] if "prevent_trainee" in cat else False
             new_cat.neutered = cat["neutered"] if "neutered" in cat else False
             new_cat.already_gave_neutered_message = cat["already_gave_neutered_message"] if "already_gave_neutered_message" in cat else False
             new_cat.give_kittypet_message = cat["give_kittypet_message"] if "give_kittypet_message" in cat else False
@@ -221,6 +222,10 @@ def json_load():
             new_cat.apprentice = cat["current_apprentice"]
             new_cat.former_apprentices = cat["former_apprentices"]
             new_cat.df = cat["df"] if "df" in cat else False
+
+            new_cat.df_trainee = cat["df_trainee"] if "df_trainee" in cat else False
+            new_cat.trainee_start_moon = cat["trainee_start_moon"] if "trainee_start_moon" in cat else -1
+            new_cat.trainee_end_moon = cat["trainee_end_moon"] if "trainee_end_moon" in cat else -1
 
             new_cat.outside = cat["outside"] if "outside" in cat else False
             new_cat.faded_offspring = (

@@ -729,12 +729,16 @@ class Cat:
         self.alters = []
         self.front = None
         self.df = False
+        self.df_trainee = False
+        self.trainee_start_moon = -1
+        self.trainee_end_moon = -1
         self.experience_level = None
 
         # Various behavior toggles
         self.no_kits = False
         self.no_mates = False
         self.no_retire = False
+        self.prevent_trainee = False
         self.neutered = False
         self.already_gave_neutered_message = False
         self.give_kittypet_message = False
@@ -939,11 +943,11 @@ class Cat:
         ]
         intersex_genderqueer_list = genderqueer_list.copy()
         intersex_genderqueer_list.append("intergender")
-        
-        #for testing conditions for dadm
-        #if not self.example:
-            #new_condition = choice(["spirited heart", "puzzled heart"])
-            #self.get_permanent_condition(new_condition, born_with=True) 
+
+        # for testing conditions for dadm
+        # if not self.example:
+        #    new_condition = choice(["spirited heart", "puzzled heart"])
+        #    self.get_permanent_condition(new_condition, born_with=True)
 
         # trans cat chances
         theythemdefault = game.settings["they them default"]
@@ -951,7 +955,7 @@ class Cat:
         trans_chance = randint(0, 50)
         nb_chance = randint(0, 75)
         #newborns can't be trans, sorry babies
-        if self.age in ['newborn']:
+        if self.moons == 0 or self.age == "newborn":
             trans_chance = 0
             nb_chance = 0
         self.genderalign = ""
@@ -988,7 +992,7 @@ class Cat:
         else:
             self.pronouns = [self.default_pronouns[0].copy()]
 
-        if not theythemdefault and self.age != "newborn":
+        if not theythemdefault and not (self.moons == 0 or self.age == "newborn"):
             self.handle_pronouns()
 
         # APPEARANCE
@@ -1043,6 +1047,9 @@ class Cat:
         return hash(self.ID)
 
     def handle_pronouns(self):
+        if self.moons == 0 or self.age == "newborn":
+            pass
+
         all_pronouns = self.default_pronouns.copy()
         current_pronoun = 0
         list_indexes = len(all_pronouns) - 1
@@ -1066,21 +1073,21 @@ class Cat:
         if self.genderalign not in ["female", "trans female", "male", "trans male", "intersex"]:
             unique_pronoun = 5
             first_new_pronoun = 5
-            second_new_pronoun = 10
-            third_new_pronoun = 15
-            fourth_new_pronoun = 20
+            second_new_pronoun = 15
+            third_new_pronoun = 20
+            fourth_new_pronoun = 25
         elif self.genderalign in ["trans female", "trans male"]:
-            unique_pronoun = 37
-            first_new_pronoun = 15
-            second_new_pronoun = 30
-            third_new_pronoun = 45
-            fourth_new_pronoun = 60
-        elif self.genderalign in ["female", "male", "intersex"]:
             unique_pronoun = 42
             first_new_pronoun = 20
             second_new_pronoun = 35
             third_new_pronoun = 50
             fourth_new_pronoun = 65
+        elif self.genderalign in ["female", "male", "intersex"]:
+            unique_pronoun = 52
+            first_new_pronoun = 30
+            second_new_pronoun = 45
+            third_new_pronoun = 60
+            fourth_new_pronoun = 75
 
         if randint(1, unique_pronoun) == 1:
             self.pronouns = []  # I don't think this is needed, but jic
@@ -1330,7 +1337,10 @@ class Cat:
         ):
             self.grief(body)
 
-        if not self.outside:
+        if self.df_trainee and randint(1, 10) == 1:
+            self.df = True
+            game.clan.add_to_darkforest(self)
+        elif not self.outside:
             Cat.dead_cats.append(self)
             if game.clan.instructor.df is False:
                 self.df = False
@@ -2238,6 +2248,58 @@ class Cat:
         self.personality.set_kit(self.is_baby())
         # Upon age-change
 
+        if not self.prevent_trainee:
+            join_chance = 200
+            leave_chance = 250
+            mentor = Cat.fetch_cat(self.mentor) if self.mentor else None
+            skills_string = str(self.skills)
+
+            if self.personality.stability < 6 or self.personality.lawfulness < 6 or self.personality.aggression > 10:
+                join_chance -= 25
+                leave_chance += 25
+
+            if self.age == "kitten":
+                join_chance += 100
+                leave_chance -= 100
+            elif self.age in ["senior adult", "senior"]:
+                join_chance += 50
+                leave_chance -= 50
+            elif self.age == "adolescent":
+                if self.moons < 9:
+                    join_chance -= 30
+                    leave_chance += 30
+                if self.status == "apprentice":
+                    join_chance -= 50
+                    leave_chance += 50
+                elif self.status in ["mediator apprentice", "medicine cat apprentice"]:
+                    join_chance -= 40
+                    leave_chance += 40
+            elif self.status in ["apprentice", "mediator apprentice"]:
+                join_chance -= 60
+                leave_chance += 60
+            elif self.status == "medicine cat apprentice":
+                join_chance -= 45
+                leave_chance += 45
+            if mentor and mentor.df_trainee:
+                if self.moons < 9:
+                    join_chance -= 40
+                    leave_chance += 40
+                else:
+                    join_chance -= 30
+                    leave_chance += 30
+            if "DARK" in skills_string:
+                join_chance -= 50
+                leave_chance += 50
+
+            if not self.df_trainee and self.trainee_end_moon == -1:
+                if randint(1, join_chance) == 1:
+                    self.df_trainee = True
+                    self.trainee_start_moon = game.clan.age
+            elif self.df_trainee:
+                if randint(1, leave_chance) == 1:
+                    self.df_trainee = False
+                    self.trainee_end_moon = game.clan.age
+
         if self.status in [
             "apprentice",
             "mediator apprentice",
@@ -2678,7 +2740,7 @@ class Cat:
 
     def is_littermate(self, other_cat: Cat):
         """Check if the cats are littermates."""
-        if other_cat.ID not in self.inheritance.siblings.keys():
+        if not other_cat or (other_cat and (self.inheritance and self.inheritance.siblings and other_cat.ID not in self.inheritance.siblings.keys())) or not self.inheritance or not self.inheritance.siblings:
             return False
         litter_mates = [
             key
@@ -2936,8 +2998,8 @@ class Cat:
                 ],
                 "starwalker": [
                     "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
-                    "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness", "parrot chatter",
-                    "selective mutism", "thought blind"
+                    "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness",
+                    "parrot chatter", "selective mutism", "thought blind"
                 ],
                 "obsessive mind": [
                     "spirited heart"
@@ -2946,8 +3008,8 @@ class Cat:
                     "shattered soul", "budding spirit"
                 ],
                 "comet spirit": [
-                    "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue", "jumbled mind",
-                    "counting fog", "spirited heart", "parrot chatter"
+                    "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
+                    "jumbled mind", "counting fog", "spirited heart", "parrot chatter"
                 ],
                 "antisocial": [
                     "shattered soul", "budding spirit", "puzzled heart"
@@ -3644,11 +3706,15 @@ class Cat:
             if self.is_second_cousin(other_cat):
                 return False
 
+
         # check exiled, outside, and dead cats
         if (self.dead != other_cat.dead) or self.outside or other_cat.outside:
             return False
 
         # check for age
+        if self.age == "newborn" or other_cat.age == "newborn":
+            return False
+
         if age_restriction:
             if (self.moons < 14 or other_cat.moons < 14) and not for_love_interest:
                 return False
@@ -3666,7 +3732,7 @@ class Cat:
                 ):
                     return False
 
-        age_restricted_ages = ["newborn", "kitten", "adolescent"]
+        age_restricted_ages = ["kitten", "adolescent"]
         if self.age in age_restricted_ages or other_cat.age in age_restricted_ages:
             if self.age != other_cat.age:
                 return False
@@ -4089,7 +4155,7 @@ class Cat:
         mates = rel1.cat_from.ID in rel1.cat_to.mate
 
         pos_traits = ["platonic", "respect", "comfortable", "trust"]
-        if allow_romantic and (mates or cat1.is_potential_mate(cat2)):
+        if allow_romantic and (mates or cat1.is_potential_mate(cat2, for_love_interest=True)):
             pos_traits.append("romantic")
 
         neg_traits = ["dislike", "jealousy"]
@@ -4615,6 +4681,7 @@ class Cat:
                 "no_kits": self.no_kits,
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
+                "prevent_trainee": self.prevent_trainee,
                 "neutered": self.neutered,
                 "already_gave_neutered_message": self.already_gave_neutered_message,
                 "give_kittypet_message": self.give_kittypet_message,
@@ -4652,6 +4719,9 @@ class Cat:
                 "current_apprentice": [appr for appr in self.apprentice],
                 "former_apprentices": [appr for appr in self.former_apprentices],
                 "df": self.df,
+                "df_trainee": self.df_trainee,
+                "trainee_start_moon": self.trainee_start_moon,
+                "trainee_end_moon": self.trainee_end_moon,
                 "outside": self.outside,
                 "faded_offspring": self.faded_offspring,
                 "opacity": self.pelt.opacity,
@@ -4955,6 +5025,9 @@ class Personality:
 
 # Creates a random cat
 def create_cat(status, moons=None, biome=None):
+    if status == "kitten" and randint(1, 15) == 1:
+        status = "newborn"  # get potated
+
     new_cat = Cat(status=status, biome=biome)
 
     if moons is not None:
@@ -4962,8 +5035,6 @@ def create_cat(status, moons=None, biome=None):
     else:
         if new_cat.moons > 160:
             new_cat.moons = 160
-        elif new_cat.moons < 4 and randint(1, 10) == 1:
-            new_cat.moons = 0  # get potated
 
     # Give conditions for disabling scars, if they generated.
     scar_to_condition = {
@@ -4993,12 +5064,14 @@ def create_cat(status, moons=None, biome=None):
     }
 
     for scar in new_cat.pelt.scars:
-        if scar in scar_to_condition:
-            if (game.clan and game.clan.game_mode == "classic") or new_cat.moons < 4 or not game.clan:
+        if new_cat.moons == 0:
+            new_cat.pelt.scars.remove(scar)
+        elif scar in scar_to_condition:
+            if (game.clan and game.clan.game_mode == "classic") or not game.clan or new_cat.moons < 4:
                 new_cat.pelt.scars.remove(scar)
             else:
                 condition = choice(scar_to_condition.get(scar))
-                if condition == "no":
+                if condition == "no" or (condition == "lost a leg" and "born without a leg" in new_cat.permanent_condition):
                     continue
 
                 new_cat.get_permanent_condition(condition, born_with=False, starting_moon=-1)

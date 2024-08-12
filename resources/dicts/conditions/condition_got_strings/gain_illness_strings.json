@@ -81,11 +81,11 @@
     "m_c is experiencing some night dirtmaking."
   ],
   "kittenspace": [
-    "Recently, m_c has been acting a bit differently than usual. It seems like {PRONOUN/m_c/subject} may {VERB/m_c/have/has} gone into kittenspace.",
+    "Recently, m_c has been acting a bit differently than usual. It seems like {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gone into kittenspace.",
 	"m_c has been acting a little bit differently than usual - much younger and more reliant on {PRONOUN/m_c/poss} Clanmates. {PRONOUN/m_c/subject/CAP}{VERB/m_c/'ve/'s} gone into kittenspace"
   ],
   "puppyspace": [
-    "Recently, m_c has been acting a bit differently than usual. It seems like {PRONOUN/m_c/subject} may {VERB/m_c/have/has} gone into puppyspace."
+    "Recently, m_c has been acting a bit differently than usual. It seems like {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} gone into puppyspace."
   ],
   "seasonal lethargy": [
     "m_c has been experiencing some seasonal lethargy lately.",
@@ -98,7 +98,7 @@
 	"This past moon, m_c has been plagued with nightmares."
   ],
   "brain fog": [
-   "m_c's experiencing brain fog.",
-   "m_c has brain fog."
+   "m_c is experiencing some brain fog.",
+   "m_c has some brain fog."
   ]
 }

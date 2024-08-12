@@ -250,23 +250,12 @@ class Condition_Events:
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
-            random_number = int(
-                random.random()
-                * game.get_config_value(
-                    "condition_related", f"{game.clan.game_mode}_illness_chance"
-                )
-            )
+            random_number = int(random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
 
-            if cat.vaccinated and random.randint(1, 5) != 1:
-                random_number = int(random_number * 10)
+            if cat.vaccinated and not random.randint(1, 20) <= 3:  # 85%
+                random_number = int(random_number * 5)
 
-            if (
-                not cat.dead
-                and not cat.is_ill()
-                and random_number <= 10
-                and not event_string
-            ):
-
+            if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
                 # CLAN FOCUS!
                 if game.clan.clan_settings.get("rest and recover"):
                     stopping_chance = game.config["focus"]["rest and recover"][
@@ -290,6 +279,18 @@ class Condition_Events:
                     chosen_illness = "whitecough"
                 elif chosen_illness == "nest wetting" and cat.status not in ['kitten', 'apprentice']:
                     chosen_illness = "night dirtmaking"
+
+                # vaccinated cats
+                if cat.vaccinated:
+                    if chosen_illness == "yellowcough" and random.randint(1, 7) != 1:
+                        chosen_illness = "greencough"
+
+                    if chosen_illness == "greencough" and random.randint(1, 4) != 1:
+                        chosen_illness = "silvercough"
+
+                    if chosen_illness == "silvercough" and cat.status != "kitten" and random.randint(1, 3) == 1:
+                        chosen_illness = "whitecough"
+
                 # make em sick
                 cat.get_ill(chosen_illness)
 
@@ -380,10 +381,17 @@ class Condition_Events:
                     if not int(random.random() * stopping_chance):
                         return False
 
-                handle_short_events.handle_event(event_type="health",
-                                                 main_cat=cat,
-                                                 random_cat=random_cat,
-                                                 freshkill_pile=game.clan.freshkill_pile)
+                if (cat.df_trainee or (random_cat and random_cat.df_trainee)) and random.randint(1, game.config["event_generation"]["df_trainee_injury_event_denominator"]) <= game.config["event_generation"]["df_trainee_injury_event_compare"]:
+                    handle_short_events.handle_event(event_type="health",
+                                                     main_cat=cat,
+                                                     random_cat=random_cat,
+                                                     freshkill_pile=game.clan.freshkill_pile,
+                                                     sub_type=["dark_forest"])
+                else:
+                    handle_short_events.handle_event(event_type="health",
+                                                     main_cat=cat,
+                                                     random_cat=random_cat,
+                                                     freshkill_pile=game.clan.freshkill_pile)
 
 
         # just double-checking that trigger is only returned True if the cat is dead

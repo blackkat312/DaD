@@ -279,7 +279,12 @@
 		]
 	},
 	"event_generation": {
-		"debug_ensure_event_id": null
+		"df_trainee_injury_event_denominator": 20,
+		"df_trainee_injury_event_compare": 3,
+		"debug_ensure_event_id": null,
+		"comment": [
+			"if randint(1, df_trainee_injury_event_denominator) <= df_trainee_injury_event_compare - base is 15% chance"
+		]
 	},
 	"death_related": {
 		"leader_death_chance": 50,

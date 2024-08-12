@@ -243,9 +243,9 @@
 			"Due to how overtired m_c's been, {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} stood up and needed to sit back down with a spinning head."
 		],
 		"brain fog": [
-			"m_c comes into r_c's den looking very confused, admitting {PRONOUN/m_c/subject} {VERB/m_c/are/is} very tired and losing track of things.",
+			"m_c comes into the medicine den looking out of it, telling r_c that {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} very tired and keeps losing track of things.",
 			"m_c has some brain fog.",
-			"The clan has noticed that m_c seems distracted unable to hold onto {PRONOUN/m_c/poss} thoughts due to fatigue."
+			"{PRONOUN/m_c/poss/CAP} Clanmates have noticed that m_c seems distracted, unable to hold onto {PRONOUN/m_c/poss} thoughts."
 		]
 	},
     "fainting": {

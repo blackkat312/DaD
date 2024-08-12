@@ -1054,7 +1054,7 @@ class KillCat(UIWindow):
             "",
             object_id="#unchecked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the leader will lose all {PRONOUN/m_c/poss} lives",
+                "If this is checked, the leader will lose all of {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1065,7 +1065,7 @@ class KillCat(UIWindow):
             "",
             object_id="#checked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the leader will lose all {PRONOUN/m_c/poss} lives",
+                "If this is checked, the leader will lose all of {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1090,7 +1090,7 @@ class KillCat(UIWindow):
 
             self.all_lives_check.hide()
             self.life_text = pygame_gui.elements.UITextBox(
-                "Take all the leader's lives",
+                "Take all of the leader's lives",
                 scale(pygame.Rect((120, 295), (900, 80))),
                 object_id="#text_box_30_horizleft",
                 manager=MANAGER,
@@ -1938,6 +1938,13 @@ class ChangeCatToggles(UIWindow):
             container=self,
         )
 
+        self.text_5 = pygame_gui.elements.UITextBox(
+            "Prevent becoming a Dark Forest trainee",
+            scale(pygame.Rect(110, 260, -1, 50)),
+            object_id="#text_box_30_horizleft_pad_0_8",
+            container=self,
+        )
+
         # Text
 
     def refresh_checkboxes(self):
@@ -1952,12 +1959,11 @@ class ChangeCatToggles(UIWindow):
             tool_tip = "The afterlife guide can never fade."
         elif self.the_cat.prevent_fading:
             box_type = "#checked_checkbox"
-            tool_tip = "Prevents cat from fading away after being dead for 202 moons."
+            tool_tip = "Allow the cat to fade away after being dead for 202 moons."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevents cat from fading away after being dead for 202 moons."
+            tool_tip = "Prevent the cat from fading away after being dead for 202 moons."
 
-        # Fading
         self.checkboxes["prevent_fading"] = UIImageButton(
             scale(pygame.Rect(45, 50, 68, 68)),
             "",
@@ -1970,12 +1976,20 @@ class ChangeCatToggles(UIWindow):
             self.checkboxes["prevent_fading"].disable()
 
         # No Kits
-        if self.the_cat.no_kits:
-            box_type = "#checked_checkbox"
-            tool_tip = "Prevent the cat from adopting or having kittens."
+        if self.the_cat.neutered:
+            if self.the_cat.no_kits:
+                box_type = "#checked_checkbox"
+                tool_tip = "Allow the cat to adopt kits."
+            else:
+                box_type = "#unchecked_checkbox"
+                tool_tip = "Prevent the cat from adopting kits."
         else:
-            box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent the cat from adopting or having kittens."
+            if self.the_cat.no_kits:
+                box_type = "#checked_checkbox"
+                tool_tip = "Allow the cat to adopt or have kits."
+            else:
+                box_type = "#unchecked_checkbox"
+                tool_tip = "Prevent the cat from adopting or having kits."
 
         self.checkboxes["prevent_kits"] = UIImageButton(
             scale(pygame.Rect(45, 100, 68, 68)),
@@ -1988,10 +2002,10 @@ class ChangeCatToggles(UIWindow):
         # No Retire
         if self.the_cat.no_retire:
             box_type = "#checked_checkbox"
-            tool_tip = "Allow cat to retiring automatically."
+            tool_tip = "Allow the cat to retire automatically."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent cat from retiring automatically."
+            tool_tip = "Prevent the cat from retiring automatically."
 
         self.checkboxes["prevent_retire"] = UIImageButton(
             scale(pygame.Rect(45, 150, 68, 68)),
@@ -2001,16 +2015,32 @@ class ChangeCatToggles(UIWindow):
             tool_tip_text=tool_tip,
         )
 
-        # No mates
+        # No Mates
         if self.the_cat.no_mates:
             box_type = "#checked_checkbox"
-            tool_tip = "Prevent cat from automatically taking a mate, breaking up, or having romantic interactions with non-mates."
+            tool_tip = "Allow the cat to automatically take a mate, break up, or have romantic interactions with non-mates."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent cat from automatically taking a mate, breaking up, or having romantic interactions with non-mates."
+            tool_tip = "Prevent the cat from automatically taking a mate, breaking up, or having romantic interactions with non-mates."
 
         self.checkboxes["prevent_mates"] = UIImageButton(
             scale(pygame.Rect(45, 200, 68, 68)),
+            "",
+            container=self,
+            object_id=box_type,
+            tool_tip_text=tool_tip,
+        )
+
+        # Prevent Trainee
+        if self.the_cat.prevent_trainee:
+            box_type = "#checked_checkbox"
+            tool_tip = "Allow the cat to train in the Place of No Stars."
+        else:
+            box_type = "#unchecked_checkbox"
+            tool_tip = "Prevent the cat from training in the Place of No Stars."
+
+        self.checkboxes["prevent_trainee"] = UIImageButton(
+            scale(pygame.Rect(45, 250, 68, 68)),
             "",
             container=self,
             object_id=box_type,
@@ -2035,6 +2065,13 @@ class ChangeCatToggles(UIWindow):
                 self.refresh_checkboxes()
             elif event.ui_element == self.checkboxes["prevent_mates"]:
                 self.the_cat.no_mates = not self.the_cat.no_mates
+                self.refresh_checkboxes()
+            elif event.ui_element == self.checkboxes["prevent_trainee"]:
+                if self.the_cat.df_trainee and not self.the_cat.prevent_trainee:
+                    self.the_cat.df_trainee = False
+                    self.the_cat.trainee_start_moon = -1
+                    self.the_cat.trainee_end_moon = -1
+                self.the_cat.prevent_trainee = not self.the_cat.prevent_trainee
                 self.refresh_checkboxes()
 
         return super().process_event(event)

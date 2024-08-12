@@ -791,7 +791,7 @@ class MakeClanScreen(Screens):
                         sprites.sprites[self.symbol_selected], (200, 200)
                     ).convert_alpha()
                 )
-                symbol_name = self.symbol_selected.removeprefix("symbol")
+                symbol_name = self.symbol_selected.replace("symbol", "")
                 self.text["selected"].set_text(f"Selected Symbol: {symbol_name}")
                 self.elements["selected_symbol"].show()
                 self.elements["done_button"].enable()
@@ -956,8 +956,22 @@ class MakeClanScreen(Screens):
             else:
                 self.elements["cat_name"].set_text(str(selected.name))
             self.elements["cat_name"].show()
-
+            gender_text = str(selected.genderalign)
+            moon_text = ""
             pronoun_text = ""
+            perm_cond_text = ""
+
+            if selected.gender == "intersex" and selected.genderalign != "intersex":
+                if selected.genderalign in ["demimolly", "demitom", "demienby", "trans molly", "trans tom"]:
+                    gender_text = "intersex " + gender_text
+                elif selected.genderalign != "intergender":
+                    gender_text += " and intersex"
+
+            if selected.moons == 1:
+                moon_text = " (1 moon)"
+            elif selected.moons != 0:
+                moon_text = f" ({str(selected.moons)} moons)"
+
             if len(selected.pronouns) == 1:
                 if selected.pronouns[0].get("subject") == selected.pronouns[0].get("object"):
                     pronoun_text += selected.pronouns[0].get("subject") + "/" + selected.pronouns[0].get("poss")
@@ -970,7 +984,7 @@ class MakeClanScreen(Screens):
                     pronoun_text = pronoun_text[:-1]
 
             if selected.permanent_condition:
-                perm_cond_text = "condition"
+                perm_cond_text = "\n\ncondition"
                 if len(selected.permanent_condition) > 1:
                     perm_cond_text += "s:\n"
                 else:
@@ -979,32 +993,18 @@ class MakeClanScreen(Screens):
                     perm_cond_text += self.change_condition_name(str(condition)) + "\n"
                 perm_cond_text = perm_cond_text[:-1]
 
-                self.elements["cat_info"].set_text(
-                    str(selected.genderalign)
-                    + "\n"
-                    + str(pronoun_text)
-                    + "\n"
-                    + str(selected.age)
-                    + "\n"
-                    + str(selected.personality.trait)
-                    + "\n"
-                    + str(selected.skills.skill_string())
-                    + "\n"
-                    + "\n"
-                    + str(perm_cond_text)
-                )
-            else:
-                self.elements["cat_info"].set_text(
-                    str(selected.genderalign)
-                    + "\n"
-                    + str(pronoun_text)
-                    + "\n"
-                    + str(selected.age)
-                    + "\n"
-                    + str(selected.personality.trait)
-                    + "\n"
-                    + str(selected.skills.skill_string())
-                )
+            self.elements["cat_info"].set_text(
+                str(gender_text)
+                + "\n"
+                + str(pronoun_text)
+                + "\n"
+                + str(selected.age) + moon_text
+                + "\n"
+                + str(selected.personality.trait)
+                + "\n"
+                + str(selected.skills.skill_string())
+                + str(perm_cond_text)
+            )
             self.elements["cat_info"].show()
         else:
             self.elements["next_step"].disable()
@@ -1910,7 +1910,7 @@ class MakeClanScreen(Screens):
                 )
 
         if self.symbol_selected:
-            symbol_name = self.symbol_selected.removeprefix("symbol")
+            symbol_name = self.symbol_selected.replace("symbol", "")
             self.text["selected"].set_text(f"Selected Symbol: {symbol_name}")
 
             self.elements["selected_symbol"] = pygame_gui.elements.UIImage(
