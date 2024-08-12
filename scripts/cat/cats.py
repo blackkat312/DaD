@@ -3160,12 +3160,10 @@ class Cat:
 
         if not self.df_trainee and self.trainee_end_moon == -1:
             if randint(1, join_chance) == 1:
-                print(f"{self.name} joined the Dark Forest")
                 self.df_trainee = True
                 self.trainee_start_moon = game.clan.age
         elif self.df_trainee:
             if randint(1, leave_chance) == 1:
-                print(f"{self.name} left the Dark Forest")
                 self.df_trainee = False
                 self.trainee_end_moon = game.clan.age
 
