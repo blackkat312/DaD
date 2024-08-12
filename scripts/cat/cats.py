@@ -1359,6 +1359,7 @@ class Cat:
         self.no_kits = False
         self.no_mates = False
         self.no_retire = False
+        self.prevent_trainee = False
         self.neutered = False
         self.already_gave_neutered_message = False
         self.give_kittypet_message = False
@@ -3116,56 +3117,57 @@ class Cat:
         self.personality.set_kit(self.is_baby())
         # Upon age-change
 
-        join_chance = 200
-        leave_chance = 250
-        mentor = Cat.fetch_cat(self.mentor) if self.mentor else None
-        skills_string = str(self.skills)
+        if not self.prevent_trainee:
+            join_chance = 200
+            leave_chance = 250
+            mentor = Cat.fetch_cat(self.mentor) if self.mentor else None
+            skills_string = str(self.skills)
 
-        if self.personality.stability < 6 or self.personality.lawfulness < 6 or self.personality.aggression > 10:
-            join_chance -= 25
-            leave_chance += 25
+            if self.personality.stability < 6 or self.personality.lawfulness < 6 or self.personality.aggression > 10:
+                join_chance -= 25
+                leave_chance += 25
 
-        if self.age == "kitten":
-            join_chance += 100
-            leave_chance -= 100
-        elif self.age in ["senior adult", "senior"]:
-            join_chance += 50
-            leave_chance -= 50
-        elif self.age == "adolescent":
-            if self.moons < 9:
-                join_chance -= 30
-                leave_chance += 30
-            if self.status == "apprentice":
+            if self.age == "kitten":
+                join_chance += 100
+                leave_chance -= 100
+            elif self.age in ["senior adult", "senior"]:
+                join_chance += 50
+                leave_chance -= 50
+            elif self.age == "adolescent":
+                if self.moons < 9:
+                    join_chance -= 30
+                    leave_chance += 30
+                if self.status == "apprentice":
+                    join_chance -= 50
+                    leave_chance += 50
+                elif self.status in ["mediator apprentice", "medicine cat apprentice"]:
+                    join_chance -= 40
+                    leave_chance += 40
+            elif self.status in ["apprentice", "mediator apprentice"]:
+                join_chance -= 60
+                leave_chance += 60
+            elif self.status == "medicine cat apprentice":
+                join_chance -= 45
+                leave_chance += 45
+            if mentor and mentor.df_trainee:
+                if self.moons < 9:
+                    join_chance -= 40
+                    leave_chance += 40
+                else:
+                    join_chance -= 30
+                    leave_chance += 30
+            if "DARK" in skills_string:
                 join_chance -= 50
                 leave_chance += 50
-            elif self.status in ["mediator apprentice", "medicine cat apprentice"]:
-                join_chance -= 40
-                leave_chance += 40
-        elif self.status in ["apprentice", "mediator apprentice"]:
-            join_chance -= 60
-            leave_chance += 60
-        elif self.status == "medicine cat apprentice":
-            join_chance -= 45
-            leave_chance += 45
-        if mentor and mentor.df_trainee:
-            if self.moons < 9:
-                join_chance -= 40
-                leave_chance += 40
-            else:
-                join_chance -= 30
-                leave_chance += 30
-        if "DARK" in skills_string:
-            join_chance -= 50
-            leave_chance += 50
 
-        if not self.df_trainee and self.trainee_end_moon == -1:
-            if randint(1, join_chance) == 1:
-                self.df_trainee = True
-                self.trainee_start_moon = game.clan.age
-        elif self.df_trainee:
-            if randint(1, leave_chance) == 1:
-                self.df_trainee = False
-                self.trainee_end_moon = game.clan.age
+            if not self.df_trainee and self.trainee_end_moon == -1:
+                if randint(1, join_chance) == 1:
+                    self.df_trainee = True
+                    self.trainee_start_moon = game.clan.age
+            elif self.df_trainee:
+                if randint(1, leave_chance) == 1:
+                    self.df_trainee = False
+                    self.trainee_end_moon = game.clan.age
 
         if self.status in ['apprentice', 'mediator apprentice', 'medicine cat apprentice']:
             self.update_mentor()
@@ -5580,6 +5582,7 @@ class Cat:
                 "no_kits": self.no_kits,
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
+                "prevent_trainee": self.prevent_trainee,
                 "neutered": self.neutered,
                 "already_gave_neutered_message": self.already_gave_neutered_message,
                 "give_kittypet_message": self.give_kittypet_message,
