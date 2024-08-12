@@ -39,7 +39,7 @@ def json_load():
         with open(clan_cats_json_path, "r") as read_file:
             cat_data = ujson.loads(read_file.read())
     except PermissionError as e:
-        game.switches["error_message"] = f"Can\t open {clan_cats_json_path}!"
+        game.switches["error_message"] = f"Can't open {clan_cats_json_path}!"
         game.switches["traceback"] = e
         raise
     except ujson.JSONDecodeError as e:
@@ -221,6 +221,7 @@ def json_load():
             new_cat.apprentice = cat["current_apprentice"]
             new_cat.former_apprentices = cat["former_apprentices"]
             new_cat.df = cat["df"] if "df" in cat else False
+            new_cat.df_trainee = cat["df_trainee"] if "df_trainee" in cat else False
 
             new_cat.outside = cat["outside"] if "outside" in cat else False
             new_cat.faded_offspring = (
