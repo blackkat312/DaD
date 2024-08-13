@@ -826,7 +826,7 @@ def create_new_cat(
                 )
 
         # give em a collar if they got one
-        if accessory and not (("NOTAIL" in new_cat.pelt.scars or "HALFTAIL" in new_cat.pelt.scars or (new_cat.phenotype.bobtailnr > 0 and new_cat.phenotype.bobtailnr < 5)) and accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]):
+        if accessory and not (("NOTAIL" in new_cat.pelt.scars or "HALFTAIL" in new_cat.pelt.scars) and accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]):
             new_cat.pelt.accessory = accessory
 
         if game.clan.clan_settings["tnr"]:
