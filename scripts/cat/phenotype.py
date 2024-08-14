@@ -84,52 +84,77 @@ class Phenotype():
         if('o' not in self.genotype.sexgene):
             if(self.genotype.dilute[0] == "d"):
                 if(self.genotype.pinkdilute[0] == "dp"):
-                    colour += "ivory"
+                    colour = "ivory"
                 else:
-                    colour += "cream"
+                    colour = "cream"
 
                 if(self.genotype.dilutemd[0] == "Dm"):
-                    colour += " apricot"
+                    if (self.genotype.pinkdilute[0] == "dp"):
+                        colour = "almond"
+                    else:
+                        colour = "apricot"
             else:
                 if(self.genotype.pinkdilute[0] == "dp"):
-                    colour += "honey"
+                    colour = "honey"
                 else:
-                    colour += "red"
+                    colour = "red"
         else:
             if(self.genotype.dilute[0] == "d"):
                 if(self.genotype.eumelanin[0] == "B"):
                     if(self.genotype.pinkdilute[0] == "dp"):
-                        colour += "platinum"
+                        colour = "platinum"
                     else:
-                        colour += "blue"
+                        colour = "blue"
                 elif(self.genotype.eumelanin[0] == "b"):
                     if(self.genotype.pinkdilute[0] == "dp"):
-                        colour += "lavender"
+                        colour = "lavender"
                     else:
-                        colour += "lilac"
+                        colour = "lilac"
                 else:
                     if(self.genotype.pinkdilute[0] == "dp"):
-                        colour += "beige"
+                        colour = "beige"
                     else:
-                        colour += "fawn"
+                        colour = "fawn"
 
                 if(self.genotype.dilutemd[0] == "Dm"):
-                    colour += " caramel"
+                    if (self.genotype.eumelanin[0] == "B"):
+                        if (self.genotype.pinkdilute[0] == "dp"):
+                            colour = "frost"
+                        else:
+                            colour = "caramel"
+                    elif (self.genotype.eumelanin[0] == "b"):
+                        if (self.genotype.pinkdilute[0] == "dp"):
+                            colour = "bone"
+                        else:
+                            colour = "taupe"
+                    else:
+                        if (self.genotype.pinkdilute[0] == "dp"):
+                            colour = "milk"
+                        else:
+                            colour = "fawn"
             else:
                 if(self.genotype.pinkdilute[0] == "dp"):
                     if(self.genotype.eumelanin[0] == "B"):
-                        colour += "dove"
+                        colour = "dove"
                     elif(self.genotype.eumelanin[0] == "b"):
-                        colour += "champagne"
+                        colour = "champagne"
                     else:
-                        colour += "buff"
+                        colour = "buff"
+
+                    if (self.genotype.dilutemd[0] == "Dm"):
+                        if (self.genotype.eumelanin[0] == "B"):
+                            colour = "shale"
+                        elif (self.genotype.eumelanin[0] == "b"):
+                            colour = "hickory"
+                        else:
+                            colour = "sand"
                 else:
                     if(self.genotype.eumelanin[0] == "B"):
-                        colour += "black"
+                        colour = "black"
                     elif(self.genotype.eumelanin[0] == "b"):
-                        colour += "chocolate"
+                        colour = "chocolate"
                     else:
-                        colour += "cinnamon"
+                        colour = "cinnamon"
 
         if 'O' in self.genotype.sexgene and 'o' in self.genotype.sexgene:
             tortie = "tortie "
@@ -146,10 +171,10 @@ class Phenotype():
         if self.genotype.white[1] in ["ws", 'wt'] or 'NoDBE' not in self.genotype.pax3:
             if(self.tortie != "" and self.tortie != 'brindled bicolour '):
                 self.tortie = "calico "
-            elif (self.tortie == "" or self.genotype.whitegrade > 2):
+            elif (self.tortie == "" or self.genotype.whitegrade > 1):
                 self.highwhite = "white and "
 
-        elif(self.genotype.white[0] in ['ws', 'wt'] and self.genotype.whitegrade > 2):
+        elif(self.genotype.white[0] in ['ws', 'wt'] and self.genotype.whitegrade > 1):
             if(self.tortie != "" and self.tortie != 'brindled bicolour ' and self.genotype.whitegrade > 4):
                 self.tortie = "calico "
             else:
@@ -438,6 +463,11 @@ class Phenotype():
 
         if(self.genotype.chimera and not self.genotype.chimerapattern):
             self.genotype.chimerapattern = self.ChooseTortiePattern('chim')
+        if(self.genotype.tortiepattern == "CRYPTIC"):
+            self.tortie = ""
+            self.WhiteFinder()
+            self.TabbyFinder()
+
 
         eyes = ""
 
@@ -619,7 +649,7 @@ class Phenotype():
 
         return pattern
 
-    def ChooseTortiePattern(self, spec=None):
+    def ChooseTortiePattern(self, spec = None):
         tortie_patterns = [
             'ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE',
             'MINIMALFOUR', 'HALF', 'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN',
@@ -642,6 +672,8 @@ class Phenotype():
         ]
 
         chosen = choice(tortie_patterns)
+        if randint(1, 125) == 1:
+            chosen = 'CRYPTIC'
 
         return chosen
 
