@@ -3086,7 +3086,7 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was killed in battle training with r_c."
+            "reg_death": "m_c hit {PRONOUN/m_c/poss} head on a rock after r_c attacked {PRONOUN/m_c/object} in \"battle training\" with {PRONOUN/r_c/object}."
         }],
         "relationships": [
             {
