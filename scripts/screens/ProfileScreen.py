@@ -1777,7 +1777,7 @@ class ProfileScreen(Screens):
         else:
             text = str(self.the_cat.name) + "'s past history is unknown."
 
-        if not self.the_cat.dead and self.the_cat.status not in [
+        if self.the_cat.status not in [
             "kittypet",
             "loner",
             "rogue",
