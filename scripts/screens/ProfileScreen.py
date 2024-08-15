@@ -1738,7 +1738,7 @@ class ProfileScreen(Screens):
             scar_history = self.get_scar_text()
             if scar_history:
                 body_history.append(scar_history)
-            death_history = self.get_death_text()
+            death_history = self.get_death_text(scarred=True if scar_history else False)
             if death_history:
                 body_history.append(death_history)
             # join scar and death into one paragraph
@@ -2124,11 +2124,12 @@ class ProfileScreen(Screens):
         return None
 
 
-    def get_death_text(self):
+    def get_death_text(self, scarred=False):
         """
         returns adjusted death history text
         """
         text = None
+        life_text = None
         death_history = self.the_cat.history.get_death_or_scars(
             self.the_cat, death=True
         )
@@ -2223,6 +2224,9 @@ class ProfileScreen(Screens):
 
             cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
             text = process_text(text, cat_dict)
+
+            if scarred and life_text:
+                text = "\n" + text
 
         return text
 
