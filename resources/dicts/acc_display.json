@@ -929,15 +929,25 @@
     "plural": "golden raspberries",
     "singular": "a bunch of golden raspberries"
   },
-  "CHERRY": {
-    "default": "cherry",
-    "plural": "cherries",
-    "singular": "a bunch of cherries"
+  "SOUR CHERRY": {
+    "default": "sour cherries",
+    "plural": "sour cherries",
+    "singular": "a bunch of sour cherries"
   },
   "YEW": {
     "default": "yew",
     "plural": "yew berries",
     "singular": "a yew berry"
+  },
+  "SWEET CHERRY": {
+    "default": "sweet cherries",
+    "plural": "sweet cherries",
+    "singular": "a bunch of sweet cherries"
+  },
+  "RAINIER CHERRY": {
+    "default": "Rainier cherries",
+    "plural": "Rainier cherries",
+    "singular": "a bunch of Rainier cherries"
   },
   "WILLOWBARK BAG": {
     "default": "willow-bark bag",
