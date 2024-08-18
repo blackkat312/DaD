@@ -480,7 +480,7 @@ class Sprites:
         ]
 
         fruit_data = [
-            ["RASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "CHERRY", "YEW"]
+            ["RASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "SOUR CHERRY", "YEW", "SWEET CHERRY", "RAINIER CHERRY"]
         ]
 
         crafted_data = [
