@@ -1990,13 +1990,13 @@ class ProfileScreen(Screens):
             )
 
             grad_age = app_ceremony["graduation_age"]
-            if int(grad_age) < 11:
+            if (self.the_cat.status == "medicine cat" and int(grad_age) < 12) or int(grad_age) < 11:
                 graduation_history += (
                     " {PRONOUN/m_c/poss/CAP} training went so well that {PRONOUN/m_c/subject} graduated early at "
                     + str(grad_age)
                     + " moons old."
                 )
-            elif int(grad_age) > 13:
+            elif (self.the_cat.status == "medicine cat" and int(grad_age) > 17) or int(grad_age) > 13:
                 graduation_history += (
                     " {PRONOUN/m_c/subject/CAP} graduated late at "
                     + str(grad_age)
