@@ -5965,7 +5965,7 @@ def create_cat(status, moons=None, biome=None):
 
                 new_cat.get_permanent_condition(condition, born_with=False, starting_moon=-1)
 
-    if (game.clan and game.clan.game_mode != "classic") and not int(random() * game.config["cat_generation"]["base_permanent_condition"]):
+    if (game.clan and game.clan.game_mode != "classic") and randint(1, game.config["cat_generation"]["base_permanent_condition"]) == 1:
         new_cat.congenital_condition(new_cat)
 
     return new_cat
