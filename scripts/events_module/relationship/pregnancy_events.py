@@ -1445,10 +1445,7 @@ class Pregnancy_Events:
             # don't delete the game.clan condition, this is needed for a test
             if (
                 game.clan
-                and not int(
-                    random.random()
-                    * game.config["cat_generation"]["base_permanent_condition"]
-                )
+                and randint(1, game.config["cat_generation"]["base_permanent_condition"]) == 1
                 and game.clan.game_mode != "classic"
             ):
                 kit.congenital_condition(kit)
