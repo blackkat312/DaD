@@ -1441,11 +1441,11 @@ class Pregnancy_Events:
             # remove scars
             kit.pelt.scars.clear()
 
-            # try to give them a permanent condition. 1/90 chance
+            # try to give them a permanent condition. 3/20 chance
             # don't delete the game.clan condition, this is needed for a test
             if (
                 game.clan
-                and randint(1, game.config["cat_generation"]["base_permanent_condition"]) == 1
+                and randint(1, game.config["cat_generation"]["base_congenital_condition_denominator"]) <= game.config["cat_generation"]["base_congenital_condition_compare"]
                 and game.clan.game_mode != "classic"
             ):
                 kit.congenital_condition(kit)
