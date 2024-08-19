@@ -1035,12 +1035,11 @@ def create_new_cat(
 
         # chance to give the new cat a congenital permanent condition, higher chance for found kits and litters
         if game.clan.game_mode != "classic":
+            chance = game.config["cat_generation"]["base_congenital_condition_denominator"]
             if kit or litter:
-                chance = game.config["cat_generation"]["base_permanent_condition"] - 5
-            else:
-                chance = game.config["cat_generation"]["base_permanent_condition"]
+                chance -= game.config["cat_generation"]["abandoned_kit_modifier"]
 
-            if randint(1, chance) == 1:
+            if randint(1, chance) <= game.config["cat_generation"]["base_congenital_condition_compare"]:
                 new_cat.congenital_condition(new_cat)
 
         if outside:
