@@ -2560,7 +2560,7 @@ class Events:
             relation_modifier = int(
                 0.5 * int(chosen_target.dislike + chosen_target.jealousy)
             ) - int(
-                0.5
+                1.5
                 * int(
                     chosen_target.platonic_like
                     + chosen_target.trust
@@ -2570,26 +2570,40 @@ class Events:
             print("Relation Modifier: ", relation_modifier)
             kill_chance -= relation_modifier
 
-            if (
-                len(chosen_target.log) > 0
-                and "(high negative effect)" in chosen_target.log[-1]
-            ):
-                kill_chance -= 50
-                print(str(chosen_target.log[-1]))
+            already_triggered_high = False
+            already_triggered_medium = False
 
-            if (
-                len(chosen_target.log) > 0
-                and "(medium negative effect)" in chosen_target.log[-1]
-            ):
+            if len(chosen_target.log) > 0 and "(high negative effect)" in chosen_target.log[-1]:
+                already_triggered_high = True
                 kill_chance -= 20
                 print(str(chosen_target.log[-1]))
+            if len(chosen_target.log) > 1 and "(high negative effect)" in chosen_target.log[-2]:
+                if already_triggered_high:
+                    kill_chance -= 15
+                else:
+                    already_triggered_high = True
+                    kill_chance -= 20
+
+                print(str(chosen_target.log[-2]))
+
+            if len(chosen_target.log) > 0 and "(medium negative effect)" in chosen_target.log[-1]:
+                already_triggered_medium = True
+                kill_chance -= 10
+                print(str(chosen_target.log[-1]))
+            if len(chosen_target.log) > 1 and "(medium negative effect)" in chosen_target.log[-2]:
+                if already_triggered_high or already_triggered_medium:
+                    kill_chance -= 5
+                else:
+                    kill_chance -= 5
+
+                print(str(chosen_target.log[-2]))
 
             # little easter egg just for fun
             if (
                 cat.personality.trait == "ambitious"
                 and Cat.fetch_cat(chosen_target.cat_to).status == "leader"
             ):
-                kill_chance -= 10
+                kill_chance -= 5
 
             kill_chance = max(1, int(kill_chance))
 
