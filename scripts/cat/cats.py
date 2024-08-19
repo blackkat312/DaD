@@ -3106,6 +3106,10 @@ class Cat:
             return
 
         if self.dead:
+            for condition in self.permanent_condition:
+                if condition.born_with is True and condition.moons_until != -2:
+                    condition.moons_until = -2
+
             self.thoughts()
             return
 
