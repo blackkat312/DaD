@@ -2534,7 +2534,7 @@ class Cat:
         extra = randint(1, 5)
         if extra == 1:
             template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
-        rng = randint(1, 20)
+        rng = randint(1, 10)
         gender = "???"
         if rng <= 2:
             genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
@@ -2615,7 +2615,7 @@ class Cat:
             return "skip"
 
         # chance of splitting if plural
-        if self.is_plural():
+        if condition in ["shattered soul", "budding spirit"]:
             splitting = randint(1, 100)
             if len(self.alters) < 1:
                 self.new_alter()
