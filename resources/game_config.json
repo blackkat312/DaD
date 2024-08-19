@@ -214,7 +214,7 @@
 		]
 	},
 	"cat_generation": {
-		"base_permanent_condition": 15,
+		"base_permanent_condition": 20,
 		"multiple_permanent_conditions": 25,
 		"max_conditions_born_with": 5,
 		"comorbidity_chance": 5,
