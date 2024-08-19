@@ -3847,8 +3847,8 @@ class Cat:
     def congenital_condition(self, cat):
         self.genetic_conditions()
         possible_conditions = []
-        multiple_condition_chance = game.config["cat_generation"]["multiple_permanent_conditions"]
-        max_conditions = game.config["cat_generation"]["max_conditions_born_with"]
+        extra_condition_chance = game.config["cat_generation"]["extra_congenital_condition"]
+        max_conditions = game.config["cat_generation"]["max_congenital_conditions"]
         comorbidity_chance = game.config["cat_generation"]["comorbidity_chance"]
         conditions = 1
         count = 1
@@ -3997,11 +3997,11 @@ class Cat:
             if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
                 possible_conditions.append(condition)
 
-        if cat.genotype.gender == "tom":
+        if "Y" in cat.genotype.sexgene:
             possible_conditions.remove("pcos")
 
         while count <= max_conditions:
-            if randint(1, multiple_condition_chance) == 1:
+            if randint(1, extra_condition_chance) == 1:
                 conditions += 1
             count += 1
 
@@ -5965,7 +5965,7 @@ def create_cat(status, moons=None, biome=None):
 
                 new_cat.get_permanent_condition(condition, born_with=False, starting_moon=-1)
 
-    if (game.clan and game.clan.game_mode != "classic") and randint(1, game.config["cat_generation"]["base_permanent_condition"]) == 1:
+    if game.clan and game.clan.game_mode != "classic" and randint(1, game.config["cat_generation"]["base_congenital_condition_denominator"]) <= game.config["cat_generation"]["base_congenital_condition_compare"]:
         new_cat.congenital_condition(new_cat)
 
     return new_cat
