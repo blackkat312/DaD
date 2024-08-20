@@ -624,7 +624,7 @@
     },
     {
         "event_id": "gen_death_snake_any2",
-
+        "location": ["any"],
         "season": [
             "any"
         ],
@@ -3666,7 +3666,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c fell from the top branches of a tree and didn't survive.",
+        "event_text": "m_c fell from the top branches of a tree and couldn't survive.",
         "m_c": {
             "age": [
                 "adolescent",
@@ -3767,7 +3767,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c was bitten by a venomous spider and died.",
+        "event_text": "m_c was bitten by a venomous spider and succumbed to the venom.",
         "m_c": {
             "dies": true
         },
