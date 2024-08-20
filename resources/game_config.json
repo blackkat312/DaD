@@ -393,7 +393,7 @@
 		"random_mutation": 75,
 		"somatic_mutation": 50,
 		"breakthrough": 25,
-		"cryptic_tortie": 100,
+		"cryptic_tortie": 125,
 
 		"longhair": 5,
 		"cinnamon": 15,
