@@ -1022,9 +1022,11 @@ def create_new_cat(
         elif clan_gain_moon > game.clan.age:
             clan_gain_moon = game.clan.age
 
+        if age < 5:
+            new_cat.pelt.scars = []
         for scar in new_cat.pelt.scars:
             if scar in scar_to_condition:
-                if game.clan.game_mode == "classic" or age < 4:
+                if game.clan.game_mode == "classic":
                     new_cat.pelt.scars.remove(scar)
                 else:
                     condition = choice(scar_to_condition.get(scar))
