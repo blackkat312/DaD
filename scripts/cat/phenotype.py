@@ -541,9 +541,9 @@ class Phenotype():
         eyes = eyes.replace("insertsectoral", self.genotype.extraeyecolour)
         withword = " with " + withword + eyes.lower()
         if scars and len(scars) > 2:
-            withword += " several scars"
-        elif scars and len(scars) > 4:
             withword += " many scars"
+        elif scars and len(scars) > 1:
+            withword += " several scars"
 
         if not sex or (sex and sex != "intersex"):  # everything else
             sextext = " "
@@ -672,7 +672,7 @@ class Phenotype():
         ]
 
         chosen = choice(tortie_patterns)
-        if randint(1, 125) == 1:
+        if randint(1, self.genotype.odds['cryptic_tortie']) == 1:
             chosen = 'CRYPTIC'
 
         return chosen
