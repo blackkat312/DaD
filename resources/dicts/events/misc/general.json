@@ -265,16 +265,32 @@
     "tags": ["skill_trait_required"],
     "sub_type": ["murder_reveal"],
     "weight": 15,
-    "event_text": "As r_c wanders around in the dreams of {PRONOUN/r_c/poss} Clanmates, {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} horrified to find m_c having a nightmare replaying mur_c's death. When r_c wakes {PRONOUN/r_c/self} up to tell the guardian, m_c is awake, shaking in {PRONOUN/m_c/poss} nest and crying.",
+    "event_text": "As r_c wanders around in the dreams of {PRONOUN/r_c/poss} Clanmates, {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} horrified to come across m_c having a nightmare replaying mur_c's death. When r_c wakes {PRONOUN/r_c/self} up to tell the guardian, m_c is awake, shaking in {PRONOUN/m_c/poss} nest and crying. r_c's heart aches for {PRONOUN/m_c/object} and goes to comfort {PRONOUN/m_c/object}, wondering if m_c had actually wanted to murder mur_c and if it would be better to protect {PRONOUN/m_c/poss} secret.",
     "m_c": {
       "age": ["any"],
-      "status": ["any"]
+      "status": ["any"],
+      "trait": [
+        "compassionate",
+        "thoughtful",
+        "calm",
+        "loving",
+        "wise",
+        "sincere"
+      ]
     },
     "r_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
       "status": ["any"],
       "skill": ["DREAM,0"],
-      "relationship_status": ["comfort_30"]
+      "relationship_status": ["comfort_50"],
+      "trait": [
+        "compassionate",
+        "thoughtful",
+        "calm",
+        "loving",
+        "wise",
+        "sincere"
+      ]
     },
     "injury": [
       {
@@ -300,7 +316,7 @@
         "cats_to": ["m_c"],
         "mutual": false,
         "values": ["trust", "comfort"],
-        "amount": -15
+        "amount": -10
       }
     ]
   },
