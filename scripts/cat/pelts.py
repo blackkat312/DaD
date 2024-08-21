@@ -92,12 +92,14 @@ class Pelt:
               "FROSTMITT", "FROSTSOCK", "TOE", "SNAKETWO", "RASH", "DECLAWED"]
 
     # make sure to add plural and singular forms of new accs to acc_display.json so that they will display nicely
-    plant_accessories = ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL",
-                         "BLUEBELLS", "NETTLE", "POPPY", "LAVENDER", "HERBS", "PETALS", "DRY HERBS",
-                         "OAK LEAVES", "CATMINT", "MAPLE SEED", "JUNIPER"]
+    plant_accessories = ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY",
+                        "BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER",
+                        "OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "CLOVER", "DAISY",
+                        "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"
+                        ]
+    wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY", "CICADA WINGS", "BLACK CICADA"]
 
-    wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS"]
-    tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]
+    tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CLOVER", "DAISY"]
     collars = [
         "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME", "GREEN", "RAINBOW",
         "BLACK", "SPIKES", "WHITE", "PINK", "PURPLE", "MULTI", "INDIGO", "CRIMSONBELL", "BLUEBELL",
@@ -112,11 +114,11 @@ class Pelt:
 
     # ohdan's accessories
     flower_accessories = [
-        "DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM",
+        "OHDAN DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM",
         "LACELEAF", "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "WISTERIA"
     ]
     plant2_accessories = [
-        "CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"
+        "OHDAN CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"
     ]
     snake_accessories = [
         "GRASS SNAKE", "BLUE RACER", "WESTERN COACHWHIP", "KINGSNAKE"
@@ -130,14 +132,14 @@ class Pelt:
         "GRAY AND WHITE RABBIT", "GRAY VITILIGO RABBIT"
     ]
     deadInsect_accessories = [
-        "LUNAR MOTH", "ROSY MAPLE MOTH", "MONARCH BUTTERFLY", "DAPPLED MONARCH", "POLYPHEMUS MOTH", "MINT MOTH"
+        "LUNAR MOTH", "ROSY MAPLE MOTH", "OHDAN MONARCH BUTTERFLY", "DAPPLED MONARCH", "POLYPHEMUS MOTH", "MINT MOTH"
     ]
     aliveInsect_accessories = [
         "BROWN SNAIL", "RED SNAIL", "WORM", "BLUE SNAIL", "ZEBRA ISOPOD", "DUCKY ISOPOD", "DAIRY COW ISOPOD",
         "BEETLEJUICE ISOPOD", "BEE", "RED LADYBUG", "ORANGE LADYBUG", "YELLOW LADYBUG"
     ]
     fruit_accessories = [
-        "RASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "SOUR CHERRY", "YEW", "SWEET CHERRY", "RAINIER CHERRY"
+        "OHDAN RASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "SOUR CHERRY", "YEW", "SWEET CHERRY", "RAINIER CHERRY"
     ]
     crafted_accessories = [
         "WILLOWBARK BAG", "CLAY DAISY POT", "CLAY AMANITA POT", "CLAY BROWNCAP POT", "BIRD SKULL", "LEAF BOW"
@@ -789,7 +791,7 @@ class Pelt:
         else:
             self.accessory = None
 
-        if self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5 and self.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'SEAWEED', 'DAISY CORSAGE']:
+        if self.phenotype.bobtailnr > 0 and self.phenotype.bobtailnr < 5 and self.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS', 'GULL FEATHERS', 'SPARROW FEATHERS', 'CLOVER', 'DAISY', 'SEAWEED', 'DAISY CORSAGE']:
             self.accessory = None
 
 
@@ -897,8 +899,8 @@ class Pelt:
             chance = 10 - len(par_points)
         else:
             chance = 40
-
-        if self.name != "Tortie" and not (random.random() * chance):
+        # Chance of point is 1 / chance.
+        if self.name != "Tortie" and not int(random.random() * chance):
             self.points = choice(Pelt.point_markings)
         else:
             self.points = None
