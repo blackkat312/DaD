@@ -228,7 +228,7 @@ class Pregnancy_Events:
         event_list = []
         if not cat.outside and other_cat is None:
             event_list.append(choice(events["adoption"]["unmated_parent"]))
-        elif not affair and not dead_mate and not all_mates_outside:
+        elif not both_unmated and not affair and not dead_mate and not all_mates_outside:
             cats_involved.append(random_choice.ID)
             event_list.append(choice(events["adoption"]["two_parents"]))
         elif not affair and dead_mate or all_mates_outside:
@@ -699,8 +699,8 @@ class Pregnancy_Events:
                     backkit = 'halfclan1'
 
                 nr_of_parents = 1
-                if clan.clan_settings['multisire'] and randint(1, game.config['genetics_config']["multi-sire_chance"]) == 1 and cat_type != 'Clancat':
-                    nr_of_parents = randint(2, game.config['genetics_config']["multi-sire_max_sires"])
+                if clan.clan_settings['multisire'] and randint(1, game.config['pregnancy']["multi-sire_chance"]) == 1 and cat_type != 'Clancat':
+                    nr_of_parents = randint(2, game.config['pregnancy']["multi-sire_max_sires"])
                 other_cat = []
                 for i in range(0, nr_of_parents):
 
@@ -734,8 +734,8 @@ class Pregnancy_Events:
                 backkit = 'outsider_roots1'
                 other_cat = []
                 nr_of_parents = 1
-                if clan.clan_settings['multisire'] and randint(1, game.config['genetics_config']["multi-sire_chance"]) == 1:
-                    nr_of_parents = randint(2, game.config['genetics_config']["multi-sire_max_sires"])
+                if clan.clan_settings['multisire'] and randint(1, game.config['pregnancy']["multi-sire_chance"]) == 1:
+                    nr_of_parents = randint(2, game.config['pregnancy']["multi-sire_max_sires"])
 
                 if nr_of_parents > len(possible_affair_partners):
                     nr_of_parents = len(possible_affair_partners)
@@ -820,7 +820,7 @@ class Pregnancy_Events:
             if other_cat and not All_Mates_Outside:
                 adding_text = choice(events["birth"]["outside_in_clan"])
             event_list.append(adding_text)
-        elif not affair_partners and not Dead_Mate and not All_Mates_Outside:
+        elif not Both_Unmated and not affair_partners and not Dead_Mate and not All_Mates_Outside:
             involved_cats.append(RandomChoice.ID)
             event_list.append(choice(events["birth"]["two_parents"]))
         elif not affair_partners and Dead_Mate or All_Mates_Outside:
@@ -1363,8 +1363,8 @@ class Pregnancy_Events:
                 if not blood_parent:
                     # Generate a blood parent if we haven't already. 
                     nr_of_parents = 1
-                    if clan.clan_settings['multisire'] and randint(1, game.config['genetics_config']["multi-sire_chance"]) == 1:
-                        nr_of_parents = randint(2, game.config['genetics_config']["multi-sire_max_sires"])
+                    if clan.clan_settings['multisire'] and randint(1, game.config['pregnancy']["multi-sire_chance"]) == 1:
+                        nr_of_parents = randint(2, game.config['pregnancy']["multi-sire_max_sires"])
 
                     insert = "their kits are"
                     if kits_amount == 1:
