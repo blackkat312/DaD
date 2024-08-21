@@ -274,15 +274,6 @@ class Thoughts:
         status = main_cat.status
 
         status = status.replace(" ", "_")
-        # match status:
-        #     case "medicine cat apprentice":
-        #         status = "medicine_cat_apprentice"
-        #     case "mediator apprentice":
-        #         status = "mediator_apprentice"
-        #     case "medicine cat":
-        #         status = "medicine_cat"
-        #     case 'former Clancat':
-        #         status = 'former_Clancat'
 
         if not main_cat.dead:
             life_dir = "alive"
@@ -302,11 +293,11 @@ class Thoughts:
 
         # newborns only pull from their status thoughts. this is done for convenience
         try:
-            if main_cat.age == "newborn":
+            if main_cat.age == 'newborn':
                 with open(f"{base_path}{life_dir}{spec_dir}/newborn.json", 'r') as read_file:
                     thoughts = ujson.loads(read_file.read())
                 loaded_thoughts = thoughts
-            elif main_cat.status == "unknown":
+            elif main_cat.status == 'unknown':
                 with open(f"{base_path}{life_dir}{spec_dir}/unknown.json", 'r') as read_file:
                     thoughts = ujson.loads(read_file.read())
                 loaded_thoughts = thoughts
@@ -327,8 +318,12 @@ class Thoughts:
     def get_chosen_thought(main_cat, other_cat, game_mode, biome, season, camp):
         # get possible thoughts
         try:
-            chosen_thought_group = choice(Thoughts.load_thoughts(main_cat, other_cat, game_mode, biome, season, camp))
-            chosen_thought = choice(chosen_thought_group["thoughts"])
+            # checks if the cat is Rick Astley to give the rickroll thought, otherwise proceed as usual
+            if (main_cat.name.prefix+main_cat.name.suffix).replace(" ", "").lower() == "rickastley":
+                return "Never going to give r_c up, never going to let {PRONOUN/r_c/object} down, never going to run around and desert {PRONOUN/r_c/object}."
+            else:
+                chosen_thought_group = choice(Thoughts.load_thoughts(main_cat, other_cat, game_mode, biome, season, camp))
+                chosen_thought = choice(chosen_thought_group["thoughts"])
         except Exception:
             traceback.print_exc()
             chosen_thought = "Prrrp! You shouldn't see this! Report as a bug."
