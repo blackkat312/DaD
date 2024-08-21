@@ -124,14 +124,14 @@ class Sprites:
 
         for x in [
             'lineart', 'lineartdead', 'lineartdf',
-            'whitepatches', 'minkswhite', 'scars', 'missingscars', 'disabilityscars',
+            'whitepatches', 'minkswhite', 'tortiepatchesmasks', 'minkstorties',
+            'scars', 'missingscars', 'disabilityscars',
+            'medcatherbs', 'wild', 'flower_accessories', 'plant2_accessories', 'snake_accessories',
+            'smallAnimal_accessories', 'deadInsect_accessories', 'aliveInsect_accessories', 'fruit_accessories',
+            'crafted_accessories', 'tail2_accessories', 'disabilityaccs', 'booties',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
-            'shadersnewwhite', 'tortiepatchesmasks', 'minkstorties',
-            'medcatherbs', 'flower_accessories', 'plant2_accessories', 'snake_accessories', 'smallAnimal_accessories',
-            'deadInsect_accessories', 'aliveInsect_accessories', 'fruit_accessories', 'crafted_accessories',
-            'tail2_accessories', 'disabilityaccs', 'booties',
-            'lightingnew', 'fademask',
-            'fadestarclan', 'fadedarkforest',
+            'shadersnewwhite', 'lightingnew',
+            'fademask', 'fadestarclan', 'fadedarkforest',
             'symbols'
 
         ]:
@@ -415,15 +415,17 @@ class Sprites:
                 self.make_group('missingscars', (col, row), f'scars{missing_part}')
 
         # accessories
+        #to my beloved modders, im very sorry for reordering everything <333 -clay
         medcatherbs_data = [
-            ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL"],
-            ["BLUEBELLS", "NETTLE", "POPPY", "LAVENDER", "HERBS", "PETALS"],
-            [],  # Empty row because this is the wild data, except dry herbs.
-            ["OAK LEAVES", "CATMINT", "MAPLE SEED", "JUNIPER"]
+            ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY"],
+            ["BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER"],
+            ["OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "CLOVER", "DAISY"]
         ]
-
+        dryherbs_data = [
+            ["DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"]
+        ]
         wild_data = [
-            ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "MOTH WINGS", "CICADA WINGS"]
+            ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY", "CICADA WINGS", "BLACK CICADA"]
         ]
 
         collars_data = [
@@ -451,12 +453,12 @@ class Sprites:
         ]
 
         flower_data = [
-            ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY"],
+            ["OHDAN DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY"],
             ["YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "WISTERIA"]
         ]
 
         plant2_data = [
-            ["CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
+            ["OHDAN CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
         ]
 
         snake_data = [
@@ -471,7 +473,7 @@ class Sprites:
         ]
 
         deadInsect_data = [
-            ["LUNAR MOTH", "ROSY MAPLE MOTH", "MONARCH BUTTERFLY", "DAPPLED MONARCH", "POLYPHEMUS MOTH", "MINT MOTH"]
+            ["LUNAR MOTH", "ROSY MAPLE MOTH", "OHDAN MONARCH BUTTERFLY", "DAPPLED MONARCH", "POLYPHEMUS MOTH", "MINT MOTH"]
         ]
 
         aliveInsect_data = [
@@ -480,7 +482,7 @@ class Sprites:
         ]
 
         fruit_data = [
-            ["RASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "SOUR CHERRY", "YEW", "SWEET CHERRY", "RAINIER CHERRY"]
+            ["OHDAN RASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "SOUR CHERRY", "YEW", "SWEET CHERRY", "RAINIER CHERRY"]
         ]
 
         crafted_data = [
@@ -506,12 +508,14 @@ class Sprites:
         for row, herbs in enumerate(medcatherbs_data):
             for col, herb in enumerate(herbs):
                 self.make_group('medcatherbs', (col, row), f'acc_herbs{herb}')
-        self.make_group('medcatherbs', (5, 2), 'acc_herbsDRY HERBS')
-
+        #dryherbs
+        for row, dry in enumerate(dryherbs_data):
+            for col, dryherbs in enumerate(dry):
+                self.make_group('medcatherbs', (col, 3), f'acc_herbs{dryherbs}')
         # wild
         for row, wilds in enumerate(wild_data):
             for col, wild in enumerate(wilds):
-                self.make_group('medcatherbs', (col, 2), f'acc_wild{wild}')
+                self.make_group('wild', (col, 0), f'acc_wild{wild}')
 
         # collars
         for row, collars in enumerate(collars_data):
