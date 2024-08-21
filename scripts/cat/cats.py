@@ -5970,11 +5970,11 @@ def create_cat(status, moons=None, biome=None):
         "DECLAWED": ["declawed"],
     }
 
+    if new_cat.moons < 5:
+        new_cat.pelt.scars = []
     for scar in new_cat.pelt.scars:
-        if new_cat.moons == 0:
-            new_cat.pelt.scars.remove(scar)
-        elif scar in scar_to_condition:
-            if (game.clan and game.clan.game_mode == "classic") or not game.clan or new_cat.moons < 4:
+        if scar in scar_to_condition:
+            if (game.clan and game.clan.game_mode == "classic") or not game.clan:
                 new_cat.pelt.scars.remove(scar)
             else:
                 condition = choice(scar_to_condition.get(scar))
