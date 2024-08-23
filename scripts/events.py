@@ -2556,6 +2556,7 @@ class Events:
             print(cat.name, 'TARGET CHOSEN', Cat.fetch_cat(chosen_target.cat_to).name)
 
             kill_chance = game.config["death_related"]["base_murder_kill_chance"]
+            print(f"Base Chance | {kill_chance}")
 
             relation_modifier = int(
                 2 * int(chosen_target.dislike + chosen_target.jealousy)
@@ -2567,44 +2568,41 @@ class Events:
                     + chosen_target.comfortable
                 )
             )
-            print("Relation Modifier: ", relation_modifier)
+            relmodstr = str(relation_modifier)
+            relmodstr = relmodstr.replace("-", "")
+            if relation_modifier < 0:
+                print(f"Relation Modifier | +{relmodstr}")
+            else:
+                print(f"Relation Modifier | -{relmodstr}")
             kill_chance -= relation_modifier
 
             already_triggered_high = False
-            already_triggered_medium = False
 
             if len(chosen_target.log) > 0 and "(high negative effect)" in chosen_target.log[-1]:
                 already_triggered_high = True
                 kill_chance -= 15
-                print(str(chosen_target.log[-1]))
+                print(str(chosen_target.log[-1]) + " | -15")
             if len(chosen_target.log) > 1 and "(high negative effect)" in chosen_target.log[-2]:
                 if already_triggered_high:
-                    kill_chance -= 10
+                    kill_chance -= 5
+                    print(str(chosen_target.log[-2]) + " | -5")
                 else:
-                    already_triggered_high = True
                     kill_chance -= 15
-
-                print(str(chosen_target.log[-2]))
+                    print(str(chosen_target.log[-2]) + " | -15")
 
             if len(chosen_target.log) > 0 and "(medium negative effect)" in chosen_target.log[-1]:
-                already_triggered_medium = True
                 kill_chance -= 5
-                print(str(chosen_target.log[-1]))
-            """if len(chosen_target.log) > 1 and "(medium negative effect)" in chosen_target.log[-2]:
-                if already_triggered_high or already_triggered_medium:
-                    kill_chance -= 5
-                else:
-                    kill_chance -= 5
-
-                print(str(chosen_target.log[-2]))"""
+                print(str(chosen_target.log[-1]) + " | -5")
 
             # little easter egg just for fun
             if (
                 cat.personality.trait == "ambitious"
                 and Cat.fetch_cat(chosen_target.cat_to).status == "leader"
             ):
+                print(f"Ambitious Cat Trying to Kill Guardian | -5")
                 kill_chance -= 5
 
+            print(f"Before Correction | {kill_chance}")
             kill_chance = max(1, int(kill_chance))
 
             print("Final kill chance: " + str(kill_chance))
