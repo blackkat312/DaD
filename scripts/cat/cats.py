@@ -2064,56 +2064,56 @@ class Cat:
         if "blue-eyed hearing" not in self.conditions_already_attempted:
             if self.genotype.deaf:
                 if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
-                    self.get_permanent_condition('partial hearing loss', born_with=True, genetic=True)
+                    self.get_permanent_condition('partial hearing loss', born_with=True)
                 elif 'partial hearing loss' not in self.permanent_condition:
-                    self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True, genetic=True)
+                    self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True)
                 self.conditions_already_attempted.append("blue-eyed hearing")
 
         if "manx syndrome" not in self.conditions_already_attempted:
             if 'M' in self.genotype.manx:
                 if random() > ((self.phenotype.bobtailnr + 1) * 0.2):
-                    self.get_permanent_condition('manx syndrome', born_with=True, genetic=True)
+                    self.get_permanent_condition('manx syndrome', born_with=True)
                 self.conditions_already_attempted.append("manx syndrome")
 
         if "manx no tail" not in self.conditions_already_attempted:
             if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
-                self.get_permanent_condition('born without a tail', born_with=True, genetic=True)
+                self.get_permanent_condition('born without a tail', born_with=True)
                 self.conditions_already_attempted.append("manx no tail")
 
         if "joint pain" not in self.conditions_already_attempted:
             if self.genotype.fold[0] == 'Fd':
-                self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
+                self.get_permanent_condition('constant joint pain', born_with=True)
                 self.conditions_already_attempted.append("joint pain")
 
         if 'manx syndrome' in self.permanent_condition:
             if "joint pain" not in self.conditions_already_attempted:
                 if (self.phenotype.bobtailnr < 2 and randint(1, 3) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 6) == 1):
-                    self.get_permanent_condition('constant joint pain', born_with=True, genetic=True)
+                    self.get_permanent_condition('constant joint pain', born_with=True)
                 self.conditions_already_attempted.append("joint pain")
 
             if "IBS" not in self.conditions_already_attempted:
                 if (self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 20) == 1):
-                    self.get_permanent_condition('irritable bowels', born_with=True, genetic=True)
+                    self.get_permanent_condition('irritable bowels', born_with=True)
                 self.conditions_already_attempted.append("IBS")
 
             if "paralysis" not in self.conditions_already_attempted:
                 if (self.phenotype.bobtailnr < 2 and randint(1, 30) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 60) == 1):
-                    self.get_permanent_condition('paralyzed', born_with=True, genetic=True)
+                    self.get_permanent_condition('paralyzed', born_with=True)
                 self.conditions_already_attempted.append("paralysis")
 
             if "scoliosis" not in self.conditions_already_attempted:
                 if (self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 40) == 1):
-                    self.get_permanent_condition('curved spine', born_with=True, genetic=True)
+                    self.get_permanent_condition('curved spine', born_with=True)
                 self.conditions_already_attempted.append("scoliosis")
 
             if "rabbit gait" not in self.conditions_already_attempted:
                 if (self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 20) == 1):
-                    self.get_permanent_condition('rabbit gait', born_with=True, genetic=True)
+                    self.get_permanent_condition('rabbit gait', born_with=True)
                 self.conditions_already_attempted.append("rabbit gait")
 
         if "albinism" not in self.conditions_already_attempted:
             if self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c'):
-                self.get_permanent_condition('albinism', born_with=True, genetic=True)
+                self.get_permanent_condition('albinism', born_with=True)
                 self.conditions_already_attempted.append("albinism")
 
         if "ocular albinism" not in self.conditions_already_attempted:
@@ -2124,38 +2124,38 @@ class Cat:
                     or (self.genotype.chimera and self.genotype.chimerageno.somatic and self.genotype.chimerageno.somatic != "{}" and "face" in self.genotype.chimerageno.somatic["base"] and self.genotype.chimerageno.somatic["gene"] == "pinkdilute" and self.genotype.chimerageno.pinkdilute == ["Dp", "dp"]))
                     and not (self.genotype.pointgene[0] == 'c' or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == 'c'))
             ):
-                self.get_permanent_condition('ocular albinism', born_with=True, genetic=True)
+                self.get_permanent_condition('ocular albinism', born_with=True)
                 self.conditions_already_attempted.append("ocular albinism")
 
         if "fully hairless" not in self.conditions_already_attempted:
             if self.phenotype.length == 'hairless':
-                self.get_permanent_condition('fully hairless', born_with=True, genetic=True)
+                self.get_permanent_condition('fully hairless', born_with=True)
                 self.conditions_already_attempted.append("fully hairless")
 
         if "partially hairless" not in self.conditions_already_attempted:
             if self.phenotype.length == 'fur-pointed' or 'patchy ' in self.phenotype.furtype:
-                self.get_permanent_condition('partially hairless', born_with=True, genetic=True)
+                self.get_permanent_condition('partially hairless', born_with=True)
                 self.conditions_already_attempted.append("partially hairless")
 
         if self.genotype.munch[0] == 'Mk':
             if "joint pain" not in self.conditions_already_attempted:
                 if randint(1, 3) == 1:
-                    self.get_permanent_condition('constant joint pain', born_with=True, genetic=True, custom_reveal=randint(24, 36))
+                    self.get_permanent_condition('constant joint pain', born_with=True, custom_reveal=randint(24, 36))
                 self.conditions_already_attempted.append("joint pain")
 
             if "scoliosis" not in self.conditions_already_attempted:
                 if randint(1, 10) == 1:
-                    self.get_permanent_condition('curved spine', born_with=True, genetic=True)
+                    self.get_permanent_condition('curved spine', born_with=True)
                 self.conditions_already_attempted.append("scoliosis")
 
             if "narrowed chest" not in self.conditions_already_attempted:
                 if randint(1, 30) == 1:
-                    self.get_permanent_condition('narrowed chest', born_with=True, genetic=True)
+                    self.get_permanent_condition('narrowed chest', born_with=True)
                 self.conditions_already_attempted.append("narrowed chest")
 
         if "cysts" not in self.conditions_already_attempted:
             if self.genotype.lykoi[0] == 'ly':
-                self.get_permanent_condition('bumpy skin', born_with=True, genetic=True)
+                self.get_permanent_condition('bumpy skin', born_with=True)
                 self.conditions_already_attempted.append("cysts")
 
     @property
