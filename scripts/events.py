@@ -2558,9 +2558,9 @@ class Events:
             kill_chance = game.config["death_related"]["base_murder_kill_chance"]
 
             relation_modifier = int(
-                0.5 * int(chosen_target.dislike + chosen_target.jealousy)
+                2 * int(chosen_target.dislike + chosen_target.jealousy)
             ) - int(
-                1.5
+                4
                 * int(
                     chosen_target.platonic_like
                     + chosen_target.trust
@@ -2575,28 +2575,28 @@ class Events:
 
             if len(chosen_target.log) > 0 and "(high negative effect)" in chosen_target.log[-1]:
                 already_triggered_high = True
-                kill_chance -= 20
+                kill_chance -= 15
                 print(str(chosen_target.log[-1]))
             if len(chosen_target.log) > 1 and "(high negative effect)" in chosen_target.log[-2]:
                 if already_triggered_high:
-                    kill_chance -= 15
+                    kill_chance -= 10
                 else:
                     already_triggered_high = True
-                    kill_chance -= 20
+                    kill_chance -= 15
 
                 print(str(chosen_target.log[-2]))
 
             if len(chosen_target.log) > 0 and "(medium negative effect)" in chosen_target.log[-1]:
                 already_triggered_medium = True
-                kill_chance -= 10
+                kill_chance -= 5
                 print(str(chosen_target.log[-1]))
-            if len(chosen_target.log) > 1 and "(medium negative effect)" in chosen_target.log[-2]:
+            """if len(chosen_target.log) > 1 and "(medium negative effect)" in chosen_target.log[-2]:
                 if already_triggered_high or already_triggered_medium:
                     kill_chance -= 5
                 else:
                     kill_chance -= 5
 
-                print(str(chosen_target.log[-2]))
+                print(str(chosen_target.log[-2]))"""
 
             # little easter egg just for fun
             if (
