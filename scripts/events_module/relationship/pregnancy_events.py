@@ -81,6 +81,8 @@ class Pregnancy_Events:
                     Pregnancy_Events.handle_two_moon_pregnant(cat, clan)
                     # events.ceremony_accessory = True
                     return
+                elif clan.game_mode == "classic":
+                    Pregnancy_Events.handle_two_moon_pregnant(cat, clan)
                 else:
                     ids = []
                     second_parent = []
