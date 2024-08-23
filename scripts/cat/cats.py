@@ -3863,8 +3863,8 @@ class Cat:
     def congenital_condition(self, cat):
         self.genetic_conditions()
         possible_conditions = []
-        extra_condition_chance = game.config["cat_generation"]["extra_congenital_condition"]
-        max_conditions = game.config["cat_generation"]["max_congenital_conditions"]
+        additional_condition_chance = game.config["cat_generation"]["extra_congenital_condition"]
+        max_congenital_conditions = game.config["cat_generation"]["max_congenital_conditions"] - 1
         comorbidity_chance = game.config["cat_generation"]["comorbidity_chance"]
         conditions = 1
         count = 1
@@ -4010,18 +4010,22 @@ class Cat:
 
         for condition in PERMANENT:
             possible = PERMANENT[condition]
-            if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive:
+            if possible["congenital"] in ['always', 'sometimes'] and condition not in genetics_exclusive and condition != "born without a tail":
                 possible_conditions.append(condition)
 
         if "Y" in cat.genotype.sexgene:
             possible_conditions.remove("pcos")
 
-        while count <= max_conditions:
-            if randint(1, extra_condition_chance) == 1:
+        while count <= max_congenital_conditions:
+            if randint(1, additional_condition_chance) == 1:
                 conditions += 1
             count += 1
 
-        while conditions > 1:
+        if not possible_conditions or possible_conditions == []:
+            print("No possible conditions! How did this happen?")
+            return
+
+        while conditions > 0:
             for entry in comorbid_conditions:
                 if entry in cat.permanent_condition:
                     if not (entry == "constant joint pain" and cat.genotype.fold[0] == "Fd"):
@@ -4035,13 +4039,6 @@ class Cat:
                 new_condition = choice(possible_conditions)
                 if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
                     new_condition = choice(choice(possible_comorbidities))
-
-            while new_condition == "born without a tail":
-                new_condition = choice(possible_conditions)
-                while new_condition in cat.permanent_condition:
-                    new_condition = choice(possible_conditions)
-                    if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
-                        new_condition = choice(choice(possible_comorbidities))
 
             if new_condition == "blind" and "failing eyesight" in cat.permanent_condition:
                 while new_condition == "blind":
@@ -4132,19 +4129,12 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False, genetic=False, starting_moon=0, custom_reveal=None):
-        with open(f"resources/dicts/conditions/permanent_conditions.json", 'r') as read_file:
-            PERMANENT = ujson.loads(read_file.read())
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, starting_moon=0, custom_reveal=None):
         if name not in PERMANENT:
             print(
                 str(self.name),
                 f"WARNING: {name} is not in the permanent conditions collection.",
             )
-            return
-
-        intersex_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
-
-        if name in intersex_exclusive and self.genotype.gender != "intersex":
             return
 
         if name == "albinism" and not (self.genotype.pointgene[0] == "c" or (self.genotype.chimera and self.genotype.chimerageno.pointgene[0] == "c")):
@@ -6001,7 +5991,6 @@ def create_example_cats():
                 ["kitten", "apprentice", "warrior", "warrior", "elder"]
             )
             game.choose_cats[cat_index] = create_cat(status=random_status)
-        game.choose_cats[cat_index].genetic_conditions()
 
 
 # CAT CLASS ITEMS
