@@ -2516,7 +2516,7 @@ class Events:
             return
 
         # will this cat actually murder? this takes into account stability and lawfulness
-        murder_capable = 7
+        murder_capable = 10
         if cat.personality.stability < 6:
             murder_capable -= 3
         if cat.personality.lawfulness < 6:
@@ -2552,28 +2552,22 @@ class Events:
         # if we have some, then we need to decide if this cat will kill
         if targets:
             chosen_target = random.choice(targets)
-            print(f'{cat.name} is feeling murderous')
-            print(cat.name, 'TARGET CHOSEN', Cat.fetch_cat(chosen_target.cat_to).name)
+            murderer_name = str(cat.name)
+            target_name = str(Cat.fetch_cat(chosen_target.cat_to).name)
+            print('\n' + murderer_name.upper() + ' is feeling murderous')
+            print('Target Chosen | ' + target_name.upper())
 
             kill_chance = game.config["death_related"]["base_murder_kill_chance"]
-            print(f"Base Chance | {kill_chance}")
+            print(f"Base chance | {kill_chance}")
 
-            relation_modifier = int(
-                2 * int(chosen_target.dislike + chosen_target.jealousy)
-            ) - int(
-                4
-                * int(
-                    chosen_target.platonic_like
-                    + chosen_target.trust
-                    + chosen_target.comfortable
-                )
-            )
+            relation_modifier = int(chosen_target.dislike + chosen_target.jealousy) - \
+                                (2 * int(chosen_target.platonic_like + chosen_target.trust + chosen_target.comfortable))
             relmodstr = str(relation_modifier)
             relmodstr = relmodstr.replace("-", "")
             if relation_modifier < 0:
-                print(f"Relation Modifier | +{relmodstr}")
-            else:
-                print(f"Relation Modifier | -{relmodstr}")
+                print(f"Relation modifier | +{relmodstr}")
+            elif relation_modifier:
+                print(f"Relation modifier | -{relmodstr}")
             kill_chance -= relation_modifier
 
             already_triggered_high = False
@@ -2599,22 +2593,24 @@ class Events:
                 cat.personality.trait == "ambitious"
                 and Cat.fetch_cat(chosen_target.cat_to).status == "leader"
             ):
-                print(f"Ambitious Cat Trying to Kill Guardian | -5")
+                print(f"{murderer_name} is ambitious and trying to kill {target_name} | -5")
                 kill_chance -= 5
 
-            print(f"Before Correction | {kill_chance}")
-            kill_chance = max(1, int(kill_chance))
+            if kill_chance < 1:
+                print(f"Before correction | {kill_chance}")
+                kill_chance = 1
 
-            print("Final kill chance: " + str(kill_chance))
+            print("     Final kill chance | " + str(kill_chance))
 
             if not int(random.random() * kill_chance):
-                print("KILL KILL KILL")
+                print("     KILL KILL KILL")
 
                 handle_short_events.handle_event(event_type="birth_death",
                                                  main_cat=Cat.fetch_cat(chosen_target.cat_to),
                                                  random_cat=cat,
                                                  sub_type=["murder"],
                                                  freshkill_pile=game.clan.freshkill_pile)
+            print("\n")
 
     def handle_illnesses_or_illness_deaths(self, cat):
         """
