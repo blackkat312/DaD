@@ -1568,8 +1568,8 @@ class Cat:
         # trans cat chances
         theythemdefault = game.settings["they them default"]
         self.genderalign = self.gender
-        trans_chance = randint(0, 35)
-        nb_chance = randint(0, 35)
+        trans_chance = randint(0, 45)
+        nb_chance = randint(0, 55)
 
         # GENDER IDENTITY
         if self.moons == 0 or self.age == "newborn":
