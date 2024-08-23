@@ -2783,17 +2783,19 @@ class Events:
         # TODO: should figure out how to handle these as a ShortEvent, we don't want hardcoded text
         if cat.genderalign == cat.gender:
             involved_cats = [cat.ID]
-            if cat.age == "kitten":
-                transing_chance = random.randint(0, 110)
+            if cat.moons > 2:
+                transing_chance = 1
+            elif cat.age == "kitten":
+                transing_chance = random.randint(0, 130)
             elif cat.age == "adolescent":
-                transing_chance = random.randint(0, 110)
+                transing_chance = random.randint(0, 130)
             elif cat.age == "young adult":
-                transing_chance = random.randint(0, 120)
+                transing_chance = random.randint(0, 140)
             elif cat.age == "adult":
-                transing_chance = random.randint(0, 150)
+                transing_chance = random.randint(0, 170)
             else:
                 # senior adult & elder
-                transing_chance = random.randint(0, 180)
+                transing_chance = random.randint(0, 200)
 
             if transing_chance:
                 # transing_chance != 0, no trans kitties today...    L
