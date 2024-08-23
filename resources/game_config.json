@@ -222,8 +222,8 @@
 		]
 	},
 	"cat_generation": {
-		"base_congenital_condition_denominator": 1,
-		"base_congenital_condition_compare": 10,
+		"base_congenital_condition_denominator": 10,
+		"base_congenital_condition_compare": 1,
 		"abandoned_kit_modifier": 3,
 		"extra_congenital_condition": 25,
 		"max_congenital_conditions": 5,
