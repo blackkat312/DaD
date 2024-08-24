@@ -2277,14 +2277,14 @@ class ProfileScreen(Screens):
             if victim_names:
                 for name in victim_names:
 
-                    name_list = []
+                    name_list_list = []
                     for letter in name:
-                        name_list += letter
+                        name_list_list += letter
 
                     if not moons:
                         name_list.append(name)
                     else:
-                        if name_list[-1] == ".":
+                        if name_list_list[-1] == ".":
                             name_list.append(f"{name} (Moon {victim_names[name][0]})")
                         else:
                             name_list.append(f"{name} (moon {victim_names[name][0]})")
