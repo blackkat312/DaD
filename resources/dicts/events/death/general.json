@@ -611,15 +611,15 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c was bitten by a snake and succumbed to the venom.",
+        "event_text": "m_c was bitten by a snake and succumbed to its venom.",
         "m_c": {
             "age": ["adolescent", "young adult", "adult", "senior adult"],
             "dies": true
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was killed by a snake.",
-            "lead_death": "{VERB/m_c/were/was} bitten by a snake"
+            "reg_death": "m_c was killed by a venomous snake.",
+            "lead_death": "{VERB/m_c/were/was} bitten by a venomous snake"
         }]
     },
     {
@@ -629,7 +629,7 @@
             "any"
         ],
         "weight": 20,
-        "event_text": "m_c saved r_c from a snake but was bitten in the process. The venom killed {PRONOUN/m_c/object}.",
+        "event_text": "m_c saved r_c from a snake, but was bitten in the process. Its venom killed {PRONOUN/m_c/object}.",
         "m_c": {
             "age": [ "adolescent", "young adult", "adult", "senior adult", "senior"],
             "status": [ "any" ],
@@ -655,8 +655,8 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was killed by a snake while saving a kit.",
-            "lead_death": "died saving a kit from a snake"
+            "reg_death": "m_c was killed by a venomous snake while saving a kit.",
+            "lead_death": "died saving a kit from a venomous snake"
         }]
     },
     {
@@ -2844,39 +2844,6 @@
         }]
     },
     {
-        "event_id": "gen_dissapeared_any1",
-        "location": ["any"],
-        "season": [
-            "any"
-        ],
-        "tags": ["no_body"],
-        "weight": 30,
-        "event_text": "m_c snuck out of camp and was never found.",
-        "m_c": {
-            "age": [
-                "kitten"
-            ],
-            "status": [
-                "kitten"
-            ],
-            "trait": [
-                "troublesome",
-                "lonesome",
-                "impulsive",
-                "attention-seeker",
-                "daring",
-                "quiet",
-                "daydreamer",
-                "know-it-all"
-            ],
-            "dies": true
-        },
-        "history": [{
-            "cats": ["m_c"],
-            "reg_death": "m_c snuck out of camp and was never found."
-        }]
-    },
-    {
         "event_id": "gen_death_drown_multi2",
         "location": ["plains", "forest", "mountainous"],
         "season": [
@@ -2968,7 +2935,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c was killed in {PRONOUN/m_c/poss} sleep by a snake that had snuck into camp.",
+        "event_text": "m_c was killed in {PRONOUN/m_c/poss} sleep by a venomous snake that had snuck into camp.",
         "m_c": {
             "age": [
                 "kitten"
@@ -2980,7 +2947,7 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c was killed by a snake."
+            "reg_death": "m_c was killed by a venomous snake."
         }]
     },
     {
@@ -3304,7 +3271,7 @@
         "history": [{
             "cats": ["m_c"],
             "reg_death": "m_c was killed when o_c_n warriors broke into camp.",
-            "lead_death": "o_c_n warrior broke into camp"
+            "lead_death": "o_c_n warriors broke into camp"
         }],
         "other_clan": {
             "current_rep": [
@@ -3767,7 +3734,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c was bitten by a venomous spider and succumbed to the venom.",
+        "event_text": "m_c was bitten by a spider and succumbed to its venom.",
         "m_c": {
             "dies": true
         },
@@ -4192,7 +4159,7 @@
         ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c saved r_c from a snake and was bitten in the process. The venom killed {PRONOUN/m_c/object}.",
+        "event_text": "m_c saved r_c from a snake, but was bitten in the process. Its venom killed {PRONOUN/m_c/object}.",
         "m_c": {
             "age": [
                 "adolescent",
@@ -4223,8 +4190,8 @@
         },
         "history": [{
             "cats": ["m_c"],
-            "reg_death": "m_c died saving r_c from a snake.",
-            "lead_death": "saved r_c from a snake"
+            "reg_death": "m_c died saving r_c from a venomous snake.",
+            "lead_death": "saved r_c from a venomous snake"
         }],
         "relationships": [
             {
@@ -4410,7 +4377,7 @@
                 "senior"
             ],
             "not_skill": [
-                "FIGHTER,0"
+                "FIGHTER,1"
             ],
             "dies": true
         },
@@ -5503,14 +5470,14 @@
         "sub_type": [ "murder" ],
         "tags": [],
         "weight": 20,
-        "event_text": "m_c dies during battle training with r_c - but r_c exclaims that it was all an accident.",
+        "event_text": "m_c died during battle training with r_c - but r_c exclaims that it was all an accident.",
         "m_c": {
             "status": [
                 "apprentice"
             ],
             "relationship_status": ["app/mentor"],
             "not_skill": [
-                "FIGHTER,0"
+                "FIGHTER,1"
             ],
             "dies": true
         },
@@ -5936,7 +5903,7 @@
         "dies": true
     },
     "r_c": {
-        "status": ["warrior", "deputy", "leader"],
+        "status": ["apprentice", "warrior", "deputy", "leader"],
         "skill": ["FIGHTER,1"]
     },
     "history": [
