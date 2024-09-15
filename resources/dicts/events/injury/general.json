@@ -645,7 +645,7 @@
             "clan:warrior"
         ],
         "weight": 20,
-        "event_text": "m_c has been getting more and more frustrated by the number of ticks {PRONOUN/m_c/subject} {VERB/m_c/have/has}, but doesn't want to bother anyone with {PRONOUN/m_c/poss} troubles. Regardless, {PRONOUN/m_c/subject}'re found out when someone spots {PRONOUN/m_c/object} scratching at the bites.",
+        "event_text": "m_c has been getting more and more frustrated by the number of ticks {PRONOUN/m_c/subject} {VERB/m_c/have/has}, but doesn't want to bother anyone with {PRONOUN/m_c/poss} troubles. Regardless, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} found out when someone spots {PRONOUN/m_c/object} scratching at the bites.",
         "m_c": {
             "age": [
                 "senior adult",
@@ -1682,7 +1682,7 @@
                     "m_c"
                 ],
                 "injuries": [
-                    "small cut"
+                    "bruises"
                 ]
             }
         ]
@@ -3778,7 +3778,7 @@
                 "app/mentor"
             ],
             "not_skill": [
-                "FIGHTER,0"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -3894,7 +3894,7 @@
                 "app/mentor"
             ],
             "not_skill": [
-                "FIGHTER,0"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -3996,7 +3996,7 @@
                 "app/mentor"
             ],
             "not_skill": [
-                "FIGHTER,0"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -4093,7 +4093,7 @@
                 "app/mentor"
             ],
             "not_skill": [
-                "FIGHTER,0"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -6724,7 +6724,7 @@
             "any"
         ],
         "weight": 20,
-        "event_text": "m_c fought a rogue and, while {PRONOUN/m_c/subject} drove the trespasser away, {PRONOUN/m_c/subject} needed to be rushed to the medicine den afterwards.",
+        "event_text": "m_c fought a rogue and, while {PRONOUN/m_c/subject} drove the trespasser away, {PRONOUN/m_c/subject} needed to be rushed to the healers' den afterwards.",
         "m_c": {
             "age": [
                 "senior",
@@ -8274,7 +8274,7 @@
         "season": ["any"],
         "tags": ["clan:medicine cat"],
         "weight": 20,
-        "event_text": "Because m_c wasn't paying attention while on tick duty, {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} suffered from some bites of {PRONOUN/m_c/poss} own. Something seems wrong, though, and the medicine cat worries - it's paralysis tick season.",
+        "event_text": "Because m_c wasn't paying attention while on tick duty, {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} suffered from some bites of {PRONOUN/m_c/poss} own. Something seems wrong, though, and the healers worry - it's paralysis tick season.",
         "m_c": {
             "age": [
                 "any"
@@ -8560,7 +8560,7 @@
         "season": ["any"],
         "tags": ["clan:medicine cat"],
         "weight": 10,
-        "event_text": "After m_c visits the medicine den for some dizziness, it's revealed that the cause is an earache.",
+        "event_text": "After m_c visits the healers' den for some dizziness, it's revealed that the cause is an earache.",
         "m_c": {
             "age": [
                 "any"
