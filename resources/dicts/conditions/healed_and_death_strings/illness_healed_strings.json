@@ -200,7 +200,7 @@
 	"sleep paralysis": [
 		"m_c is no longer stuck in {PRONOUN/m_c/poss} nest, frozen awake.",
 		"With relief, m_c's recent bout of sleep paralysis seems to have passed."
-	],	
+	],
 	"burn out": [
 		"m_c is back on {PRONOUN/m_c/poss} paws after being burnt out.",
 		"m_c is no longer tired and exhausted from being burnt out."
@@ -263,28 +263,28 @@
 		"It looks like m_c's words are back to being {PRONOUN/m_c/poss} own now."
 	],
 	"strong attachment": [
-        "After speaking with {PRONOUN/m_c/object}, the medicine cat has noticed that m_c is able to separate from {PRONOUN/m_c/poss} one special cat once more.",
+        "After speaking with {PRONOUN/m_c/object}, one of the healers has noticed that m_c is able to separate from {PRONOUN/m_c/poss} one special cat once more.",
         "m_c is finally able to get {PRONOUN/m_c/poss} Clanmate out of {PRONOUN/m_c/poss} head, no longer lost in {PRONOUN/m_c/poss} thoughts of them, and allowing m_c to complete {PRONOUN/m_c/poss} duties again.",
         "Finally, after a few moons, m_c is no longer lashing out at cats that get between {PRONOUN/m_c/object} and {PRONOUN/m_c/poss} favorite cat."
     ],
     "black and white cloud": [
-        "The medicine cat has spoken with m_c, and it seems like {PRONOUN/m_c/subject} are able to think clearly again, no longer lashing out at every cat around {PRONOUN/m_c/object}.",
+        "One of the healers has spoken with m_c, and it seems like {PRONOUN/m_c/subject} are able to think clearly again, no longer lashing out at every cat around {PRONOUN/m_c/object}.",
         "m_c is able to realize that every cat has flaws, and that no cat is perfect. The black and white cloud over {PRONOUN/m_c/poss} eyes seems to have dispersed.",
         "m_c no longer feels as if everyone is horrible, able to once more see the gray between the black and the white."
     ],
 	"brain fog": [
-		"m_c reassures the medicine cat that {PRONOUN/m_c/poss} brain fog has passed.",
+		"m_c reassures one of the healers that {PRONOUN/m_c/poss} brain fog has passed.",
 		"m_c is no longer experiencing brain fog.",
 		"m_c has stopped feeling so numb; {PRONOUN/m_c/poss} brain fog has lifted."
 	],
 	"meltdown": [
-		"m_c is so grateful that the medicine cat has come to check on {PRONOUN/m_c/object} after {PRONOUN/m_c/poss} meltdown.",
+		"m_c is so grateful that the healers have come to check on {PRONOUN/m_c/object} after {PRONOUN/m_c/poss} meltdown.",
 		"m_c lies numbly in {PRONOUN/m_c/poss} nest after {PRONOUN/m_c/poss} meltdown is over.",
 		"m_c is grateful to be alone after {PRONOUN/m_c/poss} meltdown.",
 		"m_c has regained control and calmed down."
 	],
 	"shutdown": [
-		"m_c is so grateful that the medicine cat has come to check on {PRONOUN/m_c/object} after {PRONOUN/m_c/poss} shutdown.",
+		"m_c is so grateful that the healers have come to check on {PRONOUN/m_c/object} after {PRONOUN/m_c/poss} shutdown.",
 		"m_c's Clanmates are glad to see {PRONOUN/m_c/object} talking after {PRONOUN/m_c/poss} shutdown.",
 		"m_c is grateful to be alone after {PRONOUN/m_c/poss} shutdown.",
 		"m_c has regained control and calmed down."
