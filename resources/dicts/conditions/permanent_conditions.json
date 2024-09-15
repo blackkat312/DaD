@@ -2572,10 +2572,6 @@
             {
                 "name": "joint pain",
                 "chance": 40
-            },
-            {
-                "name": "back pain",
-                "chance": 20
             }
         ],
         "herbs": [ "poppy"]
