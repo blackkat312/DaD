@@ -93,7 +93,7 @@
   },
   {
     "event_id": "bch_misc_herb_multiflooddestruction1",
-    "location": ["any"],
+    "location": ["beach"],
     "season": ["newleaf", "leaf-fall", "leaf-bare"],
     "tags": ["clan_wide"],
     "weight": 1,
@@ -108,7 +108,7 @@
   },
   {
     "event_id": "bch_misc_any_gull_accessory",
-    "location": ["any"],
+    "location": ["beach"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
@@ -120,7 +120,7 @@
   },
   {
     "event_id": "bch_misc_any_shell_accessory",
-    "location": ["any"],
+    "location": ["beach"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 15,
@@ -138,7 +138,7 @@
   },
   {
     "event_id": "bch_misc_any_seaweed_accessory",
-    "location": ["any"],
+    "location": ["beach"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 15,

@@ -80,7 +80,7 @@
   },
   {
     "event_id": "pln_misc_blooming_accessory",
-    "location": ["any"],
+    "location": ["plains"],
     "season": ["newleaf", "greenleaf", "leaf-fall"],
     "sub_type": ["accessory"],
     "weight": 20,
@@ -92,7 +92,7 @@
   },
   {
     "event_id": "pln_misc_trip_accessory",
-    "location": ["any"],
+    "location": ["plains"],
     "season": ["newleaf", "greenleaf", "leaf-fall"],
     "sub_type": ["accessory"],
     "weight": 20,
@@ -105,7 +105,7 @@
   {
     "event_id": "pln_misc_sprout_accessory",
     "location": [
-      "any"
+      "plains"
     ],
     "season": [
       "any"
@@ -117,6 +117,16 @@
     "event_text": "m_c is covered in dust and soil so regularly that a small plant has begun to sprout on {PRONOUN/m_c/poss} head!",
     "new_accessory": [
       "SPROUT"
-    ]
+    ],
+    "m_c": {
+      "age": [
+        "kitten",
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
   }
 ]

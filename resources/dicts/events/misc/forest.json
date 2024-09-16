@@ -130,7 +130,7 @@
   },
   {
     "event_id": "fst_misc_mushroom_accessory",
-    "location": ["any"],
+    "location": ["forest"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 10,

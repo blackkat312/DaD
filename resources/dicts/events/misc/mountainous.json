@@ -94,7 +94,7 @@
   {
     "event_id": "mtn_misc_any_crystal_accessory1",
     "location": [
-      "any"
+      "mountainous"
     ],
     "season": [
       "any"
@@ -109,6 +109,7 @@
     ],
     "m_c": {
       "age": [
+        "kitten",
         "adolescent",
         "young adult",
         "adult",
