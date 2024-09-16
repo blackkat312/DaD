@@ -361,7 +361,7 @@
         "chance_of_success": 60,
         "success_outcomes": [
             {
-                "text": "The patrol approaches the injured cat and sees signs of life. Alarmed, they gently pick up the cat and take {PRONOUN/n_c:0/object} back to camp to be treated by the medicine cat. The grateful cat decides to join the Clan.",
+                "text": "The patrol approaches the injured cat and sees signs of life. Alarmed, they gently pick up the cat and take {PRONOUN/n_c:0/object} back to camp to be treated by the healers. The grateful cat decides to join the Clan.",
                 "exp": 10,
                 "weight": 20,
                 "injury": [
@@ -436,7 +436,7 @@
         "chance_of_success": 60,
         "success_outcomes": [
             {
-                "text": "p_l approaches the injured cat and sees signs of life. Alarmed, {PRONOUN/p_l/subject} gently {VERB/p_l/pick/picks} up the cat and {VERB/p_l/take/takes} {PRONOUN/n_c:0/object} back to camp to be treated by the medicine cat. The grateful cat decides to join the Clan.",
+                "text": "p_l approaches the injured cat and sees signs of life. Alarmed, {PRONOUN/p_l/subject} gently {VERB/p_l/pick/picks} up the cat and {VERB/p_l/take/takes} {PRONOUN/n_c:0/object} back to camp to be treated by the healers. The grateful cat decides to join the Clan.",
                 "exp": 10,
                 "weight": 20,
                 "injury": [
@@ -513,11 +513,11 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The patrol immediately stops their border marking and switches to tracking the scent of the intruder instead. At the end of the trail they find a poor old kittypet, wheezing {PRONOUN/n_c:0/poss} Twoleg's name. p_l doesn't know where {PRONOUN/n_c:0/poss} Twoleg is, but offers to bring the stranger back to camp, where medicine can help {PRONOUN/n_c:0/object}.",
+                "text": "The patrol immediately stops their border marking and switches to tracking the scent of the intruder instead. At the end of the trail they find a poor old kittypet, wheezing {PRONOUN/n_c:0/poss} Twoleg's name. p_l doesn't know where {PRONOUN/n_c:0/poss} Twoleg is, but offers to bring the stranger back to camp, where herbs can help {PRONOUN/n_c:0/object}.",
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -543,7 +543,7 @@
                 "stat_skill": ["LORE,1", "STORY,1"],
                 "can_have_stat": ["any"],
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -618,7 +618,7 @@
                 "weight": 20,
                 "outsider_rep": -1,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ],
@@ -629,7 +629,7 @@
                 "weight": 20,
                 "outsider_rep": -2,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ]
@@ -1004,7 +1004,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The new medicine cat is welcomed into the Clan.",
+                "text": "The new healer is welcomed into the Clan.",
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
@@ -1021,7 +1021,7 @@
                 "outsider_rep": 1
             },
             {
-                "text": "The new medicine cat is welcomed into the Clan along with {PRONOUN/n_c:0/poss} litter of kits.",
+                "text": "The new healer is welcomed into the Clan along with {PRONOUN/n_c:0/poss} litter of kits.",
                 "exp": 10,
                 "weight": 5,
                 "new_cat": [
@@ -1098,7 +1098,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The new medicine cat is welcomed into the Clan.",
+                "text": "The new healer is welcomed into the Clan.",
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
@@ -1115,7 +1115,7 @@
                 "outsider_rep": 1
             },
             {
-                "text": "The new medicine cat is welcomed into the Clan along with {PRONOUN/n_c:0/poss} litter of kits.",
+                "text": "The new healer is welcomed into the Clan along with {PRONOUN/n_c:0/poss} litter of kits.",
                 "exp": 10,
                 "weight": 5,
                 "new_cat": [

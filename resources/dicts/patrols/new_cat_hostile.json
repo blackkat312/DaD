@@ -388,7 +388,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The patrol approaches the cat and sees some signs of life. The patrol, after some hesitation, decides to bring the cat back to camp so that they can be treated by the medicine cat. The cat thanks them profusely and promises to repay them by joining the Clan and being the best warrior they can.",
+                "text": "The patrol approaches the cat and sees some signs of life. The patrol, after some hesitation, decides to bring the cat back to camp so that they can be treated by the healers. The cat thanks them profusely and promises to repay them by joining the Clan and being the best warrior they can.",
                 "exp": 10,
                 "weight": 20,
                 "injury": [
@@ -447,7 +447,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "p_l approaches the cat and sees some signs of life. After some hesitation, {PRONOUN/p_l/subject} {VERB/p_l/decide/decides} to bring the cat back to camp so that they can be treated by the medicine cat. The cat thanks {PRONOUN/p_l/object} profusely and promises to repay {PRONOUN/p_l/object} by joining the Clan and being the best warrior they can.",
+                "text": "p_l approaches the cat and sees some signs of life. After some hesitation, {PRONOUN/p_l/subject} {VERB/p_l/decide/decides} to bring the cat back to camp so that they can be treated by the healers. The cat thanks {PRONOUN/p_l/object} profusely and promises to repay {PRONOUN/p_l/object} by joining the Clan and being the best warrior they can.",
                 "exp": 10,
                 "weight": 20,
                 "injury": [
@@ -512,7 +512,7 @@
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -538,7 +538,7 @@
                 "stat_skill": ["LORE,1", "STORY,1"],
                 "can_have_stat": ["any"],
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6"]
+                    ["age:senior", "tom", "backstory:refugee6"]
                 ],
                 "relationships": [
                     {
@@ -562,7 +562,7 @@
                 "exp": 20,
                 "weight": 5,
                 "new_cat": [
-                    ["female", "loner", "age:has_kits", "meeting"],
+                    ["molly", "loner", "age:has_kits", "meeting"],
                     ["litter", "parent:0", "status:newborn", "backstory:abandoned2"],
                     ["age:newborn", "loner", "meeting", "parent:0"]
                 ],
@@ -613,7 +613,7 @@
                 "weight": 20,
                 "outsider_rep": -4,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ],
@@ -624,7 +624,7 @@
                 "weight": 20,
                 "outsider_rep": -2,
                 "new_cat": [
-                    ["age:senior", "male", "backstory:refugee6", "meeting", "dead"]
+                    ["age:senior", "tom", "backstory:refugee6", "meeting", "dead"]
                 ]
             }
         ]
@@ -999,7 +999,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The new medicine cat is welcomed into the Clan.",
+                "text": "The new healer is welcomed into the Clan.",
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
@@ -1016,7 +1016,7 @@
                 "outsider_rep": 1
             },
             {
-                "text": "The new medicine cat is welcomed into the Clan along with their litter of kits.",
+                "text": "The new healer is welcomed into the Clan along with their litter of kits.",
                 "exp": 10,
                 "weight": 5,
                 "new_cat": [
@@ -1102,7 +1102,7 @@
         "chance_of_success": 40,
         "success_outcomes": [
             {
-                "text": "The new medicine cat is welcomed into the Clan.",
+                "text": "The new healer is welcomed into the Clan.",
                 "exp": 10,
                 "weight": 20,
                 "new_cat": [
@@ -1119,7 +1119,7 @@
                 "outsider_rep": 1
             },
             {
-                "text": "The new medicine cat is welcomed into the Clan along with their litter of kits.",
+                "text": "The new healer is welcomed into the Clan along with their litter of kits.",
                 "exp": 10,
                 "weight": 5,
                 "new_cat": [
@@ -1332,7 +1332,7 @@
                 "weight": 5
             },
             {
-                "text": "s_c takes the lead in checking the noise, and it's a good thing {PRONOUN/s_c/subject} did, because the moment {PRONOUN/s_c/subject} step closer to the bush a rogue comes springing out! s_c is quick to bat them away, hissing and spitting, before promptly chasing the rogue out of the territory.  It was hardly a fight, really. ",
+                "text": "s_c takes the lead in checking the noise, and it's a good thing {PRONOUN/s_c/subject} did, because the moment {PRONOUN/s_c/subject} step closer to the bush a rogue comes springing out! s_c is quick to bat them away, hissing and spitting, before promptly chasing the rogue out of the territory. It was hardly a fight, really.",
                 "exp": 10,
                 "weight": 20,
                 "stat_skill": ["FIGHTER,1"],
@@ -1473,7 +1473,7 @@
                 "exp": 30,
                 "weight": 20,
                 "new_cat": [
-                    ["kittypet", "female", "dead", "age:has_kits"],
+                    ["kittypet", "molly", "dead", "age:has_kits"],
                     [
                         "litter",
                         "parent:0",
@@ -1496,7 +1496,7 @@
                 "exp": 30,
                 "weight": 5,
                 "new_cat": [
-                    ["kittypet", "female", "dead", "age:has_kits"],
+                    ["kittypet", "molly", "dead", "age:has_kits"],
                     [
                         "litter",
                         "parent:0",
@@ -1520,7 +1520,7 @@
                 "weight": 20,
                 "stat_trait": ["careful", "thoughtful"],
                 "new_cat": [
-                    ["kittypet", "female", "dead", "age:has_kits"],
+                    ["kittypet", "molly", "dead", "age:has_kits"],
                     [
                         "litter",
                         "parent:0",
@@ -2128,7 +2128,7 @@
                 ]
             },
             {
-                "text": "StarClan, but the cat {PRONOUN/app1/subject} {VERB/app1/find/finds} is weird, their fur soft and thin, their cries desperate as they call in confusion. app1 watches until {PRONOUN/app1/poss} paws are cold and uncomfortable, crouched behind cover, but the dumb outsider doesn't even try to steal prey, they just wail for help, quieter and quieter as they begin to lose their voice. Finally, app1 can't take it anyone - striding out, {PRONOUN/app1/subject} {VERB/app1/tell/tells} the cat to follow {PRONOUN/app1/object}, the Leader will know what to do with this.",
+                "text": "StarClan, but the cat {PRONOUN/app1/subject} {VERB/app1/find/finds} is weird, their fur soft and thin, their cries desperate as they call in confusion. app1 watches until {PRONOUN/app1/poss} paws are cold and uncomfortable, crouched behind cover, but the dumb outsider doesn't even try to steal prey, they just wail for help, quieter and quieter as they begin to lose their voice. Finally, app1 can't take it anyone - striding out, {PRONOUN/app1/subject} {VERB/app1/tell/tells} the cat to follow {PRONOUN/app1/object}, the guardian will know what to do with this.",
                 "exp": 20,
                 "weight": 5,
                 "new_cat": [
@@ -2152,7 +2152,7 @@
                 ]
             },
             {
-                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. {PRONOUN/app1/subject/CAP} {VERB/app1/watch/watches} from under a rock overhang, but no, actually the kittypet is <i>that stupid</i> and it really seems likely they'll freeze to death if app1 doesn't do something. Ugh. Fine, well app1 can bring them back to camp, and then it's the Leader's problem to deal with, not app1's.",
+                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. {PRONOUN/app1/subject/CAP} {VERB/app1/watch/watches} from under a rock overhang, but no, actually the kittypet is <i>that stupid</i> and it really seems likely they'll freeze to death if app1 doesn't do something. Ugh. Fine, well app1 can bring them back to camp, and then it's the guardian's problem to deal with, not app1's.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": ["adventurous", "playful", "strange", "childish", "shameless"],
