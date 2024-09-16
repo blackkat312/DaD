@@ -16,10 +16,10 @@
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
-    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the medicine cat den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the healers' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
     "m_c": {
       "status": ["medicine cat", "medicine cat apprentice"],
-      "skill": ["PROPHET,0"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
@@ -30,7 +30,7 @@
     "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the apprentices' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
     "m_c": {
       "status": ["apprentice", "mediator apprentice"],
-      "skill": ["PROPHET,0"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
@@ -41,7 +41,7 @@
     "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the warriors' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
     "m_c": {
       "status": ["deputy", "mediator", "warrior"],
-      "skill": ["PROPHET,0"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
@@ -49,10 +49,10 @@
     "location": ["beach"],
     "season": ["any"],
     "weight": 20,
-    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the leader's den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
+    "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the guardian's den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
     "m_c": {
       "status": ["leader"],
-      "skill": ["PROPHET,0"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
@@ -63,7 +63,7 @@
     "event_text": "As a storm rages across the beach and waves crash upon the shore, m_c is tucked up in the elders' den, {PRONOUN/m_c/poss} sleep anything but restful. {PRONOUN/m_c/subject/CAP} {VERB/m_c/keep/keeps} seeing flashes of prophecy_list_sight. {PRONOUN/m_c/subject/CAP} {VERB/m_c/wake/wakes} with a shiver, wondering what {PRONOUN/m_c/poss} dreams mean for the Clan.",
     "m_c": {
       "status": ["elder"],
-      "skill": ["PROPHET,0"]
+      "skill": ["PROPHET,1"]
     }
   },
   {
@@ -74,7 +74,7 @@
     "event_text": "The things {PRONOUN/m_c/subject} saw today: omen_list_sight... m_c dips a paw in a rockpool, watching the tiny, crawling life inside, and considering what the omens foretell.",
     "m_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
-      "skill": ["OMEN,0"]
+      "skill": ["OMEN,1"]
     }
   },
   {
@@ -116,6 +116,42 @@
     "new_accessory": ["GULL FEATHERS"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "bch_misc_any_shell_accessory",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c finds an interesting looking shell on the beach and decides to keep it.",
+    "new_accessory": ["SHELL"],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
+    }
+  },
+  {
+    "event_id": "bch_misc_any_seaweed_accessory",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 15,
+    "event_text": "m_c was at the shoreline when an unexpected wave crashed over {PRONOUN/m_c/object}! Shaken, but otherwise unharmed, {PRONOUN/m_c/subject} {VERB/m_c/return/returns} to camp covered in seaweed.",
+    "new_accessory": ["SEAWEED"],
+    "m_c": {
+      "age": [
+        "adolescent",
+        "young adult",
+        "adult",
+        "senior adult",
+        "senior"
+      ]
     }
   }
 ]
