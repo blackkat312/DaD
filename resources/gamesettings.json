@@ -23,7 +23,7 @@
         ],
         "warriorified names": [
             "Use warriors names for the new conditions",
-            "IE: use starwalker instead of autism.",
+            "IE: use starwalker instead of autism",
             true
         ],
         "dark mode": [
@@ -95,6 +95,16 @@
             "2"
         ],
         "fullscreen": [
+            false,
+            true
+        ],
+        "music_volume": [
+            100
+        ],
+        "sound_volume": [
+            100
+        ],
+        "audio_mute": [
             false,
             true
         ]

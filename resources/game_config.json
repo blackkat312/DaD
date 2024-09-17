@@ -21,8 +21,8 @@
 		]
 	},
 	"mates":{
-		"age_range": 40,
-		"override_same_age_group": false,
+		"age_range": 6,
+		"override_same_age_group": true,
 		"chance_fulfilled_condition": 5,
 		"chance_friends_to_lovers": 170,
 		"confession": {
@@ -163,50 +163,63 @@
 		"cat_amount_welcoming": 3
 	},
 	"pregnancy": {
-		"birth_cooldown": 6,
-		"primary_chance_mated": 80,
-		"primary_chance_unmated": 130,
-		"random_affair_chance": 50,
-		"unmated_random_affair_chance": 10,
+		"birth_cooldown": 1,
+		"primary_chance_mated": 85,
+		"primary_chance_unmated": 70,
+		"random_affair_chance": 30,
+		"unmated_random_affair_chance": 1,
 		"false_pregnancy_chance": 80,
-		"tiny_litter_possibility": {"young adult": 9, "adult": 5, "senior adult": 7, "senior": 12},
-        "small_litter_possibility": {"young adult": 5, "adult": 9, "senior adult": 12, "senior": 8},
-        "large_litter_possibility": {"young adult": 0, "adult": 0, "senior adult": 0, "senior": 0},
-        "huge_litter_possibility": {"young adult": 0, "adult": 0, "senior adult": 0, "senior": 0},
+		"failed_adopt": {"intersex": 3, "molly": 3, "tom": 3},
+		"one_kit_possibility": {"young adult": 8, "adult": 9, "senior adult": 10, "senior": 25},
+        "two_kit_possibility": {"young adult": 30, "adult": 20, "senior adult": 50, "senior": 40},
+        "three_kit_possibility": {"young adult": 40, "adult": 30, "senior adult": 40, "senior": 25},
+        "four_kit_possibility": {"young adult": 50, "adult": 40, "senior adult": 30, "senior": 10},
+        "five_kit_possibility": {"young adult": 40, "adult": 30, "senior adult": 20, "senior": 1},
+        "six_kit_possibility": {"young adult": 35, "adult": 20, "senior adult": 10, "senior": 0},
+		"seven_kit_possibility": {"young adult": 30, "adult": 10, "senior adult": 1, "senior": 0},
+        "eight_kit_possibility": {"young adult": 27, "adult": 1, "senior adult": 0, "senior": 0},
+        "nine_kit_possibility": {"young adult": 25, "adult": 0, "senior adult": 0, "senior": 0},
+        "ten_kit_possibility": {"young adult": 22, "adult": 0, "senior adult": 0, "senior": 0},
+        "eleven_kit_possibility": {"young adult": 20, "adult": 0, "senior adult": 0, "senior": 0},
+		"twelve_kit_possibility": {"young adult": 17, "adult": 0, "senior adult": 0, "senior": 0},
+        "thirteen_kit_possibility": {"young adult": 15, "adult": 0, "senior adult": 0, "senior": 0},
+        "fourteen_kit_possibility": {"young adult": 12, "adult": 0, "senior adult": 0, "senior": 0},
+        "fifteen_kit_possibility": {"young adult": 10, "adult": 0, "senior adult": 0, "senior": 0},
+		"sixteen_kit_possibility": {"young adult": 7, "adult": 0, "senior adult": 0, "senior": 0},
+        "seventeen_kit_possibility": {"young adult": 5, "adult": 0, "senior adult": 0, "senior": 0},
+        "eighteen_kit_possibility": {"young adult": 3, "adult": 0, "senior adult": 0, "senior": 0},
+        "max_kit_possibility": {"young adult": 1, "adult": 0, "senior adult": 0, "senior": 0},
 		"min_kits": 1,
-		"max_kits": 12,
-		"small_litter": 3,
-		"failed_adopt": {"intersex": 0.10, "female": 0.05, "male": 0.15},
+		"max_kits": 19,
 		"comment": [
 			"primary mated - 1/chance for kits, relationship and other factors will influence this chance",
 			"primary unmated - 1/chance for kits, relationship and other factors will influence this chance",
-			"Changed the way kit generation works. It now goes up by rolls.",
-			"tiny_litter(min-3), small(4-6), large(7-9), huge(10-max)",
-			"Please just use the config here to adjust these, by default litters bigger than 6 should be disabled.",
-			"Small litter is to tell the game what counts as a small litter, default is 3",
+			"The kit number is incremental. It is 1-6 as default so if you change these numbers, you should probably keep this in mind.",
+			"As in, your max kits number should probably be 5 more than the min kits number.",
+			"But that's not required - just makes more sense that way with how the litters are generated.",
 			"Failed adoption in this case is how often a false pregnancy results in no kits, no end of adoption. Toggled with the pregnancy turmoil setting in game."
 		]
 	},
 	"cat_generation": {
-		"base_congenital_condition_denominator": 1,
+		"base_congenital_condition_denominator": 10,
 		"base_congenital_condition_compare": 1,
-		"abandoned_kit_modifier": 1,
-		"extra_congenital_condition": 20,
-		"max_congenital_conditions": 3,
+		"abandoned_kit_modifier": 3,
+		"extra_congenital_condition": 25,
+		"max_congenital_conditions": 5,
 		"comorbidity_chance": 5,
-		"base_male_tortie": 13,
+		"base_male_tortie": 11,
 		"base_female_tortie": 4,
-		"base_heterochromia": 120,
-		"direct_inheritance": 15,
-		"wildcard_tortie": 9,
-		"vit_chance": 8,
-		"random_point_chance": 5,
+		"base_heterochromia": 60,
+		"direct_inheritance": 20,
+		"wildcard_tortie": 8,
+		"vit_chance": 7,
+		"random_point_chance": 3,
 		"comment": [
-			"base_congenital_condition_denominator and base_congenital_condition_compare (1/1 or 100% by default) -",
+			"base_congenital_condition_denominator and base_congenital_condition_compare (1/10 or 10% by default) -",
 			"works as 'if randint(1, base_congenital_condition_denominator) <= base_congenital_condition_compare'",
 
-			"abandoned_kit_modifier (1 by default) - reduces base_congenital_condition_denominator by its value if a new cat",
-			"is generated as a kit or litter",
+			"abandoned_kit_modifier (3 by default) - reduces base_congenital_condition_denominator by its value if a",
+			"non-Clanborn cat is generated as a kit or litter",
 
 			"extra_congenital_condition (20 by default) - 1/chance for a cat to be born with one extra permanent condition,",
 			"runs until it's tried to give a cat [max_congenital_conditions - 1] extra conditions.",
@@ -218,8 +231,8 @@
 		]
 	},
 	"cat_name_controls": {
-		"always_name_after_appearance": false,
-		"allow_eye_names": true,
+		"always_name_after_appearance": true,
+		"allow_eye_names": false,
 		"comment": [
 			"Set always_name_after_appearance to true if you always want cats named after the color of their pelt.",
 			"This overrides the chances of it otherwise. If cats can't find a pelt color, they will choose from normal_prefixes",
@@ -228,37 +241,33 @@
 		]
 	},
 	"accessory_generation": {
-		"base_acc_chance": 150,
-		"med_modifier": -80,
-		"baby_modifier": -20,
-		"elder_modifier": 20,
-		"happy_trait_modifier": -30,
-		"grumpy_trait_modifier": 30,
-		"ceremony_modifier": -20
+		"base_acc_chance": 35,
+		"med_modifier": -10,
+		"baby_modifier": 0,
+		"elder_modifier": -5,
+		"happy_trait_modifier": -5,
+		"grumpy_trait_modifier": 0,
+		"ceremony_modifier": 0
 	},
 	"fading": {
-		"age_to_fade": 202,
+		"age_to_fade": 25,
 		"opacity_at_fade": 20,
 		"visual_fading_speed": 5
 	},
 	"roles": {
-		"mediator_app_chance": 50,
-		"base_medicine_app_chance": 41,
+		"mediator_app_chance": 40,
+		"base_medicine_app_chance": 30,
 		"become_mediator_chances": {
-			"warrior": 5000,
-			"elder": 400
-		},
-		"disabled_cat_med_chance_increase": 2,
-		"comment": [
-			"The disabled_cat_med_chance_increase (2 by default) will divide the chance of disabled cats becoming medicine cat/mediator apprentices by its value."
-		]
+			"warrior": 650,
+			"elder": 650
+		}
 	},
 	"lost_cat": {
 		"rejoin_chance": 20
 	},
 	"cat_ages": {
-		"newborn": [0, 0],
-		"kitten": [1, 5],
+		"newborn": [0, 1],
+		"kitten": [2, 5],
 		"adolescent": [6, 11],
 		"young adult": [12, 47],
         "adult": [48, 95],
@@ -275,7 +284,7 @@
     },
 	"patrol_generation": {
 		"classic_difficulty_modifier": 1,
-		"expanded_difficulty_modifier": 2.5,
+		"expanded_difficulty_modifier": 2,
 		"cruel season_difficulty_modifier": 3,
 		"win_stat_cat_modifier": 10,
 		"better_stat_modifier": 5,
@@ -294,22 +303,24 @@
 		"df_trainee_injury_event_denominator": 20,
 		"df_trainee_injury_event_compare": 3,
 		"debug_ensure_event_id": null,
+		"debug_ensure_event_type": null,
+		"debug_ensure_event_sub_type": null,
 		"comment": [
 			"df_trainee_injury_event_denominator and df_trainee_injury_event_compare (3/20 or 15% by default) -",
 			"works as 'if randint(1, df_trainee_injury_event_denominator) <= df_trainee_injury_event_compare'"
 		]
 	},
 	"death_related": {
-		"leader_death_chance": 50,
+		"leader_death_chance": 40,
 		"classic_death_chance": 500,
-		"expanded_death_chance": 350,
+		"expanded_death_chance": 270,
 		"cruel season_death_chance": 300,
-		"war_death_modifier_leader": 95,
-		"war_death_modifier": 250,
-		"base_random_murder_chance": 25,
-		"base_murder_kill_chance": 80,
+		"war_death_modifier_leader": 75,
+		"war_death_modifier": 150,
+		"base_random_murder_chance": 35,
+		"base_murder_kill_chance": 40,
 		"old_age_death_start": 150,
-		"old_age_death_curve": 4.5,
+		"old_age_death_curve": 2,
 		"comment": [
 			"old_age_death_curve is a multiplier that affects the chances of cats dying once they are over old_age_death_start moons.",
 			"Average life expectancy with default old_age_death_start of 150 moons:",
@@ -317,16 +328,17 @@
 		]
 	},
 	"condition_related": {
-		"expanded_illness_chance": 250,
+		"expanded_illness_chance": 190,
 		"cruel season_illness_chance": 200,
+		"classic_illness_chance": 500,
 		"classic_injury_chance": 450,
-		"expanded_injury_chance": 250,
+		"expanded_injury_chance": 130,
 		"cruel season_injury_chance": 150,
-		"permanent_condition_chance": 15,
-		"war_injury_modifier": 100,
-		"max_alters": 50,
-		"max_splits": 3,
-		"plural_names": 100,
+		"permanent_condition_chance": 3,
+		"war_injury_modifier": 80,
+		"max_alters": 30,
+		"max_splits": 2,
+		"plural_names": 200,
 		"comment": [
 			"max_alters = total number of alters per system. Recommended to be <100 unless you have a beefy computer.",
 			"max_alters must be at least 3 to prevent crashes.",
@@ -345,8 +357,8 @@
 		"base_med_app_timeskip_ex": [[2, 7],[2, 3]],
 		"max_apprentice_age": {
 			"medicine cat apprentice": 30,
-			"apprentice": 25,
-			"mediator apprentice": 25
+			"apprentice": 24,
+			"mediator apprentice": 24
 		},
 		"min_graduating_age": 10
 	},
@@ -456,7 +468,7 @@
 	},
 	"sorting": {
 		"sort_dead_by_total_age": true,
-		"sort_rank_by_death": true,
+		"sort_rank_by_death": false,
         "sort_by_rel_total": true,
 		"comment": [
 			"sort_dead_by_total_age - true: sort dead cats by total age (in the order they were born); false: sort dead cats by their age at the time of death.",
@@ -467,9 +479,9 @@
 	"fun": {
 		"april_fools": false,
 		"all_cats_are_newborn": false,
-		"newborns_can_roam": false,
+		"newborns_can_roam": true,
 		"newborns_can_patrol": false,
-		"always_halloween": false
+		"always_halloween": true
 	},
 	"theme": {
 		"dark_mode_background": [57, 50, 36],
