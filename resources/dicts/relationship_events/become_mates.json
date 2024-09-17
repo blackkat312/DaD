@@ -25,8 +25,8 @@
 		"Maybe it's surprising to some cats. It doesn't feel like it should be, m_c is so sure {PRONOUN/m_c/subject} {VERB/m_c/want/wants} r_c as {PRONOUN/m_c/poss} mate, and r_c loves {PRONOUN/m_c/object} just as much in return.",
 		"This moon marks the beginning of the rest of their lives together for m_c and r_c.",
 		"Tails twined together, m_c and r_c announce that love has blossomed between them. They've become mates.",
-		"It's endearing how embarassed m_c is, with {PRONOUN/m_c/object} and r_c briefly becoming the center of attention as new mates.",
-		"No one is going to blame m_c for the pride {PRONOUN/m_c/subject} display in succcessfully asking r_c to become {PRONOUN/m_c/poss} mate. It's a wonderful life event to celebrate, and something to rightfully congratulate the couple on."
+		"It's endearing how embarrassed m_c is, with {PRONOUN/m_c/object} and r_c briefly becoming the center of attention as new mates.",
+		"No one is going to blame m_c for the pride {PRONOUN/m_c/subject} display in successfully asking r_c to become {PRONOUN/m_c/poss} mate. It's a wonderful life event to celebrate, and something to rightfully congratulate the couple on."
 	],
 	"platonic_to_romantic":[
 		"m_c and r_c see each other in a different light and have become mates.",
@@ -37,7 +37,7 @@
 		"In a bright spot this moon, m_c and r_c announce that their friendship has had romance added to the mix - they're now mates.",
 		"Sometimes one form of love can grow into another - m_c and r_c no longer only think of each other platonically.",
 		"Love blooms from platonic to romantic, and m_c is now mates with r_c.",
-		"m_c and r_c don't make any big announcements. But when they combine their nests, the clan realizes that their relationship isn't so platonic anymore."
+		"m_c and r_c don't make any big announcements. But when they combine their nests, the Clan realizes that their relationship isn't so platonic anymore."
 	],
 	"rejected":[
 		"m_c confessed {PRONOUN/m_c/poss} feelings to r_c but {PRONOUN/m_c/subject} got rejected.",
