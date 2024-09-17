@@ -332,13 +332,13 @@
     }
   },
   {
-    "event_id": "gen_misc_any_twoleg_accessory1",
+    "event_id": "gen_misc_any_collar_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
     "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular around {PRONOUN/m_c/poss} neck.",
-    "new_accessory": ["COLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR"],
+    "new_accessory": ["LEATHERCOLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     }
@@ -4060,7 +4060,7 @@
     "sub_type": ["accessory"],
     "weight": 5,
     "event_text":  "After a crisis where m_c disappeared for a few days, {PRONOUN/m_c/subject} {VERB/m_c/return/returns} with acc_singular.",
-    "new_accessory": ["COLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR"],
+    "new_accessory": ["LEATHERCOLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR"],
     "m_c": {
         "status": [
           "leader"
