@@ -6,7 +6,7 @@
             "Is attempting to catch a bird",
             "Is feeling exhausted",
             "Is tired of moving around all the time",
-            "Is hiding from twolegs",
+            "Is hiding from Twolegs",
             "Is hiding from a big dog",
             "Is running from a rogue", 
             "Is eating bugs", 
@@ -18,7 +18,7 @@
     {
         "id": "lost_clan_kitten_thoughts",
         "thoughts": [
-            "Misses playing moss ball",
+            "Misses playing moss-ball",
             "Is looking desperately for {PRONOUN/m_c/poss} parent",
             "Misses the warm smells of the nursery",
             "Feels hungrier than {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} ever felt before",
