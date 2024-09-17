@@ -4054,7 +4054,7 @@
     }
   },
   {
-    "event_id": "gen_misc_any_leader_twoleg_accessory1",
+    "event_id": "gen_misc_any_leader_collar_accessory1",
     "location": ["any"],
     "season": ["any"],
     "sub_type": ["accessory"],
