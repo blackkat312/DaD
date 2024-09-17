@@ -3776,7 +3776,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 10,
-    "event_text":  "m_c seems to be exceptionally good at moss ball!",
+    "event_text":  "m_c seems to be exceptionally good at moss-ball!",
     "new_accessory": ["MOSS BALL"],
     "m_c": {
         "age": ["kitten", "adolescent"]
