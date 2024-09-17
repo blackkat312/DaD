@@ -337,8 +337,8 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 5,
-    "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular that {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} know how to get off.",
-    "new_accessory": ["COLLAR", "BOOTIES"],
+    "event_text":  "m_c disappears for a few days, then returns to camp with acc_singular around {PRONOUN/m_c/poss} neck.",
+    "new_accessory": ["COLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR"],
     "m_c": {
         "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     }
@@ -617,7 +617,7 @@
     "sub_type": ["accessory"],
     "weight": 10,
     "event_text": "m_c always seems to have acc_plural stuck in {PRONOUN/m_c/poss} fur.",
-    "new_accessory": ["HERBS","PETALS","DRY HERBS", "DRY CATMINT", "DRY LAURELS", "DRY NETTLES", "RED FEATHERS", "BLUE FEATHERS","JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS"],
+    "new_accessory": ["HERBS","PETALS", "DRY CATMINT", "DRY LAURELS", "DRY NETTLES", "FEATHER"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -774,7 +774,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text": "m_c found acc_singular growing in the frost and decided to wear it.",
-    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "POPPY", "ORANGE POPPY", "WHITE POPPY", "CYAN POPPY", "PINK POPPY", "LAVENDER"],
+    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "POPPY", "LAVENDER", "BULB"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -1054,7 +1054,7 @@
     "sub_type": ["accessory"],
     "weight": 15,
     "event_text": "m_c and r_c spend the evening chasing cicadas around camp. m_c keeps a trophy of {PRONOUN/m_c/poss} catch on {PRONOUN/m_c/poss} pelt.",
-    "new_accessory": ["CICADA WINGS", "BLACK CICADA"],
+    "new_accessory": ["CICADA"],
     "m_c": {
       "age": ["young adult", "adult", "senior adult","senior"],
       "relationship_status": ["mates"]
@@ -1321,7 +1321,7 @@
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c was playing with acc_plural earlier, and decides to wear some of them.",
-        "new_accessory": ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS"],
+        "new_accessory": ["FEATHER"],
         "m_c": {
           "status": ["kitten"]
         }
@@ -1345,7 +1345,7 @@
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c caught an insect while sneaking outside of the camp and proudly wears its wings as a trophy of {PRONOUN/m_c/poss} journey.",
-        "new_accessory": ["MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY"],
+        "new_accessory": ["MOTH", "BUTTERFLY"],
         "m_c": {
           "status": ["kitten"]
         }
@@ -1357,7 +1357,7 @@
         "sub_type": ["accessory"],
         "weight": 15,
         "event_text": "m_c caught an insect while sneaking outside of the camp and proudly wears its wings as a trophy of {PRONOUN/m_c/poss} journey.",
-        "new_accessory": ["CICADA WINGS", "BLACK CICADA"],
+        "new_accessory": ["CICADA"],
         "m_c": {
           "status": ["kitten"]
         }
@@ -1481,7 +1481,7 @@
         "sub_type": ["accessory"],
         "weight": 10,
         "event_text": "No matter how hard r_c tries, there's always something stuck in m_c's fur.",
-        "new_accessory": ["HERBS", "PETALS", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"],
+        "new_accessory": ["HERBS", "PETALS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"],
         "m_c": {
           "age": ["kitten"],
           "relationship_status": ["child/parent"]
@@ -1779,7 +1779,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text": "m_c is nearly blindsided by r_c as {PRONOUN/r_c/subject} {VERB/r_c/walk/walks} into camp after a long training day, listening to the kit squeak about a type of feather. r_c leads m_c to the nursery, where {PRONOUN/r_c/subject} carefully put acc_plural in m_c's fur.",
-    "new_accessory": ["BLUE FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "JAY FEATHERS", "RED FEATHERS"],
+    "new_accessory": ["FEATHER"],
     "m_c": {
         "age": ["adolescent"]
     },
@@ -3565,7 +3565,7 @@
     "sub_type": ["ceremony", "accessory"],
     "weight": 20,
     "event_text": "r_c feels so lucky to have {PRONOUN/r_c/poss} own sibling become a healer apprentice. Knowing how time consuming it is to gather herbs, r_c spends a long time gathering up acc_plural to help out m_c. While m_c appreciates the efforts, none of these are particularly useful. Instead m_c uses the acc_plural to decorate {PRONOUN/m_c/poss} pelt.",
-    "new_accessory": ["HERBS", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"],
+    "new_accessory": ["HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"],
     "m_c": {
       "status": ["medicine cat apprentice"],
       "relationship_status":["siblings"]
@@ -3723,13 +3723,146 @@
     ]
   },
   {
+    "event_id": "gen_misc_any_kittypet_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c has always been interested in Twolegs, but it seems to have caught up with {PRONOUN/m_c/object} when {PRONOUN/m_c/subject} {VERB/m_c/return/returns} to camp wearing acc_singular.",
+    "new_accessory": ["KITTYACC"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_kittypet_accessory2",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c sheepishly returns to camp after spending a little too much time around some Twolegs, with acc_singular preventing {PRONOUN/m_c/object} from hiding it.",
+    "new_accessory": ["KITTYACC"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_moth_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c can't seem to get acc_singular off {PRONOUN/m_c/poss} face.",
+    "new_accessory": ["LUNA MOTH", "ATLAS MOTH"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_swarm_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 10,
+    "event_text":  "m_c is always surrounded by acc_plural.",
+    "new_accessory": ["FIREFLIES", "BUTTERFLIES"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_moss_ball_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 10,
+    "event_text":  "m_c seems to be exceptionally good at moss ball!",
+    "new_accessory": ["MOSS BALL"],
+    "m_c": {
+        "age": ["kitten", "adolescent"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_lilypad_accessory1",
+    "location": ["any"],
+    "season": ["Greenleaf"],
+    "sub_type": ["accessory"],
+    "weight": 10,
+    "event_text":  "Desperate to escape Greenleaf's heat, m_c hesitantly decides to cool off in a freshwater pond nearby. {PRONOUN/m_c/subject/CAP} thankfully {VERB/m_c/cool/cools} off quickly, but is now covered in lily pads!",
+    "new_accessory": ["LILY PAD"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_dog_collar_accessory1",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 5,
+    "event_text":  "m_c has been hanging around a group of scary-looking rogues, and has acc_singular to prove it!",
+    "new_accessory": ["FANGCOLLAR"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_dog_collar_accessory2",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 10,
+    "event_text":  "m_c returns to camp after seeking out a group of rogues, wearing a reminder of {PRONOUN/m_c/poss} past.",
+    "new_accessory": ["FANGCOLLAR"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+        "backstory": ["rogue1", "rogue2", "rogue3", "refugee4", "tragedy_survivor2", "guided2", "refugee5", "wandering_healer1"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_dog_collar_accessory3",
+    "location": ["any"],
+    "season": ["any"],
+    "sub_type": ["accessory"],
+    "weight": 10,
+    "event_text":  "m_c dares any cat to ask about {PRONOUN/m_c/poss} new acc_singular.",
+    "new_accessory": ["FANGCOLLAR"],
+    "m_c": {
+        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
+        "trait": ["bloodthirsty", "fierce"]
+    }
+  },
+  {
+    "event_id": "gen_misc_any_jayfeather_stick_accessory1",
+    "location": [
+      "any"
+    ],
+    "season": [
+      "any"
+    ],
+    "sub_type": [
+      "accessory"
+    ],
+    "weight": 5,
+    "event_text": "m_c hears the whispers of ancient voices which seem to be coming from an oddly scratched stick.",
+    "new_accessory": [
+      "STICK"
+    ],
+    "m_c": {
+      "status": [
+        "medicine cat",
+        "medicine cat apprentice"
+      ]
+    }
+  },
+  {
     "event_id": "gen_misc_any_patch_accessory",
     "location": ["any"],
     "season": ["newleaf", "greenleaf", "leaf-fall"],
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text":  "r_c found a little patch of acc_plural and decided to gift them to m_c.",
-    "new_accessory": ["POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "LAVENDER", "HEATHER", "GORSE", "LILY OF THE VALLEY", "BLUEBELLS", "FORGET ME NOTS"],
+    "new_accessory": ["POPPY", "BULB", "LAVENDER", "HEATHER", "GORSE", "LILY OF THE VALLEY", "BLUEBELLS", "FORGET ME NOTS"],
     "m_c": {
       "age": ["any"]
     },
@@ -3753,12 +3886,12 @@
     "subtype": ["accessory", "romance"],
     "weight": 10,
     "event_text": "Flowers can be so pretty, even before they bloom - just like m_c. r_c blushes as {PRONOUN/r_c/subject} {VERB/m_c/see/sees} m_c wear the acc_singular {PRONOUN/r_c/subject} got {PRONOUN/m_c/object}.",
-    "new_accessory": ["BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE"],
+    "new_accessory": ["BULB"],
     "m_c": {
-      "age": ["young adult", "adult", "senior adult", "senior"]
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
     "r_c": {
-      "age": ["young adult", "adult", "senior adult", "senior"]
+      "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
     "relationships": [
         {
@@ -3780,10 +3913,10 @@
     "m_c": {
       "status": ["medicine cat", "medicine cat apprentice"],
       "skill": ["OMEN,1"],
-      "trait": ["vengeful"]
+      "trait": ["vengeful", "troublesome"]
     },
     "r_c": {
-      "trait": ["bloodthristy"]
+      "age": ["any"]
     },
     "relationships": [
         {
@@ -3802,7 +3935,7 @@
     "sub_type": ["accessory"],
     "weight": 10,
     "event_text": "m_c finds acc_singular in its last moments of life that leads {PRONOUN/m_c/object} to an herb gathering spot that {PRONOUN/m_c/subject} {VERB/m_c/have/has} never found before. It gives a final flutter before it gently descends to the ground. Is it a sign from StarClan, or a coincidence? m_c doesn't know, but {PRONOUN/m_c/subject} {VERB/m_c/decide/decides} to keep it with {PRONOUN/m_c/object} in its honor.",
-    "new_accessory": ["ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY"],
+    "new_accessory": ["MOTH", "BUTTERFLY"],
     "m_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
       "status": ["medicine cat", "medicine cat apprentice"]
@@ -3927,144 +4060,11 @@
     "sub_type": ["accessory"],
     "weight": 5,
     "event_text":  "After a crisis where m_c disappeared for a few days, {PRONOUN/m_c/subject} {VERB/m_c/return/returns} with acc_singular.",
-    "new_accessory": ["COLLAR", "BOOTIES"],
+    "new_accessory": ["COLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR"],
     "m_c": {
         "status": [
           "leader"
         ]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_kittypet_accessory1",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 5,
-    "event_text":  "m_c has always been interested in Twolegs, but it seems to have caught up with {PRONOUN/m_c/object} when {PRONOUN/m_c/subject} {VERB/m_c/return/returns} to camp wearing acc_singular.",
-    "new_accessory": ["KITTYACC"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_kittypet_accessory2",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 5,
-    "event_text":  "m_c sheepishly returns to camp after spending a little too much time around some Twolegs, with acc_singular preventing {PRONOUN/m_c/object} from hiding it.",
-    "new_accessory": ["KITTYACC"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_moth_accessory1",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 5,
-    "event_text":  "m_c can't seem to get acc_singular off {PRONOUN/m_c/poss} face.",
-    "new_accessory": ["LUNA MOTH", "ATLAS MOTH"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_swarm_accessory1",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 10,
-    "event_text":  "m_c is always surrounded by acc_plural.",
-    "new_accessory": ["FIREFLIES", "BUTTERFLIES"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_moss_ball_accessory1",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 10,
-    "event_text":  "m_c seems to be exceptionally good at moss ball!",
-    "new_accessory": ["MOSS BALL"],
-    "m_c": {
-        "age": ["kitten", "adolescent"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_lilypad_accessory1",
-    "location": ["any"],
-    "season": ["Greenleaf"],
-    "sub_type": ["accessory"],
-    "weight": 10,
-    "event_text":  "Desperate to escape Greenleaf's heat, m_c hesitantly decides to cool off in a freshwater pond nearby. {PRONOUN/m_c/subject/CAP} thankfully {VERB/m_c/cool/cools} off quickly, but is now covered in lily pads!",
-    "new_accessory": ["LILY PAD"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_dog_collar_accessory1",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 5,
-    "event_text":  "m_c has been hanging around a group of scary-looking rogues, and has acc_singular to prove it!",
-    "new_accessory": ["DOGCOLLAR"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_dog_collar_accessory2",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 10,
-    "event_text":  "m_c returns to camp after seeking out a group of rogues, wearing a reminder of {PRONOUN/m_c/poss} past.",
-    "new_accessory": ["DOGCOLLAR"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
-        "backstory": ["rogue1", "rogue2", "rogue3", "refugee4", "tragedy_survivor2", "guided2", "refugee5", "wandering_healer1"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_dog_collar_accessory3",
-    "location": ["any"],
-    "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 10,
-    "event_text":  "m_c dares any cat to ask about {PRONOUN/m_c/poss} new acc_singular.",
-    "new_accessory": ["DOGCOLLAR"],
-    "m_c": {
-        "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
-        "trait": ["bloodthirsty", "fierce"]
-    }
-  },
-  {
-    "event_id": "gen_misc_any_jayfeather_stick_accessory1",
-    "location": [
-      "any"
-    ],
-    "season": [
-      "any"
-    ],
-    "sub_type": [
-      "accessory"
-    ],
-    "weight": 5,
-    "event_text": "m_c hears the whispers of ancient voices which seem to be coming from an oddly scratched stick.",
-    "new_accessory": [
-      "STICK"
-    ],
-    "m_c": {
-      "status": [
-        "medicine cat",
-        "medicine cat apprentice"
-      ]
     }
   }
 ]

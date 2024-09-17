@@ -110,13 +110,21 @@
     ]
   },
   {
-    "event_id": "fst_misc_sparrow_accessory",
-    "location": ["forest"],
-    "season": ["any"],
-    "subtype": ["accessory"],
-    "weight": 20,
-    "event_text": "A small flock of sparrows has decided to start frequenting the branches high above camp and, much to the annoyance of most, have dropped plenty of feathers everywhere as they preen. m_c thinks they're pretty though, and decides to keep some.",
-    "new_accessory": ["SPARROW FEATHERS"],
+    "event_id": "fst_misc_mushroom_accessory",
+    "location": [
+      "forest"
+    ],
+    "season": [
+      "any"
+    ],
+    "sub_type": [
+      "accessory"
+    ],
+    "weight": 10,
+    "event_text": "m_c is such a fungi to be around!",
+    "new_accessory": [
+      "MUSHROOM"
+    ],
     "m_c": {
       "age": [
         "kitten",
@@ -129,13 +137,13 @@
     }
   },
   {
-    "event_id": "fst_misc_mushroom_accessory",
+    "event_id": "fst_misc_sparrow_accessory",
     "location": ["forest"],
     "season": ["any"],
-    "sub_type": ["accessory"],
-    "weight": 10,
-    "event_text": "m_c is such a fungi to be around!",
-    "new_accessory": ["MUSHROOM"],
+    "subtype": ["accessory"],
+    "weight": 20,
+    "event_text": "A small flock of birds have decided to start frequenting the branches high above camp and, much to the annoyance of most, have dropped plenty of feathers everywhere as they preen. m_c thinks they're pretty though, and decides to keep some.",
+    "new_accessory": ["FEATHER"],
     "m_c": {
       "age": [
         "kitten",
