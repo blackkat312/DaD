@@ -83,7 +83,7 @@
                 "weight": 20
             },
             {
-                "text": "Both apprentices are back at camp in time for a normal day of training, but app1 has to confess their predawn adventure when they go to medicine cat den with a running nose.",
+                "text": "Both apprentices are back at camp in time for a normal day of training, but app1 has to confess their predawn adventure when they go to healers' den with a running nose.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -531,7 +531,7 @@
                     "text": "r_c listens, shivering, as p_l describes the birth of the Dark Forest, the ancient, barely won battle between the good cats of the stars and the traitor amidst. {PRONOUN/r_c/subject/CAP} can't stop thinking about it in {PRONOUN/r_c/poss} nest that night, {PRONOUN/r_c/poss} sleep broken and uneasy.",
                     "exp": 0,
                     "weight": 20,
-                  "injury": [
+                    "injury": [
                                 {
                         "cats": ["r_c"],
                         "injuries": ["nightmares"],
@@ -540,8 +540,8 @@
                                 }
                             ],
                         "history_text": {
-                        "reg_death": "m_c died from lack of sleep, {PRONOUN/m_c/poss} vision haunted by dark shadows.",
-                        "lead_death": "from lack of sleep, {PRONOUN/m_c/poss} vision haunted by dark shadows"
+                            "reg_death": "m_c died from lack of sleep, {PRONOUN/m_c/poss} vision haunted by dark shadows.",
+                            "lead_death": "from lack of sleep, {PRONOUN/m_c/poss} vision haunted by dark shadows"
                        }
                 },
                 {
@@ -613,7 +613,7 @@
         "decline_text": "The wind, howling and vast, drowns p_l out. There'll be no stories today.",
         "success_outcomes": [
                 {
-                    "text": "Once, long ago, cats roamed without a Clan, fending for themselves. Leaf-bare picked off the elderly, weak, and unlucky one by one, eating away at them. But one cat opened the warmth of their heart to shelter others in their nest, pelts sharing heat, many paws making light work. They became the first Leader, and those cats the first Clan.",
+                    "text": "Once, long ago, cats roamed without a Clan, fending for themselves. Leaf-bare picked off the elderly, weak, and unlucky one by one, eating away at them. But one cat opened the warmth of their heart to shelter others in their nest, pelts sharing heat, many paws making light work. They became the first guardian, and those cats the first Clan.",
                     "exp": 40,
                     "weight": 20,
                     "relationships": [
@@ -954,19 +954,19 @@
                     ]
                 },
                 {
-                    "text": "The cats think they're safe on the other side of the valley. It's a well-known spot for teaching, distant but with a view of the avalanche prone spot on the otherside, c_n cats have been here before. Surely they're safe. They are mistaken.",
+                    "text": "The cats think they're safe on the other side of the valley. It's a well-known spot for teaching, distant but with a view of the avalanche prone spot on the other side, c_n cats have been here before. Surely they're safe. They are mistaken.",
                     "exp": 0,
                     "weight": 1,
                     "injury": [
                         {
                             "cats": ["patrol"],
-                            "injuries": ["shivering"],
+                            "injuries": ["cold_injury", "blunt_force_injury"],
                             "scars": []
                         }
                     ],
                     "dead_cats": ["multi"],
                     "history_text": {
-                        "scar":"m_c was scarred from the bite of the cold of an avalanche, though {PRONOUN/m_c/subject} escaped with {PRONOUN/m_c/poss} life.",
+                        "scar": "m_c was scarred from an avalanche, though {PRONOUN/m_c/subject} escaped with {PRONOUN/m_c/poss} life.",
                         "reg_death": "The view point c_n thought was safe from avalanches... was not.",
                         "lead_death": "the view point c_n thought was safe from avalanches... was not"
                     }
