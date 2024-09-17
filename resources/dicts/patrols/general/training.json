@@ -29,7 +29,7 @@
                 ]
             },
             {
-                "text": "After careful consideration and consulting with the other cats, r_c recognizes them as raspberries and brings the rare berries back to the medicine cat's den.",
+                "text": "After careful consideration and consulting with the other cats, r_c recognizes them as raspberries and brings the rare berries back to the healers' den.",
                 "exp": 20,
                 "weight": 5,
                 "herbs": ["raspberry"],
@@ -75,7 +75,7 @@
                 ]
             },
             {
-                "text": "While plucking them from the bush, r_c is surprised to find they taste pretty good. Before anyone can stop them, {PRONOUN/r_c/subject} {VERB/r_c/eat/eats} a few and {VERB/r_c/are/is} rushed back to camp for deathberry poisoning.",
+                "text": "While plucking them from the bush, r_c is surprised to find they taste pretty good. Before anyone can stop them, {PRONOUN/r_c/subject} {VERB/r_c/eat/eats} a few and {VERB/r_c/have/has} to be rushed back to camp for deathberry poisoning.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -124,7 +124,7 @@
                 "weight": 20
             },
             {
-                "text": "Whatever. Identifying them is a medicine cat problem. app1 plucks the berries and brings them back to camp, where it turns out they're called raspberries.",
+                "text": "Whatever. Identifying them is a healer's problem. app1 plucks the berries and brings them back to camp, where it turns out they're called raspberries.",
                 "exp": 20,
                 "weight": 5,
                 "herbs": ["raspberry"]
@@ -137,7 +137,7 @@
                 "weight": 20
             },
             {
-                "text": "Whatever. Identifying them is a medicine cat problem. app1 plucks the berries, surprised at the pleasant taste, and swallows a few. {PRONOUN/app1/subject/CAP} {VERB/app1/collapse/collapses} on the way back to camp, and there's nothing any cat can do for {PRONOUN/app1/object}, who was unable to identify deathberries before eating them.",
+                "text": "Whatever. Identifying them is a healer's problem. app1 plucks the berries, surprised at the pleasant taste, and swallows a few. {PRONOUN/app1/subject/CAP} {VERB/app1/collapse/collapses} on the way back to camp, and there's nothing any cat can do for {PRONOUN/app1/object}, who was unable to identify deathberries before eating them.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["app1"],
@@ -147,7 +147,7 @@
                 }
             },
             {
-                "text": "Whatever. Identifying them is a medicine cat problem. app1 plucks the tasty berries, swallowing a few, and takes the rest back to camp where the medicine cat immediately has {PRONOUN/app1/object} swallow yarrow to save {PRONOUN/app1/object} from deathberry poisoning.",
+                "text": "Whatever. Identifying them is a healer's problem. app1 plucks the tasty berries, swallowing a few, and takes the rest back to camp where the healers immediately have {PRONOUN/app1/object} swallow yarrow to save {PRONOUN/app1/object} from deathberry poisoning.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -185,7 +185,7 @@
                 "weight": 20
             },
             {
-                "text": "After careful consideration, r_c recognizes them as raspberries and brings the rare berries back to the medicine cat's den.",
+                "text": "After careful consideration, r_c recognizes them as raspberries and brings the rare berries back to the healers' den.",
                 "exp": 20,
                 "weight": 5,
                 "herbs": ["raspberry"]
@@ -204,7 +204,7 @@
                 "weight": 20
             },
             {
-                "text": "While plucking them from the bush, r_c finds them tasty and eats a few, only for p_l to notice what {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} eating. {PRONOUN/r_c/subject/CAP}{VERB/r_c/'re/'s} rushed back to camp, where the medicine cat treats {PRONOUN/r_c/object} for deathberry poisoning.",
+                "text": "While plucking them from the bush, r_c finds them tasty and eats a few, only for p_l to notice what {PRONOUN/r_c/subject}{VERB/r_c/'re/'s} eating. {PRONOUN/r_c/subject/CAP}{VERB/r_c/'re/'s} rushed back to camp, where the healers treat {PRONOUN/r_c/object} for deathberry poisoning.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -244,7 +244,7 @@
                 "weight": 20
             },
             {
-                "text": "Whatever. Identifying them is a medicine cat problem. app1 plucks the berries and brings them back to camp, where it turns out they're called raspberries.",
+                "text": "Whatever. Identifying them is a healer's problem. app1 plucks the berries and brings them back to camp, where it turns out they're called raspberries.",
                 "exp": 20,
                 "weight": 5,
                 "herbs": ["raspberry"]
@@ -257,7 +257,7 @@
                 "weight": 20
             },
             {
-                "text": "Whatever. Identifying them is a medicine cat problem. app1 plucks the berries, surprised at the pleasant taste, and swallows a few. {PRONOUN/app1/subject/CAP} {VERB/app1/collapse/collapses} on the way back to camp, and there's nothing any cat can do for {PRONOUN/r_c/object}, who was unable to identify deathberries before eating them.",
+                "text": "Whatever. Identifying them is a healer's problem. app1 plucks the berries, surprised at the pleasant taste, and swallows a few. {PRONOUN/app1/subject/CAP} {VERB/app1/collapse/collapses} on the way back to camp, and there's nothing any cat can do for {PRONOUN/r_c/object}, who was unable to identify deathberries before eating them.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["app1"],
@@ -267,7 +267,7 @@
                 }
             },
             {
-                "text": "Whatever. Identifying them is a medicine cat problem. app1 plucks the tasty berries, swallowing a few, and takes the rest back to camp where the medicine cat immediately has {PRONOUN/app1/object} swallow yarrow to save {PRONOUN/app1/object} from deathberry poisoning.",
+                "text": "Whatever. Identifying them is a healer's problem. app1 plucks the tasty berries, swallowing a few, and takes the rest back to camp where the healers immediately have {PRONOUN/app1/object} swallow yarrow to save {PRONOUN/app1/object} from deathberry poisoning.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -1611,7 +1611,7 @@
                 ]
             },
             {
-                "text": "s_c doesn't much care what the patrol does - {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} keen to use the opportunity for a slightly different aim. As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's leadership and if they think the Clan is going in the right direction.",
+                "text": "s_c doesn't much care what the patrol does - {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} keen to use the opportunity for a slightly different aim. As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's guardianship and if they think the Clan is going in the right direction.",
                 "exp": 60,
                 "weight": 20,
                 "can_have_stat":["any"],
@@ -1780,7 +1780,7 @@
                 ]
             },
             {
-                "text": "As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's leadership and if they think the Clan is going in the right direction. {PRONOUN/s_c/subject/CAP}{VERB/s_c/'ve/'s} transparently oily about it, and the group returns to camp disgusted with s_c's lack of faith.",
+                "text": "As they all train, s_c casually checks in with {PRONOUN/s_c/poss} fellow warriors about how happy they are with c_n's guardianship and if they think the Clan is going in the right direction. {PRONOUN/s_c/subject/CAP}{VERB/s_c/'ve/'s} transparently oily about it, and the group returns to camp disgusted with s_c's lack of faith.",
                 "exp": 0,
                 "weight": 20,
                 "can_have_stat":["any"],
@@ -1909,11 +1909,11 @@
         },
         "weight": 20,
         "intro_text": "p_l heads out with a group of {PRONOUN/p_l/poss} Clanmates to go train.",
-        "decline_text": "A messager comes from the border, and p_l sighs. The patrol will have to go out without {PRONOUN/p_l/object} - this could be important.",
+        "decline_text": "A messanger comes from the border, and p_l sighs. The patrol will have to go out without {PRONOUN/p_l/object} - this could be important.",
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "It's not that they do anything remarkable together, but that's not the point. Instead, the purpose of this training is to get out of camp and amoungst {PRONOUN/p_l/poss} Clanmates, and it's important for p_l to do so as often as possible.",
+                "text": "It's not that they do anything remarkable together, but that's not the point. Instead, the purpose of this training is to get out of camp and amongst {PRONOUN/p_l/poss} Clanmates, and it's important for p_l to do so as often as possible.",
                 "exp": 30,
                 "weight": 5,
                 "relationships": [
@@ -1973,7 +1973,7 @@
                 ]
             },
             {
-                "text": "r_c asks what they should do - but s_c doesn't care! {PRONOUN/s_c/subject/CAP} don't want to lead this, to be the <i>leader</i> here. Please, for this afternoon, {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} just another Clanmate. And it's such a welcome break from {PRONOUN/s_c/poss} responsibilities, laughing and playing with the other cats til dusk, carefree and unburdened.",
+                "text": "r_c asks what they should do - but s_c doesn't care! {PRONOUN/s_c/subject/CAP} don't want to lead this, to be the <i>guardian</i> here. Please, for this afternoon, {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} just another Clanmate. And it's such a welcome break from {PRONOUN/s_c/poss} responsibilities, laughing and playing with the other cats til dusk, carefree and unburdened.",
                 "exp": 40,
                 "weight": 20,
                 "can_have_stat":["p_l"],
@@ -2100,7 +2100,7 @@
                 ]
             },
             {
-                "text": "As the cats train, r_c quietly takes s_c aside. It's nothing important - {PRONOUN/r_c/subject} just wanted some advice about something. s_c always has time for {PRONOUN/s_c/poss} Clanmates, it's no trouble at all. After, r_c rejoins the group afterwards, padding like weight has fallen off {PRONOUN/r_c/poss} shoulders, and the rest of the group shares a smile. There's nothing like the reassurance of sage, measured wisdom to help a cat. That wisdom is definitely one of s_c's talents as a leader.",
+                "text": "As the cats train, r_c quietly takes s_c aside. It's nothing important - {PRONOUN/r_c/subject} just wanted some advice about something. s_c always has time for {PRONOUN/s_c/poss} Clanmates, it's no trouble at all. After, r_c rejoins the group afterwards, padding like weight has fallen off {PRONOUN/r_c/poss} shoulders, and the rest of the group shares a smile. There's nothing like the reassurance of sage, measured wisdom to help a cat. That wisdom is definitely one of s_c's talents as a guardian.",
                 "exp": 40,
                 "weight": 20,
                 "can_have_stat":["p_l"],
@@ -2142,7 +2142,7 @@
                 ]
             },
             {
-                "text": "s_c doesn't take charge or lead the patrol haring off after some grand adventure. That just isn't {PRONOUN/s_c/poss} style. Instead, the cats are reminded of the kindness in their leader's heart as they watch s_c help r_c up off the ground, reassure another Clanmate when they get a move wrong. The warmth of these little sparks of empathy remind everyone why c_n follows s_c.",
+                "text": "s_c doesn't take charge or lead the patrol haring off after some grand adventure. That just isn't {PRONOUN/s_c/poss} style. Instead, the cats are reminded of the kindness in their guardian's heart as they watch s_c help r_c up off the ground, reassure another Clanmate when they get a move wrong. The warmth of these little sparks of empathy remind everyone why c_n follows s_c.",
                 "exp": 40,
                 "weight": 20,
                 "can_have_stat":["p_l"],
@@ -2666,8 +2666,7 @@
         "max_cats": 6,
         "min_max_status": {
             "warrior": [1, 6],
-            "deputy": [1, 6],
-            "leader": [-1, -1]
+            "leader": [1, 6]
         },
         "weight": 10,
         "intro_text": "The patrol has a disagreement and looks to p_l to settle the dispute.",
@@ -2717,7 +2716,7 @@
                 ]
             },
             {
-                "text": "c_n's deputy always knows what to say - even if that sometimes includes laying down the law. p_l convinces the patrol that arguing over something so small is beneath them.",
+                "text": "c_n's guardian always knows what to say - even if that sometimes includes laying down the law. p_l convinces the patrol that arguing over something so small is beneath them.",
                 "exp": 20,
                 "weight": 20,
                 "can_have_stat": ["p_l"],
@@ -2786,7 +2785,7 @@
                 ]
             },
             {
-                "text": "Well, if the cats want s_c's advice (and they do, or at the very least they want to feel like they're in the right because the deputy is on their side), s_c would advise... compromise. While it isn't the most satisfying way to win an argument, it's the best path forward.",
+                "text": "Well, if the cats want s_c's advice (and they do, or at the very least they want to feel like they're in the right because the guardian is on their side), s_c would advise... compromise. While it isn't the most satisfying way to win an argument, it's the best path forward.",
                 "exp": 20,
                 "weight": 20,
                 "can_have_stat": ["p_l"],
@@ -3155,7 +3154,7 @@
         "chance_of_success": 70,
         "success_outcomes": [
             {
-                "text": "It's alright, app1 assures app2. It wasn't on purpose - maybe {PRONOUN/app2/subject} could head to the medicine den after this. There are heaps of herbs to help app2 sleep, and this totally explains why {PRONOUN/app2/subject}{VERB/app2/'ve/'s} been yawning so much during training.",
+                "text": "It's alright, app1 assures app2. It wasn't on purpose - maybe {PRONOUN/app2/subject} could head to the healers' den after this. There are heaps of herbs to help app2 sleep, and this totally explains why {PRONOUN/app2/subject}{VERB/app2/'ve/'s} been yawning so much during training.",
                 "exp": 20,
                 "weight": 20,
                 "relationships": [
@@ -3236,7 +3235,7 @@
         },
         "weight": 20,
         "intro_text": "While app1 and p_l are out walking, app1 seems preoccupied. When p_l brings their patrol to a halt and asks what's wrong, {PRONOUN/app1/subject} {VERB/app1/reveal/reveals} {PRONOUN/app1/subject}{VERB/app1/'ve/'s} been having a hard time sleeping. {PRONOUN/app1/poss/CAP} dreams are filled with shadows and... images.",
-        "decline_text": "This is beyond p_l's sphere of teachable subjects, but {PRONOUN/p_l/subject} {VERB/p_l/promise/promises} that there'll be another cat back at camp who can help. app1 should probably talk to a medicine cat.",
+        "decline_text": "This is beyond p_l's sphere of teachable subjects, but {PRONOUN/p_l/subject} {VERB/p_l/promise/promises} that there'll be another cat back at camp who can help. app1 should probably talk to a healer.",
         "chance_of_success": 70,
         "success_outcomes": [
             {
@@ -7740,7 +7739,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "No matter how patiently p_l tries to teach app1 how to firmly, but gently, gather and shred the moss, {PRONOUN/app1/subject} {VERB/app1/don't/doesn't} seem to be paying any attention. Frustrated with {PRONOUN/app1/object}, p_l decides to have a talk with the leader upon their return to camp.",
+                "text": "No matter how patiently p_l tries to teach app1 how to firmly, but gently, gather and shred the moss, {PRONOUN/app1/subject} {VERB/app1/don't/doesn't} seem to be paying any attention. Frustrated with {PRONOUN/app1/object}, p_l decides to have a talk with the guardian upon their return to camp.",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -8108,13 +8107,13 @@
             "all apprentices": [-1, -1]
         },
         "weight": 100,
-        "intro_text": "p_l can't believe that r_c is <i>such</i> a fox-heart that the leader of c_n sent them both out together to work out their problems. Like, what?",
+        "intro_text": "p_l can't believe that r_c is <i>such</i> a fox-heart that the guardian of c_n sent them both out together to work out their problems. Like, what?",
         "decline_text": "Maybe this rivalry has gotten a little... excessive.",
         "chance_of_success": 60,
         "relationship_constraint": ["dislike_30", "romantic_30"],
         "success_outcomes": [
             {
-                "text": "If there is a single thing that r_c and p_l can both agree on, it's this: how dare anyone order them to be friends! They complain to each other about the leader's commands for a good long while, before both being swept up into their normal arguments. Which they'll be continuing as long as they feel like, thank you.",
+                "text": "If there is a single thing that r_c and p_l can both agree on, it's this: how dare anyone order them to be friends! They complain to each other about the guardian's commands for a good long while, before both being swept up into their normal arguments. Which they'll be continuing as long as they feel like, thank you.",
                 "exp": 15,
                 "weight": 20,
                 "relationships": [
@@ -8181,7 +8180,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "{PRONOUN/p_l/subject/CAP} {VERB/p_l/breathe/breathes}, reminding {PRONOUN/p_l/self} of {PRONOUN/p_l/poss} responsibilities as leader of the Clan. How would it look if {PRONOUN/p_l/subject} just exploded at r_c, no matter how justified?",
+                "text": "{PRONOUN/p_l/subject/CAP} {VERB/p_l/breathe/breathes}, reminding {PRONOUN/p_l/self} of {PRONOUN/p_l/poss} responsibilities as guardian of the Clan. How would it look if {PRONOUN/p_l/subject} just exploded at r_c, no matter how justified?",
                 "exp": 0,
                 "weight": 20,
                 "relationships": [
@@ -8496,7 +8495,7 @@
         ],
         "fail_outcomes": [
             {
-                "text": "p_l tries to ignore what's clearly apprentice nonsense, up until there's a rather painful yelp. app1 has encountered something sharp in the puddle app2 shoved {PRONOUN/app1/object} into. <i>Apprentices</i>. The leader is going to hear <i>exactly</i> which cats caused this patrol to fail.",
+                "text": "p_l tries to ignore what's clearly apprentice nonsense, up until there's a rather painful yelp. app1 has encountered something sharp in the puddle app2 shoved {PRONOUN/app1/object} into. <i>Apprentices</i>. The guardian is going to hear <i>exactly</i> which cats caused this patrol to fail.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -8694,7 +8693,7 @@
                 ]
             },
             {
-                "text": "p_l sits down with app1 in the training grounds. What's wrong? As the leader, p_l could - app1 cuts {PRONOUN/p_l/object} off. Yes, app1 knows {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} the leader, <i>everyone</i> knows p_l is the leader! That's the problem! Everyone expects so much, just because app1 happened to be born into p_l's nest, like that's helped app1 at all! p_l curls around them sympathetically, listening, heart sinking to hear the burden placed on {PRONOUN/p_l/poss} kit by the Clan.",
+                "text": "p_l sits down with app1 in the training grounds. What's wrong? As the guardian, p_l could - app1 cuts {PRONOUN/p_l/object} off. Yes, app1 knows {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} the guardian, <i>everyone</i> knows p_l is the guardian! That's the problem! Everyone expects so much, just because app1 happened to be born into p_l's nest, like that's helped app1 at all! p_l curls around them sympathetically, listening, heart sinking to hear the burden placed on {PRONOUN/p_l/poss} kit by the Clan.",
                 "exp": 20,
                 "weight": 5,
                 "relationships": [
@@ -9558,7 +9557,7 @@
                         ]
                 },
                 {
-                    "text": "The cats of the Whisker Grove are repulsive, s_c says, and the rest of the patrol is surprised to here the quiet fury in {PRONOUN/s_c/poss} tone. s_c will never forgive those who steal from the kind and generous, who take other cats hard work and try to profit from it.",
+                    "text": "The cats of the Whisker Grove are repulsive, s_c says, and the rest of the patrol is surprised to hear the quiet fury in {PRONOUN/s_c/poss} tone. s_c will never forgive those who steal from the kind and generous, who take other cats' hard work and try to profit from it.",
                     "exp": 30,
                     "weight": 20,
                     "art": "scaryghost_INTRO",
@@ -11007,8 +11006,8 @@
             "warrior": [1, 1]
         },
         "weight": 20,
-        "intro_text": "It is almost dawn when the deputy rouses app1 for {PRONOUN/app1/poss} assessment. {PRONOUN/app1/subject/CAP} {VERB/app1/are/is} meant to find p_l posing as an enemy warrior somewhere on the territory and handle the situation. p_l could be anywhere!",
-        "decline_text": "app1 sheepishly looks up at the deputy, a guilty gleam in {PRONOUN/app1/poss} eyes, and says that {PRONOUN/app1/subject} {VERB/app1/have/has} a stomachache. {PRONOUN/app1/subject/CAP} hurriedly {VERB/app1/run/runs} to the medicine den, wondering how {PRONOUN/app1/subject} {VERB/app1/are/is} going to get away with this fake illness at sunhigh when the Clan shares tongues.",
+        "intro_text": "It is almost dawn when the guardian rouses app1 for {PRONOUN/app1/poss} assessment. {PRONOUN/app1/subject/CAP} {VERB/app1/are/is} meant to find p_l posing as an enemy warrior somewhere on the territory and handle the situation. p_l could be anywhere!",
+        "decline_text": "app1 sheepishly looks up at the guardian, a guilty gleam in {PRONOUN/app1/poss} eyes, and says that {PRONOUN/app1/subject} {VERB/app1/have/has} a stomachache. {PRONOUN/app1/subject/CAP} hurriedly {VERB/app1/run/runs} to the healers' den, wondering how {PRONOUN/app1/subject} {VERB/app1/are/is} going to get away with this fake illness at sunhigh when the Clan shares tongues.",
         "chance_of_success": 60,
         "success_outcomes": [
             {
@@ -11054,7 +11053,7 @@
                 ]
             },
             {
-                "text": "app1 was already awake and raring to go. {PRONOUN/app1/subject/CAP} run off before the deputy can say anything. It's just a game of hide and seek, after all. When {PRONOUN/app1/subject} {VERB/app1/find/finds} p_l, {PRONOUN/app1/subject} {VERB/app1/have/has} to stifle {PRONOUN/app1/poss} chitters of excited pleasure. p_l must have heard {PRONOUN/app1/object}, because app1 sees {PRONOUN/p_l/poss} whiskers twitch in amusement. Oh well - {PRONOUN/app1/subject} gleefully {VERB/app1/charge/charges} forward anyway.",
+                "text": "app1 was already awake and raring to go. {PRONOUN/app1/subject/CAP} run off before the guardian can say anything. It's just a game of hide and seek, after all. When {PRONOUN/app1/subject} {VERB/app1/find/finds} p_l, {PRONOUN/app1/subject} {VERB/app1/have/has} to stifle {PRONOUN/app1/poss} chitters of excited pleasure. p_l must have heard {PRONOUN/app1/object}, because app1 sees {PRONOUN/p_l/poss} whiskers twitch in amusement. Oh well - {PRONOUN/app1/subject} gleefully {VERB/app1/charge/charges} forward anyway.",
                 "exp": 15,
                 "weight": 20,
                 "stat_skill": ["RUNNER,0", "CLEVER,0"],
@@ -11146,7 +11145,7 @@
                 ]
             },
             {
-                "text": "Why did it have to be this assessment? app1 struggles to make a decision. What if {PRONOUN/app1/subject} cannot find p_l before the time limit? Who decided there should be a time limit? Maybe app1 would be better off as a medicine cat... {PRONOUN/app1/poss/CAP} mentor's arrival startles {PRONOUN/app1/object}, and app1 realizes {PRONOUN/app1/subject} wasted too much time second-guessing {PRONOUN/app1/self}.",
+                "text": "Why did it have to be this assessment? app1 struggles to make a decision. What if {PRONOUN/app1/subject} cannot find p_l before the time limit? Who decided there should be a time limit? Maybe app1 would be better off as a healer... {PRONOUN/app1/poss/CAP} mentor's arrival startles {PRONOUN/app1/object}, and app1 realizes {PRONOUN/app1/subject} wasted too much time second-guessing {PRONOUN/app1/self}.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": ["nervous", "insecure", "oblivious"],
