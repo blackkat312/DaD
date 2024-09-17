@@ -143,12 +143,12 @@
         "max_cats": 6,
         "min_max_status": {},
         "weight": 20,
-        "intro_text": "As the patrol travels the territory, they come upon a strange metal forest that the Twolegs have built.  Smooth, white tree trunks rise up into the sky, completely bare apart from the very top, where three massive branches grow outwards and spin in slow circles. A low hum permeates the air.",
+        "intro_text": "As the patrol travels the territory, they come upon a strange metal forest that the Twolegs have built. Smooth, white tree trunks rise up into the sky, completely bare apart from the very top, where three massive branches grow outwards and spin in slow circles. A low hum permeates the air.",
         "decline_text": "The patrol decides to hunt elsewhere",
         "chance_of_success": 50,
         "success_outcomes": [
             {
-                "text": "The patrol moves among the white trunks, checking the ground underneath them.  Sometimes dead birds can be found scattered about in this area and if not yet rotten, make for acceptable fresh-kill.  They manage to find some carcasses worth taking.",
+                "text": "The patrol moves among the white trunks, checking the ground underneath them. Sometimes dead birds can be found scattered about in this area and if not yet rotten, make for acceptable fresh-kill. They manage to find some carcasses worth taking.",
                 "exp": 10,
                 "weight": 20,
                 "prey": ["medium"]
@@ -177,7 +177,7 @@
         ],
         "antag_fail_outcomes": [
             {
-                "text": "The atmosphere in this place is eerie and r_c takes out {PRONOUN/r_c/poss} tenseness on one of the white trunks.  A few shallow scrapes are left on the surface, but little other evidence of {PRONOUN/r_c/poss} aggression remains.",
+                "text": "The atmosphere in this place is eerie and r_c takes out {PRONOUN/r_c/poss} tenseness on one of the white trunks. A few shallow scrapes are left on the surface, but little other evidence of {PRONOUN/r_c/poss} aggression remains.",
                 "exp": 0,
                 "weight": 20
             }
@@ -291,7 +291,7 @@
                 "stat_trait": ["bold", "ambitious", "childish", "impulsive"]
             },
             {
-                "text": "Oh no! The burrow was home to a wolverine, now angry at the disturbance. r_c bolts away to escape its wrath, but doesn't quite move fast enough and is caught in its claws.  With no other cats around to help, r_c is quickly killed by the predator.",
+                "text": "Oh no! The burrow was home to a wolverine, now angry at the disturbance. r_c bolts away to escape its wrath, but doesn't quite move fast enough and is caught in its claws. With no other cats around to help, r_c is quickly killed by the predator.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["r_c"],
@@ -479,7 +479,7 @@
                 "can_have_stat": ["app"]
             },
             {
-                "text": "While on the hunt, r_c tumbles right down an empty badger sett while {PRONOUN/r_c/poss} attention is elsewhere. Bruised and sore, r_c has to report to the medicine cat den when {PRONOUN/r_c/subject} {VERB/r_c/return/returns} to camp.",
+                "text": "While on the hunt, r_c tumbles right down an empty badger sett while {PRONOUN/r_c/poss} attention is elsewhere. Bruised and sore, r_c has to report to the healers' den when {PRONOUN/r_c/subject} {VERB/r_c/return/returns} to camp.",
                 "exp": 0,
                 "weight": 10,
                 "injury": [
@@ -1303,7 +1303,7 @@
             "all apprentices": [-1, -1]
         },
         "weight": 20,
-        "intro_text": "{PRONOUN/r_c/poss} eyes daring p_l to say no, r_c suggests hunting by the Twoleg dens.",
+        "intro_text": "{PRONOUN/r_c/poss/CAP} eyes daring p_l to say no, r_c suggests hunting by the Twoleg dens.",
         "decline_text": "On second thought, they decide to reline their nests today instead.",
         "chance_of_success": 40,
         "success_outcomes": [
@@ -1448,7 +1448,7 @@
             "all apprentices": [2, 2]
         },
         "weight": 20,
-        "intro_text": "{PRONOUN/r_c/poss} eyes daring p_l to say no, r_c suggests hunting by the Twoleg dens. Where apprentices are definitely not allowed.",
+        "intro_text": "{PRONOUN/r_c/poss/CAP} eyes daring p_l to say no, r_c suggests hunting by the Twoleg dens. Where apprentices are definitely not allowed.",
         "decline_text": "On second thought, they decide to reline their nests today instead.",
         "chance_of_success": 40,
         "success_outcomes": [
@@ -1468,7 +1468,7 @@
                 ]
             },
             {
-                "text": "A friendly Twolegs makes a psspsspss noise, and pours kittypet food on the ground for r_c. {PRONOUN/r_c/subject/CAP} {VERB/r_c/fetch/fetches} p_l, and both apprentices loudly proclaim how much better fresh-kill is, but both are also wide-eyed and thrilled by the experience.",
+                "text": "A friendly Twoleg makes a psspsspss noise, and pours kittypet food on the ground for r_c. {PRONOUN/r_c/subject/CAP} {VERB/r_c/fetch/fetches} p_l, and both apprentices loudly proclaim how much better fresh-kill is, but both are also wide-eyed and thrilled by the experience.",
                 "exp": 20,
                 "weight": 5,
                 "prey": ["very_small"],
@@ -1596,7 +1596,7 @@
                 "stat_skill": ["CLEVER,1"]
             },
             {
-                "text": "Something isn't right. Nervously pawing at the earth, s_c thinks that the smell is too good to be true. {PRONOUN/s_c/subject/CAP} {VERB/s_c/leave/leaves} it, deciding to return to camp and report it to the deputy instead.",
+                "text": "Something isn't right. Nervously pawing at the earth, s_c thinks that the smell is too good to be true. {PRONOUN/s_c/subject/CAP} {VERB/s_c/leave/leaves} it, deciding to return to camp and report it to the guardian instead.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -1658,7 +1658,7 @@
                 "stat_skill": ["CLEVER,1"]
             },
             {
-                "text": "Something isn't right. Nervously pawing at the earth, s_c thinks that the smell is too good to be true. {PRONOUN/s_c/subject/CAP} {VERB/s_c/leave/leaves} it, convincing the patrol to return to camp and report it to the deputy instead.",
+                "text": "Something isn't right. Nervously pawing at the earth, s_c thinks that the smell is too good to be true. {PRONOUN/s_c/subject/CAP} {VERB/s_c/leave/leaves} it, convincing the patrol to return to camp and report it to the guardian instead.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
