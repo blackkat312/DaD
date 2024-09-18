@@ -22,7 +22,8 @@
             "Is assisting with camp cleanup",
             "Is enjoying the warm sun in the camp clearing",
             "Is feeling restless today",
-            "Thinks about going on a little jaunt outside camp"
+            "Thinks about going on a little jaunt outside camp",
+            "Is enjoying {PRONOUN/m_c/poss} retirement under the sun"
         ]
     },
     {
@@ -49,7 +50,8 @@
             "Thinks that times have changed for the better since {PRONOUN/m_c/subject} {VERB/m_c/were/was} young",
             "Is recalling something no other cat remembers anymore",
             "Is grumbling about the weather",
-            "Feels {PRONOUN/m_c/poss} bones creak as {PRONOUN/m_c/subject} {VERB/m_c/walk/walks}"
+            "Feels {PRONOUN/m_c/poss} bones creak as {PRONOUN/m_c/subject} {VERB/m_c/walk/walks}",
+            "Is glad {PRONOUN/m_c/subject} retired"
         ],
         "main_age_constraint": [
             "senior"
@@ -91,7 +93,7 @@
     {
         "id": "elder_alive_leader",
         "thoughts": [
-            "Is giving the Clan leader attitude"
+            "Is giving the Clan guardian attitude"
         ],
         "main_age_constraint": [
             "senior"
@@ -120,38 +122,12 @@
         ]
     },
     {
-        "id": "gen_retired_disabled_thoughts",
+        "id": "gen_retired_to_med_thoughts",
         "thoughts": [
-            "Wants everyone to stop pitying {PRONOUN/m_c/object}, {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} fine!",
-            "Is glad {PRONOUN/m_c/subject} retired",
-            "Knows {PRONOUN/m_c/subject} {VERB/m_c/are/is} helping the Clan more now",
-            "Feels like {PRONOUN/m_c/subject} {VERB/m_c/are/is} missing out on adventures",
-            "Feels alone in {PRONOUN/m_c/poss} struggles",
-            "Is becoming more confident in {PRONOUN/m_c/poss} position in the Clan",
-            "Is enjoying {PRONOUN/m_c/poss} retirement under the sun"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "any"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ]
-    },
-    {
-        "id": "gen_retired_disabled_to_med_thoughts",
-        "thoughts": [
-            "Wonders if the medicine cat needs any help today",
+            "Wonders if the healers need any help today",
             "Offers to help r_c sort herbs",
-            "Wonders if {PRONOUN/m_c/subject} could've been a medicine cat with r_c instead of retiring",
             "Brought r_c some fresh-kill"
         ],
-        "perm_conditions": {
-            "m_c": [
-                "any"
-            ]
-        },
         "main_status_constraint": [
             "elder"
         ],
@@ -163,204 +139,21 @@
         ]
     },
     {
-        "id": "gen_retired_disabled_to_kit_thoughts",
+        "id": "gen_retired_kit_to_kit_thoughts",
         "thoughts": [
             "Plays with the kits as a form of exercise",
             "Offers to watch the kits",
             "Is busy telling r_c a story",
             "Knows exactly how to keep the kits busy"
         ],
-        "perm_conditions": {
-            "m_c": [
-                "any"
-            ]
-        },
         "main_status_constraint": [
             "elder"
         ],
         "random_status_constraint": [
             "kitten"
         ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "paralyzed_gen_retired_to_alive_med",
-        "thoughts": [
-            "Is doing exercises with the instructions of r_c",
-            "Chats with r_c while doing {PRONOUN/m_c/poss} exercises"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "paralyzed"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "medicine cat apprentice",
-            "medicine cat"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "paralyzed_gen_retired_shameless",
-        "thoughts": [
-            "Makes up an excuse so {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} have to exercise today"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "paralyzed"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_trait_constraint": [
-            "shameless"
-        ]
-    },
-    {
-        "id": "paralyzed_gen_retired_insecure",
-        "thoughts": [
-            "Practices {PRONOUN/m_c/poss} exercises in secret due to embarrassment"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "paralyzed"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_trait_constraint": [
-            "insecure"
-        ]
-    },
-    {
-        "id": "paralyzed_adolescent_retired_to_alive_gen",
-        "thoughts": [
-            "Wonders if elders feel the same way about aching joints",
-            "Sneaks out of camp for some alone time",
-            "Is being snappy about {PRONOUN/m_c/poss} exercises",
-            "Enjoyed a walk around the camp with r_c!",
-            "Is the reigning moss-ball champion, and everyone knows it"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "paralyzed"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_age_constraint": [
-            "any"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "paralyzed_adolescent_retired_to_alive_adult",
-        "thoughts": [
-            "Helps the adults around camp with a big smile on {PRONOUN/m_c/poss} face"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "paralyzed"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_age_constraint": [
-            "young adult",
-            "adult",
-            "senior adult",
-            "senior"
-        ]
-    },
-    {
-        "id": "paralyzed_adolescent_retired_to_alive_med",
-        "thoughts": [
-            "Is bored by r_c's concerns about {PRONOUN/m_c/poss} lungs"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "paralyzed"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_status_constraint": [
-            "medicine cat apprentice",
-            "medicine cat"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "blind_gen_retired_to_alive_notkit",
-        "thoughts": [
-            "Explored the territory with r_c today"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "blind"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_age_constraint": [
-            "adolescent",
-            "young adult",
-            "adult",
-            "senior adult",
-            "senior"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "blind_adolescent_retired_to_alive_apprentice",
-        "thoughts": [
-            "Sadly listens as the apprentices share stories of {PRONOUN/m_c/poss} feats",
-            "Joins in as the apprentices share stories of {PRONOUN/m_c/poss} feats",
-            "Asks r_c to describe what {PRONOUN/r_c/subject} saw on patrol today"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "blind"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_status_constraint": [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice"
+        "main_skill_constraint": [
+            "KIT,1"
         ],
         "random_living_status": [
             "living"
@@ -385,373 +178,6 @@
         "random_status_constraint": [
             "medicine cat apprentice",
             "medicine cat"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "one_bad_eye_adolescent_retired_to_alive_gen",
-        "thoughts": [
-            "Brags to the Clan that {PRONOUN/m_c/subject} would've been the best leader"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "one bad eye"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_age_constraint": [
-            "any"
-        ]
-    },
-    {
-        "id": "wasting_disease_gen_retired_to_alive_med",
-        "thoughts": [
-            "Thanks r_c for {PRONOUN/r_c/poss} patience",
-            "Feels confined to the medicine den"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "wasting disease"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "medicine cat apprentice",
-            "medicine cat"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "wasting_disease_adolescent_retired_to_alive_adult",
-        "thoughts": [
-            "Wishes the older cats would stop trying to get {PRONOUN/m_c/object} to eat more"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "wasting disease"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_age_constraint": [
-            "young adult",
-            "adult",
-            "senior adult",
-            "senior"
-        ]
-    },
-    {
-        "id": "wasting_disease_adolescent_retired_to_alive_apprentice",
-        "thoughts": [
-            "Enviously watches the apprentices talk about training"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "wasting disease"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_status_constraint": [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice"
-        ]
-    },
-    {
-        "id": "deaf_gen_retired_to_alive_gen",
-        "thoughts": [
-            "Idly feels the thumps of {PRONOUN/m_c/poss} Clanmates' pawsteps on the ground",
-            "Has learned to feel vibrations through the ground",
-            "Is teaching r_c tail signals",
-            "Tries to read r_c's posture",
-            "Asks r_c to describe what {PRONOUN/r_c/subject} can hear",
-            "Wishes {PRONOUN/m_c/subject} could hear r_c's voice"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "deaf"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "any"
-        ],
-        "random_status_constraint": [
-            "any"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "deaf_adolescent_retired_to_alive_apprentice",
-        "thoughts": [
-            "Enviously watches the apprentices talk about training"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "deaf"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "main_age_constraint": [
-            "adolescent"
-        ],
-        "random_status_constraint": [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice"
-        ]
-    },
-    {
-        "id": "missing_leg/tail_gen_retired_to_alive_gen",
-        "thoughts": [
-            "Is training {PRONOUN/m_c/poss} balance with r_c",
-            "Is heading to the medicine den because {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} starting to feel phantom pain"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost a leg",
-                "lost their tail",
-                "born without leg",
-                "born without tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "any"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "lost_leg/tail_gen_retired_to_alive_kit",
-        "thoughts": [
-            "Tells the story of how {PRONOUN/m_c/subject} lost {PRONOUN/m_c/poss} limb to an interested group of kits",
-            "Is playing along as r_c tells the legend of how {PRONOUN/m_c/subject} lost {PRONOUN/m_c/poss} limb"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost a leg",
-                "lost their tail",
-                "born without leg",
-                "born without tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "kitten"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "lost_leg/tail_gen_retired_to_alive_app",
-        "thoughts": [
-            "Explains what 'phantom pain' is to a curious apprentice"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost a leg",
-                "lost their tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "apprentice"
-        ]
-    },
-    {
-        "id": "missing_leg_gen_retired_to_alive_gen",
-        "thoughts": [
-            "Ironically giggles after hearing r_c's dramatic response to stubbing {PRONOUN/r_c/poss} paw",
-            "Is excited to no longer have to step on sharp stones",
-            "Manages to make a once-difficult jump with ease",
-            "Boasts about being the champion of balancing on one leg"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost a leg",
-                "born without leg"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "any"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "born_without_leg_gen_retired_to_alive_born_without_leg_kit",
-        "thoughts": [
-            "Is helping r_c take {PRONOUN/r_c/poss} first steps without a leg"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "born without leg"
-            ],
-            "r_c": [
-                "born without leg"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "kitten"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "missing_leg_gen_retired_to_alive_born_without_leg_newborn",
-        "thoughts": [
-            "Notices that r_c is missing a leg, just like {PRONOUN/m_c/object}"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "born without leg",
-                "lost a leg"
-            ],
-            "r_c": [
-                "born without leg"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "newborn"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "missing_tail_gen_retired_to_alive_kit",
-        "thoughts": [
-            "Is being grumped at by a kit because {PRONOUN/m_c/subject} {VERB/m_c/have/has} no tail to chomp on",
-            "Is being asked how {PRONOUN/m_c/subject} can balance by a kit"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost their tail",
-                "born without tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "kitten"
-        ]
-    },
-    {
-        "id": "missing_tail_gen_retired_to_alive_missing_tail_kit",
-        "thoughts": [
-            "Bonds with r_c about them both missing a tail",
-            "Is comforting r_c after a cruel joke was made about {PRONOUN/r_c/poss} tail"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost their tail",
-                "born without tail"
-            ],
-            "r_c": [
-                "lost their tail",
-                "born without tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "kitten"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "missing_tail_gen_retired_to_alive_missing_tail_app",
-        "thoughts": [
-            "Eagerly shows r_c the best techniques to keep upright",
-            "Is pawing r_c on the head after a cruel joke about {PRONOUN/m_c/poss} tail"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost their tail",
-                "born without tail"
-            ],
-            "r_c": [
-                "lost their tail",
-                "born without tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "apprentice"
-        ],
-        "random_living_status": [
-            "living"
-        ]
-    },
-    {
-        "id": "lost_tail_gen_retired_to_alive_kit",
-        "thoughts": [
-            "Gently explains {PRONOUN/m_c/poss} scars to r_c",
-            "Overdramatizes how {PRONOUN/m_c/subject} lost {PRONOUN/m_c/poss} tail to r_c",
-            "Is patiently answering curious kits' questions on how {PRONOUN/m_c/subject} lost {PRONOUN/m_c/poss} tail"
-        ],
-        "perm_conditions": {
-            "m_c": [
-                "lost their tail"
-            ]
-        },
-        "main_status_constraint": [
-            "elder"
-        ],
-        "random_status_constraint": [
-            "kitten"
         ],
         "random_living_status": [
             "living"
