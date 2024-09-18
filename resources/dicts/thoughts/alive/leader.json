@@ -8,7 +8,10 @@
             "Bats a moss-ball back to r_c when it hits {PRONOUN/m_c/object}, chuckling at the wide-eyed kit",
             "Is looking over the kits, pleased the Clan is thriving",
             "Is visiting the nursery to check on the kits, the future of the Clan"
-        ],
+
+
+        ],  
+
         "random_status_constraint": [
             "kitten"
         ],
@@ -41,6 +44,7 @@
             "Is proud of the way the Clan is handling things lately",
             "Promises to take care of the Clan with {PRONOUN/m_c/poss} lives",
             "Is busy planning out priorities for the day"
+
         ]
     },
     {
@@ -69,7 +73,7 @@
             "Wants to go on patrol with r_c so they can have a chat",
             "Is grateful for r_c's support",
             "Is wondering if r_c will do a good job after {PRONOUN/m_c/object}",
-            "Is teaching r_c about the small details of being a leader",
+            "Is teaching r_c about the small details of being a guardian",
             "Is trusting r_c to take care of something important"
         ],
         "random_status_constraint": [
@@ -119,19 +123,22 @@
             "Is debating if {PRONOUN/m_c/subject} should declare a war with another Clan",
             "Is wondering if {PRONOUN/m_c/subject} could hold apprentice ceremonies 2 moons earlier",
             "Hopes to postpone the retirement of {PRONOUN/m_c/poss} Clanmates",
-            "Asks the medicine cats to have a stock of deathberries at {PRONOUN/m_c/poss} disposal",
+            "Asks the healers to have a stock of deathberries at {PRONOUN/m_c/poss} disposal",
             "Doesn't understand StarClan's resentment towards {PRONOUN/m_c/object}",
             "Is thinking about taking kits from another Clan",
             "Encourages warriors to destroy other Clan's herb supplies",
             "Demands the warriors train with their claws unsheathed",
             "Considers exiling elders from now on",
             "Thinks about driving out an opposing Clan",
-            "Glares over the Clan from the leader's den",
+            "Glares over the Clan from the guardian's den",
             "Is slashing at a 'disloyal' warrior",
             "Swears the Clan is plotting against {PRONOUN/m_c/object}"
         ],
         "main_trait_constraint": [
-            "bloodthirsty"
+            "bloodthirsty",
+            "fierce",
+            "cold",
+            "vengeful"
         ]
     },
     {
@@ -190,8 +197,8 @@
     {
         "id": "insecure_leader",
         "thoughts": [
-            "Thinks {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} deserve StarClan's blessing of 9 lives",
-            "Wonders if cats like {PRONOUN/m_c/object} as a leader"
+            "Thinks {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} deserve StarClan's blessing of 4 lives",
+            "Wonders if cats like {PRONOUN/m_c/object} as a guardian"
         ],
         "main_trait_constraint": [
             "insecure"
@@ -201,22 +208,12 @@
         "id": "strange_leader",
         "thoughts": [
             "No thoughts, head empty",
-            "Insists that {PRONOUN/m_c/subject} received ten lives instead of nine",
+            "Insists that {PRONOUN/m_c/subject} received five lives instead of four",
             "Has a crazed look in {PRONOUN/m_c/poss} eyes",
             "Wonders how many cats would agree to changing the Clan's name..."
         ],
         "main_trait_constraint": [
             "strange"
-        ]
-    },
-    {
-        "id": "charismatic_leader",
-        "thoughts": [
-            "Gives a particularly rousing speech at a Clan meeting",
-            "Feels confident that the Clan admires {PRONOUN/m_c/object}"
-        ],
-        "main_trait_constraint": [
-            "charismatic"
         ]
     },
     {
@@ -257,7 +254,7 @@
             "Instructs r_c to let a sick cat die",
             "Is telling r_c to make a poultice with deathberries",
             "Tells r_c to fake a sign from StarClan to prepare the Clan for war",
-            "Is pleased with having a like-minded medicine cat like r_c",
+            "Is pleased with having a like-minded healer like r_c",
             "Is listening to r_c explain the pointlessness of treating weak or old cats"
         ],
         "random_status_constraint": [
@@ -347,7 +344,3 @@
         }
     }
 ]
-
-
-
- 
