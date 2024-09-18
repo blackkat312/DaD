@@ -6,10 +6,15 @@
             "Tries to figure out all of the smells around {PRONOUN/m_c/object}",
             "Snoozes peacefully",
             "No thoughts, head empty",
+            "Almost rolled out of {PRONOUN/m_c/poss} nest",
+            "Tried suckling on a piece of bedding",
+            "Squeals loudly",
+            "Mewls at someone nudging {PRONOUN/m_c/object}",
+            "Hisses at all the strange new smells",
             "Doesn't know how cute {PRONOUN/m_c/subject} {VERB/m_c/are/is}",
             "Smells like milk",
             "Had a bad dream and wakes up hissy",
-            "Hisses at an 'intruder', but {PRONOUN/m_c/subject} {VERB/m_c/are/is}n't scary",
+            "Hisses at an \"intruder\", but {PRONOUN/m_c/subject} {VERB/m_c/are/is}n't scary",
             "Has a little tail",
             "Has four little paws",
             "Has two little ears",
@@ -27,10 +32,13 @@
     },
     {
         "id": "gen_newborn_to_alive_parent",
-        "thoughts": [
+        "thoughts":[
             "Snuggles closer to r_c",
             "Smells r_c and immediately perks up",
             "Mews at r_c as {PRONOUN/r_c/subject} {VERB/r_c/shift/shifts} in the nest",
+            "Squeaks pitifully as r_c checks up on {PRONOUN/m_c/object}",
+            "Nuzzles up to r_c with a purr",
+            "Squeaks pitifully as r_c grooms {PRONOUN/m_c/object}",
             "Attempted to escape r_c's nest, but is caught",
             "Hisses at r_c because {PRONOUN/r_c/subject} {VERB/r_c/smell/smells} different",
             "Kneads r_c's belly"
@@ -77,6 +85,8 @@
     {
         "id": "gen_newborn_to_alive_littermate",
         "thoughts": [
+            "Is buried under r_c",
+            "Was shoved out of the nest by r_c",
             "Is fighting over a nipple with r_c",
             "Is using r_c as a pillow",
             "Kneads r_c's little belly",

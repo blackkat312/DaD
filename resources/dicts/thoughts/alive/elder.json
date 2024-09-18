@@ -223,7 +223,7 @@
     {
         "id": "persistent_headaches_gen_retired_to_alive_med",
         "thoughts": [
-            "Is bored of r_c's nagging about taking {PRONOUN/m_c/poss} herbs"
+            "Is bored by r_c's nagging about taking {PRONOUN/m_c/poss} herbs"
         ],
         "perm_conditions": {
             "m_c": [
