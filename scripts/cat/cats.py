@@ -82,7 +82,7 @@ class Cat:
         "leader",
     ]
 
-    gender_tags = {"female": "F", "male": "M", "intersex": "I"}
+    gender_tags = {"molly": "F", "tom": "M", "intersex": "I"}
 
     # EX levels and ranges.
     # Ranges are inclusive to both bounds
@@ -127,14 +127,13 @@ class Cat:
         "spirited heart": "hyperempathy",
         "puzzled heart": "low empathy",
         "parrot chatter": "echolalia",
-        "thought blind": "aphantasia",
+        "thought blindness": "aphantasia",
         "vivid daydreamer": "maladaptive daydreamer",
         "frequent fainting": "vasovagal syncope",
         "flooded paws": "POTS",
         "bad knee": "meniscus tear",
 
         "sunblindness": "light sensitivity",
-        "faux pregnant": "phantom pregnancy",
 
         "seasonal lethargy": "seasonal depression",
         "lethargy": "depression",
@@ -715,6 +714,7 @@ class Cat:
         self.dead = False
         self.exiled = False
         self.outside = False
+        self.dead_outside_display = ""
         self.driven_out = False
         self.dead_for = 0  # moons
         self.thought = ""
@@ -832,7 +832,7 @@ class Cat:
                 intersex_condition = choice(intersex_conditions)
                 self.get_permanent_condition(intersex_condition, born_with=True)
             else:
-                self.gender = choice(["female", "male"])
+                self.gender = choice(["molly", "tom"])
         self.g_tag = self.gender_tags[self.gender]
 
         """if self.genderalign == "":
@@ -946,7 +946,7 @@ class Cat:
         :return: None
         """
         genderqueer_list = [
-            "nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby", "genderfluid",
+            "nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby", "genderfluid",
             "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"
         ]
         intersex_genderqueer_list = genderqueer_list.copy()
@@ -960,8 +960,8 @@ class Cat:
         # trans cat chances
         theythemdefault = game.settings["they them default"]
         self.genderalign = self.gender
-        trans_chance = randint(0, 50)
-        nb_chance = randint(0, 75)
+        trans_chance = randint(0, 45)
+        nb_chance = randint(0, 55)
 
         # GENDER IDENTITY
         if self.moons == 0 or self.age == "newborn":
@@ -973,21 +973,21 @@ class Cat:
             else:
                 self.genderalign = choice(genderqueer_list)
         elif trans_chance == 1:
-            if self.gender == "female":
-                self.genderalign = "trans male"
-            elif self.gender == "male":
-                self.genderalign = "trans female"
+            if self.gender == "molly":
+                self.genderalign = "trans tom"
+            elif self.gender == "tom":
+                self.genderalign = "trans molly"
             else:
-                self.genderalign = choice(["trans male", "trans female"])
+                self.genderalign = choice(["trans tom", "trans molly"])
 
         # PRONOUNS
         if theythemdefault is True:
             self.pronouns = [self.default_pronouns[0].copy()]
         else:
             # Assigning pronouns based on gender
-            if self.genderalign in ["female", "trans female"]:
+            if self.genderalign in ["molly", "trans molly"]:
                 self.pronouns = [self.default_pronouns[1].copy()]
-            elif self.genderalign in ["male", "trans male"]:
+            elif self.genderalign in ["tom", "trans tom"]:
                 self.pronouns = [self.default_pronouns[2].copy()]
             else:
                 self.pronouns = [self.default_pronouns[0].copy()]
@@ -1076,19 +1076,19 @@ class Cat:
         fourth_category = randint(1, 14)
 
         # 1/num chances
-        if self.genderalign not in ["female", "trans female", "male", "trans male", "intersex"]:
+        if self.genderalign not in ["molly", "trans molly", "tom", "trans tom", "intersex"]:
             unique_pronoun = 5
             first_new_pronoun = 5
             second_new_pronoun = 15
             third_new_pronoun = 20
             fourth_new_pronoun = 25
-        elif self.genderalign in ["trans female", "trans male"]:
+        elif self.genderalign in ["trans molly", "trans tom"]:
             unique_pronoun = 42
             first_new_pronoun = 20
             second_new_pronoun = 35
             third_new_pronoun = 50
             fourth_new_pronoun = 65
-        elif self.genderalign in ["female", "male", "intersex"]:
+        elif self.genderalign in ["molly", "tom", "intersex"]:
             unique_pronoun = 52
             first_new_pronoun = 30
             second_new_pronoun = 45
@@ -1338,7 +1338,6 @@ class Cat:
         # if game.clan and game.clan.game_mode != 'classic' and not (self.outside or self.exiled) and body is not None:
         if (
             game.clan
-            and game.clan.game_mode != "classic"
             and not self.outside
             and not self.exiled
         ):
@@ -1347,6 +1346,8 @@ class Cat:
         if self.df_trainee and randint(1, 10) == 1:
             self.df = True
             game.clan.add_to_darkforest(self)
+        elif randint(1, 20) == 1:
+            game.clan.add_to_unknown(self)
         elif not self.outside:
             Cat.dead_cats.append(self)
             if game.clan.instructor.df is False:
@@ -1469,11 +1470,9 @@ class Cat:
                 text += " " + choice(MINOR_MAJOR_REACTION["major"])
                 text = event_text_adjust(Cat, text=text, main_cat=self, random_cat=cat)
 
-                # grief the cat
-                if game.clan.game_mode != "classic":
-                    cat.get_ill(
-                        "grief stricken", event_triggered=True, severity="major"
-                    )
+                cat.get_ill(
+                    "grief stricken", event_triggered=True, severity="major"
+                )
 
             # If major grief fails, but there are still very_high or high values,
             # it can fail to to minor grief. If they have a family relation, bypass the roll.
@@ -1594,7 +1593,7 @@ class Cat:
 
         return ids
 
-    def status_change(self, new_status, resort=False):
+    def status_change(self, new_status, resort=False, rolescreen=False):
         """Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
         new_status = The new status of a cat. Can be 'apprentice', 'medicine cat apprentice', 'warrior'
                     'medicine cat', 'elder'.
@@ -1604,11 +1603,12 @@ class Cat:
         self.status = new_status
         self.name.status = new_status
 
-        self.update_mentor()
-        for app in self.apprentice.copy():
-            fetched_cat = Cat.fetch_cat(app)
-            if isinstance(fetched_cat, Cat):
-                fetched_cat.update_mentor()
+        if not self.dead:
+            self.update_mentor()
+            for app in self.apprentice.copy():
+                fetched_cat = Cat.fetch_cat(app)
+                if isinstance(fetched_cat, Cat):
+                    fetched_cat.update_mentor()
 
         # If they have any apprentices, make sure they are still valid:
         if old_status == "medicine cat":
@@ -1621,7 +1621,7 @@ class Cat:
         elif self.status == "medicine cat apprentice":
             pass
 
-        elif self.status == "warrior":
+        elif self.status == "warrior" and not (rolescreen and self.dead):
             if old_status == "leader":
                 if game.clan.leader:
                     if game.clan.leader.ID == self.ID:
@@ -1636,9 +1636,9 @@ class Cat:
 
         elif self.status == "medicine cat":
             if game.clan is not None:
-                game.clan.new_medicine_cat(self)
+                game.clan.new_medicine_cat(self, rolescreen=rolescreen)
 
-        elif self.status == "elder":
+        elif self.status == "elder" and not (rolescreen and self.dead):
             if old_status == "leader":
                 if game.clan.leader:
                     if game.clan.leader.ID == self.ID:
@@ -1721,6 +1721,7 @@ class Cat:
         colour = str(self.pelt.eye_colour).lower()
         colour2 = str(self.pelt.eye_colour2).lower()
 
+
         if colour == "palegreen":
             colour = "pale green"
         elif colour == "darkblue":
@@ -1737,6 +1738,7 @@ class Cat:
             colour = "sunlit ice"
         elif colour == "greenyellow":
             colour = "green-yellow"
+
         if self.pelt.eye_colour2:
             if colour2 == "palegreen":
                 colour2 = "pale green"
@@ -1952,7 +1954,7 @@ class Cat:
         if dead_relations:
             i = 0
             for rel in dead_relations:
-                if i == 8:
+                if i == 3:
                     break
                 if rel.cat_to.status == "leader":
                     life_giving_leader = rel.cat_to
@@ -1960,8 +1962,8 @@ class Cat:
                 life_givers.append(rel.cat_to.ID)
                 i += 1
         # check amount of life givers, if we need more, then grab from the other dead cats
-        if len(life_givers) < 8:
-            amount = 8 - len(life_givers)
+        if len(life_givers) < 3:
+            amount = 3 - len(life_givers)
 
             if starclan:
                 # this part just checks how many SC cats are available, if there aren't enough to fill all the slots,
@@ -2041,12 +2043,12 @@ class Cat:
             life_givers.append(life_giving_leader)
 
         # check amount again, if more are needed then we'll add the ghost-y cats at the end
-        if len(life_givers) < 9:
+        if len(life_givers) < 4:
             unknown_blessing = True
-            extra_lives = str(9 - len(life_givers))
+            extra_lives = str(4 - len(life_givers))
         else:
             unknown_blessing = False
-            extra_lives = str(9 - len(life_givers))
+            extra_lives = str(4 - len(life_givers))
 
         possible_lives = ceremony_dict["lives"]
         lives = []
@@ -2110,7 +2112,7 @@ class Cat:
 
             i = 0
             chosen_life = {}
-            while i < 10:
+            while i < 5:
                 attempted = []
                 if life_list:
                     chosen_life = choice(life_list)
@@ -2222,7 +2224,7 @@ class Cat:
     def one_moon(self):
         """Handles a moon skip for an alive cat."""
         cisgenders = [
-            "female", "male", "intersex"
+            "molly", "tom", "intersex"
         ]
         old_age = self.age
         self.moons += 1
@@ -2258,6 +2260,8 @@ class Cat:
         # Set personality to correct type
         self.personality.set_kit(self.is_baby())
         # Upon age-change
+
+        # TODO: make this an event (probably need to move it to a different function to do it)
 
         if not self.prevent_trainee:
             join_chance = 200
@@ -2415,8 +2419,6 @@ class Cat:
         relevant_relationship = self.relationships[chosen_cat.ID]
         relevant_relationship.start_interaction()
 
-        if game.game_mode == "classic":
-            return
         # handle contact with ill cat if
         if self.is_ill():
             relevant_relationship.cat_to.contact_with_ill_cat(self)
@@ -2462,6 +2464,7 @@ class Cat:
             game.clan.clan_settings.get("rest and recover")
             and self.illnesses[illness]["duration"] + moons_prior - moons_with <= 0
         ):
+            print(f"rest and recover - illness {illness} of {self.name} healed earlier")
             self.healed_condition = True
             return False
 
@@ -2507,6 +2510,7 @@ class Cat:
             and game.clan.clan_settings.get("rest and recover")
             and self.injuries[injury]["duration"] + moons_prior - moons_with <= 0
         ):
+            print(f"rest and recover - injury {injury} of {self.name} healed earlier")
             self.healed_condition = True
             return False
 
@@ -2550,13 +2554,13 @@ class Cat:
         rng = randint(1, 10)
         gender = "???"
         if rng <= 2:
-            genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
+            genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
                                 "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
             gender = choice(genderqueer_list)
         elif rng <= 6:
-            gender = "male"
+            gender = "tom"
         else:
-            gender = "female"
+            gender = "molly"
         template["gender"] = gender
         alter_name = ""
 
@@ -2643,10 +2647,10 @@ class Cat:
             if self.alters[0]["ID"] != "0":
                 can_front = [str(self.name)]
             for alter in self.alters:
-                if ("recovering from birth" not in self.injuries and "faux pregnant" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "faux pregnant" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
+                if ("recovering from birth" not in self.injuries and "false pregnancy" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "false pregnancy" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
                     can_front.append(alter["name"])
             self.front = choice(can_front)
-            if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
+            if self.moons > 18:
                 if game.clan.clan_settings["plural names"]:
                     # chance of cat choosing a plural name: 1 in 100 default
                     if game.config["condition_related"]["plural_names"] > 1:
@@ -2662,9 +2666,9 @@ class Cat:
                                         old_suffix = self.name.suffix
                                         if self.status == "leader":
                                             plural = choice(names_dict["leader_plural_suffixes"])
-                                            old_suffix = "star"
+                                            old_suffix = "light"
                                         self.name.suffix = plural
-                                        text = self.name.prefix + old_suffix + "'s headmates have discussed things, and they've decided that a collective name will suit them better, like " + self.name.prefix + self.name.suffix + "!"
+                                        text = self.name.prefix + old_suffix + "'s headmates have discussed things, and they've decided that a collective name will suit them better. After a bit of thinking, they've decided on " + self.name.prefix + self.name.suffix + "!"
                                         game.cur_events_list.append(Single_Event(text, ["misc"], [self.ID]))
 
         if self.permanent_condition[condition]["event_triggered"]:
@@ -2758,7 +2762,7 @@ class Cat:
         litter_mates = [
             key
             for key, value in self.inheritance.siblings.items()
-            if "litter mates" in value["additional"]
+            if "littermates" in value["additional"]
         ]
         return other_cat.ID in litter_mates
 
@@ -2811,9 +2815,6 @@ class Cat:
         :param lethal: Allow lethality, default `True` (bool)
         :param severity: Override severity, default `'default'` (str, accepted values `'minor'`, `'major'`, `'severe'`)
         """
-        if game.clan.game_mode == "classic":
-            return
-
         if name not in ILLNESSES:
             print(f"WARNING: {name} is not in the illnesses collection.")
             return
@@ -2887,9 +2888,6 @@ class Cat:
         :param severity: _description_, defaults to 'default'
         :type severity: str, optional
         """
-        if game.clan and game.clan.game_mode == "classic":
-            return
-
         if name not in INJURIES:
             if name not in INJURIES:
                 print(f"WARNING: {name} is not in the injuries collection.")
@@ -2992,8 +2990,8 @@ class Cat:
 
     def congenital_condition(self, cat):
         possible_conditions = []
-        extra_condition_chance = game.config["cat_generation"]["extra_congenital_condition"]
-        max_conditions = game.config["cat_generation"]["max_congenital_conditions"]
+        additional_condition_chance = game.config["cat_generation"]["extra_congenital_condition"]
+        max_congenital_conditions = game.config["cat_generation"]["max_congenital_conditions"] - 1
         comorbidity_chance = game.config["cat_generation"]["comorbidity_chance"]
         conditions = 1
         count = 1
@@ -3015,7 +3013,7 @@ class Cat:
                 "starwalker": [
                     "comet spirit", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
                     "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness",
-                    "parrot chatter", "selective mutism", "thought blind"
+                    "parrot chatter", "selective mutism", "thought blindness"
                 ],
                 "obsessive mind": [
                     "spirited heart"
@@ -3103,7 +3101,7 @@ class Cat:
                     "starwalker", "antisocial", "thunderous spirit"
                 ],
                 "face blindness": [
-                    "seizure prone", "starwalker", "thought blind"
+                    "seizure prone", "starwalker", "thought blindness"
                 ],
                 "parrot chatter": [
                     "seizure prone", "starwalker", "comet spirit", "chattering tongue"
@@ -3111,7 +3109,7 @@ class Cat:
                 "selective mutism": [
                     "starwalker", "anxiety"
                 ],
-                "thought blind": [
+                "thought blindness": [
                     "starwalker", "face blindness"
                 ]
             }
@@ -3124,12 +3122,16 @@ class Cat:
         if cat.gender == "male":
             possible_conditions.remove("pcos")
 
-        while count <= max_conditions:
-            if randint(1, extra_condition_chance) == 1:
+        while count <= max_congenital_conditions:
+            if randint(1, additional_condition_chance) == 1:
                 conditions += 1
             count += 1
 
-        while conditions > 1:
+        if not possible_conditions or possible_conditions == []:
+            print("No possible conditions! How did this happen?")
+            return
+
+        while conditions > 0:
             for entry in comorbid_conditions:
                 if entry in cat.permanent_condition:
                     possible_comorbidities.append(comorbid_conditions.get(entry))
@@ -3222,10 +3224,6 @@ class Cat:
                 cat.pelt.scars.append("NOPAW")
             elif new_condition == "born without a tail":
                 cat.pelt.scars.append("NOTAIL")
-            elif new_condition == "lazy eye":
-                cat.pelt.lazy_eye = cat.pelt.eye_colour
-                if not cat.pelt.eye_colour2:
-                    cat.pelt.lazy_eye = cat.pelt.eye_colour2
 
             self.get_permanent_condition(new_condition, born_with=True)
             conditions -= 1
@@ -3273,7 +3271,7 @@ class Cat:
             return
 
         # remove accessories if need be
-        if "NOTAIL" in self.pelt.scars and self.pelt.accessory in [
+        """if "NOTAIL" in self.pelt.scars and self.pelt.accessory in [
             "RED FEATHERS",
             "BLUE FEATHERS",
             "JAY FEATHERS",
@@ -3292,7 +3290,7 @@ class Cat:
             "CLOVER",
             "DAISY"
         ]:
-            self.pelt.accessory = None
+            self.pelt.accessory = None"""
 
         condition = PERMANENT[name]
         new_condition = False
@@ -3442,11 +3440,6 @@ class Cat:
         is_ill = True
         if len(self.illnesses) <= 0:
             is_ill = False
-
-        if "stimming" in self.illnesses:
-            self.pelt.blep = True
-        else:
-            self.pelt.blep = False
         return is_ill is not False
 
     def is_injured(self):
@@ -3580,11 +3573,6 @@ class Cat:
 
             if "paralyzed" in self.permanent_condition and not self.pelt.paralyzed:
                 self.pelt.paralyzed = True
-
-            if "stimming" in self.illnesses and not self.pelt.blep:
-                self.pelt.blep = True
-            else:
-                self.pelt.blep = False
 
         except Exception as e:
             print(
@@ -3910,8 +3898,8 @@ class Cat:
             # if the cat already has (somehow) a relationship with the inter cat
             if inter_cat.ID in self.relationships:
                 continue
-            # if they dead (dead cats have no relationships)
-            if self.dead or inter_cat.dead:
+            # if they dead
+            if inter_cat.dead:
                 continue
             # if they are not outside of the Clan at the same time
             if (
@@ -4199,7 +4187,6 @@ class Cat:
 
         # Effects on traits
         for trait in chosen_pos + neg_traits:
-
             # The EX bonus in not applied upon a fail.
             if apply_bonus:
                 if mediator.experience_level == "very low":
@@ -4722,7 +4709,7 @@ class Cat:
                 "sprite_para_adult": self.pelt.cat_sprites["para_adult"],
                 "eye_colour": self.pelt.eye_colour,
                 "eye_colour2": self.pelt.eye_colour2 if self.pelt.eye_colour2 else None,
-                "lazy_eye": self.pelt.lazy_eye if self.pelt.lazy_eye else None,
+                "eye_pattern": self.pelt.eye_pattern if self.pelt.eye_pattern else None,
                 "reverse": self.pelt.reverse,
                 "white_patches": self.pelt.white_patches,
                 "vitiligo": self.pelt.vitiligo,
@@ -4733,11 +4720,15 @@ class Cat:
                 "tortie_color": self.pelt.tortiecolour,
                 "tortie_pattern": self.pelt.tortiepattern,
                 "skin": self.pelt.skin,
-                "blep": self.pelt.blep,
+                "skin_color": self.pelt.skin_color,
                 "tint": self.pelt.tint,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
                 "accessory": self.pelt.accessory,
+                "accessory_color": self.pelt.accessory_color,
+                "accessory_color2": self.pelt.accessory_color2,
+                "accessory_pattern": self.pelt.accessory_pattern,
+                "accessory_pattern2": self.pelt.accessory_pattern2,
                 "experience": self.experience,
                 "dead_moons": self.dead_for,
                 "current_apprentice": [appr for appr in self.apprentice],
@@ -4747,6 +4738,7 @@ class Cat:
                 "trainee_start_moon": self.trainee_start_moon,
                 "trainee_end_moon": self.trainee_end_moon,
                 "outside": self.outside,
+                "dead_outside_display": self.dead_outside_display,
                 "faded_offspring": self.faded_offspring,
                 "opacity": self.pelt.opacity,
                 "prevent_fading": self.prevent_fading,
@@ -5046,6 +5038,7 @@ class Personality:
         else:
             # This will only trigger if they have the same personality.
             return None
+
 
 # Creates a random cat
 def create_cat(status, moons=None, biome=None):

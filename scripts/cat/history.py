@@ -268,7 +268,27 @@ class History:
             SkillPath.DREAM: ["understanding dreams"],
             SkillPath.CLAIRVOYANT: ["predicting the future"],
             SkillPath.PROPHET: ["understanding prophecies"],
-            SkillPath.GHOST: ["connecting to the afterlife"]
+            SkillPath.GHOST: ["connecting to the afterlife"],
+
+            # Beetle's
+            SkillPath.GARDENER: ["gardening"],
+            SkillPath.UNKNOWN: ["connecting to the Unknown Residence"],
+            SkillPath.WAKEFUL: ["being vigilant"],
+            SkillPath.DELIVERER: ["delivering kits"],
+            SkillPath.DECORATOR: ["decorating camp"],
+            SkillPath.LEADERSHIP: ["leading"],
+            SkillPath.AGILE: ["being agile"],
+            SkillPath.STEALTHY: ["sneaking"],
+            SkillPath.MEMORY: ["remembering things"],
+            SkillPath.MESSENGER: ["delivering messages"],
+            SkillPath.ASSIST: ["assisting others"],
+            SkillPath.HISTORIAN: ["keeping track of history"],
+            SkillPath.BOOKMAKER: ["making stories"],
+            SkillPath.TUNNELER: ["digging"],
+            SkillPath.PATIENT: ["waiting"],
+            SkillPath.DETECTIVE: ["sleuthing"],
+            SkillPath.HERBALIST: ["making remedies"],
+            SkillPath.CHEF: ["preparing prey"]
         }
 
         for _ment in cat.history.mentor_influence["skill"]:
@@ -283,7 +303,8 @@ class History:
                         cat.history.mentor_influence["skill"][_ment]["strings"].append(
                             random.choice(skill_influence_text[SkillPath[_path]]))
                 except KeyError:
-                    print("issue", _path)
+                    if "PRODIGY" not in SkillPath[_path]:
+                        print("issue", _path)
 
     @staticmethod
     def add_facet_mentor_influence(cat, mentor_id, facet, amount):
@@ -535,7 +556,7 @@ class History:
         :param cat: cat object
         """
         History.check_load(cat)
-        if not cat.history.lead_ceremony:
+        if not cat.history.lead_ceremony and not cat.dead:
             History.add_lead_ceremony(cat)
         return str(cat.history.lead_ceremony)
 
