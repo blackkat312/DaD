@@ -24,6 +24,7 @@ from scripts.utility import (
 from .Screens import Screens
 
 
+
 class RelationshipScreen(Screens):
     checkboxes = {}  # To hold the checkboxes.
     focus_cat_elements = {}
@@ -81,6 +82,8 @@ class RelationshipScreen(Screens):
 
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            self.mute_button_pressed(event)
+
             if event.ui_element in self.sprite_buttons.values():
                 self.inspect_cat = event.ui_element.return_cat_object()
                 self.update_inspected_relation()
@@ -204,14 +207,16 @@ class RelationshipScreen(Screens):
                 self.update_cat_page()
 
     def screen_switches(self):
+        self.show_mute_buttons()
 
         self.previous_cat_button = UIImageButton(
             scale(pygame.Rect((50, 50), (306, 60))),
             "",
             object_id="#previous_cat_button",
+            sound_id="page_flip",
         )
         self.next_cat_button = UIImageButton(
-            scale(pygame.Rect((1244, 50), (306, 60))), "", object_id="#next_cat_button"
+            scale(pygame.Rect((1244, 50), (306, 60))), "", object_id="#next_cat_button", sound_id="page_flip",
         )
         self.back_button = UIImageButton(
             scale(pygame.Rect((50, 1290), (210, 60))), "", object_id="#back_button"
@@ -523,11 +528,11 @@ class RelationshipScreen(Screens):
                     )
 
             # Gender
-            if self.inspect_cat.genderalign == "female":
+            if self.inspect_cat.genderalign == "molly":
                 gender_icon = image_cache.load_image(
                     "resources/images/female_big.png"
                 ).convert_alpha()
-            elif self.inspect_cat.genderalign == "male":
+            elif self.inspect_cat.genderalign == "tom":
                 gender_icon = image_cache.load_image(
                     "resources/images/male_big.png"
                 ).convert_alpha()
@@ -535,19 +540,19 @@ class RelationshipScreen(Screens):
                 gender_icon = image_cache.load_image(
                     "resources/images/intersex_big.png"
                 ).convert_alpha()
-            elif self.inspect_cat.gender == "intersex" and self.inspect_cat.genderalign == "trans female":
+            elif self.inspect_cat.gender == "intersex" and self.inspect_cat.genderalign == "trans molly":
                 gender_icon = image_cache.load_image(
                     "resources/images/transfem_intersex_big.png"
                 ).convert_alpha()
-            elif self.inspect_cat.gender == "intersex" and self.inspect_cat.genderalign == "trans male":
+            elif self.inspect_cat.gender == "intersex" and self.inspect_cat.genderalign == "trans tom":
                 gender_icon = image_cache.load_image(
                     "resources/images/transmasc_intersex_big.png"
                 ).convert_alpha()
-            elif self.inspect_cat.genderalign == "trans female":
+            elif self.inspect_cat.genderalign == "trans molly":
                 gender_icon = image_cache.load_image(
                     "resources/images/transfem_big.png"
                 ).convert_alpha()
-            elif self.inspect_cat.genderalign == "trans male":
+            elif self.inspect_cat.genderalign == "trans tom":
                 gender_icon = image_cache.load_image(
                     "resources/images/transmasc_big.png"
                 ).convert_alpha()
@@ -599,53 +604,53 @@ class RelationshipScreen(Screens):
             # Relation info:
             if related:
                 if self.the_cat.is_uncle_aunt(self.inspect_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: niece"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: nephew"
                     else:
                         col2 += "related: nibling"
                 elif self.inspect_cat.is_uncle_aunt(self.the_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: aunt"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: uncle"
                     else:
                         col2 += "related: pibling"
                 elif self.inspect_cat.is_grandparent(self.the_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: grandmother"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: grandfather"
                     else:
                         col2 += "related: grandparent"
                 elif self.the_cat.is_grandparent(self.inspect_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: granddaughter"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: grandson"
                     else:
                         col2 += "related: grandkit"
                 elif self.inspect_cat.is_parent(self.the_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: mother"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: father"
                     else:
                         col2 += "related: parent"
                 elif self.the_cat.is_parent(self.inspect_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: daughter"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: son"
                     else:
                         col2 += "related: kit"
                 elif self.inspect_cat.is_sibling(
                     self.the_cat
                 ) or self.the_cat.is_sibling(self.inspect_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: sister"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: brother"
                     else:
                         col2 += "related: sibling"
@@ -656,22 +661,21 @@ class RelationshipScreen(Screens):
                 elif self.inspect_cat.is_cousin(self.the_cat):
                     col2 += "related: cousin"
                 elif self.inspect_cat.is_great_grandkit(self.the_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: great-granddaughter"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: great-grandson"
                     else:
                         col2 += "related: great-grandkit"
                 elif self.the_cat.is_great_grandkit(self.inspect_cat):
-                    if self.inspect_cat.genderalign in ["female", "trans female"]:
+                    if self.inspect_cat.genderalign in ["molly", "trans molly"]:
                         col2 += "related: great-grandmother"
-                    elif self.inspect_cat.genderalign in ["male", "trans male"]:
+                    elif self.inspect_cat.genderalign in ["tom", "trans tom"]:
                         col2 += "related: great-grandfather"
                     else:
                         col2 += "related: great-grandparent"
-                elif not game.clan.clan_settings[
-                    "second cousin mates"
-                ] and self.inspect_cat.is_second_cousin(self.the_cat):
+                elif not game.clan.clan_settings["second cousin mates"]:
+                    if self.the_cat.is_second_cousin(self.inspect_cat):
                         col2 += "related: second cousin"
 
             self.inspect_cat_elements["col2"] = pygame_gui.elements.UITextBox(
@@ -681,14 +685,9 @@ class RelationshipScreen(Screens):
                 manager=MANAGER,
             )
 
-            if self.inspect_cat.dead:
-                self.view_profile_button.enable()
-                self.switch_focus_button.disable()
-                self.log_icon.enable()
-            else:
-                self.view_profile_button.enable()
-                self.switch_focus_button.enable()
-                self.log_icon.enable()
+            self.view_profile_button.enable()
+            self.switch_focus_button.enable()
+            self.log_icon.enable()
         else:
             self.view_profile_button.disable()
             self.switch_focus_button.disable()
@@ -795,11 +794,11 @@ class RelationshipScreen(Screens):
         )
 
         # Gender alignment
-        if the_relationship.cat_to.genderalign == "female":
+        if the_relationship.cat_to.genderalign == "molly":
             gender_icon = image_cache.load_image(
                 "resources/images/female_big.png"
             ).convert_alpha()
-        elif the_relationship.cat_to.genderalign == "male":
+        elif the_relationship.cat_to.genderalign == "tom":
             gender_icon = image_cache.load_image(
                 "resources/images/male_big.png"
             ).convert_alpha()
@@ -815,11 +814,11 @@ class RelationshipScreen(Screens):
             gender_icon = image_cache.load_image(
                 "resources/images/transmasc_intersex_big.png"
             ).convert_alpha()
-        elif the_relationship.cat_to.genderalign == "trans female":
+        elif the_relationship.cat_to.genderalign == "trans molly":
             gender_icon = image_cache.load_image(
                 "resources/images/transfem_big.png"
             ).convert_alpha()
-        elif the_relationship.cat_to.genderalign == "trans male":
+        elif the_relationship.cat_to.genderalign == "trans tom":
             gender_icon = image_cache.load_image(
                 "resources/images/transmasc_big.png"
             ).convert_alpha()
@@ -1162,4 +1161,3 @@ class RelationshipScreen(Screens):
 
     def chunks(self, L, n):
         return [L[x : x + n] for x in range(0, len(L), n)]
-
