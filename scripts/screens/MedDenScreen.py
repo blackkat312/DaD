@@ -2,7 +2,7 @@ import pygame
 import pygame_gui
 
 from scripts.cat.cats import Cat
-
+from scripts.clan import HERBS
 from scripts.game_structure.game_essentials import game, MANAGER
 from scripts.game_structure.ui_elements import (
     UISpriteButton,
@@ -65,6 +65,8 @@ class MedDenScreen(Screens):
 
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            self.mute_button_pressed(event)
+
             if event.ui_element == self.back_button:
                 self.change_screen(game.last_screen_forupdate)
             elif event.ui_element == self.next_med:
@@ -117,6 +119,7 @@ class MedDenScreen(Screens):
                 self.handle_tab_toggles()
 
     def screen_switches(self):
+        self.show_mute_buttons()
         self.hide_menu_buttons()
         self.back_button = UIImageButton(
             scale(pygame.Rect((50, 50), (210, 60))),
@@ -143,11 +146,11 @@ class MedDenScreen(Screens):
                 "",
                 object_id="#help_button",
                 manager=MANAGER,
-                tool_tip_text="Your medicine cats will gather herbs over each timeskip and during any patrols you send "
-                "them on. You can see what was gathered in the Log below! Your medicine cats will give"
+                tool_tip_text="Your healers will gather herbs over each timeskip and during any patrols you send "
+                "them on. You can see what was gathered in the Log below! Your healers will give"
                 " these to any hurt or sick cats that need them, helping those cats to heal quicker."
                 "<br><br>"
-                "Hover your mouse over the medicine den image to see what herbs your Clan has!",
+                "Hover your mouse over the healers' den image to see what herbs your Clan has!",
             )
             self.last_page = UIImageButton(
                 scale(pygame.Rect((660, 1272), (68, 68))),
@@ -169,7 +172,7 @@ class MedDenScreen(Screens):
                 manager=MANAGER,
             )
             self.log_title = pygame_gui.elements.UITextBox(
-                "Medicine Den Log",
+                "Healers' Den Log",
                 scale(pygame.Rect((281, 820), (400, 60))),
                 object_id=get_text_box_theme("#text_box_40_horizcenter"),
                 manager=MANAGER,
@@ -325,7 +328,7 @@ class MedDenScreen(Screens):
                 Cat.all_cats.values(), amount_per_med, give_clanmembers_covered=True
             )
             if len(self.meds) == 1:
-                insert = "medicine cat"
+                insert = "healer"
                 subjectp = self.subject_pronoun
                 objectp = self.object_pronoun
                 possp = self.poss_pronoun
@@ -333,7 +336,7 @@ class MedDenScreen(Screens):
                 dodoes = self.do_does_pronoun
                 havehas = self.have_has_pronoun
             else:
-                insert = "medicine cats"
+                insert = "healers"
                 subjectp = "they"
                 objectp = "them"
                 possp = "their"
@@ -342,9 +345,11 @@ class MedDenScreen(Screens):
                 havehas = "have"
 
             meds_cover = f"Your {insert} can care for a Clan of up to {number} members, including {selfp}."
+            if game.clan.game_mode == 'classic':
+                meds_cover = ''
 
             if len(self.meds) >= 1 and number == 0:
-                meds_cover = f"You have no medicine cats who are able to work. Your Clan will be at a higher risk of death and disease."
+                meds_cover = f"You have no healers who are able to work. Your Clan will be at a higher risk of death and disease."
 
             herb_amount = sum(game.clan.herbs.values())
             needed_amount = int(get_living_clan_cat_count(Cat) * 4)
@@ -353,33 +358,33 @@ class MedDenScreen(Screens):
                 med_concern = f"The herb stores are empty and bare, this does not bode well."
             elif 0 < herb_amount <= needed_amount / 4:
                 if len(self.meds) == 1:
-                    med_concern = f"The medicine cat worries over the herb stores, {subjectp} {dodoes}n't have nearly enough for the Clan."
+                    med_concern = f"The healer worries over the herb stores, {subjectp} {dodoes}n't have nearly enough for the Clan."
                 else:
-                    med_concern = f"The medicine cats worry over the herb stores, {subjectp} {dodoes}n't have nearly enough for the Clan."
+                    med_concern = f"The healers worry over the herb stores, {subjectp} {dodoes}n't have nearly enough for the Clan."
             elif needed_amount / 4 < herb_amount <= needed_amount / 2:
                 med_concern = f"The herb stores are small, but it's enough for now."
             elif needed_amount / 2 < herb_amount <= needed_amount:
                 if len(self.meds) == 1:
-                    med_concern = f"The medicine cat is content with how many herbs {subjectp} {havehas} stocked up."
+                    med_concern = f"The healer is content with how many herbs {subjectp} {havehas} stocked up."
                 else:
-                    med_concern = f"The medicine cats are content with how many herbs {subjectp} {havehas} stocked up."
+                    med_concern = f"The healers are content with how many herbs {subjectp} {havehas} stocked up."
             elif needed_amount < herb_amount <= needed_amount * 2:
                 if len(self.meds) == 1:
-                    med_concern = f"The herb stores are overflowing and the medicine cat has little worry."
+                    med_concern = f"The herb stores are overflowing and the healer has little worry."
                 else:
-                    med_concern = f"The herb stores are overflowing and the medicine cats have little worry."
+                    med_concern = f"The herb stores are overflowing and the healers have little worry."
             elif needed_amount * 2 < herb_amount:
                 if len(self.meds) == 1:
-                    med_concern = f"StarClan has blessed {objectp} with plentiful herbs and the medicine cat sends {possp} thanks to Silverpelt."
+                    med_concern = f"StarClan has blessed {objectp} with plentiful herbs and the healer sends {possp} thanks to Silverpelt."
                 else:
-                    med_concern = f"StarClan has blessed {objectp} with plentiful herbs and the medicine cats send {possp} thanks to Silverpelt."
+                    med_concern = f"StarClan has blessed {objectp} with plentiful herbs and the healers send {possp} thanks to Silverpelt."
 
             med_messages.append(meds_cover)
             med_messages.append(med_concern)
             self.meds_messages.set_text("<br>".join(med_messages))
 
         else:
-            meds_cover = f"You have no medicine cats, your Clan will be at higher risk of death and disease."
+            meds_cover = f"You have no healers, your Clan will be at higher risk of death and disease."
             self.meds_messages.set_text(meds_cover)
 
     def handle_tab_toggles(self):
@@ -614,7 +619,11 @@ class MedDenScreen(Screens):
         if not herbs_stored:
             herb_list.append("Empty")
         if len(herb_list) <= 10:
-            herb_display = "<br>".join(sorted(herb_list))
+            # classic doesn't display herbs
+            if game.clan.game_mode == 'classic':
+                herb_display = None
+            else:
+                herb_display = "<br>".join(sorted(herb_list))
 
             self.den_base = UIImageButton(
                 scale(pygame.Rect((216, 190), (792, 448))),
@@ -643,7 +652,11 @@ class MedDenScreen(Screens):
             if added is False:
                 holding_pairs.extend(pair)
 
-            herb_display = "<br>".join(holding_pairs)
+            # classic doesn't display herbs
+            if game.clan.game_mode == 'classic':
+                herb_display = None
+            else:
+                herb_display = "<br>".join(holding_pairs)
             self.den_base = UIImageButton(
                 scale(pygame.Rect((216, 190), (792, 448))),
                 "",
@@ -652,7 +665,22 @@ class MedDenScreen(Screens):
                 manager=MANAGER,
             )
 
-        herbs = game.clan.herbs
+        if game.clan.game_mode == 'classic':
+            num_drawn = 0
+            herb_amount = sum(game.clan.herbs.values())
+
+            # draw x different herbs where x is how many herbs you have
+            herbs = {}
+            for herb in HERBS:
+                # 2 so we have both cobwebs
+                herbs[herb] = 2
+                num_drawn += 1
+
+                if num_drawn >= herb_amount:
+                    break
+        else:
+            # otherwise draw the herbs you have
+            herbs = game.clan.herbs
         for herb in herbs:
             if herb == "cobwebs":
                 self.herbs["cobweb1"] = pygame_gui.elements.UIImage(

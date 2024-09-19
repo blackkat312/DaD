@@ -37,6 +37,8 @@ class MediationScreen(Screens):
     def handle_event(self, event):
 
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            self.mute_button_pressed(event)
+
             if event.ui_element == self.back_button:
                 self.change_screen("profile screen")
             elif event.ui_element == self.last_med:
@@ -113,6 +115,7 @@ class MediationScreen(Screens):
                     self.update_selected_cats()
 
     def screen_switches(self):
+        self.show_mute_buttons()
         # Gather the mediators:
         self.mediators = []
         for cat in Cat.all_cats_list:
@@ -236,11 +239,13 @@ class MediationScreen(Screens):
             scale(pygame.Rect((396, 864), (68, 68))),
             "",
             object_id="#random_dice_button",
+            sound_id="dice_roll",
         )
         self.random2 = UIImageButton(
             scale(pygame.Rect((1136, 864), (68, 68))),
             "",
             object_id="#random_dice_button",
+            sound_id="dice_roll",
         )
 
         self.search_bar_image = pygame_gui.elements.UIImage(
@@ -441,11 +446,11 @@ class MediationScreen(Screens):
         )
 
         # Gender
-        if cat.genderalign == "female":
+        if cat.genderalign == "molly":
             gender_icon = image_cache.load_image(
                 "resources/images/female_big.png"
             ).convert_alpha()
-        elif cat.genderalign == "male":
+        elif cat.genderalign == "tom":
             gender_icon = image_cache.load_image(
                 "resources/images/male_big.png"
             ).convert_alpha()
@@ -453,19 +458,19 @@ class MediationScreen(Screens):
             gender_icon = image_cache.load_image(
                 "resources/images/intersex_big.png"
             ).convert_alpha()
-        elif cat.gender == "intersex" and cat.genderalign == "trans female":
+        elif cat.gender == "intersex" and cat.genderalign == "trans molly":
             gender_icon = image_cache.load_image(
                 "resources/images/transfem_intersex_big.png"
             ).convert_alpha()
-        elif cat.gender == "intersex" and cat.genderalign == "trans male":
+        elif cat.gender == "intersex" and cat.genderalign == "trans tom":
             gender_icon = image_cache.load_image(
                 "resources/images/transmasc_intersex_big.png"
             ).convert_alpha()
-        elif cat.genderalign == "trans female":
+        elif cat.genderalign == "trans molly":
             gender_icon = image_cache.load_image(
                 "resources/images/transfem_big.png"
             ).convert_alpha()
-        elif cat.genderalign == "trans male":
+        elif cat.genderalign == "trans tom":
             gender_icon = image_cache.load_image(
                 "resources/images/transmasc_big.png"
             ).convert_alpha()
@@ -545,51 +550,51 @@ class MediationScreen(Screens):
         if related and other_cat and not mates:
             col2 += "\n"
             if other_cat.is_uncle_aunt(cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "niece"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "nephew"
                 else:
                     col2 += "nibling"
             elif cat.is_uncle_aunt(other_cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "aunt"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "uncle"
                 else:
                     col2 += "pibling"
             elif cat.is_grandparent(other_cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "grandmother"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "grandfather"
                 else:
                     col2 += "grandparent"
             elif other_cat.is_grandparent(cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "granddaughter"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "grandson"
                 else:
                     col2 += "grandkit"
             elif cat.is_parent(other_cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "mother"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "father"
                 else:
                     col2 += "parent"
             elif other_cat.is_parent(cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "daughter"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "son"
                 else:
                     col2 += "kit"
             elif cat.is_sibling(other_cat) or other_cat.is_sibling(cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "sister"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "brother"
                 else:
                     col2 += "sibling"
@@ -598,23 +603,22 @@ class MediationScreen(Screens):
             elif other_cat.is_cousin(cat):
                 col2 += "cousin"
             elif cat.is_great_grandkit(other_cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "great-granddaughter"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "great-grandson"
                 else:
                     col2 += "great-grandkit"
             elif other_cat.is_great_grandkit(cat):
-                if cat.genderalign in ['female', 'trans female']:
+                if cat.genderalign in ["molly", "trans molly"]:
                     col2 += "great-grandmother"
-                elif cat.genderalign in ['male', 'trans male']:
+                elif cat.genderalign in ["tom", "trans tom"]:
                     col2 += "great-grandfather"
                 else:
                     col2 += "great-grandparent"
-            elif not game.clan.clan_settings[
-                "second cousin mates"
-            ] and other_cat.is_second_cousin(cat):
-                col2 += "second cousin"
+            elif not game.clan.clan_settings["second cousin mates"]:
+                if other_cat.is_second_cousin(cat):
+                    col2 += "second cousin"
 
         self.selected_cat_elements["col2" + tag] = pygame_gui.elements.UITextBox(
             col2,
