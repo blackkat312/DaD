@@ -633,13 +633,13 @@ class Pelt:
 
                 eye_choice = choice([
                     Pelt.blue_eyes, Pelt.blue_eyes,
-                    [
+                    choice([
                         corrected_yellow,
                         Pelt.green_eyes, Pelt.green_eyes,
                         Pelt.red_eyes, Pelt.red_eyes,
                         Pelt.grey_eyes, Pelt.grey_eyes,
                         Pelt.purple_eyes, Pelt.purple_eyes
-                    ]
+                    ])
                 ])
                 self.eye_colour2 = choice(eye_choice)
 
@@ -663,13 +663,13 @@ class Pelt:
 
                 eye_choice = choice([
                     Pelt.blue_eyes, Pelt.blue_eyes,
-                    [
+                    choice([
                         Pelt.yellow_eyes, Pelt.yellow_eyes,
                         corrected_green,
                         Pelt.red_eyes, Pelt.red_eyes,
                         Pelt.grey_eyes, Pelt.grey_eyes,
                         Pelt.purple_eyes, Pelt.purple_eyes
-                    ]
+                    ])
                 ])
                 self.eye_colour2 = choice(eye_choice)
 
@@ -693,13 +693,13 @@ class Pelt:
 
                 eye_choice = choice([
                     Pelt.blue_eyes, Pelt.blue_eyes,
-                    [
+                    choice([
                         Pelt.yellow_eyes, Pelt.yellow_eyes,
                         Pelt.green_eyes, Pelt.green_eyes,
                         Pelt.red_eyes, Pelt.red_eyes,
                         corrected_grey,
                         Pelt.purple_eyes, Pelt.purple_eyes
-                    ]
+                    ])
                 ])
                 self.eye_colour2 = choice(eye_choice)
 
