@@ -292,36 +292,60 @@ class ProfileScreen(Screens):
             # when button is pressed...
             elif event.ui_element == self.cis_trans_button:
                 genderqueer_list = [
-                    "nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
+                    "nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
                     "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???",
                 ]
                 intersex_genderqueer_list = genderqueer_list.copy()
                 intersex_genderqueer_list.append("intergender")
                 trans_list = [
-                    "trans female", "trans male",
+                    "trans molly", "trans tom",
                 ]
 
-                #if the cat is anything besides m/f/transm/transf/i then turn them back to cis
-                if self.the_cat.genderalign not in ["female", "trans female", "male", "trans male", "intersex"]:
+                # if the cat is anything besides t/m/transt/transm/i then turn them back to cis
+                if self.the_cat.genderalign not in [
+                    "molly",
+                    "trans molly",
+                    "tom",
+                    "trans tom",
+                    "intersex",
+                ]:
                     self.the_cat.genderalign = self.the_cat.gender
-                elif self.the_cat.gender == "male" and self.the_cat.genderalign == 'female':
+                elif (
+                    self.the_cat.gender == "tom"
+                    and self.the_cat.genderalign == "molly"
+                ):
                     self.the_cat.genderalign = self.the_cat.gender
-                elif self.the_cat.gender == "female" and self.the_cat.genderalign == 'male':
+                elif (
+                    self.the_cat.gender == "molly"
+                    and self.the_cat.genderalign == "tom"
+                ):
                     self.the_cat.genderalign = self.the_cat.gender
-                elif self.the_cat.gender == "intersex" and (self.the_cat.genderalign == 'female' or self.the_cat.genderalign == 'male'):
+                elif (
+                    self.the_cat.gender == "intersex"
+                    and (self.the_cat.genderalign == "molly" or self.the_cat.genderalign == "tom")
+                ):
                     self.the_cat.genderalign = self.the_cat.gender
-                #if the cat is cis (gender & gender align are the same) then set them to trans
-                #cis males -> trans female first
-                elif self.the_cat.gender == "male" and self.the_cat.genderalign == 'male':
-                    self.the_cat.genderalign = 'trans female'
-                #cis females -> trans male
-                elif self.the_cat.gender == "female" and self.the_cat.genderalign == 'female':
-                    self.the_cat.genderalign = 'trans male'
-                #intersex -> trans females/males
-                elif self.the_cat.gender == "intersex" and self.the_cat.genderalign == 'intersex':
+
+                # if the cat is cis (gender & gender align are the same) then set them to trans
+                # cis males -> trans female first
+                elif (
+                    self.the_cat.gender == "tom" and self.the_cat.genderalign == "tom"
+                ):
+                    self.the_cat.genderalign = "trans molly"
+                # cis females -> trans male
+                elif (
+                    self.the_cat.gender == "molly"
+                    and self.the_cat.genderalign == "molly"
+                ):
+                    self.the_cat.genderalign = "trans tom"
+                # intersex -> trans females/males
+                elif (
+                    self.the_cat.gender == "intersex"
+                    and self.the_cat.genderalign == "intersex"
+                ):
                     self.the_cat.genderalign = choice(trans_list)
-                #if the cat is trans then set them to nonbinary
-                elif self.the_cat.genderalign in ["trans female", "trans male"]:
+                # if the cat is trans then set them to nonbinary
+                elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
                     if self.the_cat.gender == "intersex":
                         self.the_cat.genderalign = choice(intersex_genderqueer_list)
                     else:
@@ -329,9 +353,9 @@ class ProfileScreen(Screens):
                 # pronoun handler
                 if game.settings["they them default"]:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
-                elif self.the_cat.genderalign in ["female", "trans female"]:
+                elif self.the_cat.genderalign in ["molly", "trans molly"]:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[1].copy()]
-                elif self.the_cat.genderalign in ["male", "trans male"]:
+                elif self.the_cat.genderalign in ["tom", "trans tom"]:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[2].copy()]
                 else:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
@@ -447,12 +471,14 @@ class ProfileScreen(Screens):
             scale(pygame.Rect((1244, 50), (306, 60))),
             "",
             object_id="#next_cat_button",
+            sound_id="page_flip",
             manager=MANAGER,
         )
         self.previous_cat_button = UIImageButton(
             scale(pygame.Rect((50, 50), (306, 60))),
             "",
             object_id="#previous_cat_button",
+            sound_id="page_flip",
             manager=MANAGER,
         )
         self.back_button = UIImageButton(
@@ -524,6 +550,7 @@ class ProfileScreen(Screens):
 
         self.build_profile()
 
+        self.hide_mute_buttons()  # no space for mute button on this screen
         self.hide_menu_buttons()  # Menu buttons don't appear on the profile screen
         if game.last_screen_forProfile == "med den screen":
             self.toggle_conditions_tab()
@@ -743,14 +770,16 @@ class ProfileScreen(Screens):
         if self.open_tab == "history" and self.open_sub_tab == "user notes":
             self.load_user_notes()
 
-        if self.the_cat.status == "leader" and not self.the_cat.dead:
+        if self.the_cat.status == "leader":
             self.profile_elements["leader_ceremony"] = UIImageButton(
                 scale(pygame.Rect((766, 220), (68, 68))),
                 "",
                 object_id="#leader_ceremony_button",
-                tool_tip_text="Leader Ceremony",
+                tool_tip_text="Monarch Ceremony",
                 manager=MANAGER,
             )
+            if self.the_cat.dead and History.get_lead_ceremony(self.the_cat) == "None":
+                self.profile_elements["leader_ceremony"].disable()
         elif self.the_cat.status in ["mediator", "mediator apprentice"]:
             self.profile_elements["mediation"] = UIImageButton(
                 scale(pygame.Rect((766, 220), (68, 68))),
@@ -828,7 +857,7 @@ class ProfileScreen(Screens):
         if the_cat.genderalign is None:
             output += str(the_cat.gender)
         elif the_cat.gender == "intersex" and the_cat.genderalign != "intersex":
-            if the_cat.genderalign in ["demigirl", "demiboy", "demienby", "trans female", "trans male"]:
+            if the_cat.genderalign in ["demimolly", "demitom", "demienby", "trans molly", "trans tom"]:
                 output += "intersex " + str(the_cat.genderalign)
             elif the_cat.genderalign == "intergender":
                 output += str(the_cat.genderalign)
@@ -836,7 +865,7 @@ class ProfileScreen(Screens):
                 output += str(the_cat.genderalign) + " and intersex"
         else:
             output += str(the_cat.genderalign)
-        if output == "female and intersex" or output == "male and intersex":
+        if output == "molly and intersex" or output == "tom and intersex":
             output = "this should not appear"
         # NEWLINE ----------
         output += "\n"
@@ -856,8 +885,104 @@ class ProfileScreen(Screens):
         # NEWLINE ----------
         output += "\n"
 
+        renamed_colors = {
+            "white": "white",
+            "snow white": "snow-white",
+            "gray": "gray",
+            "slate": "slate",
+            "dark gray": "dark gray",
+            "dark slate": "dark slate",
+            "pale blue": "pale blue",
+            "blue": "blue",
+            "lilac": "lilac",
+            "pale lilac": "pale lilac",
+            "silver": "silver",
+            "black": "black",
+            "soot black": "soot black",
+            "obsidian": "obsidian",
+            "ghost": "ghost",
+            "pale brown": "pale brown",
+            "almond": "almond",
+            "acorn": "acorn",
+            "light brown": "light brown",
+            "brown": "brown",
+            "dark brown": "dark brown",
+            "pale cinnamon": "pale cinnamon",
+            "cinnamon": "cinnamon",
+            "sable": "sable",
+            "dark sable": "dark sable",
+            "birch": "birch",
+            "pale lavender": "pale lavender",
+            "lavender": "lavender",
+            "dark lavender": "dark lavender",
+            "dark orange": "dark orange",
+            "pale fire": "pale fire-red",
+            "fire": "fire-red",
+            "dark fire": "dark fire-red",
+            "pale ginger": "pale ginger",
+            "ginger": "ginger",
+            "dark ginger": "dark ginger",
+            "pale gold": "pale gold",
+            "yellow": "yellow",
+            "gold": "gold",
+            "bronze": "bronze",
+            "rose": "rose",
+            "light cream": "light cream",
+            "cream": "cream",
+            "dark cream": "dark cream",
+            "dark gold": "dark gold"
+        }
+
+        pattern_des = {
+            "Tabby": "tabby",
+            "Speckled": "speckled",
+            "Bengal": "bengal",
+            "Marbled": "marbled tabby",
+            "Ticked": "ticked tabby",
+            "Smoke": "smoke",
+            "Mackerel": "mackerel tabby",
+            "Classic": "classic tabby",
+            "Agouti": "agouti tabby",
+            "Singlestripe": "dorsal-striped",
+            "Rosette": "rosetted",
+            "Sokoke": "sokoke tabby",
+            "Abyssinian": "abyssinian",
+            "Brindle": "brindle",
+            "Braided": "braided tabby",
+            "Splotch": "unusually-splotched",
+            "Saber": "saber tabby",
+            "Faded": "faded tabby",
+            "Masked": "masked tabby",
+            "Fog": "foggy tabby",
+            "Mist": "misted tabby",
+            "Smudge": "smudge tabby",
+            "BrokenMackerel": "broken mackerel tabby",
+            "Longdan": "longdan tiger tabby",
+            "BrokenBraided": "broken braided tabby",
+            "CharcoalBengal": "charcoal bengal",
+            "Dust": "dust"
+        }
+        c_n_after = ["Speckled", "Singlestripe", "Rosette", "Splotch"]
+
+        basecolour = str(the_cat.pelt.colour).lower()
+        if basecolour in renamed_colors:
+            basecolour = renamed_colors.get(basecolour)
+
         # PELT TYPE
-        output += "pelt: " + the_cat.pelt.name.lower()
+        if the_cat.pelt.name == "Tortie" or the_cat.pelt.name == "Calico":
+            tortiecolour = str(the_cat.pelt.tortiecolour).lower()
+            if tortiecolour in renamed_colors:
+                tortiecolour = renamed_colors.get(tortiecolour)
+
+            output += "pelt: " + basecolour.lower() + "/" + tortiecolour.lower() + " " + the_cat.pelt.name.lower()
+        else:
+            if the_cat.pelt.name in c_n_after:
+                basecolour = pattern_des.get(the_cat.pelt.name) + " " + basecolour
+            else:
+                basecolour += " " + pattern_des.get(the_cat.pelt.name)
+
+            output += "pelt: " + basecolour.lower()
+
         # NEWLINE ----------
         output += "\n"
 
@@ -871,6 +996,28 @@ class ProfileScreen(Screens):
             output += "accessory: " + str(
                 ACC_DISPLAY[the_cat.pelt.accessory]["default"]
             )
+            if the_cat.pelt.accessory_color != "DEFAULT":
+                if the_cat.pelt.accessory == "BOWCOLLAR":
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + " " + str(the_cat.pelt.accessory_pattern.lower()) + " collar, " + str(the_cat.pelt.accessory_color2.lower()) + " " + str(the_cat.pelt.accessory_pattern2.lower()) + " bow)"
+                elif the_cat.pelt.accessory == "BELLCOLLAR":
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + " " + str(the_cat.pelt.accessory_pattern.lower()) + " collar, " + str(the_cat.pelt.accessory_color2.lower()) + " bell)"
+                elif the_cat.pelt.accessory == "STUDDEDCOLLAR":
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + " " + str(the_cat.pelt.accessory_pattern.lower()) + " collar, " + str(the_cat.pelt.accessory_color2.lower()) + " buttons)"
+                elif the_cat.pelt.accessory == "COWBOY HAT":
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + " " + str(the_cat.pelt.accessory_pattern.lower()) + " bandana)"
+                elif the_cat.pelt.accessory == "FLOWER WREATH":
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + " and" + str(the_cat.pelt.accessory_color2.lower()) + " flowers)"
+                elif the_cat.pelt.accessory in the_cat.pelt.leafbase_acc:
+                    output += " (" + str(the_cat.pelt.accessory_color2.lower()) + " flower with " + str(the_cat.pelt.accessory_color.lower()) + " leaves)"
+                elif the_cat.pelt.accessory in the_cat.pelt.twoleg_acc:
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + " " + str(the_cat.pelt.accessory_pattern.lower()) + ")"
+                elif the_cat.pelt.accessory in the_cat.pelt.leaf_acc:
+                    if the_cat.pelt.accessory_color in the_cat.pelt.dry_colors:
+                        output += " (dried)"
+                    else:
+                        output += " (" + str(the_cat.pelt.accessory_color.lower()) + ")"
+                elif the_cat.pelt.accessory in the_cat.pelt.layer_accessories:
+                    output += " (" + str(the_cat.pelt.accessory_color.lower()) + ")"
             # NEWLINE ----------
 
         # PARENTS
@@ -957,17 +1104,34 @@ class ProfileScreen(Screens):
         """Generate the right column information"""
         output = ""
 
+        if the_cat.status == "leader":
+            rank = "monarch"
+        elif the_cat.status == "medicine cat":
+            rank = "healer"
+        elif the_cat.status == "medicine cat apprentice":
+            rank = "healer apprentice"
+        else:
+            rank = the_cat.status
+
         # STATUS
-        if (
+        if the_cat.dead and not the_cat.df and not the_cat.outside:
+            output += f"<font color='#FFBCCC'>StarClan {rank}</font>"
+        elif the_cat.dead and the_cat.df and not the_cat.outside:
+            output += f"<font color='#BEFDE4'>Dark Forest {rank}</font>"
+        elif the_cat.dead and not the_cat.df and the_cat.outside and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]:
+            output += f"<font color='#FFBCCC'>ghost {rank}</font>"
+        elif the_cat.dead and not the_cat.df and the_cat.outside:
+            output += f"<font color='#FFBCCC'>{the_cat.dead_outside_display} {rank}</font>"
+        elif (
             the_cat.outside
             and not the_cat.exiled
-            and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat"]
+            and the_cat.status not in ["kittypet", "loner", "rogue", "former Clancat", "driven off"]
         ):
-            output += "<font color='#FF0000'>lost</font>"
+            output += f"<font color='#FF0000'>lost {rank}</font>"
         elif the_cat.exiled:
             output += "<font color='#FF0000'>exiled</font>"
         else:
-            output += the_cat.status
+            output += rank
 
         # NEWLINE ----------
         output += "\n"
@@ -1168,7 +1332,7 @@ class ProfileScreen(Screens):
         if the_cat.is_injured():
             special_conditions = [
                 "recovering from birth", "overstimulation", "understimulation", "fatigue", "fainting", "pregnant",
-                "faux pregnant"
+                "false pregnancy"
             ]
             all_special = True
             for condition in the_cat.injuries:
@@ -1223,7 +1387,7 @@ class ProfileScreen(Screens):
                     output += "pregnant!"
                     already_sick_injured = True
 
-            if "faux pregnant" in the_cat.injuries:
+            if "false pregnancy" in the_cat.injuries:
                 if already_sick_injured:
                     output += "\npregnant?"
                 else:
@@ -1874,13 +2038,13 @@ class ProfileScreen(Screens):
             )
 
             grad_age = app_ceremony["graduation_age"]
-            if int(grad_age) < 11:
+            if (self.the_cat.status == "medicine cat" and int(grad_age) < 12) or (self.the_cat.status != "medicine cat" and int(grad_age) < 11):
                 graduation_history += (
                     " {PRONOUN/m_c/poss/CAP} training went so well that {PRONOUN/m_c/subject} graduated early at "
                     + str(grad_age)
                     + " moons old."
                 )
-            elif int(grad_age) > 13:
+            elif (self.the_cat.status == "medicine cat" and int(grad_age) > 17) or (self.the_cat.status != "medicine cat" and int(grad_age) > 13):
                 graduation_history += (
                     " {PRONOUN/m_c/subject/CAP} graduated late at "
                     + str(grad_age)
@@ -2052,14 +2216,14 @@ class ProfileScreen(Screens):
 
                 if self.the_cat.status == "leader":
                     if index == death_number - 1 and self.the_cat.dead:
-                        if death_number == 9:
+                        if death_number == 4:
                             life_text = "lost {PRONOUN/m_c/poss} final life"
                         elif death_number == 1:
                             life_text = "lost all of {PRONOUN/m_c/poss} lives"
                         else:
                             life_text = "lost the rest of {PRONOUN/m_c/poss} lives"
                     else:
-                        life_names = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth"]
+                        life_names = ["first", "second", "third"]
                         life_text = "lost {PRONOUN/m_c/poss} " + life_names[index] + " life"
                 elif death_number > 1:
                     #for retired leaders
@@ -2436,6 +2600,9 @@ class ProfileScreen(Screens):
             if condition in Cat.dad_names:
                 condition = condition.replace(condition, Cat.dad_names.get(condition))
 
+        if condition == "false pregnancy":
+            condition = "pregnant?"
+
         return condition
 
     def get_alter_details(self, alter):
@@ -2514,7 +2681,7 @@ class ProfileScreen(Screens):
             if name == "pregnant":
                 insert = "has been pregnant for"
 
-            if name == 'faux pregnant':
+            if name == 'false pregnancy':
                 insert = 'has possibly been pregnant for'
 
             if moons_with != 1:
@@ -2773,11 +2940,10 @@ class ProfileScreen(Screens):
         if self.open_tab is None:
             pass
         elif self.open_tab == "relations":
-            if self.the_cat.dead:
-                self.see_relationships_button.disable()
+            self.see_relationships_button.enable()
+            if self.the_cat.exiled or self.the_cat.outside:
                 self.change_adoptive_parent_button.disable()
             else:
-                self.see_relationships_button.enable()
                 self.change_adoptive_parent_button.enable()
 
             if (
@@ -2792,7 +2958,7 @@ class ProfileScreen(Screens):
 
         # Roles Tab
         elif self.open_tab == "roles":
-            if self.the_cat.dead or self.the_cat.outside:
+            if self.the_cat.outside:
                 self.manage_roles.disable()
             else:
                 self.manage_roles.enable()
@@ -2811,38 +2977,80 @@ class ProfileScreen(Screens):
             # Button to trans or cis the cats.
             if self.cis_trans_button:
                 self.cis_trans_button.kill()
-            if self.the_cat.gender == "male" and self.the_cat.genderalign == "male":
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_trans_female_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.gender == "female" and self.the_cat.genderalign == "female":
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_trans_male_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.gender == "intersex" and self.the_cat.genderalign == "intersex":
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_trans_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.genderalign in ['trans female', 'trans male']:
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_nonbi_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.genderalign not in ['female', 'trans female', 'male', 'trans male']:
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_cis_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.gender == "male" and self.the_cat.genderalign == "female":
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_cis_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.gender == "female" and self.the_cat.genderalign == "male":
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_cis_button",
-                                                      manager=MANAGER)
-            elif self.the_cat.gender == 'intersex' and (self.the_cat.genderalign == "female" or self.the_cat.genderalign == "male"):
-                self.cis_trans_button = UIImageButton(scale(pygame.Rect((804, 972), (344, 104))), "",
-                                                      starting_height=2, object_id="#change_cis_button",
-                                                      manager=MANAGER)
+            if self.the_cat.gender == "tom" and self.the_cat.genderalign == "tom":
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_trans_female_button",
+                    manager=MANAGER,
+                )
+            elif (
+                self.the_cat.gender == "molly" and self.the_cat.genderalign == "molly"
+            ):
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_trans_male_button",
+                    manager=MANAGER,
+                )
+            elif (
+                self.the_cat.gender == "intersex" and self.the_cat.genderalign == "intersex"
+            ):
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_trans_button",
+                    manager=MANAGER,
+                )
+            elif self.the_cat.genderalign in ["trans molly", "trans tom"]:
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_nonbi_button",
+                    manager=MANAGER,
+                )
+            elif self.the_cat.genderalign not in [
+                "molly",
+                "trans molly",
+                "tom",
+                "trans tom",
+                "intersex"
+            ]:
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_cis_button",
+                    manager=MANAGER,
+                )
+            elif self.the_cat.gender == "tom" and self.the_cat.genderalign == "molly":
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_cis_button",
+                    manager=MANAGER,
+                )
+            elif self.the_cat.gender == "molly" and self.the_cat.genderalign == "tom":
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_cis_button",
+                    manager=MANAGER,
+                )
+            elif self.the_cat.gender == "intersex" and (self.the_cat.genderalign == "molly" or self.the_cat.genderalign == "tom"):
+                self.cis_trans_button = UIImageButton(
+                    scale(pygame.Rect((804, 972), (344, 104))),
+                    "",
+                    starting_height=2,
+                    object_id="#change_cis_button",
+                    manager=MANAGER,
+                )
             elif self.the_cat.genderalign:
                 self.cis_trans_button = UIImageButton(
                     scale(pygame.Rect((804, 972), (344, 104))),
@@ -3121,58 +3329,32 @@ class ProfileScreen(Screens):
 
         order = ["beach", "forest", "mountainous", "nest", "plains", "SC/DF"]
 
-        biome_platforms = platformsheet.subsurface(
-            pygame.Rect(0, order.index(biome) * 70, 640, 70)
-        ).convert_alpha()
+        biome_platforms = platformsheet.subsurface(pygame.Rect(0, order.index(biome) * 260, 2400, 260)).convert_alpha()
 
-        biome_platforms = platformsheet.subsurface(
-            pygame.Rect(0, order.index(biome) * 70, 640, 70)
-        ).convert_alpha()
+        biome_platforms = platformsheet.subsurface(pygame.Rect(0, order.index(biome) * 260, 2400, 260)).convert_alpha()
 
         offset = 0
         if light_dark == "light":
-            offset = 80
+
+            offset = 300
 
         if the_cat.df:
-            biome_platforms = platformsheet.subsurface(
-                pygame.Rect(0, order.index("SC/DF") * 70, 640, 70)
-            )
-            return pygame.transform.scale(
-                biome_platforms.subsurface(pygame.Rect(0 + offset, 0, 80, 70)),
-                (240, 210),
-            )
+            biome_platforms = platformsheet.subsurface(pygame.Rect(0, order.index('SC/DF') * 260, 2400, 260))
+            return pygame.transform.scale(biome_platforms.subsurface(pygame.Rect(0 + offset, 0, 300, 260)), (240, 210))
         elif the_cat.dead or game.clan.instructor.ID == the_cat.ID:
-            biome_platforms = platformsheet.subsurface(
-                pygame.Rect(0, order.index("SC/DF") * 70, 640, 70)
-            )
-            return pygame.transform.scale(
-                biome_platforms.subsurface(pygame.Rect(160 + offset, 0, 80, 70)),
-                (240, 210),
-            )
+            biome_platforms = platformsheet.subsurface(pygame.Rect(0, order.index('SC/DF') * 260, 2400, 260))
+            return pygame.transform.scale(biome_platforms.subsurface(pygame.Rect(600 + offset, 0, 300, 260)), (240, 210))
         else:
-            biome_platforms = platformsheet.subsurface(
-                pygame.Rect(0, order.index(biome) * 70, 640, 70)
-            ).convert_alpha()
+            biome_platforms = platformsheet.subsurface(pygame.Rect(0, order.index(biome) * 260, 2400, 260)).convert_alpha()
             season_x = {
                 "greenleaf": 0 + offset,
-                "leaf-bare": 160 + offset,
-                "leaf-fall": 320 + offset,
-                "newleaf": 480 + offset,
+                "leaf-bare": 600 + offset,
+                "leaf-fall": 1200 + offset,
+                "newleaf": 1800 + offset
             }
 
-            return pygame.transform.scale(
-                biome_platforms.subsurface(
-                    pygame.Rect(
-                        season_x.get(
-                            game.clan.current_season.lower(), season_x["greenleaf"]
-                        ),
-                        0,
-                        80,
-                        70,
-                    )
-                ),
-                (240, 210),
-            )
+            return pygame.transform.scale(biome_platforms.subsurface(pygame.Rect(
+                season_x.get(game.clan.current_season.lower(), season_x["greenleaf"]), 0, 300, 260)), (240, 210))
 
     def on_use(self):
         pass
