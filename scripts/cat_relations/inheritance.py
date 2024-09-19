@@ -472,7 +472,7 @@ class Inheritance:
                 inter_cat.moons + inter_cat.dead_for
                 == self.cat.moons + self.cat.dead_for
             ):
-                additional_info.append("litter mates")
+                additional_info.append("littermates")
         elif (
             len(blood_parent_overlap) == 1
             and len(inter_parent_ids) == 1
@@ -483,7 +483,7 @@ class Inheritance:
                 inter_cat.moons + inter_cat.dead_for
                 == self.cat.moons + self.cat.dead_for
             ):
-                additional_info.append("litter mates")
+                additional_info.append("littermates")
         elif len(blood_parent_overlap) == 1 and (
             len(inter_parent_ids) > 1 or len(current_parent_ids) > 1
         ):
@@ -542,7 +542,7 @@ class Inheritance:
                     self.all_but_cousins.append(_c.ID)
 
     def init_parents_siblings(self, inter_id, inter_cat):
-        """Create a pibling relationship."""
+        """Create an aunt/uncle (pibling) relationship."""
         if not inter_cat:
             return
         inter_parent_ids = self.get_parents(inter_cat)
