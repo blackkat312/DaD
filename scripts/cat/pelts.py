@@ -1213,7 +1213,7 @@ class Pelt:
                     self.tortiepattern = self.tortiebase
 
                     if self.colour in Pelt.white_colours:
-                        self.colour = choice([choice([Pelt.blue_colours, Pelt.gray_colours])])
+                        self.colour = choice(choice([Pelt.blue_colours, Pelt.gray_colours]))
 
                     if (  # non-dilute black
                                self.colour in Pelt.black_colours
@@ -1221,25 +1221,25 @@ class Pelt:
                             or self.colour in Pelt.warmbrown_colours
                             or self.colour in Pelt.brown_colours
                     ):
-                        self.tortiecolour = choice([choice([Pelt.fire_colours, Pelt.ginger_colours])])
+                        self.tortiecolour = choice(choice([Pelt.fire_colours, Pelt.ginger_colours]))
                     elif (  # dilute black
                                self.colour in Pelt.blue_colours
                             or self.colour in Pelt.gray_colours
                             or self.colour in Pelt.lavender_colours
                     ):
-                        self.tortiecolour = choice([choice([Pelt.cream_colours, Pelt.gold_colours])])
+                        self.tortiecolour = choice(choice([Pelt.cream_colours, Pelt.gold_colours]))
                     elif (  # non-dilute red
                                self.colour in Pelt.fire_colours
                             or self.colour in Pelt.ginger_colours
                     ):
-                        self.tortiecolour = choice([choice([Pelt.black_colours, Pelt.coolbrown_colours,
-                                                            Pelt.warmbrown_colours, Pelt.brown_colours])])
+                        self.tortiecolour = choice(choice([Pelt.black_colours, Pelt.coolbrown_colours,
+                                                            Pelt.warmbrown_colours, Pelt.brown_colours]))
                     elif (  # dilute red
                                self.colour in Pelt.cream_colours
                             or self.colour in Pelt.gold_colours
                     ):
-                        self.tortiecolour = choice([choice([Pelt.blue_colours, Pelt.gray_colours,
-                                                            Pelt.lavender_colours])])
+                        self.tortiecolour = choice(choice([Pelt.blue_colours, Pelt.gray_colours,
+                                                            Pelt.lavender_colours]))
                     else:
                         self.tortiecolour = "GOLD"
 
