@@ -192,6 +192,41 @@
     "plural": "studded collars",
     "singular": "a studded collar"
   },
+  "BALL": {
+    "default": "ball",
+    "plural": "balls",
+    "singular": "a ball"
+  },
+  "MOSSBLANKIE": {
+    "default": "moss blanket",
+    "plural": "patches of moss",
+    "singular": "a patch of moss"
+  },
+  "MOUSE": {
+    "default": "mouse",
+    "plural": "mice",
+    "singular": "a mouse"
+  },
+  "BONE": {
+    "default": "rubber bone",
+    "plural": "rubber bones",
+    "singular": "a rubber bone"
+  },
+  "DISFLAG": {
+    "default": "disability pride flag",
+    "plural": "disability pride flags",
+    "singular": "a disability pride flag"
+  },
+  "ZEBFLAG": {
+    "default": "zebra pride flag",
+    "plural": "zebra pride flags",
+    "singular": "a zebra pride flag"
+  },
+  "AUTISMFLAG": {
+    "default": "autism pride flag",
+    "plural": "autism pride flags",
+    "singular": "an autism pride flag"
+  },
   "LUNA MOTH": {
     "default": "luna moth",
     "plural": "luna moths",
