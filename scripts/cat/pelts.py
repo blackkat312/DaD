@@ -302,6 +302,7 @@ class Pelt:
                  eye_color: str = "BLUE",
                  eye_colour2: str = None,
                  eye_pattern: str = None,
+                 # lazy_eye: str = None,
                  tortiebase: str = None,
                  tortiecolour: str = None,
                  pattern: str = None,
@@ -333,6 +334,7 @@ class Pelt:
         self.eye_colour = eye_color
         self.eye_colour2 = eye_colour2
         self.eye_pattern = eye_pattern
+        # self.lazy_eye = lazy_eye
         self.tortiebase = tortiebase
         self.pattern = pattern
         self.tortiepattern = tortiepattern

@@ -130,6 +130,7 @@ class Sprites:
             'whitepatches', 'whitepatches2', 'whitepatchesmoss',
             'tortiepatchesmasks', 'tortiesmoss',
             'medcatherbs', 'disabilityaccs', 'accbase', 'accadd', 'accpattern', 'collaradd'
+            # 'lazyeyes'
 
         ]:
             if 'lineart' in x and game.config['fun']['april_fools']:
@@ -165,6 +166,10 @@ class Sprites:
         for row, patterns in enumerate(eye_patterns):
             for col, pattern in enumerate(patterns):
                 self.make_group('eyes2', (col, row), f'eyes2{pattern}')
+
+        """for row, colors in enumerate(eye_colors):
+            for col, color in enumerate(colors):
+                self.make_group('lazyeyes', (col, row), f'lazyeyes{color}')"""
 
         # Define white patches
         white_patches = [
