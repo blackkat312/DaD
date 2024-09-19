@@ -529,7 +529,11 @@ class Condition_Events:
                             ]
                         ):
                             perm_condition = random.choice(possible_conditions)
-                            """if perm_condition == "recurring shock" and injury_name == "wrenched claws":                                 
+                            """if perm_condition == "lazy eye":
+                                cat.pelt.lazy_eye = cat.pelt.eye_colour
+                                if cat.eye_colour2:
+                                    cat.pelt.lazy_eye = cat.pelt.eye_colour2
+                            elif perm_condition == "recurring shock" and injury_name == "wrenched claws":
                                 if injury_name not in cat.history.possible_history:
                                     perm_condition = None
                                     print(f"Hopefully failed to give recurring shock to non-traumatised cat")
