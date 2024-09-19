@@ -2945,7 +2945,7 @@ def generate_sprite(
             new_sprite.blit(patches, (0, 0))
 
         # TINTS
-        if (
+        """if (
             cat.pelt.tint != "none"
             and cat.pelt.tint in sprites.cat_tints["tint_colours"]
         ):
@@ -2961,7 +2961,7 @@ def generate_sprite(
         ):
             tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
             tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tint]))
-            new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)"""
 
 
         # draw white patches
@@ -3009,9 +3009,22 @@ def generate_sprite(
             new_sprite.blit(points, (0, 0))
 
         if cat.pelt.vitiligo:
-            new_sprite.blit(
-                sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite], (0, 0)
-            )
+            vitiligo = sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite].copy()
+            if (
+                cat.pelt.white_patches_tint != "none"
+                and cat.pelt.white_patches_tint
+                in sprites.white_patches_tints["tint_colours"]
+            ):
+                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                tint.fill(
+                    tuple(
+                        sprites.white_patches_tints["tint_colours"][
+                            cat.pelt.white_patches_tint
+                        ]
+                    )
+                )
+                vitiligo.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            new_sprite.blit(vitiligo, (0, 0))
 
         # draw eyes
         # base0, mid1, top2, shade3
