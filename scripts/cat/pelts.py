@@ -131,9 +131,7 @@ class Pelt:
                          "BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "PETALS", "NETTLE", "HEATHER",
                          "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER",
                          "OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB", "CLOVER", "DAISY",
-                         "HEATHER", "SNAPDRAGON", "GORSE",
-                        "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"
-                         ]
+                         "HEATHER", "SNAPDRAGON", "GORSE"]
     wild_accessories = ["FEATHER", "MOTH", "BUTTERFLY", "CICADA"]
     tail_accessories = ["NOWAY"]
     living_accessories = ["LUNA MOTH", "ATLAS MOTH", "BUTTERFLIES", "FIREFLIES"]
@@ -145,11 +143,13 @@ class Pelt:
     forest_accessories = ["MUSHROOM"]
     special_accessories = ["STICK", "MOSS BALL", "LILY PAD"]
 
-    collars = ["LEATHERCOLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR", "FANGCOLLAR"]
-    kitty_accessories = ["SUNGLASSES", "COWBOY HAT", "BANDANA", "HARNESS"]
-    layer_accessories = ["COLLAR", "HARNESS", "BANDANA", "POPPY", "HERBS", "DAISY", "BULB", "PETALS", "FEATHER", "CICADA", "BUTTERFLY", "MOTH"]
+    collars = ["LEATHERCOLLAR", "BELLCOLLAR", "BOWCOLLAR", "STUDDEDCOLLAR", "FANGCOLLAR", "RAINBOW COLLAR"]
+    kitty_accessories = ["SUNGLASSES", "COWBOY HAT", "BANDANA", "HARNESS", "RAINBOW HARNESS", "RAINBOW BANDANA"]
+    layer_accessories = ["COLLAR", "HARNESS", "BANDANA", "POPPY", "HERBS", "DAISY", "BULB", "PETALS", "FEATHER", "CICADA", "BUTTERFLY", "MOTH",
+                         "NETTLE", "HEATHER", "GORSE", "CATMINT", "LAUREL", "BUTTERFLIES", "IVY", "WREATH", "FLOWER WREATH", "SHELL", "CRYSTAL"]
 
-    onecolor_nopattern_acc = ["POPPY", "HERBS", "PETALS", "CICADA", "BUTTERFLY", "DAISY", "MOTH", "FEATHER"]
+    onecolor_nopattern_acc = ["POPPY", "HERBS", "PETALS", "CICADA", "BUTTERFLY", "DAISY", "MOTH", "FEATHER", "BUTTERFLIES", "CATMINT", "LAUREL",
+                              "IVY", "WREATH", "SHELL", "CRYSTAL"]
     twocolor_nopattern_acc = ["BULB"]
     onecolor_onepattern_acc = ["LEATHERCOLLAR", "FANGCOLLAR", "HARNESS", "BANDANA"]
     twocolor_onepattern_acc = ["BELLCOLLAR", "STUDDEDCOLLAR"]
@@ -157,23 +157,25 @@ class Pelt:
 
 
     flower_acc = ["POPPY", "PETALS", "DAISY"]
-    leafbase_acc = ["BULB"]
-    bug_acc = ["BUTTERFLY", "MOTH", "CICADA"]
+    doubleflower_acc = ["FLOWER WREATH"]
+    crystal_acc = ["SHELL", "CRYSTAL"]
+    leafbase_acc = ["BULB", "HEATHER", "GORSE"]
+    bug_acc = ["BUTTERFLY", "MOTH", "CICADA", "BUTTERFLIES"]
     feather_acc = ["FEATHER"]
     twoleg_acc = ["LEATHERCOLLAR", "FANGCOLLAR", "HARNESS", "BANDANA", "BOWCOLLAR"]
     metal_acc = ["BELLCOLLAR", "STUDDEDCOLLAR"]
-    leaf_acc = ["HERBS"]
+    leaf_acc = ["HERBS", "CATMINT", "LAUREL", "IVY", "WREATH"]
 
     accpatterns = ["STRIPES", "NOTES", "STARS", "IVYS", "PAWPRINTS", "PLAID",
                    "ZEBRA", "HEARTS", "FLORAL", "SQUIGGLE", "WAVES", "DIAMONDS",
                    "BUTTERFLIESONE", "BUTTERFLIESTWO", "FLOWERPRINTONE", "FLOWERPRINTTWO", "CONVERSE"]
 
     simple_acc = ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "BLUEBELLS",
-                  "LILY OF THE VALLEY", "SNAPDRAGON", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER",
-                  "OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "CLOVER", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS",
-                  "LUNA MOTH", "ATLAS MOTH", "BUTTERFLIES", "FIREFLIES", "IVY", "LUCKY CLOVER", "WREATH",
-                  "FLOWER WREATH", "WILD FLOWERS", "LILAC", "MONSTERA", "BIRD SKULL", "ANTLERS", "TWIGS", "SERPENT",
-                  "SEAWEED", "SHELL", "CRYSTAL", "SPROUT", "MUSHROOM", "STICK", "MOSS BALL", "LILYPAD", "SUNGLASSES", "COWBOY HAT"]
+                  "LILY OF THE VALLEY", "SNAPDRAGON", "JUNIPER", "RASPBERRY", "LAVENDER",
+                  "OAK LEAVES", "MAPLE SEED", "CLOVER",
+                  "LUNA MOTH", "ATLAS MOTH", "FIREFLIES", "LUCKY CLOVER",
+                  "WILD FLOWERS", "LILAC", "MONSTERA", "BIRD SKULL", "ANTLERS", "TWIGS", "SERPENT",
+                  "SEAWEED", "SPROUT", "MUSHROOM", "STICK", "MOSS BALL", "LILYPAD", "SUNGLASSES", "RAINBOW HARNESS", "RAINBOW COLLAR", "RAINBOW BANDANA"]
 
     twoleg_acc_colors = ['BLACK', 'WHITE', 'RED', 'DARK ORANGE', 'YELLOW', 'PALE YELLOW', 'CYAN', 'LIGHT BLUE', 'BLUE',
                          'DARK BLUE', 'PURPLE', 'LIGHT PURPLE', 'LILAC', 'PINK', 'GREEN', 'LIME', 'BRIGHT PURPLE', 'HOT PINK',
@@ -184,7 +186,12 @@ class Pelt:
                          'DARK BLUE', 'PURPLE', 'LIGHT PURPLE', 'LILAC', 'PINK']
     bug_colors = ['RED', 'DARK ORANGE', 'YELLOW', 'PALE YELLOW', 'CYAN', 'LIGHT BLUE', 'BLUE',
                          'DARK BLUE', 'PURPLE', 'LIGHT PURPLE', 'LILAC', 'PINK']
+    crystal_colors = ['RED', 'DARK ORANGE', 'YELLOW', 'PALE YELLOW', 'CYAN', 'LIGHT BLUE', 'BLUE',
+                  'DARK BLUE', 'PURPLE', 'LIGHT PURPLE', 'LILAC', 'PINK', "GREEN"]
     feather_colors = ['RED', 'DARK ORANGE', 'YELLOW', 'BLUE', 'LIGHT BLUE', 'DARK BROWN', 'WHITE', 'BLACK']
+    gorse_colors = ["ORANGE", "YELLOW", "LIGHT YELLOW", "GOLD"]
+    heather_colors = ["PURPLE", "LILAC", "LIGHT PURPLE", "BRIGHT PURPLE"]
+    dry_colors = ["BROWN", "DARK BROWN", "BRONZE", "LIGHT BROWN"]
 
     # dad accessories
     toy_accessories = [
@@ -418,7 +425,6 @@ class Pelt:
         old_cicada = ["CICADA WINGS", "BLACK CICADA"]
         old_moth = ["MOTH WINGS", "ROSY MOTH WINGS"]
         old_flutter = ["MORPHO BUTTERFLY", "MONARCH BUTTERFLY"]
-        #"DRY HERBS"
         old_collars = [
             "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME",
             "GREEN", "RAINBOW", "BLACK", "SPIKES", "WHITE",
@@ -481,6 +487,15 @@ class Pelt:
             self.accessory = "HARNESS"
         if self.accessory in old_bandana:
             self.accessory = "BANDANA"
+        if self.accessory == "DRY NETTLES":
+            self.accessory = "NETTLE"
+            self.accessory_color = "BROWN"
+        if self.accessory == "DRY LAURELS":
+            self.accessory = "LAUREL"
+            self.accessory_color = "BROWN"
+        if self.accessory == "DRY CATMINT":
+            self.accessory = "CATMINT"
+            self.accessory_color = "BROWN"
 
 
 
@@ -1082,6 +1097,21 @@ class Pelt:
         if self.accessory in Pelt.leaf_acc:
             possible_first_colors = choice(Pelt.leaf_colors)
             self.accessory_color = choice([possible_first_colors])
+        if self.accessory in Pelt.doubleflower_acc:
+            possible_first_colors = choice(Pelt.flower_colors)
+            self.accessory_color = choice([possible_first_colors])
+        if self.accessory in Pelt.crystal_acc:
+            possible_first_colors = choice(Pelt.crystal_colors)
+            self.accessory_color = choice([possible_first_colors])
+        if self.accessory == "HEATHER":
+            possible_first_colors = choice(Pelt.leaf_colors)
+            self.accessory_color = choice([possible_first_colors])
+        if self.accessory == "GORSE":
+            possible_first_colors = choice(Pelt.leaf_colors)
+            self.accessory_color = choice([possible_first_colors])
+        if self.accessory == "COWBOY HAT":
+            possible_first_colors = choice(Pelt.twoleg_acc_colors)
+            self.accessory_color = choice([possible_first_colors])
 
         if self.accessory in Pelt.flower_acc:
             possible_second_colors = choice(Pelt.flower_colors)
@@ -1103,6 +1133,18 @@ class Pelt:
             self.accessory_color2 = choice([possible_second_colors])
         if self.accessory in Pelt.leaf_acc:
             possible_second_colors = choice(Pelt.leaf_colors)
+            self.accessory_color2 = choice([possible_second_colors])
+        if self.accessory in Pelt.doubleflower_acc:
+            possible_second_colors = choice(Pelt.flower_colors)
+            self.accessory_color2 = choice([possible_second_colors])
+        if self.accessory in Pelt.crystal_acc:
+            possible_second_colors = choice(Pelt.crystal_colors)
+            self.accessory_color2 = choice([possible_second_colors])
+        if self.accessory == "HEATHER":
+            possible_second_colors = choice(Pelt.heather_colors)
+            self.accessory_color2 = choice([possible_second_colors])
+        if self.accessory == "GORSE":
+            possible_second_colors = choice(Pelt.gorse_colors)
             self.accessory_color2 = choice([possible_second_colors])
 
         self.accessory_pattern = choice(Pelt.accpatterns)
@@ -1385,177 +1427,117 @@ class Pelt:
         """
 
         # Define look-up dictionaries
-        if short:
-            renamed_colors = {
-                "white": "white",
-                "snow white": "snow-white",
-                "gray": "gray",
-                "slate": "slate",
-                "dark gray": "dark gray",
-                "dark slate": "dark slate",
-                "pale blue": "pale blue",
-                "blue": "blue",
-                "lilac": "lilac",
-                "pale lilac": "pale lilac",
-                "silver": "silver",
-                "black": "black",
-                "soot black": "soot black",
-                "obsidian": "obsidian",
-                "ghost": "ghost",
-                "pale brown": "pale brown",
-                "almond": "almond",
-                "acorn": "acorn",
-                "light brown": "light brown",
-                "brown": "brown",
-                "dark brown": "dark brown",
-                "pale cinnamon": "pale cinnamon",
-                "cinnamon": "cinnamon",
-                "sable": "sable",
-                "dark sable": "dark sable",
-                "birch": "birch",
-                "pale lavender": "pale lavender",
-                "lavender": "lavender",
-                "dark lavender": "dark lavender",
-                "dark orange": "dark orange",
-                "pale fire": "pale fire-red",
-                "fire": "fire-red",
-                "dark fire": "dark fire-red",
-                "pale ginger": "pale ginger",
-                "ginger": "ginger",
-                "dark ginger": "dark ginger",
-                "pale gold": "pale gold",
-                "yellow": "yellow",
-                "gold": "gold",
-                "bronze": "bronze",
-                "rose": "rose",
-                "light cream": "light cream",
-                "cream": "cream",
-                "dark cream": "dark cream",
-                "dark gold": "dark gold"
-
-            }
-        else:
-            renamed_colors = {
-                "white": "white",
-                "snow white": "snow-white",
-                "gray": "gray",
-                "slate": "slate",
-                "dark gray": "dark gray",
-                "dark slate": "dark slate",
-                "pale blue": "pale blue",
-                "blue": "blue",
-                "lilac": "lilac",
-                "pale lilac": "pale lilac",
-                "silver": "silver",
-                "black": "black",
-                "soot black": "soot black",
-                "obsidian": "obsidian",
-                "ghost": "ghost",
-                "pale brown": "pale brown",
-                "almond": "almond",
-                "acorn": "acorn",
-                "light brown": "light brown",
-                "brown": "brown",
-                "dark brown": "dark brown",
-                "pale cinnamon": "pale cinnamon",
-                "cinnamon": "cinnamon",
-                "sable": "sable",
-                "dark sable": "dark sable",
-                "birch": "birch",
-                "pale lavender": "pale lavender",
-                "lavender": "lavender",
-                "dark lavender": "dark lavender",
-                "dark orange": "dark orange",
-                "pale fire": "pale fire-red",
-                "fire": "fire-red",
-                "dark fire": "dark fire-red",
-                "pale ginger": "pale ginger",
-                "ginger": "ginger",
-                "dark ginger": "dark ginger",
-                "pale gold": "pale gold",
-                "yellow": "yellow",
-                "gold": "gold",
-                "bronze": "bronze",
-                "rose": "rose",
-                "light cream": "light cream",
-                "cream": "cream",
-                "dark cream": "dark cream",
-                "dark gold": "dark gold"
-            }
+        renamed_colors = {
+            "white": "white",
+            "snow white": "snow-white",
+            "gray": "gray",
+            "slate": "slate",
+            "dark gray": "dark gray",
+            "dark slate": "dark slate",
+            "pale blue": "pale blue",
+            "blue": "blue",
+            "lilac": "lilac",
+            "pale lilac": "pale lilac",
+            "silver": "silver",
+            "black": "black",
+            "soot black": "soot black",
+            "obsidian": "obsidian",
+            "ghost": "ghost",
+            "pale brown": "pale brown",
+            "almond": "almond",
+            "acorn": "acorn",
+            "light brown": "light brown",
+            "brown": "brown",
+            "dark brown": "dark brown",
+            "pale cinnamon": "pale cinnamon",
+            "cinnamon": "cinnamon",
+            "sable": "sable",
+            "dark sable": "dark sable",
+            "birch": "birch",
+            "pale lavender": "pale lavender",
+            "lavender": "lavender",
+            "dark lavender": "dark lavender",
+            "dark orange": "dark orange",
+            "pale fire": "pale fire-red",
+            "fire": "fire-red",
+            "dark fire": "dark fire-red",
+            "pale ginger": "pale ginger",
+            "ginger": "ginger",
+            "dark ginger": "dark ginger",
+            "pale gold": "pale gold",
+            "yellow": "yellow",
+            "gold": "gold",
+            "bronze": "bronze",
+            "rose": "rose",
+            "light cream": "light cream",
+            "cream": "cream",
+            "dark cream": "dark cream",
+            "dark gold": "dark gold"
+        }
 
         pattern_des = {
-            "Tabby": "c_n tabby",
-            "Speckled": "speckled c_n",
-            "Bengal": "c_n bengal",
-            "Marbled": "c_n marbled tabby",
-            "Ticked": "c_n ticked tabby",
-            "Smoke": "c_n smoke",
-            "Mackerel": "c_n mackerel tabby",
-            "Classic": "c_n classic tabby",
-            "Agouti": "c_n agouti tabby",
-            "Singlestripe": "dorsal-striped c_n",
-            "Rosette": "rosetted c_n",
-            "Sokoke": "c_n sokoke tabby",
-            "Abyssinian": "c_n abyssinian",
-            "Brindle": "c_n brindle",
-            "Braided": "c_n braided tabby",
-            "Splotch": "unusually splotched c_n",
-            "Saber": "c_n saber tabby",
-            "Faded": "c_n faded tabby",
-            "Masked": "c_n masked tabby",
-            "Fog": "c_n foggy tabby",
-            "Mist": "c_n misted tabby",
-            "Smudge": "c_n smudge tabby",
-            "BrokenMackerel": "c_n broken mackerel tabby",
-            "Longdan": "c_n longdan tiger tabby",
-            "BrokenBraided": "c_n broken braided tabby",
-            "CharcoalBengal": "c_n charcoal bengal",
-            "Dust": "c_n dust"
+            "Tabby": "tabby",
+            "Speckled": "speckled",
+            "Bengal": "bengal",
+            "Marbled": "marbled tabby",
+            "Ticked": "ticked tabby",
+            "Smoke": "smoke",
+            "Mackerel": "mackerel tabby",
+            "Classic": "classic tabby",
+            "Agouti": "agouti tabby",
+            "Singlestripe": "dorsal-striped",
+            "Rosette": "rosetted",
+            "Sokoke": "sokoke tabby",
+            "Abyssinian": "abyssinian",
+            "Brindle": "brindle",
+            "Braided": "braided tabby",
+            "Splotch": "unusually-splotched",
+            "Saber": "saber tabby",
+            "Faded": "faded tabby",
+            "Masked": "masked tabby",
+            "Fog": "foggy tabby",
+            "Mist": "misted tabby",
+            "Smudge": "smudge tabby",
+            "BrokenMackerel": "broken mackerel tabby",
+            "Longdan": "longdan tiger tabby",
+            "BrokenBraided": "broken braided tabby",
+            "CharcoalBengal": "charcoal bengal",
+            "Dust": "dust"
         }
+        c_n_after = ["Speckled", "Singlestripe", "Rosette", "Splotch"]
 
         # Start with determining the base color name. 
         color_name = str(cat.pelt.colour).lower()
         if color_name in renamed_colors:
             color_name = renamed_colors[color_name]
 
-
-        # Replace "white" with "pale" if the cat is white
-        if cat.pelt.name not in ["Solid", "Tortie", "Calico"] and color_name == "white":
-            color_name = "pale"
         # Time to describe the pattern and any additional colors
         if cat.pelt.name in pattern_des:
-            color_name = pattern_des[cat.pelt.name].replace("c_n", color_name)
-        elif cat.pelt.name in Pelt.torties:
-            # Calicos and Torties need their own desciptions. 
-            if short:
-
-                # If using short, don't describe the colors of calicos and torties.
-                # Just call them calico, tortie, or mottled
-                if cat.pelt.colour in Pelt.black_colours + Pelt.brown_colours + Pelt.white_colours and \
-                        cat.pelt.tortiecolour in Pelt.black_colours + Pelt.brown_colours + Pelt.white_colours:
-                    color_name = "mottled"
-                else:
-                    color_name = cat.pelt.name.lower()
+            if cat.pelt.name in c_n_after:
+                color_name = pattern_des.get(cat.pelt.name) + " " + color_name
             else:
+                color_name += " " + pattern_des.get(cat.pelt.name)
+        elif cat.pelt.name in Pelt.torties:
+            # Calicos and Torties need their own desciptions.
+            patches_color = cat.pelt.tortiecolour.lower()
+            if patches_color in renamed_colors:
+                patches_color = renamed_colors[patches_color]
 
+            for entry in pattern_des:
+                if entry.lower() == cat.pelt.tortiebase:
+                    if entry in c_n_after:
+                        color_name = pattern_des.get(entry) + " " + color_name
+                    else:
+                        color_name += " " + pattern_des.get(entry)
 
-                base = cat.pelt.tortiebase.lower()
-                if base in Pelt.stripes + ['bengal', 'rosette', 'speckled', 'faded', 'saber', 'tabby', 'classic', 'sokoke', 'marbled', 'masked', 'brokenmackerel', 'longdan', 'smudge', 'brokenbraided']:
-                    base = ' tabby'
+            for entry2 in pattern_des:
+                if entry2.lower() == cat.pelt.tortiepattern:
+                    if entry2 in c_n_after:
+                        patches_color = pattern_des.get(entry2) + " " + patches_color
+                    else:
+                        patches_color += " " + pattern_des.get(entry2)
 
-                else:
-                    base = ''
-
-                patches_color = cat.pelt.tortiecolour.lower()
-                if patches_color in renamed_colors:
-                    patches_color = renamed_colors[patches_color]
-                color_name = f"{color_name}/{patches_color}"
-
-                if cat.pelt.colour in Pelt.black_colours + Pelt.brown_colours + Pelt.white_colours and \
-                        cat.pelt.tortiecolour in Pelt.black_colours + Pelt.brown_colours + Pelt.white_colours:
-                    color_name = f"{color_name} mottled{base}"
-                else:
-                    color_name = f"{color_name} {cat.pelt.name.lower()}{base}"
+            color_name = f"{color_name}/{patches_color}"
 
         if cat.pelt.white_patches:
             if cat.pelt.white_patches_tint == "black":
