@@ -64,6 +64,8 @@ class ClearingScreen(Screens):
 
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            self.mute_button_pressed(event)
+
             if event.ui_element == self.back_button:
                 self.change_screen(game.last_screen_forupdate)
             if event.ui_element == self.stop_focus_button:
@@ -197,6 +199,7 @@ class ClearingScreen(Screens):
             self.change_screen(game.last_screen_forupdate)
             return
 
+        self.show_mute_buttons()
         self.hide_menu_buttons()
         self.back_button = UIImageButton(
             scale(pygame.Rect((50, 50), (210, 60))),
@@ -584,7 +587,7 @@ class ClearingScreen(Screens):
             concern_text = "The fresh-kill pile is overflowing and the Clan can feast!"
             self.pile_size = "#freshkill_pile_good"
         elif needed_amount * 2.5 < current_prey_amount:
-            concern_text = "StarClan has blessed the Clan with plentiful prey and the leader sends their thanks to Silverpelt."
+            concern_text = "StarClan has blessed the Clan with plentiful prey and the monarch sends their thanks to Silverpelt."
             self.pile_size = "#freshkill_pile_full"
 
         information_display.append(general_text)

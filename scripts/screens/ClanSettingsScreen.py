@@ -90,6 +90,7 @@ class ClanSettingsScreen(Screens):
                 return
             self.handle_checkbox_events(event)
             self.menu_button_pressed(event)
+            self.mute_button_pressed(event)
 
     def handle_checkbox_events(self, event):
         """
@@ -134,6 +135,7 @@ class ClanSettingsScreen(Screens):
         """
         self.settings_changed = False
         self.show_menu_buttons()
+        self.show_mute_buttons()
         self.set_disabled_menu_buttons(["stats"])
 
         self.general_settings_button = UIImageButton(
@@ -394,8 +396,8 @@ class ClanSettingsScreen(Screens):
             f"StarClan Cats: {starclan}\n"
             f"Dark Forest Cats: {df}\n"
             f"Unknown Residence Cats: {ur}\n"
-            f"Medicine Cats: {med_cats}\n"
-            f"Medicine Cat Apprentices: {med_cat_apprentices}\n"
+            f"Healers: {med_cats}\n"
+            f"Healer Apprentices: {med_cat_apprentices}\n"
             f"Warriors: {warriors}\n"
             f"Warrior Apprentices: {warrior_apprentices}\n"
             f"Mediators: {mediators}\n"
