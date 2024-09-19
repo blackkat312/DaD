@@ -13,9 +13,9 @@ class Sprites:
     clan_symbols = []
 
     def __init__(self):
-        """Class that handles and hold all spritesheets.
+        """Class that handles and hold all spritesheets. 
         Size is normally automatically determined by the size
-        of the lineart. If a size is passed, it will override
+        of the lineart. If a size is passed, it will override 
         this value. """
         self.symbol_dict = None
         self.size = None
@@ -55,10 +55,10 @@ class Sprites:
                    spritesheet,
                    pos,
                    name,
-                   sprites_x=3,
-                   sprites_y=7,
-                   no_index=False):  # pos = ex. (2, 3), no single pixels
 
+                   sprites_x=6,
+                   sprites_y=8,
+                   no_index=False):  # pos = ex. (2, 3), no single pixels
         """
         Divide sprites on a spritesheet into groups of sprites that are easily accessible
         :param spritesheet: Name of spritesheet file
@@ -72,6 +72,7 @@ class Sprites:
         group_x_ofs = pos[0] * sprites_x * self.size
         group_y_ofs = pos[1] * sprites_y * self.size
         i = 0
+
 
         # splitting group into singular sprites and storing into self.sprites section
         for y in range(sprites_y):
@@ -111,8 +112,8 @@ class Sprites:
         # if anyone changes lineart for whatever reason update this
         if isinstance(self.size, int):
             pass
-        elif width / 3 == height / 7:
-            self.size = width / 3
+        elif width / 6 == height / 8:
+            self.size = width / 6
         else:
             self.size = 50  # default, what base clangen uses
             print(f"lineart.png is not 3x7, falling back to {self.size}")
@@ -122,18 +123,14 @@ class Sprites:
         del width, height  # unneeded
 
         for x in [
-            'lineart', 'lineartdf', 'lineartdead',
-            'eyes', 'eyes2', 'lazyeyes', 'skin', 'blep',
-            'scars', 'missingscars', 'disabilityscars',
-            'medcatherbs', 'wild', 'snake_accessories', 'smallAnimal_accessories', 'aliveInsect_accessories',
-            'disabilityaccs', 'booties', 'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
-            'singlecolours', 'speckledcolours', 'tabbycolours', 'bengalcolours', 'marbledcolours',
-            'rosettecolours', 'smokecolours', 'tickedcolours', 'mackerelcolours', 'classiccolours',
-            'sokokecolours', 'agouticolours', 'singlestripecolours', 'maskedcolours',
-            'shadersnewwhite', 'lightingnew',
-            'whitepatches', 'tortiepatchesmasks',
-            'fademask', 'fadestarclan', 'fadedarkforest',
-            'symbols'
+            'lineart', 'line', 'lineartdf', 'lineartdead', 'symbols',
+            'fadestarclan', 'fadedarkforest', 'lightingnew', 'fademask', 'shadersnewwhite',
+            'base', 'mid', 'dark', 'highlight', 'shade', 'unders',
+            'eyebase', 'eyemid', 'eyetop', 'eyeshade', 'eyelight', 'eyes2', 'skin', 'scars', 'missingscars', 'disabilityscars',
+            'whitepatches', 'whitepatches2', 'whitepatchesmoss',
+            'tortiepatchesmasks', 'tortiesmoss',
+            'medcatherbs', 'disabilityaccs', 'accbase', 'accadd', 'accpattern', 'collaradd'
+
         ]:
             if 'lineart' in x and game.config['fun']['april_fools']:
                 self.spritesheet(f"sprites/aprilfools{x}.png", x)
@@ -154,18 +151,20 @@ class Sprites:
             self.make_group('fadestarclan', (i, 0), f'fadestarclan{i}')
             self.make_group('fadedarkforest', (i, 0), f'fadedf{i}')
 
-        # Define eye colors
-        eye_colors = [
-            ['YELLOW', 'AMBER', 'HAZEL', 'PALEGREEN', 'GREEN', 'BLUE', 'DARKBLUE', 'GREY', 'CYAN', 'EMERALD',
-             'HEATHERBLUE', 'SUNLITICE'],
-            ['COPPER', 'SAGE', 'COBALT', 'PALEBLUE', 'BRONZE', 'SILVER', 'PALEYELLOW', 'GOLD', 'GREENYELLOW']
+        self.make_group('eyebase', (0, 0), 'eyebase')
+        self.make_group('eyemid', (0, 0), 'eyemid')
+        self.make_group('eyetop', (0, 0), 'eyetop')
+        self.make_group('eyeshade', (0, 0), 'eyeshade')
+        self.make_group('eyelight', (0, 0), 'eyelight')
+
+        eye_patterns = [
+            ['TRUE', 'CENTRAL', 'QUARTER', 'SLIVER', 'SPECKLES', 'FROSTED'],
+            ['RING', 'HALFCENTRAL', 'HALFRING', 'BUBBLE', 'OUTRING', 'SWAP']
         ]
 
-        for row, colors in enumerate(eye_colors):
-            for col, color in enumerate(colors):
-                self.make_group('eyes', (col, row), f'eyes{color}')
-                self.make_group('eyes2', (col, row), f'eyes2{color}')
-                self.make_group('lazyeyes', (col, row), f'lazyeyes{color}')
+        for row, patterns in enumerate(eye_patterns):
+            for col, pattern in enumerate(patterns):
+                self.make_group('eyes2', (col, row), f'eyes2{pattern}')
 
         # Define white patches
         white_patches = [
@@ -178,7 +177,10 @@ class Sprites:
             ['TAIL', 'BLAZE', 'PRINCE', 'BIB', 'VEE', 'UNDERS', 'HONEY', 'FAROFA', 'DAMIEN', 'MISTER', 'BELLY',
              'TAILTIP', 'TOES', 'TOPCOVER'],
             ['APRON', 'CAPSADDLE', 'MASKMANTLE', 'SQUEAKS', 'STAR', 'TOESTAIL', 'RAVENPAW', 'PANTS', 'REVERSEPANTS',
-             'SKUNK', 'KARPATI', 'HALFWHITE', 'APPALOOSA', 'DAPPLEPAW'],
+             'SKUNK', 'KARPATI', 'HALFWHITE', 'APPALOOSA', 'DAPPLEPAW']
+        ]
+
+        white_patches2 = [
             ['HEART', 'LILTWO', 'GLASS', 'MOORISH', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT', 'MAO', 'LUNA', 'CHESTSPECK',
              'WINGS', 'PAINTED', 'HEARTTWO', 'WOODPECKER'],
             ['BOOTS', 'MISS', 'COW', 'COWTWO', 'BUB', 'BOWTIE', 'MUSTACHE', 'REVERSEHEART', 'SPARROW', 'VEST',
@@ -190,28 +192,84 @@ class Sprites:
             ['LOCKET', 'BLAZEMASK', 'TEARS', 'DOUGIE']
         ]
 
+        white_patches_moss = [
+            ['CHANCE', 'MOSSY', 'MOTH', 'NIGHTMIST', 'FALCON', 'VENUS', 'RETSUKO', 'TIDAL', 'DIAMOND', 'ECLIPSE', 'SNOWSTORM', 'PEPPER', 'COWTHREE', 'COWFOUR'],
+            ['COWFIVE', 'COWSIX', 'COWSEVEN', 'COWEIGHT', 'COWNINE', 'COWTEN', 'COWELEVEN', 'FRECKLEMASK', 'SPLAT', 'BATWING', 'SMALLPATCHES']
+        ]
+
         for row, patches in enumerate(white_patches):
             for col, patch in enumerate(patches):
                 self.make_group('whitepatches', (col, row), f'white{patch}')
+        for row, patches in enumerate(white_patches2):
+            for col, patch in enumerate(patches):
+                self.make_group('whitepatches2', (col, row), f'white{patch}')
+        for row, patches in enumerate(white_patches_moss):
+            for col, patch in enumerate(patches):
+                self.make_group('whitepatchesmoss', (col, row), f'white{patch}')
 
-        # Define colors and categories
-        color_categories = [
-            ['WHITE', 'PALEGREY', 'SILVER', 'GREY', 'DARKGREY', 'GHOST', 'BLACK'],
-            ['CREAM', 'PALEGINGER', 'GOLDEN', 'GINGER', 'DARKGINGER', 'SIENNA'],
-            ['LIGHTBROWN', 'LILAC', 'BROWN', 'GOLDEN-BROWN', 'DARKBROWN', 'CHOCOLATE']
+        # base pelt - to be expanded with extras later
+        self.make_group('base', (0, 0), 'baseSOLID')
+        self.make_group('line', (0, 0), 'line')
+
+        # Middle color layer
+        mids = [
+            ['SOLID', 'TABBY', 'SPECKLED', 'ABYSSINIAN', 'BENGAL', 'LONGDAN'],
+            ['BRINDLE', 'CLASSIC', 'FADED', 'MACKEREL', 'MARBLED', 'SINGLESTRIPE'],
+            ['SMOKE', 'FOG', 'MIST', 'SPLOTCH', 'SABER', 'SMUDGE'],
+            ['ROSETTE', 'MASKED', 'TICKED', 'AGOUTI', 'SOKOKE', 'BROKENMACKEREL'],
+            ['BRAIDED', 'BROKENBRAIDED', 'DUST', 'CHARCOALBENGAL']
         ]
+        for row, mid in enumerate(mids):
+            for col, md in enumerate(mid):
+                self.make_group('mid', (col, row), f'mid{md}')
 
-        color_types = [
-            'singlecolours', 'tabbycolours', 'marbledcolours', 'rosettecolours',
-            'smokecolours', 'tickedcolours', 'speckledcolours', 'bengalcolours',
-            'mackerelcolours', 'classiccolours', 'sokokecolours', 'agouticolours',
-            'singlestripecolours', 'maskedcolours'
+        # Highlight color layer
+        highlights = [
+            ['SOLID', 'TABBY', 'SPECKLED', 'ABYSSINIAN', 'BENGAL', 'LONGDAN'],
+            ['BRINDLE', 'CLASSIC', 'FADED', 'MACKEREL', 'MARBLED', 'SINGLESTRIPE'],
+            ['SMOKE', 'FOG', 'MIST', 'SPLOTCH', 'SABER', 'SMUDGE'],
+            ['ROSETTE', 'MASKED', 'TICKED', 'AGOUTI', 'SOKOKE', 'BROKENMACKEREL'],
+            ['BRAIDED', 'BROKENBRAIDED', 'DUST', 'CHARCOALBENGAL']
         ]
+        for row, highlight in enumerate(highlights):
+            for col, hl in enumerate(highlight):
+                self.make_group('highlight', (col, row), f'highlight{hl}')
 
-        for row, colors in enumerate(color_categories):
-            for col, color in enumerate(colors):
-                for color_type in color_types:
-                    self.make_group(color_type, (col, row), f'{color_type[:-7]}{color}')
+        # Dark color layer
+        darks = [
+            ['SOLID', 'TABBY', 'SPECKLED', 'ABYSSINIAN', 'BENGAL', 'LONGDAN'],
+            ['BRINDLE', 'CLASSIC', 'FADED', 'MACKEREL', 'MARBLED', 'SINGLESTRIPE'],
+            ['SMOKE', 'FOG', 'MIST', 'SPLOTCH', 'SABER', 'SMUDGE'],
+            ['ROSETTE', 'MASKED', 'TICKED', 'AGOUTI', 'SOKOKE', 'BROKENMACKEREL'],
+            ['BRAIDED', 'BROKENBRAIDED', 'DUST', 'CHARCOALBENGAL']
+        ]
+        for row, dark in enumerate(darks):
+            for col, dr in enumerate(dark):
+                self.make_group('dark', (col, row), f'dark{dr}')
+
+        # Darker color layer
+        shades = [
+            ['SOLID', 'TABBY', 'SPECKLED', 'ABYSSINIAN', 'BENGAL', 'LONGDAN'],
+            ['BRINDLE', 'CLASSIC', 'FADED', 'MACKEREL', 'MARBLED', 'SINGLESTRIPE'],
+            ['SMOKE', 'FOG', 'MIST', 'SPLOTCH', 'SABER', 'SMUDGE'],
+            ['ROSETTE', 'MASKED', 'TICKED', 'AGOUTI', 'SOKOKE', 'BROKENMACKEREL'],
+            ['BRAIDED', 'BROKENBRAIDED', 'DUST', 'CHARCOALBENGAL']
+        ]
+        for row, shade in enumerate(shades):
+            for col, sh in enumerate(shade):
+                self.make_group('shade', (col, row), f'shade{sh}')
+
+        # Unders color layer
+        unders = [
+            ['SOLID', 'TABBY', 'SPECKLED', 'ABYSSINIAN', 'BENGAL', 'LONGDAN'],
+            ['BRINDLE', 'CLASSIC', 'FADED', 'MACKEREL', 'MARBLED', 'SINGLESTRIPE'],
+            ['SMOKE', 'FOG', 'MIST', 'SPLOTCH', 'SABER', 'SMUDGE'],
+            ['ROSETTE', 'MASKED', 'TICKED', 'AGOUTI', 'SOKOKE', 'BROKENMACKEREL'],
+            ['BRAIDED', 'BROKENBRAIDED', 'DUST', 'CHARCOALBENGAL']
+        ]
+        for row, under in enumerate(unders):
+            for col, ud in enumerate(under):
+                self.make_group('unders', (col, row), f'under{ud}')
 
         # tortiepatchesmasks
         tortiepatchesmasks = [
@@ -223,21 +281,28 @@ class Sprites:
             ['SHILOH', 'FRECKLED', 'HEARTBEAT']
         ]
 
+        tortiepatchesmasksmoss = [
+            ['VIPER', 'SKULL', 'POINTS', 'DITTO', 'TABBY', 'SPECKLED', 'BENGAL', 'CLASSIC', 'MACKEREL', 'MARBLED'],
+            ['SABER', 'ROSETTE', 'MASKED', 'DUST', 'MAXIMUMONE', 'MAXIMUMTWO', 'MAXIMUMTHREE', 'MAXIMUMFOUR', 'MAXIMUMFIVE', 'MAXIMUMSIX'],
+            ['MAXIMUMSEVEN', 'MAXIMUMEIGHT']
+        ]
+
         for row, masks in enumerate(tortiepatchesmasks):
             for col, mask in enumerate(masks):
                 self.make_group('tortiepatchesmasks', (col, row), f"tortiemask{mask}")
 
-        # Define skin colors
-        skin_colors = [
-            ['BLACK', 'RED', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN'],
-            ['DARK', 'DARKGREY', 'GREY', 'DARKSALMON', 'SALMON', 'PEACH'],
-            ['DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE', 'BLUE', 'LIGHTBLUE']
+        for row, masks in enumerate(tortiepatchesmasksmoss):
+            for col, mask in enumerate(masks):
+                self.make_group('tortiesmoss', (col, row), f"tortiemask{mask}")
+
+        # Define skin patterns
+        skins = [
+            ["SOLID", "TIP", "MARBLE", "FRECKLE"]
         ]
 
-        for row, colors in enumerate(skin_colors):
-            for col, color in enumerate(colors):
-                self.make_group('skin', (col, row), f"skin{color}")
-                self.make_group('blep', (col, row), f"blep{color}")
+        for row, skins in enumerate(skins):
+            for col, skin in enumerate(skins):
+                self.make_group('skin', (col, row), f"skin{skin}")
 
         self.load_scars()
         self.load_symbols()
@@ -286,125 +351,67 @@ class Sprites:
         # accessories
         #to my beloved modders, im very sorry for reordering everything <333 -clay
         medcatherbs_data = [
-            ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY"],
-            ["BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER"],
-            ["OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "CLOVER", "DAISY"]
+            ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "SUNGLASSES", "LUNA MOTH", "ATLAS MOTH", "BIRD SKULL", "LUCKY CLOVER"],
+            ["BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "ANTLERS", "STICK", "FIREFLIES", "SPROUT", "MUSHROOM", "JUNIPER", "RASPBERRY", "LAVENDER"],
+            ["OAK LEAVES", "LILAC", "MAPLE SEED", "SEAWEED", "LILY PAD", "MONSTERA", "WILD FLOWERS", "TWIGS", "CLOVER", "SERPENT", "MOSS BALL"],
+            ["RAINBOW COLLAR", "RAINBOW HARNESS", "RAINBOW BANDANA"]
         ]
-        dryherbs_data = [
-            ["DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"]
-        ]
-        wild_data = [
-            ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY", "CICADA WINGS", "BLACK CICADA"]
-        ]
-
-        collars_data = [
-            ["CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME"],
-            ["GREEN", "RAINBOW", "BLACK", "SPIKES", "WHITE"],
-            ["PINK", "PURPLE", "MULTI", "INDIGO"]
-        ]
-
-        bellcollars_data = [
-            ["CRIMSONBELL", "BLUEBELL", "YELLOWBELL", "CYANBELL", "REDBELL", "LIMEBELL"],
-            ["GREENBELL", "RAINBOWBELL", "BLACKBELL", "SPIKESBELL", "WHITEBELL"],
-            ["PINKBELL", "PURPLEBELL", "MULTIBELL", "INDIGOBELL"]
-        ]
-
-        bowcollars_data = [
-            ["CRIMSONBOW", "BLUEBOW", "YELLOWBOW", "CYANBOW", "REDBOW", "LIMEBOW"],
-            ["GREENBOW", "RAINBOWBOW", "BLACKBOW", "SPIKESBOW", "WHITEBOW"],
-            ["PINKBOW", "PURPLEBOW", "MULTIBOW", "INDIGOBOW"]
-        ]
-
-        nyloncollars_data = [
-            ["CRIMSONNYLON", "BLUENYLON", "YELLOWNYLON", "CYANNYLON", "REDNYLON", "LIMENYLON"],
-            ["GREENNYLON", "RAINBOWNYLON", "BLACKNYLON", "SPIKESNYLON", "WHITENYLON"],
-            ["PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON"]
-        ]
-
-        snake_data = [
-            ["GRASS SNAKE", "BLUE RACER", "WESTERN COACHWHIP", "KINGSNAKE"]
-        ]
-
-        smallAnimal_data = [
-            ["GRAY SQUIRREL", "RED SQUIRREL", "CRAB", "WHITE RABBIT", "BLACK RABBIT", "BROWN RABBIT", "INDIAN GIANT SQUIRREL", "FAWN RABBIT", "BROWN AND WHITE RABBIT", "BLACK AND WHITE RABBIT"],
-            ["WHITE AND FAWN RABBIT", "BLACK VITILIGO RABBIT", "BROWN VITILIGO RABBIT", "FAWN VITILIGO RABBIT", "BLACKBIRD", "ROBIN", "JAY", "THRUSH", "CARDINAL", "MAGPIE"],
-            ["CUBAN TROGON", "TAN RABBIT", "TAN AND WHITE RABBIT", "TAN VITILIGO RABBIT", "RAT", "WHITE MOUSE", "BLACK MOUSE", "GRAY MOUSE", "BROWN MOUSE", "GRAY RABBIT"],
-            ["GRAY AND WHITE RABBIT", "GRAY VITILIGO RABBIT"]
-        ]
-
-        aliveInsect_data = [
-            ["BROWN SNAIL", "RED SNAIL", "WORM", "BLUE SNAIL", "ZEBRA ISOPOD", "DUCKY ISOPOD", "DAIRY COW ISOPOD", "BEETLEJUICE ISOPOD", "BEE", "RED LADYBUG"],
-            ["ORANGE LADYBUG", "YELLOW LADYBUG"]
-        ]
-
         disabilityaccs_data = [
             ["BALL", "MOUSE", "MOSSBLANKIE", "BONE"],
             ["AUTISMFLAG", "DISFLAG", "ZEBFLAG"]
         ]
 
-        booties_data = [
-            ["CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT"],
-            ["GREENBOOT", "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT"],
-            ["PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"]
-        ]
-
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
             for col, herb in enumerate(herbs):
-                self.make_group('medcatherbs', (col, row), f'acc_herbs{herb}')
-        #dryherbs
-        for row, dry in enumerate(dryherbs_data):
-            for col, dryherbs in enumerate(dry):
-                self.make_group('medcatherbs', (col, 3), f'acc_herbs{dryherbs}')
-        # wild
-        for row, wilds in enumerate(wild_data):
-            for col, wild in enumerate(wilds):
-                self.make_group('wild', (col, 0), f'acc_wild{wild}')
+                self.make_group('medcatherbs', (col, row), f'acc{herb}')
 
-        # collars
-        for row, collars in enumerate(collars_data):
-            for col, collar in enumerate(collars):
-                self.make_group('collars', (col, row), f'collars{collar}')
 
-        # bellcollars
-        for row, bellcollars in enumerate(bellcollars_data):
-            for col, bellcollar in enumerate(bellcollars):
-                self.make_group('bellcollars', (col, row), f'collars{bellcollar}')
+        # please im begging you
+        accbases_data = [
+            ["COLLAR", "HARNESS", "BANDANA", "POPPY", "HERBS", "DAISY"],
+            ["BULB", "PETALS", "FEATHER", "CICADA", "BUTTERFLY", "MOTH"],
+            ["NETTLES", "HEATHER", "GORSE", "CATMINT", "LAUREL", "IVY"],
+            ["BUTTERFLIES", "WREATH", "FLOWER WREATH", "SHELL", "CRYSTAL"]
+        ]
 
-        # bowcollars
-        for row, bowcollars in enumerate(bowcollars_data):
-            for col, bowcollar in enumerate(bowcollars):
-                self.make_group('bowcollars', (col, row), f'collars{bowcollar}')
+        for row, accbases in enumerate(accbases_data):
+            for col, accbase in enumerate(accbases):
+                self.make_group('accbase', (col, row), f'accbase{accbase}')
 
-        # nyloncollars
-        for row, nyloncollars in enumerate(nyloncollars_data):
-            for col, nyloncollar in enumerate(nyloncollars):
-                self.make_group('nyloncollars', (col, row), f'collars{nyloncollar}')
+        accadds_data = [
+            ["COLLAR", "HARNESS", "BANDANA", "POPPY", "HERBS", "DAISY"],
+            ["BULB", "PETALS", "FEATHER", "CICADA", "BUTTERFLY", "MOTH"],
+            ["NETTLES", "HEATHER", "GORSE", "CATMINT", "LAUREL", "IVY"],
+            ["BUTTERFLIES", "WREATH", "FLOWER WREATH", "SHELL", "CRYSTAL"]
+        ]
 
-        # snake accessories
-        for row, snake_accessories in enumerate(snake_data):
-            for col, snake_accessory in enumerate(snake_accessories):
-                self.make_group('snake_accessories', (col, row), f'acc_snake{snake_accessory}')
+        for row, accadds in enumerate(accadds_data):
+            for col, accadd in enumerate(accadds):
+                self.make_group('accadd', (col, row), f'accadd{accadd}')
 
-        # smallAnimal accessories
-        for row, smallAnimal_accessories in enumerate(smallAnimal_data):
-            for col, smallAnimal_accessory in enumerate(smallAnimal_accessories):
-                self.make_group('smallAnimal_accessories', (col, row), f'acc_smallAnimal{smallAnimal_accessory}')
+        accpatterns_data = [
+            ["STRIPES", "NOTES", "STARS", "IVYS", "PAWPRINTS", "PLAID"],
+            ["ZEBRA", "HEARTS", "FLORAL", "SQUIGGLE", "WAVES", "DIAMONDS"],
+            ["BUTTERFLIESONE", "BUTTERFLIESTWO", "FLOWERPRINTONE", "FLOWERPRINTTWO", "CONVERSE"]
+        ]
 
-        # aliveInsect accessories
-        for row, aliveInsect_accessories in enumerate(aliveInsect_data):
-            for col, aliveInsect_accessory in enumerate(aliveInsect_accessories):
-                self.make_group('aliveInsect_accessories', (col, row), f'acc_aliveInsect{aliveInsect_accessory}')
+        for row, accpatterns in enumerate(accpatterns_data):
+            for col, accpattern in enumerate(accpatterns):
+                self.make_group('accpattern', (col, row), f'accpattern{accpattern}')
+
+        acccollars_data = [
+            ["BELL", "BOW", "STUDDED", "FANG", "COWBOY HAT"]
+        ]
+
+        for row, acccollars in enumerate(acccollars_data):
+            for col, acccollars in enumerate(acccollars):
+                self.make_group('collaradd', (col, row), f'acccollars{acccollars}')
 
         # dismod accessories
         for row, disabilityaccs in enumerate(disabilityaccs_data):
             for col, disabilityacc in enumerate(disabilityaccs):
                 self.make_group('disabilityaccs', (col, row), f'acc_dismod{disabilityacc}')
-
-        # booties added
-        for row, bootiesaccs in enumerate(booties_data):
-            for col, bootiesacc in enumerate(bootiesaccs):
-                self.make_group('booties', (col, row), f'booties{bootiesacc}')
 
     def load_symbols(self):
         """

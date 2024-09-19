@@ -97,6 +97,121 @@ class SkillPath(Enum):
         "prophet",
     )
     GHOST = ("morbid curiosity", "ghost sense", "ghost sight", "ghost speaker")
+    # Beetle's skills
+    GARDENER = (
+        "loves to pick flowers",
+        "grows herbs",
+        "herb organizer",
+        "caretaker of the greens",
+    )
+    UNKNOWN = (
+        "intrigued about the Unknown Residence",
+        "Unknown Residence accord",
+        "deep Unknown Residence bond",
+        "unshakable Unknown Residence link",
+    )
+    WAKEFUL = (
+        "never settles down",
+        "light sleeper",
+        "alert",
+        "vigilant",
+    )
+    DELIVERER = (
+        "queen helper",
+        "helpful stork",
+        "kit deliverer",
+        "pregnancy expert",
+    )
+    DECORATOR = (
+        "makes things pretty",
+        "crafty paws",
+        "creative",
+        "decor master",
+    )
+    LEADERSHIP = (
+        "healer's helper",
+        "leads patrols",
+        "guardian's accomplice",
+        "assiduous",
+    )
+    AGILE = (
+        "parkours around camp",
+        "light-footed",
+        "lithe",
+        "quick agilest",
+    )
+    STEALTHY = (
+        "startles others",
+        "underpawed",
+        "furtive kitty",
+        "clandestine",
+    )
+    MEMORY = (
+        "remembers little details",
+        "memorious",
+        "retentive memory",
+        "mnemonist",
+    )
+    MESSENGER = (
+        "delivers messages",
+        "message-bearer",
+        "message-carrier",
+        "harbinger to the Clans",
+    )
+    ASSIST = (
+        "little helper",
+        "attentive Clanmate",
+        "alert assistant",
+        "camp's assister",
+    )
+    HISTORIAN = (
+        "remembers stories",
+        "bookkeeper",
+        "archivist",
+        "accountant of history",
+    )
+    BOOKMAKER = (
+        "loves to tell stories",
+        "journalist",
+        "novelist",
+        "author of many stories",
+    )
+    TUNNELER = (
+        "likes to dig holes",
+        "burrow maker",
+        "excavator",
+        "groundhog",
+    )
+    PATIENT = (
+        "waits their turn",
+        "serene",
+        "even-tempered",
+        "equanimous",
+    )
+    DETECTIVE = (
+        "curious about mysteries",
+        "elementary case-solver",
+        "great sleuth",
+        "masterful detective",
+    )
+    HERBALIST = (
+        "curious about remedies",
+        "herbal inventor",
+        "poison maker",
+        "creator of remedies",
+    )
+    CHEF = (
+        "seasons their food",
+        "cooks prey",
+        "gourmet meal-maker",
+        "masterful chef",
+    )
+    PRODIGY = (
+        "unusually gifted",
+        "knows a lot of facts",
+        "smart role model",
+        "seen as an omen",
+    )
 
     @staticmethod
     def get_random(exclude: list = ()):
@@ -113,6 +228,11 @@ class SkillPath(Enum):
                 SkillPath.STAR,
                 SkillPath.HEALER,
                 SkillPath.DARK,
+                # Beetle's skills
+                SkillPath.UNKNOWN,
+                SkillPath.MEMORY,
+                SkillPath.HERBALIST,
+                SkillPath.PRODIGY,
             ]
             if i not in exclude
         ]
@@ -173,6 +293,26 @@ class Skill:
         SkillPath.PROPHET: "prophesying",
         SkillPath.GHOST: "ghosts",
         SkillPath.DARK: "Dark Forest",
+        # Beetle's skills
+        SkillPath.GARDENER: "gardening",
+        SkillPath.UNKNOWN: "Unknown Residence",
+        SkillPath.WAKEFUL: "wakeful",
+        SkillPath.DELIVERER: "delivering",
+        SkillPath.DECORATOR: "decorating",
+        SkillPath.LEADERSHIP: "leading",
+        SkillPath.AGILE: "agility",
+        SkillPath.STEALTHY: "stealthiness",
+        SkillPath.MEMORY: "memorizing",
+        SkillPath.MESSENGER: "messenging",
+        SkillPath.ASSIST: "assisting",
+        SkillPath.HISTORIAN: "history keeping",
+        SkillPath.BOOKMAKER: "storymaking",
+        SkillPath.TUNNELER: "tunneling",
+        SkillPath.PATIENT: "patience",
+        SkillPath.DETECTIVE: "solving mysteries",
+        SkillPath.HERBALIST: "herbalist",
+        SkillPath.CHEF: "chef",
+        SkillPath.PRODIGY: "prodigy",
     }
 
     def __init__(self, path: SkillPath, points: int = 0, interest_only: bool = False):
@@ -322,6 +462,26 @@ class CatSkills:
         SkillPath.PROPHET: SkillTypeFlag.SUPERNATURAL,
         SkillPath.GHOST: SkillTypeFlag.SUPERNATURAL,
         SkillPath.DARK: SkillTypeFlag.SUPERNATURAL,
+        # Beetle's skills
+        SkillPath.GARDENER: SkillTypeFlag.SMART,
+        SkillPath.UNKNOWN: SkillTypeFlag.SUPERNATURAL,
+        SkillPath.WAKEFUL: SkillTypeFlag.STRONG | SkillTypeFlag.OBSERVANT,
+        SkillPath.DELIVERER: SkillTypeFlag.SMART | SkillTypeFlag.SOCIAL,
+        SkillPath.DECORATOR: SkillTypeFlag.SMART | SkillTypeFlag.OBSERVANT,
+        SkillPath.LEADERSHIP: SkillTypeFlag.STRONG | SkillTypeFlag.SMART | SkillTypeFlag.SOCIAL,
+        SkillPath.AGILE: SkillTypeFlag.AGILE | SkillTypeFlag.OBSERVANT,
+        SkillPath.STEALTHY: SkillTypeFlag.SMART | SkillTypeFlag.AGILE | SkillTypeFlag.OBSERVANT,
+        SkillPath.MEMORY: SkillTypeFlag.SMART | SkillTypeFlag.OBSERVANT,
+        SkillPath.MESSENGER: SkillTypeFlag.SOCIAL | SkillTypeFlag.OBSERVANT,
+        SkillPath.ASSIST: SkillTypeFlag.STRONG | SkillTypeFlag.SOCIAL,
+        SkillPath.HISTORIAN: SkillTypeFlag.SMART | SkillTypeFlag.OBSERVANT,
+        SkillPath.BOOKMAKER: SkillTypeFlag.SMART | SkillTypeFlag.SOCIAL,
+        SkillPath.TUNNELER: SkillTypeFlag.STRONG | SkillTypeFlag.AGILE,
+        SkillPath.PATIENT: SkillTypeFlag.SOCIAL | SkillTypeFlag.OBSERVANT,
+        SkillPath.DETECTIVE: SkillTypeFlag.SMART | SkillTypeFlag.OBSERVANT,
+        SkillPath.HERBALIST: SkillTypeFlag.SMART,
+        SkillPath.CHEF: SkillTypeFlag.AGILE | SkillTypeFlag.SOCIAL,
+        SkillPath.PRODIGY: SkillTypeFlag.SMART | SkillTypeFlag.OBSERVANT,
     }
 
     # pylint: enable=unsupported-binary-operation
