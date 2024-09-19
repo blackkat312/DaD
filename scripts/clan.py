@@ -107,7 +107,7 @@ class Clan:
 
         self.name = name
         self.leader = leader
-        self.leader_lives = 9
+        self.leader_lives = 4
         self.leader_predecessors = 0
         self.deputy = deputy
         self.deputy_predecessors = 0
@@ -208,11 +208,16 @@ class Clan:
                     "apprentice",
                     "mediator apprentice",
                     "medicine cat apprentice",
+                    "medicine cat apprentice",
                     "warrior",
+                    "warrior",
+                    "medicine cat",
+                    "medicine cat",
+                    "medicine cat",
+                    "medicine cat",
                     "medicine cat",
                     "leader",
                     "mediator",
-                    "deputy",
                     "elder",
                 ]
             ),
@@ -398,16 +403,17 @@ class Clan:
         else:
             return "No Clan"
 
-    def new_leader(self, leader):
+    def new_leader(self, leader, rolescreen=False):
         """
         TODO: DOCS
         """
         if leader:
-            self.history.add_lead_ceremony(leader)
-            self.leader = leader
             Cat.all_cats[leader.ID].status_change("leader")
-            self.leader_predecessors += 1
-            self.leader_lives = 9
+            if not (rolescreen and leader.dead):
+                self.history.add_lead_ceremony(leader)
+                self.leader = leader
+                self.leader_predecessors += 1
+                self.leader_lives = 4
         game.switches["new_leader"] = None
 
     def new_deputy(self, deputy):
@@ -419,18 +425,19 @@ class Clan:
             Cat.all_cats[deputy.ID].status_change("deputy")
             self.deputy_predecessors += 1
 
-    def new_medicine_cat(self, medicine_cat):
+    def new_medicine_cat(self, medicine_cat, rolescreen=False):
         """
         TODO: DOCS
         """
         if medicine_cat:
             if medicine_cat.status != "medicine cat":
                 Cat.all_cats[medicine_cat.ID].status_change("medicine cat")
-            if medicine_cat.ID not in self.med_cat_list:
-                self.med_cat_list.append(medicine_cat.ID)
-            medicine_cat = self.med_cat_list[0]
-            self.medicine_cat = Cat.all_cats[medicine_cat]
-            self.med_cat_number = len(self.med_cat_list)
+            if not (rolescreen and medicine_cat.dead):
+                if medicine_cat.ID not in self.med_cat_list:
+                    self.med_cat_list.append(medicine_cat.ID)
+                medicine_cat = self.med_cat_list[0]
+                self.medicine_cat = Cat.all_cats[medicine_cat]
+                self.med_cat_number = len(self.med_cat_list)
 
     def remove_med_cat(self, medicine_cat):
         """
