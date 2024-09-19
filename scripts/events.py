@@ -2645,16 +2645,16 @@ class Events:
             if cat.moons < 3:
                 transing_chance = 1
             elif cat.age == "kitten":
-                transing_chance = random.randint(0, 130)
-            elif cat.age == "adolescent":
-                transing_chance = random.randint(0, 130)
-            elif cat.age == "young adult":
                 transing_chance = random.randint(0, 140)
+            elif cat.age == "adolescent":
+                transing_chance = random.randint(0, 140)
+            elif cat.age == "young adult":
+                transing_chance = random.randint(0, 150)
             elif cat.age == "adult":
-                transing_chance = random.randint(0, 170)
+                transing_chance = random.randint(0, 180)
             else:
                 # senior adult & elder
-                transing_chance = random.randint(0, 200)
+                transing_chance = random.randint(0, 210)
 
             if transing_chance:
                 # transing_chance != 0, no trans kitties today...    L
