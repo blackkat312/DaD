@@ -193,6 +193,23 @@ class Pelt:
     heather_colors = ["PURPLE", "LILAC", "LIGHT PURPLE", "BRIGHT PURPLE"]
     dry_colors = ["BROWN", "DARK BROWN", "BRONZE", "LIGHT BROWN"]
 
+    # ohdan's accessories
+    snake_accessories = [
+        "GRASS SNAKE", "BLUE RACER", "WESTERN COACHWHIP", "KINGSNAKE"
+    ]
+    smallAnimal_accessories = [
+        "GRAY SQUIRREL", "RED SQUIRREL", "CRAB", "WHITE RABBIT", "BLACK RABBIT", "BROWN RABBIT",
+        "INDIAN GIANT SQUIRREL", "FAWN RABBIT", "BROWN AND WHITE RABBIT", "BLACK AND WHITE RABBIT",
+        "WHITE AND FAWN RABBIT", "BLACK VITILIGO RABBIT", "BROWN VITILIGO RABBIT", "FAWN VITILIGO RABBIT", "BLACKBIRD",
+        "ROBIN", "JAY", "THRUSH", "CARDINAL", "MAGPIE", "CUBAN TROGON", "TAN RABBIT", "TAN AND WHITE RABBIT",
+        "TAN VITILIGO RABBIT", "RAT", "WHITE MOUSE", "BLACK MOUSE", "GRAY MOUSE", "BROWN MOUSE", "GRAY RABBIT",
+        "GRAY AND WHITE RABBIT", "GRAY VITILIGO RABBIT"
+    ]
+    aliveInsect_accessories = [
+        "BROWN SNAIL", "RED SNAIL", "WORM", "BLUE SNAIL", "ZEBRA ISOPOD", "DUCKY ISOPOD", "DAIRY COW ISOPOD",
+        "BEETLEJUICE ISOPOD", "BEE", "RED LADYBUG", "ORANGE LADYBUG", "YELLOW LADYBUG"
+    ]
+
     # dad accessories
     toy_accessories = [
         "BALL", "MOUSE", "BONE"
@@ -202,6 +219,10 @@ class Pelt:
     ]
     flag_accessories = [
         "AUTISMFLAG", "DISFLAG", "ZEBFLAG"
+    ]
+    booties = [
+        "CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT", "RAINBOWBOOT",
+        "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"
     ]
 
     all_natural_accessories = [plant_accessories, wild_accessories, plant2_accessories]
