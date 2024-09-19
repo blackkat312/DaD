@@ -135,7 +135,9 @@ class Romantic_Events:
         if cat_from.ID == cat_to.ID:
             return False
 
+
         relevant_dict = deepcopy(Romantic_Events.ROMANTIC_INTERACTIONS)
+
         if cat_to.ID in cat_from.mate and not cat_to.dead:
             relevant_dict = deepcopy(Romantic_Events.MATE_INTERACTIONS)
 
@@ -203,11 +205,8 @@ class Romantic_Events:
             in_de_crease, chosen_interaction.intensity, rel_type
         )
 
-        # give cats injuries if the game mode is not classic
-        if (
-            len(chosen_interaction.get_injuries) > 0
-            and game.clan.game_mode != "classic"
-        ):
+        # give cats injuries
+        if len(chosen_interaction.get_injuries) > 0:
             for abbreviations, injury_dict in chosen_interaction.get_injuries.items():
                 if "injury_names" not in injury_dict:
                     print(
@@ -359,7 +358,7 @@ class Romantic_Events:
             if (
                 cat_mate
                 and "grief stricken" not in cat.illnesses
-                and ((cat_mate.dead and cat_mate.dead_for >= 4) or cat_mate.outside)
+                and (cat_mate.dead and cat_mate.dead_for >= 12)
             ):
                 # randint is a slow function, don't call it unless we have to.
                 if not cat_mate.no_mates and random.random() > 0.5:
@@ -406,6 +405,7 @@ class Romantic_Events:
         # TODO - make this better
         had_fight = not int(random.random() * 3)
 
+
         # TODO : more varied breakup text.
         cat_from.unset_mate(cat_to, breakup=False)
 
@@ -434,6 +434,7 @@ class Romantic_Events:
             relationship_to.dislike += 10
             relationship_from.dislike += 10
 
+
         if had_fight:
             text = f"{cat_from.name} and {cat_to.name} had a huge fight and broke up."
         else:
@@ -442,6 +443,7 @@ class Romantic_Events:
             Single_Event(text, ["relation", "misc"], [cat_from.ID, cat_to.ID])
         )
         return True
+
 
     @staticmethod
     def handle_confession(cat_from) -> bool:
@@ -561,7 +563,7 @@ class Romantic_Events:
             return False
 
         # Moving on, not breakups, occur when one mate is dead or outside.
-        if cat_from.dead or cat_from.outside or cat_to.dead or cat_to.outside:
+        if cat_from.dead or (cat_from.outside and cat_from.status not in ["loner", "kittypet", "rogue", "former Clancat"]) or cat_to.dead or (cat_to.outside and cat_to.status not in ["loner", "kittypet", "rogue", "former Clancat"]):
             return False
 
         chance_number = Romantic_Events.get_breakup_chance(cat_from, cat_to)
