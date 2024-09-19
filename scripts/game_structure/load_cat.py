@@ -47,12 +47,10 @@ def json_load():
         game.switches["traceback"] = e
         raise
 
-    old_tortie_patches = convert["old_tortie_patches"]
-
     # create new cat objects
     for i, cat in enumerate(cat_data):
         try:
-
+            new_dead_outside = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             new_cat = Cat(
                 ID=cat["ID"],
                 prefix=cat["name_prefix"],
@@ -69,24 +67,13 @@ def json_load():
                 loading_cat=True,
             )
 
-            if cat["eye_colour"] == "BLUE2":
-                cat["eye_colour"] = "COBALT"
-            if cat["eye_colour"] in ["BLUEYELLOW", "BLUEGREEN"]:
-                if cat["eye_colour"] == "BLUEYELLOW":
-                    cat["eye_colour2"] = "YELLOW"
-                elif cat["eye_colour"] == "BLUEGREEN":
-                    cat["eye_colour2"] = "GREEN"
-                cat["eye_colour"] = "BLUE"
-            if "eye_colour2" in cat:
-                if cat["eye_colour2"] == "BLUE2":
-                    cat["eye_colour2"] = "COBALT"
-
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],
                 length=cat["pelt_length"],
                 colour=cat["pelt_color"],
                 eye_color=cat["eye_colour"],
                 eye_colour2=cat["eye_colour2"] if "eye_colour2" in cat else None,
+                eye_pattern=cat["eye_pattern"] if "eye_pattern" in cat else None,
                 paralyzed=cat["paralyzed"],
                 kitten_sprite=(
                     cat["sprite_kitten"]
@@ -125,10 +112,14 @@ def json_load():
                 tortiepattern=cat["tortie_pattern"],
                 pattern=cat["pattern"],
                 skin=cat["skin"],
-                blep=cat["blep"] if "blep" in cat else False,
+                skin_color=cat["skin_color"] if "skin_color" in cat else Pelt.skin_color,
                 tint=cat["tint"] if "tint" in cat else "none",
                 scars=cat["scars"] if "scars" in cat else [],
                 accessory=cat["accessory"],
+                accessory_color=cat["accessory_color"] if "accessory_color" in cat else "RED",
+                accessory_color2=cat["accessory_color2"] if "accessory_color2" in cat else "RED",
+                accessory_pattern=cat["accessory_pattern"] if "accessory_pattern" in cat else "STRIPES",
+                accessory_pattern2=cat["accessory_pattern2"] if "accessory_pattern2" in cat else "STRIPES",
                 opacity=cat["opacity"] if "opacity" in cat else 100,
             )
 
@@ -228,6 +219,7 @@ def json_load():
             new_cat.trainee_end_moon = cat["trainee_end_moon"] if "trainee_end_moon" in cat else -1
 
             new_cat.outside = cat["outside"] if "outside" in cat else False
+            new_cat.dead_outside_display = cat["dead_outside_display"] if "dead_outside_display" in cat else new_dead_outside
             new_cat.faded_offspring = (
                 cat["faded_offspring"] if "faded_offspring" in cat else []
             )
@@ -268,12 +260,9 @@ def json_load():
 
         # load the relationships
         try:
-            if not cat.dead:
-                cat.load_relationship_of_cat()
-                if cat.relationships is not None and len(cat.relationships) < 1:
-                    cat.init_all_relationships()
-            else:
-                cat.relationships = {}
+            cat.load_relationship_of_cat()
+            if cat.relationships is not None and len(cat.relationships) < 1:
+                cat.init_all_relationships()
         except Exception as e:
             logger.exception(
                 f"There was an error loading relationships for cat #{cat}."

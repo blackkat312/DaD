@@ -502,6 +502,7 @@ class ChangeCatName(UIWindow):
             manager=MANAGER,
             container=self,
             tool_tip_text="Randomize the prefix",
+            sound_id="dice_roll",
         )
 
         self.random_suffix = UIImageButton(
@@ -511,6 +512,7 @@ class ChangeCatName(UIWindow):
             manager=MANAGER,
             container=self,
             tool_tip_text="Randomize the suffix",
+            sound_id="dice_roll",
         )
 
         # 636
@@ -605,6 +607,7 @@ class ChangeCatName(UIWindow):
                     self.name_changed.hide()
 
             elif event.ui_element == self.random_prefix:
+
                 if self.suffix_entry_box.text:
                     use_suffix = self.suffix_entry_box.text
                 else:
@@ -636,6 +639,7 @@ class ChangeCatName(UIWindow):
                         self.the_cat.pelt.tortiepattern,
                     ).suffix
                 )
+
             elif event.ui_element == self.toggle_spec_block_on:
                 self.specsuffic_hidden = True
                 self.suffix_entry_box.enable()
@@ -1054,7 +1058,7 @@ class KillCat(UIWindow):
             "",
             object_id="#unchecked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the leader will lose all of {PRONOUN/m_c/poss} lives",
+                "If this is checked, the guardian will lose all of {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1065,7 +1069,7 @@ class KillCat(UIWindow):
             "",
             object_id="#checked_checkbox",
             tool_tip_text=process_text(
-                "If this is checked, the leader will lose all of {PRONOUN/m_c/poss} lives",
+                "If this is checked, the guardian will lose all of {PRONOUN/m_c/poss} lives",
                 cat_dict,
             ),
             manager=MANAGER,
@@ -1090,7 +1094,7 @@ class KillCat(UIWindow):
 
             self.all_lives_check.hide()
             self.life_text = pygame_gui.elements.UITextBox(
-                "Take all of the leader's lives",
+                "Take all of the monarch's lives",
                 scale(pygame.Rect((120, 295), (900, 80))),
                 object_id="#text_box_30_horizleft",
                 manager=MANAGER,
@@ -1500,8 +1504,8 @@ class ChangelogPopup(UIWindow):
             with open("changelog.txt", "r", encoding="utf-8") as read_file:
                 file_cont = read_file.read()
 
-        if get_version_info().is_dev() and not get_version_info().is_source_build:
-            dynamic_changelog = True
+        #if get_version_info().is_dev() and not get_version_info().is_source_build:
+        #    dynamic_changelog = True
 
         if dynamic_changelog:
             commits = file_cont.splitlines()
@@ -1725,6 +1729,7 @@ class SaveAsImage(UIWindow):
             starting_height=2,
             container=self,
             anchors={"centerx": "centerx"},
+            sound_id="save",
         )
 
         self.open_data_directory_button = UIImageButton(
@@ -1959,11 +1964,12 @@ class ChangeCatToggles(UIWindow):
             tool_tip = "The afterlife guide can never fade."
         elif self.the_cat.prevent_fading:
             box_type = "#checked_checkbox"
-            tool_tip = "Allow the cat to fade away after being dead for 202 moons."
+            tool_tip = "Allow the cat to fade away after being dead for 25 moons."
         else:
             box_type = "#unchecked_checkbox"
-            tool_tip = "Prevent the cat from fading away after being dead for 202 moons."
+            tool_tip = "Prevent the cat from fading away after being dead for 25 moons."
 
+        # Fading
         self.checkboxes["prevent_fading"] = UIImageButton(
             scale(pygame.Rect(45, 50, 68, 68)),
             "",
@@ -2015,7 +2021,7 @@ class ChangeCatToggles(UIWindow):
             tool_tip_text=tool_tip,
         )
 
-        # No Mates
+        # No mates
         if self.the_cat.no_mates:
             box_type = "#checked_checkbox"
             tool_tip = "Allow the cat to automatically take a mate, break up, or have romantic interactions with non-mates."
