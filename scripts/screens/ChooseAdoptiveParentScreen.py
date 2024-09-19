@@ -90,6 +90,8 @@ class ChooseAdoptiveParentScreen(Screens):
             return
 
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            self.mute_button_pressed(event)
+
             # Cat buttons list
             if event.ui_element == self.back_button:
                 self.selected_mate_index = 0
@@ -155,6 +157,7 @@ class ChooseAdoptiveParentScreen(Screens):
 
     def screen_switches(self):
         """Sets up the elements that are always on the page"""
+        self.show_mute_buttons()
 
         self.info = pygame_gui.elements.UITextBox(
             "If a cat is added as an adoptive parent, they will be displayed on the family page and considered a full relative. "
@@ -206,9 +209,10 @@ class ChooseAdoptiveParentScreen(Screens):
             scale(pygame.Rect((50, 50), (306, 60))),
             "",
             object_id="#previous_cat_button",
+            sound_id="page_flip",
         )
         self.next_cat_button = UIImageButton(
-            scale(pygame.Rect((1244, 50), (306, 60))), "", object_id="#next_cat_button"
+            scale(pygame.Rect((1244, 50), (306, 60))), "", object_id="#next_cat_button", sound_id="page_flip",
         )
         self.back_button = UIImageButton(
             scale(pygame.Rect((50, 1290), (210, 60))), "", object_id="#back_button"
@@ -832,12 +836,13 @@ class ChooseAdoptiveParentScreen(Screens):
         valid_parents = [
             inter_cat
             for inter_cat in Cat.all_cats_list
-            if not (
-                inter_cat.dead or inter_cat.outside or inter_cat.exiled
-            )  # Adoptive parents cant be dead or outside
+            if
+            not (inter_cat.dead and not self.the_cat.dead)
+            and not (self.the_cat.dead and not inter_cat.dead)
+            and not (inter_cat.outside or inter_cat.exiled)  # Adoptive parents can't be outside
             and inter_cat.ID != self.the_cat.ID  # Can't be your own adoptive parent
             and inter_cat.moons - self.the_cat.moons
-            >= 14  # Adoptive parent must be at least 14 moons older. -> own child can't adopt you
+            >= 12  # Adoptive parent must be at least 14 moons older. -> own child can't adopt you
             and inter_cat.ID
             not in self.the_cat.mate  # Can't set your mate your adoptive parent.
             and inter_cat.ID

@@ -26,6 +26,8 @@ class AllegiancesScreen(Screens):
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
             self.menu_button_pressed(event)
+            self.mute_button_pressed(event)
+
 
     def on_use(self):
         pass
@@ -41,6 +43,7 @@ class AllegiancesScreen(Screens):
 
         # Set Menu Buttons.
         self.show_menu_buttons()
+        self.show_mute_buttons()
         self.set_disabled_menu_buttons(["allegiances"])
         self.update_heading_text(f"{game.clan.name}Clan")
         allegiance_list = self.get_allegiances_text()
@@ -118,6 +121,8 @@ class AllegiancesScreen(Screens):
         """Determine Text. Ouputs list of tuples."""
 
         living_cats = [i for i in Cat.all_cats.values() if not (i.dead or i.outside)]
+        living_cats = sorted(living_cats, key=lambda x: x.moons, reverse=True)
+
         living_meds = []
         living_mediators = []
         living_warriors = []
@@ -160,7 +165,7 @@ class AllegiancesScreen(Screens):
         outputs = []
         if game.clan.leader and not (game.clan.leader.dead or game.clan.leader.outside):
             outputs.append(
-                ["<b><u>LEADER</u></b>", self.generate_one_entry(game.clan.leader)]
+                ["<b><u>MONARCH</u></b>", self.generate_one_entry(game.clan.leader)]
             )
 
         # Deputy Box:
@@ -173,9 +178,9 @@ class AllegiancesScreen(Screens):
         if living_meds:
             _box = ["", ""]
             if len(living_meds) == 1:
-                _box[0] = "<b><u>MEDICINE CAT</u></b>"
+                _box[0] = "<b><u>HEALER</u></b>"
             else:
-                _box[0] = "<b><u>MEDICINE CATS</u></b>"
+                _box[0] = "<b><u>HEALERS</u></b>"
 
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_meds])
             outputs.append(_box)
@@ -194,10 +199,7 @@ class AllegiancesScreen(Screens):
         # Warrior Box:
         if living_warriors:
             _box = ["", ""]
-            if len(living_warriors) == 1:
-                _box[0] = "<b><u>WARRIOR</u></b>"
-            else:
-                _box[0] = "<b><u>WARRIORS</u></b>"
+            _box[0] = "<b><u>WARRIORS</u></b>"
 
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_warriors])
             outputs.append(_box)
@@ -205,10 +207,7 @@ class AllegiancesScreen(Screens):
         # Apprentice Box:
         if living_apprentices:
             _box = ["", ""]
-            if len(living_apprentices) == 1:
-                _box[0] = "<b><u>APPRENTICE</u></b>"
-            else:
-                _box[0] = "<b><u>APPRENTICES</u></b>"
+            _box[0] = "<b><u>APPRENTICES</u></b>"
 
             _box[1] = "\n".join(
                 [self.generate_one_entry(i) for i in living_apprentices]

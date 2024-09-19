@@ -30,6 +30,7 @@ class CeremonyScreen(Screens):
 
     def screen_switches(self):
         self.hide_menu_buttons()
+        self.show_mute_buttons()
 
         self.the_cat = Cat.all_cats.get(game.switches['cat'])
         if self.the_cat.status == 'leader':
@@ -40,7 +41,7 @@ class CeremonyScreen(Screens):
             self.header = pygame_gui.elements.UITextBox(str(self.the_cat.name) + ' has no ceremonies to view.',
                                                         scale(pygame.Rect((200, 180), (1200, -1))),
                                                         object_id=get_text_box_theme(), manager=MANAGER)
-        if self.the_cat.status == 'leader' and not self.the_cat.dead:
+        if self.the_cat.status == 'leader':
             self.life_text = History.get_lead_ceremony(self.the_cat)
 
         else:
@@ -77,7 +78,10 @@ class CeremonyScreen(Screens):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
             if event.ui_element == self.back_button:
                 self.change_screen('profile screen')
-        
+            else:
+                self.mute_button_pressed(event)
+
+
         elif event.type == pygame.KEYDOWN and game.settings['keybinds']:
             if event.key == pygame.K_ESCAPE:
                 self.change_screen('profile screen')
