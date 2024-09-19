@@ -201,7 +201,7 @@
 		]
 	},
 	"cat_generation": {
-		"base_congenital_condition_denominator": 10,
+		"base_congenital_condition_denominator": 15,
 		"base_congenital_condition_compare": 1,
 		"abandoned_kit_modifier": 3,
 		"extra_congenital_condition": 25,
@@ -215,7 +215,7 @@
 		"vit_chance": 7,
 		"random_point_chance": 3,
 		"comment": [
-			"base_congenital_condition_denominator and base_congenital_condition_compare (1/10 or 10% by default) -",
+			"base_congenital_condition_denominator and base_congenital_condition_compare (1/15 or ~6.67% by default) -",
 			"works as 'if randint(1, base_congenital_condition_denominator) <= base_congenital_condition_compare'",
 
 			"abandoned_kit_modifier (3 by default) - reduces base_congenital_condition_denominator by its value if a",
