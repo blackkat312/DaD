@@ -23,6 +23,7 @@ from scripts.cat.history import History
 from scripts.cat.names import names
 from scripts.cat.pelts import Pelt
 from scripts.cat.sprites import sprites
+
 from scripts.game_structure.game_essentials import game, screen_x, screen_y
 
 
@@ -46,16 +47,16 @@ def get_alive_clan_queens(living_cats):
             cat.fetch_cat(i)
             for i in parents
             if cat.fetch_cat(i)
-               and not (cat.fetch_cat(i).dead or cat.fetch_cat(i).outside)
+            and not (cat.fetch_cat(i).dead or cat.fetch_cat(i).outside)
         ]
         if not parents:
             continue
 
         if (
-                len(parents) == 1
-                or len(parents) > 2
-                or all(i.gender == "male" for i in parents)
-                or parents[0].gender == "female"
+            len(parents) == 1
+            or len(parents) > 2
+            or all(i.gender == "tom" for i in parents)
+            or parents[0].gender == "molly"
         ):
             if parents[0].ID in queen_dict:
                 queen_dict[parents[0].ID].append(cat)
@@ -74,7 +75,7 @@ def get_alive_clan_queens(living_cats):
 
 
 def get_alive_status_cats(
-        Cat, get_status: list, working: bool = False, sort: bool = False
+    Cat, get_status: list, working: bool = False, sort: bool = False
 ) -> list:
     """
     returns a list of cat objects for all living cats of get_status in Clan
@@ -146,8 +147,8 @@ def get_cats_same_age(Cat, cat, age_range=10):
             continue
 
         if (
-                inter_cat.moons <= cat.moons + age_range
-                and inter_cat.moons <= cat.moons - age_range
+            inter_cat.moons <= cat.moons + age_range
+            and inter_cat.moons <= cat.moons - age_range
         ):
             cats.append(inter_cat)
 
@@ -175,7 +176,7 @@ def get_free_possible_mates(cat):
 
 
 def get_random_moon_cat(
-        Cat, main_cat, parent_child_modifier=True, mentor_app_modifier=True
+    Cat, main_cat, parent_child_modifier=True, mentor_app_modifier=True
 ):
     """
     returns a random cat for use in moon events
@@ -192,9 +193,9 @@ def get_random_moon_cat(
     possible_r_c = list(
         filter(
             lambda c: not c.dead
-                      and not c.exiled
-                      and not c.outside
-                      and (c.ID != main_cat.ID),
+            and not c.exiled
+            and not c.outside
+            and (c.ID != main_cat.ID),
             Cat.all_cats.values(),
         )
     )
@@ -217,10 +218,10 @@ def get_random_moon_cat(
                 random_cat = Cat.fetch_cat(choice(possible_parents))
         if mentor_app_modifier:
             if (
-                    main_cat.status
-                    in ["apprentice", "mediator apprentice", "medicine cat apprentice"]
-                    and main_cat.mentor
-                    and not int(random() * 3)
+                main_cat.status
+                in ["apprentice", "mediator apprentice", "medicine cat apprentice"]
+                and main_cat.mentor
+                and not int(random() * 3)
             ):
                 random_cat = Cat.fetch_cat(main_cat.mentor)
             elif main_cat.apprentice and not int(random() * 3):
@@ -299,7 +300,7 @@ def change_clan_relations(other_clan, difference):
 
 
 def create_new_cat_block(
-        Cat, Relationship, event, in_event_cats: dict, i: int, attribute_list: List[str]
+    Cat, Relationship, event, in_event_cats: dict, i: int, attribute_list: List[str]
 ) -> list:
     """
     Creates a single new_cat block and then generates and returns the cats within the block
@@ -371,14 +372,14 @@ def create_new_cat_block(
             give_mates.extend(event.new_cats[index])
 
     # determine gender
-    if "male" in attribute_list:
-        gender = "male"
-    elif "female" in attribute_list:
-        gender = "female"
+    if "tom" in attribute_list:
+        gender = "tom"
+    elif "molly" in attribute_list:
+        gender = "molly"
     elif (
-            "can_birth" in attribute_list and not game.clan.clan_settings["same sex birth"]
+        "can_birth" in attribute_list and not game.clan.clan_settings["same sex birth"]
     ):
-        gender = "female"
+        gender = "molly"
     else:
         gender = None
 
@@ -592,7 +593,7 @@ def create_new_cat_block(
             parent1=parent1.ID if parent1 else None,
             parent2=parent2.ID if parent2 else None,
             is_parent= "age:has_kits" in attribute_list
-            )
+        )
 
         # NEXT
         # add relations to bio parents, if needed
@@ -601,7 +602,6 @@ def create_new_cat_block(
         # THIS DOES NOT ADD RELATIONS TO CATS IN THE EVENT, those are added within the relationships block of the event
 
         for n_c in new_cats:
-
             # SET MATES
             for inter_cat in give_mates:
                 if n_c == inter_cat or n_c.ID in inter_cat.mate:
@@ -661,24 +661,24 @@ def get_other_clan(clan_name):
 
 
 def create_new_cat(
-        Cat,
-        new_name: bool = False,
-        loner: bool = False,
-        kittypet: bool = False,
-        kit: bool = False,
-        litter: bool = False,
-        other_clan: bool = None,
-        backstory: bool = None,
-        status: str = None,
-        age: int = None,
-        gender: str = None,
-        thought: str = "Is looking around the camp with wonder",
-        alive: bool = True,
-        outside: bool = False,
-        parent1: str = None,
-        parent2: str = None,
-        is_parent: bool = False,
-        can_be_neutered = True
+    Cat,
+    new_name: bool = False,
+    loner: bool = False,
+    kittypet: bool = False,
+    kit: bool = False,
+    litter: bool = False,
+    other_clan: bool = None,
+    backstory: bool = None,
+    status: str = None,
+    age: int = None,
+    gender: str = None,
+    thought: str = "Is looking around the camp with wonder",
+    alive: bool = True,
+    outside: bool = False,
+    parent1: str = None,
+    parent2: str = None,
+    is_parent: bool = False,
+    can_be_neutered = True
 ) -> list:
     """
     This function creates new cats and then returns a list of those cats
@@ -706,8 +706,8 @@ def create_new_cat(
         backstory = choice(backstory)
 
     if backstory in (
-            BACKSTORIES["backstory_categories"]["former_clancat_backstories"]
-            or BACKSTORIES["backstory_categories"]["otherclan_categories"]
+        BACKSTORIES["backstory_categories"]["former_clancat_backstories"]
+        or BACKSTORIES["backstory_categories"]["otherclan_categories"]
     ):
         other_clan = True
 
@@ -751,7 +751,7 @@ def create_new_cat(
     for index in range(number_of_cats):
         # setting gender
         if not gender:
-            _gender = choice(["female", "male"])
+            _gender = choice(["molly", "tom"])
         else:
             _gender = gender
 
@@ -770,9 +770,9 @@ def create_new_cat(
             if kittypet:
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 5) > 3:
-                    accessory = choice([choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.collars), choice(Pelt.booties)])
+                    accessory = choice(Pelt.collars)
             elif (
-                    loner and randint(1, 3) == 1
+                loner and randint(1, 3) == 1
             ):  # try to give name from full loner name list
                 name = choice(names.names_dict["loner_names"])
                 if randint(1, 5) == 1:
@@ -826,8 +826,14 @@ def create_new_cat(
                 )
 
         # give em a collar if they got one
-        if accessory and not (("NOTAIL" in new_cat.pelt.scars or "HALFTAIL" in new_cat.pelt.scars) and accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CLOVER", "DAISY"]):
+        if accessory:
             new_cat.pelt.accessory = accessory
+            new_cat.pelt.accessory_color = choice(new_cat.pelt.twoleg_acc_colors)
+            new_cat.pelt.accessory_color2 = choice(new_cat.pelt.twoleg_acc_colors)
+        if new_cat.pelt.accessory == "STUDDEDCOLLAR":
+            new_cat.pelt.accessory_color2 = choice(new_cat.pelt.metal_colors)
+        elif new_cat.pelt.accessory == "BELLCOLLAR":
+            new_cat.pelt.accessory_color2 = choice(new_cat.pelt.metal_colors)
 
         if game.clan.clan_settings["tnr"]:
             neutered_this_moon = False
@@ -958,7 +964,7 @@ def create_new_cat(
 
 
 def get_highest_romantic_relation(
-        relationships, exclude_mate=False, potential_mate=False
+    relationships, exclude_mate=False, potential_mate=False
 ):
     """Returns the relationship with the highest romantic value."""
     max_love_value = 0
@@ -969,7 +975,7 @@ def get_highest_romantic_relation(
         if exclude_mate and rel.cat_from.ID in rel.cat_to.mate:
             continue
         if potential_mate and not rel.cat_to.is_potential_mate(
-                rel.cat_from, for_love_interest=True
+            rel.cat_from, for_love_interest=True
         ):
             continue
         if rel.romantic_love > max_love_value:
@@ -1065,8 +1071,8 @@ def get_cats_of_romantic_interest(cat):
 
         # Extra check to ensure they are potential mates
         if (
-                inter_cat.is_potential_mate(cat, for_love_interest=True)
-                and cat.relationships[inter_cat.ID].romantic_love > 0
+            inter_cat.is_potential_mate(cat, for_love_interest=True)
+            and cat.relationships[inter_cat.ID].romantic_love > 0
         ):
             cats.append(inter_cat)
     return cats
@@ -1121,7 +1127,7 @@ def get_amount_of_cats_with_relation_value_towards(cat, value, all_cats):
 
 
 def filter_relationship_type(
-        group: list, filter_types: List[str], event_id: str = None, patrol_leader=None
+    group: list, filter_types: List[str], event_id: str = None, patrol_leader=None
 ):
     """
     filters for specific types of relationships between groups of cat objects, returns bool
@@ -1298,7 +1304,7 @@ def filter_relationship_type(
             relevant_relationships = list(
                 filter(
                     lambda rel: rel.cat_to.ID in group_ids
-                                and rel.cat_to.ID != inter_cat.ID,
+                    and rel.cat_to.ID != inter_cat.ID,
                     list(inter_cat.relationships.values()),
                 )
             )
@@ -1352,7 +1358,7 @@ def filter_relationship_type(
 
 
 def gather_cat_objects(
-        Cat, abbr_list: List[str], event, stat_cat=None, extra_cat=None
+    Cat, abbr_list: List[str], event, stat_cat=None, extra_cat=None
 ) -> list:
     """
     gathers cat objects from list of abbreviations used within an event format block
@@ -1410,7 +1416,7 @@ def gather_cat_objects(
 
 
 def unpack_rel_block(
-        Cat, relationship_effects: List[dict], event=None, stat_cat=None, extra_cat=None
+    Cat, relationship_effects: List[dict], event=None, stat_cat=None, extra_cat=None
 ):
     """
     Unpacks the info from the relationship effect block used in patrol and moon events, then adjusts rel values
@@ -1563,17 +1569,17 @@ def unpack_rel_block(
 
 
 def change_relationship_values(
-        cats_to: list,
-        cats_from: list,
-        romantic_love: int = 0,
-        platonic_like: int = 0,
-        dislike: int = 0,
-        admiration: int = 0,
-        comfortable: int = 0,
-        jealousy: int = 0,
-        trust: int = 0,
-        auto_romance: bool = False,
-        log: str = None,
+    cats_to: list,
+    cats_from: list,
+    romantic_love: int = 0,
+    platonic_like: int = 0,
+    dislike: int = 0,
+    admiration: int = 0,
+    comfortable: int = 0,
+    jealousy: int = 0,
+    trust: int = 0,
+    auto_romance: bool = False,
+    log: str = None,
 ):
     """
     changes relationship values according to the parameters.
@@ -1605,7 +1611,6 @@ def change_relationship_values(
     # pick out the correct cats
     for single_cat_from in cats_from:
         for single_cat_to in cats_to:
-
             # make sure we aren't trying to change a cat's relationship with themself
             if single_cat_from == single_cat_to:
                 continue
@@ -1618,8 +1623,8 @@ def change_relationship_values(
 
             # here we just double-check that the cats are allowed to be romantic with each other
             if (
-                    single_cat_from.is_potential_mate(single_cat_to, for_love_interest=True)
-                    or single_cat_to.ID in single_cat_from.mate
+                single_cat_from.is_potential_mate(single_cat_to, for_love_interest=True)
+                or single_cat_to.ID in single_cat_from.mate
             ):
                 # if cat already has romantic feelings then automatically increase romantic feelings
                 # when platonic feelings would increase
@@ -1651,15 +1656,15 @@ def change_relationship_values(
             if log and isinstance(log, str):
                 if single_cat_to.moons <= 1:
                     log_text = (
-                            log
-                            + f"- {single_cat_to.name} was {single_cat_to.moons} moon old"
+                        log
+                        + f"- {single_cat_to.name} was {single_cat_to.moons} moon old"
                     )
                     if log_text not in rel.log:
                         rel.log.append(log_text)
                 else:
                     log_text = (
-                            log
-                            + f"- {single_cat_to.name} was {single_cat_to.moons} moons old"
+                        log
+                        + f"- {single_cat_to.name} was {single_cat_to.moons} moons old"
                     )
                     if log_text not in rel.log:
                         rel.log.append(log_text)
@@ -1795,7 +1800,7 @@ def adjust_prey_abbr(patrol_text):
 
 
 def get_special_snippet_list(
-        chosen_list, amount, sense_groups=None, return_string=True
+    chosen_list, amount, sense_groups=None, return_string=True
 ):
     """
     function to grab items from various lists in snippet_collections.json
@@ -1819,14 +1824,13 @@ def get_special_snippet_list(
 
     # these lists don't get sense specific snippets, so is handled first
     if chosen_list in ["dream_list", "story_list"]:
-
         if (
-                chosen_list == "story_list"
+            chosen_list == "story_list"
         ):  # story list has some biome specific things to collect
             snippets = SNIPPETS[chosen_list]["general"]
             snippets.extend(SNIPPETS[chosen_list][biome])
         elif (
-                chosen_list == "clair_list"
+            chosen_list == "clair_list"
         ):  # the clair list also pulls from the dream list
             snippets = SNIPPETS[chosen_list]
             snippets.extend(SNIPPETS["dream_list"])
@@ -1930,12 +1934,18 @@ def history_text_adjust(text, other_clan_name, clan, other_cat_rc=None):
                         text = " ".join(modify)
                         break
 
-        text = text.replace('o_c_n', str(other_clan_name))
+        text = text.replace("o_c_n", str(other_clan_name))
 
     if "c_n" in text:
         text = text.replace("c_n", clan.name)
     if "r_c" in text and other_cat_rc:
         text = selective_replace(text, "r_c", str(other_cat_rc.name))
+
+    text = text.replace("Guardianship", "Leadership")
+    text = text.replace("guardianship", "leadership")
+    text = text.replace("Guardian", "Monarch")
+    text = text.replace("guardian", "monarch")
+
     return text
 
 
@@ -1950,7 +1960,7 @@ def selective_replace(text, pattern, replacement):
         if start_brace != -1 and end_brace != -1 and start_brace < index < end_brace:
             i = index + len(pattern)
         else:
-            text = text[:index] + replacement + text[index + len(pattern):]
+            text = text[:index] + replacement + text[index + len(pattern) :]
             i = index + len(replacement)
 
     return text
@@ -1990,24 +2000,30 @@ def ongoing_event_text_adjust(Cat, text, clan=None, other_clan_name=None):
 
     text = text.replace("c_n", clan_name + "Clan")
 
+    text = text.replace("Guardianship", "Leadership")
+    text = text.replace("guardianship", "leadership")
+    text = text.replace("Guardian", "Monarch")
+    text = text.replace("guardian", "monarch")
+
     return text
 
 
 def event_text_adjust(
-        Cat,
-        text,
-        patrol_leader=None,
-        main_cat=None,
-        random_cat=None,
-        stat_cat=None,
-        victim_cat=None,
-        patrol_cats: list = None,
-        patrol_apprentices: list = None,
-        new_cats: list = None,
-        multi_cats: list = None,
-        clan=None,
-        other_clan=None,
-        chosen_herb: str = None,
+    Cat,
+    text,
+    *,
+    patrol_leader=None,
+    main_cat=None,
+    random_cat=None,
+    stat_cat=None,
+    victim_cat=None,
+    patrol_cats: list = None,
+    patrol_apprentices: list = None,
+    new_cats: list = None,
+    multi_cats: list = None,
+    clan=None,
+    other_clan=None,
+    chosen_herb: str = None,
 ):
     """
     handles finding abbreviations in the text and replacing them appropriately, returns the adjusted text
@@ -2049,7 +2065,11 @@ def event_text_adjust(
 
     # patrol_lead
     if "p_l" in text:
-        replace_dict["p_l"] = (str(patrol_leader.name), choice(patrol_leader.pronouns))
+        if patrol_leader:
+            replace_dict["p_l"] = (
+                str(patrol_leader.name),
+                choice(patrol_leader.pronouns),
+            )
 
     # random_cat
     if "r_c" in text:
@@ -2209,22 +2229,27 @@ def event_text_adjust(
             chosen_herb = chosen_herb.replace("_", " ")
         text = text.replace("given_herb", str(chosen_herb))
 
+    text = text.replace("Guardianship", "Leadership")
+    text = text.replace("guardianship", "leadership")
+    text = text.replace("Guardian", "Monarch")
+    text = text.replace("guardian", "monarch")
+
     return text
 
 
 def leader_ceremony_text_adjust(
-        Cat,
-        text,
-        leader,
-        life_giver=None,
-        virtue=None,
-        extra_lives=None,
+    Cat,
+    text,
+    leader,
+    life_giver=None,
+    virtue=None,
+    extra_lives=None,
 ):
     """
     used to adjust the text for leader ceremonies
     """
     replace_dict = {
-        "m_c_star": (str(leader.name.prefix + "star"), choice(leader.pronouns)),
+        "m_c_star": (str(leader.name.prefix + "light"), choice(leader.pronouns)),
         "m_c": (str(leader.name.prefix + leader.name.suffix), choice(leader.pronouns)),
     }
 
@@ -2245,20 +2270,25 @@ def leader_ceremony_text_adjust(
 
     text = text.replace("c_n", str(game.clan.name) + "Clan")
 
+    text = text.replace("Guardianship", "Leadership")
+    text = text.replace("guardianship", "leadership")
+    text = text.replace("Guardian", "Monarch")
+    text = text.replace("guardian", "monarch")
+
     return text
 
 
 def ceremony_text_adjust(
-        Cat,
-        text,
-        cat,
-        old_name=None,
-        dead_mentor=None,
-        mentor=None,
-        previous_alive_mentor=None,
-        random_honor=None,
-        living_parents=(),
-        dead_parents=(),
+    Cat,
+    text,
+    cat,
+    old_name=None,
+    dead_mentor=None,
+    mentor=None,
+    previous_alive_mentor=None,
+    random_honor=None,
+    living_parents=(),
+    dead_parents=(),
 ):
     clanname = str(game.clan.name + "Clan")
 
@@ -2334,9 +2364,9 @@ def ceremony_text_adjust(
         )
 
     if (
-            "dead_par1" in adjust_text
-            and "dead_par2" in adjust_text
-            and len(dead_parents) >= 2
+        "dead_par1" in adjust_text
+        and "dead_par2" in adjust_text
+        and len(dead_parents) >= 2
     ):
         cat_dict["dead_par1"] = (
             str(dead_parents[0].name),
@@ -2359,12 +2389,18 @@ def ceremony_text_adjust(
 
     adjust_text = process_text(adjust_text, cat_dict)
 
+    adjust_text = adjust_text.replace("Guardianship", "Leadership")
+    adjust_text = adjust_text.replace("guardianship", "leadership")
+    adjust_text = adjust_text.replace("Guardian", "Monarch")
+    adjust_text = adjust_text.replace("guardian", "monarch")
+
     return adjust_text, random_living_parent, random_dead_parent
 
+
 def get_pronouns(Cat):
-    """ Get a cat's pronoun even if the cat has faded to prevent crashes (use gender-neutral pronouns when the cat has faded) """
+    """Get a cat's pronoun even if the cat has faded to prevent crashes (use gender-neutral pronouns when the cat has faded)"""
     if Cat.pronouns == []:
-        return{
+        return {
             "subject": "they",
             "object": "them",
             "poss": "their",
@@ -2377,7 +2413,7 @@ def get_pronouns(Cat):
 
 
 def shorten_text_to_fit(
-        name, length_limit, font_size=None, font_type="resources/fonts/NotoSans-Medium.ttf"
+    name, length_limit, font_size=None, font_type="resources/fonts/NotoSans-Medium.ttf"
 ):
     length_limit = (
         length_limit // 2 if not game.settings["fullscreen"] else length_limit
@@ -2501,12 +2537,12 @@ def clan_symbol_sprite(clan, return_string=False, force_light=False):
 
 
 def generate_sprite(
-        cat,
-        life_state=None,
-        scars_hidden=False,
-        acc_hidden=False,
-        always_living=False,
-        no_not_working=False,
+    cat,
+    life_state=None,
+    scars_hidden=False,
+    acc_hidden=False,
+    always_living=False,
+    no_not_working=False,
 ) -> pygame.Surface:
     """
     Generates the sprite for a cat, with optional arguments that will override certain things.
@@ -2531,23 +2567,23 @@ def generate_sprite(
 
     # setting the cat_sprite (bc this makes things much easier)
     if (
-            not no_not_working
-            and cat.not_working()
-            and age != "newborn"
-            and game.config["cat_sprites"]["sick_sprites"]
+        not no_not_working
+        and cat.not_working()
+        and age != "newborn"
+        and game.config["cat_sprites"]["sick_sprites"]
     ):
         if age in ["kitten", "adolescent"]:
-            cat_sprite = str(19)
+            cat_sprite = str(37)
         else:
-            cat_sprite = str(18)
+            cat_sprite = str(36)
     elif cat.pelt.paralyzed and age != "newborn":
         if age in ["kitten", "adolescent"]:
-            cat_sprite = str(17)
+            cat_sprite = str(32)
         else:
             if cat.pelt.length == "long":
-                cat_sprite = str(16)
+                cat_sprite = str(31)
             else:
-                cat_sprite = str(15)
+                cat_sprite = str(30)
     else:
         if age == "elder" and not game.config["fun"]["all_cats_are_newborn"]:
             age = "senior"
@@ -2557,48 +2593,361 @@ def generate_sprite(
         else:
             cat_sprite = str(cat.pelt.cat_sprites[age])
 
-    new_sprite = pygame.Surface(
-        (sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA
-    )
+    new_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
 
     # generating the sprite
     try:
-        if cat.pelt.name not in ["Tortie", "Calico"]:
-            new_sprite.blit(
-                sprites.sprites[
-                    cat.pelt.get_sprites_name() + cat.pelt.colour + cat_sprite
-                ],
-                (0, 0),
-            )
+        # 0unders/highlight, 1base, 2mid, 3dark, 4shade, 5line
+        color_dict = {
+            "WHITE": ["#fff9ee", "#fff9ee", "#fff3de", "#fff3de", "#e0cdac", "#a2957e"],
+            "SNOW WHITE": ["#fafcff", "#fafcff", "#f1f7ff", "#f1f7ff", "#cad3e0", "#8d98a6"],
+            "GRAY": ["#f1ebe3", "#cec8be", "#a9a7a2", "#8d8d8d", "#828282", "#474747"],
+            "SLATE": ["#e5e5e5", "#bfc0c4", "#989aa0", "#70727c", "#474747", "#3b3d4c"],
+            "DARK GRAY": ["#a29b92", "#786e63", "#5b544c", "#413c39", "#474747", "#1a1512"],
+            "DARK SLATE": ["#959499", "#56555a", "#49484d", "#2b292c", "#201e21", "#070508"],
+            "PALE BLUE": ["#d7dde3", "#b5bbc0", "#a2adb8", "#909ca7", "#6f8496", "#4c6073"],
+            "BLUE": ["#d0d8e3", "#8e9aa8", "#79899b", "#5a6878", "#485666", "#1d3147"],
+            "PALE LILAC": ["#eee1d7", "#c2afa2", "#a0928a", "#655d57", "#574639", "#302014"],
+            "LILAC": ["#e5dbd0", "#9f9596", "#7a6e78", "#51464e", "#42373f", "#1f141c"],
+            "SILVER": ["#f2f1f0", "#bbb8b5", "#7d7d7c", "#1c1b19", "#000000", "#000000"],
+            "BLACK": ["#3b3d3a", "#212526", "#141a1e", "#0b0f12", "#000000", "#000000"],
+            "SOOT BLACK": ["#44474f", "#32353e", "#1a1a22", "#101018", "#000000", "#000000"],
+            "OBSIDIAN": ["#1c1b19", "#1c1b19", "#12100d", "#12100d", "#000000", "#000000"],
+            "GHOST": ["#2c2c2c", "#1c1b19", "#1c1b19", "#12100d", "#000000", "#000000"],
+            "PALE FIRE": ["#ffd37d", "#ffa041", "#e5673c", "#903027", "#7f281f", "#480c06"],
+            "FIRE": ["#f1b875", "#ec8b19", "#d75a09", "#bd3604", "#a62400", "#780100"],
+            "DARK FIRE": ["#ffa041", "#c63e10", "#ae351d", "#841b11", "#780100", "#450000"],
+            "PALE GINGER": ["#ffe8cc", "#eeaf8e", "#e18e70", "#c15832", "#b24b26", "#872603"],
+            "GINGER": ["#ecb088", "#c85928", "#ac3205", "#891400", "#7a0800", "#540000"],
+            "DARK GINGER": ["#d78859", "#992c10", "#861800", "#7a0a00", "#400000", "#2e0000"],
+            "PALE GOLD": ["#f9dcb4", "#f9c999", "#f0b883", "#e09e60", "#d68f4b", "#a36021"],
+            "YELLOW": ["#fcd9a2", "#fdb772", "#ec9a4a", "#d88533", "#c97828", "#964b01"],
+            "GOLD": ["#eabb8a", "#d7934d", "#bd6d35", "#ad530d", "#974302", "#752600"],
+            "BRONZE": ["#fcbd87", "#eb772e", "#ca540a", "#ae4500", "#9b3700", "#751800"],
+            "ROSE": ["#f1e3d7", "#e1bdaf", "#d6a594", "#c15832", "#a65031", "#802d0f"],
+            "LIGHT CREAM": ["#faede0", "#f1d5ba", "#ecc8a4", "#e2b791", "#d6a273", "#99683b"],
+            "CREAM": ["#fae1c6", "#f1c89f", "#e8b78b", "#dda775", "#d09865", "#875323"],
+            "DARK CREAM": ["#eed1b4", "#e1ae75", "#d2995a", "#bd7b39", "#aa6827", "#713e0b"],
+            "PALE BROWN": ["#d7cbc6", "#aa9991", "#9b897b", "#7d6559", "#6e564a", "#473125"],
+            "ALMOND": ["#e8cdbd", "#bfa088", "#a6856d", "#896956", "#70513e", "#422411"],
+            "ACORN": ["#dfb28b", "#c78350", "#ab632d", "#924b12", "#823c05", "#5e1c00"],
+            "LIGHT BROWN": ["#d6b496", "#c49570", "#b27f56", "#996235", "#8a5327", "#5c2800"],
+            "BROWN": ["#b78b6f", "#986747", "#78492d", "#603419", "#54280e", "#260000"],
+            "DARK BROWN": ["#755640", "#593923", "#482a16", "#2c1c12", "#1f140d", "#000000"],
+            "PALE CINNAMON": ["#e0af8a", "#c17041", "#a64c1e", "#882f0c", "#751c00", "#4c0000"],
+            "CINNAMON": ["#d6966c", "#a54e2c", "#903615", "#7f2309", "#6e1500", "#3b0000"],
+            "SABLE": ["#d08b55", "#9e623c", "#784626", "#623214", "#562809", "#2a0500"],
+            "DARK SABLE": ["#c87b3f", "#8e4f29", "#633013", "#4b1c01", "#3a1200", "#200300"],
+            "BIRCH": ["#f4e4d3", "#e3c8b7", "#cea98e", "#a0693a", "#905a2d", "#5b3311"],
+            "PALE LAVENDER": ["#e3ccc7", "#c0a7a3", "#b29894", "#907675", "#806665", "#59403f"],
+            "LAVENDER": ["#dec2b6", "#b89388", "#9a7872", "#82605e", "#6e4c4a", "#4c2b29"],
+            "DARK LAVENDER": ["#dfd0c7", "#a5928d", "#897273", "#5e484a", "#523c3e", "#301b1d"],
+            "DARK ORANGE": ["#e2cfba", "#b0671c", "#904301", "#3b2724", "#301c19", "#261110"],
+            "DARK GOLD": ["#f7f5f1", "#f2c777", "#e99818", "#533e3d", "#473231", "#261110"],
+            "COFFEE": ["#fbebdb", "#dfb892", "#a7664c", "#75312d", "#4b120e", "#310000"],
+            "PALE EMBER": ["#ffd29b", "#ffaf7c", "#e87957", "#ac3a18", "#7a271e", "#511823"],
+            "SANDY": ["#f5d7a9", "#e5b082", "#d0986d", "#ac6540", "#593830", "#2e1a1a"],
+            "EMBER": ["#f6d6b2", "#eb9d5f", "#ce5d28", "#8c2b28", "#432323", "#250e0e"],
+            "HEATHER BLUE": ["#fbe9fa", "#ccc3de", "#adadd8", "#7e85ae", "#686e8b", "#42475e"],
+            "COCOA": ["#c7a59b", "#87655e", "#5b3b37", "#402222", "#1d0b0d", "#000000"],
+            "WARM HONEY": ["#f4e1b1", "#eab76e", "#de8030", "#bd4f03", "#9a2e01", "#670200"],
+            "CHOCOLATE": ["#f9d5b7", "#c19381", "#ad8172", "#3b231a", "#27120a", "#000000"],
+            "SIENNA": ["#dbb798", "#d19a79", "#bf6745", "#ac4c34", "#a0392a", "#600300"],
+            "GRANITE": ["#c6b8c0", "#a1949b", "#897c83", "#4e3c4c", "#31202f", "#040003"],
+            "BLUE GRAY": ["#b7b8aa", "#7c8b90", "#5f737a", "#3e5963", "#223941", "#061217"],
+            "SANDSTONE": ["#c79271", "#b4805f", "#9e745c", "#8b7263", "#5a4e46", "#35251a"],
+        }
+
+        # SPRITE GENERATION
+        # thank you Kori ;-;
+        base_name = None
+        base_color = None
+        tortie_base = None
+        tortie_color = None
+        base_tint = None
+
+        # SETTING UP EACH PIECE
+        base_pelt = None
+        mid_pelt = None
+        highlight_pelt = None
+        dark_pelt = None
+        line_pelt = None
+        unders_pelt = None
+        shade_pelt = None
+
+        pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
+        tortie_pelt = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
+
+        # Hello! I'm sorry
+        #Unders(U), Mid(M), Dark(D), Shade(S), Highlight(H)
+
+        swap_layers = ["SOKOKE", "BRAIDED"]
+        u_layers = ["CLASSIC", "MACKEREL", "BROKENMACKEREL", "BROKENBRAIDED", "SPECKLED", "BENGAL", "LONGDAN", "FADED",
+                    "MARBLED", "SPLOTCH", "SABER", "SMUDGE", "ROSETTE", "SMOKE", "MIST", "LYNX", "CHARCOALBENGAL", "FOG"]
+        m_layers = ["CLASSIC", "MACKEREL", "BROKENMACKEREL", "BROKENBRAIDED", "SOLID", "TABBY", "BRINDLE", "DUST",
+                    "SPECKLED", "BENGAL", "LONGDAN", "FADED", "MARBLED", "SPLOTCH", "SABER", "SMUDGE", "ROSETTE",
+                    "ABYSSINIAN", "SINGLESTRIPE", "MASKED", "TICKED", "AGOUTI", "SMOKE", "MIST", "LYNX", "CHARCOALBENGAL", "FOG"]
+        d_layers = ["CLASSIC", "MACKEREL", "BROKENMACKEREL", "BROKENBRAIDED", "SPECKLED", "BENGAL", "LONGDAN", "FADED",
+                    "MARBLED", "SPLOTCH", "SABER", "SMUDGE", "ROSETTE", "ABYSSINIAN", "SINGLESTRIPE", "MASKED",
+                    "TICKED", "AGOUTI", "SMOKE", "MIST", "LYNX", "CHARCOALBENGAL", "FOG", "TABBY"]
+        s_layers = ["ABYSSINIAN", "SINGLESTRIPE", "MASKED", "TICKED", "AGOUTI", "SMOKE", "MIST", "LYNX", "CHARCOALBENGAL", "FOG"]
+        h_layers = ["SOLID", "TABBY", "BRINDLE", "DUST", "SPECKLED", "BENGAL", "LONGDAN", "FADED", "MARBLED", "SPLOTCH",
+                    "SABER", "SMUDGE", "ROSETTE", "ABYSSINIAN", "SINGLESTRIPE", "MASKED", "TICKED", "AGOUTI", "SMOKE",
+                    "MIST", "LYNX", "CHARCOALBENGAL", "FOG"]
+
+
+        if cat.pelt.name not in ['Tortie', 'Calico']:
+            base_name = str(cat.pelt.name).upper()
+            base_color = str(cat.pelt.colour).upper()
         else:
-            # Base Coat
-            new_sprite.blit(
-                sprites.sprites[cat.pelt.tortiebase + cat.pelt.colour + cat_sprite],
-                (0, 0),
-            )
+            base_name = str(cat.pelt.tortiebase).upper()
+            base_color = str(cat.pelt.colour).upper()
+            tortie_base = str(cat.pelt.tortiepattern).upper()
+            tortie_color = str(cat.pelt.tortiecolour).upper()
 
-            # Create the patch image
-            if cat.pelt.tortiepattern == "Single":
-                tortie_pattern = "SingleColour"
+        if base_name:
+            # all pelts use base
+            base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            base_tint.fill(color_dict[base_color][1])
+            base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
+            base_pelt.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            if base_name in swap_layers:
+                if base_name == "SOKOKE":
+                    mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    mid_tint.fill(color_dict[base_color][2])
+                    mid_pelt = sprites.sprites['mid' + base_name + cat_sprite].copy().convert_alpha()
+                    mid_pelt.blit(mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    dark_tint.fill(color_dict[base_color][4])
+                    dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
+                    dark_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    shade_tint.fill(color_dict[base_color][3])
+                    shade_pelt = sprites.sprites['shade' + base_name + cat_sprite].copy().convert_alpha()
+                    shade_pelt.blit(shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    highlight_tint.fill(color_dict[base_color][0])
+                    highlight_pelt = sprites.sprites['highlight' + base_name + cat_sprite].copy().convert_alpha()
+                    highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                elif base_name == "BRAIDED":
+                    unders_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    unders_tint.fill(color_dict[base_color][0])
+                    unders_pelt = sprites.sprites['under' + base_name + cat_sprite].copy().convert_alpha()
+                    unders_pelt.blit(unders_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    mid_tint.fill(color_dict[base_color][2])
+                    mid_pelt = sprites.sprites['mid' + base_name + cat_sprite].copy().convert_alpha()
+                    mid_pelt.blit(mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    dark_tint.fill(color_dict[base_color][4])
+                    dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
+                    dark_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    shade_tint.fill(color_dict[base_color][3])
+                    shade_pelt = sprites.sprites['shade' + base_name + cat_sprite].copy().convert_alpha()
+                    shade_pelt.blit(shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
             else:
-                tortie_pattern = cat.pelt.tortiepattern
+                if base_name in u_layers:
+                    unders_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    unders_tint.fill(color_dict[base_color][0])
+                    unders_pelt = sprites.sprites['under' + base_name + cat_sprite].copy().convert_alpha()
+                    unders_pelt.blit(unders_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if base_name in m_layers:
+                    mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    mid_tint.fill(color_dict[base_color][2])
+                    mid_pelt = sprites.sprites['mid' + base_name + cat_sprite].copy().convert_alpha()
+                    mid_pelt.blit(mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if base_name in d_layers:
+                    dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    dark_tint.fill(color_dict[base_color][3])
+                    dark_pelt = sprites.sprites['dark' + base_name + cat_sprite].copy().convert_alpha()
+                    dark_pelt.blit(dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if base_name in s_layers:
+                    shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    shade_tint.fill(color_dict[base_color][4])
+                    shade_pelt = sprites.sprites['shade' + base_name + cat_sprite].copy().convert_alpha()
+                    shade_pelt.blit(shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if base_name in h_layers:
+                    highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    highlight_tint.fill(color_dict[base_color][0])
+                    highlight_pelt = sprites.sprites['highlight' + base_name + cat_sprite].copy().convert_alpha()
+                    highlight_pelt.blit(highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-            patches = sprites.sprites[
-                tortie_pattern + cat.pelt.tortiecolour + cat_sprite
-            ].copy()
-            patches.blit(
-                sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite],
-                (0, 0),
-                special_flags=pygame.BLEND_RGBA_MULT,
-            )
+        if base_name:
+            line_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            line_tint.fill(color_dict[base_color][5])
+            line_pelt = sprites.sprites['line' + cat_sprite].copy().convert_alpha()
+            line_pelt.blit(line_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-            # Add patches onto cat.
+
+        # repeat for torties
+        if tortie_base:
+            tortie_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            tortie_base_tint.fill(color_dict[tortie_color][1])
+            tortie_base_pelt = sprites.sprites['baseSOLID' + cat_sprite].copy().convert_alpha()
+            tortie_base_pelt.blit(tortie_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            if tortie_base in swap_layers:
+                if tortie_base == "SOKOKE":
+                    tortie_mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_mid_tint.fill(color_dict[tortie_color][2])
+                    tortie_mid_pelt = sprites.sprites['mid' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_mid_pelt.blit(tortie_mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    tortie_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_dark_tint.fill(color_dict[tortie_color][4])
+                    tortie_dark_pelt = sprites.sprites['dark' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_dark_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    tortie_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_shade_tint.fill(color_dict[tortie_color][3])
+                    tortie_shade_pelt = sprites.sprites['shade' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_shade_pelt.blit(tortie_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_highlight_tint.fill(color_dict[tortie_color][0])
+                    tortie_highlight_pelt = sprites.sprites['highlight' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                elif tortie_base == "BRAIDED":
+                    tortie_unders_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_unders_tint.fill(color_dict[tortie_color][0])
+                    tortie_unders_pelt = sprites.sprites['under' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_unders_pelt.blit(tortie_unders_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    tortie_mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_mid_tint.fill(color_dict[tortie_color][2])
+                    tortie_mid_pelt = sprites.sprites['mid' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_mid_pelt.blit(tortie_mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    tortie_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_dark_tint.fill(color_dict[tortie_color][4])
+                    tortie_dark_pelt = sprites.sprites['dark' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_dark_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    tortie_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_shade_tint.fill(color_dict[tortie_color][3])
+                    tortie_shade_pelt = sprites.sprites['shade' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_shade_pelt.blit(tortie_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            else:
+                if tortie_base in u_layers:
+                    tortie_unders_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_unders_tint.fill(color_dict[tortie_color][0])
+                    tortie_unders_pelt = sprites.sprites['under' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_unders_pelt.blit(tortie_unders_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if tortie_base in m_layers:
+                    tortie_mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_mid_tint.fill(color_dict[tortie_color][2])
+                    tortie_mid_pelt = sprites.sprites['mid' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_mid_pelt.blit(tortie_mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if tortie_base in d_layers:
+                    tortie_dark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_dark_tint.fill(color_dict[tortie_color][3])
+                    tortie_dark_pelt = sprites.sprites['dark' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_dark_pelt.blit(tortie_dark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if tortie_base in s_layers:
+                    tortie_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_shade_tint.fill(color_dict[tortie_color][4])
+                    tortie_shade_pelt = sprites.sprites['shade' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_shade_pelt.blit(tortie_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if tortie_base in h_layers:
+                    tortie_highlight_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tortie_highlight_tint.fill(color_dict[tortie_color][0])
+                    tortie_highlight_pelt = sprites.sprites['highlight' + tortie_base + cat_sprite].copy().convert_alpha()
+                    tortie_highlight_pelt.blit(tortie_highlight_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        if tortie_base:
+            tortie_line_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            tortie_line_tint.fill(color_dict[tortie_color][5])
+            tortie_line_pelt = sprites.sprites['line' + cat_sprite].copy().convert_alpha()
+            tortie_line_pelt.blit(tortie_line_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+
+        # Now we must make the jam
+
+        if base_name in swap_layers:
+            if base_name == "SOKOKE":
+                new_sprite.blit(base_pelt, (0, 0))
+                new_sprite.blit(mid_pelt, (0, 0))
+                new_sprite.blit(dark_pelt, (0, 0))
+                new_sprite.blit(shade_pelt, (0, 0))
+                new_sprite.blit(highlight_pelt, (0, 0))
+                new_sprite.blit(line_pelt, (0, 0))
+            if base_name == "BRAIDED":
+                new_sprite.blit(base_pelt, (0, 0))
+                new_sprite.blit(unders_pelt, (0, 0))
+                new_sprite.blit(mid_pelt, (0, 0))
+                new_sprite.blit(dark_pelt, (0, 0))
+                new_sprite.blit(shade_pelt, (0, 0))
+                new_sprite.blit(line_pelt, (0, 0))
+        else:
+            new_sprite.blit(base_pelt, (0, 0))
+            if base_name in u_layers:
+                new_sprite.blit(unders_pelt, (0, 0))
+            if base_name in m_layers:
+                new_sprite.blit(mid_pelt, (0, 0))
+            if base_name in d_layers:
+                new_sprite.blit(dark_pelt, (0, 0))
+            if base_name in s_layers:
+                new_sprite.blit(shade_pelt, (0, 0))
+            if base_name in h_layers:
+                new_sprite.blit(highlight_pelt, (0, 0))
+            new_sprite.blit(line_pelt, (0, 0))
+
+        if tortie_base:
+            patches = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
+            if tortie_base in swap_layers:
+                if tortie_base == "SOKOKE":
+                    patches.blit(tortie_base_pelt, (0, 0))
+                    patches.blit(tortie_mid_pelt, (0, 0))
+                    patches.blit(tortie_dark_pelt, (0, 0))
+                    patches.blit(tortie_shade_pelt, (0, 0))
+                    patches.blit(tortie_highlight_pelt, (0, 0))
+                    patches.blit(tortie_line_pelt, (0, 0))
+                    patches.blit(sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite], (0, 0),
+                                 special_flags=pygame.BLEND_RGBA_MULT)
+                    new_sprite.blit(patches, (0, 0))
+                if tortie_base == "BRAIDED":
+                    patches.blit(tortie_base_pelt, (0, 0))
+                    patches.blit(tortie_unders_pelt, (0, 0))
+                    patches.blit(tortie_mid_pelt, (0, 0))
+                    patches.blit(tortie_dark_pelt, (0, 0))
+                    patches.blit(tortie_shade_pelt, (0, 0))
+                    patches.blit(tortie_line_pelt, (0, 0))
+                    patches.blit(sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite], (0, 0),
+                                 special_flags=pygame.BLEND_RGBA_MULT)
+                    new_sprite.blit(patches, (0, 0))
+            else:
+                patches.blit(tortie_base_pelt, (0, 0))
+                if tortie_base in u_layers:
+                    patches.blit(tortie_unders_pelt, (0, 0))
+                if tortie_base in m_layers:
+                    patches.blit(tortie_mid_pelt, (0, 0))
+                if tortie_base in d_layers:
+                    patches.blit(tortie_dark_pelt, (0, 0))
+                if tortie_base in s_layers:
+                    patches.blit(tortie_shade_pelt, (0, 0))
+                if tortie_base in h_layers:
+                    patches.blit(tortie_highlight_pelt, (0, 0))
+                patches.blit(tortie_line_pelt, (0, 0))
+            patches.blit(sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite], (0, 0),
+                         special_flags=pygame.BLEND_RGBA_MULT)
             new_sprite.blit(patches, (0, 0))
 
         # TINTS
         if (
-                cat.pelt.tint != "none"
-                and cat.pelt.tint in sprites.cat_tints["tint_colours"]
+            cat.pelt.tint != "none"
+            and cat.pelt.tint in sprites.cat_tints["tint_colours"]
         ):
             # Multiply with alpha does not work as you would expect - it just lowers the alpha of the
             # entire surface. To get around this, we first blit the tint onto a white background to dull it,
@@ -2607,12 +2956,13 @@ def generate_sprite(
             tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tint]))
             new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
         if (
-                cat.pelt.tint != "none"
-                and cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]
+            cat.pelt.tint != "none"
+            and cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]
         ):
             tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
             tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tint]))
             new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+
 
         # draw white patches
         if cat.pelt.white_patches is not None:
@@ -2622,9 +2972,9 @@ def generate_sprite(
 
             # Apply tint to white patches.
             if (
-                    cat.pelt.white_patches_tint != "none"
-                    and cat.pelt.white_patches_tint
-                    in sprites.white_patches_tints["tint_colours"]
+                cat.pelt.white_patches_tint != "none"
+                and cat.pelt.white_patches_tint
+                in sprites.white_patches_tints["tint_colours"]
             ):
                 tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
                 tint.fill(
@@ -2643,9 +2993,9 @@ def generate_sprite(
         if cat.pelt.points:
             points = sprites.sprites["white" + cat.pelt.points + cat_sprite].copy()
             if (
-                    cat.pelt.white_patches_tint != "none"
-                    and cat.pelt.white_patches_tint
-                    in sprites.white_patches_tints["tint_colours"]
+                cat.pelt.white_patches_tint != "none"
+                and cat.pelt.white_patches_tint
+                in sprites.white_patches_tints["tint_colours"]
             ):
                 tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
                 tint.fill(
@@ -2663,18 +3013,142 @@ def generate_sprite(
                 sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite], (0, 0)
             )
 
-        # draw eyes & scars1
-        eyes = sprites.sprites["eyes" + cat.pelt.eye_colour + cat_sprite].copy()
-        if cat.pelt.eye_colour2 != None:
-            eyes.blit(
-                sprites.sprites["eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0)
-            )
-        if cat.pelt.lazy_eye:
-            eyes.blit(
-                sprites.sprites["lazyeyes" + cat.pelt.lazy_eye + cat_sprite], (0, 0)
-            )
-        new_sprite.blit(eyes, (0, 0))
+        # draw eyes
+        # base0, mid1, top2, shade3
+        eyecolor_dict = {
+            "YELLOW": ["#fffde3", "#ceb94c", "#9e8033", "#90631d"],
+            "AMBER": ["#f2e085", "#c77d40", "#a14a1e", "#903203"],
+            "HAZEL": ["#f2e085", "#aeb670", "#665e2e", "#544c1c"],
+            "PALE GREEN": ["#dde895", "#77ab5d", "#356735", "#214f21"],
+            "GREEN": ["#b5ecad", "#569669", "#20473d", "#06271f"],
+            "BLUE": ["#adeef0", "#6ab1d4", "#2f4f9c", "#052573"],
+            "DARK BLUE": ["#afc7f3", "#4d5190", "#261b3b", "#170e27"],
+            "GREY": ["#c9c9c9", "#8f8f8f", "#3f3f3f", "#2e2e2e"],
+            "CYAN": ["#d9f3ef", "#8cbdbd", "#549c9c", "#347d7d"],
+            "EMERALD": ["#fef696", "#4ddfa2", "#279582", "#006c58"],
+            "HEATHER BLUE": ["#b8b7ed", "#7875ba", "#3c3a86", "#1d1c62"],
+            "SUN-LIT ICE": ["#fff9ac", "#6eb7d7", "#213d8a", "#0c2773"],
+            "COPPER": ["#fff9ac", "#c75212", "#8a1e02", "#710200"],
+            "SAGE": ["#fff9ac", "#6a8f7b", "#255039", "#1b3f2c"],
+            "BRIGHT BLUE": ["#fff8d5", "#57c0d0", "#125a80", "#00375e"],
+            "PALE BLUE": ["#e5f5f8", "#acdfe8", "#6e9dad", "#4b7e90"],
+            "LAVENDER": ["#fff9ac", "#7b78bd", "#3c3a86", "#22206a"],
+            "DARK GREY": ["#f1e3c0", "#47485a", "#131719", "#060808"],
+            "PALE YELLOW": ["#f6eecb", "#f2dd7d", "#eb9f1d", "#c66200"],
+            "GOLD": ["#f6eecb", "#efb931", "#a95d03", "#903400"],
+            "LIME": ["#fef8ac", "#969c27", "#343507", "#222200"],
+            "HAZELNUT": ["#f2bf85", "#974911", "#4b1100", "#380000"],
+            "DARK AMBER": ["#f1b995", "#ef4c3f", "#790200", "#600000"],
+            "SLATE": ["#bdc9e7", "#6b789b", "#303951", "#21293c"],
+            "RUBY": ["#f8d0af", "#dd631d", "#b10e0e", "#900000"],
+            "LILAC": ["#f6e6bf", "#ec8eae", "#5566f1", "#6235d7"],
+            "LIGHT GREY": ["#f3f8fa", "#c8d5db", "#7791a0", "#567384"],
+            "PINK": ["#f2e7e7", "#f7c0d6", "#9c415b", "#84243f"],
+            "DARK HAZEL": ["#f9e7df", "#767e5b", "#442f21", "#311f13"],
+            "CHOCOLATE": ["#bf9c8a", "#422b20", "#0c0502", "#000000"],
+            "PURPLE": ["#dbdbfa", "#bc75f9", "#535eeb", "#00218a"],
+            "SUNSET": ["#f6cbd8", "#ff0051", "#790043", "#05002e"],
+            "CARAMEL": ["#fbf8f2", "#deb888", "#b76f44", "#904518"],
+            "AUTUMN": ["#eedcb6", "#fa915c", "#b16c49", "#7a3f21"],
+            "MAGENTA": ["#ffeec1", "#ff5779", "#813b4b", "#4f2430"],
+            "SUMMER": ["#fdf0bd", "#fbb341", "#1c674d", "#01412b"],
+            "SEASIDE": ["#f6ebc6", "#f87e4d", "#0e7fa6", "#1c1e5e"],
+            "MIDNIGHT": ["#b6ddec", "#0d588a", "#59295b", "#210755"],
+            "WINTER": ["#faf4ee", "#93adc6", "#3686b6", "#49346a"],
+            "ECLIPSE": ["#f3e2ac", "#a44321", "#530e1e", "#061427"],
+            "CRIMSON": ["#f3e2d2", "#d23535", "#880000", "#4d0000"],
+            "SPRING": ["#fdfcea", "#c9e7be", "#6bc8a1", "#4c846c"],
+            "ICE": ["#f4f5f9", "#d7e3fa", "#a8c5ff", "#78a2fb"],
+            "FOREST": ["#f5ecc0", "#88a446", "#346635", "#1e4132"],
+            "COFFEE": ["#ffefca", "#9a6052", "#4b2e33", "#2c1115"],
+            "BRIGHT GREEN": ["#ccf3a3", "#8dec85", "#1de377", "#00993c"],
+            "MOCHA": ["#f5ebe4", "#c6a484", "#6d5d54", "#433d38"],
+            "SEA GREEN": ["#d6f1c2", "#8ae5b8", "#1ac4a4", "#00878b"]
+        }
 
+        eye_base = None
+        eye_mid = None
+        eye_top = None
+        eye_shade = None
+        hc_eye_base = None
+        hc_eye_mid = None
+        hc_eye_top = None
+        hc_eye_shade = None
+
+
+        eye_color = str(cat.pelt.eye_colour).upper()
+        eye_color2 = str(cat.pelt.eye_colour2).upper()
+
+        eye_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_base_tint.fill(eyecolor_dict[eye_color][0])
+        eye_base = sprites.sprites['eyebase' + cat_sprite].copy().convert_alpha()
+        eye_base.blit(eye_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        eye_mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_mid_tint.fill(eyecolor_dict[eye_color][1])
+        eye_mid = sprites.sprites['eyemid' + cat_sprite].copy().convert_alpha()
+        eye_mid.blit(eye_mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        eye_top_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_top_tint.fill(eyecolor_dict[eye_color][2])
+        eye_top = sprites.sprites['eyetop' + cat_sprite].copy().convert_alpha()
+        eye_top.blit(eye_top_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        eye_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_shade_tint.fill(eyecolor_dict[eye_color][3])
+        eye_shade = sprites.sprites['eyeshade' + cat_sprite].copy().convert_alpha()
+        eye_shade.blit(eye_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        if cat.pelt.eye_colour2 != None:
+            hc_eye_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            hc_eye_base_tint.fill(eyecolor_dict[eye_color2][0])
+            hc_eye_base = sprites.sprites['eyebase' + cat_sprite].copy().convert_alpha()
+            hc_eye_base.blit(hc_eye_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            hc_eye_mid_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            hc_eye_mid_tint.fill(eyecolor_dict[eye_color2][1])
+            hc_eye_mid = sprites.sprites['eyemid' + cat_sprite].copy().convert_alpha()
+            hc_eye_mid.blit(hc_eye_mid_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            hc_eye_top_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            hc_eye_top_tint.fill(eyecolor_dict[eye_color2][2])
+            hc_eye_top = sprites.sprites['eyetop' + cat_sprite].copy().convert_alpha()
+            hc_eye_top.blit(hc_eye_top_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            hc_eye_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            hc_eye_shade_tint.fill(eyecolor_dict[eye_color2][3])
+            hc_eye_shade = sprites.sprites['eyeshade' + cat_sprite].copy().convert_alpha()
+            hc_eye_shade.blit(eye_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        new_sprite.blit(eye_base, (0, 0))
+        new_sprite.blit(eye_mid, (0, 0))
+        new_sprite.blit(eye_top, (0, 0))
+        new_sprite.blit(eye_shade, (0, 0))
+
+        if cat.pelt.eye_colour2 != None:
+            second_eye = sprites.sprites['eyebase' + cat_sprite].copy().convert_alpha()
+            second_eye.blit(hc_eye_base, (0, 0))
+            second_eye.blit(hc_eye_mid, (0, 0))
+            second_eye.blit(hc_eye_top, (0, 0))
+            second_eye.blit(hc_eye_shade, (0, 0))
+            second_eye.blit(sprites.sprites["eyes2" + cat.pelt.eye_pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            new_sprite.blit(second_eye, (0, 0))
+
+        new_sprite.blit(sprites.sprites["eyelight" + cat_sprite], (0, 0))
+
+        #old
+       # if cat.pelt.eye_colour2 != None:
+      #      eyes = sprites.sprites["eyes" + cat.pelt.eye_colour + cat_sprite].copy().convert_alpha()
+      #      new_sprite.blit(eyes, (0, 0))
+      #      second_eye = sprites.sprites["eyes" + cat.pelt.eye_colour2 + cat_sprite].copy().convert_alpha()
+      #      second_eye.blit(sprites.sprites["eyes2" + cat.pelt.eye_pattern + cat_sprite], (0, 0),
+      #                      special_flags=pygame.BLEND_RGBA_MULT)
+     #       new_sprite.blit(second_eye, (0, 0))
+      #  else:
+      #      eyes = sprites.sprites['eyes' + cat.pelt.eye_colour + cat_sprite].copy()
+      #      new_sprite.blit(eyes, (0, 0))
+
+        #scars1
         if not scars_hidden:
             for scar in cat.pelt.scars:
                 if scar in cat.pelt.scars1:
@@ -2703,7 +3177,37 @@ def generate_sprite(
             new_sprite.blit(sprites.sprites["lineartdead" + cat_sprite], (0, 0))
         # draw skin and scars2
         blendmode = pygame.BLEND_RGBA_MIN
-        new_sprite.blit(sprites.sprites["skin" + cat.pelt.skin + cat_sprite], (0, 0))
+
+        skincolor_dict = {
+            "BLACK": ["#312923"],
+            "RED": ["#bf5338"],
+            "PINK": ["#f9c0b8"],
+            "DARKBROWN": ["#523219"],
+            "BROWN": ["#5f3e24"],
+            "LIGHTBROWN": ["#7d6146"],
+            "DARK": ["#201e1b"],
+            "DARKGREY": ["#464340"],
+            "GREY": ["#8a8581"],
+            "DARKSALMON": ["#9a5a44"],
+            "SALMON": ["#da9c7b"],
+            "PEACH": ["#ffc7a8"],
+            "DARKBLUE": ["#545a5e"],
+            "BLUE": ["#3a4e57"],
+            "LIGHTBLUE": ["#5f676b"]
+        }
+
+        skin_color = str(cat.pelt.skin_color).upper()
+        skin_name = str(cat.pelt.skin).upper()
+        skin_base = None
+
+        skin_base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        skin_base_tint.fill(skincolor_dict[skin_color][0])
+        skin_base = sprites.sprites['skin' + skin_name + cat_sprite].copy().convert_alpha()
+        skin_base.blit(skin_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        new_sprite.blit(skin_base, (0, 0))
+
+
 
         if not scars_hidden:
             for scar in cat.pelt.scars:
@@ -2714,64 +3218,265 @@ def generate_sprite(
                         special_flags=blendmode,
                     )
 
-        # draw accessories & blep
+        # im sure i won't regret this later
+        acolor_dict = {
+            "BLACK": ["#3c3c3c"],
+            "WHITE": ["#dbdbdb"],
+            "RED": ["#c11a21"],
+            "DARK ORANGE": ["#de3c02"],
+            "ORANGE": ["#eb8b12"],
+            "YELLOW": ["#f9ba32"],
+            "PALE YELLOW": ["#ebd664"],
+            "CYAN": ["#76cdbf"],
+            "LIGHT BLUE": ["#8fceea"],
+            "BLUE": ["#5386d9"],
+            "DARK BLUE": ["#31416d"],
+            "PURPLE": ["#744b9c"],
+            "LIGHT PURPLE": ["#7669cd"],
+            "LILAC": ["#9d90cb"],
+            "PINK": ["#fb8580"],
+            "GREEN": ["#5e7f35"],
+            "LIGHT GREEN": ["#7ba568"],
+            "BRIGHT GREEN": ["#48a352"],
+            "DARK GREEN": ["#446718"],
+            "DARK BROWN": ["#944723"],
+            "BRONZE": ["#b57f37"],
+            "BROWN": ["#9f7600"],
+            "LIGHT BROWN": ["#a48c68"],
+            "BRIGHT PURPLE": ["#621575"],
+            "HOT PINK": ["#eb77af"],
+            "GOLD": ["#f9ba32"],
+            "SILVER": ["#d2cdc4"],
+            "LIME": ["#aed41c"],
+            "NEON PURPLE": ["#ac2ccd"],
+            "DEFAULT": ["#000000"]
+        }
+
+        ac = str(cat.pelt.accessory_color).upper()
+        ac2 = str(cat.pelt.accessory_color2).upper()
+        ap = str(cat.pelt.accessory_pattern).upper()
+        ap2 = str(cat.pelt.accessory_pattern2).upper()
+
         if not acc_hidden:
-            if cat.pelt.accessory in cat.pelt.plant_accessories:
-                new_sprite.blit(
-                    sprites.sprites["acc_herbs" + cat.pelt.accessory + cat_sprite],
-                    (0, 0),
-                )
-            elif cat.pelt.accessory in cat.pelt.wild_accessories:
-                new_sprite.blit(
-                    sprites.sprites["acc_wild" + cat.pelt.accessory + cat_sprite],
-                    (0, 0),
-                )
-            elif cat.pelt.accessory in cat.pelt.collars:
-                new_sprite.blit(
-                    sprites.sprites["collars" + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
+            if cat.pelt.accessory in cat.pelt.simple_acc:
+                new_sprite.blit(sprites.sprites["acc" + cat.pelt.accessory + cat_sprite], (0, 0),)
+            if cat.pelt.accessory == "COWBOY HAT":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + "BANDANA" + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-            elif cat.pelt.accessory in cat.pelt.snake_accessories:
-                new_sprite.blit(
-                    sprites.sprites['acc_snake' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
-            elif cat.pelt.accessory in cat.pelt.smallAnimal_accessories:
-                new_sprite.blit(
-                    sprites.sprites['acc_smallAnimal' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
-            elif cat.pelt.accessory in cat.pelt.aliveInsect_accessories:
-                new_sprite.blit(
-                    sprites.sprites['acc_aliveInsect' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-            elif cat.pelt.accessory in cat.pelt.booties:
-                new_sprite.blit(
-                    sprites.sprites['booties' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
-            elif cat.pelt.accessory in cat.pelt.toy_accessories:
-                new_sprite.blit(
-                    sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
-            elif cat.pelt.accessory in cat.pelt.blankie_accessories:
-                new_sprite.blit(
-                    sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
-            elif cat.pelt.accessory in cat.pelt.flag_accessories:
-                new_sprite.blit(
-                    sprites.sprites['acc_dismod' + cat.pelt.accessory + cat_sprite], (0, 0)
-                )
+                bandana = sprites.sprites['accbase' + "BANDANA" + cat_sprite].copy().convert_alpha()
+                bandana.blit(ac_pelt, (0, 0))
+                bandana.blit(ap_pelt, (0, 0))
+                bandana.blit(sprites.sprites['accbase' + "BANDANA" + cat_sprite], (0, 0),
+                             special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(bandana, (0, 0))
+                new_sprite.blit(sprites.sprites["acccollars" + "COWBOY HAT" + cat_sprite], (0, 0), )
+            if cat.pelt.accessory == "LEATHERCOLLAR":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-        if cat.pelt.blep:
-                new_sprite.blit(sprites.sprites['blep' + cat.pelt.skin + cat_sprite], (0, 0))  
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                collar = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                collar.blit(ac_pelt, (0, 0))
+                collar.blit(ap_pelt, (0, 0))
+                collar.blit(sprites.sprites['accbase' + "COLLAR" + cat_sprite], (0, 0),
+                            special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(collar, (0, 0))
+
+            if cat.pelt.accessory == "FANGCOLLAR":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                fang = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                fang.blit(ac_pelt, (0,0))
+                fang.blit(ap_pelt, (0, 0))
+                fang.blit(sprites.sprites['accbase' + "COLLAR" + cat_sprite], (0, 0),special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(fang, (0, 0))
+                new_sprite.blit(sprites.sprites['acccollars' + "FANG" + cat_sprite], (0, 0), )
+
+
+            if cat.pelt.accessory == "BELLCOLLAR":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ac2_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac2_tint.fill(acolor_dict[ac2][0])
+                ac2_pelt = sprites.sprites['acccollars' + "BELL" + cat_sprite].copy().convert_alpha()
+                ac2_pelt.blit(ac2_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                collar = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                collar.blit(ac_pelt, (0, 0))
+                collar.blit(ap_pelt, (0, 0))
+                collar.blit(sprites.sprites['accbase' + "COLLAR" + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(collar, (0, 0))
+                new_sprite.blit(ac2_pelt, (0, 0))
+
+            if cat.pelt.accessory == "STUDDEDCOLLAR":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ac2_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac2_tint.fill(acolor_dict[ac2][0])
+                ac2_pelt = sprites.sprites['acccollars' + "STUDDED" + cat_sprite].copy().convert_alpha()
+                ac2_pelt.blit(ac2_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                collar = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                collar.blit(ac_pelt, (0, 0))
+                collar.blit(ap_pelt, (0, 0))
+                collar.blit(sprites.sprites['accbase' + "COLLAR" + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(collar, (0, 0))
+                new_sprite.blit(ac2_pelt, (0, 0))
+
+            if cat.pelt.accessory == "BOWCOLLAR":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ac2_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac2_tint.fill(acolor_dict[ac2][0])
+                ac2_pelt = sprites.sprites['acccollars' + "BOW" + cat_sprite].copy().convert_alpha()
+                ac2_pelt.blit(ac2_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap2_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern2 + cat_sprite].copy().convert_alpha()
+                ap2_pelt.blit(ap2_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                collar = sprites.sprites['accbase' + "COLLAR" + cat_sprite].copy().convert_alpha()
+                collar.blit(ac_pelt, (0, 0))
+                collar.blit(ap_pelt, (0, 0))
+                collar.blit(sprites.sprites['accbase' + "COLLAR" + cat_sprite], (0, 0),
+                            special_flags=pygame.BLEND_RGBA_MULT)
+
+                bow = sprites.sprites['acccollars' + "BOW" + cat_sprite].copy().convert_alpha()
+                bow.blit(ac2_pelt, (0, 0))
+                bow.blit(ap2_pelt, (0, 0))
+                bow.blit(sprites.sprites['acccollars' + "BOW" + cat_sprite], (0, 0),
+                            special_flags=pygame.BLEND_RGBA_MULT)
+
+                new_sprite.blit(collar, (0, 0))
+                new_sprite.blit(bow, (0, 0))
+
+            if cat.pelt.accessory == "BANDANA":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                bandana = sprites.sprites['accbase' + "BANDANA" + cat_sprite].copy().convert_alpha()
+                bandana.blit(ac_pelt, (0, 0))
+                bandana.blit(ap_pelt, (0, 0))
+                bandana.blit(sprites.sprites['accbase' + "BANDANA" + cat_sprite], (0, 0),
+                            special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(bandana, (0, 0))
+
+            if cat.pelt.accessory == "HARNESS":
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ap_pelt = sprites.sprites['accpattern' + cat.pelt.accessory_pattern + cat_sprite].copy().convert_alpha()
+                ap_pelt.blit(ap_pelt, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                harness = sprites.sprites['accbase' + "HARNESS" + cat_sprite].copy().convert_alpha()
+                harness.blit(ac_pelt, (0, 0))
+                harness.blit(ap_pelt, (0, 0))
+                harness.blit(sprites.sprites['accbase' + "HARNESS" + cat_sprite], (0, 0),
+                             special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(harness, (0, 0))
+
+            if cat.pelt.accessory in cat.pelt.leafbase_acc:
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ac2_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac2_tint.fill(acolor_dict[ac2][0])
+                ac2_pelt = sprites.sprites['accadd' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac2_pelt.blit(ac2_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                leaf = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                leaf.blit(ac_pelt, (0, 0))
+                bulb = sprites.sprites['accadd' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                bulb.blit(ac2_pelt, (0, 0))
+
+                new_sprite.blit(leaf, (0, 0))
+                new_sprite.blit(bulb, (0, 0))
+            if cat.pelt.accessory in cat.pelt.doubleflower_acc:
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                ac2_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac2_tint.fill(acolor_dict[ac2][0])
+                ac2_pelt = sprites.sprites['accadd' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac2_pelt.blit(ac2_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                leaf = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                leaf.blit(ac_pelt, (0, 0))
+                bulb = sprites.sprites['accadd' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                bulb.blit(ac2_pelt, (0, 0))
+
+                new_sprite.blit(leaf, (0, 0))
+                new_sprite.blit(bulb, (0, 0))
+
+            if cat.pelt.accessory in cat.pelt.onecolor_nopattern_acc:
+                ac_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                ac_tint.fill(acolor_dict[ac][0])
+                ac_pelt = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                ac_pelt.blit(ac_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                acc = sprites.sprites['accbase' + cat.pelt.accessory + cat_sprite].copy().convert_alpha()
+                acc.blit(ac_pelt, (0, 0))
+                new_sprite.blit(acc, (0, 0))
+
+            if cat.pelt.accessory in ["DAISY", "MOTH", "FEATHER"]:
+                new_sprite.blit(sprites.sprites['accadd' + cat.pelt.accessory + cat_sprite], (0, 0))
+
+
+
+
+
 
         # Apply fading fog
         if (
-                cat.pelt.opacity <= 97
-                and not cat.prevent_fading
-                and game.clan.clan_settings["fading"]
-                and dead
+            cat.pelt.opacity <= 97
+            and not cat.prevent_fading
+            and game.clan.clan_settings["fading"]
+            and dead
         ):
-
             stage = "0"
             if 80 >= cat.pelt.opacity > 45:
                 # Stage 1
@@ -2825,7 +3530,7 @@ def apply_opacity(surface, opacity):
 
 
 def chunks(L, n):
-    return [L[x: x + n] for x in range(0, len(L), n)]
+    return [L[x : x + n] for x in range(0, len(L), n)]
 
 
 def is_iterable(y):
