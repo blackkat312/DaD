@@ -1519,6 +1519,7 @@ class Events:
             # apprentice a kitten to either med or warrior
             if cat.moons == cat_class.age_moons["adolescent"][0]:
                 if cat.status == "kitten":
+                    skills_string = str(cat.skills)
                     med_cat_list = [
                         i
                         for i in Cat.all_cats_list
