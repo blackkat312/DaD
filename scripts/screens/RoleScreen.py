@@ -419,8 +419,8 @@ class RoleScreen(Screens):
             output = f"{self.the_cat.name} is {game.clan.name}Clan's <b>deputy</b>. " \
                      f"This should not appear"
         elif self.the_cat.status == "medicine cat":
-            output = f"{self.the_cat.name} is a <b>healer</b>. Healers are " \
-                     f"the doctors of the Clan. They treat " \
+            output = f"{self.the_cat.name} is a <b>healer</b>. Healers are the doctors of the Clan. " \
+                     f"They treat " \
                      f"injuries and illnesses with herbal remedies. Unlike warriors, healers are not expected " \
                      f"to hunt and fight for the Clan. In addition to their healing duties, healers also have " \
                      f"a special connection to StarClan. Every half-moon, they travel to their Clan's holy place " \
