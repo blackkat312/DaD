@@ -271,7 +271,8 @@ class Relation_Events:
                 Cat.all_cats.values(),
             )
         )
-        cat_list.remove(main_cat)
+        if main_cat in cat_list:
+            cat_list.remove(main_cat)
         filtered_cat_list = []
 
         for inter_cat in cat_list:
@@ -416,4 +417,3 @@ class Relation_Events:
 # ---------------------------------------------------------------------------- #
 #                                load resources                                #
 # ---------------------------------------------------------------------------- #
-

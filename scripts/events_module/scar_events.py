@@ -112,7 +112,7 @@ class Scar_Events():
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
 
-        if len(cat.pelt.scars) < 7 and not int(random.random() * chance):
+        if len(cat.pelt.scars) < 7 and random.randint(1, 2) == 1:
 
             # move potential scar text into displayed scar text
 
@@ -162,9 +162,6 @@ class Scar_Events():
                              condition=injury_name)
 
             specialty = random.choice(scar_pool)
-            if specialty in ["NOTAIL", "HALFTAIL"]:
-                if cat.pelt.accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]:
-                    cat.pelt.accessory = None
 
             # combining left/right variations into the both version
             if "NOLEFTEAR" in cat.pelt.scars and specialty == 'NORIGHTEAR':
@@ -191,4 +188,3 @@ class Scar_Events():
             return random.choice(scar_gain_strings), specialty
         else:
             return None, None
-

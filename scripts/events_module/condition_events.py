@@ -232,12 +232,12 @@ class Condition_Events:
     @staticmethod
     def handle_illnesses(cat, season=None):
         """
-        This function handles overall the illnesses in 'expanded' (or 'cruel season') game mode.
+        This function handles the illnesses overall by randomly making cat ill (or not).
         It will return a bool to indicate if the cat is dead.
         """
-        # return immediately if they're already dead or in the wrong game-mode
+        # return immediately if they're already dead
         triggered = False
-        if cat.dead or game.clan.game_mode == "classic":
+        if cat.dead:
             if cat.dead:
                 triggered = True
             return triggered
@@ -250,18 +250,29 @@ class Condition_Events:
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
-            random_number = int(random.random() * game.get_config_value("condition_related", f"{game.clan.game_mode}_illness_chance"))
-
+            random_number = int(
+                random.random()
+                * game.get_config_value(
+                    "condition_related", f"{game.clan.game_mode}_illness_chance"
+                )
+            )
             if cat.vaccinated and not random.randint(1, 20) <= 3:  # 85%
                 random_number = int(random_number * 5)
 
-            if not cat.dead and not cat.is_ill() and random_number <= 10 and not event_string:
+            if (
+                not cat.dead
+                and not cat.is_ill()
+                and random_number <= 10
+                and not event_string
+            ):
+
                 # CLAN FOCUS!
                 if game.clan.clan_settings.get("rest and recover"):
                     stopping_chance = game.config["focus"]["rest and recover"][
                         "illness_prevent"
                     ]
                     if not int(random.random() * stopping_chance):
+                        print(f"rest and recover - illness prevented for {cat.name}")
                         return triggered
 
                 season_dict = Condition_Events.ILLNESSES_SEASON_LIST[season]
@@ -277,7 +288,7 @@ class Condition_Events:
                 # if a non-kitten got kittencough, switch it to whitecough instead
                 if chosen_illness == "kittencough" and cat.status != "kitten":
                     chosen_illness = "whitecough"
-                elif chosen_illness == "nest wetting" and cat.status not in ['kitten', 'apprentice']:
+                elif chosen_illness == "nest wetting":
                     chosen_illness = "night dirtmaking"
 
                 # vaccinated cats
@@ -320,8 +331,8 @@ class Condition_Events:
 
     @staticmethod
     def handle_injuries(cat, random_cat=None):
-        """
-        This function handles overall the injuries in 'expanded' (or 'cruel season') game mode.
+        """ 
+        This function handles injuries overall by randomly injuring cat (or not).
         Returns: boolean - if an event was triggered
         """
         triggered = False
@@ -337,15 +348,15 @@ class Condition_Events:
             return triggered
 
         # handle if the current cat is already injured
-        if cat.is_injured() and game.clan.game_mode != "classic":
+        if cat.is_injured():
             for injury in cat.injuries:
-                if injury in ["pregnant", "faux pregnant"] and cat.ID not in game.clan.pregnancy_data:
+                if injury in ["pregnant", "false pregnancy"] and cat.ID not in game.clan.pregnancy_data:
                     print(
                         f"INFO: deleted pregnancy condition of {cat.ID} due no pregnancy data in the clan."
                     )
                     del cat.injuries[injury]
                     return triggered
-                elif injury in ["pregnant", "faux pregnant"]:
+                elif injury in ["pregnant", "false pregnancy"]:
                     return triggered
             triggered = Condition_Events.handle_already_injured(cat)
         else:
@@ -379,6 +390,7 @@ class Condition_Events:
                         "injury_prevent"
                     ]
                     if not int(random.random() * stopping_chance):
+                        print(f"rest and recover - injury prevented for {cat.name}")
                         return False
 
                 if (cat.df_trainee or (random_cat and random_cat.df_trainee)) and random.randint(1, game.config["event_generation"]["df_trainee_injury_event_denominator"]) <= game.config["event_generation"]["df_trainee_injury_event_compare"]:
@@ -418,7 +430,7 @@ class Condition_Events:
         # dict of possible physical conditions that can be acquired from relevant scars
         scar_to_condition = {
             "LEGBITE": ["weak leg", "bad knee"],
-            "THREE": ["one bad eye"],
+            "THREE": ["one bad eye", "failing eyesight"],
             "NOPAW": ["lost a leg"],
             "TOETRAP": ["weak leg"],
             "NOTAIL": ["lost their tail"],
@@ -484,6 +496,9 @@ class Condition_Events:
             "curved spine",
             "jumbled mind",
             "counting fog",
+            "albinism",
+            "ocular albinism",
+            "manx syndrome",
             "spirited heart",
             "puzzled heart",
             "face blindness",
@@ -517,11 +532,7 @@ class Condition_Events:
                             ]
                         ):
                             perm_condition = random.choice(possible_conditions)
-                            if perm_condition == "lazy eye":
-                                cat.pelt.lazy_eye = cat.pelt.eye_colour
-                                if cat.eye_colour2:
-                                    cat.pelt.lazy_eye = cat.pelt.eye_colour2
-                            """elif perm_condition == "recurring shock" and injury_name == "wrenched claws":                                 
+                            """if perm_condition == "recurring shock" and injury_name == "wrenched claws":                                 
                                 if injury_name not in cat.history.possible_history:
                                     perm_condition = None
                                     print(f"Hopefully failed to give recurring shock to non-traumatised cat")
@@ -686,9 +697,6 @@ class Condition_Events:
         # need to hold this number so that we can check if the leader has died
         starting_life_count = game.clan.leader_lives
 
-        if game.clan.game_mode == "classic":
-            return triggered
-
         injuries = deepcopy(cat.injuries)
         for injury in injuries:
             if injury in game.switches["skip_conditions"]:
@@ -825,9 +833,6 @@ class Condition_Events:
         triggered = False
         event_types = ["health"]
 
-        if game.clan.game_mode == "classic":
-            return triggered
-
         event_list = []
 
         condition_progression = {
@@ -853,11 +858,11 @@ class Condition_Events:
                 event_types.append("birth_death")
                 event = f"{cat.name} died from complications caused by {condition}."
                 if cat.status == "leader" and game.clan.leader_lives >= 1:
-                    event = f"{cat.name} lost a life from complications caused by {condition}."
+                    event = f"{cat.name} lost a life to complications caused by {condition}."
                 event_list.append(event)
 
                 if cat.status != "leader":
-                    History.add_death(cat, death_text=f"complications caused by {condition}")
+                    History.add_death(cat, death_text=f"m_c was killed by complications caused by {condition}")
                 else:
                     History.add_death(cat, death_text=f"died from complications caused by {condition}")
 
@@ -1266,7 +1271,10 @@ class Condition_Events:
                 "this as a bug."
             )
             return
-        herb_set = clan_herbs.intersection(needed_herbs)
+        if game.clan.game_mode == "classic":
+            herb_set = needed_herbs
+        else:
+            herb_set = clan_herbs.intersection(needed_herbs)
         usable_herbs = list(herb_set)
 
         if not source[condition]["herbs"]:
@@ -1290,24 +1298,28 @@ class Condition_Events:
 
             herb_used = usable_herbs[0]
             # Failsafe, since I have no idea why we are getting 0-herb entries.
-            while game.clan.herbs[herb_used] <= 0:
-                print(
-                    f"Warning: {herb_used} was chosen to use, although you currently have "
-                    f"{game.clan.herbs[herb_used]}. Removing {herb_used} from herb dict, finding a new herb..."
-                )
-                game.clan.herbs.pop(herb_used)
-                usable_herbs.pop(0)
-                if usable_herbs:
-                    herb_used = usable_herbs[0]
-                else:
-                    print("No herbs to use for this injury")
-                    return
+
+            # classic doesn't actually count herbs 
+            if game.clan.game_mode != "classic":
+                while game.clan.herbs[herb_used] <= 0:
+                    print(
+                        f"Warning: {herb_used} was chosen to use, although you currently have "
+                        f"{game.clan.herbs[herb_used]}. Removing {herb_used} from herb dict, finding a new herb..."
+                    )
+                    game.clan.herbs.pop(herb_used)
+                    usable_herbs.pop(0)
+                    if usable_herbs:
+                        herb_used = usable_herbs[0]
+                    else:
+                        print("No herbs to use for this injury")
+                        return
 
             # deplete the herb
             amount_used = 1
-            game.clan.herbs[herb_used] -= amount_used
-            if game.clan.herbs[herb_used] <= 0:
-                game.clan.herbs.pop(herb_used)
+            if game.clan.game_mode != "classic":
+                game.clan.herbs[herb_used] -= amount_used
+                if game.clan.herbs[herb_used] <= 0:
+                    game.clan.herbs.pop(herb_used)
 
             # applying a modifier for herb priority. herbs that are better for the condition will have stronger effects
             count = 0

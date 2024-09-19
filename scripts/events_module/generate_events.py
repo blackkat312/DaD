@@ -293,61 +293,21 @@ class GenerateEvents:
             for tag in event.tags:
                 if "trainee" in tag:
                     if tag == "main_trainee" and not cat.df_trainee:
-                        print("discard 1")
                         discard = True
-                    elif tag == "main_trainee" and cat.df_trainee:
-                        print("given 1")
                     if tag == "main_not_trainee" and cat.df_trainee:
-                        print("discard 2")
                         discard = True
-                    elif tag == "main_not_trainee" and not cat.df_trainee:
-                        print("given 2")
                     if tag == "random_trainee" and not random_cat.df_trainee:
-                        print("discard 3")
                         discard = True
-                    elif tag == "random_trainee" and random_cat.df_trainee:
-                        print("given 3")
                     if tag == "random_not_trainee" and random_cat.df_trainee:
-                        print("discard 4")
                         discard = True
-                    elif tag == "random_not_trainee" and not random_cat.df_trainee:
-                        print("given 4")
                     if tag == "main_trainee_random_trainee" and not (cat.df_trainee and random_cat.df_trainee):
-                        print("discard 5")
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
                         discard = True
-                    elif tag == "main_trainee_random_trainee" and cat.df_trainee and random_cat.df_trainee:
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
-                        print("given 5")
                     if tag == "main_not_trainee_random_not_trainee" and not (not cat.df_trainee and not random_cat.df_trainee):
-                        print("discard 6")
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
                         discard = True
-                    elif tag == "main_not_trainee_random_not_trainee" and not cat.df_trainee and not random_cat.df_trainee:
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
-                        print("given 6")
                     if tag == "main_trainee_random_not_trainee" and not (cat.df_trainee and not random_cat.df_trainee):
-                        print("discard 7")
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
                         discard = True
-                    elif tag == "main_trainee_random_not_trainee" and cat.df_trainee and not random_cat.df_trainee:
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
-                        print("given 7")
                     if tag == "main_not_trainee_random_trainee" and not (not cat.df_trainee and random_cat.df_trainee):
-                        print("discard 8")
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
                         discard = True
-                    elif tag == "main_not_trainee_random_trainee" and not cat.df_trainee and random_cat.df_trainee:
-                        print(cat.df_trainee)
-                        print(random_cat.df_trainee)
-                        print("given 8")
             if discard:
                 continue
 
@@ -361,17 +321,17 @@ class GenerateEvents:
 
                 # make sure that 'some lives' and "lives_remain" events don't show up if the leader doesn't have
                 # multiple lives to spare
-                if "some_lives" in event.tags and leader_lives <= 3:
+                if "some_lives" in event.tags and leader_lives <= 2:
                     continue
                 if "lives_remain" in event.tags and leader_lives < 2:
                     continue
 
                 # check leader life count
-                if "high_lives" in event.tags and leader_lives not in [7, 8, 9]:
+                if "high_lives" in event.tags and leader_lives not in [4]:
                     continue
-                elif "mid_lives" in event.tags and leader_lives not in [4, 5, 6]:
+                elif "mid_lives" in event.tags and leader_lives not in [2, 3]:
                     continue
-                elif "low_lives" in event.tags and leader_lives not in [1, 2, 3]:
+                elif "low_lives" in event.tags and leader_lives not in [1]:
                     continue
 
             discard = False

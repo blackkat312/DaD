@@ -102,6 +102,13 @@ class HandleShortEvents:
             )
             self.other_clan_name = f"{self.other_clan.name}Clan"
 
+        if isinstance(game.config["event_generation"]["debug_ensure_event_type"], str):
+            event_type = game.config["event_generation"]["debug_ensure_event_type"]
+            self.types.append(str(game.config["event_generation"]["debug_ensure_event_type"]))
+
+        if isinstance(game.config["event_generation"]["debug_ensure_event_sub_type"], str):
+            self.sub_types = [str(game.config["event_generation"]["debug_ensure_event_sub_type"])]
+
         # checking if a murder reveal should happen
         if event_type == "misc":
             self.victim_cat = None
@@ -116,8 +123,12 @@ class HandleShortEvents:
                         self.victim_cat = Cat.fetch_cat(
                             murder_history[self.murder_index]["victim"]
                         )
-                        self.sub_types.append("murder_reveal")
+                        if "murder_reveal" not in self.sub_types:
+                            self.sub_types.append("murder_reveal")
                         break
+                elif "murder_reveal" in self.sub_types:
+                    # cat isn't a murderer
+                    self.sub_types.remove("murder_reveal")
 
         # NOW find the possible events and filter
         if event_type == "birth_death":
@@ -342,7 +353,7 @@ class HandleShortEvents:
                     if (
                         sub_sub[0] != sub[0]
                         and (
-                            sub_sub[0].gender == "female"
+                            sub_sub[0].gender == "molly"
                             or game.clan.clan_settings["same sex birth"]
                         )
                         and sub_sub[0].ID in (sub[0].parent1, sub[0].parent2)
@@ -366,18 +377,15 @@ class HandleShortEvents:
             acc_list.extend(pelts.wild_accessories)
         if "PLANT" in possible_accs:
             acc_list.extend(pelts.plant_accessories)
-        if "COLLAR" in possible_accs:
+        if "COLLARS" in possible_accs:
             acc_list.extend(pelts.collars)
-        # ohdan's accessories
-        if "SNAKE" in possible_accs:
-            acc_list.extend(pelts.snake_accessories)
-        if "SMALLANIMAL" in possible_accs:
-            acc_list.extend(pelts.smallAnimal_accessories)
-        if "ALIVEINSECT" in possible_accs:
-            acc_list.extend(pelts.aliveInsect_accessories)
+        if "WILD2" in possible_accs:
+            acc_list.extend(pelts.wild2_accessories)
+        if "PLANT2" in possible_accs:
+            acc_list.extend(pelts.plant2_accessories)
+        if "KITTYACC" in possible_accs:
+            acc_list.extend(pelts.kitty_accessories)
         # dad accessories
-        if "BOOTIES" in possible_accs:
-            acc_list.extend(pelts.booties)
         if "TOY" in possible_accs:
             acc_list.extend(pelts.toy_accessories)
         if "BLANKIE" in possible_accs:
@@ -386,8 +394,7 @@ class HandleShortEvents:
             acc_list.extend(pelts.flag_accessories)
 
         for acc in possible_accs:
-            if acc not in ["WILD", "PLANT", "COLLAR", "SNAKE", "SMALLANIMAL", "ALIVEINSECT", "BOOTIES", "TOY",
-                           "BLANKIE", "FLAG"]:
+            if acc not in ["WILD", "PLANT", "COLLARS", "WILD2", "PLANT2", "KITTYACC", "TOY", "BLANKIE", "FLAG"]:
                 acc_list.append(acc)
 
         if hasattr(self.main_cat.pelt, "scars"):
@@ -401,6 +408,80 @@ class HandleShortEvents:
 
         if acc_list:
             self.main_cat.pelt.accessory = random.choice(acc_list)
+
+            if self.main_cat.pelt.accessory in Pelt.flower_acc:
+                flower_possible_first_colors = random.choice(Pelt.flower_colors)
+                self.main_cat.pelt.accessory_color = random.choice([flower_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.leafbase_acc:
+                leafbase_possible_first_colors = random.choice(Pelt.leaf_colors)
+                self.main_cat.pelt.accessory_color = random.choice([leafbase_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.bug_acc:
+                bug_possible_first_colors = random.choice(Pelt.bug_colors)
+                self.main_cat.pelt.accessory_color = random.choice([bug_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.feather_acc:
+                feather_possible_first_colors = random.choice(Pelt.feather_colors)
+                self.main_cat.pelt.accessory_color = random.choice([feather_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.twoleg_acc:
+                twoleg_possible_first_colors = random.choice(Pelt.twoleg_acc_colors)
+                self.main_cat.pelt.accessory_color = random.choice([twoleg_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.metal_acc:
+                metal_possible_first_colors = random.choice(Pelt.twoleg_acc_colors)
+                self.main_cat.pelt.accessory_color = random.choice([metal_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.leaf_acc:
+                leaf_possible_first_colors = random.choice(Pelt.leaf_colors)
+                self.main_cat.pelt.accessory_color = random.choice([leaf_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.doubleflower_acc:
+                doubleflower_possible_first_colors = random.choice(Pelt.flower_colors)
+                self.main_cat.pelt.accessory_color = random.choice([doubleflower_possible_first_colors])
+            if self.main_cat.pelt.accessory in Pelt.crystal_acc:
+                crystal_possible_first_colors = random.choice(Pelt.crystal_colors)
+                self.main_cat.pelt.accessory_color = random.choice([crystal_possible_first_colors])
+            if self.main_cat.pelt.accessory == "HEATHER":
+                heather_possible_first_colors = random.choice(Pelt.leaf_colors)
+                self.main_cat.pelt.accessory_color = random.choice([heather_possible_first_colors])
+            if self.main_cat.pelt.accessory == "GORSE":
+                gorse_possible_first_colors = random.choice(Pelt.leaf_colors)
+                self.main_cat.pelt.accessory_color = random.choice([gorse_possible_first_colors])
+            if self.main_cat.pelt.accessory == "COWBOY HAT":
+                twoleg_possible_first_colors = random.choice(Pelt.twoleg_acc_colors)
+                self.main_cat.pelt.accessory_color = random.choice([twoleg_possible_first_colors])
+
+            if self.main_cat.pelt.accessory in Pelt.flower_acc:
+                flower2_possible_second_colors = random.choice(Pelt.flower_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([flower2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.leafbase_acc:
+                leafbase2_possible_second_colors = random.choice(Pelt.flower_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([leafbase2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.bug_acc:
+                bug2_possible_second_colors = random.choice(Pelt.bug_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([bug2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.feather_acc:
+                feather2_possible_second_colors = random.choice(Pelt.feather_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([feather2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.twoleg_acc:
+                twoleg2_possible_second_colors = random.choice(Pelt.twoleg_acc_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([twoleg2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.metal_acc:
+                metal2_possible_second_colors = random.choice(Pelt.metal_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([metal2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.leaf_acc:
+                leaf2_possible_second_colors = random.choice(Pelt.leaf_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([leaf2_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.doubleflower_acc:
+                doubleflower_possible_second_colors = random.choice(Pelt.flower_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([doubleflower_possible_second_colors])
+            if self.main_cat.pelt.accessory in Pelt.crystal_acc:
+                crystal_possible_second_colors = random.choice(Pelt.crystal_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([crystal_possible_second_colors])
+            if self.main_cat.pelt.accessory == "HEATHER":
+                heather_possible_second_colors = random.choice(Pelt.heather_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([heather_possible_second_colors])
+            if self.main_cat.pelt.accessory == "GORSE":
+                gorse_possible_second_colors = random.choice(Pelt.gorse_colors)
+                self.main_cat.pelt.accessory_color2 = random.choice([gorse_possible_second_colors])
+
+            self.main_cat.pelt.accessory_pattern = random.choice(Pelt.accpatterns)
+            self.main_cat.pelt.accessory_pattern2 = random.choice(Pelt.accpatterns)
 
     def handle_death(self):
         """
@@ -493,13 +574,17 @@ class HandleShortEvents:
                     self.main_cat
                 )  # got to include the cat that rolled for death in the first place
 
+            taken_cats = []
             for kitty in self.dead_cats:
                 if "lost" in self.chosen_event.tags:
                     kitty.gone()
-                    self.dead_cats.remove(kitty)
+                    taken_cats.append(kitty)
                 self.multi_cat.append(kitty)
                 if kitty.ID not in self.involved_cats:
                     self.involved_cats.append(kitty.ID)
+            for kitty in taken_cats:
+                self.dead_cats.remove(kitty)
+
         else:
             return
 
