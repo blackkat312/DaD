@@ -18,7 +18,7 @@ import ujson
 
 logger = logging.getLogger(__name__)
 from scripts.game_structure import image_cache
-import scripts.cat.cats
+# import scripts.cat.cats
 from scripts.cat.history import History
 from scripts.cat.names import names
 from scripts.cat.pelts import Pelt
