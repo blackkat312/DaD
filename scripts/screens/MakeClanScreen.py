@@ -131,6 +131,7 @@ class MakeClanScreen(Screens):
         self.menu_warning = None
 
     def screen_switches(self):
+        self.show_mute_buttons()
         # Reset variables
         self.game_mode = "classic"
         self.clan_name = ""
@@ -165,6 +166,9 @@ class MakeClanScreen(Screens):
             return
 
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            self.menu_button_pressed(event)
+            self.mute_button_pressed(event)
+
             if event.ui_element == self.main_menu:
                 self.change_screen("start screen")
             if self.sub_screen == "game mode":
@@ -951,9 +955,10 @@ class MakeClanScreen(Screens):
         if selected is not None:
             if self.sub_screen == "choose leader":
                 self.elements["cat_name"].set_text(
-                    str(selected.name) + " --> " + selected.name.prefix + "star"
+                    str(selected.name) + " --> " + selected.name.prefix + "light"
                 )
             else:
+
                 self.elements["cat_name"].set_text(str(selected.name))
             self.elements["cat_name"].show()
             gender_text = str(selected.genderalign)
@@ -1206,7 +1211,11 @@ class MakeClanScreen(Screens):
     def _get_cat_tooltip_string(self, cat: Cat):
         """Get tooltip for cat. Tooltip displays name, sex, age group, and trait."""
 
-        return f"<b>{cat.name}</b><br>{cat.genderalign}<br>{cat.age}<br>{cat.personality.trait}"
+
+        return (
+            f"<b>{cat.name}</b><br>{cat.genderalign}<br>{cat.age}<br>{cat.personality.trait}"
+        )
+
 
     def open_game_mode(self):
         # Clear previous screen
@@ -1302,6 +1311,7 @@ class MakeClanScreen(Screens):
             "",
             object_id="#random_dice_button",
             manager=MANAGER,
+            sound_id="dice_roll",
         )
 
         self.elements["error"] = pygame_gui.elements.UITextBox(
@@ -1380,6 +1390,7 @@ class MakeClanScreen(Screens):
             "",
             object_id="#random_dice_button",
             manager=MANAGER,
+            sound_id="dice_roll",
         )
         y_pos += 80
         self.elements["roll2"] = UIImageButton(
@@ -1387,6 +1398,7 @@ class MakeClanScreen(Screens):
             "",
             object_id="#random_dice_button",
             manager=MANAGER,
+            sound_id="dice_roll",
         )
         y_pos += 80
         self.elements["roll3"] = UIImageButton(
@@ -1394,6 +1406,7 @@ class MakeClanScreen(Screens):
             "",
             object_id="#random_dice_button",
             manager=MANAGER,
+            sound_id="dice_roll",
         )
 
         _tmp = 160
@@ -1404,6 +1417,7 @@ class MakeClanScreen(Screens):
             "",
             object_id="#random_dice_button",
             manager=MANAGER,
+            sound_id="dice_roll",
         )
         del _tmp
         self.elements["reroll_count"] = pygame_gui.elements.UILabel(
@@ -1457,7 +1471,7 @@ class MakeClanScreen(Screens):
         )
         # Error message, to appear if you can't choose that cat.
         self.elements["error_message"] = pygame_gui.elements.UITextBox(
-            "Too young to become leader",
+            "Too young to become monarch",
             scale(pygame.Rect((300, 706), (1000, 110))),
             object_id=get_text_box_theme("#text_box_30_horizcenter_red"),
             visible=False,
@@ -1584,7 +1598,7 @@ class MakeClanScreen(Screens):
         )
         # Error message, to appear if you can't choose that cat.
         self.elements["error_message"] = pygame_gui.elements.UITextBox(
-            "Too young to become a medicine cat",
+            "Too young to become a healer",
             scale(pygame.Rect((300, 706), (1000, 110))),
             object_id=get_text_box_theme("#text_box_30_horizcenter_red"),
             visible=False,
@@ -1832,7 +1846,7 @@ class MakeClanScreen(Screens):
         )
         self.text["leader"] = pygame_gui.elements.UILabel(
             scale(pygame.Rect((0, 90), (-1, -1))),
-            text=f"Leader name: {self.leader.name.prefix}star",
+            text=f"Monarch name: {self.leader.name.prefix}light",
             container=self.elements["text_container"],
             object_id=get_text_box_theme("#text_box_30_horizleft"),
             manager=MANAGER,
@@ -1970,6 +1984,7 @@ class MakeClanScreen(Screens):
             scale(pygame.Rect((692, 500), (204, 60))),
             "",
             object_id="#continue_button_small",
+            sound_id="save",
         )
         self.elements["save_confirm"] = pygame_gui.elements.UITextBox(
             "Your Clan has been created and saved!",
