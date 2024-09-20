@@ -963,15 +963,7 @@ class ChooseMateScreen(Screens):
             manager=MANAGER,
         )
 
-        if (
-                (not game.clan.clan_settings["same sex birth"]
-                 and (
-                         ((self.the_cat.gender == "intersex" or self.selected_cat.gender == "intersex")
-                          and Pregnancy_Events.check_intersex_parents(self.the_cat, self.selected_cat, False) is not True, False)
-                         or self.the_cat.gender == self.selected_cat.gender
-                 ))
-                or (self.the_cat.neutered or self.selected_cat.neutered)
-        ):
+        if (not game.clan.clan_settings["same sex birth"] and not self.follow_biology_kits(self.the_cat, self.selected_cat)) or (self.the_cat.neutered or self.selected_cat.neutered):
             self.selected_cat_elements["no kit warning"] = (
                 pygame_gui.elements.UITextBox(
                     f"<font pixel_size={int(22 / 1400 * screen_y)}> This pair can't have biological kits </font>",
@@ -999,6 +991,17 @@ class ChooseMateScreen(Screens):
                 "",
                 object_id="#confirm_mate_button",
             )
+
+    @staticmethod
+    def follow_biology_kits(birthing_parent: Cat, second_parent: Cat):
+        can_kits = False
+        if birthing_parent.gender == "intersex" or second_parent.gender == "intersex":
+            if Pregnancy_Events.check_intersex_parents(birthing_parent, second_parent, False)[0] is True:
+                can_kits = True
+        elif birthing_parent.gender != second_parent.gender:
+            can_kits = True
+
+        return can_kits
 
     def draw_compatible_line_affection(self):
         """Draws the heart-line based on capability, and draws the hearts based on romantic love."""
@@ -1173,11 +1176,9 @@ class ChooseMateScreen(Screens):
             and (not self.single_only or not i.mate)
             and (
                 not self.have_kits_only
-                or (not i.neutered and not self.the_cat.neutered))
-            and (
-                not self.have_kits_only
+                or not (i.neutered or self.the_cat.neutered)
                 or game.clan.clan_settings["same sex birth"]
-                or i.gender != self.the_cat.gender
+                or self.follow_biology_kits(self.the_cat, i)
             )
         ]
 
