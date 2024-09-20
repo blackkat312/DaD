@@ -214,6 +214,10 @@
 		"wildcard_tortie": 8,
 		"vit_chance": 7,
 		"random_point_chance": 3,
+		"base_extra_white": 7,
+		"max_white_amount": 6,
+		"base_extra_tortie": 7,
+		"max_tortie_amount": 6,
 		"comment": [
 			"base_congenital_condition_denominator and base_congenital_condition_compare (1/15 or ~6.67% by default) -",
 			"works as 'if randint(1, base_congenital_condition_denominator) <= base_congenital_condition_compare'",
@@ -227,7 +231,10 @@
 			"max_congenital_conditions (3 by default) - the max amount of permanent conditions a cat can be born with.",
 
 			"comorbidity_chance (5 by default) - 1/chance for a cat being given an extra permanent condition to be given",
-			"a condition that is comorbid with any of their existing ones instead of a random one."
+			"a condition that is comorbid with any of their existing ones instead of a random one.",
+			"max_white_amount is the max amount of white patches one cat can generate with - 2 by default",
+			"max_tortie_amount is the max amount of tortie patches one cat can generate with - 2 by default",
+			"Note that extra patch chances decrease with each extra patch - chances base_extra_white 5 by default, base_extra_tortie 3 by default"
 		]
 	},
 	"cat_name_controls": {
