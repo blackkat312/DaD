@@ -2905,44 +2905,45 @@ def generate_sprite(
             new_sprite.blit(line_pelt, (0, 0))
 
         if tortie_base:
-            patches = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
-            if tortie_base in swap_layers:
-                if tortie_base == "SOKOKE":
+            for pattern in cat.pelt.pattern:
+                patches = sprites.sprites["baseSOLID" + cat_sprite].copy().convert_alpha()
+                if tortie_base in swap_layers:
+                    if tortie_base == "SOKOKE":
+                        patches.blit(tortie_base_pelt, (0, 0))
+                        patches.blit(tortie_mid_pelt, (0, 0))
+                        patches.blit(tortie_dark_pelt, (0, 0))
+                        patches.blit(tortie_shade_pelt, (0, 0))
+                        patches.blit(tortie_highlight_pelt, (0, 0))
+                        patches.blit(tortie_line_pelt, (0, 0))
+                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0),
+                                     special_flags=pygame.BLEND_RGBA_MULT)
+                        new_sprite.blit(patches, (0, 0))
+                    if tortie_base == "BRAIDED":
+                        patches.blit(tortie_base_pelt, (0, 0))
+                        patches.blit(tortie_unders_pelt, (0, 0))
+                        patches.blit(tortie_mid_pelt, (0, 0))
+                        patches.blit(tortie_dark_pelt, (0, 0))
+                        patches.blit(tortie_shade_pelt, (0, 0))
+                        patches.blit(tortie_line_pelt, (0, 0))
+                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0),
+                                     special_flags=pygame.BLEND_RGBA_MULT)
+                        new_sprite.blit(patches, (0, 0))
+                else:
                     patches.blit(tortie_base_pelt, (0, 0))
-                    patches.blit(tortie_mid_pelt, (0, 0))
-                    patches.blit(tortie_dark_pelt, (0, 0))
-                    patches.blit(tortie_shade_pelt, (0, 0))
-                    patches.blit(tortie_highlight_pelt, (0, 0))
+                    if tortie_base in u_layers:
+                        patches.blit(tortie_unders_pelt, (0, 0))
+                    if tortie_base in m_layers:
+                        patches.blit(tortie_mid_pelt, (0, 0))
+                    if tortie_base in d_layers:
+                        patches.blit(tortie_dark_pelt, (0, 0))
+                    if tortie_base in s_layers:
+                        patches.blit(tortie_shade_pelt, (0, 0))
+                    if tortie_base in h_layers:
+                        patches.blit(tortie_highlight_pelt, (0, 0))
                     patches.blit(tortie_line_pelt, (0, 0))
-                    patches.blit(sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite], (0, 0),
-                                 special_flags=pygame.BLEND_RGBA_MULT)
-                    new_sprite.blit(patches, (0, 0))
-                if tortie_base == "BRAIDED":
-                    patches.blit(tortie_base_pelt, (0, 0))
-                    patches.blit(tortie_unders_pelt, (0, 0))
-                    patches.blit(tortie_mid_pelt, (0, 0))
-                    patches.blit(tortie_dark_pelt, (0, 0))
-                    patches.blit(tortie_shade_pelt, (0, 0))
-                    patches.blit(tortie_line_pelt, (0, 0))
-                    patches.blit(sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite], (0, 0),
-                                 special_flags=pygame.BLEND_RGBA_MULT)
-                    new_sprite.blit(patches, (0, 0))
-            else:
-                patches.blit(tortie_base_pelt, (0, 0))
-                if tortie_base in u_layers:
-                    patches.blit(tortie_unders_pelt, (0, 0))
-                if tortie_base in m_layers:
-                    patches.blit(tortie_mid_pelt, (0, 0))
-                if tortie_base in d_layers:
-                    patches.blit(tortie_dark_pelt, (0, 0))
-                if tortie_base in s_layers:
-                    patches.blit(tortie_shade_pelt, (0, 0))
-                if tortie_base in h_layers:
-                    patches.blit(tortie_highlight_pelt, (0, 0))
-                patches.blit(tortie_line_pelt, (0, 0))
-            patches.blit(sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite], (0, 0),
-                         special_flags=pygame.BLEND_RGBA_MULT)
-            new_sprite.blit(patches, (0, 0))
+                patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0),
+                             special_flags=pygame.BLEND_RGBA_MULT)
+                new_sprite.blit(patches, (0, 0))
 
         # TINTS
         """if (
@@ -2966,27 +2967,28 @@ def generate_sprite(
 
         # draw white patches
         if cat.pelt.white_patches is not None:
-            white_patches = sprites.sprites[
-                "white" + cat.pelt.white_patches + cat_sprite
-            ].copy()
+            for white in cat.pelt.white_patches:
+                white_patch = sprites.sprites[
+                    "white" + white + cat_sprite
+                ].copy()
 
-            # Apply tint to white patches.
-            if (
-                cat.pelt.white_patches_tint != "none"
-                and cat.pelt.white_patches_tint
-                in sprites.white_patches_tints["tint_colours"]
-            ):
-                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                tint.fill(
-                    tuple(
-                        sprites.white_patches_tints["tint_colours"][
-                            cat.pelt.white_patches_tint
-                        ]
+                # Apply tint to white patches.
+                if (
+                    cat.pelt.white_patches_tint != "none"
+                    and cat.pelt.white_patches_tint
+                    in sprites.white_patches_tints["tint_colours"]
+                ):
+                    tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tint.fill(
+                        tuple(
+                            sprites.white_patches_tints["tint_colours"][
+                                cat.pelt.white_patches_tint
+                            ]
+                        )
                     )
-                )
-                white_patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                    white_patch.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-            new_sprite.blit(white_patches, (0, 0))
+                new_sprite.blit(white_patch, (0, 0))
 
         # draw vit & points
 
