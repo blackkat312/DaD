@@ -292,11 +292,6 @@ class Pregnancy_Events:
         if (cat and (cat.no_kits or cat.neutered)) or (other_cat and (other_cat.no_kits or other_cat.neutered)):
             return
 
-        """ REWORKHERE
-        # here's where we check for infertility, just in case it slipped trough
-        if (cat and "infertile" in cat.permanent_condition) and not (other_cat and "infertile" in other_cat.permanent_condition):
-            return"""
-
         if clan.clan_settings["same sex birth"]:
             # 50/50 for single cats to get pregnant or just bring a litter back
             if not other_cat and random.randint(0, 1):
@@ -748,9 +743,8 @@ class Pregnancy_Events:
         if "recovering from birth" in cat.injuries:
             return False
 
-        """ REWORKHERE
-        if 'infertile' in cat.permanent_condition:
-            return False"""
+        if 'infertile' in cat.permanent_condition and randint(1, 10) != 1:
+            return False
 
         if cat.neutered:
             return False
@@ -802,11 +796,10 @@ class Pregnancy_Events:
 
         # Check to see if the pair can have kits.
 
-        """ REWORKHERE
-        if ("infertile" in cat.permanent_condition or "infertile" in second_parent.permanent_condition):
-            return True, True"""
+        if "infertile" in second_parent.permanent_condition and randint(1, 10) != 1:
+            return True, True
 
-        if cat.neutered or second_parent.neutered:
+        if second_parent.neutered:
             return True, True
 
         if cat.gender == 'intersex' or second_parent.gender == 'intersex':
