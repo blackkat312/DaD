@@ -127,8 +127,8 @@ class Sprites:
             'fadestarclan', 'fadedarkforest', 'lightingnew', 'fademask', 'shadersnewwhite',
             'base', 'mid', 'dark', 'highlight', 'shade', 'unders',
             'eyebase', 'eyemid', 'eyetop', 'eyeshade', 'eyelight', 'eyes2', 'skin', 'scars', 'missingscars', 'disabilityscars',
-            'whitepatches', 'whitepatches2', 'whitepatchesmoss',
-            'tortiepatchesmasks', 'tortiesmoss',
+            'whitepatches', 'whitepatches2', 'whitepatchesmoss', 'minkwhitepatches', 'minkwhitepatchesmoss',
+            'tortiepatchesmasks', 'tortiesmoss', 'minktortiepatchesmasks', 'minktortiepatchesmasks2', 'minktortiesmoss',
             'medcatherbs', 'disabilityaccs', 'accbase', 'accadd', 'accpattern', 'collaradd'
             # 'lazyeyes'
 
@@ -202,6 +202,22 @@ class Sprites:
             ['COWFIVE', 'COWSIX', 'COWSEVEN', 'COWEIGHT', 'COWNINE', 'COWTEN', 'COWELEVEN', 'FRECKLEMASK', 'SPLAT', 'BATWING', 'SMALLPATCHES']
         ]
 
+        mink_white_patches = [
+            ['MINKONE', 'MINKTWO', 'MINKTHREE', 'MINKFOUR', 'MINKREDTAIL', 'MINKDELILAH', 'MINKHALF', 'MINKSTREAK', 'MINKMASK', 'MINKSMOKE'],
+            ['MINKMINIMALONE', 'MINKMINIMALTWO', 'MINKMINIMALTHREE', 'MINKMINIMALFOUR', 'MINKOREO', 'MINKSWOOP', 'MINKCHIMERA', 'MINKCHEST', 'MINKARMTAIL',
+             'MINKGRUMPYFACE'],
+            ['MINKMOTTLED', 'MINKSIDEMASK', 'MINKEYEDOT', 'MINKBANDANA', 'MINKPACMAN', 'MINKSTREAMSTRIKE', 'MINKSMUDGED', 'MINKDAUB', 'MINKEMBER', 'MINKBRIE'],
+            ['MINKORIOLE', 'MINKROBIN', 'MINKBRINDLE', 'MINKPAIGE', 'MINKROSETAIL', 'MINKSAFI', 'MINKDAPPLENIGHT', 'MINKBLANKET', 'MINKBELOVED', 'MINKBODY'],
+            ['MINKSHILOH', 'MINKFRECKLED', 'MINKHEARTBEAT']
+        ]
+
+        mink_white_patches_moss = [
+            ['MINKVIPER', 'MINKSKULL', 'MINKPOINTS', 'MINKDITTO', 'MINKTABBY', 'MINKSPECKLED', 'MINKBENGAL', 'MINKCLASSIC', 'MINKMACKEREL', 'MINKMARBLED'],
+            ['MINKSABER', 'MINKROSETTE', 'MINKMASKED', 'MINKDUST', 'MINKMAXIMUMONE', 'MINKMAXIMUMTWO', 'MINKMAXIMUMTHREE', 'MINKMAXIMUMFOUR',
+             'MINKMAXIMUMFIVE', 'MINKMAXIMUMSIX'],
+            ['MINKMAXIMUMSEVEN', 'MINKMAXIMUMEIGHT']
+        ]
+
         for row, patches in enumerate(white_patches):
             for col, patch in enumerate(patches):
                 self.make_group('whitepatches', (col, row), f'white{patch}')
@@ -211,6 +227,12 @@ class Sprites:
         for row, patches in enumerate(white_patches_moss):
             for col, patch in enumerate(patches):
                 self.make_group('whitepatchesmoss', (col, row), f'white{patch}')
+        for row, patches in enumerate(mink_white_patches):
+            for col, patch in enumerate(patches):
+                self.make_group('minkwhitepatches', (col, row), f'white{patch}')
+        for row, patches in enumerate(mink_white_patches_moss):
+            for col, patch in enumerate(patches):
+                self.make_group('minkwhitepatchesmoss', (col, row), f'white{patch}')
 
         # base pelt - to be expanded with extras later
         self.make_group('base', (0, 0), 'baseSOLID')
@@ -292,6 +314,36 @@ class Sprites:
             ['MAXIMUMSEVEN', 'MAXIMUMEIGHT']
         ]
 
+        minktortiepatchesmasks = [
+            ['FULLWHITE', 'ANY', 'TUXEDO', 'LITTLE', 'COLOURPOINT', 'VAN', 'ANYTWO', 'MOON', 'PHANTOM', 'POWDER',
+             'BLEACHED', 'SAVANNAH', 'FADESPOTS', 'PEBBLESHINE'],
+            ['EXTRA', 'ONEEAR', 'BROKEN', 'LIGHTTUXEDO', 'BUZZARDFANG', 'RAGDOLL', 'LIGHTSONG', 'VITILIGO', 'BLACKSTAR',
+             'PIEBALD', 'CURVED', 'PETAL', 'SHIBAINU', 'OWL'],
+            ['TIP', 'FANCY', 'FRECKLES', 'RINGTAIL', 'HALFFACE', 'PANTSTWO', 'GOATEE', 'VITILIGOTWO', 'PAWS', 'MITAINE',
+             'BROKENBLAZE', 'SCOURGE', 'DIVA', 'BEARD'],
+            ['TAIL', 'BLAZE', 'PRINCE', 'BIB', 'VEE', 'UNDERS', 'HONEY', 'FAROFA', 'DAMIEN', 'MISTER', 'BELLY',
+             'TAILTIP', 'TOES', 'TOPCOVER'],
+            ['APRON', 'CAPSADDLE', 'MASKMANTLE', 'SQUEAKS', 'STAR', 'TOESTAIL', 'RAVENPAW', 'PANTS', 'REVERSEPANTS',
+             'SKUNK', 'KARPATI', 'HALFWHITE', 'APPALOOSA', 'DAPPLEPAW']
+        ]
+
+        minktortiepatchesmasks2 = [
+            ['HEART', 'LILTWO', 'GLASS', 'MOORISH', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT', 'MAO', 'LUNA', 'CHESTSPECK',
+             'WINGS', 'PAINTED', 'HEARTTWO', 'WOODPECKER'],
+            ['BOOTS', 'MISS', 'COW', 'COWTWO', 'BUB', 'BOWTIE', 'MUSTACHE', 'REVERSEHEART', 'SPARROW', 'VEST',
+             'LOVEBUG', 'TRIXIE', 'SAMMY', 'SPARKLE'],
+            ['RIGHTEAR', 'LEFTEAR', 'ESTRELLA', 'SHOOTINGSTAR', 'EYESPOT', 'REVERSEEYE', 'FADEBELLY', 'FRONT',
+             'BLOSSOMSTEP', 'PEBBLE', 'TAILTWO', 'BUDDY', 'BACKSPOT', 'EYEBAGS'],
+            ['BULLSEYE', 'FINN', 'DIGIT', 'KROPKA', 'FCTWO', 'FCONE', 'MIA', 'SCAR', 'BUSTER', 'SMOKEY', 'HAWKBLAZE',
+             'CAKE', 'ROSINA', 'PRINCESS'],
+            ['LOCKET', 'BLAZEMASK', 'TEARS', 'DOUGIE']
+        ]
+
+        minktortiesmoss = [
+            ['CHANCE', 'MOSSY', 'MOTH', 'NIGHTMIST', 'FALCON', 'VENUS', 'RETSUKO', 'TIDAL', 'DIAMOND', 'ECLIPSE', 'SNOWSTORM', 'PEPPER', 'COWTHREE', 'COWFOUR'],
+            ['COWFIVE', 'COWSIX', 'COWSEVEN', 'COWEIGHT', 'COWNINE', 'COWTEN', 'COWELEVEN', 'FRECKLEMASK', 'SPLAT', 'BATWING', 'SMALLPATCHES']
+        ]
+
         for row, masks in enumerate(tortiepatchesmasks):
             for col, mask in enumerate(masks):
                 self.make_group('tortiepatchesmasks', (col, row), f"tortiemask{mask}")
@@ -299,6 +351,18 @@ class Sprites:
         for row, masks in enumerate(tortiepatchesmasksmoss):
             for col, mask in enumerate(masks):
                 self.make_group('tortiesmoss', (col, row), f"tortiemask{mask}")
+
+        for row, masks in enumerate(minktortiepatchesmasks2):
+            for col, mask in enumerate(masks):
+                self.make_group('minktortiepatchesmasks', (col, row), f"tortiemask{mask}")
+
+        for row, masks in enumerate(tortiepatchesmasksmoss):
+            for col, mask in enumerate(masks):
+                self.make_group('minktortiepatchesmasks2', (col, row), f"tortiemask{mask}")
+
+        for row, masks in enumerate(minktortiesmoss):
+            for col, mask in enumerate(masks):
+                self.make_group('minktortiesmoss', (col, row), f"tortiemask{mask}")
 
         # Define skin patterns
         skins = [
