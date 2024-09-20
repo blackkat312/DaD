@@ -963,7 +963,7 @@ class ChooseMateScreen(Screens):
             manager=MANAGER,
         )
 
-        if (not game.clan.clan_settings["same sex birth"] and not self.follow_biology_kits(self.the_cat, self.selected_cat)) or (self.the_cat.neutered or self.selected_cat.neutered):
+        if (not game.clan.clan_settings["same sex birth"] and not self.can_follow_biology(self.the_cat, self.selected_cat)) or (self.the_cat.neutered or self.selected_cat.neutered):
             self.selected_cat_elements["no kit warning"] = (
                 pygame_gui.elements.UITextBox(
                     f"<font pixel_size={int(22 / 1400 * screen_y)}> This pair can't have biological kits </font>",
@@ -993,7 +993,7 @@ class ChooseMateScreen(Screens):
             )
 
     @staticmethod
-    def follow_biology_kits(birthing_parent: Cat, second_parent: Cat):
+    def can_follow_biology(birthing_parent: Cat, second_parent: Cat):
         can_kits = False
         if birthing_parent.gender == "intersex" or second_parent.gender == "intersex":
             if Pregnancy_Events.check_intersex_parents(birthing_parent, second_parent, False)[0] is True:
@@ -1176,9 +1176,9 @@ class ChooseMateScreen(Screens):
             and (not self.single_only or not i.mate)
             and (
                 not self.have_kits_only
-                or not (i.neutered or self.the_cat.neutered)
-                or game.clan.clan_settings["same sex birth"]
-                or self.follow_biology_kits(self.the_cat, i)
+                or (not (i.neutered or self.the_cat.neutered)
+                    and (game.clan.clan_settings["same sex birth"]
+                    or self.can_follow_biology(self.the_cat, i)))
             )
         ]
 
