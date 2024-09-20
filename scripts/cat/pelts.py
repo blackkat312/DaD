@@ -307,19 +307,23 @@ class Pelt:
                     'LUNA', 'EXTRA', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE', 'RIGHTEAR', 'LEFTEAR', 'ESTRELLA', 'REVERSEEYE', 'BACKSPOT',
                     'EYEBAGS', 'LOCKET', 'BLAZEMASK', 'TEARS',
 
-                    'WINGS', 'BEARD', 'DOUGIE',
+                    'WINGS', 'BEARD', 'DOUGIE']
 
+    """
                     # mink's
                     '']
+    """
 
     mid_white = ['TUXEDO', 'FANCY', 'DAMIEN', 'SKUNK', 'MITAINE', 'SQUEAKS', 'STAR',
                  'DIVA', 'SAVANNAH', 'FADESPOTS', 'DAPPLEPAW', 'TOPCOVER', 'WOODPECKER', 'MISS',
                  'BOWTIE', 'VEST', 'FADEBELLY', 'DIGIT', 'FCTWO', 'FCONE', 'MIA', 'ROSINA', 'PRINCESS',
 
-                 'APPALOOSA', 'SHIBAINU', 'COWTWO', 'COWFOUR', 'COWSIX', 'COWEIGHT'
+                 'APPALOOSA', 'SHIBAINU', 'COWTWO', 'COWFOUR', 'COWSIX', 'COWEIGHT']
 
+    """
                  # mink's
                  '']
+    """
 
     high_white = ['ANY', 'FRECKLES', 'RINGTAIL', 'HALFFACE', 'PANTSTWO',
                   'PRINCE', 'FAROFA', 'MISTER', 'PANTS', 'REVERSEPANTS', 'PIEBALD',
@@ -328,27 +332,33 @@ class Pelt:
                   'FRONT', 'BLOSSOMSTEP', 'COWELEVEN',
                   'FINN', 'SCAR', 'BUSTER', 'CAKE',
 
-                  'UNDERS', 'MOSSY', 'VENUS', 'COW', 'TIDAL', 'COWTHREE', 'COWFIVE', 'COWSEVEN', 'COWNINE', 'BATWING'
+                  'UNDERS', 'MOSSY', 'VENUS', 'COW', 'TIDAL', 'COWTHREE', 'COWFIVE', 'COWSEVEN', 'COWNINE', 'BATWING']
 
+    """
                   # mink's
                   'MINKONE']
+    """
 
     mostly_white = ['VAN', 'ONEEAR', 'LIGHTSONG', 'TAIL', 'HEART', 'MOORISH', 'APRON', 'CAPSADDLE',
                     'CHESTSPECK', 'BLACKSTAR', 'PETAL', 'HEARTTWO', 'MOTH', 'FRECKLEMASK',
                     'DIAMOND', 'ECLIPSE', 'PEBBLESHINE', 'BOOTS', 'COWTEN',
                     'LOVEBUG', 'SHOOTINGSTAR', 'EYESPOT', 'PEBBLE', 'TAILTWO', 'BUDDY', 'KROPKA', "SMALLPATCHES",
 
-                    'ANYTWO', 'BROKEN', 'GOATEE', 'HALFWHITE', 'GLASS', 'MASKMANTLE', 'PEPPER', 'SAMMY'
+                    'ANYTWO', 'BROKEN', 'GOATEE', 'HALFWHITE', 'GLASS', 'MASKMANTLE', 'PEPPER', 'SAMMY']
 
+    """
                     # mink's
                     '']
+    """
 
     point_markings = ['COLOURPOINT', 'RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT']
 
-    vit = ['VITILIGO', 'VITILIGOTWO', 'MOON', 'PHANTOM', 'KARPATI', 'POWDER', 'SPLAT', 'BLEACHED', 'SMOKEY'
+    vit = ['VITILIGO', 'VITILIGOTWO', 'MOON', 'PHANTOM', 'KARPATI', 'POWDER', 'SPLAT', 'BLEACHED', 'SMOKEY']
            
+    """
            # mink's
            '']
+    """
 
     white_sprites = [
             little_white, mid_white, high_white, mostly_white, point_markings, vit, 'FULLWHITE']
