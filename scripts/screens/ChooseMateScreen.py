@@ -17,6 +17,7 @@ from scripts.utility import (
     scale,
     scale_dimentions,
 )
+from scripts.events_module.relationship.pregnancy_events import Pregnancy_Events
 from .Screens import Screens
 
 
@@ -189,7 +190,7 @@ class ChooseMateScreen(Screens):
         """Sets up the elements that are always on the page"""
         self.show_mute_buttons()
         self.info = pygame_gui.elements.UITextBox(
-            "If a cat has mates, then they will be loyal and only have kittens with their mates"
+            "If a cat has mates, then they will be loyal and only have kits with their mates"
             " (unless affairs are toggled on.) Potential mates are listed below! The lines "
             "connecting the two cats may give a hint on their compatibility with one another "
             "and any existing romantic feelings will be shown with small hearts.",
@@ -963,14 +964,17 @@ class ChooseMateScreen(Screens):
         )
 
         if (
-            not game.clan.clan_settings["same sex birth"]
-            and self.the_cat.gender == self.selected_cat.gender
-        ) or (
-            self.the_cat.neutered or self.selected_cat.neutered
+                (not game.clan.clan_settings["same sex birth"]
+                 and (
+                         ((self.the_cat.gender == "intersex" or self.selected_cat.gender == "intersex")
+                          and Pregnancy_Events.check_intersex_parents(self.the_cat, self.selected_cat, False) is not True, False)
+                         or self.the_cat.gender == self.selected_cat.gender
+                 ))
+                or (self.the_cat.neutered or self.selected_cat.neutered)
         ):
             self.selected_cat_elements["no kit warning"] = (
                 pygame_gui.elements.UITextBox(
-                    f"<font pixel_size={int(22 / 1400 * screen_y)}> This pair can't have biological kittens </font>",
+                    f"<font pixel_size={int(22 / 1400 * screen_y)}> This pair can't have biological kits </font>",
                     scale(pygame.Rect((550, 250), (498, 50))),
                     object_id=get_text_box_theme(
                         "#text_box_22_horizcenter_vertcenter_spacing_95"
