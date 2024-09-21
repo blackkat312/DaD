@@ -438,11 +438,10 @@
         "min_cats": 3,
         "max_cats": 6,
         "min_max_status": {
-            "deputy": [1, 1],
-	        "leader": [-1, -1]
+	        "leader": [1, 1]
         },
         "weight": 20,
-        "intro_text": "While training, p_l admits that {PRONOUN/p_l/subject} {VERB/p_l/don't/doesn't} think that {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} a good deputy.",
+        "intro_text": "While training, p_l admits that {PRONOUN/p_l/subject} {VERB/p_l/don't/doesn't} think that {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} a good guardian.",
         "decline_text": "The rest of the patrol hastily changes the subject.",
         "chance_of_success": 50,
         "success_outcomes": [
@@ -489,7 +488,7 @@
                 ]
             },
             {
-                "text": "s_c blinks at p_l compassionately - that sounds like a hard burden to bear alone. With an empathetic ear, {PRONOUN/s_c/subject} {VERB/s_c/listen/listens} to p_l's current struggles filling the deputy position, and by the end of their training patrol, p_l feels a huge weight off {PRONOUN/p_l/poss} shoulders.",
+                "text": "s_c blinks at p_l compassionately - that sounds like a hard burden to bear alone. With an empathetic ear, {PRONOUN/s_c/subject} {VERB/s_c/listen/listens} to p_l's struggles fulfilling the position of guardian, and by the end of their training patrol, p_l feels a huge weight off {PRONOUN/p_l/poss} shoulders.",
                 "exp": 20,
                 "weight": 20,
                 "stat_trait": [
@@ -538,7 +537,7 @@
                 ]
             },
             {
-                "text": "Well if that's how p_l feels, s_c suggests {PRONOUN/p_l/subject} give up the deputy position and let another cat take over.",
+                "text": "Well if that's how p_l feels, s_c suggests {PRONOUN/p_l/subject} give up {PRONOUN/p_l/poss} crown and let another cat take over.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": [
@@ -563,7 +562,7 @@
                 ]
             },
             {
-                "text": "Deputies shouldn't show weakness, s_c meows unsympathetically.",
+                "text": "Guardians shouldn't show weakness, s_c meows unsympathetically.",
                 "exp": 0,
                 "weight": 20,
                 "stat_trait": [
@@ -10368,134 +10367,6 @@
         ]
     },
     {
-        "patrol_id": "gen_train_kittypetlocked1",
-        "biome": ["any"],
-        "season": ["any"],
-        "types": ["training"],
-        "tags": ["distrust", "disrespect"],
-        "patrol_art": "train_general_intro",
-        "min_cats": 3,
-        "max_cats": 6,
-        "min_max_status": {
-            "normal adult": [1, 6]
-        },
-        "weight": 30,
-        "intro_text": "While the cats are out training, the subject of Twolegs comes up. r_c tells everyone to just not get caught by them. o_c1 suggests clawing their faces off - or their ankles if any cat has trouble reaching up that high. p_l laughs, and the patrol turns to {PRONOUN/p_l/object}.",
-        "decline_text": "Oh, nothing, don't worry about it.",
-        "chance_of_success": 60,
-        "pl_skill_constraint": ["KITTYPET,0"],
-        "success_outcomes": [
-            {
-                "text": "Look, the Clanborn cats are welcome to claw as many Twolegs as they like, but if what they actually want is for a Twoleg to leave them alone, it's simple. Take it from a former kittypet - if you hiss at a Twoleg, they'll hiss right back; you take a swipe, they'll want to swipe at you. Just chill out and duck away.",
-                "exp": 30,
-                "weight": 20,
-                "relationships": [
-                    {
-                        "cats_to": ["p_l"],
-                        "cats_from": ["patrol"],
-                        "mutual": false,
-                        "values": ["respect", "trust"],
-                        "amount": 5
-                    }
-                ]
-            },
-            {
-                "text": "The Clan cats really think they'd win a strength match against a Twoleg? Nah, try the kittypet way instead, p_l suggests from {PRONOUN/p_l/poss} own past. Just trot off down some little path that the big clumsy oafs can't follow.",
-                "exp": 30,
-                "weight": 5,
-                "relationships": [
-                    {
-                        "cats_to": ["p_l"],
-                        "cats_from": ["patrol"],
-                        "mutual": false,
-                        "values": ["respect", "trust"],
-                        "amount": 5
-                    }
-                ]
-            }
-        ],
-        "fail_outcomes": [
-            {
-                "text": "p_l starts to give advice based on {PRONOUN/p_l/poss} own experiences as a kittypet, but none of the rest of the patrol are interested in hearing it.",
-                "exp": 0,
-                "weight": 20,
-                "relationships": [
-                    {
-                        "cats_to": ["p_l"],
-                        "cats_from": ["patrol"],
-                        "mutual": false,
-                        "values": ["respect", "trust"],
-                        "amount": -5
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "patrol_id": "gen_train_roguelonerlocked1",
-        "biome": ["any"],
-        "season": ["any"],
-        "types": ["training"],
-        "tags": ["distrust", "disrespect"],
-        "patrol_art": "train_general_intro",
-        "min_cats": 3,
-        "max_cats": 6,
-        "min_max_status": {
-            "normal adult": [1, 6]
-        },
-        "weight": 30,
-        "intro_text": "While the cats are out training, the discussion turns to rogues. p_l perks {PRONOUN/p_l/poss} ears up - {PRONOUN/p_l/object} know all about it.",
-        "decline_text": "But {PRONOUN/p_l/object} {VERB/p_l/decide/decides} to listen instead of joining in the conversation.",
-        "chance_of_success": 60,
-        "pl_skill_constraint": ["ROGUE,0", "LONER,0"],
-        "success_outcomes": [
-            {
-                "text": "It's not always fun, dredging up bits and pieces from {PRONOUN/p_l/poss} past, but watching the rest of the patrol's wide eyes makes it seem worth it. Not only will p_l feel better about {PRONOUN/p_l/poss} Clanmates' preparation for how desperate a rogue can be, but this kind of quiet respect is... Well, it's a strange warmth.",
-                "exp": 30,
-                "weight": 20,
-                "relationships": [
-                    {
-                        "cats_to": ["p_l"],
-                        "cats_from": ["patrol"],
-                        "mutual": false,
-                        "values": ["respect", "trust"],
-                        "amount": 5
-                    }
-                ]
-            },
-            {
-                "text": "p_l tells the group of how it's not that all rogues are aggressive - but all rogues are so much more alone than Clan cats, so much more vulnerable, and so much more scared of showing that soft underbelly. It's worth remembering for the next time one turns up on the border.",
-                "exp": 30,
-                "weight": 5,
-                "relationships": [
-                    {
-                        "cats_to": ["p_l"],
-                        "cats_from": ["patrol"],
-                        "mutual": false,
-                        "values": ["respect", "trust"],
-                        "amount": 5
-                    }
-                ]
-            }
-        ],
-        "fail_outcomes": [
-            {
-                "text": "p_l starts to give advice based on {PRONOUN/p_l/poss} own experiences before {PRONOUN/p_l/subject} joined c_n, but the rest of the patrol is uninterested.",
-                "exp": 0,
-                "weight": 20,
-                "relationships": [
-                    {
-                        "cats_to": ["p_l"],
-                        "cats_from": ["patrol"],
-                        "mutual": false,
-                        "values": ["respect", "trust"],
-                        "amount": -5
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "patrol_id": "gen_train_firestarfable_storylorelocked1",
         "biome": ["any"],
         "season": ["any"],
@@ -10711,15 +10582,6 @@
                 ]
             },
             {
-                "text": "The patrol nervously heads towards the unblinking eyes, unsure of what lies ahead. As the strange object comes into view, s_c lets out a mrrow of laughter! {PRONOUN/s_c/subject/CAP} {VERB/s_c/explain/explains} that this is a Twoleg ritual performed around the start of leaf-bare. p_l is glad to have a cat with s_c's understanding of Twolegs on this patrol. With this knowledge, unneeded panic was surely avoided!",
-                "exp": 15,
-                "weight": 10,
-                "stat_skill": [
-                    "KITTYPET,0",
-                    "LONER,0"
-                ]
-            },
-            {
                 "text": "The patrol nervously heads towards the unblinking eyes, unsure of what lies ahead. As the strange object comes into view, s_c begins to bristle with unease. {PRONOUN/s_c/subject/CAP} can see strange, mist-like Twolegs floating around the glowing, unblinking face of a... pumpkin? The figures approach s_c and run their cold, fur-less paws through {PRONOUN/s_c/subject} fur. s_c can hardly hear r_c asking {PRONOUN/s_c/object} why {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} frozen in place.",
                 "exp": 20,
                 "weight": 10,
@@ -10868,7 +10730,7 @@
                 "text": "app1 knows that app2 isn't well-liked in the den for {PRONOUN/app2/poss} attitude. However, {PRONOUN/app1/subject} {VERB/app1/do/does}n't think app2 is a bad cat. {PRONOUN/app2/subject/CAP} just {VERB/app2/need/needs} someone to believe in {PRONOUN/app2/object}. Well, let app1 be that someone. {PRONOUN/app1/subject/CAP} agrees with app2. app2 is skeptically surprised by app1's vote of confidence but is happy to lead the patrol. app1 comes home with enough prey for the queens and elders and is rewarded with a nod from {PRONOUN/app1/poss} mentor.",
                 "exp": 15,
                 "weight": 20,
-                "stat_skill": ["SENSE,0", "MEDIATOR,0"],
+                "stat_skill": ["SENSE,1", "MEDIATOR,1"],
                 "relationships": [
                     {
                         "cats_to": ["patrol"],
@@ -11053,10 +10915,10 @@
                 ]
             },
             {
-                "text": "app1 was already awake and raring to go. {PRONOUN/app1/subject/CAP} run off before the guardian can say anything. It's just a game of hide and seek, after all. When {PRONOUN/app1/subject} {VERB/app1/find/finds} p_l, {PRONOUN/app1/subject} {VERB/app1/have/has} to stifle {PRONOUN/app1/poss} chitters of excited pleasure. p_l must have heard {PRONOUN/app1/object}, because app1 sees {PRONOUN/p_l/poss} whiskers twitch in amusement. Oh well - {PRONOUN/app1/subject} gleefully {VERB/app1/charge/charges} forward anyway.",
+                "text": "app1 was already awake and raring to go. {PRONOUN/app1/subject/CAP} run off before the guardian can say anything. It's just a game of hide-and-seek, after all. When {PRONOUN/app1/subject} {VERB/app1/find/finds} p_l, {PRONOUN/app1/subject} {VERB/app1/have/has} to stifle {PRONOUN/app1/poss} chitters of excited pleasure. p_l must have heard {PRONOUN/app1/object}, because app1 sees {PRONOUN/p_l/poss} whiskers twitch in amusement. Oh well - {PRONOUN/app1/subject} gleefully {VERB/app1/charge/charges} forward anyway.",
                 "exp": 15,
                 "weight": 20,
-                "stat_skill": ["RUNNER,0", "CLEVER,0"],
+                "stat_skill": ["RUNNER,1", "CLEVER,1"],
                 "relationships": [
                     {
                         "cats_to": ["patrol"],
@@ -11120,12 +10982,12 @@
                 ]
             },
             {
-                "text": "app1 is jumping at shadows. Everything around {PRONOUN/app1/object} seems like a predator waiting to pounce. Where could p_l be hiding? {PRONOUN/app1/subject/CAP} wish that p_l would hurry up and come out. Wait, is that . . .? app1 charges toward the bulky shape of another cat in the dark. However, this is not p_l. The smell of a foreign cat washes over app1. app1 barely has time to yowl for help before the stranger pounces.",
+                "text": "app1 is jumping at shadows. Everything around {PRONOUN/app1/object} seems like a predator waiting to pounce. Where could p_l be hiding? {PRONOUN/app1/subject/CAP} wish that p_l would hurry up and come out. Wait, is that...? app1 charges toward the bulky shape of another cat in the dark. However, this is not p_l. The smell of a foreign cat washes over app1. app1 barely has time to yowl for help before the stranger pounces.",
                 "exp": 0,
                 "weight": 10,
                 "dead_cats": ["app1"],
                 "history_text": {
-                    "death": "r_c was killed by another cat while doing {PRONOUN/r_c/poss} assessment as an apprentice."
+                    "death": "m_c was killed by another cat while doing {PRONOUN/m_c/poss} assessment as an apprentice."
                 },
                 "relationships": [
                     {
@@ -11148,7 +11010,7 @@
                 "text": "Why did it have to be this assessment? app1 struggles to make a decision. What if {PRONOUN/app1/subject} cannot find p_l before the time limit? Who decided there should be a time limit? Maybe app1 would be better off as a healer... {PRONOUN/app1/poss/CAP} mentor's arrival startles {PRONOUN/app1/object}, and app1 realizes {PRONOUN/app1/subject} wasted too much time second-guessing {PRONOUN/app1/self}.",
                 "exp": 0,
                 "weight": 20,
-                "stat_trait": ["nervous", "insecure", "oblivious"],
+                "stat_trait": ["nervous", "insecure"],
                 "relationships": [
                     {
                         "cats_to": ["patrol"],
@@ -11194,8 +11056,8 @@
                 "stat_trait": ["loving", "compassionate", "wise", "calm", "thoughtful", "faithful", "loyal", "sincere", "righteous"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["platonic", "comfort", "respect", "trust"],
                         "amount": 10
                     } ],
@@ -11208,14 +11070,14 @@
                 "stat_trait": ["bloodthirsty","vengeful","arrogant","troublesome"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["dislike","respect"],
                         "amount": 10
                     },
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["trust","platonic","comfort"],
                         "amount": -10
                     } ],
@@ -11228,8 +11090,8 @@
                 "stat_trait": ["cold","strict","grumpy","lonesome","gloomy"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["platonic", "comfort", "respect", "trust"],
                         "amount": 10
                     } ],
@@ -11242,8 +11104,8 @@
                 "stat_trait": ["fierce","bold","confident","competitive","ambitious","rebellious","daring","adventurous","cunning"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["platonic", "comfort", "respect", "trust"],
                         "amount": 10
                     } ],
@@ -11256,11 +11118,12 @@
                 "stat_trait": ["insecure","nervous","oblivious","careful","responsible"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["platonic", "comfort", "respect", "trust"],
                         "amount": 10
-                    } ],
+                    }
+					],
                 "weight": 20
             },
             {
@@ -11270,8 +11133,21 @@
                 "stat_trait": ["charismatic","flamboyant","playful","childish","shameless","strange","sneaky"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
+                        "values": ["platonic", "comfort", "respect", "trust"],
+                        "amount": 10
+                    }
+					],
+                "weight": 20
+            },
+			{
+                "text": "p_l can empathize- it may seem impossible for app1 to find {PRONOUN/app1/poss} place in c_n, especially as an apprentice with {PRONOUN/app1/poss} whole future ahead. But it's important to breath. In, out, in, out. It's hard for app1 to calm down, and p_l knows this, but once app1 is calm enough, the two can begin to talk and figure out the best way for app1 to thrive and learn.",
+                "exp": 10,
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["platonic", "comfort", "respect", "trust"],
                         "amount": 10
                     } ],
@@ -11285,12 +11161,376 @@
                 "can_have_stat": ["p_l"],
                 "relationships": [
                     {
-                        "cat_to": ["p_l"],
-                        "cat_from": ["app1"],
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
                         "values": ["platonic", "comfort", "respect", "trust"],
                         "amount": -10
                     } ],
                 "weight": 10
+            }
+        ]
+    },
+    {
+        "patrol_id": "gen_train_showoff_app",
+        "biome": ["any"],
+        "season": ["any"],
+        "types": ["training"],
+        "tags": ["romantic", "rom_two_apps"],
+        "patrol_art": "train_general_intro",
+        "min_cats": 3,
+        "max_cats": 6,
+        "min_max_status": {
+            "normal adult": [1, 6],
+            "all apprentices": [2, 6]
+        },
+
+        "weight": 40,
+        "chance_of_success": 50,
+        "intro_text": "Wanting to show off to app2, app1 attempts a difficult battle move while they're training together.",
+        "decline_text": "p_l sternly tells app1 that training isn't the time to mess around, and to practice the move {PRONOUN/app1/subject}{VERB/app1/'ve/'s} been taught.",
+        "success_outcomes": [
+            {
+                "text": "s_c leaps into the air, twisting {PRONOUN/s_c/poss} body at the right time, and flawlessly pinning app2 to the ground. Even p_l is impressed, but app2 in particular is giving s_c an awe-struck look.",
+                "exp": 10,
+		"stat_skill": ["FIGHTER,1"],
+                "can_have_stat": ["app1"],
+                "relationships": [
+                    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["patrol"],
+			"mutual": false,
+                        "values": ["respect"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+			"mutual": true,
+                        "values": ["romantic", "platonic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "mutual": true,
+                        "values": ["dislike"],
+                        "amount": -5
+                    }
+		],
+                "weight": 40
+            },
+            {
+                "text": "Leaping towards s_c, with a flick of {PRONOUN/app1/poss} tail app1 twists in the air and... falls flat on {PRONOUN/app1/poss} face. Still, it makes s_c giggle, so {PRONOUN/app1/subject} {VERB/app1/suppose/supposes} that's a win?",
+                "exp": 0,
+                "can_have_stat": ["app2"],
+                "stat_trait": ["childish", "playful", "shameless", "strange"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["comfort", "romantic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "mutual": true,
+                        "values": ["dislike"],
+                        "amount": -5
+                    }
+		],
+                "weight": 20
+            },
+            {
+                "text": "Impressed by app1's battle move, s_c flashes {PRONOUN/app1/object} a daring grin, challenging {PRONOUN/app1/object} to a duel. The two spend the rest of the training session sparring together.",
+                "exp": 10,
+                "can_have_stat": ["app2"],
+                "stat_trait": ["ambitious", "arrogant", "bloodthirsty", "competitive", "confident", "daring", "fierce", "flamboyant"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["romantic", "platonic", "respect", "trust"],
+                        "amount": 10
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "mutual": true,
+                        "values": ["dislike"],
+                        "amount": -5
+                    }
+		],
+                "weight": 20
+            },
+            {
+                "text": "It's not a perfect rendition of the battle move, but s_c is flattered by the attempt to impress {PRONOUN/s_c/object} anyway. Honestly, {PRONOUN/s_c/subject} hadn't expected anyone to take any notice of {PRONOUN/s_c/object}... and {PRONOUN/s_c/subject} {VERB/s_c/have/has} to admit, it's a nice feeling.",
+                "exp": 10,
+                "can_have_stat": ["app2"],
+                "stat_trait": ["gloomy", "grumpy", "insecure", "lonesome", "nervous", "strange"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["romantic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "mutual": true,
+                        "values": ["dislike"],
+                        "amount": -5
+                    }
+		],
+                "weight": 20
+            },
+	    {
+                "text": "While it's not flawless, app1 successfully performs the battle move. Plus, {PRONOUN/app1/subject}{VERB/app1/'re/'s} pretty sure {PRONOUN/app1/subject} {VERB/app1/see/sees} app2 smiling out of the corner of {PRONOUN/app1/poss} eye.",
+                "exp": 10,
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["romantic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "mutual": true,
+                        "values": ["dislike"],
+                        "amount": -5
+                    }
+		],
+                "weight": 5
+            }
+        ],
+        "fail_outcomes": [
+            {
+                "text": "As app1 leaps into the air, {PRONOUN/app1/subject} {VERB/app1/flick/flicks} {PRONOUN/app1/poss} tail a little too early, sprawling out onto the ground when {PRONOUN/app1/subject} lands. To make it worse, s_c proceeds to perform an utterly flawless rendition of the move. app1 really, <i>really</i> wishes a fox would come swallow {PRONOUN/app1/object} up around about now.",
+                "exp": 0,
+		"stat_skill": ["FIGHTER,1"],
+                "can_have_stat": ["app2"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+                        "values": ["romantic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["patrol"],
+                        "values": ["respect"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["patrol"],
+                        "values": ["respect"],
+                        "amount": -5
+                    }
+		],
+                "weight": 20
+            },
+	    {
+                "text": "Misjudging {PRONOUN/app1/poss} landing, app1 hit the ground awkwardly, {PRONOUN/app1/poss} paw twisting beneath {PRONOUN/app1/object}. Not only is it embarrassing to explain to the healers, but it happened right in front of app2.",
+                "exp": 0,
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+                        "values": ["romantic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "values": ["respect"],
+                        "amount": -5
+                    }
+		],
+		"injury": [
+                    {
+                        "cats": ["app1"],
+                        "injuries": ["sprain"],
+                        "scars": []
+                    }
+		],
+                "weight": 10
+            }
+
+        ]
+    },
+    {
+                "text": "Mistiming {PRONOUN/app1/poss} jump, app1 ends up sprawled on the ground after {PRONOUN/app1/poss} failed battle move. Even worse, {PRONOUN/app1/subject} {VERB/app1/catch/catches} sight of s_c rolling {PRONOUN/app2/poss} eyes on the sidelines.",
+                "exp": 0,
+		"stat_skill": ["arrogant", "bloodthirsty", "cold", "competitive", "cunning", "fierce", "gloomy", "grumpy", "vengeful"],
+                "can_have_stat": ["app2"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+                        "values": ["romantic", "dislike"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "values": ["respect"],
+                        "amount": -5
+		    }
+		],
+                "weight": 20
+     },
+     {
+                "text": "Though s_c reassures app1 {PRONOUN/app1/poss} battle move was great, app1 can tell {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} just being kind. Honestly, app1 wished {PRONOUN/s_c/subject}'d just call {PRONOUN/app1/object} a mousebrain.",
+                "exp": 0,
+		"stat_skill": ["calm", "careful", "compassionate", "loving", "insecure", "nervous", "thoughtful"],
+                "can_have_stat": ["app2"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+                        "values": ["romantic"],
+                        "amount": 5
+                    },
+		    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["app2"],
+                        "values": ["respect"],
+                        "amount": -5
+		    }
+		],
+                "weight": 20
+     },
+     {
+                "text": "Slipping and falling on {PRONOUN/app1/poss} face wasn't <i>exactly</i> what app1 had intended to do... still, at least app2 didn't seem to be paying too much attention.",
+                "exp": 0,
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["app1"],
+                        "values": ["romantic"],
+                        "amount": 5
+                    }
+		],
+                "weight": 5
+     },
+     {
+        "patrol_id": "gen_train_kittypets_lesson",
+        "biome": ["any"],
+        "season": ["any"],
+        "types": ["training"],
+        "tags": [],
+        "patrol_art": "train_general_intro",
+        "min_cats": 2,
+        "max_cats": 2,
+        "min_max_status": {
+            "normal adult": [1, 6],
+            "all apprentices": [1, 6]
+        },
+
+        "weight": 20,
+        "chance_of_success": 50,
+        "intro_text": "app1 seems distracted during training, constantly glancing in the direction of the border. Eventually, after p_l presses {PRONOUN/app1/object}, app1 admits that {PRONOUN/app1/subject} had a conversation with a kittypet on patrol yesterday, and didn't know whether being friends with a kittypet was disloyal to c_n.",
+        "decline_text": "p_l tells app1 that this was no time to be thinking about such things, and to focus on {PRONOUN/app1/poss} training.",
+        "success_outcomes": [
+            {
+                "text": "Frowning, s_c sternly asks app1 if {PRONOUN/app1/subject}'d refuse to fight the kittypet if they trespassed, just because {PRONOUN/app1/subject}'d had a conversation with them? app1 quickly replies that {PRONOUN/app1/subject} would fight them, and s_c nods in approval - so long as app1 is willing to challenge the kittypet if they trespass onto c_n territory, that was all that mattered.",
+                "exp": 10,
+		"stat_trait": ["bloodthirsty", "bold", "cold", "daring", "fierce", "grumpy", "strict", "vengeful"],
+                "can_have_stat": ["p_l"],
+                "relationships": [
+                    {
+                        "cats_to": ["app1"],
+                        "cats_from": ["p_l"],
+			"mutual": true,
+                        "values": ["respect", "trust"],
+                        "amount": 5
+                    }
+		],
+                "weight": 20
+            },
+            {
+                "text": "s_c sits down next to app1, explaining that, while talking to cats outside of c_n was okay, app1 had to remember they weren't friends. app1's loyalty must always be to c_n. app1 nods, promising that {PRONOUN/app1/subject}'d always put c_n before everything else.",
+                "exp": 10,
+                "can_have_stat": ["p_l"],
+                "stat_trait": ["ambitious", "loyal", "responsible", "righteous", "wise"],
+                "relationships": [
+                    {
+                        "cats_to": ["app2"],
+                        "cats_from": ["p_l"],
+			"mutual": true,
+                        "values": ["respect", "comfort", "trust"],
+                        "amount": 5
+                    } ],
+                "weight": 20
+            },
+            {
+                "text": "s_c reassures app1 that having friends outside of c_n was okay, so long as {PRONOUN/app1/poss} loyalty was to c_n first and foremost. Relieved, app1 promises that it is, and thanks s_c.",
+                "exp": 10,
+                "can_have_stat": ["p_l"],
+                "stat_trait": ["compassionate", "loving", "sincere", "thoughtful"],
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["comfort", "trust"],
+                        "amount": 5
+                    } ],
+                "weight": 20
+            },
+	    {
+                "text": "Quickly reassuring the distressed apprentice, p_l promises {PRONOUN/app1/object} that, no, being friends with a kittypet didn't make you disloyal to c_n, so long as you'd always put your Clan first.",
+                "exp": 10,
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["comfort", "trust"],
+                        "amount": 5
+                    } ],
+                "weight": 5
+            }
+        ],
+        "fail_outcomes": [
+            {
+                "text": "p_l tries to think of a response, but, well... {PRONOUN/p_l/subject}'d never thought about it before. {PRONOUN/p_l/subject} {VERB/p_l/dismiss/dismisses} the topic, continuing with the training exercises.",
+                "exp": 5,
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
+                        "values": ["respect"],
+                        "amount": -5
+                    }
+		],
+                "weight": 10
+            },
+	    {
+                "text": "Angered, s_c snaps that if app1 wants to be friends with a soft kittypet, {PRONOUN/app1/subject} could go become one - c_n didn't need cats like that.",
+                "exp": 0,
+	        "can_have_stat": ["p_l"],
+                "stat_trait": ["bloodthirsty", "cold", "grumpy", "fierce", "vengeful"],
+
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+                        "cats_from": ["app1"],
+			"mutual": true,
+                        "values": ["dislike"],
+                        "amount": 10
+                    }
+		],
+                "weight": 20
             }
         ]
     }
