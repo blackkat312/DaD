@@ -1,2 +1,2 @@
-Just lists the current dev commit DaD runs on for tracking purposes. If you're just an everyday player, ignore this.
-https://github.com/ClanGenOfficial/clangen/commit/cacc01ceef687e3563325215deb10d16daa95061
+DaD: https://github.com/blackkat312/DaD/commit/085fb2bbe713a784d29d097629afc7f4a3c9e9ac
+Moss Mod: https://github.com/mossclaw/Moss_Mod/commit/ae5eeb7c255301e9b961bc5e20204f37c0cd52a8
