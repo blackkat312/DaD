@@ -3067,7 +3067,7 @@ def generate_sprite(
             "AUTUMN": ["#eedcb6", "#fa915c", "#b16c49", "#7a3f21"],
             "MAGENTA": ["#ffeec1", "#ff5779", "#813b4b", "#4f2430"],
             "SUMMER": ["#fdf0bd", "#fbb341", "#1c674d", "#01412b"],
-            "SEASIDE": ["#f6ebc6", "#f87e4d", "#0e7fa6", "#1c1e5e"],
+            "SEASIDE": ["#9fd7d3", "#0e7Fa6", "#173670", "#1c1e5e"],
             "MIDNIGHT": ["#b6ddec", "#0d588a", "#59295b", "#210755"],
             "WINTER": ["#faf4ee", "#93adc6", "#3686b6", "#49346a"],
             "ECLIPSE": ["#f3e2ac", "#a44321", "#530e1e", "#061427"],
