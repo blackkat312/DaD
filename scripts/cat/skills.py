@@ -131,7 +131,7 @@ class SkillPath(Enum):
     LEADERSHIP = (
         "healer's helper",
         "leads patrols",
-        "guardian's accomplice",
+        "monarch's accomplice",
         "assiduous",
     )
     AGILE = (
