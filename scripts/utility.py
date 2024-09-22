@@ -3133,7 +3133,7 @@ def generate_sprite(
             hc_eye_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
             hc_eye_shade_tint.fill(eyecolor_dict[eye_color2][3])
             hc_eye_shade = sprites.sprites['eyeshade' + cat_sprite].copy().convert_alpha()
-            hc_eye_shade.blit(eye_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            hc_eye_shade.blit(hc_eye_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
         new_sprite.blit(eye_base, (0, 0))
         new_sprite.blit(eye_mid, (0, 0))
