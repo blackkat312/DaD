@@ -1642,6 +1642,7 @@ class Pelt:
         }
 
         pattern_des = {
+            "Solid": "solid",
             "Tabby": "tabby",
             "Speckled": "speckled",
             "Bengal": "bengal",
@@ -1670,7 +1671,7 @@ class Pelt:
             "CharcoalBengal": "charcoal bengal",
             "Dust": "dust"
         }
-        c_n_after = ["Speckled", "Singlestripe", "Rosette", "Splotch"]
+        c_n_after = ["Solid", "Speckled", "Singlestripe", "Rosette", "Splotch"]
 
         # Start with determining the base color name. 
         color_name = str(cat.pelt.colour).lower()
