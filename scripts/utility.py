@@ -3060,7 +3060,7 @@ def generate_sprite(
             "LIGHT GREY": ["#f3f8fa", "#c8d5db", "#7791a0", "#567384"],
             "PINK": ["#f2e7e7", "#f7c0d6", "#9c415b", "#84243f"],
             "DARK HAZEL": ["#f9e7df", "#767e5b", "#442f21", "#311f13"],
-            "CHOCOLATE": ["#bf9c8a", "#422b20", "#0c0502", "#000000"],
+            "CHOCOLATE": ["#6c513a", "#39261b", "#0c0502", "#0c0502"],
             "PURPLE": ["#dbdbfa", "#bc75f9", "#535eeb", "#00218a"],
             "SUNSET": ["#f6cbd8", "#ff0051", "#790043", "#05002e"],
             "CARAMEL": ["#fbf8f2", "#deb888", "#b76f44", "#904518"],
