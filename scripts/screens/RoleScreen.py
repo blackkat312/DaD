@@ -410,7 +410,7 @@ class RoleScreen(Screens):
                      f"Clan. They are trained to hunt and fight in addition to the ways of the Warrior Code. " \
                      f"Warriors are essential to the survival of a Clan, and usually make up the bulk of it's members. "
         elif self.the_cat.status == "leader":
-            output = f"{self.the_cat.name} is the <b>monarch</b> of {game.clan.name}Clan. The guardianship of all " \
+            output = f"{self.the_cat.name} is the <b>monarch</b> of {game.clan.name}Clan. The leadership of all " \
                      f"Clan cats has been entrusted to them by StarClan. The monarch is the highest " \
                      f"authority in the Clan. The monarch holds Clan meetings, determines mentors for " \
                      f"new apprentices, and names new warriors. To help them protect the Clan, " \
