@@ -944,6 +944,7 @@ class ProfileScreen(Screens):
         }
 
         pattern_des = {
+            "Solid": "solid",
             "Tabby": "tabby",
             "Speckled": "speckled",
             "Bengal": "bengal",
@@ -972,7 +973,7 @@ class ProfileScreen(Screens):
             "CharcoalBengal": "charcoal bengal",
             "Dust": "dust"
         }
-        c_n_after = ["Speckled", "Singlestripe", "Rosette", "Splotch"]
+        c_n_after = ["Solid", "Speckled", "Singlestripe", "Rosette", "Splotch"]
 
         basecolour = str(the_cat.pelt.colour).lower()
         if basecolour in renamed_colors:
