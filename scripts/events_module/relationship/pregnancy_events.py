@@ -548,13 +548,19 @@ class Pregnancy_Events:
         else:
             event_list.append(choice(events["birth"]["unmated_parent"]))
 
-        if clan.game_mode != "classic":
-            try:
-                death_chance = cat.injuries["pregnant"]["mortality"]
-            except:
-                death_chance = 40
-        else:
-            death_chance = 40
+        try:
+            death_chance = cat.injuries["pregnant"]["mortality"]
+        except:
+            death_chance = 40  # this is 2% btw. I made a nice (and unnecessarily long) bit of code to find out /vlh
+        harsh_chance = 5  # I am NOT using random.random...
+
+        if cat.litter_risk == "low":
+            death_chance += 15
+            harsh_chance += 2
+        elif cat.litter_risk == "high":
+            death_chance -= 15
+            harsh_chance -= 2
+
         if not int(
             random.random() * death_chance
         ):  # chance for a cat to die during childbirth
@@ -581,14 +587,15 @@ class Pregnancy_Events:
                 death_event = "died shortly after kitting"
             else:
                 cat.die()
-                death_event = f"{cat.name} died while kitting."
+                death_event = f"{cat.name} died shortly after kitting."
             History.add_death(cat, death_text=death_event)
         elif not cat.outside:  # if cat doesn't die, give recovering from birth
             cat.get_injured("recovering from birth", event_triggered=True)
             if "turmoiled litter" in cat.illnesses:
                 possible_events = events["birth"]["turmoiled_birth"]
                 event_list.append(choice(possible_events))
-            if "blood loss" in cat.injuries:
+            if randint(1, harsh_chance) == 1:
+                cat.get_injured("blood loss", event_triggered=True)
                 if cat.status == "leader":
                     death_event = "died after a harsh kitting"
                 else:
