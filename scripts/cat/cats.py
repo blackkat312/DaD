@@ -735,6 +735,8 @@ class Cat:
         self.experience_level = None
 
         # Various behavior toggles
+        self.litter_size = ""
+        self.litter_risk = ""
         self.no_kits = False
         self.no_mates = False
         self.no_retire = False
@@ -4693,6 +4695,8 @@ class Cat:
                 "previous_mates": self.previous_mates,
                 "dead": self.dead,
                 "paralyzed": self.pelt.paralyzed,
+                "litter_size": self.litter_size,
+                "litter_risk": self.litter_risk,
                 "no_kits": self.no_kits,
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
