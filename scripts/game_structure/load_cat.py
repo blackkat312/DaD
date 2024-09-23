@@ -50,7 +50,6 @@ def json_load():
     # create new cat objects
     for i, cat in enumerate(cat_data):
         try:
-            new_dead_outside = choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             new_cat = Cat(
                 ID=cat["ID"],
                 prefix=cat["name_prefix"],
@@ -175,6 +174,8 @@ def json_load():
             new_cat.patrol_with_mentor = (
                 cat["patrol_with_mentor"] if "patrol_with_mentor" in cat else 0
             )
+            new_cat.litter_size = cat["litter_size"] if "litter_size" in cat else choice(["small", "default", "default", "default", "default", "large"])
+            new_cat.litter_risk = cat["litter_risk"] if "litter_risk" in cat else choice(["low", "default", "default", "default", "default", "high"])
             new_cat.no_kits = cat["no_kits"]
             new_cat.no_mates = cat["no_mates"] if "no_mates" in cat else False
             new_cat.no_retire = cat["no_retire"] if "no_retire" in cat else False
@@ -220,7 +221,7 @@ def json_load():
             new_cat.trainee_end_moon = cat["trainee_end_moon"] if "trainee_end_moon" in cat else -1
 
             new_cat.outside = cat["outside"] if "outside" in cat else False
-            new_cat.dead_outside_display = cat["dead_outside_display"] if "dead_outside_display" in cat else new_dead_outside
+            new_cat.dead_outside_display = cat["dead_outside_display"] if "dead_outside_display" in cat else choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             new_cat.faded_offspring = (
                 cat["faded_offspring"] if "faded_offspring" in cat else []
             )
