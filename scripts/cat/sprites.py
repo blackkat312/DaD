@@ -92,7 +92,7 @@ class Sprites:
 
                 except ValueError:
                     # Fallback for non-existent sprites
-                    print(f"WARNING: nonexistent sprite - {full_name}")
+                    # print(f"WARNING: nonexistent sprite - {full_name}") yes i fucking KNOW i haven't drawn them yet. god just shut up clangen
                     if not self.blank_sprite:
                         self.blank_sprite = pygame.Surface(
                             (self.size, self.size),
