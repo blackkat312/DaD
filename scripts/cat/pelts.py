@@ -1686,6 +1686,8 @@ class Pelt:
                 color_name += " " + pattern_des.get(cat.pelt.name)
         elif cat.pelt.name in Pelt.torties:
             # Calicos and Torties need their own desciptions.
+            tortico = cat.pelt.name.lower()
+
             patches_color = cat.pelt.tortiecolour.lower()
             if patches_color in renamed_colors:
                 patches_color = renamed_colors[patches_color]
@@ -1704,24 +1706,24 @@ class Pelt:
                     else:
                         patches_color += " " + pattern_des.get(entry2)
 
-            color_name = f"{color_name}/{patches_color}"
+            color_name = f"{color_name}/{patches_color} {tortico}"
 
         if cat.pelt.white_patches:
             if cat.pelt.white_patches_tint == "black":
                 if cat.pelt.white_patches == "FULLWHITE":
                     # If the cat is fullwhite, discard all other information. They are just white.
                     color_name = "black"
-                if cat.pelt.white_patches in Pelt.mostly_white and cat.pelt.name != "Calico":
+                if cat.pelt.white_patches in Pelt.mostly_white and cat.pelt.name not in Pelt.torties:
                     color_name = f"black and {color_name}"
-                elif cat.pelt.name != "Calico":
+                elif cat.pelt.name not in Pelt.torties:
                     color_name = f"{color_name} and black"
             else:
                 if cat.pelt.white_patches == "FULLWHITE":
                     # If the cat is fullwhite, discard all other information. They are just white.
                     color_name = "white"
-                if cat.pelt.white_patches in Pelt.mostly_white and cat.pelt.name != "Calico":
+                if cat.pelt.white_patches in Pelt.mostly_white and cat.pelt.name not in Pelt.torties:
                     color_name = f"white and {color_name}"
-                elif cat.pelt.name != "Calico":
+                elif cat.pelt.name not in Pelt.torties:
                     color_name = f"{color_name} and white"
 
         if "white and white" in color_name:
@@ -1738,35 +1740,56 @@ class Pelt:
         else:
             color_name = f"{color_name} cat"
 
-        # Here is the place where we can add some additional details about the cat, for the full non-short one. 
-        # These include notable missing limbs, vitiligo, long-furred-ness, and 3 or more scars. 
-        if not short:
-            
-            scar_details = {
-                "NOTAIL": "a stubby tail",
-                "HALFTAIL": "half a tail",
-                "NOPAW": "three paws",
-                "NOLEFTEAR": "a missing ear",
-                "NORIGHTEAR": "a missing ear",
-                "NOEAR": "no ears"
-            }
+        # Here is the place where we can add some additional details about the cat.
+        # These include eye color(s), notable missing limbs, vitiligo, long-furred-ness, and 3 or more scars.
+        scar_details = {
+            "NOTAIL": "a stubby tail",
+            "HALFTAIL": "half a tail",
+            "NOPAW": "three paws",
+            "NOLEFTEAR": "a missing ear",
+            "NORIGHTEAR": "a missing ear",
+            "NOEAR": "no ears"
+        }
 
-            additional_details = []
-            if cat.pelt.vitiligo:
-                additional_details.append("vitiligo")
-            for scar in cat.pelt.scars:
-                if scar in scar_details and scar_details[scar] not in additional_details:
-                    additional_details.append(scar_details[scar])
+        additional_details = []
 
-            if len(additional_details) > 1:
-                color_name = f"{color_name} with {', '.join(additional_details[:-1])} and {additional_details[-1]}"
-            elif additional_details:
-                color_name = f"{color_name} with {additional_details[0]}"
+        if cat.pelt.vitiligo:
+            additional_details.append("vitiligo")
+        for scar in cat.pelt.scars:
+            if scar in scar_details and scar_details[scar] not in additional_details:
+                additional_details.append(scar_details[scar])
 
-            if len(cat.pelt.scars) >= 3:
-                color_name = f"scarred {color_name}"
-            if cat.pelt.length == "long":
-                color_name = f"long-furred {color_name}"
+        eyes2 = "this should not appear"
+        if cat.pelt.eye_pattern and cat.pelt.eye_pattern == "TRUE":
+            eyes = "one " + cat.pelt.eye_colour.lower() + " eye"
+        elif cat.pelt.eye_pattern and cat.pelt.eye_pattern == "SWAP":
+            eyes = "mix-and-match " + cat.pelt.eye_colour.lower() + " and " + cat.pelt.eye_colour2.lower() + " eyes"
+        else:
+            eyes = cat.pelt.eye_colour.lower() + " eyes"
+
+        if cat.pelt.eye_pattern:
+            if cat.pelt.eye_pattern == "TRUE":
+                eyes2 = "one " + cat.pelt.eye_colour2.lower() + " eye"
+            elif cat.pelt.eye_pattern != "SWAP":
+                eyes2 = cat.pelt.eye_colour2.lower() + " sectoral heterochromia"
+
+        additional_details.append(eyes)
+        if eyes2 != "this should not appear":
+            additional_details.append(eyes2)
+
+        if len(additional_details) >= 3:
+            color_name = f"{color_name} with {', '.join(additional_details[:-1])}, and {additional_details[-1]}"
+        elif len(additional_details) == 2:
+            color_name = f"{color_name} with {additional_details[0]} and {additional_details[1]}"
+        elif additional_details:
+            color_name = f"{color_name} with {additional_details[0]}"
+
+        if len(cat.pelt.scars) >= 3:
+            color_name = f"scarred {color_name}"
+        if cat.pelt.length == "long":
+            color_name = f"long-furred {color_name}"
+
+        color_name = color_name.replace("  ", " ")
 
         return color_name
 
