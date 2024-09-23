@@ -894,9 +894,7 @@
                 "chance": 4
             }
         ],
-        "also_got": [
-            "blood loss"
-        ],
+        "also_got": [],
         "cause_permanent": [],
         "herbs": [
             "oak_leaves",
