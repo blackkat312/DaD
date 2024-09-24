@@ -1555,7 +1555,12 @@ class Pelt:
                 color_group = sprites.white_patches_tints["colour_groups"].get(self.colour, "white")
                 color_tints = sprites.white_patches_tints["possible_tints"][color_group]
                 if color_group != "white" and color_group != "snowwhite":
-                    color_tints.append("offwhite")
+                    coolnumber = random.randint(1, 6)
+                    if coolnumber < 4:
+                        color_tints.append(choice(["snow", "offwhite"]))
+                    elif coolnumber == 4:
+                        color_tints.append("snow")
+                        color_tints.append("offwhite")
                 if (
                         color_group != "silver" and
                         color_group != "black" and
