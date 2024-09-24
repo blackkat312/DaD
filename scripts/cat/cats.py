@@ -3243,7 +3243,9 @@ class Cat:
                     alter["splits"] = []
 
     def get_permanent_condition(self, name, born_with=False, event_triggered=False, starting_moon=0):
-        if name not in PERMANENT:
+        if name == "no":
+            return False
+        elif name not in PERMANENT:
             print(
                 str(self.name),
                 f"WARNING: {name} is not in the permanent conditions collection.",
