@@ -3028,6 +3028,18 @@ def generate_sprite(
                 vitiligo.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             new_sprite.blit(vitiligo, (0, 0))
 
+        # scars1
+        if not scars_hidden:
+            for scar in cat.pelt.scars:
+                if scar in cat.pelt.scars1:
+                    new_sprite.blit(
+                        sprites.sprites["scars" + scar + cat_sprite], (0, 0)
+                    )
+                if scar in cat.pelt.scars3:
+                    new_sprite.blit(
+                        sprites.sprites["scars" + scar + cat_sprite], (0, 0)
+                    )
+
         # draw eyes
         # base0, mid1, top2, shade3
         eyecolor_dict = {
@@ -3162,18 +3174,6 @@ def generate_sprite(
       #  else:
       #      eyes = sprites.sprites['eyes' + cat.pelt.eye_colour + cat_sprite].copy()
       #      new_sprite.blit(eyes, (0, 0))
-
-        #scars1
-        if not scars_hidden:
-            for scar in cat.pelt.scars:
-                if scar in cat.pelt.scars1:
-                    new_sprite.blit(
-                        sprites.sprites["scars" + scar + cat_sprite], (0, 0)
-                    )
-                if scar in cat.pelt.scars3:
-                    new_sprite.blit(
-                        sprites.sprites["scars" + scar + cat_sprite], (0, 0)
-                    )
 
         # draw line art
         if game.settings["shaders"] and not dead:
