@@ -1548,12 +1548,23 @@ class Pelt:
             self.tint = "none"
 
         # WHITE PATCHES TINT
-        if self.white_patches or self.points:
+        if self.white_patches or self.vitiligo or self.points:
             # Now for white patches
             base_tints = sprites.white_patches_tints["possible_tints"]["basic"]
             if self.colour in sprites.cat_tints["colour_groups"]:
                 color_group = sprites.white_patches_tints["colour_groups"].get(self.colour, "white")
                 color_tints = sprites.white_patches_tints["possible_tints"][color_group]
+                if color_group != "white" and color_group != "snowwhite":
+                    color_tints.append("offwhite")
+                if (
+                        color_group != "silver" and
+                        color_group != "black" and
+                        color_group != "sootblack" and
+                        color_group != "obsidianblack" and
+                        color_group != "ghostblack" and
+                        random.randint(1, 10) == 1
+                ):
+                    color_tints.append("black")
             else:
                 color_tints = []
 
