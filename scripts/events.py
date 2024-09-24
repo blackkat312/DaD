@@ -1124,6 +1124,16 @@ class Events:
             print(f"\n{cat.name} doesn't have a dead_outside_display. Randomizing...")
             print(f"CHOSEN: {cat.dead_outside_display}")
 
+        if not cat.litter_size or cat.litter_size == "":
+            cat.litter_size = random.choice(["small", "default", "default", "default", "default", "large"])
+            print(f"\n{cat.name} doesn't have a litter_size. Randomizing...")
+            print(f"CHOSEN: {cat.litter_size}")
+
+        if not cat.litter_risk or cat.litter_risk == "":
+            cat.litter_risk = random.choice(["low", "default", "default", "default", "default", "high"])
+            print(f"\n{cat.name} doesn't have a litter_risk. Randomizing...")
+            print(f"CHOSEN: {cat.litter_risk}")
+
         # aging the cat
         cat.one_moon()
         cat.manage_outside_trait()
@@ -1208,6 +1218,16 @@ class Events:
             cat.dead_outside_display = random.choice(["ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "ghost", "Unknown Residence"])
             print(f"\n{cat.name} doesn't have a dead_outside_display. Randomizing...")
             print(f"CHOSEN: {cat.dead_outside_display}")
+
+        if not cat.litter_size or cat.litter_size == "":
+            cat.litter_size = random.choice(["small", "default", "default", "default", "default", "large"])
+            print(f"\n{cat.name} doesn't have a litter_size. Randomizing...")
+            print(f"CHOSEN: {cat.litter_size}")
+
+        if not cat.litter_risk or cat.litter_risk == "":
+            cat.litter_risk = random.choice(["low", "default", "default", "default", "default", "high"])
+            print(f"\n{cat.name} doesn't have a litter_risk. Randomizing...")
+            print(f"CHOSEN: {cat.litter_risk}")
 
         if cat.dead:
 
