@@ -877,29 +877,27 @@ def create_new_cat(
 
         # Give conditions for disabling scars, if they generated.
         scar_to_condition = {
+            "LEGBITE": ["weak leg", "bad knee"],
             "THREE": ["one bad eye"],
-            "FOUR": ["weak leg", "no", "no"],
-            "NOLEFTEAR": ["partial hearing loss"],
-            "NORIGHTEAR": ["partial hearing loss"],
-            "NOEAR": ["partial hearing loss", "deaf"],
             "NOPAW": ["lost a leg"],
+            "TOETRAP": ["weak leg", "no", "no"],
             "NOTAIL": ["lost their tail"],
             "HALFTAIL": ["lost their tail"],
+            "MANLEG": ["weak leg", "weak leg", "twisted leg", "twisted leg", "twisted leg", "bad knee"],
             "BRIGHTHEART": ["one bad eye"],
+            "NOLEFTEAR": ["partial hearing loss"],
+            "NORIGHTEAR": ["partial hearing loss"],
+            "NOEAR": ["partial hearing loss", "partial hearing loss", "deaf"],
             "LEFTBLIND": ["one bad eye"],
             "RIGHTBLIND": ["one bad eye"],
             "BOTHBLIND": ["blind"],
-            "MANLEG": ["weak leg", "twisted leg"],
+            "RATBITE": ["weak leg", "no", "no"],
+            "DECLAWED": ["declawed"],
+            "RASH": ["constant rash"],
             "MANTAIL": ["recurring shock", "no", "no", "no", "no"],
-            "RATBITE": ["weak leg"],
             "NECKBITE": ["recurring shock", "no", "no", "no", "no"],
-            "LEGBITE": ["weak leg"],
-            "SNOUT": ["crooked jaw", "no", "no"],
             "THROAT": ["recurring shock", "no", "no", "no", "no"],
             "SIDE": ["recurring shock", "no", "no", "no", "no"],
-            "TOETRAP": ["weak leg"],
-            "RASH": ["constant rash"],
-            "DECLAWED": ["declawed"],
         }
         cat_gain_age = age
         if age >= 6:
