@@ -29,9 +29,9 @@ class Scar_Events():
         "SNAKE", "SNAKETWO"
     ]
     claw_scars = [
-        "ONE", "TWO", "SNOUT", "TAILSCAR", "CHEEK",
-        "SIDE", "THROAT", "TAILBASE", "BELLY", "FACE",
-        "BRIDGE", "HINDLEG", "BACK", "SCRATCHSIDE"
+        "ONE", "TWO", "SNOUT", "TAILSCAR", "CHEEK", "SIDE", "THROAT", "TAILBASE", "BELLY", "FACE", "BRIDGE", "HINDLEG",
+        "BACK", "SCRATCHSIDE", "THREE", "RIGHTBLIND", "LEFTBLIND", "BOTHBLIND", "QUILLSCRATCH", "LEFTEAR", "RIGHTEAR",
+        "FOUR", "BEAKSIDE", "QUILLSIDE"
     ]
     leg_scars = [
         "NOPAW", "TOETRAP", "MANLEG", "FOUR"
@@ -43,8 +43,8 @@ class Scar_Events():
         "LEFTEAR", "RIGHTEAR", 'NOLEFTEAR', 'NORIGHTEAR'
     ]
     frostbite_scars = [
-        "HALFTAIL", "NOTAIL", "NOPAW", 'NOLEFTEAR', 'NORIGHTEAR', 'NOEAR',
-        "FROSTFACE", "FROSTTAIL", "FROSTMITT", "FROSTSOCK",
+        "HALFTAIL", "NOTAIL", "NOPAW", "NOLEFTEAR", "NORIGHTEAR", "NOEAR", "FROSTFACE", "FROSTTAIL", "FROSTMITT",
+        "FROSTSOCK",
     ]
     eye_scars = [
         "THREE", "RIGHTBLIND", "LEFTBLIND", "BOTHBLIND"
@@ -70,6 +70,10 @@ class Scar_Events():
     declawed_scars = [
         "DECLAWED"
     ]
+    torn_pelt_scars = [
+        "ONE", "TWO", "SNOUT", "TAILSCAR", "CHEEK", "TAILBASE", "BELLY", "FACE", "BRIDGE", "HINDLEG", "BACK",
+        "SCRATCHSIDE", "QUILLSCRATCH", "FOUR", "BEAKSIDE", "QUILLSIDE", "BEAKCHEEK", "BEAKLOWER"
+    ]
 
     scar_allowed = {
         "bite-wound": canid_scars,
@@ -81,7 +85,7 @@ class Scar_Events():
         "mangled leg": leg_scars,
         "torn ear": ear_scars,
         "frostbite": frostbite_scars,
-        "torn pelt": claw_scars + beak_scars,
+        "torn pelt": torn_pelt_scars,
         "damaged eyes": eye_scars,
         "quilled by porcupine": quill_scars,
         "claw-wound": claw_scars,
@@ -144,10 +148,11 @@ class Scar_Events():
                 scar_pool = [i for i in scar_pool if i not in ['RIGHTEAR']]
 
             # Extra check for disabling scars.
-            if int(random.random() * 3):
+            if random.randint(1, 3) > 1:
                 condition_scars = {
                     "LEGBITE", "THREE", "NOPAW", "TOETRAP", "NOTAIL", "HALFTAIL", "MANLEG", "BRIGHTHEART", "NOLEFTEAR",
-                    "NORIGHTEAR", "NOEAR", "LEFTBLIND", "RIGHTBLIND", "BOTHBLIND", "RATBITE", "DECLAWED", "RASH"
+                    "NORIGHTEAR", "NOEAR", "LEFTBLIND", "RIGHTBLIND", "BOTHBLIND", "RATBITE", "DECLAWED", "RASH",
+                    "MANTAIL", "NECKBITE", "THROAT", "SIDE"
                 }
 
                 scar_pool = list(set(scar_pool).difference(condition_scars))
