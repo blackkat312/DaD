@@ -3,8 +3,18 @@
 		"recurring shock": [
 			"After m_c recovers from {PRONOUN/m_c/poss} claw-wound {PRONOUN/m_c/subject} still {VERB/m_c/seem/seems} to be on edge. After talking with r_c it's determined that the experience has left {PRONOUN/m_c/object} with some form of recurring shock.",
 			"Despite knowing that {PRONOUN/m_c/poss} Clanmates would never hurt {PRONOUN/m_c/object}, m_c quietly admits to r_c that {PRONOUN/m_c/subject} can't help but find {PRONOUN/m_c/self} on edge just... waiting.",
-			"Even fully recovered from {PRONOUN/m_c/poss} claw-wound something still seems to be a bit off with m_c, something lingering over {PRONOUN/m_c/object}."
-		]
+			"Even recovered from {PRONOUN/m_c/poss} claw-wound something still seems to be a bit off with m_c, something lingering over {PRONOUN/m_c/object}."
+		],
+        "one bad eye": [
+            "WiP string, m_c got one bad eye from claw-wound. r_c can be here too",
+            "WiP string, m_c got one bad eye from claw-wound. r_c can be here too",
+            "WiP string, m_c got one bad eye from claw-wound"
+        ],
+        "blind": [
+            "WiP string, m_c got blind from claw-wound. r_c can be here too",
+            "WiP string, m_c got blind from claw-wound. r_c can be here too",
+            "WiP string, m_c got blind from claw-wound"
+        ]
 	},
 	"cat bite": {
 		"recurring shock": [
@@ -16,6 +26,7 @@
     "beak bite": {
         "recurring shock": [
             "r_c calms m_c down after a bird flies overhead.",
+            "Even though m_c has healed physically, there are still some mental scars.",
             "Even though m_c has healed physically, there are still some mental scars."
         ]
     },
@@ -29,6 +40,7 @@
         ],
         "recurring shock": [
             "m_c snarls when {PRONOUN/m_c/poss} friend playfully baps {PRONOUN/m_c/object} on the jaw. The wound has healed, but it left its mental scars.",
+            "m_c can't handle thinking about what broke {PRONOUN/m_c/poss} jaw.",
             "m_c can't handle thinking about what broke {PRONOUN/m_c/poss} jaw."
         ]
     },
@@ -78,6 +90,7 @@
         ],
         "recurring shock": [
             "After looking at m_c's behavior, r_c found that m_c has gotten recurring shock because of {PRONOUN/m_c/poss} mangled leg.",
+            "m_c keeps flinching when cats touch {PRONOUN/m_c/poss} leg.",
             "m_c keeps flinching when cats touch {PRONOUN/m_c/poss} leg."
         ]
     },
@@ -98,6 +111,7 @@
     "sprain": {
         "bad knee": [
             "Even after m_c's sprain healed, {PRONOUN/m_c/poss} knees don't feel the same. r_c says {PRONOUN/m_c/poss} knees will likely never feel the same ever again.",
+            "m_c yelps when {PRONOUN/m_c/poss} knees suddenly lock up. It looks like they'll never be the same again.",
             "m_c yelps when {PRONOUN/m_c/poss} knees suddenly lock up. It looks like they'll never be the same again."
         ]
     },
@@ -110,6 +124,7 @@
         ],
         "recurring shock": [
             "m_c keeps checking to make sure {PRONOUN/m_c/poss} tail is still there.",
+            "m_c flinches when a cat brushes against {PRONOUN/m_c/poss} tail.",
             "m_c flinches when a cat brushes against {PRONOUN/m_c/poss} tail."
         ]
     },
@@ -148,6 +163,7 @@
         ],
         "recurring shock": [
             "m_c feels the prickles of cold on {PRONOUN/m_c/poss} skin despite being warm in the Clan's camp.",
+            "m_c has to hide in Warrior's den when {PRONOUN/m_c/subject} see snow again.",
             "m_c has to hide in Warrior's den when {PRONOUN/m_c/subject} see snow again."
         ]
     },
@@ -180,6 +196,7 @@
         ],
 		"recurring shock": [
 			"Ever since getting burnt m_c's been jumping at the shadows. {PRONOUN/m_c/subject/CAP} {VERB/m_c/tell/tells} r_c that {PRONOUN/m_c/subject} can't escape the fire, even now.",
+			"Even the smallest crackling of leaves makes something in m_c's chest race off, throwing {PRONOUN/m_c/poss} mind into fear and stress at the memory of burning.",
 			"Even the smallest crackling of leaves makes something in m_c's chest race off, throwing {PRONOUN/m_c/poss} mind into fear and stress at the memory of burning."
 		]
     },
@@ -208,6 +225,7 @@
         ],
         "one bad eye": [
           "m_c waits a few days before telling r_c, hoping that {PRONOUN/m_c/poss} vision will come back on its own. It doesn't, however, and {PRONOUN/m_c/subject} begrudgingly {VERB/m_c/admit/admits} to r_c that {PRONOUN/m_c/subject} {VERB/m_c/have/has}n't been able to see out of one eye ever since {PRONOUN/m_c/subject} {VERB/m_c/were/was} hit in the head.",
+          "m_c begins to practice moving around camp, trying to get used to the lack of depth perception that {PRONOUN/m_c/poss} vision loss has caused.",
           "m_c begins to practice moving around camp, trying to get used to the lack of depth perception that {PRONOUN/m_c/poss} vision loss has caused."
         ],
         "blind": [
@@ -223,10 +241,12 @@
         ],
         "partial hearing loss": [
           "m_c tells r_c that {PRONOUN/m_c/subject} {VERB/m_c/think/thinks} {PRONOUN/m_c/poss} hearing has gotten worse. r_c assesses {PRONOUN/m_c/object} and confirms it: {PRONOUN/m_c/poss} hearing is failing and it can only be due to the head injury {PRONOUN/m_c/subject} suffered.",
+          "m_c strains to hear {PRONOUN/m_c/poss} Clanmates talking to {PRONOUN/m_c/object}. Ever since {PRONOUN/m_c/poss} head injury, {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} found it harder to hear the world around {PRONOUN/m_c/object}.",
           "m_c strains to hear {PRONOUN/m_c/poss} Clanmates talking to {PRONOUN/m_c/object}. Ever since {PRONOUN/m_c/poss} head injury, {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} found it harder to hear the world around {PRONOUN/m_c/object}."
         ],
         "persistent headaches": [
             "m_c complains to r_c that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} been plagued with horrible headaches since {PRONOUN/m_c/subject} hurt {PRONOUN/m_c/poss} head. r_c sadly admits that the headaches may always be a problem.",
+            "m_c begrudgingly accepts that the horrible headaches {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} been having might be a permanent side effect of {PRONOUN/m_c/poss} head damage.",
             "m_c begrudgingly accepts that the horrible headaches {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} been having might be a permanent side effect of {PRONOUN/m_c/poss} head damage."
         ],
 		"disrupted senses": [
@@ -235,7 +255,8 @@
 			"m_c's noticed that after recovering from {PRONOUN/m_c/poss} damaged head {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} seem to react to sensation in the same way {PRONOUN/m_c/subject} did before."
 		],
         "recurring shock": [
-            "Despite m_c healing from the head damadge, {PRONOUN/m_c/subject} still feel the fear {PRONOUN/m_c/object} felt when {PRONOUN/m_c/poss} head first got damadged and the long healing process after.",
+            "Despite m_c healing from the head damage, {PRONOUN/m_c/subject} still feel the fear {PRONOUN/m_c/object} felt when {PRONOUN/m_c/poss} head first got damaged and the long healing process after.",
+            "m_c feels that {PRONOUN/m_c/subject} will never be the same after {PRONOUN/m_c/poss} injury.",
             "m_c feels that {PRONOUN/m_c/subject} will never be the same after {PRONOUN/m_c/poss} injury."
         ],
         "jumbled noise": [
@@ -245,10 +266,12 @@
         ],
 		"lazy eye": [
 			"While it's relieving that m_c's head damage has left minimal damage, r_c is still worried about {PRONOUN/m_c/poss} new lazy eye.",
+			"m_c's a bit annoyed by the fuss that {PRONOUN/m_c/poss} Clanmates are making about {PRONOUN/m_c/poss} eye, it's not hurting or anything so {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} see why it should be a problem.",
 			"m_c's a bit annoyed by the fuss that {PRONOUN/m_c/poss} Clanmates are making about {PRONOUN/m_c/poss} eye, it's not hurting or anything so {PRONOUN/m_c/subject} {VERB/m_c/don't/doesn't} see why it should be a problem."
 		],
         "face blindness": [
             "After {PRONOUN/m_c/poss} head injury, m_c struggles to recognize the faces of other cats.",
+            "m_c is glad to be in the recovery stage, but misses the ease of being able to recognize other cats from a distance.",
             "m_c is glad to be in the recovery stage, but misses the ease of being able to recognize other cats from a distance."
         ]
     },
@@ -270,10 +293,12 @@
         ],
         "recurring shock": [
             "r_c has to reassure m_c that {PRONOUN/m_c/object} eyes have healed, but m_c knows that {PRONOUN/m_c/subject} will never be the same.",
+            "Even after {PRONOUN/m_c/poss} eyes have healed, {PRONOUN/m_c/subject} can still feel the sting.",
             "Even after {PRONOUN/m_c/poss} eyes have healed, {PRONOUN/m_c/subject} can still feel the sting."
         ],
 		"lazy eye": [
 			"r_c fusses gently over m_c, checking that {PRONOUN/m_c/poss} eye isn't hurting or anything. For now it looks like it's purely a surface thing.",
+			"After m_c's eye recovers {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} worrying about the new lazy eye.",
 			"After m_c's eye recovers {PRONOUN/m_c/subject} {VERB/m_c/find/finds} {PRONOUN/m_c/self} worrying about the new lazy eye."
 		]
     },
@@ -292,6 +317,7 @@
         ],
         "recurring shock": [
             "r_c looks over at m_c in concern. {PRONOUN/m_c/subject/CAP} {VERB/m_c/have/has} recovered physically, but have {PRONOUN/m_c/subject} mentally?",
+            "m_c still remembers when the rats swarmed {PRONOUN/m_c/object}. That image lingers in {PRONOUN/m_c/poss} mind.",
             "m_c still remembers when the rats swarmed {PRONOUN/m_c/object}. That image lingers in {PRONOUN/m_c/poss} mind."
         ]
     },
@@ -320,12 +346,14 @@
         ],
         "recurring shock": [
             "r_c puts {PRONOUN/r_c/poss} paws on m_c's paws, helping to calm {PRONOUN/m_c/object} down as the memories of what broke {PRONOUN/m_c/poss} back keep rolling through {PRONOUN/m_c/poss} mind.",
+            "m_c shudders, {PRONOUN/m_c/poss} mind putting what happened to {PRONOUN/m_c/object} on replay.",
             "m_c shudders, {PRONOUN/m_c/poss} mind putting what happened to {PRONOUN/m_c/object} on replay."
         ]
     },
     "poisoned": {
         "recurring shock": [
             "r_c has to reassure m_c that nobody poisoned {PRONOUN/m_c/poss} prey.",
+            "After recovering from {PRONOUN/m_c/poss} brush with poisoning, m_c still has a lingering sense of dread about where {PRONOUN/m_c/object} got poisoned.",
             "After recovering from {PRONOUN/m_c/poss} brush with poisoning, m_c still has a lingering sense of dread about where {PRONOUN/m_c/object} got poisoned."
         ]
     },
@@ -346,6 +374,7 @@
 		],
 		"recurring shock": [
 			"Ever since m_c's experience with the Twolegs {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} told r_c about having recurring flashes of been in a scary place, with slippery surfaces and screaming creatures all around.",
+			"While m_c is relieved to still be fully capable, {PRONOUN/m_c/subject} can't help but keep flinching whenever even a whisper about Twolegs is brought up.",
 			"While m_c is relieved to still be fully capable, {PRONOUN/m_c/subject} can't help but keep flinching whenever even a whisper about Twolegs is brought up."
 		]
 	},
