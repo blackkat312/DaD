@@ -550,9 +550,11 @@ class Condition_Events:
                     )
                     return perm_condition
             else:
+                """
                 print(
                     f"WARNING: {scar} for {injury_name} is either None or is not in scar_to_condition dict."
                 )
+                """
 
         elif condition is not None:
             perm_condition = condition
