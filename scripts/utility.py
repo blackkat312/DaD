@@ -894,10 +894,10 @@ def create_new_cat(
             "RATBITE": ["weak leg", "no", "no"],
             "DECLAWED": ["declawed"],
             "RASH": ["constant rash"],
-            "MANTAIL": ["recurring shock", "no", "no", "no", "no"],
-            "NECKBITE": ["recurring shock", "no", "no", "no", "no"],
-            "THROAT": ["recurring shock", "no", "no", "no", "no"],
-            "SIDE": ["recurring shock", "no", "no", "no", "no"],
+            "MANTAIL": ["recurring shock", "no", "no"],
+            "NECKBITE": ["recurring shock", "no", "no"],
+            "THROAT": ["recurring shock", "no", "no"],
+            "SIDE": ["recurring shock", "no", "no"],
         }
         cat_gain_age = age
         if age >= 6:
