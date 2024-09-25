@@ -1137,7 +1137,19 @@ class Condition_Events:
             if (
                 chance != 0
                 and not int(random.random() * chance)
-                and risk["name"] not in dictionary  # why u not working
+                and risk["name"] not in dictionary
+                and not (
+                       (risk["name"] == "blind" and "failing eyesight" in dictionary)
+                    or (risk["name"] == "failing eyesight" and "blind" in dictionary)
+                    or (risk["name"] == "deaf" and "partial hearing loss" in dictionary)
+                    or (risk["name"] == "partial hearing loss" and "deaf" in dictionary)
+                    or (risk["name"] == "spirited heart" and "puzzled heart" in dictionary)
+                    or (risk["name"] == "puzzled heart" and "spirited heart" in dictionary)
+                    or (risk["name"] == "shattered soul" and "budding spirit" in dictionary)
+                    or (risk["name"] == "budding spirit" and "shattered soul" in dictionary)
+                    or (risk["name"] == "mute" and "selective mutism" in dictionary)
+                    or (risk["name"] == "selective mutism" and "mute" in dictionary)
+                )
             ):
                 # check if the new risk is a previous stage of a current illness
                 skip = False
@@ -1145,8 +1157,6 @@ class Condition_Events:
                     for entry in progression.get(risk["name"]):
                         if entry in dictionary:
                             skip = True
-                if risk["name"] in dictionary:
-                    skip = True
                 # Making sure world tired can only be given if you have dangerous settings on
                 if not game.settings["allow shell farm"]:
                     if risk["name"] == "world tired":
