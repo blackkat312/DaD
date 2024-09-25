@@ -446,10 +446,10 @@ class Condition_Events:
             "RATBITE": ["weak leg", "no", "no"],
             "DECLAWED": ["declawed"],
             "RASH": ["constant rash"],
-            "MANTAIL": ["recurring shock", "no", "no", "no", "no"],
-            "NECKBITE": ["recurring shock", "no", "no", "no", "no"],
-            "THROAT": ["recurring shock", "no", "no", "no", "no"],
-            "SIDE": ["recurring shock", "no", "no", "no", "no"],
+            "MANTAIL": ["recurring shock", "no", "no"],
+            "NECKBITE": ["recurring shock", "no", "no"],
+            "THROAT": ["recurring shock", "no", "no"],
+            "SIDE": ["recurring shock", "no", "no"],
         }
 
         scarless_conditions = [
@@ -1139,16 +1139,16 @@ class Condition_Events:
                 and not int(random.random() * chance)
                 and risk["name"] not in dictionary
                 and not (
-                       (risk["name"] == "blind" and "failing eyesight" in dictionary)
-                    or (risk["name"] == "failing eyesight" and "blind" in dictionary)
-                    or (risk["name"] == "deaf" and "partial hearing loss" in dictionary)
-                    or (risk["name"] == "partial hearing loss" and "deaf" in dictionary)
-                    or (risk["name"] == "spirited heart" and "puzzled heart" in dictionary)
-                    or (risk["name"] == "puzzled heart" and "spirited heart" in dictionary)
-                    or (risk["name"] == "shattered soul" and "budding spirit" in dictionary)
-                    or (risk["name"] == "budding spirit" and "shattered soul" in dictionary)
-                    or (risk["name"] == "mute" and "selective mutism" in dictionary)
-                    or (risk["name"] == "selective mutism" and "mute" in dictionary)
+                       (risk["name"] == "blind" and "failing eyesight" in cat.permanent_condition)
+                    or (risk["name"] == "failing eyesight" and "blind" in cat.permanent_condition)
+                    or (risk["name"] == "deaf" and "partial hearing loss" in cat.permanent_condition)
+                    or (risk["name"] == "partial hearing loss" and "deaf" in cat.permanent_condition)
+                    or (risk["name"] == "spirited heart" and "puzzled heart" in cat.permanent_condition)
+                    or (risk["name"] == "puzzled heart" and "spirited heart" in cat.permanent_condition)
+                    or (risk["name"] == "shattered soul" and "budding spirit" in cat.permanent_condition)
+                    or (risk["name"] == "budding spirit" and "shattered soul" in cat.permanent_condition)
+                    or (risk["name"] == "mute" and "selective mutism" in cat.permanent_condition)
+                    or (risk["name"] == "selective mutism" and "mute" in cat.permanent_condition)
                 )
             ):
                 # check if the new risk is a previous stage of a current illness
@@ -1235,12 +1235,7 @@ class Condition_Events:
                 event = Condition_Events.change_condition_name(event)
                 event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
 
-                if new_condition_name not in [cat.permanent_condition, cat.illnesses, cat.injuries]:
-                    event_list.append(event)
-                else:
-                    if new_condition_name in cat.permanent_condition:
-                        print(f"tried to give {cat.name} a permanent condition they already have, canceling")
-                    break
+                event_list.append(event)
 
                 # we add the condition to this game switch, this is so we can ensure it's skipped over for this moon
                 game.switches["skip_conditions"].append(new_condition_name)
