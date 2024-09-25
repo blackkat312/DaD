@@ -430,22 +430,26 @@ class Condition_Events:
         # dict of possible physical conditions that can be acquired from relevant scars
         scar_to_condition = {
             "LEGBITE": ["weak leg", "bad knee"],
-            "THREE": ["one bad eye", "failing eyesight"],
+            "THREE": ["one bad eye"],
             "NOPAW": ["lost a leg"],
-            "TOETRAP": ["weak leg"],
+            "TOETRAP": ["weak leg", "no", "no"],
             "NOTAIL": ["lost their tail"],
             "HALFTAIL": ["lost their tail"],
-            "MANLEG": ["weak leg", "twisted leg", "bad knee"],
+            "MANLEG": ["weak leg", "weak leg", "twisted leg", "twisted leg", "twisted leg", "bad knee"],
             "BRIGHTHEART": ["one bad eye"],
             "NOLEFTEAR": ["partial hearing loss"],
             "NORIGHTEAR": ["partial hearing loss"],
-            "NOEAR": ["partial hearing loss", "deaf"],
+            "NOEAR": ["partial hearing loss", "partial hearing loss", "deaf"],
             "LEFTBLIND": ["one bad eye"],
             "RIGHTBLIND": ["one bad eye"],
             "BOTHBLIND": ["blind"],
-            "RATBITE": ["weak leg"],
+            "RATBITE": ["weak leg", "no", "no"],
             "DECLAWED": ["declawed"],
             "RASH": ["constant rash"],
+            "MANTAIL": ["recurring shock", "no", "no", "no", "no"],
+            "NECKBITE": ["recurring shock", "no", "no", "no", "no"],
+            "THROAT": ["recurring shock", "no", "no", "no", "no"],
+            "SIDE": ["recurring shock", "no", "no", "no", "no"],
         }
 
         scarless_conditions = [
