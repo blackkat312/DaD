@@ -360,8 +360,8 @@ class ProfileScreen(Screens):
                 else:
                     self.the_cat.pronouns = [self.the_cat.default_pronouns[0].copy()]
 
-                if not game.settings["they them default"] and not (self.the_cat.moons == 0 or self.the_cat.age == "newborn"):
-                    self.the_cat.handle_pronouns()
+                if not game.settings["they them default"]:
+                    self.the_cat.handle_pronouns(exception=True)
 
                 self.clear_profile()
                 self.build_profile()
