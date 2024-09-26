@@ -120,7 +120,8 @@ class Cat:
         "chattering tongue": "tourette's",
         "falling paws": "orthostatic hypotension",
         "shattered soul": "DID",
-        "budding spirit": "OSDD",
+        "budding spirit": "OSDD-1b",
+        "fractured spirit": "OSDD-1a",
         "curved spine": "scoliosis",
         "jumbled mind": "dyslexia",
         "counting fog": "dyscalculia",
@@ -876,6 +877,10 @@ class Cat:
                 load_existing_name=loading_cat,
             )
 
+        # for testing conditions for dadm
+        #if not self.example:
+            #new_condition = choice(["spirited heart", "puzzled heart"])
+            #self.get_permanent_condition("fractured spirit", born_with=True)
         # Private Sprite
         self._sprite = None
 
@@ -953,11 +958,6 @@ class Cat:
         ]
         intersex_genderqueer_list = genderqueer_list.copy()
         intersex_genderqueer_list.append("intergender")
-
-        # for testing conditions for dadm
-        # if not self.example:
-        #    new_condition = choice(["spirited heart", "puzzled heart"])
-        #    self.get_permanent_condition(new_condition, born_with=True)
 
         # trans cat chances
         theythemdefault = game.settings["they them default"]
@@ -2542,7 +2542,7 @@ class Cat:
         if self.alters[new_alter]:
             self.alters[new_alter]["splits"].append(origin)
 
-    def new_alter(self):
+    def new_alter(self, condition):
         template = {
             "ID": "",
             "name": "",
@@ -2552,76 +2552,153 @@ class Cat:
             "origin": "core",
             "splits": []
             }
+
+        if os.path.exists('resources/dicts/names/names.json'):
+            with open('resources/dicts/names/names.json') as read_file:
+                    names_dict = ujson.loads(read_file.read())
         # print(self.ID)
         template["ID"] = str(len(self.alters) + 1)
         template["role"] = choice(["co-host", "caregiver", "little", "protecter", "trauma holder", "persecutor"])
         extra = randint(1, 5)
-        if extra == 1:
-            template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
-        rng = randint(1, 10)
-        gender = "???"
-        if rng <= 2:
-            genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom", "demienby",
-                                "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
-            gender = choice(genderqueer_list)
-        elif rng <= 6:
-            gender = "tom"
-        else:
-            gender = "molly"
-        template["gender"] = gender
-        alter_name = ""
-
-        # naming without making a whole new cat....yikers TT
-        if os.path.exists('resources/dicts/names/names.json'):
-            with open('resources/dicts/names/names.json') as read_file:
-                names_dict = ujson.loads(read_file.read())
-        if template["other"] == "fictive" or template["other"] == "fuzztive":
-            canon_chance = randint(1, 5)
-            if canon_chance == 1:
-                alter_name = choice([
-                    "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf", "Jayfeather",
-                    "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost", "Ashfur",
-                    "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool", "Crowfeather",
-                    "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River", "Night",
-                    "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
-                    "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
-                    "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe",
-                    "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt",
-                    "Webfoot", "Jake", "Sparkpelt", "Rootspring", "Nightcloud"
-                ])
+        if condition in ["budding spirit", "shattered soul"]:
+            if extra == 1:
+                template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive",
+                                            "fuzztive"])
+            rng = randint(1, 10)
+            gender = "???"
+            if rng <= 2:
+                genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom",
+                                    "demienby", "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender",
+                                    "pangender", "???"]
+                gender = choice(genderqueer_list)
+            elif rng <= 6:
+                gender = "tom"
             else:
-                alter_name = choice(names_dict["normal_prefixes"])
-        else:
-            alter_name = choice(names_dict["normal_prefixes"])
+                gender = "molly"
+            template["gender"] = gender
+            alter_name = ""
 
-        if template["role"] == "little":
-            if template["other"] in ["fictive", "fuzztive"]:
-                canon_chance = randint(1, 50)
+            # naming without making a whole new cat....yikers TT
+            if template["other"] == "fictive" or template["other"] == "fuzztive":
+                canon_chance = randint(1, 5)
                 if canon_chance == 1:
                     alter_name = choice([
-                        "Snowkit", "Mosskit", "Lynxkit", "Galekit", "Haze", "Stream", "Tadpole",  # category-less cats
-
-                        "Flowerpaw", "Petalkit", "Patchkit",  # from Mapleshade's Vengeance
-
-                        "Fluttering Bird", "Emberkit", "Morning Whisker", "Bramble", "Tiger Tail", "Pale Sky",
-                        "Tiny Branch", "Rumble", "Lightning",  # from DotC
-
-                        "Hollykit", "Tulipkit", "Elderkit", "Cherrypaw", "Chestnutkit",
-                        "Rowankit",  # Ferncloud's relatives
-
-                        "Blossomkit", "Swampkit", "Marigoldkit", "Mintkit", "Mosspaw",
-                        "Badgerfang",  # victims of Brokenstar's reign
-
-                        "Larchkit"  # names that belong to multiple cats
+                        "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
+                        "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
+                        "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
+                        "Crowfeather", "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River",
+                        "Night", "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
+                        "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
+                        "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe",
+                        "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt",
+                        "Webfoot", "Jake", "Sparkpelt", "Rootspring", "Nightcloud"
                     ])
                 else:
                     alter_name = choice(names_dict["normal_prefixes"])
-                    alter_name += choice(["kit", "paw"])
             else:
                 alter_name = choice(names_dict["normal_prefixes"])
-                alter_name += choice(["kit", "paw"])
-        elif template["other"] == "cat" or template["other"] == "otherclan":
-            alter_name += choice(names_dict["normal_suffixes"])
+
+            if template["role"] == "little":
+                if template["other"] in ["fictive", "fuzztive"]:
+                    canon_chance = randint(1, 50)
+                    if canon_chance == 1:
+                        alter_name = choice([
+                            "Snowkit", "Mosskit", "Lynxkit", "Galekit", "Haze", "Stream", "Tadpole",  # category-less cats
+
+                            "Flowerpaw", "Petalkit", "Patchkit",  # from Mapleshade's Vengeance
+
+                            "Fluttering Bird", "Emberkit", "Morning Whisker", "Bramble", "Tiger Tail", "Pale Sky",
+                            "Tiny Branch", "Rumble", "Lightning",  # from DotC
+
+                            "Hollykit", "Tulipkit", "Elderkit", "Cherrypaw", "Chestnutkit",
+                            "Rowankit",  # Ferncloud's relatives
+
+                            "Blossomkit", "Swampkit", "Marigoldkit", "Mintkit", "Mosspaw",
+                            "Badgerfang",  # victims of Brokenstar's reign
+
+                            "Larchkit"  # names that belong to multiple cats
+                        ])
+                    else:
+                        alter_name = choice(names_dict["normal_prefixes"])
+                        alter_name += choice(["kit", "paw"])
+                else:
+                    alter_name = choice(names_dict["normal_prefixes"])
+                    alter_name += choice(["kit", "paw"])
+            elif template["other"] == "cat" or template["other"] == "otherclan":
+                alter_name += choice(names_dict["normal_suffixes"])
+        else:
+            extra = randint(1,20)
+            if extra == 1:
+                template["other"] = choice(["noncat", "rogue", "kittypet", "otherclan", "fictive", "factive",
+                                            "fuzztive"])
+            different_gender = randint(1, 5)
+            if different_gender == 1:
+                rng = randint(1, 10)
+                gender = "???"
+                if rng <= 2:
+                    genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demimolly", "demitom",
+                                        "demienby", "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender",
+                                        "pangender", "???"]
+                    gender = choice(genderqueer_list)
+                elif rng <= 6:
+                    gender = "tom"
+                else:
+                    gender = "molly"
+            template["gender"] = str(self.genderalign)
+            alter_name = ""
+            different_name = randint(1, 5)
+            if different_name == 1:
+                # naming without making a whole new cat....yikers TT
+                if template["other"] == "fictive" or template["other"] == "fuzztive":
+                    canon_chance = randint(1, 5)
+                    if canon_chance == 1:
+                        alter_name = choice([
+                            "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
+                            "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
+                            "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
+                            "Crowfeather", "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River",
+                            "Night", "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
+                            "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
+                            "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur",
+                            "Bumblestripe", "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves",
+                            "Berrynose", "Tawnypelt", "Webfoot", "Jake", "Sparkpelt", "Rootspring", "Nightcloud"
+                        ])
+                    else:
+                        alter_name = choice(names_dict["normal_prefixes"])
+                else:
+                    alter_name = choice(names_dict["normal_prefixes"])
+
+                if template["role"] == "little":
+                    if template["other"] in ["fictive", "fuzztive"]:
+                        canon_chance = randint(1, 50)
+                        if canon_chance == 1:
+                            alter_name = choice([
+                                "Snowkit", "Mosskit", "Lynxkit", "Galekit", "Haze", "Stream", "Tadpole",  # category-less cats
+
+                                "Flowerpaw", "Petalkit", "Patchkit",  # from Mapleshade's Vengeance
+
+                                "Fluttering Bird", "Emberkit", "Morning Whisker", "Bramble", "Tiger Tail", "Pale Sky",
+                                "Tiny Branch", "Rumble", "Lightning",  # from DotC
+
+                                "Hollykit", "Tulipkit", "Elderkit", "Cherrypaw", "Chestnutkit",
+                                "Rowankit",  # Ferncloud's relatives
+
+                                "Blossomkit", "Swampkit", "Marigoldkit", "Mintkit", "Mosspaw",
+                                "Badgerfang",  # victims of Brokenstar's reign
+
+                                "Larchkit"  # names that belong to multiple cats
+                            ])
+                        else:
+                            alter_name = choice(names_dict["normal_prefixes"])
+                            alter_name += choice(["kit", "paw"])
+                    else:
+                        alter_name = choice(names_dict["normal_prefixes"])
+                        alter_name += choice(["kit", "paw"])
+                elif template["other"] == "cat" or template["other"] == "otherclan":
+                    alter_name += choice(names_dict["normal_suffixes"])
+            else:
+                alter_name = self.name.prefix
+                alter_name += choice(names_dict["normal_suffixes"])
         template["name"] = alter_name
         if template["ID"] != "1":
             splitrng = randint(1, (len(self.alters)+1))
@@ -2630,7 +2707,6 @@ class Cat:
                 self.add_split((splitrng - 1), template["name"])
         if template["origin"] == "core":
             self.add_split(0, template["name"])
-        # print(template)
         self.alters.append(template)
 
     def moon_skip_permanent_condition(self, condition):
@@ -2639,17 +2715,17 @@ class Cat:
             return "skip"
 
         # chance of splitting if plural
-        if condition in ["shattered soul", "budding spirit"]:
+        if condition in ["shattered soul", "budding spirit", "fractured spirit"]:
             splitting = randint(1, 100)
             if len(self.alters) < 1:
-                self.new_alter()
+                self.new_alter(condition)
             if splitting < 15:
                 if len(self.alters) < game.config["condition_related"]["max_alters"]:
                     num_splits = 1
                     if game.config["condition_related"]["max_splits"] > 1:
                         num_splits = randint(1, game.config["condition_related"]["max_splits"])
                     for i in range(num_splits):
-                        self.new_alter()
+                        self.new_alter(condition)
             can_front = []
             if self.alters[0]["ID"] != "0":
                 can_front = [str(self.name)]
@@ -3026,26 +3102,26 @@ class Cat:
                     "spirited heart"
                 ],
                 "heavy soul": [
-                    "shattered soul", "budding spirit"
+                    "shattered soul", "budding spirit", "fractured spirit"
                 ],
                 "comet spirit": [
                     "starwalker", "burning light", "jumbled noise", "disrupted senses", "chattering tongue",
                     "jumbled mind", "counting fog", "spirited heart", "parrot chatter"
                 ],
                 "antisocial": [
-                    "shattered soul", "budding spirit", "puzzled heart"
+                    "shattered soul", "budding spirit", "fractured spirit", "puzzled heart"
                 ],
                 "anxiety": [
-                    "shattered soul", "budding spirit", "selective mutism"
+                    "shattered soul", "budding spirit", "fractured spirit", "selective mutism"
                 ],
                 "constant roaming pain": [
                     "jellyfish joints", "loose body", "curved spine"
                 ],
                 "thunderous spirit": [
-                    "shattered soul", "budding spirit", "spirited heart", "puzzled heart"
+                    "shattered soul", "budding spirit", "fractured spirit", "spirited heart", "puzzled heart"
                 ],
                 "otherworldly mind": [
-                    "shattered soul", "budding spirit"
+                    "shattered soul", "budding spirit", "fractured spirit"
                 ],
                 "irritable bowels": [
                     "jellyfish joints", "loose body"
@@ -3072,6 +3148,9 @@ class Cat:
                     "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
                 ],
                 "budding spirit": [
+                    "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
+                ],
+                "fractured spirit": [
                     "heavy soul", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
                 ],
                 "testosterone deficiency": [
@@ -3204,8 +3283,38 @@ class Cat:
                         new_condition = choice(possible_conditions)
                         if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
                             new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "shattered soul" and "fractured spirit" in cat.permanent_condition:
+                while new_condition == "shattered soul":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+
             if new_condition == "budding spirit" and "shattered soul" in cat.permanent_condition:
                 while new_condition == "budding spirit":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "budding spirit" and "fractured spirit" in cat.permanent_condition:
+                while new_condition == "budding spirit":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+
+            if new_condition == "fractured spirit" and "shattered soul" in cat.permanent_condition:
+                while new_condition == "fractured spirit":
+                    new_condition = choice(possible_conditions)
+                    while new_condition in cat.permanent_condition:
+                        new_condition = choice(possible_conditions)
+                        if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
+                            new_condition = choice(choice(possible_comorbidities))
+            if new_condition == "fractured spirit" and "budding spirit" in cat.permanent_condition:
+                while new_condition == "fractured spirit":
                     new_condition = choice(possible_conditions)
                     while new_condition in cat.permanent_condition:
                         new_condition = choice(possible_conditions)
@@ -3270,7 +3379,17 @@ class Cat:
 
         if name == "shattered soul" and "budding spirit" in self.permanent_condition:
             return
+        if name == "shattered soul" and "fractured spirit" in self.permanent_condition:
+            return
+
         if name == "budding spirit" and "shattered soul" in self.permanent_condition:
+            return
+        if name == "budding spirit" and "fractured spirit" in self.permanent_condition:
+            return
+
+        if name == "fractured spirit" and "shattered soul" in self.permanent_condition:
+            return
+        if name == "fractured spirit" and "budding spirit" in self.permanent_condition:
             return
 
         if name == "spirited heart" and "puzzled heart" in self.permanent_condition:
@@ -3316,9 +3435,11 @@ class Cat:
             born_with = True
         moons_until = condition["moons_until"]
         if born_with and moons_until != 0:
+            if name == "shattered soul":
+                moons_until = randint(moons_until - 1, moons_until + 12)
             if name == "budding spirit":
                 moons_until = randint(moons_until - 1, moons_until + 12)
-            if name == "shattered soul":
+            if name == "fractured spirit":
                 moons_until = randint(moons_until - 1, moons_until + 12)
             if name == "starwalker":
                 moons_until = randint(moons_until - 1, moons_until + 10)
@@ -3397,7 +3518,7 @@ class Cat:
             if self.is_plural():
                 if len(self.alters) < 1:
                     self.system_core()
-                    self.new_alter()
+                    self.new_alter(condition)
             new_condition = True
         return new_condition
 
@@ -3469,7 +3590,7 @@ class Cat:
 
     def is_plural(self):
         is_plural = False
-        if "budding spirit" in self.permanent_condition or "shattered soul" in self.permanent_condition:
+        if "budding spirit" in self.permanent_condition or "shattered soul" in self.permanent_condition or "fractured spirit" in self.permanent_condition:
             is_plural = True
         return is_plural
 
