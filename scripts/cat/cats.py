@@ -1090,17 +1090,17 @@ class Cat:
             third_new_pronoun = 20
             fourth_new_pronoun = 25
         elif self.genderalign in ["trans molly", "trans tom"]:
-            unique_pronoun = 42
-            first_new_pronoun = 20
-            second_new_pronoun = 35
-            third_new_pronoun = 50
-            fourth_new_pronoun = 65
+            unique_pronoun = 47
+            first_new_pronoun = 25
+            second_new_pronoun = 40
+            third_new_pronoun = 55
+            fourth_new_pronoun = 70
         elif self.genderalign in ["molly", "tom", "intersex"]:
-            unique_pronoun = 52
-            first_new_pronoun = 30
-            second_new_pronoun = 45
-            third_new_pronoun = 60
-            fourth_new_pronoun = 75
+            unique_pronoun = 62
+            first_new_pronoun = 40
+            second_new_pronoun = 55
+            third_new_pronoun = 70
+            fourth_new_pronoun = 85
 
         if randint(1, unique_pronoun) == 1:
             self.pronouns = []  # I don't think this is needed, but jic
