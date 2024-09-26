@@ -4,17 +4,7 @@
 			"After m_c recovers from {PRONOUN/m_c/poss} claw-wound {PRONOUN/m_c/subject} still {VERB/m_c/seem/seems} to be on edge. After talking with r_c it's determined that the experience has left {PRONOUN/m_c/object} with some form of recurring shock.",
 			"Despite knowing that {PRONOUN/m_c/poss} Clanmates would never hurt {PRONOUN/m_c/object}, m_c quietly admits to r_c that {PRONOUN/m_c/subject} can't help but find {PRONOUN/m_c/self} on edge just... waiting.",
 			"Even recovered from {PRONOUN/m_c/poss} claw-wound something still seems to be a bit off with m_c, something lingering over {PRONOUN/m_c/object}."
-		],
-        "one bad eye": [
-            "WiP string, m_c got one bad eye from claw-wound. r_c can be here too",
-            "WiP string, m_c got one bad eye from claw-wound. r_c can be here too",
-            "WiP string, m_c got one bad eye from claw-wound"
-        ],
-        "blind": [
-            "WiP string, m_c got blind from claw-wound. r_c can be here too",
-            "WiP string, m_c got blind from claw-wound. r_c can be here too",
-            "WiP string, m_c got blind from claw-wound"
-        ]
+		]
 	},
 	"cat bite": {
 		"recurring shock": [
