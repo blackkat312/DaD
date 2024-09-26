@@ -490,6 +490,7 @@ class Condition_Events:
             "lazy eye",
             "shattered soul",
             "budding spirit",
+            "fractured spirit",
             "pcos",
             "infertile",
             "excess testosterone",
@@ -1146,7 +1147,11 @@ class Condition_Events:
                     or (risk["name"] == "spirited heart" and "puzzled heart" in cat.permanent_condition)
                     or (risk["name"] == "puzzled heart" and "spirited heart" in cat.permanent_condition)
                     or (risk["name"] == "shattered soul" and "budding spirit" in cat.permanent_condition)
+                    or (risk["name"] == "shattered soul" and "fractured spirit" in cat.permanent_condition)
                     or (risk["name"] == "budding spirit" and "shattered soul" in cat.permanent_condition)
+                    or (risk["name"] == "budding spirit" and "fractured spirit" in cat.permanent_condition)
+                    or (risk["name"] == "fractured spirit" and "shattered soul" in cat.permanent_condition)
+                    or (risk["name"] == "fractured spirit" and "budding spirit" in cat.permanent_condition)
                     or (risk["name"] == "mute" and "selective mutism" in cat.permanent_condition)
                     or (risk["name"] == "selective mutism" and "mute" in cat.permanent_condition)
                 )
