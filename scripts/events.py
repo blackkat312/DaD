@@ -2687,7 +2687,17 @@ class Events:
             intersex_genderqueer_list = genderqueer_list.copy()
             intersex_genderqueer_list.append("intergender")
 
-            if random.getrandbits(1):  # 50/50
+            can_be_nonbinary = True
+            if cat.moons < 4 or (cat.moons < 5 and randint(1, 3) != 1):
+                can_be_nonbinary = False
+
+            if random.randint(1, 5) > 3 and can_be_nonbinary:
+                if cat.gender == "intersex":
+                    cat.genderalign = random.choice(intersex_genderqueer_list)
+                else:
+                    cat.genderalign = random.choice(genderqueer_list)
+                cat.pronouns = [cat.default_pronouns[0].copy()]
+            else:
                 if cat.gender == "tom":
                     cat.genderalign = "trans molly"
                     if not game.settings["they them default"]:
@@ -2702,14 +2712,8 @@ class Events:
                         cat.pronouns = [cat.default_pronouns[1].copy()]
                     elif not game.settings["they them default"]:
                         cat.pronouns = [cat.default_pronouns[2].copy()]
-            elif cat.gender == "intersex":
-                cat.genderalign = random.choice(intersex_genderqueer_list)
-                cat.pronouns = [cat.default_pronouns[0].copy()]
-            else:
-                cat.genderalign = random.choice(genderqueer_list)
-                cat.pronouns = [cat.default_pronouns[0].copy()]
 
-            if not game.settings["they them default"]:
+            if not game.settings["they them default"] and not cat.moons < 5:
                 cat.handle_pronouns()
 
             trans = ""
