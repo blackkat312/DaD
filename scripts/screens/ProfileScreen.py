@@ -1321,6 +1321,8 @@ class ProfileScreen(Screens):
                 con = "shattered soul"
             elif "budding spirit" in the_cat.permanent_condition:
                 con = "budding spirit"
+            elif "fractured spirit"in the_cat.permanent_condition:
+                con = "fractured spirit"
             if self.the_cat.permanent_condition[con]["born_with"] is True:
                 minmoons = -1
             else:
@@ -2453,6 +2455,14 @@ class ProfileScreen(Screens):
                     minmoons = 0
                 if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
                     all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
+            elif "fractured spirit" in self.the_cat.permanent_condition:
+                con = "fractured spirit"
+                if self.the_cat.permanent_condition[con]["born_with"] is True:
+                    minmoons = -1
+                else:
+                    minmoons = 0
+                if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
+                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
 
         all_illness_injuries = chunks(all_illness_injuries, 4)
 
@@ -2637,7 +2647,7 @@ class ProfileScreen(Screens):
         if name in self.the_cat.permanent_condition:
             # display if the cat was born with it
             if self.the_cat.permanent_condition[name]["born_with"] is True:
-                if name not in ["shattered soul", "budding spirit"]:
+                if name not in ["shattered soul", "budding spirit", "fractured spirit"]:
                     text_list.append(f"born with this condition")
                 else:
                     text_list.append(f"split in early kithood")
@@ -2654,7 +2664,7 @@ class ProfileScreen(Screens):
             # is permanent
             text_list.append("permanent condition")
 
-            if name in ["shattered soul", "budding spirit"]:
+            if name in ["shattered soul", "budding spirit", "fractured spirit"]:
                 alters = str(len(self.the_cat.alters))
                 text_list.append(f"alters: " + alters)
 
