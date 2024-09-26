@@ -2688,7 +2688,7 @@ class Events:
             intersex_genderqueer_list.append("intergender")
 
             can_be_nonbinary = True
-            if cat.moons < 4 or (cat.moons < 5 and randint(1, 3) != 1):
+            if cat.moons < 4 or (cat.moons < 5 and random.randint(1, 3) != 1):
                 can_be_nonbinary = False
 
             if random.randint(1, 5) > 3 and can_be_nonbinary:
