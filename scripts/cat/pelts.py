@@ -206,7 +206,7 @@ class Pelt:
     crystal_colors = ['RED', 'DARK ORANGE', 'YELLOW', 'PALE YELLOW', 'CYAN', 'LIGHT BLUE', 'BLUE',
                   'DARK BLUE', 'PURPLE', 'LIGHT PURPLE', 'LILAC', 'PINK', "GREEN"]
     feather_colors = ['RED', 'DARK ORANGE', 'YELLOW', 'BLUE', 'LIGHT BLUE', 'DARK BROWN', 'WHITE', 'BLACK']
-    gorse_colors = ["ORANGE", "YELLOW", "LIGHT YELLOW", "GOLD"]
+    gorse_colors = ["ORANGE", "YELLOW", "PALE YELLOW", "GOLD"]
     heather_colors = ["PURPLE", "LILAC", "LIGHT PURPLE", "BRIGHT PURPLE"]
     dry_colors = ["BROWN", "DARK BROWN", "BRONZE", "LIGHT BROWN"]
 
