@@ -965,8 +965,13 @@ class Cat:
         trans_chance = randint(0, 45)
         nb_chance = randint(0, 55)
 
+        # so that younger cats can be trans at the same rate
+        if (self.moons < 4 and nb_chance == 1) or (self.moons < 5 and nb_chance == 1 and randint(1, 3) != 1):
+            nb_chance = 0
+            trans_chance = 1
+
         # GENDER IDENTITY
-        if self.moons == 0 or self.age == "newborn":
+        if self.moons < 3 or self.age == "newborn":
             # newborns can't be trans, sorry babies
             pass
         elif nb_chance == 1:
@@ -994,7 +999,7 @@ class Cat:
             else:
                 self.pronouns = [self.default_pronouns[0].copy()]
 
-        if not theythemdefault and not (self.moons == 0 or self.age == "newborn"):
+        if not theythemdefault and not (self.moons < 5 or self.age == "newborn"):
             self.handle_pronouns()
 
         # APPEARANCE
@@ -1054,8 +1059,8 @@ class Cat:
     def __hash__(self):
         return hash(self.ID)
 
-    def handle_pronouns(self):
-        if self.moons == 0 or self.age == "newborn":
+    def handle_pronouns(self, exception=False):
+        if (self.moons < 5 or self.age == "newborn") and not exception:
             pass
 
         all_pronouns = self.default_pronouns.copy()
