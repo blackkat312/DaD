@@ -496,9 +496,6 @@
             ],
             "status": [
                 "any"
-            ],
-            "skill": [
-                "CAMP,2"
             ]
         },
         "injury": [
@@ -517,8 +514,9 @@
                 "cats": [
                     "m_c"
                 ],
+                "scar": "m_c was scarred when {PRONOUN/m_c/subject} took a bad fall.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after taking a bad fall.",
-                "lead_death": "died from {PRONOUN/m_c/poss} wounds a bad fall"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after taking a bad fall"
             }
         ]
     },
@@ -748,7 +746,7 @@
                 ],
                 "scar": "m_c was scarred by r_c.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after r_c hurt {PRONOUN/m_c/object} for trying to stop an argument.",
-                "lead_death": "died from {PRONOUN/m_c/poss} wounds r_c gave them"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after r_c hurt {PRONOUN/m_c/object} for trying to stop an argument"
             }
         ],
         "relationships": [
@@ -845,7 +843,7 @@
                 ],
                 "scar": "m_c was scarred while trying to save r_c from a rogue.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after trying to save r_c from a rogue.",
-                "lead_death": "died from {PRONOUN/m_c/poss} wounds given to them by a rogue"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after trying to save r_c from a rogue"
             }
         ],
         "relationships": [
@@ -965,7 +963,7 @@
                 ],
                 "scar": "m_c was scarred while trying to save r_c from a dog.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after trying to save r_c from a dog.",
-                "lead_death": "died from {PRONOUN/m_c/poss} wounds"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after trying to save r_c from a dog"
             }
         ],
         "relationships": [
@@ -1078,7 +1076,7 @@
                 ],
                 "scar": "m_c was scarred in a fight against o_c_n.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n.",
-                "lead_death": "{PRONOUN/m_c/poss} wounded after a battle with o_c_n"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n"
             }
         ],
         "other_clan": {
@@ -1129,7 +1127,7 @@
                 ],
                 "scar": "m_c was scarred in a fight against o_c_n.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n.",
-                "lead_death": "{PRONOUN/m_c/poss} wounded after a battle with o_c_n"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n"
             }
         ],
         "other_clan": {
@@ -1196,7 +1194,7 @@
                 ],
                 "scar": "m_c was scarred in a fight against o_c_n.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n.",
-                "lead_death": "{PRONOUN/m_c/poss} wounded after a battle with o_c_n"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n"
             }
         ],
         "other_clan": {
@@ -1251,7 +1249,7 @@
                 ],
                 "scar": "m_c was scarred in a fight against o_c_n.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n.",
-                "lead_death": "{PRONOUN/m_c/poss} wounded after a battle with o_c_n"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a battle with o_c_n"
             }
         ],
         "other_clan": {
@@ -1326,7 +1324,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred as a kit by frostbite.",
-                "reg_death": "m_c died after they got frostbite sneaking out of camp."
+                "reg_death": "m_c died after {PRONOUN/m_c/subject} got frostbite from sneaking out of camp.",
+                "lead_death": "died after {PRONOUN/m_c/subject} got frostbite from sneaking out of camp"
             }
         ]
     },
@@ -1375,7 +1374,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred as a kit, when an eagle tried to carry {PRONOUN/m_c/object} off.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after an eagle tried to carry {PRONOUN/m_c/object} off."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after an eagle tried to carry {PRONOUN/m_c/object} off.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after an eagle tried to carry {PRONOUN/m_c/object} off"
             }
         ],
         "relationships": [
@@ -1445,8 +1445,9 @@
                 "cats": [
                     "m_c"
                 ],
-                "scar": "m_c was scarred as a kit, when an eagle tried to carry {PRONOUN/m_c/object} off.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after an eagle tried to carry {PRONOUN/m_c/object} off."
+                "scar": "m_c was scarred as a kit, when a hawk tried to carry {PRONOUN/m_c/object} off.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a hawk tried to carry {PRONOUN/m_c/object} off.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a hawk tried to carry {PRONOUN/m_c/object} off"
             }
         ],
         "relationships": [
@@ -1507,7 +1508,7 @@
                     "m_c"
                 ],
                 "reg_death": "m_c died from water-inhalation after falling in the river.",
-                "lead_death": "died from water-inhalation"
+                "lead_death": "died from water-inhalation after falling in the river"
             }
         ]
     },
@@ -1551,7 +1552,7 @@
                 ],
                 "scar": "m_c was scarred by frostbite.",
                 "reg_death": "m_c died after {PRONOUN/m_c/subject} got frostbite.",
-                "lead_death": "died from frostbite"
+                "lead_death": "died after {PRONOUN/m_c/subject} got frostbite"
             }
         ]
     },
@@ -1591,6 +1592,7 @@
                 "cats": [
                     "m_c"
                 ],
+                "scar": "m_c was scarred when {PRONOUN/m_c/subject} slipped on ice.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after slipping on ice.",
                 "lead_death": "died from {PRONOUN/m_c/poss} wounds after slipping on ice"
             }
@@ -1627,7 +1629,9 @@
                 "cats": [
                     "m_c"
                 ],
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after an eagle grabbed {PRONOUN/m_c/object}."
+                "scar": "m_c was scarred as a kit, when an eagle tried to carry {PRONOUN/m_c/object} off.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after an eagle tried to carry {PRONOUN/m_c/object} off.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after an eagle tried to carry {PRONOUN/m_c/object} off"
             }
         ]
     },
@@ -1732,7 +1736,9 @@
                 "cats": [
                     "m_c"
                 ],
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after falling from a tall tree."
+                "scar": "m_c was scarred when {PRONOUN/m_c/subject} fell from a tall tree.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after falling from a tall tree.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after falling from a tall tree"
             }
         ]
     },
@@ -2506,7 +2512,7 @@
                 ],
                 "scar": "m_c was scarred by a dog.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a dog.",
-                "lead_death": "died after fighting a dog"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting a dog"
             }
         ]
     },
@@ -2657,7 +2663,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by a fox while protecting r_c.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after protecting r_c from a fox."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after protecting r_c from a fox.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after protecting r_c from a fox"
             }
         ],
         "relationships": [
@@ -2728,7 +2735,7 @@
                 ],
                 "scar": "m_c was scarred by a rogue.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a rogue.",
-                "lead_death": "died after fighting a rogue"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting a rogue"
             }
         ],
         "new_cat": [
@@ -2949,7 +2956,7 @@
                 ],
                 "scar": "m_c was scarred by a hawk.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a hawk.",
-                "lead_death": "died after fighting a hawk"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting a hawk"
             }
         ]
     },
@@ -3016,7 +3023,7 @@
                 ],
                 "scar": "m_c was scarred by a hawk while rescuing r_c.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after saving r_c from a hawk.",
-                "lead_death": "died after protecting r_c from a hawk"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after saving r_c from a hawk"
             }
         ],
         "relationships": [
@@ -3094,7 +3101,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by a rogue while protecting r_c.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after protecting r_c from a rogue."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after protecting r_c from a rogue.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after protecting r_c from a rogue"
             }
         ],
         "relationships": [
@@ -3199,7 +3207,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred during a harsh training exercise with r_c.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a harsh training exercise with r_c."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a harsh training exercise with r_c.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a harsh training exercise with r_c"
             }
         ],
         "relationships": [
@@ -3248,7 +3257,7 @@
                 "warrior"
             ],
             "not_skill": [
-                "FIGHTER,2"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -3289,7 +3298,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by o_c_n warriors, after being ordered to go over the border by r_c.",
-                "reg_death": "m_c died from wounds caused by o_c_n warriors, after being ordered to go over the border by r_c."
+                "reg_death": "m_c died from wounds caused by o_c_n warriors, after being ordered to go over the border by r_c.",
+                "lead_death": "died from wounds caused by o_c_n warriors, after being ordered to go over the border by r_c"
             }
         ],
         "relationships": [
@@ -3350,7 +3360,7 @@
                 "any"
             ],
             "not_skill": [
-                "FIGHTER,3"
+                "FIGHTER,2"
             ]
         },
         "r_c": {
@@ -3394,7 +3404,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by a Clanmate that r_c encouraged {PRONOUN/m_c/object} to fight.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a fight with a Clanmate that r_c encouraged."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a fight with a Clanmate that r_c encouraged.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a fight with a Clanmate that r_c encouraged"
             }
         ],
         "relationships": [
@@ -3448,7 +3459,7 @@
                 "any"
             ],
             "not_skill": [
-                "FIGHTER,3"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -3489,7 +3500,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by a fox, while trying to follow r_c's orders.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a fox on r_c's orders."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a fox on r_c's orders.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting a fox on r_c's orders"
             }
         ],
         "relationships": [
@@ -3538,7 +3550,7 @@
                 "warrior"
             ],
             "not_skill": [
-                "FIGHTER,3"
+                "FIGHTER,1"
             ]
         },
         "r_c": {
@@ -3582,7 +3594,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by a big dog, while trying to follow r_c's orders.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a big dog on r_c's orders."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting a big dog on r_c's orders.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting a big dog on r_c's orders"
             }
         ],
         "relationships": [
@@ -3649,7 +3662,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred when a hare scratched {PRONOUN/m_c/poss} eyes.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a hare scratched {PRONOUN/m_c/poss} eyes."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after a hare scratched {PRONOUN/m_c/poss} eyes.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after a hare scratched {PRONOUN/m_c/poss} eyes"
             }
         ]
     },
@@ -3750,7 +3764,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred after a fight with o_c_n cats.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with o_c_n cats."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with o_c_n cats.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting with o_c_n cats"
             }
         ],
         "other_clan": {
@@ -3822,7 +3837,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred fighting a rogue that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a rogue."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a rogue.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a rogue"
             }
         ],
         "relationships": [
@@ -3939,7 +3955,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred fighting an enemy warrior that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight an enemy warrior."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight an enemy warrior.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight an enemy warrior"
             }
         ],
         "relationships": [
@@ -4042,7 +4059,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred fighting a dog that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a dog."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a dog.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a dog"
             }
         ],
         "relationships": [
@@ -4139,7 +4157,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred fighting a fox that {PRONOUN/m_c/poss} mentor, r_c, encouraged {PRONOUN/m_c/object} to attack.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a fox."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a fox.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor encouraged {PRONOUN/m_c/object} to fight a fox"
             }
         ],
         "relationships": [
@@ -4230,7 +4249,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
-                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training.",
+                "lead_death": "died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training"
             }
         ],
         "relationships": [
@@ -4322,7 +4342,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
-                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training.",
+                "lead_death": "died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training"
             }
         ],
         "relationships": [
@@ -4777,7 +4798,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for failing to defend the territory well enough.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough"
             }
         ],
         "relationships": [
@@ -4878,7 +4900,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for failing to defend the territory well enough.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor, r_c, hurt {PRONOUN/m_c/object} for failing to defend the territory well enough"
             }
         ],
         "relationships": [
@@ -4967,7 +4990,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for accidentally crossing the border.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border"
             }
         ],
         "relationships": [
@@ -5068,7 +5092,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for accidentally crossing the border.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for accidentally crossing the border"
             }
         ],
         "relationships": [
@@ -5160,7 +5185,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for messing with a Twoleg object.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object"
             }
         ],
         "relationships": [
@@ -5264,7 +5290,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for messing with a Twoleg object.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for messing with a Twoleg object"
             }
         ],
         "relationships": [
@@ -5368,8 +5395,9 @@
                 "cats": [
                     "m_c"
                 ],
-                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, during battle training.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor insisted on training with unsheathed claws."
+                "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, after {PRONOUN/r_c/subject} insisted on training with unsheathed claws.",
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor insisted on training with unsheathed claws.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor insisted on training with unsheathed claws"
             }
         ],
         "relationships": [
@@ -5456,7 +5484,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for disobeying {PRONOUN/r_c/object}.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}"
             }
         ],
         "relationships": [
@@ -5559,7 +5588,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, for disobeying {PRONOUN/r_c/object}.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/poss} mentor hurt {PRONOUN/m_c/object} for disobeying {PRONOUN/r_c/object}"
             }
         ],
         "relationships": [
@@ -5646,7 +5676,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred after fighting with {PRONOUN/m_c/poss} mentor, r_c.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor"
             }
         ],
         "relationships": [
@@ -5749,7 +5780,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred after fighting with {PRONOUN/m_c/poss} mentor, r_c.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after fighting with {PRONOUN/m_c/poss} mentor"
             }
         ],
         "relationships": [
@@ -5840,7 +5872,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c's, harsh training.",
-                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training.",
+                "lead_death": "died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training"
             }
         ],
         "relationships": [
@@ -5943,7 +5976,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor's harsh training.",
-                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training."
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training.",
+                "lead_death": "died from wounds caused by {PRONOUN/m_c/poss} mentor's harsh training"
             }
         ],
         "relationships": [
@@ -6035,7 +6069,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by {PRONOUN/m_c/poss} mentor, r_c, when {PRONOUN/r_c/subject} used a Twoleg trap for training.",
-                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor using a Twoleg trap for training."
+                "reg_death": "m_c died from wounds caused by {PRONOUN/m_c/poss} mentor using a Twoleg trap for training.",
+                "lead_death": "died from wounds caused by {PRONOUN/m_c/poss} mentor using a Twoleg trap for training"
             }
         ],
         "relationships": [
@@ -6779,7 +6814,7 @@
                 ],
                 "scar": "m_c was scarred when {PRONOUN/m_c/subject} fought a trespassing rogue.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/subject} fought a trespassing rogue.",
-                "lead_death": "couldn't survive {PRONOUN/m_c/poss} injuries after {PRONOUN/m_c/subject} fought a trespassing rogue"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/subject} fought a trespassing rogue"
             }
         ]
     },
@@ -6825,7 +6860,7 @@
                 ],
                 "scar": "m_c was scarred by a Twoleg trap.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} injuries caused by a Twoleg trap.",
-                "lead_death": "died from {PRONOUN/m_c/poss} injuries caused by a Twoleg trap."
+                "lead_death": "died from {PRONOUN/m_c/poss} injuries caused by a Twoleg trap"
             }
         ]
     },
@@ -6893,7 +6928,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was maimed by r_c for questioning {PRONOUN/r_c/poss} leadership.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being maimed by r_c for questioning {PRONOUN/r_c/poss} leadership."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being maimed by r_c for questioning {PRONOUN/r_c/poss} leadership.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after being maimed by r_c for questioning {PRONOUN/r_c/poss} leadership"
             }
         ],
         "relationships": [
@@ -6971,7 +7007,7 @@
                 ],
                 "scar": "m_c was scarred by a dog.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/subject} {VERB/m_c/were/was} hurt by a dog.",
-                "lead_death": "died from {PRONOUN/m_c/poss} wounds after being hurt by a dog"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/subject} {VERB/m_c/were/was} hurt by a dog"
             }
         ]
     },
@@ -7017,7 +7053,7 @@
                 ],
                 "scar": "m_c was scarred by a fox.",
                 "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/subject} {VERB/m_c/were/was} hurt by a fox.",
-                "lead_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by a fox"
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after {PRONOUN/m_c/subject} {VERB/m_c/were/was} hurt by a fox"
             }
         ]
     },
@@ -7080,7 +7116,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by r_c for disobeying orders.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by r_c for disobeying {PRONOUN/r_c/object}."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by r_c for disobeying {PRONOUN/r_c/object}.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after being hurt by r_c for disobeying {PRONOUN/r_c/object}"
             }
         ],
         "relationships": [
@@ -7173,7 +7210,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by r_c for speaking out against {PRONOUN/r_c/object}.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by r_c for {PRONOUN/m_c/poss} dissent."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by r_c for {PRONOUN/m_c/poss} dissent.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after being hurt by r_c for {PRONOUN/m_c/poss} dissent"
             }
         ],
         "relationships": [
@@ -7264,7 +7302,8 @@
                     "m_c"
                 ],
                 "scar": "m_c was scarred by r_c to make an example out of {PRONOUN/m_c/object}.",
-                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by r_c to make an example out of {PRONOUN/m_c/object}."
+                "reg_death": "m_c died from {PRONOUN/m_c/poss} wounds after being hurt by r_c to make an example out of {PRONOUN/m_c/object}.",
+                "lead_death": "died from {PRONOUN/m_c/poss} wounds after being hurt by r_c to make an example out of {PRONOUN/m_c/object}"
             }
         ],
         "relationships": [
@@ -7589,7 +7628,8 @@
                     "m_c"
                 ],
                 "scar": "m_c, unbelievably, was scarred when {PRONOUN/m_c/subject} stepped on a bee.",
-                "reg_death": "m_c died from complications caused by a bee sting."
+                "reg_death": "m_c died from complications caused by a bee sting.",
+                "lead_death": "died from complications caused by a bee sting."
             }
         ]
     },
