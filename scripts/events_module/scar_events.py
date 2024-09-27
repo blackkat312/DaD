@@ -30,8 +30,10 @@ class Scar_Events():
     ]
     claw_scars = [
         "ONE", "TWO", "SNOUT", "TAILSCAR", "CHEEK", "SIDE", "THROAT", "TAILBASE", "BELLY", "FACE", "BRIDGE", "HINDLEG",
-        "BACK", "SCRATCHSIDE", "THREE", "RIGHTBLIND", "LEFTBLIND", "BOTHBLIND", "QUILLSCRATCH", "LEFTEAR", "RIGHTEAR",
-        "FOUR", "BEAKSIDE", "QUILLSIDE"
+        "BACK", "SCRATCHSIDE", "QUILLSCRATCH", "LEFTEAR", "RIGHTEAR", "FOUR", "BEAKSIDE", "QUILLSIDE"
+    ]
+    face_claw_scars = [
+        "QUILLSCRATCH", "SNOUT", "CHEEK", "FACE", "BRIDGE"
     ]
     leg_scars = [
         "NOPAW", "TOETRAP", "MANLEG", "FOUR"
@@ -116,7 +118,8 @@ class Scar_Events():
         if injury_name == "wrenched claws":
             chance = random.randint(0, 25)
 
-        if len(cat.pelt.scars) < 7 and random.randint(1, 2) == 1:
+        # if len(cat.pelt.scars) < 7 and random.randint(1, 2) == 1:
+        if len(cat.pelt.scars) < 7:
 
             # move potential scar text into displayed scar text
 
@@ -148,14 +151,14 @@ class Scar_Events():
                 scar_pool = [i for i in scar_pool if i not in ['RIGHTEAR']]
 
             # Extra check for disabling scars.
-            if random.randint(1, 3) > 1:
+            """if random.randint(1, 3) > 1:
                 condition_scars = {
                     "LEGBITE", "THREE", "NOPAW", "TOETRAP", "NOTAIL", "HALFTAIL", "MANLEG", "BRIGHTHEART", "NOLEFTEAR",
                     "NORIGHTEAR", "NOEAR", "LEFTBLIND", "RIGHTBLIND", "BOTHBLIND", "RATBITE", "DECLAWED", "RASH",
                     "MANTAIL", "NECKBITE", "THROAT", "SIDE"
                 }
 
-                scar_pool = list(set(scar_pool).difference(condition_scars))
+                scar_pool = list(set(scar_pool).difference(condition_scars))"""
 
             # If there are no new scars to give them, return None, None.
             if not scar_pool:
@@ -166,30 +169,39 @@ class Scar_Events():
                              f"m_c was scarred from an injury ({injury_name}).",
                              condition=injury_name)
 
-            specialty = random.choice(scar_pool)
+            specialty = [random.choice(scar_pool)]
+            if (specialty == ["LEFTEAR"] or specialty == ["RIGHTEAR"]) and injury_name == "claw-wound":
+                print("print")
+                face_claw_scar_pool = [i for i in Scar_Events.face_claw_scars if i not in cat.pelt.scars]
+                specialty.append(random.choice(face_claw_scar_pool))
 
             # combining left/right variations into the both version
-            if "NOLEFTEAR" in cat.pelt.scars and specialty == 'NORIGHTEAR':
+            if "NOLEFTEAR" in cat.pelt.scars and "NORIGHTEAR" in specialty:
                 cat.pelt.scars.remove("NOLEFTEAR")
-                specialty = 'NOEAR'
-            elif "NORIGHTEAR" in cat.pelt.scars and specialty == 'NOLEFTEAR':
+                specialty.remove("NORIGHTEAR")
+                specialty.append("NOEAR")
+            elif "NORIGHTEAR" in cat.pelt.scars and "NOLEFTEAR" in specialty:
                 cat.pelt.scars.remove("NORIGHTEAR")
-                specialty = 'NOEAR'
+                specialty.remove("NOLEFTEAR")
+                specialty.append("NOEAR")
 
-            if 'RIGHTBLIND' in cat.pelt.scars and specialty == 'LEFTBLIND':
+            if "LEFTBLIND" in cat.pelt.scars and "RIGHTBLIND" in specialty:
                 cat.pelt.scars.remove("LEFTBLIND")
-                specialty = 'BOTHBLIND'
-            elif 'LEFTBLIND' in cat.pelt.scars and specialty == 'RIGHTBLIND':
+                specialty.remove("RIGHTBLIND")
+                specialty.append("BOTHBLIND")
+            elif "RIGHTBLIND" in cat.pelt.scars and "LEFTBLIND" in specialty:
                 cat.pelt.scars.remove("RIGHTBLIND")
-                specialty = 'BOTHBLIND'
+                specialty.remove("LEFTBLIND")
+                specialty.append("BOTHBLIND")
 
-            cat.pelt.scars.append(specialty)
+            for entry in specialty:
+                cat.pelt.scars.append(entry)
 
-            scar_gain_strings = [
-                f"{cat.name}'s {injury_name} has healed, but they'll always carry evidence of the incident on their pelt.",
-                f"{cat.name} healed from their {injury_name} but will forever be marked by a scar.",
-                f"{cat.name}'s {injury_name} has healed, but the injury left them scarred.",
-            ]
-            return random.choice(scar_gain_strings), specialty
+            scar_gain_string = random.choice([
+                "m_c's " + injury_name + " has healed, but {PRONOUN/m_c/subject}'ll always carry evidence of the incident on {PRONOUN/m_c/poss} pelt.",
+                "m_c healed from {PRONOUN/m_c/poss} " + injury_name + " but will forever be marked by a scar.",
+                "m_c's " + injury_name + " has healed, but the injury left {PRONOUN/m_c/object} scarred.",
+            ])
+            return scar_gain_string, specialty
         else:
             return None, None
