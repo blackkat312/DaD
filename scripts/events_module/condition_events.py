@@ -755,9 +755,9 @@ class Condition_Events:
                 triggered = True
 
                 # Try to give a scar, and get the event text to be displayed
-                event, scar_given = Scar_Events.handle_scars(cat, injury)
+                event, scars_given = Scar_Events.handle_scars(cat, injury)
                 # If a scar was not given, we need to grab a separate healed event
-                if not scar_given:
+                if not scars_given:
                     try:
                         event = random.choice(
                             Condition_Events.INJURY_HEALED_STRINGS[injury]
@@ -778,42 +778,82 @@ class Condition_Events:
                 cat.healed_condition = False
 
                 # try to give a permanent condition based on healed injury and new scar if any
-                condition_got = Condition_Events.handle_permanent_conditions(
-                    cat, injury_name=injury, scar=scar_given
-                )
+                if scars_given:
+                    for scar in scars_given:
+                        condition_got = Condition_Events.handle_permanent_conditions(
+                            cat, injury_name=injury, scar=scar
+                        )
 
-                if condition_got is not None:
-                    # gather potential event strings for gotten condition
-                    possible_string_list = (
-                        Condition_Events.PERMANENT_CONDITION_GOT_STRINGS[injury][
-                            condition_got
-                        ]
+                        if condition_got is not None:
+                            # gather potential event strings for gotten condition
+                            possible_string_list = (
+                                Condition_Events.PERMANENT_CONDITION_GOT_STRINGS[injury][
+                                    condition_got
+                                ]
+                            )
+
+                            # choose event string and ensure Clan's med cat number aligns with event text
+                            random_index = random.randrange(0, len(possible_string_list))
+
+                            med_list = get_alive_status_cats(Cat, ["medicine cat", "medicine cat apprentice"], working=True)
+                            # If the cat is a med cat, don't consider them as one for the event.
+
+                            if cat in med_list:
+                                med_list.remove(cat)
+
+                            # Choose med cat, if you can
+                            if med_list:
+                                med_cat = random.choice(med_list)
+                            else:
+                                med_cat = None
+
+                            if not med_cat and random_index < 2 and len(possible_string_list) >= 3:
+                                random_index = 2
+
+                            event = possible_string_list[random_index]
+                            event = Condition_Events.change_condition_name(event)
+                            event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
+
+                        if event is not None:
+                            event_list.append(event)
+                else:
+                    condition_got = Condition_Events.handle_permanent_conditions(
+                        cat, injury_name=injury, scar=None
                     )
 
-                    # choose event string and ensure Clan's med cat number aligns with event text
-                    random_index = random.randrange(0, len(possible_string_list))
+                    if condition_got is not None:
+                        # gather potential event strings for gotten condition
+                        possible_string_list = (
+                            Condition_Events.PERMANENT_CONDITION_GOT_STRINGS[injury][
+                                condition_got
+                            ]
+                        )
 
-                    med_list = get_alive_status_cats(Cat, ["medicine cat", "medicine cat apprentice"], working=True)
-                    # If the cat is a med cat, don't consider them as one for the event.
+                        # choose event string and ensure Clan's med cat number aligns with event text
+                        random_index = random.randrange(0, len(possible_string_list))
 
-                    if cat in med_list:
-                        med_list.remove(cat)
+                        med_list = get_alive_status_cats(Cat, ["medicine cat", "medicine cat apprentice"], working=True)
+                        # If the cat is a med cat, don't consider them as one for the event.
 
-                    # Choose med cat, if you can
-                    if med_list:
-                        med_cat = random.choice(med_list)
-                    else:
-                        med_cat = None
+                        if cat in med_list:
+                            med_list.remove(cat)
 
-                    if not med_cat and random_index < 2 and len(possible_string_list) >= 3:
-                        random_index = 2
+                        # Choose med cat, if you can
+                        if med_list:
+                            med_cat = random.choice(med_list)
+                        else:
+                            med_cat = None
 
-                    event = possible_string_list[random_index]
-                    event = Condition_Events.change_condition_name(event)
-                    event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
+                        if not med_cat and random_index < 2 and len(possible_string_list) >= 3:
+                            random_index = 2
 
-                if event is not None:
-                    event_list.append(event)
+                        event = possible_string_list[random_index]
+                        event = Condition_Events.change_condition_name(event)
+                        event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
+
+                    if event is not None:
+                        event_list.append(event)
+
                 continue
 
             Condition_Events.give_risks(
