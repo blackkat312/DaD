@@ -780,6 +780,7 @@ class Condition_Events:
                 # try to give a permanent condition based on healed injury and new scar if any
                 if scars_given:
                     for scar in scars_given:
+                        print("print2")
                         condition_got = Condition_Events.handle_permanent_conditions(
                             cat, injury_name=injury, scar=scar
                         )
@@ -814,7 +815,7 @@ class Condition_Events:
                             event = Condition_Events.change_condition_name(event)
                             event = event_text_adjust(Cat, event, main_cat=cat, random_cat=med_cat)  # adjust the text
 
-                        if event is not None:
+                        if event is not None and event not in event_list:
                             event_list.append(event)
                 else:
                     condition_got = Condition_Events.handle_permanent_conditions(
