@@ -9,20 +9,17 @@ class Genotype:
     def __init__(self, odds, ban_genes=True, spec=None):
         self.odds = odds
         self.ban_genes = ban_genes
-        if spec:
+        self.chimerapattern = None
+        if spec != "chimera":
             self.chimera = False
-            self.chimerapattern = None
         else:
-            a = randint(1, odds['chimera'])
-            if a == 1:
-                self.chimera = True
-            else:
-                self.chimera = False
-            self.chimerapattern = None
+            self.chimera = True if odds['chimera'] > 0 and randint(1, odds['chimera']) == 1 else False
         if self.chimera:
             self.chimerageno = Genotype(self.odds, self.ban_genes, 'chimera')
         else:
             self.chimerageno = None
+
+        self.fevercoat = False
 
         self.furLength = ["", ""]
         self.longtype = 'long'
@@ -30,8 +27,10 @@ class Genotype:
         self.sexgene = ["", ""]
         self.specialred = None
         self.tortiepattern = None
+        self.pseudomerle = False
+        self.merlepattern = None
         self.brindledbi = False
-        self.gender = ["", ""]
+        self.sex = ["", ""]
         self.dilute = ["", ""]
         self.white = ["", ""]
         self.whitegrade = randint(1, 5)
@@ -83,6 +82,8 @@ class Genotype:
         self.wbtype = ""
         self.wbsum = 0
 
+        self.saturation = choice(odds['saturation'])
+
         self.rufousing = ""
         self.ruftype = ""
         self.rufsum = 0
@@ -103,8 +104,8 @@ class Genotype:
         self.ticktype = ""
         self.ticksum = 0
 
-        self.body_ranges = [1, 4, 9, 27, 9, 4, 1]
-        self.height_ranges = [1, 4, 9, 36, 108, 36, 9, 2, 2, 1]
+        self.body_ranges = odds['body_ranges']
+        self.height_ranges = odds['height_ranges']
 
         def getindexes(m, size):
             inds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -142,24 +143,41 @@ class Genotype:
         return getattr(self, name)
 
     def fromJSON(self, jsonstring):
+        try:
+            self.fevercoat = jsonstring["fevercoat"]
+        except:
+            pass
         self.furLength = jsonstring["furLength"]
         self.eumelanin = jsonstring["eumelanin"]
         self.sexgene = jsonstring["sexgene"]
         self.tortiepattern = jsonstring["tortiepattern"]
+        if self.tortiepattern and not isinstance(self.tortiepattern, list):
+            self.tortiepattern = [self.tortiepattern]
         self.brindledbi = jsonstring["brindledbi"]
 
         self.specialred = jsonstring['specialred']
+
+        self.merlepattern = jsonstring.get('merlepattern', None)
+        try:
+            self.pseudomerle = jsonstring['pseudomerle']
+        except:
+            pass
+
         self.chimera = jsonstring['chimera']
         self.chimerapattern = jsonstring['chimerapattern']
+        if self.chimerapattern and not isinstance(self.chimerapattern, list):
+            self.chimerapattern = [self.chimerapattern]
         if(jsonstring["chimerageno"]):
             self.chimerageno = Genotype(self.odds, self.ban_genes, 'chimera')
             self.chimerageno.fromJSON(jsonstring["chimerageno"])
         else:
-            self.chimerageno = None    
-        self.deaf = jsonstring['deaf']
+            self.chimerageno = None
         self.longtype = jsonstring["longtype"]
 
-        self.gender = jsonstring["gender"]
+        try:
+            self.sex = jsonstring["sex"]
+        except:
+            self.sex = jsonstring["gender"]
         self.dilute = jsonstring["dilute"]
         self.white = jsonstring["white"]
         self.whitegrade = jsonstring["whitegrade"]
@@ -185,10 +203,7 @@ class Genotype:
         self.pinkdilute = jsonstring["pinkdilute"]
         self.dilutemd = jsonstring["dilutemd"]
         self.ext = jsonstring["ext"]
-        try:
-            self.corin = jsonstring["corin"]
-        except:
-            self.corin = jsonstring["sunshine"]
+        self.corin = jsonstring["corin"]
         self.karp = jsonstring["karp"]
         self.bleach = jsonstring["bleach"]
         self.ghosting = jsonstring["ghosting"]
@@ -206,17 +221,14 @@ class Genotype:
         self.ring = jsonstring["ring"]
         self.munch = jsonstring["munch"]
         self.poly = jsonstring["poly"]
-        try:
-            self.pax3 = jsonstring["pax3"]
-        except:
-            self.pax3 = jsonstring['altai']
-            for i in range(2):
-                if self.pax3[i] == 'Al':
-                    self.pax3[i] = 'DBEalt'
-                else:
-                    self.pax3[i] = 'NoDBE'
+        self.pax3 = jsonstring["pax3"]
 
         self.wideband = jsonstring["wideband"]
+
+        try:
+            self.saturation = jsonstring["saturation"]
+        except:
+            pass
 
         self.rufousing = jsonstring["rufousing"]
 
@@ -240,22 +252,12 @@ class Genotype:
         self.extraeyetype = jsonstring["extraeyetype"]
         self.extraeyecolour = jsonstring["extraeyecolour"]
 
-        if len(str(self.refraction)) > 2:
-            self.EyeConvert()
-
         self.breeds = json.loads(jsonstring["breeds"])
-
-        try:
-            self.somatic = json.loads(jsonstring["somatic"])
-        except:
-            self.somatic = {}
-
-        try:
-            self.body_value = jsonstring["body_type"]
-            self.height_value = jsonstring["height"]
-            self.shoulder_height = jsonstring["shoulder_height"]
-        except:
-            self.GenerateBody()
+        self.somatic = json.loads(jsonstring["somatic"])
+        self.body_value = jsonstring["body_type"]
+        self.height_value = jsonstring["height"]
+        self.shoulder_height = jsonstring["shoulder_height"]
+        self.body_label = jsonstring["body_type_label"]
 
         self.GeneSort()
         self.PolyEval()
@@ -268,6 +270,7 @@ class Genotype:
             chimgen = self.chimerageno.toJSON()
 
         return {
+            "fevercoat" : self.fevercoat,
             "furLength": self.furLength,
             "longtype": self.longtype,
             "eumelanin": self.eumelanin,
@@ -276,16 +279,17 @@ class Genotype:
             "tortiepattern" : self.tortiepattern,
             "brindledbi" : self.brindledbi,
 
+            "pseudomerle" : self.pseudomerle,
+            "merlepattern" : self.merlepattern,
             "chimera" : self.chimera,
             "chimerapattern" : self.chimerapattern,
             "chimerageno" : chimgen,
 
-            "gender": self.gender,
+            "sex": self.sex,
             "dilute": self.dilute,
             "white" : self.white,
             "whitegrade" : self.whitegrade,
             "vitiligo" : self.vitiligo,
-            "deaf" : self.deaf,
             "pointgene" : self.pointgene,
             "silver" : self.silver,
             "agouti" : self.agouti,
@@ -328,6 +332,7 @@ class Genotype:
             "pax3" : self.pax3,
 
             "wideband" : self.wideband,
+            "saturation" : self.saturation,
             "rufousing" : self.rufousing,
             "bengal" : self.bengal,
             "sokoke" : self.sokoke,
@@ -346,6 +351,7 @@ class Genotype:
             "extraeyecolour" : self.extraeyecolour,
 
             "body_type" : self.body_value,
+            "body_type_label" : self.body_label,
             "height" : self.height_value,
             "shoulder_height" : self.shoulder_height,
 
@@ -376,10 +382,10 @@ class Genotype:
 
             return
 
-        if randint(1, self.odds["other_breed"]) == 1:
+        if self.odds["other_breed"] > 0 and randint(1, self.odds["other_breed"]) == 1:
             return self.BreedGenerator(special)
         
-        if randint(1, self.odds['vitiligo']) == 1:
+        if self.odds["vitiligo"] > 0 and randint(1, self.odds["vitiligo"]) == 1:
             self.vitiligo = True
 
         self.GenerateBody()
@@ -387,16 +393,16 @@ class Genotype:
         # FUR LENGTH
         
         for i in range(2):
-            if randint(1, self.odds["longhair"]) > 3:
+            if self.odds["longhair"] > 0 and randint(1, self.odds["longhair"]) > 3:
                 self.furLength[i] = "l"
             else:
                 self.furLength[i] = "L"
 
         # EUMELANIN
 
-            if randint(1, self.odds["cinnamon"]) == 1:
+            if self.odds["cinnamon"] > 0 and randint(1, self.odds["cinnamon"]) == 1:
                 self.eumelanin[i] = "bl"
-            elif randint(1, self.odds["chocolate"]) == 1:
+            elif self.odds["chocolate"] > 0 and randint(1, self.odds["chocolate"]) == 1:
                 self.eumelanin[i] = "b"
             else:
                 self.eumelanin[i] = "B"
@@ -490,108 +496,110 @@ class Genotype:
                 self.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py Generator")
 
-        if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
+        if 'O' in self.sexgene and self.odds['brindled_bicolour'] > 0 and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
-        
+        if self.odds['pseudo_merle'] > 0 and randint(1, self.odds['pseudo_merle'])==1:
+            self.pseudomerle = True
+
         if(random() < 0.05):
-            self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-red', 'blue-tipped', 'blue-tipped', 'cinnamon'])
+            self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'blue-red', 'blue-tipped', 'blue-tipped', 'blue-tipped', 'cinnamon'])
 
         # DILUTE
 
         for i in range(2):
-            if randint(1, self.odds["dilute"]) > 3:
+            if self.odds["dilute"] > 0 and randint(1, self.odds["dilute"]) > 3:
                 self.dilute[i] = "d"
             else:
                 self.dilute[i] = "D"
         # WHITE
-            if randint(1, self.odds["birman gloving"]) == 1:
+            if self.odds["birman gloving"] > 0 and randint(1, self.odds["birman gloving"]) == 1:
                 self.white[i] = "wg"
-            elif randint(1, self.odds["thai white"]) == 1:
+            elif self.odds["thai white"] > 0 and randint(1, self.odds["thai white"]) == 1:
                 self.white[i] = "wt"
-            elif randint(1, self.odds["salmiak"]) == 1:
+            elif self.odds["salmiak"] > 0 and randint(1, self.odds["salmiak"]) == 1:
                 self.white[i] = "wsal"
-            elif randint(1, self.odds["dominant white"]) == 1:
+            elif self.odds["dominant white"] > 0 and randint(1, self.odds["dominant white"]) == 1:
                 self.white[i] = "W"
-            elif randint(1, self.odds["white spotting"]) > 3:
+            elif self.odds["white spotting"] > 0 and randint(1, self.odds["white spotting"]) > 3:
                 self.white[i] = "ws"
             else:
                 self.white[i] = "w"
 
         # ALBINO
 
-            if randint(1, self.odds["albino"]) == 1 and not self.ban_genes:
+            if self.odds["albino"] > 0 and randint(1, self.odds["albino"]) == 1 and not self.ban_genes:
                 self.pointgene[i] = "c"
-            elif randint(1, self.odds["mocha"]) == 1:
+            elif self.odds["mocha"] > 0 and randint(1, self.odds["mocha"]) == 1:
                 self.pointgene[i] = "cm"
-            elif randint(1, self.odds["sepia"]) == 1:
+            elif self.odds["sepia"] > 0 and randint(1, self.odds["sepia"]) == 1:
                 self.pointgene[i] = "cb"
-            elif randint(1, self.odds["colourpoint"]) == 1:
+            elif self.odds["colourpoint"] > 0 and randint(1, self.odds["colourpoint"]) == 1:
                 self.pointgene[i] = "cs"
             else:
                 self.pointgene[i] = "C"
 
         # SILVER
 
-            if randint(1, self.odds["silver"]) == 1:
+            if self.odds["silver"] > 0 and randint(1, self.odds["silver"]) == 1:
                 self.silver[i] = "I"
             else:
                 self.silver[i] = "i"
 
         # AGOUTI
 
-            if randint(1, self.odds["charcoal"]) == 1:
+            if self.odds["charcoal"] > 0 and randint(1, self.odds["charcoal"]) == 1:
                 self.agouti[i] = "Apb"
-            elif randint(1, self.odds["solid"]) > 3:
+            elif self.odds["solid"] > 0 and randint(1, self.odds["solid"]) > 3:
                 self.agouti[i] = "a"
             else:
                 self.agouti[i] = "A"
 
         # MACKEREL
-            if randint(1, self.odds["blotched"]) == 1:
+            if self.odds["blotched"] > 0 and randint(1, self.odds["blotched"]) == 1:
                 self.mack[i] = "mc"
             else:
                 self.mack[i] = "Mc"
 
         # TICKED
-            if randint(1, self.odds["ticked"]) == 1:
+            if self.odds["ticked"] > 0 and randint(1, self.odds["ticked"]) == 1:
                 self.ticked[i] = "Ta"
             else:
                 self.ticked[i] = "ta"
 
-        if randint(1, self.odds["breakthrough"]) == 1:
+        if self.odds["breakthrough"] > 0 and randint(1, self.odds["breakthrough"]) == 1:
             self.breakthrough = True
 
         # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
 
         for i in range(2):
-            if randint(1, self.odds["wirehair"]) == 1:
+            if self.odds["wirehair"] > 0 and randint(1, self.odds["wirehair"]) == 1:
                 self.wirehair[i] = "Wh"
-            if randint(1, self.odds["laperm"]) == 1:
+            if self.odds["laperm"] > 0 and randint(1, self.odds["laperm"]) == 1:
                 self.laperm[i] = "Lp"
-            if randint(1, self.odds["cornish"]) == 1:
+            if self.odds["cornish"] > 0 and randint(1, self.odds["cornish"]) == 1:
                 self.cornish[i] = "r"
-            if randint(1, self.odds["urals"]) == 1:
+            if self.odds["urals"] > 0 and randint(1, self.odds["urals"]) == 1:
                 self.urals[i] = "ru"
-            if randint(1, self.odds["tenn"]) == 1:
+            if self.odds["tenn"] > 0 and randint(1, self.odds["tenn"]) == 1:
                 self.tenn[i] = "tr"
-            if randint(1, self.odds["fleece"]) == 1:
+            if self.odds["fleece"] > 0 and randint(1, self.odds["fleece"]) == 1:
                 self.fleece[i] = "fc"
 
 
         #SELKIRK/DEVON/HAIRLESS
 
-            if randint(1, self.odds["canadian hairless"]) == 1:
+            if self.odds["canadian hairless"] > 0 and randint(1, self.odds["canadian hairless"]) == 1:
                 self.sedesp[i] = "hr"
-            elif randint(1, self.odds["devon"]) == 1:
+            elif self.odds["devon"] > 0 and randint(1, self.odds["devon"]) == 1:
                 self.sedesp[i] = "re"
-            elif randint(1, self.odds["selkirk"]) == 1:
+            elif self.odds["selkirk"] > 0 and randint(1, self.odds["selkirk"]) == 1:
                 self.sedesp[i] = "Se"
 
 
         #ruhr + ruhrmod + lykoi
-            if randint(1, self.odds["russian hairless"]) == 1 and not self.ban_genes:
+            if self.odds["russian hairless"] > 0 and randint(1, self.odds["russian hairless"]) == 1 and not self.ban_genes:
                 self.ruhr[i] = "Hrbd"
-            if randint(1, self.odds["lykoi"]) == 1:
+            if self.odds["lykoi"] > 0 and randint(1, self.odds["lykoi"]) == 1 and not self.ban_genes:
                 self.lykoi[i] = "ly"
         
         a = randint(1, 4)
@@ -606,85 +614,85 @@ class Genotype:
         # pinkdilute + dilutemd
 
         for i in range(2):
-            if randint(1, self.odds["pink-eyed dilute"]) == 1:
+            if self.odds["pink-eyed dilute"] > 0 and randint(1, self.odds["pink-eyed dilute"]) == 1 and not self.ban_genes:
                 self.pinkdilute[i] = "dp"
-            if randint(1, self.odds["dilute modifier"]) == 1:
+            if self.odds["dilute modifier"] > 0 and randint(1, self.odds["dilute modifier"]) == 1:
                 self.dilutemd[i] = "Dm"
 
         # ext
 
-            if randint(1, self.odds["grizzle"]) == 1:
+            if self.odds["grizzle"] > 0 and randint(1, self.odds["grizzle"]) == 1:
                 self.ext[i] = "Eg"
-            elif randint(1, self.odds["carnelian"]) == 1:
+            elif self.odds["carnelian"] > 0 and randint(1, self.odds["carnelian"]) == 1:
                 self.ext[i] = "ec"
-            elif randint(1, self.odds["russet"]) == 1:
+            elif self.odds["russet"] > 0 and randint(1, self.odds["russet"]) == 1:
                 self.ext[i] = "er"
-            elif randint(1, self.odds["amber"]) == 1:
+            elif self.odds["amber"] > 0 and randint(1, self.odds["amber"]) == 1:
                 self.ext[i] = "ea"
 
         #sunshine
 
-            if randint(1, self.odds["sunshine"]) == 1:
+            if self.odds["sunshine"] > 0 and randint(1, self.odds["sunshine"]) == 1:
                 self.corin[i] = "sh" #sunSHine
-            elif randint(1, self.odds["extreme sunshine"]) == 1:
+            elif self.odds["extreme sunshine"] > 0 and randint(1, self.odds["extreme sunshine"]) == 1:
                 self.corin[i] = "sg" #Siberian Gold / extreme sunshine
-            elif randint(1, self.odds["copper"]) == 1:
+            elif self.odds["copper"] > 0 and randint(1, self.odds["copper"]) == 1:
                 self.corin[i] = "fg" #Flaxen Gold
             else:
                 self.corin[i] = "N" #No
 
         # karp + bleach + ghosting + satin + glitter
 
-            if randint(1, self.odds["karpati"]) == 1:
+            if self.odds["karpati"] > 0 and randint(1, self.odds["karpati"]) == 1:
                 self.karp[i] = "K"
-            if randint(1, self.odds["bleaching"]) == 1:
+            if self.odds["bleaching"] > 0 and randint(1, self.odds["bleaching"]) == 1:
                 self.bleach[i] = "lb"
-            if randint(1, self.odds["ghosting"]) == 1:
+            if self.odds["ghosting"] > 0 and randint(1, self.odds["ghosting"]) == 1:
                 self.ghosting[i] = "Gh"
-            if randint(1, self.odds["satin"]) == 1:
+            if self.odds["satin"] > 0 and randint(1, self.odds["satin"]) == 1:
                 self.satin[i] = "st"
-            if randint(1, self.odds["glitter"]) == 1:
+            if self.odds["glitter"] > 0 and randint(1, self.odds["glitter"]) == 1:
                 self.glitter[i] = "gl"
 
         # curl + fold
 
-            if randint(1, self.odds["curl"]) == 1:
+            if self.odds["curl"] > 0 and randint(1, self.odds["curl"]) == 1:
                 self.curl[i] = "Cu"
 
-        if randint(1, self.odds["fold"]) == 1 and not self.ban_genes:
+        if self.odds["fold"] > 0 and randint(1, self.odds["fold"]) == 1 and not self.ban_genes:
             self.fold[0] = "Fd"
 
         #  manx + kab + toybob + jbob + kub + ring
 
-        if randint(1, self.odds["american bobtail"]) == 1:
+        if self.odds["american bobtail"] > 0 and randint(1, self.odds["american bobtail"]) == 1:
             self.manx = ["Ab", "ab"]
-        elif randint(1, self.odds["manx"]) == 1 and not self.ban_genes:
+        elif self.odds["manx"] > 0 and randint(1, self.odds["manx"]) == 1 and not self.ban_genes:
             self.manx = ["M", "m"]
         
         for i in range(2):
-            if randint(1, self.odds["karelian bobtail"]) == 1:
+            if self.odds["karelian bobtail"] > 0 and randint(1, self.odds["karelian bobtail"]) == 1:
                 self.kab[i] = "kab"
-            if randint(1, self.odds["toybob"]) == 1:
+            if self.odds["toybob"] > 0 and randint(1, self.odds["toybob"]) == 1:
                 self.toybob[i] = "Tb"
-            if randint(1, self.odds["kurilian bobtail"]) == 1:
+            if self.odds["kurilian bobtail"] > 0 and randint(1, self.odds["kurilian bobtail"]) == 1:
                 self.kub[i] = "Kub"
-            if randint(1, self.odds["japanese bobtail"]) == 1:
+            if self.odds["japanese bobtail"] > 0 and randint(1, self.odds["japanese bobtail"]) == 1:
                 self.jbob[i] = "jb"
-            if randint(1, self.odds["ringtail"]) == 1:
+            if self.odds["ringtail"] > 0 and randint(1, self.odds["ringtail"]) == 1:
                 self.ring[i] = "rt"
         
         # munch + poly + altai
 
-        if randint(1, self.odds["munchkin"]) == 1 and not self.ban_genes:
+        if self.odds["munchkin"] > 0 and randint(1, self.odds["munchkin"]) == 1 and not self.ban_genes:
             self.munch[0] = "Mk"
 
         for i in range(2):
-            if randint(1, self.odds["polydactyl"]) == 1:
+            if self.odds["polydactyl"] > 0 and randint(1, self.odds["polydactyl"]) == 1:
                 self.poly[i] = "Pd"
         
-        if randint(1, self.odds["DBE"] ** 2) == 1 and not self.ban_genes:
+        if self.odds["DBE"] > 0 and randint(1, self.odds["DBE"] ** 2) == 1 and not self.ban_genes:
             self.pax3 = ['DBEalt', choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])]
-        elif randint(1, self.odds["DBE"]) == 1 and not self.ban_genes:
+        elif self.odds["DBE"] > 0 and randint(1, self.odds["DBE"]) == 1 and not self.ban_genes:
             self.pax3[0] = choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])
 
         widegenes = ["0", "0", "1", "1", "1", "2", "2"]
@@ -730,7 +738,7 @@ class Genotype:
         self.GeneSort()
         self.PolyEval()
 
-        if randint(1, self.odds['somatic_mutation']) == 1:
+        if self.odds['somatic_mutation'] > 0 and randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
 
         self.EyeColourFinder()
@@ -758,11 +766,10 @@ class Genotype:
 
             return
 
-        if randint(1, self.odds["kittypet_breed"]) == 1:
+        if self.odds["kittypet_breed"] > 0 and randint(1, self.odds["kittypet_breed"]) == 1:
             return self.BreedGenerator(special)
 
-        a = randint(1, self.odds['vitiligo'])
-        if a == 1:
+        if self.odds["vitiligo"] > 0 and randint(1, self.odds["vitiligo"]) == 1:
             self.vitiligo = True
 
         self.GenerateBody()
@@ -770,16 +777,16 @@ class Genotype:
         # FUR LENGTH
 
         for i in range(2):
-            if randint(1, self.odds["longhair"]) > 3:
+            if self.odds["longhair"] > 0 and randint(1, self.odds["longhair"]) > 3:
                 self.furLength[i] = "l"
             else:
                 self.furLength[i] = "L"
 
         # EUMELANIN
 
-            if randint(1, round(self.odds["cinnamon"]/2)) == 1:
+            if self.odds["cinnamon"] > 0 and (randint(1, round(self.odds["cinnamon"]/2)) == 1 or self.odds["cinnamon"] == 1):
                 self.eumelanin[i] = "bl"
-            elif randint(1, round(self.odds["chocolate"]/2)) == 1:
+            elif self.odds["chocolate"] > 0 and (randint(1, round(self.odds["chocolate"]/2)) == 1 or self.odds["chocolate"] == 1):
                 self.eumelanin[i] = "b"
             else:
                 self.eumelanin[i] = "B"
@@ -886,17 +893,20 @@ class Genotype:
             else:
                 self.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py AltGenerator")
-                
-        if 'O' in self.sexgene and randint(1, self.odds['brindled_bicolour'])==1:
+
+        if 'O' in self.sexgene and self.odds['brindled_bicolour'] > 0 and randint(1, self.odds['brindled_bicolour'])==1:
             self.brindledbi = True 
 
+        if self.odds['pseudo_merle'] > 0 and randint(1, self.odds['pseudo_merle'])==1:
+            self.pseudomerle = True
+
         if(random() < 0.05):
-            self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-red', 'blue-tipped', 'blue-tipped', 'cinnamon'])
+            self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'blue-red', 'blue-tipped', 'blue-tipped', 'blue-tipped', 'cinnamon'])
 
         # DILUTE
 
         for i in range(2):
-            if randint(1, self.odds["dilute"]) > 3:
+            if self.odds["dilute"] > 0 and randint(1, self.odds["dilute"]) > 3:
                 self.dilute[i] = "d"
             else:
                 self.dilute[i] = "D"
@@ -904,94 +914,94 @@ class Genotype:
         # WHITE
 
 
-            if randint(1, round(self.odds["birman gloving"]/2)) == 1:
+            if self.odds["birman gloving"] > 0 and (randint(1, round(self.odds["birman gloving"]/2)) == 1 or self.odds["birman gloving"] == 1):
                 self.white[i] = "wg"
-            elif randint(1, round(self.odds["thai white"]/2)) == 1:
+            elif self.odds["thai white"] > 0 and (randint(1, round(self.odds["thai white"]/2)) == 1 or self.odds["thai white"] == 1):
                 self.white[i] = "wt"
-            elif randint(1, round(self.odds["salmiak"]/2)) == 1:
+            elif self.odds["salmiak"] > 0 and (randint(1, round(self.odds["salmiak"]/2)) == 1 or self.odds["salmiak"] == 1):
                 self.white[i] = "wsal"
-            elif randint(1, self.odds["dominant white"]) == 1:
+            elif self.odds["dominant white"] > 0 and randint(1, self.odds["dominant white"]) == 1:
                 self.white[i] = "W"
-            elif randint(1, self.odds["white spotting"]) > 3:
+            elif self.odds["white spotting"] > 0 and randint(1, self.odds["white spotting"]) > 3:
                 self.white[i] = "ws"
             else:
                 self.white[i] = "w"
 
         # ALBINO
 
-            if randint(1, round(self.odds["albino"]/2)) == 1 and not self.ban_genes:
+            if self.odds["albino"] > 0 and (randint(1, round(self.odds["albino"]/2)) == 1 or self.odds["albino"] == 1) and not self.ban_genes:
                 self.pointgene[i] = "c"
-            elif randint(1, round(self.odds["mocha"]/2)) == 1:
+            elif self.odds["mocha"] > 0 and (randint(1, round(self.odds["mocha"]/2)) == 1 or self.odds["mocha"] == 1):
                 self.pointgene[i] = "cm"
-            elif randint(1, round(self.odds["sepia"]/2)) == 1:
+            elif self.odds["sepia"] > 0 and (randint(1, round(self.odds["sepia"]/2)) == 1 or self.odds["sepia"] == 1):
                 self.pointgene[i] = "cb"
-            elif randint(1, round(self.odds["colourpoint"]/2)) == 1:
+            elif self.odds["colourpoint"] > 0 and (randint(1, round(self.odds["colourpoint"]/2)) == 1 or self.odds["colourpoint"] == 1):
                 self.pointgene[i] = "cs"
             else:
                 self.pointgene[i] = "C"
 
         # SILVER
 
-            if randint(1, self.odds["silver"]) == 1:
+            if self.odds["silver"] > 0 and randint(1, self.odds["silver"]) == 1:
                 self.silver[i] = "I"
             else:
                 self.silver[i] = "i"
 
         # AGOUTI
 
-            if randint(1, round(self.odds["charcoal"]/2)) == 1:
+            if self.odds["charcoal"] > 0 and (randint(1, round(self.odds["charcoal"]/2)) == 1 or self.odds["charcoal"] == 1):
                 self.agouti[i] = "Apb"
-            elif randint(1, self.odds["solid"]) > 3:
+            elif self.odds["solid"] > 0 and randint(1, self.odds["solid"]) > 3:
                 self.agouti[i] = "a"
             else:
                 self.agouti[i] = "A"
 
         # MACKEREL
-            if randint(1, self.odds["blotched"]) == 1:
+            if self.odds["blotched"] > 0 and randint(1, self.odds["blotched"]) == 1:
                 self.mack[i] = "mc"
             else:
                 self.mack[i] = "Mc"
 
         # TICKED
-            if randint(1, self.odds["ticked"]) == 1:
+            if self.odds["ticked"] > 0 and randint(1, self.odds["ticked"]) == 1:
                 self.ticked[i] = "Ta"
             else:
                 self.ticked[i] = "ta"
 
-        if randint(1, self.odds["breakthrough"]) == 1:
+        if self.odds["breakthrough"] > 0 and randint(1, self.odds["breakthrough"]) == 1:
             self.breakthrough = True
 
         # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
 
         for i in range(2):
-            if randint(1, round(self.odds["wirehair"]/2)) == 1:
+            if self.odds["wirehair"] > 0 and (randint(1, round(self.odds["wirehair"]/2)) == 1 or self.odds["wirehair"] == 1):
                 self.wirehair[i] = "Wh"
-            if randint(1, round(self.odds["laperm"]/2)) == 1:
+            if self.odds["laperm"] > 0 and (randint(1, round(self.odds["laperm"]/2)) == 1 or self.odds["laperm"] == 1):
                 self.laperm[i] = "Lp"
-            if randint(1, round(self.odds["cornish"]/2)) == 1:
+            if self.odds["cornish"] > 0 and (randint(1, round(self.odds["cornish"]/2)) == 1 or self.odds["cornish"] == 1):
                 self.cornish[i] = "r"
-            if randint(1, round(self.odds["urals"]/2)) == 1:
+            if self.odds["urals"] > 0 and (randint(1, round(self.odds["urals"]/2)) == 1 or self.odds["urals"] == 1):
                 self.urals[i] = "ru"
-            if randint(1, round(self.odds["tenn"]/2)) == 1:
+            if self.odds["tenn"] > 0 and (randint(1, round(self.odds["tenn"]/2)) == 1 or self.odds["tenn"] == 1):
                 self.tenn[i] = "tr"
-            if randint(1, round(self.odds["fleece"]/2)) == 1:
+            if self.odds["fleece"] > 0 and (randint(1, round(self.odds["fleece"]/2)) == 1 or self.odds["fleece"] == 1):
                 self.fleece[i] = "fc"
 
 
         #SELKIRK/DEVON/HAIRLESS
 
-            if randint(1, round(self.odds["canadian hairless"]/2)) == 1:
+            if self.odds["canadian hairless"] > 0 and (randint(1, round(self.odds["canadian hairless"]/2)) == 1 or self.odds["canadian hairless"] == 1) and not self.ban_genes:
                 self.sedesp[i] = "hr"
-            elif randint(1, round(self.odds["devon"]/2)) == 1:
+            elif self.odds["devon"] > 0 and (randint(1, round(self.odds["devon"]/2)) == 1 or self.odds["devon"] == 1):
                 self.sedesp[i] = "re"
-            elif randint(1, round(self.odds["selkirk"]/2)) == 1:
+            elif self.odds["selkirk"] > 0 and (randint(1, round(self.odds["selkirk"]/2)) == 1 or self.odds["selkirk"] == 1):
                 self.sedesp[i] = "Se"
 
 
         #ruhr + ruhrmod + lykoi
-            if randint(1, round(self.odds["russian hairless"]/2)) == 1 and not self.ban_genes:
+            if self.odds["russian hairless"] > 0 and (randint(1, round(self.odds["russian hairless"]/2)) == 1 or self.odds["russian hairless"] == 1) and not self.ban_genes:
                 self.ruhr[i] = "Hrbd"
-            if randint(1, round(self.odds["lykoi"]/2)) == 1:
+            if self.odds["lykoi"] > 0 and (randint(1, round(self.odds["lykoi"]/2)) == 1 or self.odds["lykoi"] == 1) and not self.ban_genes:
                 self.lykoi[i] = "ly"
         
         a = randint(1, 4)
@@ -1006,85 +1016,85 @@ class Genotype:
         # pinkdilute + dilutemd
 
         for i in range(2):
-            if randint(1, round(self.odds["pink-eyed dilute"]/2)) == 1:
+            if self.odds["pink-eyed dilute"] > 0 and (randint(1, round(self.odds["pink-eyed dilute"]/2)) == 1 or self.odds["pink-eyed dilute"] == 1) and not self.ban_genes:
                 self.pinkdilute[i] = "dp"
-            if randint(1, round(self.odds["dilute modifier"]/2)) == 1:
+            if self.odds["dilute modifier"] > 0 and (randint(1, round(self.odds["dilute modifier"]/2)) == 1 or self.odds["dilute modifier"] == 1):
                 self.dilutemd[i] = "Dm"
 
         # ext
 
-            if randint(1, round(self.odds["grizzle"]/2)) == 1:
+            if self.odds["grizzle"] > 0 and (randint(1, round(self.odds["grizzle"]/2)) == 1 or self.odds["grizzle"] == 1):
                 self.ext[i] = "Eg"
-            elif randint(1, round(self.odds["carnelian"]/2)) == 1:
+            elif self.odds["carnelian"] > 0 and (randint(1, round(self.odds["carnelian"]/2)) == 1 or self.odds["carnelian"] == 1):
                 self.ext[i] = "ec"
-            elif randint(1, round(self.odds["russet"]/2)) == 1:
+            elif self.odds["russet"] > 0 and (randint(1, round(self.odds["russet"]/2)) == 1 or self.odds["russet"] == 1):
                 self.ext[i] = "er"
-            elif randint(1, round(self.odds["amber"]/2)) == 1:
+            elif self.odds["amber"] > 0 and (randint(1, round(self.odds["amber"]/2)) == 1 or self.odds["amber"] == 1):
                 self.ext[i] = "ea"
 
         #sunshine
 
-            if randint(1, round(self.odds["sunshine"]/2)) == 1:
+            if self.odds["sunshine"] > 0 and (randint(1, round(self.odds["sunshine"]/2)) == 1 or self.odds["sunshine"] == 1):
                 self.corin[i] = "sh" #sunSHine
-            elif randint(1, round(self.odds["extreme sunshine"]/2)) == 1:
+            elif self.odds["extreme sunshine"] > 0 and (randint(1, round(self.odds["extreme sunshine"]/2)) == 1 or self.odds["extreme sunshine"] == 1):
                 self.corin[i] = "sg" #Siberian Gold / extreme sunshine
-            elif randint(1, round(self.odds["copper"]/2)) == 1:
+            elif self.odds["copper"] > 0 and (randint(1, round(self.odds["copper"]/2)) == 1 or self.odds["copper"] == 1):
                 self.corin[i] = "fg" #Flaxen Gold
             else:
                 self.corin[i] = "N" #No
 
         # karp + bleach + ghosting + satin + glitter
 
-            if randint(1, round(self.odds["karpati"]/2)) == 1:
+            if self.odds["karpati"] > 0 and (randint(1, round(self.odds["karpati"]/2)) == 1 or self.odds["karpati"] == 1):
                 self.karp[i] = "K"
-            if randint(1, round(self.odds["bleaching"]/2)) == 1:
+            if self.odds["bleaching"] > 0 and (randint(1, round(self.odds["bleaching"]/2)) == 1 or self.odds["bleaching"] == 1):
                 self.bleach[i] = "lb"
-            if randint(1, round(self.odds["ghosting"]/2)) == 1:
+            if self.odds["ghosting"] > 0 and (randint(1, round(self.odds["ghosting"]/2)) == 1 or self.odds["ghosting"] == 1):
                 self.ghosting[i] = "Gh"
-            if randint(1, round(self.odds["satin"]/2)) == 1:
+            if self.odds["satin"] > 0 and (randint(1, round(self.odds["satin"]/2)) == 1 or self.odds["satin"] == 1):
                 self.satin[i] = "st"
-            if randint(1, round(self.odds["glitter"]/2)) == 1:
+            if self.odds["glitter"] > 0 and (randint(1, round(self.odds["glitter"]/2)) == 1 or self.odds["glitter"] == 1):
                 self.glitter[i] = "gl"
 
         # curl + fold
 
-            if randint(1, round(self.odds["curl"]/2)) == 1:
+            if self.odds["curl"] > 0 and (randint(1, round(self.odds["curl"]/2)) == 1 or self.odds["curl"] == 1):
                 self.curl[i] = "Cu"
 
-        if randint(1, round(self.odds["fold"]/2)) == 1 and not self.ban_genes:
+        if self.odds["fold"] > 0 and (randint(1, round(self.odds["fold"]/2)) == 1 or self.odds["fold"] == 1) and not self.ban_genes:
             self.fold[0] = "Fd"
 
         #  manx + kab + toybob + jbob + kub + ring
 
-        if randint(1, round(self.odds["american bobtail"]/2)) == 1:
+        if self.odds["american bobtail"] > 0 and (randint(1, round(self.odds["american bobtail"]/2)) == 1 or self.odds["american bobtail"] == 1):
             self.manx = ["Ab", "ab"]
-        elif randint(1, round(self.odds["manx"]/2)) == 1 and not self.ban_genes:
+        elif self.odds["manx"] > 0 and (randint(1, round(self.odds["manx"]/2)) == 1 or self.odds["manx"] == 1) and not self.ban_genes:
             self.manx = ["M", "m"]
         
         for i in range(2):
-            if randint(1, round(self.odds["karelian bobtail"]/2)) == 1:
+            if self.odds["karelian bobtail"] > 0 and (randint(1, round(self.odds["karelian bobtail"]/2)) == 1 or self.odds["karelian bobtail"] == 1):
                 self.kab[i] = "kab"
-            if randint(1, round(self.odds["toybob"]/2)) == 1:
+            if self.odds["toybob"] > 0 and (randint(1, round(self.odds["toybob"]/2)) == 1 or self.odds["toybob"] == 1):
                 self.toybob[i] = "Tb"
-            if randint(1, round(self.odds["kurilian bobtail"]/2)) == 1:
+            if self.odds["kurilian bobtail"] > 0 and (randint(1, round(self.odds["kurilian bobtail"]/2)) == 1 or self.odds["kurilian bobtail"] == 1):
                 self.kub[i] = "Kub"
-            if randint(1, round(self.odds["japanese bobtail"]/2)) == 1:
+            if self.odds["japanese bobtail"] > 0 and (randint(1, round(self.odds["japanese bobtail"]/2)) == 1 or self.odds["japanese bobtail"] == 1):
                 self.jbob[i] = "jb"
-            if randint(1, round(self.odds["ringtail"]/2)) == 1:
+            if self.odds["ringtail"] > 0 and (randint(1, round(self.odds["ringtail"]/2)) == 1 or self.odds["ringtail"] == 1):
                 self.ring[i] = "rt"
         
         # munch + poly + altai
 
-        if randint(1, round(self.odds["munchkin"]/2)) == 1 and not self.ban_genes:
+        if self.odds["munchkin"] > 0 and (randint(1, round(self.odds["munchkin"]/2)) == 1 or self.odds["munchkin"] == 1) and not self.ban_genes:
             self.munch[0] = "Mk"
 
         for i in range(2):
-            if randint(1, round(self.odds["polydactyl"]/2)) == 1:
+            if self.odds["polydactyl"] > 0 and (randint(1, round(self.odds["polydactyl"]/2)) == 1 or self.odds["polydactyl"] == 1):
                 self.poly[i] = "Pd"
         
-        if randint(1, round((self.odds["DBE"] ** 2)/2)) == 1 and not self.ban_genes:
+        if self.odds["DBE"] > 0 and (randint(1, round((self.odds["DBE"] ** 2)/2)) == 1 or self.odds["DBE"] == 1) and not self.ban_genes:
             self.pax3 = ['DBEalt', choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])]
-        elif randint(1, round(self.odds["DBE"]/2)) == 1 and not self.ban_genes:
+        elif self.odds["DBE"] > 0 and (randint(1, round(self.odds["DBE"]/2)) == 1 or self.odds["DBE"] == 1) and not self.ban_genes:
             self.pax3[0] = choice(['DBEcel', 'DBEcel', 'DBEre', 'DBEalt', 'DBEalt'])
 
         self.wideband = ''
@@ -1093,8 +1103,6 @@ class Genotype:
         self.tickgenes = ''
         self.bengal = ''
         self.sokoke = ''
-        self.refraction = ''
-        self.pigmentation = ''
 
         widegenes = ["0", "0", "1", "1", "1", "2", "2"]
         genesspot = ["2", "1", "0"]
@@ -1140,33 +1148,32 @@ class Genotype:
         if self.chimera:
             self.chimerageno.Generator()
 
-        breedlist = [
-            "Abyssinian", "American Bobtail", "American Curl", "American Shorthair", "American Burmese", "Aphrodite",
-            "Arabian Mau", "Asian/Burmese", "Australian Mist", "Bambino", "Bengal", "Birman", "Brazilian Shorthair",
-            "British", "Cheetoh", "Ceylon", "Chartreux", "Chausie", "Clippercat", "Cornish Rex", "Devon Rex", "Donskoy",
-            "Egyptian Mau", "European Shorthair", "Foldex", "Gaelic Fold", "German Longhair", "German Rex", "Havana",
-            "Highlander", "Japanese Bobtail", "Kanaani", "Karelian Bobtail", "Khao Manee", "Kinkalow", "Korat",
-            "Kurilian Bobtail", "Lambkin", "LaPerm", "Lin-Qing Lion cat", "Lykoi", "Mandalay/Burmese", "Maine Coon",
-            "Manx", "Mekong Bobtail", "Munchkin", "Napoleon", "New Zealand", "Norwegian Forest cat", "Ocicat",
-            "Oriental/Siamese", "Persian/Exotic", "Peterbald", "Pixie-Bob", "Ragamuffin", "Ragdoll", "Russian",
-            "Savannah", "Selkirk Rex", "Serengeti", "Siberian", "Singapura", "Skookum", "Snowshoe", "Sokoke", "Sphynx",
-            "Tennessee Rex", "Thai", "Tonkinese", "Toybob", "Toyger", "Turkish", "Ural Rex"
+        common_breeds = [
+            "Abyssinian", "American Burmese/Bombay", "American Curl", "American Shorthair", "Asian/Burmese",
+            "Bengal", "Birman", "British", "Chartreux", "Cornish Rex", "Devon Rex", "Egyptian Mau",
+            "Havana", "Japanese Bobtail", "Korat", "LaPerm", "Lykoi", "Maine Coon", "Manx", "Norwegian Forest cat",
+            "Ocicat", "Oriental/Siamese", "Persian/Exotic", "Ragdoll", "Russian", "Selkirk Rex", "Siberian",
+            "Singapura", "Sphynx", "Tonkinese", "Turkish"
         ]
-        editedlist = [
-            "Abyssinian", "American Bobtail", "American Curl", "American Shorthair", "American Burmese", "Aphrodite",
-            "Arabian Mau", "Asian/Burmese", "Australian Mist", "Bengal", "Birman", "Brazilian Shorthair", "British",
-            "Cheetoh", "Ceylon", "Chartreux", "Chausie", "Clippercat", "Cornish Rex", "Devon Rex", "Egyptian Mau",
-            "European Shorthair", "German Longhair", "German Rex", "Havana", "Highlander", "Japanese Bobtail",
-            "Kanaani", "Karelian Bobtail", "Khao Manee", "Korat", "Kurilian Bobtail", "LaPerm", "Lin-Qing Lion cat",
-            "Mandalay/Burmese", "Maine Coon", "Mekong Bobtail", "New Zealand", "Norwegian Forest cat", "Ocicat",
-            "Oriental/Siamese", "Pixie-Bob", "Ragamuffin", "Ragdoll", "Russian", "Savannah", "Selkirk Rex", "Serengeti",
-            "Siberian", "Singapura", "Snowshoe", "Sokoke", "Tennessee Rex", "Thai", "Tonkinese", "Toybob", "Toyger",
-            "Turkish", "Ural Rex"
+        medium_breeds = [
+            "American Bobtail", "Australian Mist", "Bambino", "Chausie", "Donskoy", "European Shorthair", "German Rex",
+            "Highlander", "Khao Manee", "Kurilian Bobtail", "Mandalay/Burmese", "Munchkin", "Peterbald", "Pixie-Bob",
+            "Ragamuffin", "Savannah", "Snowshoe", "Sokoke", "Thai", "Toybob", "Toyger"
         ]
+        rare_breeds = [
+            "Aphrodite", "Arabian Mau", "Brazilian Shorthair", "Cheetoh", "Ceylon", "Clippercat", "Foldex", "Gaelic Fold",
+            "German Longhair", "Kanaani", "Karelian Bobtail", "Kinkalow", "Lambkin", "Lin-Qing Lion cat", "Mekong Bobtail",
+            "Napoleon", "New Zealand", "Serengeti", "Skookum", "Tennessee Rex", "Ural Rex"
+        ]
+
+        selected_breed = choice(choice([rare_breeds, medium_breeds, medium_breeds, medium_breeds, medium_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds]))
+
         if self.ban_genes:
-            gen = breed_functions["generator"][choice(editedlist)]
-        else:
-            gen = breed_functions["generator"][choice(breedlist)]
+            while selected_breed in ["Lykoi", "Manx", "Sphynx", "Bambino", "Donskoy", "Munchkin", "Peterbald", "Foldex", "Gaelic Fold",
+            "Kinkalow", "Lambkin", "Napoleon", "Skookum"]:
+                selected_breed = choice(choice([rare_breeds, medium_breeds, medium_breeds, medium_breeds, medium_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds, common_breeds]))
+
+        gen = breed_functions["generator"][selected_breed]
 
         self = gen(self, special)
 
@@ -1177,17 +1184,32 @@ class Genotype:
         if self.height_value == 0:
             self.height_value = randint(self.height_indexes[3]+1, self.height_indexes[4])
 
-        if randint(1, self.odds['somatic_mutation']) == 1:
+        if self.odds['somatic_mutation'] > 0 and randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
 
         self.PolyEval()
         self.EyeColourFinder()
 
-    def KitGenerator(self, par1, par2=None):
+    def KitGenerator(self, par1, par2=None, par3=None):
         try:
             par2 = par2.genotype
         except:
             par2 = par2
+        if not par2:
+            print("No second parent genotype given")
+            par2 = Genotype(self.odds, self.ban_genes, 'no chimeras')
+        if not par1:
+            print("No first parent genotype given")
+            par1 = Genotype(self.odds, self.ban_genes, 'no chimeras')
+
+        threepars = False
+        try:
+            par3 = par3.genotype
+        except:
+            par3 = par3
+            if par2 == par3:
+                par3 = None
+
 
         for breed in par1.breeds:
             if par1.breeds[breed] >= 0.1:
@@ -1202,15 +1224,21 @@ class Genotype:
         self.KitEyes(par1, par2)
 
         if self.chimera:
-            self.chimerageno.KitGenerator(par1, par2)
+            if isinstance(par3, Genotype) and random() < 0.33:
+                self.chimerageno.KitGenerator(par1, par3)
+                threepars = True
+            else:
+                self.chimerageno.KitGenerator(par1, par2)
     
         if randint(1, 5) == 1:
             self.whitegrade = par1.whitegrade
         elif randint(1, 5) == 1:
             self.whitegrade = par2.whitegrade
 
-        if (par1.vitiligo and par2.vitiligo):
-            a = randint(1, round((self.odds['vitiligo']/4)))
+        if self.odds["vitiligo"] <= 0:
+            a = 0
+        elif (par1.vitiligo and par2.vitiligo):
+            a = randint(1, round((self.odds["vitiligo"]/4)))
         elif(par1.vitiligo or par2.vitiligo):
             a = randint(1, round((self.odds['vitiligo']/2)))
         else:
@@ -1218,6 +1246,9 @@ class Genotype:
 
         if(a == 1):
             self.vitiligo = True    
+
+        if self.odds['pseudo_merle'] > 0 and randint(1, self.odds['pseudo_merle'])==1:
+            self.pseudomerle = True
 
 
         self.furLength = [choice(par1.furLength), choice(par2.furLength)]
@@ -1675,19 +1706,19 @@ class Genotype:
         #
 
         if 'O' in self.sexgene:
-            if par1.brindledbi and random() < 0.05:
+            if(par1.brindledbi and random() < 0.05):
                 self.brindledbi = True
-            elif par2.brindledbi and random() < 0.05:
+            elif(par2.brindledbi and random() < 0.05):
                 self.brindledbi = True
-            elif randint(1, self.odds['brindled_bicolour']) == 1:
+            elif self.odds['brindled_bicolour'] > 0 and randint(1, self.odds['brindled_bicolour'])==1:
                 self.brindledbi = True
         
-        if(par1.specialred and random() < 0.2):
+        if(par1.specialred and random() < 0.1):
             self.specialred = par1.specialred
-        elif(par2.specialred and random() < 0.2):
+        elif(par2.specialred and random() < 0.1):
             self.specialred = par2.specialred
         elif(random() < 0.05):
-            self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-red', 'blue-tipped', 'blue-tipped', 'cinnamon'])
+            self.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'blue-red', 'blue-tipped', 'blue-tipped', 'blue-tipped', 'cinnamon'])
 
         self.dilute = [choice(par1.dilute), choice(par2.dilute)]
         self.white = [choice(par1.white), choice(par2.white)]
@@ -1698,8 +1729,13 @@ class Genotype:
         self.mack = [choice(par1.mack), choice(par2.mack)]
         self.ticked = [choice(par1.ticked), choice(par2.ticked)]
 
-        if self.ticked[0] != self.ticked[1] and randint(1, 25) == 1:
-            self.breakthrough = True
+        if self.ticked[0] != self.ticked[1]:
+            if(par1.breakthrough and random() < 0.25):
+                self.breakthrough = par1.breakthrough
+            elif(par2.breakthrough and random() < 0.25):
+                self.breakthrough = par2.breakthrough
+            elif self.odds["breakthrough"] > 0 and randint(1, self.odds["breakthrough"]) == 1:
+                self.breakthrough = True
 
         self.wirehair = [choice(par1.wirehair), choice(par2.wirehair)]
         self.laperm = [choice(par1.laperm), choice(par2.laperm)]
@@ -1742,7 +1778,14 @@ class Genotype:
         self.poly = [choice(par1.poly), choice(par2.poly)]
         self.pax3 = [choice(par1.pax3), choice(par2.pax3)]
 
+        if random() < 0.25:
+            self.saturation = par1.saturation
+        elif random() < 0.25:
+            self.saturation = par2.saturation
+
+
         self.wideband = ""
+
         for i in range(8):
             tempwb = 0
             if par1.wideband[i] == "2" or (par1.wideband[i] == "1" and randint(1, 2) == 1):
@@ -1811,7 +1854,6 @@ class Genotype:
         wobble = randint(1, int(sum(self.body_ranges) / 25))
         self.body_value = randint(min(par1.body_value-wobble, par2.body_value-wobble), max(par1.body_value+wobble, par2.body_value+wobble))
 
-        int(sum(self.height_ranges) / 25)
         wobble = randint(1, int(sum(self.height_ranges) / 25))
         self.height_value = randint(min(par1.height_value-wobble, par2.height_value-wobble), max(par1.height_value+wobble, par2.height_value+wobble))
 
@@ -1827,11 +1869,11 @@ class Genotype:
 
         self.GeneSort()
 
-        if(randint(1, self.odds['random_mutation']) == 1):
+        if self.odds['random_mutation'] > 0 and randint(1, self.odds['random_mutation']) == 1:
             self.Mutate()
 
         if self.sexgene[0] == "Y":
-            # self.sexgene = [par1.sexgene[0]]
+            self.sexgene = random.choice([[par1.sexgene[0]], [par2.sexgene[0]]])
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py KitGenerator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
@@ -1840,11 +1882,13 @@ class Genotype:
             self.sexgene = [par1.sexgene[0]]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in genotype.py KitGenerator")
 
-        if randint(1, self.odds['somatic_mutation']) == 1:
+        if self.odds['somatic_mutation'] > 0 and randint(1, self.odds['somatic_mutation']) == 1:
             self.GenerateSomatic()
 
         self.PolyEval()
         self.EyeColourFinder()
+
+        return threepars
 
     def KitEyes(self, par1, par2):
         multipliers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -1894,6 +1938,64 @@ class Genotype:
 
         self.height_value = randint(1, x)
 
+    def VerifyBody(self, body_types):
+        for i in range(7):
+            if i == 0:
+                if self.body_label == body_types[0] and self.body_value >= self.body_indexes[0]:
+                    self.body_value = randint(0, self.body_indexes[0]-1)
+            else:
+                if self.body_label == body_types[i] and (self.body_value >= self.body_indexes[i] or self.body_value < self.body_indexes[i-1]):
+                    self.body_value = randint(self.body_indexes[i-1], self.body_indexes[i]-1)
+
+    def VerifyHeight(self):
+        height = self.shoulder_height
+        if self.munch[0] == 'Mk':
+            height *= 1.5
+        height = round(height, 2)
+
+        if height <= 5.00:
+            height = 0
+            if self.height_value >= self.height_indexes[0]:
+                self.height_value = randint(0, self.height_indexes[0]-1)
+            return
+        elif height >= 16.00:
+            height = 0
+            if self.height_value < self.height_indexes[8]:
+                self.height_value = randint(self.height_indexes[8], self.height_indexes[9]-1)
+            return
+        elif 6.01 > height > 5.00:
+            if self.height_indexes[0] > self.height_value or self.height_value >= self.height_indexes[1]:
+                self.height_value = randint(self.height_indexes[0], self.height_indexes[1]-1)
+            return
+        elif 7.51 > height > 6.00:
+            if self.height_indexes[1] > self.height_value or self.height_value >= self.height_indexes[2]:
+                self.height_value = randint(self.height_indexes[1], self.height_indexes[2]-1)
+            return
+        elif 9 > height > 7.50:
+            if self.height_indexes[2] > self.height_value or self.height_value >= self.height_indexes[3]:
+                self.height_value = randint(self.height_indexes[2], self.height_indexes[3]-1)
+            return
+        elif 11.01 > height > 8.99:
+            if self.height_indexes[3] > self.height_value or self.height_value >= self.height_indexes[4]:
+                self.height_value = randint(self.height_indexes[3], self.height_indexes[4]-1)
+            return
+        elif 12.51 > height > 11.00:
+            if self.height_indexes[4] > self.height_value or self.height_value >= self.height_indexes[5]:
+                self.height_value = randint(self.height_indexes[4], self.height_indexes[5]-1)
+            return
+        elif 14.01 > height > 12.50:
+            if self.height_indexes[5] > self.height_value or self.height_value >= self.height_indexes[6]:
+                self.height_value = randint(self.height_indexes[5], self.height_indexes[6]-1)
+            return
+        elif 15.00 > height > 14.00:
+            if self.height_indexes[6] > self.height_value or self.height_value >= self.height_indexes[7]:
+                self.height_value = randint(self.height_indexes[6], self.height_indexes[7]-1)
+            return
+        elif 16.00 > height > 14.99:
+            if self.height_indexes[7] > self.height_value or self.height_value >= self.height_indexes[8]:
+                self.height_value = randint(self.height_indexes[7], self.height_indexes[8]-1)
+            return
+
     def PolyEval(self):
         wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
         ruftypes = ["low", "medium", "rufoused"]
@@ -1905,6 +2007,25 @@ class Genotype:
         self.spotsum = 0
         self.ticksum = 0
         
+        if len(self.wideband) < 8:
+            while len(self.wideband) < 8:
+                self.wideband += '1'
+        if len(self.rufousing) < 4:
+            while len(self.rufousing) < 4:
+                self.rufousing += '1'
+        if len(self.bengal) < 4:
+            while len(self.bengal) < 4:
+                self.bengal += '1'
+        if len(self.sokoke) < 4:
+            while len(self.sokoke) < 4:
+                self.sokoke += '1'
+        if len(self.spotted) < 4:
+            while len(self.spotted) < 4:
+                self.spotted += '1'
+        if len(self.tickgenes) < 4:
+            while len(self.tickgenes) < 4:
+                self.tickgenes += '1'
+
         for i in self.wideband:
             self.wbsum += int(i)
         for i in self.rufousing:
@@ -1979,9 +2100,14 @@ class Genotype:
         body_types = ['snub-nosed', 'cobby', 'semi-cobby', 'intermediate', 'semi-oriental', 'oriental', 'wedge-faced']
         height_types = ['teacup', 'tiny', 'small', 'below average', 'average', 'above average', 'large', 'massive', 'giant', 'goliath']
 
-        index = next((n for n in range(7) if self.body_value <= self.body_indexes[n]))
-        self.body_label = body_types[index]
+        if self.body_label != '':
+            self.VerifyBody(body_types)
+        else:
+            index = next((n for n in range(7) if self.body_value <= self.body_indexes[n]))
+            self.body_label = body_types[index]
 
+        if self.shoulder_height > 0:
+            self.VerifyHeight()
         index = next((n for n in range(10) if self.height_value <= self.height_indexes[n]))
         self.height_label = height_types[index]
 
@@ -2026,7 +2152,7 @@ class Genotype:
             self.shoulder_height = 16.00
 
         if self.munch[0] == 'Mk':
-            self.shoulder_height /= 1.75
+            self.shoulder_height /= 1.5
         self.shoulder_height = round(self.shoulder_height, 2)
 
     def GeneSort(self):
@@ -2151,7 +2277,7 @@ class Genotype:
         "R8" : ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Ice Blue"],
         "R9" : ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Aquamarine"],
         "R10" : ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Sky Blue"],
-        "R11" : ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Azure"]
+        "R11" : ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Albino Azure"]
         }
         sectoralindex = randint(0, 74)
         het2index = randint(0, 99)
@@ -2350,7 +2476,7 @@ class Genotype:
         "R8" : ["Malachite", "Olivine", "Pastel Green", "Bright Green", "Pistachio", "Dull Olive", "Murky Green", "Jungle Green", "Hemlock Green", "Thatch Green", "Muddy", "Ocean Blue", "Ice Blue"],
         "R9" : ["Pale Turquoise", "Mint", "Snake Green", "Dark Lime", "Fern Green", "Dull Green", "Dark Fern Green", "Olive", "Tumbleweed Green", "Bronze Olive", "Deep Bronze", "Teal", "Aquamarine"],
         "R10" : ["Turquoise", "Viridian", "Green Onion", "Leaf Green", "Green", "Sap Green", "Dark Leaf Green", "Forest Green", "Dark Peridot", "Seaweed Green", "Dark Olive", "Sapphire", "Sky Blue"],
-        "R11" : ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Azure"]
+        "R11" : ["Deep Turquoise", "Amazonite", "Pine Green", "Deep Leaf Green", "Jade", "Emerald", "Deep Green", "Deep Forest Green", "Dark Green", "Dark Moss Green", "Black Olive", "Azure", "Albino Azure"]
         }
 
         def setup(eyestring):
@@ -2423,12 +2549,12 @@ class Genotype:
         self.refraction = refgrade
         self.pigmentation = piggrade
 
-    def ShowGenes(self):
+    def ShowGenes(self, filter=True):
         """
         TODO: add sectoral heterochromia
         """
         wht = str(self.white) + " (" + str(self.whitegrade) + ")"
-        brkethrough = "breakthrough tabby"
+        breakthroughstring = "breakthrough tabby"
 
         self.PolyEval()
         if self.specialred:
@@ -2438,7 +2564,7 @@ class Genotype:
             self.Cat_Genes = [self.furLength, self.eumelanin, self.sexgene, self.dilute, wht, self.pointgene,
                               self.silver, self.agouti, self.mack, self.ticked]
         if self.breakthrough:
-            self.Cat_Genes.append(brkethrough)
+            self.Cat_Genes.append(breakthroughstring)
         if self.breeds:
             self.Cat_Genes.append(self.breeds)
         self.Fur_Genes = [self.wirehair, self.laperm, self.cornish, self.urals, self.tenn, self.fleece, self.sedesp, self.ruhr, self.ruhrmod, self.lykoi]
@@ -3656,54 +3782,66 @@ class Genotype:
         "other" : ["pinkdilute", "ext", "corin", "karp"],
         "main" : ["eumelanin", "sexgene", "dilute", "white", "pointgene", "silver", "agouti"]
         }
+        filtered_mutes = {
+        "furtype" : ["wirehair", "laperm", "cornish", "urals", "tenn", "fleece", "sedesp"],
+        "other" : ["pinkdilute", "ext", "corin", "karp"],
+        "main" : ["eumelanin", "sexgene", "dilute", "white", "pointgene", "silver", "agouti"]
+        }
 
         for gene in possible_mutes["furtype"]:
             if gene in ['wirehair', 'laperm', 'sedesp']:
                 if self[gene][0] in ['Wh', 'Lp', 'Se', 'hr', 're']:
-                    possible_mutes["furtype"].remove(gene)
+                    filtered_mutes["furtype"].remove(gene)
             try:
                 if self[gene][0] in ['r', 'ru', 'tr', 'fc']:
-                    possible_mutes["furtype"].remove(gene)
+                    filtered_mutes["furtype"].remove(gene)
                 elif self[gene][1] in ['R', 'Ru', 'Tr', 'Fc']:
-                    possible_mutes["furtype"].remove(gene)
+                    filtered_mutes["furtype"].remove(gene)
             except:
                 continue
         for gene in possible_mutes["other"]:
             if gene == 'corin' and (self.agouti[0] == 'a' or self.ext[0] == 'Eg'):
-                possible_mutes["other"].remove(gene)
+                filtered_mutes["other"].remove(gene)
                 continue
             elif gene in ['ext', 'karp', 'ghosting']:
                 if self[gene][0] in ['Eg', 'K', 'Gh']:
-                    possible_mutes["other"].remove(gene)
+                    filtered_mutes["other"].remove(gene)
                     continue
             if self[gene][0] in ['dp', 'ec', 'ea', 'er', 'sh', 'sg', 'fg', 'lb', 'st', 'gl']:
-                possible_mutes["other"].remove(gene)
+                filtered_mutes["other"].remove(gene)
             elif self[gene][1] in ['Dp', 'E', 'N', 'Lb', 'St', 'Gl']:
-                possible_mutes["other"].remove(gene)
+                filtered_mutes["other"].remove(gene)
         for gene in possible_mutes["main"]:
             if gene in ['mack', 'ticked', 'silver'] and (self.agouti[0] == 'a' or self.ext[0] == 'Eg'):
-                possible_mutes["main"].remove(gene)
+                filtered_mutes["main"].remove(gene)
                 continue
-            elif gene == 'agouti' and self.ext[0] == 'Eg':
-                possible_mutes["main"].remove(gene)
+            elif gene == 'agouti' and (self.ext[0] == 'Eg' or 'o' not in self.sexgene):
+                filtered_mutes["main"].remove(gene)
                 continue
-            elif gene in ['sexgene', 'white']:
-                if self[gene][0] in ['O', 'W', 'ws', 'wt']:
-                    possible_mutes["main"].remove(gene)
+            elif gene in ['white']:
+                if self[gene][0] in ['W', 'ws', 'wt']:
+                    filtered_mutes["main"].remove(gene)
                     continue
-            if self[gene][0] in ['b', 'bl', 'd', 'wg', 'wsal', 'cs', 'cb', 'cm', 'c', 'Apb', 'a']:
-                possible_mutes["main"].remove(gene)
+            if self[gene][0] in ['I', 'b', 'bl', 'd', 'wg', 'wsal', 'cs', 'cb', 'cm', 'c', 'Apb', 'a']:
+                filtered_mutes["main"].remove(gene)
             elif self[gene][1] in ['B', 'D', 'w', 'C', 'A']:
-                possible_mutes["main"].remove(gene)
+                filtered_mutes["main"].remove(gene)
+
+        if "eumelanin" in filtered_mutes["main"] and self.sexgene[0] != "o":
+            filtered_mutes["main"].remove("eumelanin")
 
         whichgene = ['furtype', 'other', 'main', 'other', 'main', 'main']
         if self.white[0] == 'W' or (self.white[1] in ['ws', 'wt'] and self.whitegrade == 5):
             whichgene = ['furtype']
-        for cate in whichgene:
-            if len(possible_mutes[cate]) == 0:
-                whichgene.remove(cate)
+        for cate in ['furtype', 'other', 'main']:
+            if len(filtered_mutes[cate]) == 0:
+                while cate in whichgene:
+                    whichgene.remove(cate)
         if len(whichgene) > 0:
-            self.somatic["gene"] = choice(possible_mutes[choice(whichgene)])
+            self.somatic["gene"] = choice(filtered_mutes[choice(whichgene)])
+        else:
+            self.somatic = {}
+            return
 
 
         if self.white[1] in ['ws', 'wt'] and self.somatic["base"] not in ['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail']:
@@ -3721,7 +3859,7 @@ class Genotype:
             "sedesp" : ['Se'],
 
             'pinkdilute' : ['dp'],
-            "ext" : ['Eg', 'ec', 'er', 'ea'],
+            "ext" : ['ec', 'er', 'ea'],
             "corin" : ['sh', 'sg', 'fg'],
             "karp" : ['K'],
             "bleach" : ['lb'],
@@ -3733,10 +3871,12 @@ class Genotype:
             "white" : ['W', 'wsal'],
             "pointgene" : ['cb', 'cs', 'cm', 'c'],
             "silver" : ['I'],
-            "agouti" : ['Apb', 'a']
+            "agouti" : ['a']
         }
 
         self.somatic["allele"] = choice(alleles[self.somatic['gene']])
+        if self.somatic['gene'] == 'sexgene' and self.sexgene[0] == 'O':
+            self.somatic["allele"] = 'o'
 
     def FormatSomatic(self):
         body = {
@@ -3752,32 +3892,48 @@ class Genotype:
         if not self.somatic.get('gene', False):
             return ""
 
-        name_conversion = {
-            "wirehair": "Wirehair",
-            "laperm": "LaPerm rex",
-            "cornish": "Cornish rex",
-            "urals": "Ural rex",
-            "tenn": "Tennessee rex",
-            "fleece": "Fleecy cloud rexing",
-            "sedesp": "Selkirk rex/Canadian hairless/Devon rex",
+        alleles = {
+            "wirehair" : "Wirehair",
+            "laperm" : "LaPerm rex",
+            "cornish" : "Cornish rex",
+            "urals" : "Urals rex",
+            "tenn" : "Tennessee rex",
+            "fleece" : "Fleecy cloud rexing",
+            "sedesp" : "Selkirk rex/Canadian hairless/Devon rex",
 
-            'pinkdilute': "Pink-eyed dilution",
-            "ext": "Extension",
-            "corin": "CORIN",
-            "karp": "Karpati",
-            "bleach": "LaPerm bleaching",
-            "ghosting": "Ghosting",
+            'pinkdilute' : "Pink-eyed dilution",
+            "ext" : {
+                'ec': 'Carnelian',
+                'er' : 'Russet',
+                'ea' : 'Amber'
+            },
+            "corin" : {
+                'sh' : 'Sunshine',
+                'sg' : 'Extreme sunshine',
+                'fg' : 'Flaxen gold'},
+            "karp" : 'Karpati',
+            "bleach" : 'Bleaching',
+            "ghosting" : 'Ghosting',
 
-            'eumelanin': "Eumelanin",
-            'sexgene': "Phaeomelanin",
-            "dilute": "Dilution",
-            "white": "KIT",
-            "pointgene": "TYR",
-            "silver": "Inhibitor",
-            "agouti": "Agouti"
+            'eumelanin' : {'b' : 'Chocolate', 'bl' : 'Cinnamon'},
+            'sexgene' : {
+                'O': 'Red',
+                'o' : 'Black'
+            },
+            "dilute" : 'Dilution',
+            "white" : {'W' : 'Dominant white', 'wsal' : 'Salmiak'},
+            "pointgene" : {'cb' : 'Sepia', 'cs' : 'Colorpoint', 'cm' : 'Mocha', 'c' : 'Albino'},
+            "silver" : "Inhibitor",
+            "agouti" : "Solid"
         }
 
-        return "\n" + str(name_conversion.get(self.somatic["gene"])) + " gene mutated to \"" + str(self.somatic["allele"]) + "\" on " + str(body.get(self.somatic["base"]))
+        converted_name = alleles[self.somatic['gene']]
+        try:
+            converted_name = converted_name.get(self.somatic['allele'])
+        except:
+            pass
+
+        return "\n" + str(converted_name) + " gene mutated to \"" + str(self.somatic['allele']) + "\" on " + str(body.get(self.somatic['base']))
 
 
 
