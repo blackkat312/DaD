@@ -8,7 +8,9 @@ import bisect
 import itertools
 import os.path
 import sys
-from random import choice, randint, sample, random, choices, getrandbits, randrange, shuffle
+import traceback
+from random import choice, randint, sample, random, getrandbits, randrange, shuffle
+from operator import xor
 from typing import Dict, List, Any
 
 import ujson  # type: ignore
@@ -18,6 +20,7 @@ from scripts.cat.names import Name
 from scripts.cat.pelts import Pelt
 from scripts.cat.genotype import Genotype
 from scripts.cat.phenotype import Phenotype
+from scripts.cat.personality import Personality
 from scripts.cat.skills import CatSkills
 from scripts.cat.thoughts import Thoughts
 from scripts.cat_relations.inheritance import Inheritance
@@ -32,7 +35,8 @@ from scripts.conditions import (
 from scripts.event_class import Single_Event
 from scripts.events_module.generate_events import GenerateEvents
 from scripts.game_structure import image_cache
-from scripts.game_structure.game_essentials import game, screen
+from scripts.game_structure.game_essentials import game
+from scripts.game_structure.screen_settings import screen
 from scripts.housekeeping.datadir import get_save_dir
 from scripts.utility import (
     get_alive_status_cats,
@@ -646,6 +650,7 @@ class Cat:
         parent2=None,
         extrapar=None,
         kittypet=False,
+        adoptive_parents=None,
         suffix=None,
         specsuffix_hidden=False,
         ID=None,
@@ -678,9 +683,9 @@ class Cat:
 
         # Public attributes
         self.gender = gender
-        if self.gender == "molly":
+        if self.gender == 'molly':
             self.gender = 'fem'
-        elif self.gender == "tom":
+        elif self.gender == 'tom':
             self.gender = 'masc'
         self.status = status
         self.backstory = backstory
@@ -691,8 +696,9 @@ class Cat:
         )
         self.parent1 = parent1
         self.parent2 = parent2
+        self.parent3 = None
 
-        self.adoptive_parents = []
+        self.adoptive_parents = adoptive_parents if adoptive_parents else []
         self.genotype = Genotype(game.config['genetics_config'], game.settings["ban problem genes"])
         #print(genotype)
         if genotype:
@@ -702,65 +708,69 @@ class Cat:
                 self.genotype.KitGenerator(Cat.all_cats[parent2].genotype, extrapar)
             else:
                 try:
-                    self.genotype.KitGenerator(Cat.all_cats[parent1].genotype, Cat.all_cats.get(parent2, extrapar))
-                except Exception as e:
-                    print(e)
+                    threepars = self.genotype.KitGenerator(Cat.all_cats[parent1].genotype, Cat.all_cats.get(parent2, extrapar), extrapar)
+                    if threepars and isinstance(extrapar, Cat):
+                        self.parent3 = extrapar.ID
+                except:
+                    traceback.print_exc()
                     self.genotype.Generator()
 
             if randint(1, game.config["genetics_config"]["intersex"]) == 1:
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
                 if randint(1, 25) == 1 and len(self.genotype.sexgene) == 2:
                     if "Y" in self.genotype.sexgene:
-                        self.genotype.gender = "molly"
+                        self.genotype.sex = "molly"
                     else:
-                        self.genotype.gender = "tom"
+                        self.genotype.sex = "tom"
             elif self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]:
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
             else:
                 if "Y" in self.genotype.sexgene:
-                    self.genotype.gender = "tom"
+                    self.genotype.sex = "tom"
                 else:
-                    self.genotype.gender = "molly"
+                    self.genotype.sex = "molly"
         elif kittypet or status == 'kittypet':
             self.genotype.AltGenerator(special=self.gender)
 
             if randint(1, game.config["genetics_config"]["intersex"]) == 1:
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
                 if randint(1, 25) == 1 and len(self.genotype.sexgene) == 2:
                     if "Y" in self.genotype.sexgene:
-                        self.genotype.gender = "molly"
+                        self.genotype.sex = "molly"
                     else:
-                        self.genotype.gender = "tom"
+                        self.genotype.sex = "tom"
             elif self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]:
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
             else:
                 if "Y" in self.genotype.sexgene:
-                    self.genotype.gender = "tom"
+                    self.genotype.sex = "tom"
                 else:
-                    self.genotype.gender = "molly"
+                    self.genotype.sex = "molly"
         else:
             self.genotype.Generator(special=self.gender)
 
             if randint(1, game.config["genetics_config"]["intersex"]) == 1:
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
                 if randint(1, 25) == 1 and len(self.genotype.sexgene) == 2:
                     if "Y" in self.genotype.sexgene:
-                        self.genotype.gender = "molly"
+                        self.genotype.sex = "molly"
                     else:
-                        self.genotype.gender = "tom"
+                        self.genotype.sex = "tom"
             elif self.genotype.sexgene != ["o", "o"] and self.genotype.sexgene != ["O", "o"] and self.genotype.sexgene != ["O", "O"] and self.genotype.sexgene != ["o", "Y"] and self.genotype.sexgene != ["O", "Y"]:
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
             else:
                 if "Y" in self.genotype.sexgene:
-                    self.genotype.gender = "tom"
+                    self.genotype.sex = "tom"
                 else:
-                    self.genotype.gender = "molly"
+                    self.genotype.sex = "molly"
 
         self.phenotype = Phenotype(self.genotype)
-        self.phenotype.PhenotypeOutput(gender=self.genotype.gender, sex=self.genotype.gender)
+        self.phenotype.PhenotypeOutput(self.genotype.white_pattern, gender=self.genotype.sex, sex=self.genotype.sex)
+        self.phenotype.SpriteInfo(moons if moons else 0)
         if self.genotype.chimerageno:
             self.chimerapheno = Phenotype(self.genotype.chimerageno)
-            self.chimerapheno.PhenotypeOutput(gender=self.genotype.chimerageno.gender, sex=self.genotype.chimerageno.gender)
+            self.chimerapheno.PhenotypeOutput(self.genotype.chimerageno.white_pattern, gender=self.genotype.chimerageno.sex, sex=self.genotype.chimerageno.sex)
+            self.chimerapheno.SpriteInfo(moons if moons else 0)
 
         self.pelt = pelt if pelt else Pelt(self.genotype, self.phenotype)
 
@@ -770,6 +780,7 @@ class Cat:
         self.apprentice = []
         self.former_apprentices = []
         self.relationships = {}
+        self.blank_relations = []
         self.mate = []
         self.previous_mates = []
         self.pronouns = [self.default_pronouns[0].copy()]
@@ -800,560 +811,15 @@ class Cat:
 
         white_pattern = white_patterns
 
-        maingame_white = {
-            'low':{
-                '1': [None, 'BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
-                      # Mink's torties
-                      'MINKEMBER'],
-
-                '2': ['BLAZEMASK', 'BEARD', 'BIB', 'BROKENBLAZE', 'BUZZARDFANG', 'EYEBAGS', 'HONEY', 'LIGHTTUXEDO',
-                      'LILTWO', 'LITTLE', 'MUSTACHE', 'PAWS', 'RAVENPAW', 'REVERSEEYE', 'REVERSEHEART', 'SPARKLE',
-                      'TEARS', 'TIP', 'TOESTAIL', 'VEE',
-                      # Mink's torties
-                      'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE'],
-
-                '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
-                      'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                      'DAPPLEPAW',
-                      # Mink's torties
-                      'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE'],
-
-                '4': ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
-                      'HAWKBLAZE', 'TOPCOVER',
-                      # Mink's torties
-                      'MINKEYEDOT'],
-
-                '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS',
-                      # Mink's torties
-                      'MINKOREO']
-            },
-            'high':{
-                '1': ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS',
-                      # Mink's torties
-                      'MINKOREO'],
-
-                '2': ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR'],
-
-                '3': ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
-                      'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE',
-                      # Mink's torties
-                      'MINKBODY'],
-
-                '4': ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
-                      'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA'],
-
-                '5': ['ONEEAR', 'LIGHTSONG', 'BLACKSTAR', 'PETAL', 'CHESTSPECK', 'HEARTTWO', 'BOOTS', 'SHOOTINGSTAR',
-                      'EYESPOT', 'KROPKA']
-            }
-        }
-
-        vitiligo = ['MOON', 'PHANTOM', 'POWDER', 'BLEACHED', 'VITILIGO', 'VITILIGOTWO', 'SMOKEY']
-
-        #white patterns
-
-        def GenerateWhite(KIT, KITgrade, vit, white_pattern, pax3):
-            def clean_white(white_pattern):
-                new_white_pattern = white_pattern.copy()
-                while None in new_white_pattern:
-                    new_white_pattern.remove(None)
-                return new_white_pattern
-
-            low1 = ['BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
-                    'MINKEMBER']
-
-            low2 = ['BLAZEMASK', 'BEARD', 'BIB', 'BROKENBLAZE', 'BUZZARDFANG', 'EYEBAGS', 'HONEY', 'LIGHTTUXEDO',
-                    'LILTWO', 'LITTLE', 'MUSTACHE', 'PAWS', 'RAVENPAW', 'REVERSEEYE', 'REVERSEHEART', 'SPARKLE',
-                    'TEARS', 'TIP', 'TOESTAIL', 'VEE', 'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE']
-
-            low3 = ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
-                    'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
-                    'DAPPLEPAW', 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
-
-            low4 = ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT', 'HAWKBLAZE',
-                    'TOPCOVER', 'MINKEYEDOT']
-
-            low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS', 'MINKOREO']
-
-            high1 = ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS', 'MINKOREO']
-
-            high2 = ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR']
-
-            high3 = ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
-                     'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE', 'MINKBODY']
-
-            high4 = ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
-                     'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA']
-
-            high5 = ['ONEEAR', 'LIGHTSONG', 'BLACKSTAR', 'PETAL', 'CHESTSPECK', 'HEARTTWO', 'BOOTS', 'SHOOTINGSTAR',
-                     'EYESPOT', 'KROPKA']
-
-            rand_kit_1 = randint(1, KITgrade)
-            rand_kit_2 = randint(1, KITgrade)
-            rand_kit_3 = randint(1, KITgrade)
-            rand_kit_4 = randint(1, KITgrade)
-            rand_kit_5 = randint(1, KITgrade)
-            kit_addition = 0
-            low_high = ["low", "low", "low", "high"]
-
-            if vit:
-                if white_pattern is None:
-                    white_pattern = [choice(vitiligo)]
-                else:
-                    hasVitiligo = [p for p in white_pattern if p in vitiligo]
-                    if len(hasVitiligo) == 0:
-                        white_pattern.append(choice(vitiligo))
-
-            if white_pattern is None and ((KIT[0] != "W" and KIT[0] != "w" and KIT[0] != 'wsal') or 'NoDBE' not in pax3 or 'DBEre' in pax3):
-                white_pattern = []
-                if KIT[0] == 'wt' or KIT[1] == 'wt':
-                    if KIT[1] not in ['ws', 'wt'] and KITgrade < 3:
-                        white_pattern.append("dorsal1")
-                    elif KIT[1] not in ['ws', 'wt'] and KITgrade < 5:
-                        white_pattern.append(choice(["dorsal1", "dorsal2"]))
-                    else:
-                        white_pattern.append("dorsal2")
-                    white_pattern.append("thai tail")
-
-                if KIT[0] == "wg" and 'NoDBE' in pax3:
-                    for mark in ["left front mitten", "left back mitten", "right front mitten", "right back mitten"]:
-                        white_pattern.append(mark)
-                elif (KIT[0] in ["ws", "wt"] or pax3[0] != 'NoDBE') and KIT[1] not in ["ws", "wt"] and 'NoDBE' in pax3:
-                    if not KIT[0] in ["ws", "wt"]:
-                        if 'DBEre' in pax3[0]:
-                            KITgrade = min(KITgrade, 3)
-                        else:
-                            KITgrade = randint(1, 2)
-                        rand_kit_1 = randint(1, KITgrade)
-                        rand_kit_2 = randint(1, KITgrade)
-                        rand_kit_3 = randint(1, KITgrade)
-                        rand_kit_4 = randint(1, KITgrade)
-                        rand_kit_5 = randint(1, KITgrade)
-
-                    if randint(1, 2) == 1:
-                        white_pattern.append(choice(maingame_white["low"].get(str(KITgrade))))
-
-                        # First extra patch
-                        if randint(1, 4) == 1:
-                            # print("First extra patch!")
-                            chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
-                            while chosen_white_1 in white_pattern:
-                                chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
-
-                            if chosen_white_1 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_1 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_1 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_1 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_1 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_1)
-
-                        # Second extra patch
-                        if randint(1, 8) == 1:
-                            # print("Second extra patch!")
-                            chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
-                            while chosen_white_2 in white_pattern:
-                                chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
-
-                            if chosen_white_2 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_2 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_2 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_2 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_2 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_2)
-
-                        # Third extra patch
-                        if randint(1, 12) == 1:
-                            # print("Third extra patch!")
-                            chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
-                            while chosen_white_3 in white_pattern:
-                                chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
-
-                            if chosen_white_3 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_3 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_3 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_3 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_3 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_3)
-
-                        # Forth extra patch
-                        if randint(1, 16) == 1:
-                            # print("Forth extra patch!")
-                            chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
-                            while chosen_white_4 in white_pattern:
-                                chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
-
-                            if chosen_white_4 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_4 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_4 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_4 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_4 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_4)
-
-                        # Fifth extra patch
-                        if randint(1, 20) == 1:
-                            # print("Fifth extra patch!")
-                            chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
-                            while chosen_white_5 in white_pattern:
-                                chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
-
-                            if chosen_white_5 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_5 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_5 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_5 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_5 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_5)
-
-                        KITgrade = int(KITgrade)
-                        if KITgrade > 5:
-                            KITgrade = 5
-                    elif KITgrade == 1:
-                        grade1list = ['chest tuft', 'belly tuft', 'chest tuft', 'belly tuft', None]
-                        white_pattern.append(choice(grade1list))
-                    elif KITgrade == 2:
-                        while len(white_pattern) == 0:
-                            #chest
-                            white_pattern.append(choice(['chest tuft', 'locket', None, 'chest tuft', 'locket', None, 'bib']))
-                            #belly
-                            white_pattern.append(choice(['belly tuft', 'belly spot', None, 'belly tuft', 'belly spot', None, 'belly']))
-
-                            #toes
-                            nropaws = choice([4, 3, 2, 1, 0, 0])
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-
-                            for i in range(nropaws):
-                                white_pattern.append(order[i] + choice([' toes', ' toes', ' toes', ' mitten']))
-                    elif KITgrade == 3:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append(choice(['chest', 'beard', 'chest', 'bib', None]))
-
-                            #belly
-                            white_pattern.append(choice(['belly spot', 'belly', 'belly spot', 'belly', 'belly spot', 'belly', None]))
-
-                            #paws
-                            nropaws = choice([4, 4, 3, 2, 1, 0])
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' toes', ' mitten', ' mitten', ' mitten', ' low sock'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' toes', ' mitten', ' mitten', ' low sock']))
-                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None, None, None, None, None, None, None]))
-
-                            #face
-                            if 'beard' in white_pattern:
-                                white_pattern.append(choice(['chin', 'mustache', 'chin', 'chin', None, None, None, None]))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                    elif KITgrade == 4:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append(choice(['underbelly1', 'beard', 'chest', 'underbelly1']))
-
-                            #belly
-                            if 'underbelly1' not in white_pattern:
-                                white_pattern.append('belly')
-                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None, None, None]))
-
-                            #paws
-                            nropaws = choice([4, 4, 4, 4, 3, 3, 2, 2, 1, 0])
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' mitten', ' low sock', ' low sock', ' high sock'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' mitten', ' low sock', ' high sock']))
-
-                            for i in range(randint(0, 2)):
-                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
-
-                            #face
-                            if 'beard' or 'underbelly1' in white_pattern:
-                                white_pattern.append(choice(['chin', 'chin', 'muzzle', 'muzzle', 'blaze', None, None]))
-                            white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                    else:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append('underbelly1')
-                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None]))
-
-                            #paws
-                            nropaws = 4
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2']))
-
-                            for i in range(randint(0, 2)):
-                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
-                            #face
-                            white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze']))
-                            white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                else:
-                    if randint(1, 2) == 1:
-                        white_pattern.append(choice(maingame_white["high"].get(str(KITgrade))))
-
-                        # First extra patch
-                        if randint(1, 4) == 1:
-                            # print("First extra patch!")
-                            chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
-                            while chosen_white_1 in white_pattern:
-                                chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
-
-                            if chosen_white_1 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_1 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_1 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_1 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_1 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_1)
-
-                        # Second extra patch
-                        if randint(1, 8) == 1:
-                            # print("Second extra patch!")
-                            chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
-                            while chosen_white_2 in white_pattern:
-                                chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
-
-                            if chosen_white_2 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_2 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_2 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_2 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_2 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_2)
-
-                        # Third extra patch
-                        if randint(1, 12) == 1:
-                            # print("Third extra patch!")
-                            chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
-                            while chosen_white_3 in white_pattern:
-                                chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
-
-                            if chosen_white_3 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_3 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_3 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_3 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_3 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_3)
-
-                        # Forth extra patch
-                        if randint(1, 16) == 1:
-                            # print("Forth extra patch!")
-                            chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
-                            while chosen_white_4 in white_pattern:
-                                chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
-
-                            if chosen_white_4 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_4 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_4 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_4 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_4 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_4)
-
-                        # Fifth extra patch
-                        if randint(1, 20) == 1:
-                            # print("Fifth extra patch!")
-                            chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
-                            while chosen_white_5 in white_pattern:
-                                chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
-
-                            if chosen_white_5 in low1 or high1:
-                                kit_addition += 0.5
-                            elif chosen_white_5 in low2 or high2:
-                                kit_addition += 1.5
-                            elif chosen_white_5 in low3 or high3:
-                                kit_addition += 2.5
-                            elif chosen_white_5 in low4 or high4:
-                                kit_addition += 3.5
-                            elif chosen_white_5 in low5 or high5:
-                                kit_addition += 4.5
-                            KITgrade += kit_addition
-
-                            white_pattern.append(chosen_white_5)
-
-                        KITgrade = int(KITgrade)
-                        if KITgrade > 5:
-                            KITgrade = 5
-                    elif KITgrade == 1:
-                        while len(white_pattern) < 4:
-                            #chest
-                            white_pattern.append('underbelly1')
-                            white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None]))
-
-                            #paws
-                            nropaws = 4
-                            order = ['right front', 'left front', 'right back', 'left back']
-                            shuffle(order)
-                            pawtype = choice(['same', 'mixed'])
-
-                            for i in range(nropaws):
-                                if pawtype == 'same':
-                                    pawtype = choice([' bicolour1', ' bicolour2', ' bicolour2'])
-                                    white_pattern.append(order[i] + pawtype)
-                                else:
-                                    white_pattern.append(order[i] + choice([' bicolour1', ' bicolour2', ' bicolour2']))
-
-                            for i in range(randint(0, 2)):
-                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
-                            #face
-                            white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze', 'blaze']))
-                            white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-
-                            #tail
-                            white_pattern.append(choice(['tail tip', None, None, None, None]))
-                            white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                    elif KITgrade == 2:
-                        #body
-                        white_pattern.append(choice(['underbelly1', 'mask n mantle']))
-
-                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None]))
-
-                        #paws
-                        nropaws = 4
-                        order = ['right front', 'left front', 'right back', 'left back']
-                        shuffle(order)
-                        pawtype = choice(['same', 'mixed'])
-
-                        for i in range(nropaws):
-                            white_pattern.append(order[i] + ' bicolour2')
-
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
-                        #face
-                        white_pattern.append(choice(['muzzle', 'muzzle', 'blaze', 'blaze']))
-                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-
-                        #tail
-                        white_pattern.append(choice(['tail tip', None, None, None, None]))
-                    elif KITgrade == 3:
-                        white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'full white']))
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice(['break/piebald1', 'break/piebald2']))
-                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/tail rings', 'break/left face', 'break/right face', 'break/bowl cut']))
-                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-                    elif KITgrade == 4:
-                        white_pattern.append(choice(['van1', 'van2', 'van3']))
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice([None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
-                        white_pattern.append(choice([None, None, None, None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut'])]))
-                        white_pattern.append(choice([None, None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
-                    else:
-                        white_pattern.append(choice(["full white", 'van3']))
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
-
-                        white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
-                        white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/chin']))
-                        white_pattern.append(choice([None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut', 'break/chin'])]))
-
-                        if random() < 0.02:
-                            white_pattern = ["full white", "break/inverse thai"]
-
-            if white_pattern == "No" or white_pattern == [] or white_pattern is None or (KIT == ["w", "w"] and not vit and pax3 == ['NoDBE', 'NoDBE']):
-                return "No"
-            return clean_white(white_pattern)
-
-        self.genotype.white_pattern = GenerateWhite(self.genotype.white, self.genotype.whitegrade, self.genotype.vitiligo, white_pattern, self.genotype.pax3)
+        self.genotype.white_pattern = self.GenerateWhite(self.genotype.white, self.genotype.pointgene, self.genotype.whitegrade, self.genotype.vitiligo, white_pattern, self.genotype.pax3)
+        if self.phenotype.maincolour == 'white' and not self.phenotype.patchmain:
+            self.genotype.white_pattern = "No"
 
         white_pattern = chim_white
         if self.genotype.chimera:
-            self.genotype.chimerageno.white_pattern = GenerateWhite(self.genotype.chimerageno.white, self.genotype.chimerageno.whitegrade, self.genotype.chimerageno.vitiligo, white_pattern, self.genotype.pax3)
+            self.genotype.chimerageno.white_pattern = self.GenerateWhite(self.genotype.chimerageno.white, self.genotype.chimerageno.pointgene, self.genotype.chimerageno.whitegrade, self.genotype.chimerageno.vitiligo, white_pattern, self.genotype.chimerageno.pax3)
+            if self.chimerapheno.maincolour == 'white' and not self.chimerapheno.patchmain:
+                self.genotype.chimerageno.white_pattern = "No"
 
         # Various behavior toggles
         self.no_kits = False
@@ -1444,7 +910,7 @@ class Cat:
 
         # sex!?!??!?!?!??!?!?!?!??
 
-        self.gender = self.genotype.gender
+        self.gender = self.genotype.sex
         self.g_tag = self.gender_tags[self.gender]
 
         """if self.genderalign == "":
@@ -1467,20 +933,22 @@ class Cat:
         # load_existing_name is needed so existing cats don't get their names changed/fixed for no reason
         if self.pelt is not None:
             self.name = Name(
-                status,
                 prefix,
                 suffix,
-                self.pelt.colour,
-                self.pelt.eye_colour,
-                self.pelt.name,
-                self.pelt.tortiepattern,
                 biome=biome,
                 specsuffix_hidden=self.specsuffix_hidden,
                 load_existing_name=loading_cat,
+                cat=self,
             )
         else:
-            self.name = Name(status, prefix, suffix, eyes=self.pelt.eye_colour, specsuffix_hidden=self.specsuffix_hidden,
-                             load_existing_name = loading_cat)
+            self.name = Name(
+                status,
+                prefix,
+                suffix,
+                specsuffix_hidden=self.specsuffix_hidden,
+                load_existing_name=loading_cat,
+                cat=self,
+            )
 
         # Private Sprite
         self._sprite = None
@@ -1492,7 +960,7 @@ class Cat:
             Cat.insert_cat(self)
 
     def init_faded(self, ID, status, prefix, suffix, moons, **kwargs):
-        """Perform faded-specific initialisation
+        """Perform faded-specific initialization
 
         :param ID: Cat ID
         :param status: Cat status
@@ -1504,9 +972,9 @@ class Cat:
         :return: None
         """
         self.ID = ID
-        self.name = Name(status, prefix=prefix, suffix=suffix)
         self.parent1 = None
         self.parent2 = None
+        self.parent3 = None
         self.adoptive_parents = []
         self.mate = []
         self.status = status
@@ -1517,6 +985,7 @@ class Cat:
         self.outside = False
         self.exiled = False
         self.inheritance = None  # This should never be used, but just for safety
+        self.name = Name(prefix=prefix, suffix=suffix, cat=self)
         if "df" in kwargs:
             self.df = kwargs["df"]
         else:
@@ -1559,11 +1028,6 @@ class Cat:
         ]
         intersex_genderqueer_list = genderqueer_list.copy()
         intersex_genderqueer_list.append("intergender")
-
-        # for testing conditions for dadm
-        # if not self.example:
-        #    new_condition = choice(["spirited heart", "puzzled heart"])
-        #    self.get_permanent_condition(new_condition, born_with=True)
 
         # trans cat chances
         theythemdefault = game.settings["they them default"]
@@ -1642,8 +1106,577 @@ class Cat:
         if not skill_dict:
             self.skills = CatSkills.generate_new_catskills(self.status, self.moons)
 
-        if game.clan and game.clan.game_mode != "classic":
-            self.genetic_conditions()
+        self.genetic_conditions()
+
+    def GenerateWhite(self, KIT, albino, KITgrade, vit, white_pattern, pax3):
+        rand_kit_1 = randint(1, KITgrade)
+        rand_kit_2 = randint(1, KITgrade)
+        rand_kit_3 = randint(1, KITgrade)
+        rand_kit_4 = randint(1, KITgrade)
+        rand_kit_5 = randint(1, KITgrade)
+        kit_addition = 0
+        low_high = ["low", "low", "low", "high"]
+        maingame_white = {
+            'low': {
+                '1': [None, 'BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
+                      # Mink's torties
+                      'MINKEMBER'],
+
+                '2': ['BLAZEMASK', 'BEARD', 'BIB', 'BROKENBLAZE', 'BUZZARDFANG', 'EYEBAGS', 'HONEY', 'LIGHTTUXEDO',
+                      'LILTWO', 'LITTLE', 'MUSTACHE', 'PAWS', 'RAVENPAW', 'REVERSEEYE', 'REVERSEHEART', 'SPARKLE',
+                      'TEARS', 'TIP', 'TOESTAIL', 'VEE',
+                      # Mink's torties
+                      'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE'],
+
+                '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
+                      'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
+                      'DAPPLEPAW',
+                      # Mink's torties
+                      'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE'],
+
+                '4': ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
+                      'HAWKBLAZE', 'TOPCOVER',
+                      # Mink's torties
+                      'MINKEYEDOT'],
+
+                '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS',
+                      # Mink's torties
+                      'MINKOREO']
+            },
+            'high': {
+                '1': ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS',
+                      # Mink's torties
+                      'MINKOREO'],
+
+                '2': ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR'],
+
+                '3': ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
+                      'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE',
+                      # Mink's torties
+                      'MINKBODY'],
+
+                '4': ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
+                      'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA'],
+
+                '5': ['ONEEAR', 'LIGHTSONG', 'BLACKSTAR', 'PETAL', 'CHESTSPECK', 'HEARTTWO', 'BOOTS', 'SHOOTINGSTAR',
+                      'EYESPOT', 'KROPKA']
+            }
+        }
+
+        low1 = ['BLAZE', 'ESTRELLA', 'LEFTEAR', 'LOCKET', 'LUNA', 'SCOURGE', 'TAILTIP', 'TOES', 'RIGHTEAR',
+                'MINKEMBER']
+
+        low2 = ['BLAZEMASK', 'BEARD', 'BIB', 'BROKENBLAZE', 'BUZZARDFANG', 'EYEBAGS', 'HONEY', 'LIGHTTUXEDO',
+                'LILTWO', 'LITTLE', 'MUSTACHE', 'PAWS', 'RAVENPAW', 'REVERSEEYE', 'REVERSEHEART', 'SPARKLE',
+                'TEARS', 'TIP', 'TOESTAIL', 'VEE', 'MINKCHEST', 'MINKMASK', 'MINKMINIMALONE', 'MINKMINIMALTHREE']
+
+        low3 = ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS',
+                'BOWTIE', 'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'EXTRA', 'MITAINE', 'WOODPECKER',
+                'DAPPLEPAW', 'MINKCHEST', 'MINKEYEDOT', 'MINKMASK', 'MINKROBIN', 'MINKSIDEMASK', 'MINKSTREAMSTRIKE']
+
+        low4 = ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT', 'HAWKBLAZE',
+                'TOPCOVER', 'MINKEYEDOT']
+
+        low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS', 'MINKOREO']
+
+        high1 = ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS', 'MINKOREO']
+
+        high2 = ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR']
+
+        high3 = ['ANYTWO', 'PEBBLESHINE', 'BROKEN', 'PIEBALD', 'FRECKLES', 'HALFFACE', 'GOATEE', 'PRINCE',
+                 'CAPSADDLE', 'GLASS', 'COWTWO', 'SAMMY', 'BUSTER', 'CAKE', 'MINKBODY']
+
+        high4 = ['VAN', 'PEBBLESHINE', 'LIGHTSONG', 'CURVED', 'GOATEE', 'TAIL', 'APRON', 'HALFWHITE', 'APPALOOSA',
+                 'HEART', 'MOORISH', 'COW', 'SHOOTINGSTAR', 'TAILTWO', 'BUDDY', 'KROPKA']
+
+        high5 = ['ONEEAR', 'LIGHTSONG', 'BLACKSTAR', 'PETAL', 'CHESTSPECK', 'HEARTTWO', 'BOOTS', 'SHOOTINGSTAR',
+                 'EYESPOT', 'KROPKA']
+
+        vitiligo = ['MOON', 'PHANTOM', 'POWDER', 'BLEACHED', 'VITILIGO', 'VITILIGOTWO', 'SMOKEY']
+
+        #white patterns
+        def clean_white(white_pattern):
+            new_white_pattern = list(set(white_pattern))
+            while None in new_white_pattern:
+                new_white_pattern.remove(None)
+            return new_white_pattern
+        has_vitiligo = []
+        if (white_pattern is not None and white_pattern != "No"):
+            has_vitiligo = [p for p in white_pattern if p in vitiligo]
+        if (white_pattern is None and KIT[0] not in ['w', 'wsal']) or ((white_pattern is not None and (white_pattern == "No" or (len(white_pattern) == len(has_vitiligo) and len(has_vitiligo) > 0))) and (KIT[0] == 'wg' or 'NoDBE' not in pax3 or KIT[1] in ["ws", "wt"])):
+            white_pattern = []
+            if 'wt' in KIT:
+                if KIT[1] not in ['ws', 'wt'] and KITgrade < 3:
+                    white_pattern.append("dorsal1")
+                elif KIT[1] not in ['ws', 'wt'] and KITgrade < 5:
+                    white_pattern.append(choice(["dorsal1", "dorsal2"]))
+                else:
+                    white_pattern.append("dorsal2")
+                white_pattern.append("thai tail")
+
+            if KIT[0] == "wg":
+                for mark in ["left front mitten", "left back mitten", "right front mitten", "right back mitten"]:
+                    white_pattern.append(mark)
+            elif (KIT[0] in ["ws", "wt"] or pax3[0] != 'NoDBE') and KIT[1] not in ["ws", "wt"] and 'NoDBE' in pax3:
+                if not KIT[0] in ["ws", "wt"]:
+                    if 'DBEre' in pax3[0]:
+                        KITgrade = min(KITgrade, 3)
+                    else:
+                        KITgrade = randint(1, 2)
+                    rand_kit_1 = randint(1, KITgrade)
+                    rand_kit_2 = randint(1, KITgrade)
+                    rand_kit_3 = randint(1, KITgrade)
+                    rand_kit_4 = randint(1, KITgrade)
+                    rand_kit_5 = randint(1, KITgrade)
+
+                if(randint(1, 2) == 1):
+                    white_pattern.append(choice(maingame_white["low"].get(str(KITgrade))))
+
+                    # First extra patch
+                    if randint(1, 4) == 1:
+                        # print("First extra patch!")
+                        chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
+                        while chosen_white_1 in white_pattern:
+                            chosen_white_1 = choice(maingame_white["low"].get(str(rand_kit_1)))
+
+                        if chosen_white_1 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_1 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_1 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_1 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_1 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_1)
+
+                    # Second extra patch
+                    if randint(1, 8) == 1:
+                        # print("Second extra patch!")
+                        chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
+                        while chosen_white_2 in white_pattern:
+                            chosen_white_2 = choice(maingame_white["low"].get(str(rand_kit_2)))
+
+                        if chosen_white_2 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_2 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_2 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_2 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_2 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_2)
+
+                    # Third extra patch
+                    if randint(1, 12) == 1:
+                        # print("Third extra patch!")
+                        chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
+                        while chosen_white_3 in white_pattern:
+                            chosen_white_3 = choice(maingame_white["low"].get(str(rand_kit_3)))
+
+                        if chosen_white_3 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_3 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_3 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_3 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_3 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_3)
+
+                    # Forth extra patch
+                    if randint(1, 16) == 1:
+                        # print("Forth extra patch!")
+                        chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
+                        while chosen_white_4 in white_pattern:
+                            chosen_white_4 = choice(maingame_white["low"].get(str(rand_kit_4)))
+
+                        if chosen_white_4 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_4 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_4 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_4 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_4 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_4)
+
+                    # Fifth extra patch
+                    if randint(1, 20) == 1:
+                        # print("Fifth extra patch!")
+                        chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
+                        while chosen_white_5 in white_pattern:
+                            chosen_white_5 = choice(maingame_white["low"].get(str(rand_kit_5)))
+
+                        if chosen_white_5 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_5 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_5 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_5 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_5 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_5)
+
+                    KITgrade = int(KITgrade)
+                    if KITgrade > 5:
+                        KITgrade = 5
+                elif KITgrade == 1:
+                    grade1list = ['chest tuft', 'belly tuft', 'chest tuft', 'belly tuft', None]
+                    white_pattern.append(choice(grade1list))
+                elif KITgrade == 2:
+                    while len(white_pattern) == 0:
+                        #chest
+                        white_pattern.append(choice(['chest tuft', 'locket', None, 'chest tuft', 'locket', None, 'bib']))
+                        #belly
+                        white_pattern.append(choice(['belly tuft', 'belly spot', None, 'belly tuft', 'belly spot', None, 'belly']))
+
+                        #toes
+                        nropaws = choice([4, 3, 2, 1, 0, 0])
+                        order = ['right front', 'left front', 'right back', 'left back']
+                        shuffle(order)
+
+                        for i in range(nropaws):
+                            white_pattern.append(order[i] + choice([' toes', ' toes', ' toes', ' mitten']))
+                elif KITgrade == 3:
+                    while len(white_pattern) < 4:
+                        #chest
+                        white_pattern.append(choice(['chest', 'beard', 'chest', 'bib', None]))
+
+                        #belly
+                        white_pattern.append(choice(['belly spot', 'belly', 'belly spot', 'belly', 'belly spot', 'belly', None]))
+
+                        #paws
+                        nropaws = choice([4, 4, 3, 2, 1, 0])
+                        order = ['right front', 'left front', 'right back', 'left back']
+                        shuffle(order)
+                        pawtype = choice(['same', 'mixed'])
+
+                        for i in range(nropaws):
+                            if pawtype == 'same':
+                                pawtype = choice([' toes', ' mitten', ' mitten', ' mitten', ' low sock'])
+                                white_pattern.append(order[i] + pawtype)
+                            else:
+                                white_pattern.append(order[i] + choice([' toes', ' mitten', ' mitten', ' low sock']))
+                        white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None, None, None, None, None, None, None]))
+
+                        #face
+                        if 'beard' in white_pattern:
+                            white_pattern.append(choice(['chin', 'mustache', 'chin', 'chin', None, None, None, None]))
+
+                        #tail
+                        white_pattern.append(choice(['tail tip', None, None, None, None]))
+                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+
+                elif KITgrade == 4:
+                    while len(white_pattern) < 4:
+                        #chest
+                        white_pattern.append(choice(['underbelly1', 'beard', 'chest', 'underbelly1']))
+
+                        #belly
+                        if 'underbelly1' not in white_pattern:
+                            white_pattern.append('belly')
+                        white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None, None, None]))
+
+                        #paws
+                        nropaws = choice([4, 4, 4, 4, 3, 3, 2, 2, 1, 0])
+                        order = ['right front', 'left front', 'right back', 'left back']
+                        shuffle(order)
+                        pawtype = choice(['same', 'mixed'])
+
+                        for i in range(nropaws):
+                            if pawtype == 'same':
+                                pawtype = choice([' mitten', ' low sock', ' low sock', ' high sock'])
+                                white_pattern.append(order[i] + pawtype)
+                            else:
+                                white_pattern.append(order[i] + choice([' mitten', ' low sock', ' high sock']))
+
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
+
+                        #face
+                        if 'beard' or 'underbelly1' in white_pattern:
+                            white_pattern.append(choice(['chin', 'chin', 'muzzle', 'muzzle', 'blaze', None, None]))
+                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
+
+                        #tail
+                        white_pattern.append(choice(['tail tip', None, None, None, None]))
+                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                else:
+                    while len(white_pattern) < 4:
+                        #chest
+                        white_pattern.append('underbelly1')
+                        white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None]))
+
+                        #paws
+                        nropaws = 4
+                        order = ['right front', 'left front', 'right back', 'left back']
+                        shuffle(order)
+                        pawtype = choice(['same', 'mixed'])
+
+                        for i in range(nropaws):
+                            if pawtype == 'same':
+                                pawtype = choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2'])
+                                white_pattern.append(order[i] + pawtype)
+                            else:
+                                white_pattern.append(order[i] + choice([' high sock', ' bicolour1', ' bicolour1', ' bicolour2']))
+
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
+                        #face
+                        white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze']))
+                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
+
+                        #tail
+                        white_pattern.append(choice(['tail tip', None, None, None, None]))
+                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+            else:
+
+                if(randint(1, 2) == 1):
+                    white_pattern.append(choice(maingame_white["high"].get(str(KITgrade))))
+
+                    # First extra patch
+                    if randint(1, 4) == 1:
+                        # print("First extra patch!")
+                        chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
+                        while chosen_white_1 in white_pattern:
+                            chosen_white_1 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_1)))
+
+                        if chosen_white_1 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_1 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_1 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_1 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_1 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_1)
+
+                    # Second extra patch
+                    if randint(1, 8) == 1:
+                        # print("Second extra patch!")
+                        chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
+                        while chosen_white_2 in white_pattern:
+                            chosen_white_2 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_2)))
+
+                        if chosen_white_2 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_2 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_2 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_2 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_2 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_2)
+
+                    # Third extra patch
+                    if randint(1, 12) == 1:
+                        # print("Third extra patch!")
+                        chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
+                        while chosen_white_3 in white_pattern:
+                            chosen_white_3 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_3)))
+
+                        if chosen_white_3 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_3 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_3 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_3 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_3 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_3)
+
+                    # Forth extra patch
+                    if randint(1, 16) == 1:
+                        # print("Forth extra patch!")
+                        chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
+                        while chosen_white_4 in white_pattern:
+                            chosen_white_4 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_4)))
+
+                        if chosen_white_4 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_4 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_4 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_4 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_4 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_4)
+
+                    # Fifth extra patch
+                    if randint(1, 20) == 1:
+                        # print("Fifth extra patch!")
+                        chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
+                        while chosen_white_5 in white_pattern:
+                            chosen_white_5 = choice(maingame_white[str(choice(low_high))].get(str(rand_kit_5)))
+
+                        if chosen_white_5 in low1 or high1:
+                            kit_addition += 0.5
+                        elif chosen_white_5 in low2 or high2:
+                            kit_addition += 1.5
+                        elif chosen_white_5 in low3 or high3:
+                            kit_addition += 2.5
+                        elif chosen_white_5 in low4 or high4:
+                            kit_addition += 3.5
+                        elif chosen_white_5 in low5 or high5:
+                            kit_addition += 4.5
+                        KITgrade += kit_addition
+
+                        white_pattern.append(chosen_white_5)
+
+                    KITgrade = int(KITgrade)
+                    if KITgrade > 5:
+                        KITgrade = 5
+                elif KITgrade == 1:
+                    while len(white_pattern) < 4:
+                        #chest
+                        white_pattern.append('underbelly1')
+                        white_pattern.append(choice(['belt', 'belt', 'pants', None, None, None]))
+
+                        #paws
+                        nropaws = 4
+                        order = ['right front', 'left front', 'right back', 'left back']
+                        shuffle(order)
+                        pawtype = choice(['same', 'mixed'])
+
+                        for i in range(nropaws):
+                            if pawtype == 'same':
+                                pawtype = choice([' bicolour1', ' bicolour2', ' bicolour2'])
+                                white_pattern.append(order[i] + pawtype)
+                            else:
+                                white_pattern.append(order[i] + choice([' bicolour1', ' bicolour2', ' bicolour2']))
+
+                        for i in range(randint(0, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
+                        #face
+                        white_pattern.append(choice(['chin', 'muzzle', 'muzzle', 'muzzle', 'blaze', 'blaze']))
+                        white_pattern.append(choice(['break/chin', None, None, None, None, None]))
+
+                        #tail
+                        white_pattern.append(choice(['tail tip', None, None, None, None]))
+                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+
+                elif KITgrade == 2:
+                    #body
+                    white_pattern.append(choice(['underbelly1', 'mask n mantle']))
+
+                    white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None]))
+
+                    #paws
+                    nropaws = 4
+                    order = ['right front', 'left front', 'right back', 'left back']
+                    shuffle(order)
+                    pawtype = choice(['same', 'mixed'])
+
+                    for i in range(nropaws):
+                        white_pattern.append(order[i] + ' bicolour2')
+
+                    for i in range(randint(0, 2)):
+                        white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None]))
+                    #face
+                    white_pattern.append(choice(['muzzle', 'muzzle', 'blaze', 'blaze']))
+                    white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                    white_pattern.append(choice(['break/chin', None, None, None, None, None]))
+
+                    #tail
+                    white_pattern.append(choice(['tail tip', None, None, None, None]))
+                elif KITgrade == 3:
+                    white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'full white']))
+                    for i in range(randint(0, 2)):
+                        white_pattern.append(choice(
+                            ['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None,
+                             None, None, None]))
+                    white_pattern.append(choice(['break/piebald1', 'break/piebald2']))
+                    white_pattern.append(
+                        choice(['break/pants', None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice(
+                        ['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None,
+                         None, None, None, None, None]))
+                    white_pattern.append(choice(
+                        [None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
+                         'break/tail rings', 'break/left face', 'break/right face', 'break/bowl cut']))
+                    white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                    white_pattern.append(choice(['break/chin', None, None, None, None, None]))
+                elif KITgrade == 4:
+                    white_pattern.append(choice(['van1', 'van2', 'van3']))
+                    for i in range(randint(0, 2)):
+                        white_pattern.append(choice(
+                            ['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None,
+                             None, None, None]))
+                    white_pattern.append(choice(
+                        ['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None,
+                         None, None, None, None, None]))
+                    white_pattern.append(choice(
+                        ['break/pants', None, None, None, None, None, None, None, None, None, None, None, None,
+                         None, None]))
+                    white_pattern.append(choice([None, None, choice(
+                        ['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
+                         'break/left face', 'break/right face'])]))
+                    white_pattern.append(choice([None, None, None, None, None, choice(
+                        ['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
+                         'break/left face', 'break/right face', 'break/bowl cut'])]))
+                    white_pattern.append(choice([None, None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                    white_pattern.append(choice(['break/chin', None, None, None, None, None]))
+                else:
+                    white_pattern.append(choice(["full white", 'van3']))
+                    for i in range(randint(0, 2)):
+                        white_pattern.append(choice(
+                            ['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None,
+                             None, None, None, None, None, None, None, None, None, None, None, None, None]))
+
+                    white_pattern.append(choice(
+                        ['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None,
+                         None, None, None, None, None]))
+                    white_pattern.append(choice(
+                        [None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
+                         'break/left face', 'break/right face', 'break/chin']))
+                    white_pattern.append(choice([None, choice(
+                        ['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
+                         'break/left face', 'break/right face', 'break/bowl cut', 'break/chin'])]))
+
+                    if random() < 0.02:
+                        white_pattern = ["full white", "break/inverse thai"]
+
+        if white_pattern == "No" or white_pattern == [] or white_pattern is None or (
+                KIT == ["w", "w"] and not vit and pax3 == ['NoDBE', 'NoDBE']):
+            return "No"
+        return clean_white(white_pattern)
 
     def __repr__(self):
         return "CAT OBJECT:" + self.ID
@@ -1867,7 +1900,7 @@ class Cat:
             aneuploidy = True
 
         if "intersex" not in self.conditions_already_attempted:
-            if self.genotype.gender == "intersex":
+            if self.genotype.sex == "intersex":
                 # Chimeras
                 if self.genotype.chimera:
                     self.get_permanent_condition("chimerism", born_with=True)
@@ -1885,28 +1918,28 @@ class Cat:
                     self.get_permanent_condition(intersex_condition, born_with=True)
                 self.conditions_already_attempted.append("intersex")
             # Chimeras
-            if self.genotype.chimera and self.genotype.gender != "intersex":
+            if self.genotype.chimera and self.genotype.sex != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
                 self.gender = "intersex"
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
                 self.get_permanent_condition("chimerism", born_with=True)
                 self.conditions_already_attempted.append("intersex")
                 self.pronouns = [self.default_pronouns[0].copy()]
                 if not game.settings["they them default"] and self.age != "newborn":
                     self.handle_pronouns()
             # Aneuploidy
-            if aneuploidy and self.genotype.gender != "intersex":
+            if aneuploidy and self.genotype.sex != "intersex":
                 if self.gender == self.genderalign:
                     self.genderalign = "intersex"
                 self.gender = "intersex"
-                self.genotype.gender = "intersex"
+                self.genotype.sex = "intersex"
                 self.get_permanent_condition("aneuploidy", born_with=True)
                 self.pronouns = [self.default_pronouns[0].copy()]
                 if not game.settings["they them default"] and self.age != "newborn":
                     self.handle_pronouns()
             # XY mollies
-            if (self.genotype.sexgene == ["o", "Y"] or self.genotype.sexgene == ["O", "Y"]) and self.genotype.gender == "molly":
+            if (self.genotype.sexgene == ["o", "Y"] or self.genotype.sexgene == ["O", "Y"]) and self.genotype.sex == "molly":
                 self.get_permanent_condition("testosterone deficiency", born_with=True)
                 self.conditions_already_attempted.append("intersex")
 
@@ -3096,9 +3129,9 @@ class Cat:
             self.status = "kitten"
         self.in_camp = 1
 
-        if self.gender != self.genotype.gender:
-            self.gender = self.genotype.gender
-            print(f"{self.name}'s gender doesn't match their genotype.gender. Resetting...")
+        if self.gender != self.genotype.sex:
+            self.gender = self.genotype.sex
+            print(f"{self.name}'s gender doesn't match their genotype.sex. Resetting...")
         if self.genderalign != self.gender and self.genderalign in cisgenders:
             self.genderalign = self.gender
             print(f"{self.name} is cisgender, but their genderalign doesn't match their gender. Resetting...")
