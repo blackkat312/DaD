@@ -1873,7 +1873,7 @@ class Genotype:
             self.Mutate()
 
         if self.sexgene[0] == "Y":
-            self.sexgene = random.choice([[par1.sexgene[0]], [par2.sexgene[0]]])
+            self.sexgene = choice([[par1.sexgene[0]], [par2.sexgene[0]]])
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in genotype.py KitGenerator")
         if len(self.sexgene) > 4:
             self.sexgene = self.sexgene[:4]
