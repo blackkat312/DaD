@@ -1,5 +1,6 @@
 
 from random import choice, randint, random
+import math
 
 class Breed_generator:
     @staticmethod
@@ -7,16 +8,16 @@ class Breed_generator:
         # FUR LENGTH
 
         for i in range(2):
-            if randint(1, genoclass.odds["longhair"]) > 3:
+            if genoclass.odds["longhair"] > 0 and randint(1, genoclass.odds["longhair"]) > 3:
                 genoclass.furLength[i] = "l"
             else:
                 genoclass.furLength[i] = "L"
 
         # EUMELANIN
 
-            if randint(1, genoclass.odds["cinnamon"]) == 1:
+            if genoclass.odds["cinnamon"] > 0 and (randint(1, round(genoclass.odds["cinnamon"]/2)) == 1 or genoclass.odds["cinnamon"] == 1):
                 genoclass.eumelanin[i] = "bl"
-            elif randint(1, genoclass.odds["chocolate"]) == 1:
+            elif genoclass.odds["chocolate"] > 0 and (randint(1, round(genoclass.odds["chocolate"]/2)) == 1 or genoclass.odds["chocolate"] == 1):
                 genoclass.eumelanin[i] = "b"
             else:
                 genoclass.eumelanin[i] = "B"
@@ -109,63 +110,63 @@ class Breed_generator:
             else:
                 genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py base")
-        
+
         if(random() < 0.05):
-            genoclass.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'merle', 'merle', 'merle', 'merle', 'merle', 'blue-tipped', 'blue-tipped'])
+            genoclass.specialred = choice(['cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'cameo', 'blue-red', 'blue-tipped', 'blue-tipped', 'blue-tipped', 'cinnamon'])
 
         # DILUTE
 
         for i in range(2):
-            if randint(1, genoclass.odds["dilute"]) > 3:
+            if genoclass.odds["dilute"] > 0 and randint(1, genoclass.odds["dilute"]) > 3:
                 genoclass.dilute[i] = "d"
             else:
                 genoclass.dilute[i] = "D"
 
         # WHITE
 
-            if randint(1, genoclass.odds["dominant white"]) == 1:
+            if genoclass.odds["dominant white"] > 0 and randint(1, genoclass.odds["dominant white"]) == 1:
                 genoclass.white[i] = "W"
-            elif randint(1, genoclass.odds["white spotting"]) > 3:
+            elif genoclass.odds["white spotting"] > 0 and randint(1, genoclass.odds["white spotting"]) > 3:
                 genoclass.white[i] = "ws"
             else:
                 genoclass.white[i] = "w"
 
         # ALBINO
 
-            if randint(1, genoclass.odds["sepia"]) == 1:
+            if genoclass.odds["sepia"] > 0 and (randint(1, round(genoclass.odds["sepia"]/2)) == 1 or genoclass.odds["sepia"] == 1):
                 genoclass.pointgene[i] = "cb"
-            elif randint(1, genoclass.odds["colourpoint"]) == 1:
+            elif genoclass.odds["colourpoint"] > 0 and (randint(1, round(genoclass.odds["colourpoint"]/2)) == 1 or genoclass.odds["colourpoint"] == 1):
                 genoclass.pointgene[i] = "cs"
             else:
                 genoclass.pointgene[i] = "C"
 
         # SILVER
 
-            if randint(1, genoclass.odds["silver"]) == 1:
+            if genoclass.odds["silver"] > 0 and randint(1, genoclass.odds["silver"]) == 1:
                 genoclass.silver[i] = "I"
             else:
                 genoclass.silver[i] = "i"
 
         # AGOUTI
 
-            if randint(1, genoclass.odds["solid"]) > 3:
+            if genoclass.odds["solid"] > 0 and randint(1, genoclass.odds["solid"]) > 3:
                 genoclass.agouti[i] = "a"
             else:
                 genoclass.agouti[i] = "A"
 
         # MACKEREL
-            if randint(1, genoclass.odds["blotched"]) == 1:
+            if genoclass.odds["blotched"] > 0 and randint(1, genoclass.odds["blotched"]) == 1:
                 genoclass.mack[i] = "mc"
             else:
                 genoclass.mack[i] = "Mc"
 
         # TICKED
-            if randint(1, genoclass.odds["ticked"]) == 1:
+            if genoclass.odds["ticked"] > 0 and randint(1, genoclass.odds["ticked"]) == 1:
                 genoclass.ticked[i] = "Ta"
             else:
                 genoclass.ticked[i] = "ta"
 
-        if randint(1, genoclass.odds["breakthrough"]) == 1:
+        if genoclass.odds["breakthrough"] > 0 and randint(1, genoclass.odds["breakthrough"]) == 1:
             genoclass.breakthrough = True
 
         a = randint(1, 4)
@@ -237,6 +238,7 @@ class Breed_generator:
     
     @staticmethod
     def Aby(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
 
         genoclass.longtype = 'long'
@@ -346,17 +348,6 @@ class Breed_generator:
             else:
                 genoclass.sexgene = ["o"]
             print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Aby")
-        
-        # DILUTE
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
 
         # WHITE
 
@@ -389,25 +380,11 @@ class Breed_generator:
 
         genoclass.ticked = ["Ta", "Ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 10000)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genoclass.wideband = ''
         genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
 
         genesspot = ["2", "1", "0"]
 
@@ -491,17 +468,11 @@ class Breed_generator:
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         # curl + fold
-
         genoclass.curl = ["Cu", "Cu"]
         
         genoclass.breeds["American Curl"] = 100
@@ -509,15 +480,14 @@ class Breed_generator:
     
     @staticmethod
     def AmSH(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
 
         if(random() < 0.5):
             genoclass.wirehair = ["Wh", "Wh"]
-
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
         # EUMELANIN
 
         for i in range(2):
@@ -539,6 +509,7 @@ class Breed_generator:
     
     @staticmethod
     def AmBurm(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -553,94 +524,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py AmBurm")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py AmBurm")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py AmBurm")
-        
-        # DILUTE
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
 
         # WHITE
 
@@ -649,6 +535,10 @@ class Breed_generator:
         # ALBINO
 
         genoclass.pointgene = ["cb", "cb"]
+        if random() < 0.2:
+            genoclass.pointgene = ["C", "C"]
+            genoclass.dilute = ["D", "D"]
+            genoclass.eumelanin = ["B", "B"]
 
         # SILVER
 
@@ -658,56 +548,15 @@ class Breed_generator:
 
         genoclass.agouti = ["a", "a"]
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
         # TICKED
 
         genoclass.ticked = ["Ta", "Ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
@@ -719,15 +568,13 @@ class Breed_generator:
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
 
         genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
 
-        genoclass.breeds["American Burmese"] = 100
+        genoclass.breeds["American Burmese/Bombay"] = 100
         return genoclass
     
     @staticmethod
@@ -746,6 +593,9 @@ class Breed_generator:
     
     @staticmethod
     def Arab(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -753,116 +603,6 @@ class Breed_generator:
         # EUMELANIN
 
         genoclass.eumelanin = ["B", "B"]
-
-        # RED GENE
-
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[index] = "O"
-                else:
-                    genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Arab")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Arab")
-        if not genoclass.sexgene:
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Arab")
-
-        # DILUTE
-
-        a = randint(1, 4)
-
-        if a == 1 or 'o' not in genoclass.sexgene:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
-
-        # WHITE
-
-        for i in range(2):
-            if randint(1, 20) == 1:
-                genoclass.white[i] = "W"
-            elif randint(1, 2) == 1:
-                genoclass.white[i] = "ws"
-            else:
-                genoclass.white[i] = "w"
 
         # ALBINO
 
@@ -872,16 +612,7 @@ class Breed_generator:
 
         genoclass.silver = ["i", "i"]
 
-        # AGOUTI
-
-        for i in range(2):
-            b = randint(1, 2)
-            if b == 1:
-                genoclass.agouti[i] = "A"
-            else:
-                genoclass.agouti[i] = "a"
-
-        # MACKEREL
+        # TABBY
 
         genoclass.mack = ["Mc", "Mc"]
 
@@ -889,29 +620,8 @@ class Breed_generator:
 
         #ruhr + ruhrmod + lykoi
 
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        ruftypes = ["low", "medium", "rufoused"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
-        genoclass.tickgenes = ''
-        genoclass.bengal = ''
-        genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
         while genoclass.wbsum > 11 or genoclass.wideband == "":
             genoclass.wideband = ""
             genoclass.wbsum = 0
@@ -919,87 +629,20 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        if genoclass.rufsum < 3: 
-            genoclass.ruftype = ruftypes[0]
-        elif genoclass.rufsum < 6: 
-            genoclass.ruftype = ruftypes[1]
-        else:
-            genoclass.ruftype = ruftypes[2]
-
-        spottypes = ["fully striped", "slightly broken stripes", "broken stripes", "mostly broken stripes", "spotted"]
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
-
-        if genoclass.spotsum < 1: 
-            genoclass.spottype = spottypes[0]
-        elif genoclass.spotsum < 3:
-            genoclass.spottype = spottypes[1]
-        elif genoclass.spotsum < 6:
-            genoclass.spottype = spottypes[2]
-        elif genoclass.spotsum < 8: 
-            genoclass.spottype = spottypes[3]
-        else:
-            genoclass.spottype = spottypes[4]
-        
-        ticktypes = ["full barring", "reduced barring", "agouti"]
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
-
+        genoclass.tickgenes = ''
+        genoclass.bengal = ''
+        genoclass.sokoke = ''
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
-        if genoclass.ticksum < 4: 
-            genoclass.ticktype = ticktypes[0]
-        elif genoclass.ticksum < 6:
-            genoclass.ticktype = ticktypes[1]
-        else:
-            genoclass.ticktype = ticktypes[2]
-
-        bengtypes = ["normal markings", "mild bengal", "full bengal"]
 
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        if genoclass.bengsum < 4: 
-            genoclass.bengtype = bengtypes[0]
-        elif genoclass.bengsum < 6:
-            genoclass.bengtype = bengtypes[1]
-        else:
-            genoclass.bengtype = bengtypes[2]
-
-        soktypes = ["normal markings", "mild fading", "full sokoke"]
-
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-
-        if genoclass.soksum < 4: 
-            genoclass.soktype = soktypes[0]
-        elif genoclass.soksum < 6:
-            genoclass.soktype = soktypes[1]
-        else:
-            genoclass.soktype = soktypes[2]
         
         genoclass.breeds["Arabian Mau"] = 100
         return genoclass
@@ -1009,9 +652,11 @@ class Breed_generator:
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        # WHITE
-
         genoclass.white = ["w", "w"]
+
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         # ALBINO
 
@@ -1052,11 +697,11 @@ class Breed_generator:
     
     @staticmethod
     def AusMist(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -1070,83 +715,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py AusMist")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py AusMist")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py AusMist")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
 
         # WHITE
 
@@ -1154,11 +725,7 @@ class Breed_generator:
 
         # ALBINO
 
-        for i in range(2):
-            if random() < 0.95:
-                genoclass.pointgene[i] = "cb"
-            else:
-                genoclass.pointgene[i] = "cs"
+        genoclass.pointgene = ["cb", "cb"]
 
         # SILVER
 
@@ -1166,19 +733,13 @@ class Breed_generator:
 
         # AGOUTI
 
-        for i in range(2):
-            genoclass.agouti[i] = "A"
+        genoclass.agouti = ["A", "A"]
 
         genoclass.ticked = ["ta", "ta"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
@@ -1186,8 +747,6 @@ class Breed_generator:
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        genesspot = ["2", "1", "0"]
 
         genoclass.spotted = ''
         for i in range(0, 4):
@@ -1199,6 +758,7 @@ class Breed_generator:
     
     @staticmethod
     def Bengal(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         a = randint(1, 10)
@@ -1210,14 +770,12 @@ class Breed_generator:
         else:
             genoclass.furLength = ["L", "l"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
-
         # EUMELANIN
 
         for i in range(2):
-            if randint(1, 20) == 1:
+            if randint(1, 30) == 1:
                 genoclass.eumelanin[i] = "bl"
-            elif randint(1, 15) == 1:
+            elif randint(1, 25) == 1:
                 genoclass.eumelanin[i] = "b"
             else:
                 genoclass.eumelanin[i] = "B"
@@ -1329,12 +887,9 @@ class Breed_generator:
         # ALBINO
 
         for i in range(2):
-            c = randint(1, 5)
-            d = randint(1, 5)
-
-            if c == 1:
+            if randint(1, 5) == 1:
                 genoclass.pointgene[i] = "cb"
-            elif d == 1:
+            elif randint(1, 5) == 1:
                 genoclass.pointgene[i] = "cs"
             else:
                 genoclass.pointgene[i] = "C"
@@ -1342,11 +897,9 @@ class Breed_generator:
         # AGOUTI
 
         for i in range(2):
-            a = randint(1, 5)
-            b = randint(1, 3)
-            if a == 1:
+            if randint(1, 5) == 1:
                 genoclass.agouti[i] = "Apb"
-            elif b == 1:
+            elif randint(1, 3) == 1:
                 genoclass.agouti[i] = "a"
             else:
                 genoclass.agouti[i] = "A"
@@ -1383,12 +936,9 @@ class Breed_generator:
             genoclass.rufousing += '2'
             genoclass.rufsum += int(genoclass.rufousing[i])
 
-        genesspot = ["2", "1", "0"]
-
         for i in range(0, 4):
             genoclass.spotted += '2'
             genoclass.spotsum += int(genoclass.spotted[i])
-
 
         for i in range(0, 4):
             genoclass.bengal += '2'
@@ -1401,6 +951,7 @@ class Breed_generator:
     
     @staticmethod
     def Birman(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.longtype = 'long'
@@ -1408,8 +959,6 @@ class Breed_generator:
             genoclass.furLength = ["L", choice(["L", "l"])]
         else:
             genoclass.furLength = ["l", "l"]
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # WHITE
 
@@ -1421,25 +970,19 @@ class Breed_generator:
         for i in range(2):
             genoclass.pointgene[i] = "cs"
 
-        # pinkdilute + dilutemd
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
-        
         genoclass.breeds["Birman"] = 100
         return genoclass
     
     @staticmethod
     def Brazil(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # ALBINO
 
@@ -1453,31 +996,27 @@ class Breed_generator:
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         #sunshine
 
         for i in range(2):
-            c = randint(1, 40)
-
-            if c == 1:
+            if randint(1, 40) == 1:
                 genoclass.corin[i] = "fg" #Flaxen Gold
             else:
                 genoclass.corin[i] = "N" #No
 
         # curl + fold
 
-        a = randint(1, 5)
-
-        if a == 1 and not genoclass.ban_genes:
+        if random() < 0.2 and not genoclass.ban_genes:
             genoclass.fold[0] = "Fd"
+
+        if genoclass.fold[0] == 'fd' and random() < 0.1:
+            genoclass.pax3[0] = 'DBEcel'
+            genoclass.pointgene = ['C', 'C']
+            genoclass.white = ['w', 'w']
 
         genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[6])
@@ -1487,6 +1026,9 @@ class Breed_generator:
     
     @staticmethod
     def Ceylon(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -1496,114 +1038,12 @@ class Breed_generator:
         for i in range(2):
             genoclass.eumelanin[i] = "B"
 
-        # RED GENE
-
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[index] = "O"
-                else:
-                    genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Ceylon")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Ceylon")
-        if not genoclass.sexgene:
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Ceylon")
-        
-        # DILUTE
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
-
         # WHITE
 
-        for i in range(2):
             genoclass.white[i] = "w"
 
         # ALBINO
 
-        for i in range(2):
             genoclass.pointgene[i] = "C"
 
         # SILVER
@@ -1615,50 +1055,8 @@ class Breed_generator:
         for i in range(2):
             genoclass.agouti[i] = "A"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 5)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 3:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
-        genoclass.tickgenes = ''
-        genoclass.bengal = ''
-        genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
         while genoclass.wbsum > 11 or genoclass.wideband == "":
             genoclass.wideband = ""
             genoclass.wbsum = 0
@@ -1666,20 +1064,8 @@ class Breed_generator:
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
 
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
-
-        for i in range(0, 4):
-            genoclass.tickgenes += choice(genes)
-            genoclass.ticksum += int(genoclass.tickgenes[i])
-
+        genoclass.bengal = ''
+        genoclass.sokoke = ''
         for i in range(0, 4):
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
@@ -1693,6 +1079,9 @@ class Breed_generator:
     
     @staticmethod
     def Chartreux(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -1704,83 +1093,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Chartreux")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Chartreux")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Chartreux")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -1805,64 +1120,9 @@ class Breed_generator:
         for i in range(2):
             genoclass.agouti[i] = "a"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
-
-        genesmild = ["2", "2", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0"]
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -1872,17 +1132,20 @@ class Breed_generator:
             genoclass.bengal += '0'
             genoclass.bengsum += int(genoclass.bengal[i])
 
-        eyegenes = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
-
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
         
         genoclass.breeds[choice(["Korat", "Chartreux"])] = 100
+        if genoclass.breeds.get("Korat", False):
+            genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
         return genoclass
     
     @staticmethod
     def Chausie(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -1894,83 +1157,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Chausie")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Chausie")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Chausie")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -1994,37 +1183,14 @@ class Breed_generator:
         # AGOUTI
 
         for i in range(2):
-            b = randint(1, 3)
-            if b == 1:
+            if randint(1, 3) == 1:
                 genoclass.agouti[i] = "a"
             else:
                 genoclass.agouti[i] = "A"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
         # TICKED
 
         genoclass.ticked = ["Ta", "Ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
 
         # ext
 
@@ -2036,14 +1202,8 @@ class Breed_generator:
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
-        genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
 
         while genoclass.wbsum > 11 or genoclass.wideband == "":  
             genoclass.wideband = ''
@@ -2051,20 +1211,6 @@ class Breed_generator:
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
-
-        for i in range(0, 4):
-            genoclass.tickgenes += choice(genes)
-            genoclass.ticksum += int(genoclass.tickgenes[i])
 
         for i in range(0, 4):
             genoclass.bengal += '0'
@@ -2099,61 +1245,41 @@ class Breed_generator:
         genoclass.poly = ["Pd", "Pd"]
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        
-        wbtypes = ["low", "medium", "high", "shaded", "chinchilla"]
-        
+
         while genoclass.wbsum > 11 or genoclass.wideband == "":  
             genoclass.wideband = ''
             genoclass.wbsum = 0    
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        if genoclass.wbsum < 6:
-            genoclass.wbtype = wbtypes[0]
-        elif genoclass.wbsum < 10:
-            genoclass.wbtype = wbtypes[1]
-        elif genoclass.wbsum < 12: 
-            genoclass.wbtype = wbtypes[2]
-        elif genoclass.wbsum < 14: 
-            genoclass.wbtype = wbtypes[3]
-        else: 
-            genoclass.wbtype = wbtypes[4]
         
         genoclass.breeds["Clippercat"] = 100
         return genoclass
     
     @staticmethod
     def Cornish(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
-        if random() < 0.95:
-            genoclass.furLength = ["L", "L"]
-        else:
-            genoclass.furLength = ["l", "l"]
+        genoclass.furLength = ["L", "L"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
 
         genoclass.cornish = ["r", "r"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
-
-        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
-
         genoclass.breeds[choice(["Cornish Rex", "German Rex"])] = 100
+
+        if genoclass.breeds.get("Cornish Rex", False):
+            for i in range(2):
+                if randint(1, 50) == 1:
+                    genoclass.dilutemd[i] = "Dm"
+            genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
         return genoclass
     
     @staticmethod
     def Devon(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         if random() < 0.95:
@@ -2161,21 +1287,13 @@ class Breed_generator:
         else:
             genoclass.furLength = ["l", "l"]
 
-        
-        genoclass = Breed_generator.AllColours(genoclass, special)
-
         # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
 
         genoclass.sedesp = ["re", "re"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
 
@@ -2184,11 +1302,11 @@ class Breed_generator:
     
     @staticmethod
     def Donskoy(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         #ruhr + ruhrmod + lykoi
 
@@ -2215,6 +1333,7 @@ class Breed_generator:
     
     @staticmethod
     def Egyptian(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -2226,83 +1345,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Egyptian")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Egyptian")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Egyptian")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -2328,41 +1373,17 @@ class Breed_generator:
         else:
             genoclass.silver = ["i", "i"]
 
-        # AGOUTI
-
-        for i in range(2):
-            if random() < 0.5:
-                genoclass.agouti[i] = "A"
-            else:
-                genoclass.agouti[i] = "a"
-
         # MACKEREL
 
         genoclass.mack = ["Mc", "Mc"]
         genoclass.ticked = ["ta", "ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
         genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
 
         while genoclass.wbsum > 11 or genoclass.wbsum < 6:
             genoclass.wideband = ""
@@ -2404,10 +1425,10 @@ class Breed_generator:
     @staticmethod
     def European(genoclass, special):
         # FUR LENGTH
-        
-        genoclass.furLength = ["L", "L"]
 
         genoclass = Breed_generator.AllColours(genoclass, special)
+
+        genoclass.furLength = ["L", "L"]
 
         # EUMELANIN
 
@@ -2424,11 +1445,10 @@ class Breed_generator:
     
     @staticmethod
     def GermanLH(genoclass, special):
-        # FUR LENGTH
-        
-        genoclass.furLength = ["l", "l"]
-
         genoclass = Breed_generator.AllColours(genoclass, special)
+        # FUR LENGTH
+
+        genoclass.furLength = ["l", "l"]
         
         if random() < 0.95:
             genoclass.karp = ["K", "K"]
@@ -2440,6 +1460,7 @@ class Breed_generator:
     
     @staticmethod
     def Havana(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -2451,83 +1472,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Havana")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Havana")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Havana")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -2558,63 +1505,9 @@ class Breed_generator:
         for i in range(2):
             genoclass.agouti[i] = "a"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -2637,16 +1530,6 @@ class Breed_generator:
     def Highlander(genoclass, special):
 
         genoclass = Breed_generator.AllColours(genoclass, special)
-
-        # EUMELANIN
-
-        for i in range(2):
-            if randint(1, 20) == 1:
-                genoclass.eumelanin[i] = "bl"
-            elif randint(1, 15) == 1:
-                genoclass.eumelanin[i] = "b"
-            else:
-                genoclass.eumelanin[i] = "B"
 
         # curl + fold
 
@@ -2672,16 +1555,6 @@ class Breed_generator:
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        # EUMELANIN
-
-        for i in range(2):
-            if randint(1, 20) == 1:
-                genoclass.eumelanin[i] = "bl"
-            elif randint(1, 15) == 1:
-                genoclass.eumelanin[i] = "b"
-            else:
-                genoclass.eumelanin[i] = "B"
-
         # ALBINO
 
         for i in range(2):
@@ -2704,91 +1577,16 @@ class Breed_generator:
     
     @staticmethod
     def Kanaani(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
-
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Kanaani")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Kanaani")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Kanaani")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -2859,6 +1657,9 @@ class Breed_generator:
     
     @staticmethod
     def Khao(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -2871,198 +1672,19 @@ class Breed_generator:
             else:
                 genoclass.eumelanin[i] = "B"
 
-        # RED GENE
-
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[index] = "O"
-                else:
-                    genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Khao")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Khao")
-        if not genoclass.sexgene:
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Khao")
-        
-        # DILUTE
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
-
         # WHITE
 
         for i in range(2):
 
             genoclass.white[i] = "W"
 
-        # ALBINO
-
-        for i in range(2):
-            b = randint(1, 100)
-            c = randint(1, 10)
-            d = randint(1, 5)
-
-            if b == 1:
-                genoclass.pointgene[i] = "cm"
-            elif c == 1:
-                genoclass.pointgene[i] = "cb"
-            elif d == 1:
-                genoclass.pointgene[i] = "cs"
-            else:
-                genoclass.pointgene[i] = "C"
-
         # SILVER
 
         genoclass.silver = ["i", "i"]
 
-        # AGOUTI
-
-        for i in range(2):
-            b = randint(1, 2)
-            if b == 1:
-                genoclass.agouti[i] = "A"
-            else:
-                genoclass.agouti[i] = "a"
-
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -3076,7 +1698,9 @@ class Breed_generator:
         for i in range(0, 4):
             genoclass.sokoke += '0'
             genoclass.soksum += int(genoclass.sokoke[i])
-        
+
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
+
         genoclass.breeds["Khao Manee"] = 100
         return genoclass
     
@@ -3098,9 +1722,7 @@ class Breed_generator:
         # ext
 
         for i in range(2):
-            b = randint(1, 15)
-
-            if b == 1:
+            if randint(1, 15) == 1:
                 genoclass.ext[i] = "ec"
 
         #  manx + kab + toybob + jbob + kub + ring
@@ -3117,14 +1739,9 @@ class Breed_generator:
 
         genoclass.laperm = ["Lp", "Lp"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         # karp + bleach + ghosting + satin + glitter
 
@@ -3143,6 +1760,9 @@ class Breed_generator:
     
     @staticmethod
     def Lin(genoclass, special):
+
+        genoclass = Breed_generator.AllColours(genoclass, special)
+
         # FUR LENGTH
         
         genoclass.furLength = ["l", "l"]
@@ -3154,98 +1774,13 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Lin")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Lin")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Lin")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
         genoclass.dilute = ["D", "D"]
-
-        # WHITE
-
-        for i in range(2):
-
-            if randint(1, 20) == 1:
-                genoclass.white[i] = "W"
-            elif randint(1, 2) == 1:
-                genoclass.white[i] = "ws"
-            else:
-                genoclass.white[i] = "w"
 
         # ALBINO
 
@@ -3261,68 +1796,13 @@ class Breed_generator:
         for i in range(2):
             genoclass.agouti[i] = "a"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
             genoclass.ticksum += int(genoclass.tickgenes[i])
-
 
         for i in range(0, 4):
             genoclass.bengal += '0'
@@ -3339,16 +1819,6 @@ class Breed_generator:
     def Lykoi(genoclass, special):
 
         genoclass = Breed_generator.AllColours(genoclass, special)
-
-        # EUMELANIN
-
-        for i in range(2):
-            if randint(1, 20) == 1:
-                genoclass.eumelanin[i] = "bl"
-            elif randint(1, 15) == 1:
-                genoclass.eumelanin[i] = "b"
-            else:
-                genoclass.eumelanin[i] = "B"
 
         # RED GENE
 
@@ -3442,8 +1912,7 @@ class Breed_generator:
         # AGOUTI
 
         for i in range(2):
-            b = randint(1, 5)
-            if b == 1:
+            if randint(1, 5) == 1:
                 genoclass.agouti[i] = "A"
             else:
                 genoclass.agouti[i] = "a"
@@ -3455,11 +1924,16 @@ class Breed_generator:
     
     @staticmethod
     def Mandalay(genoclass, special):
-        # FUR LENGTH
-        
-        genoclass.furLength = ["L", "L"]
-
         genoclass = Breed_generator.AllColours(genoclass, special)
+
+        a = randint(1, 10)
+
+        if a < 7:
+            genoclass.furLength = ["L", "L"]
+        elif a == 10:
+            genoclass.furLength = ["l", "l"]
+        else:
+            genoclass.furLength = ["L", "l"]
 
         genoclass.white = ['w', 'w']
 
@@ -3483,14 +1957,9 @@ class Breed_generator:
 
         genoclass.ticked = ["Ta", "Ta"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         # ext
 
@@ -3511,11 +1980,10 @@ class Breed_generator:
     
     @staticmethod
     def Maine(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["l", "l"]
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -3532,11 +2000,9 @@ class Breed_generator:
         for i in range(2):
             genoclass.pointgene[i] = "C"
 
-        # munch + poly + altai
-
-        if random() < 0.125:
+        if random() < 0.0625:
             genoclass.poly = ["Pd", "Pd"]
-        elif random() < 0.125:
+        elif random() < 0.0625:
             genoclass.poly[0] = "Pd"
 
         genoclass.height_value = randint(genoclass.height_indexes[3]+1, genoclass.height_indexes[9])
@@ -3550,19 +2016,13 @@ class Breed_generator:
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
-
         if random() < 0.125:
             genoclass.cornish = ["r", "r"]
             
-        # pinkdilute + dilutemd
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
 
         #  manx + kab + toybob + jbob + kub + ring
 
@@ -3575,11 +2035,10 @@ class Breed_generator:
     
     @staticmethod
     def Mekong(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # WHITE
 
@@ -3603,8 +2062,6 @@ class Breed_generator:
     def Munchkin(genoclass, special):
 
         genoclass = Breed_generator.AllColours(genoclass, special)
-
-        # karp + bleach + ghosting + satin + glitter
 
         if random() < 0.05:
             genoclass.karp = ["K", "K"]
@@ -3638,12 +2095,12 @@ class Breed_generator:
     
     @staticmethod
     def NFC(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["l", "l"]
         genoclass.longtype = "long"
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -3673,91 +2130,17 @@ class Breed_generator:
     
     @staticmethod
     def Ocicat(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Ocicat")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Ocicat")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Ocicat")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
 
         # WHITE
 
@@ -3817,14 +2200,9 @@ class Breed_generator:
         if random() < 0.5:
             genoclass.pointgene = ["cs", "cs"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genoclass.body_value = randint(genoclass.body_indexes[4]+1, genoclass.body_indexes[6])
 
@@ -3833,6 +2211,7 @@ class Breed_generator:
     
     @staticmethod
     def Persian(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
 
         genoclass.longtype = "long"
@@ -3842,7 +2221,6 @@ class Breed_generator:
         else:
             genoclass.furLength = ["l", "l"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -3857,10 +2235,7 @@ class Breed_generator:
         # ALBINO
 
         for i in range(2):
-            c = randint(1, 10)
-            d = randint(1, 5)
-
-            if d == 1:
+            if randint(1, 5) == 1:
                 genoclass.pointgene[i] = "cs"
             else:
                 genoclass.pointgene[i] = "C"
@@ -3868,18 +2243,19 @@ class Breed_generator:
         if random() < 0.33:
             genoclass.pointgene = ["cs", "cs"]
 
+        if genoclass.pointgene == ["cs", "cs"]:
+            if random() < 0.0625:
+                genoclass.poly = ["Pd", "Pd"]
+            elif random() < 0.0625:
+                genoclass.poly[0] = "Pd"
+
         # TICKED
 
         genoclass.ticked = ["ta", "ta"]
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genoclass.body_value = randint(genoclass.body_indexes[0], genoclass.body_indexes[1])
 
@@ -3888,13 +2264,7 @@ class Breed_generator:
     
     @staticmethod
     def Pixiebob(genoclass, special):
-        # FUR LENGTH
-        
-        for i in range(2):
-            if randint(1, 2) == 1:
-                genoclass.furLength[i] = "l"
-            else:
-                genoclass.furLength[i] = "L"
+        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -3903,83 +2273,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Pixiebob")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Pixiebob")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Pixiebob")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -4011,24 +2307,9 @@ class Breed_generator:
 
         genoclass.ticked = ["ta", "ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         #  manx + kab + toybob + jbob + kub + ring
 
         genoclass.manx = ["Ab", "ab"]
-        
-        # munch + poly + altai
-
-        a = randint(1, 100)
 
         if random() < 0.125:
             genoclass.poly = ["Pd", "Pd"]
@@ -4037,14 +2318,10 @@ class Breed_generator:
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
         genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
         
         while genoclass.wbsum < 6 or genoclass.wbsum > 9:
             genoclass.wideband = ''
@@ -4082,12 +2359,12 @@ class Breed_generator:
     
     @staticmethod
     def Ragamuffin(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["l", "l"]
         genoclass.longtype = "long"
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
 
@@ -4096,12 +2373,12 @@ class Breed_generator:
     
     @staticmethod
     def Ragdoll(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["l", "l"]
         genoclass.longtype = "long"
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -4127,14 +2404,9 @@ class Breed_generator:
         for i in range(2):
             genoclass.pointgene[i] = "cs"
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
 
@@ -4143,9 +2415,10 @@ class Breed_generator:
     
     @staticmethod
     def Russian(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
-        if random() < 0.5:
+        if random() < 0.75:
             genoclass.furLength = ["L", "L"]
         else:
             genoclass.furLength = ["l", "l"]
@@ -4157,83 +2430,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Russian")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Russian")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Russian")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -4241,6 +2440,7 @@ class Breed_generator:
             genoclass.dilute = ["D", "D"]
         else:
             genoclass.dilute = ["d", "d"]
+            genoclass.saturation = randint(0, 2)
 
         # WHITE
 
@@ -4265,67 +2465,13 @@ class Breed_generator:
         for i in range(2):
             genoclass.agouti[i] = "a"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         # karp + bleach + ghosting + satin + glitter
 
         genoclass.satin = ["st", "st"]
 
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -4355,14 +2501,17 @@ class Breed_generator:
             if random() > 0.25:
                 genoclass.sedesp[i] = "Se"
 
-        # pinkdilute + dilutemd
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
-        a = randint(1, 2500)
+        #sunshine
 
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 40) == 1:
+                genoclass.corin[i] = "fg" #Flaxen Gold
+            else:
+                genoclass.corin[i] = "N" #No
 
         genoclass.body_value = randint(genoclass.body_indexes[0]+1, genoclass.body_indexes[1])
 
@@ -4371,13 +2520,12 @@ class Breed_generator:
     
     @staticmethod
     def Siberian(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["l", "l"]
         genoclass.longtype = "long"
 
-        
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -4421,6 +2569,7 @@ class Breed_generator:
     
     @staticmethod
     def Singapura(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -4432,83 +2581,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Singapura")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Singapura")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Singapura")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -4534,42 +2609,15 @@ class Breed_generator:
         for i in range(2):
             genoclass.agouti[i] = "A"
 
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
         # TICKED
 
         genoclass.ticked = ["Ta", "Ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
         
         while genoclass.wbsum > 11 or genoclass.wbsum < 6:
             genoclass.wideband = ""
@@ -4577,16 +2625,6 @@ class Breed_generator:
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '2'
@@ -4607,11 +2645,10 @@ class Breed_generator:
     
     @staticmethod
     def Snowshoe(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-        
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # WHITE
 
@@ -4623,20 +2660,16 @@ class Breed_generator:
         for i in range(2):
             genoclass.pointgene[i] = "cs"
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
         
         genoclass.breeds["Snowshoe"] = 100
         return genoclass
     
     @staticmethod
     def Sokoke(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -4648,83 +2681,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Sokoke")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Sokoke")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Sokoke")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -4759,27 +2718,11 @@ class Breed_generator:
 
         genoclass.ticked = ["ta", "ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
 
         while genoclass.wbsum > 11 or genoclass.wbsum < 6:
             genoclass.wideband = ""
@@ -4794,12 +2737,6 @@ class Breed_generator:
             for i in range(0, 4):
                 genoclass.rufousing += choice(genes)
                 genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -4820,12 +2757,10 @@ class Breed_generator:
     
     @staticmethod
     def Sphynx(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-
-
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         #SELKIRK/DEVON/HAIRLESS
     
@@ -4836,7 +2771,7 @@ class Breed_generator:
 
         if random() < 0.125:
             genoclass.curl = ["Cu", "Cu"]
-        elif random() < 0.25:
+        elif random() < 0.125:
             genoclass.curl[0] = "Cu"
 
         genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
@@ -4846,24 +2781,19 @@ class Breed_generator:
     
     @staticmethod
     def Tenn(genoclass, special):
-
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        # YORK, WIREHAIR, LAPERM, CORNISH, URAL, TENN, FLEECE
-
         genoclass.tenn = ["tr", "tr"]
-            
-        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[3])
 
         genoclass.breeds["Tennessee Rex"] = 100
         return genoclass
     
     @staticmethod
     def Thai(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -4889,8 +2819,7 @@ class Breed_generator:
         # AGOUTI
 
         for i in range(2):
-            b = randint(1, 3)
-            if b == 1:
+            if randint(1, 3) == 1:
                 genoclass.agouti[i] = "A"
             else:
                 genoclass.agouti[i] = "a"
@@ -4900,15 +2829,13 @@ class Breed_generator:
     
     @staticmethod
     def Tonk(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # WHITE
-
         for i in range(2):
-
             genoclass.white[i] = "w"
 
         # ALBINO
@@ -4928,17 +2855,11 @@ class Breed_generator:
             else:
                 genoclass.agouti[i] = "a"
 
-        # pinkdilute + dilutemd
-
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-        genesspot = ["2", "1", "0"]
 
         genoclass.tickgenes = ''
         
@@ -4948,10 +2869,6 @@ class Breed_generator:
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.tickgenes += choice(genesspot)
-            genoclass.ticksum += int(genoclass.tickgenes[i])
 
         genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[4])
 
@@ -4963,17 +2880,16 @@ class Breed_generator:
 
         genoclass = Breed_generator.AllColours(genoclass, special)
 
-        #  manx + kab + toybob + jbob + kub + ring
-
         genoclass.toybob = ["Tb", "Tb"]
 
-        genoclass.height_value = randint(genoclass.height_indexes[0], genoclass.height_indexes[1])
+        genoclass.height_value = randint(0, genoclass.height_indexes[1])
 
         genoclass.breeds["Toybob"] = 100
         return genoclass
     
     @staticmethod
     def Toyger(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -4985,83 +2901,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Toyger")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Toyger")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Toyger")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -5076,7 +2918,12 @@ class Breed_generator:
         # ALBINO
 
         for i in range(2):
-            genoclass.pointgene[i] = "C"
+            if randint(1, 25):
+                genoclass.pointgene[i] = "cb"
+            elif randint(1, 15):
+                genoclass.pointgene[i] = "cs"
+            else:
+                genoclass.pointgene[i] = "C"
 
         # SILVER
 
@@ -5093,27 +2940,13 @@ class Breed_generator:
 
         genoclass.ticked = ["ta", "ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
         genoclass.rufousing = ''
         genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
         
         while genoclass.wbsum > 11 or genoclass.wbsum < 6:
             genoclass.wideband = ""
@@ -5149,6 +2982,7 @@ class Breed_generator:
     
     @staticmethod
     def Turkish(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         if random() < 0.125:
@@ -5156,7 +2990,6 @@ class Breed_generator:
         else:
             genoclass.furLength = ["l", "l"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
         # EUMELANIN
 
         genoclass.eumelanin = ["B", "B"]
@@ -5198,35 +3031,24 @@ class Breed_generator:
 
         genoclass.urals = ["ru", "ru"]
 
-        genoclass.body_value = randint(genoclass.body_indexes[1]+1, genoclass.body_indexes[2])
+        genoclass.body_value = randint(genoclass.body_indexes[3]+1, genoclass.body_indexes[4])
 
         genoclass.breeds["Ural Rex"] = 100
         return genoclass
     
     @staticmethod
     def Bambino(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         #SELKIRK/DEVON/HAIRLESS
     
         for i in range(2):
             genoclass.sedesp[i] = "hr"
 
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
 
         # munch + poly + altai
 
@@ -5240,6 +3062,7 @@ class Breed_generator:
     
     @staticmethod
     def Cheetoh(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -5256,83 +3079,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Cheetoh")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Cheetoh")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Cheetoh")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -5369,8 +3118,7 @@ class Breed_generator:
         # AGOUTI
 
         for i in range(2):
-            b = randint(1, 3)
-            if b == 1 and genoclass.eumelanin[0] != "bl" and genoclass.dilute[0] == "D" and genoclass.silver[0] == "I" and genoclass.pointgene[0] == "C":
+            if randint(1, 3) == 1 and genoclass.eumelanin[0] != "bl" and genoclass.dilute[0] == "D" and genoclass.silver[0] == "I" and genoclass.pointgene[0] == "C":
                 genoclass.agouti[i] = "a"
             else:
                 genoclass.agouti[i] = "A"
@@ -5384,17 +3132,6 @@ class Breed_generator:
 
         genoclass.ticked = ["ta", "ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         # karp + bleach + ghosting + satin + glitter
 
         if random() < 0.125:
@@ -5405,14 +3142,10 @@ class Breed_generator:
 
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
         genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
         
         while genoclass.wbsum > 11 or genoclass.wideband == "":
             genoclass.wideband = ""
@@ -5420,10 +3153,6 @@ class Breed_generator:
             for i in range(0, 8):
                 genoclass.wideband += choice(genes)
                 genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
 
         for i in range(0, 4):
             genoclass.spotted += '2'
@@ -5449,13 +3178,7 @@ class Breed_generator:
     
     @staticmethod
     def Foldex(genoclass, special):
-        # FUR LENGTH
-        
-        for i in range(2):
-            if randint(1, 2) == 1:
-                genoclass.furLength[i] = "l"
-            else:
-                genoclass.furLength[i] = "L"
+        genoclass = Breed_generator.AllColours(genoclass, special)
 
         # EUMELANIN
 
@@ -5465,117 +3188,6 @@ class Breed_generator:
             else:
                 genoclass.eumelanin[i] = "B"
 
-        # RED GENE
-
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                if randint(1, 4) == 1:
-                    genoclass.sexgene[index] = "O"
-                else:
-                    genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Foldex")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Foldex")
-        if not genoclass.sexgene:
-            if randint(1, 4) == 1:
-                genoclass.sexgene = ["O"]
-            else:
-                genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Foldex")
-        
-        # DILUTE
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.dilute = ["D", "D"]
-        elif a == 4:
-            genoclass.dilute = ["d", "d"]
-        else:
-            genoclass.dilute = ["D", "d"]
-
-        # WHITE
-
-        for i in range(2):
-
-            if randint(1, 20) == 1:
-                genoclass.white[i] = "W"
-            elif randint(1, 2) == 1:
-                genoclass.white[i] = "ws"
-            else:
-                genoclass.white[i] = "w"
-
         # ALBINO
 
         for i in range(2):
@@ -5584,88 +3196,13 @@ class Breed_generator:
             else:
                 genoclass.pointgene[i] = "C"
 
-        # SILVER
-
-        a = randint(1, 100)
-
-        if a == 1:
-            genoclass.silver = ["I", "I"]
-        elif a < 12:
-            genoclass.silver = ["I", "i"]
-        else:
-            genoclass.silver = ["i", "i"]
-
-        # AGOUTI
-
-        for i in range(2):
-            b = randint(1, 2)
-            if b == 1:
-                genoclass.agouti[i] = "A"
-            else:
-                genoclass.agouti[i] = "a"
-
-        # MACKEREL
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.mack = ["Mc", "Mc"]
-        elif a == 4:
-            genoclass.mack = ["mc", "mc"]
-        else:
-            genoclass.mack = ["Mc", "mc"]
-
-        # TICKED
-
-        a = randint(1, 25)
-
-        if a == 1:
-            genoclass.ticked = ["Ta", "Ta"]
-        elif a <= 6:
-            genoclass.ticked = ["Ta", "ta"]
-        else:
-            genoclass.ticked = ["ta", "ta"]
-
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         # curl + fold
 
         genoclass.fold[0] = "Fd"
 
-
-        genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
-
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
-        genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
-        for i in range(0, 8):
-            genoclass.wideband += choice(genes)
-            genoclass.wbsum += int(genoclass.wideband[i])
-
-        for i in range(0, 4):
-            genoclass.rufousing += choice(genes)
-            genoclass.rufsum += int(genoclass.rufousing[i])
-
-        genesspot = ["2", "1", "0"]
-
-        for i in range(0, 4):
-            genoclass.spotted += choice(genesspot)
-            genoclass.spotsum += int(genoclass.spotted[i])
 
         for i in range(0, 4):
             genoclass.tickgenes += '0'
@@ -5756,11 +3293,11 @@ class Breed_generator:
     
     @staticmethod
     def Peterbald(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
 
-        genoclass = Breed_generator.AllColours(genoclass, special)
 
         #ruhr + ruhrmod + lykoi
 
@@ -5769,14 +3306,9 @@ class Breed_generator:
         elif random() < 0.75:
             genoclass.ruhr = ["Hrbd", "hrbd"]
 
-        # pinkdilute + dilutemd
-        
-        a = randint(1, 2500)
-
-        if a == 1:
-            genoclass.dilutemd = ["Dm", "Dm"]
-        elif a <= 51:
-            genoclass.dilutemd[0] = "Dm"
+        for i in range(2):
+            if randint(1, 50) == 1:
+                genoclass.dilutemd[i] = "Dm"
 
         genoclass.body_value = randint(genoclass.body_indexes[4]+1, genoclass.body_indexes[5])
 
@@ -5786,6 +3318,7 @@ class Breed_generator:
     
     @staticmethod
     def Serengeti(genoclass, special):
+        genoclass = Breed_generator.AllColours(genoclass, special)
         # FUR LENGTH
         
         genoclass.furLength = ["L", "L"]
@@ -5797,83 +3330,9 @@ class Breed_generator:
 
         # RED GENE
 
-        genoclass.sexgene = []
-        if special == "fem":
-            egg1 = "X"
-            sperm1 = "X"
-        elif special == "masc":
-            egg1 = "X"
-            sperm1 = "Y"
-        else:
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                egg1 = choice(["XX", "null"])
-            else:
-                egg1 = "X"
-
-            if randint(1, genoclass.odds['XXX/XXY']) == 1:
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-            else:
-                sperm1 = choice(["X", "Y"])
-
-        while sperm1 == "Y" and egg1 == "null":
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-        while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-        while sperm1 == "null" and egg1 == "null":
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-            egg1 = choice(["XX", "null"])
-            while (sperm1 == "YY" or sperm1 == "null") and egg1 == "null":
-                sperm1 = choice(["XX", "XY", "YY", "null"])
-                egg1 = choice(["XX", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "null" and egg1 == "X" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["XX", "XY", "YY", "null"])
-
-        randnum = randint(1, 100)
-        while sperm1 == "X" and egg1 == "null" and not ((randnum <= 37 and randint(1, 200) == 1) or not randnum <= 37):
-            randnum = randint(1, 100)
-            sperm1 = choice(["X", "Y"])
-            egg1 = choice(["XX", "null"])
-            while sperm1 == "Y" and egg1 == "null":
-                sperm1 = choice(["X", "Y"])
-                egg1 = choice(["XX", "null"])
-
-        for entry in egg1:
-            genoclass.sexgene.append(entry)
-        for entry in sperm1:
-            genoclass.sexgene.append(entry)
-
-        for i in range(1, 20):
-            if "" in genoclass.sexgene:
-                genoclass.sexgene.remove("")
-            if "null" in genoclass.sexgene:
-                genoclass.sexgene.remove("null")
-            if "n" in genoclass.sexgene:
-                genoclass.sexgene.remove("n")
-            if "u" in genoclass.sexgene:
-                genoclass.sexgene.remove("u")
-            if "l" in genoclass.sexgene:
-                genoclass.sexgene.remove("l")
-
-        index = 0
-        while index <= (len(genoclass.sexgene) - 1):
-            if genoclass.sexgene[index] == "X":
-                genoclass.sexgene[index] = "o"
-            index += 1
-            
-        if genoclass.sexgene[0] == "Y":
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's first sexgene is Y in breed_functions.py Serengeti")
-        if len(genoclass.sexgene) > 4:
-            genoclass.sexgene = genoclass.sexgene[:4]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is longer than 4 in breed_functions.py Serengeti")
-        if not genoclass.sexgene:
-            genoclass.sexgene = ["o"]
-            print("NOPE NOPE NOPE NOPE NOPE NOPE NOPE cat's sexgene is nothing in breed_functions.py Serengeti")
+        for i in range(len(genoclass.sexgene)):
+            if genoclass.sexgene[i] == 'O':
+                genoclass.sexgene[i] = 'o'
         
         # DILUTE
 
@@ -5912,28 +3371,12 @@ class Breed_generator:
         genoclass.mack = ["Mc", "Mc"]
         genoclass.ticked = ["ta", "ta"]
 
-        #ruhr + ruhrmod + lykoi
-
-        a = randint(1, 4)
-
-        if a == 1:
-            genoclass.ruhrmod = ["hi", "hi"]
-        elif a == 4:
-            genoclass.ruhrmod = ["ha", "ha"]
-        else:
-            genoclass.ruhrmod = ["hi", "ha"]
-
         genes = ["2", "2", "1", "1", "1", "1", "1", "1", "0", "0"]
 
-        genoclass.wideband = ''
-        genoclass.rufousing = ''
         genoclass.spotted = ''
         genoclass.tickgenes = ''
         genoclass.bengal = ''
         genoclass.sokoke = ''
-        genoclass.refraction = ''
-        genoclass.pigmentation = ''
-        
 
         while genoclass.wbsum > 11 or genoclass.wbsum < 6:
             genoclass.wideband = ""
@@ -5988,9 +3431,6 @@ class Breed_generator:
         genoclass.breeds["Munchkin"] = 50
         genoclass.breeds["LaPerm"] = 50
         return genoclass
-    
-    
-    
 
 class Breed_checker:
     @staticmethod
@@ -6147,11 +3587,16 @@ class Breed_checker:
         if genotype.dilutemd[0] != "dm" or genotype.pinkdilute[0] == "dp":
             return False
 
-        if genotype.white[0] != "w" or genotype.pointgene != ["cb", "cb"] or genotype.agouti[0] != "a" or genotype.eumelanin[0] == "bl":
+        if genotype.white[0] != "w" or genotype.agouti[0] != "a" or genotype.eumelanin[0] == "bl":
             return False
         if genotype.silver[0] == "I" or genotype.furLength[0] == "l" or 'O' in genotype.sexgene:
             return False
-    
+
+        if genotype.pointgene != ["cb", "cb"]:
+            if genotype.pointgene[0] == "C" and genotype.dilute[0] == "D" and genotype.eumelanin[0] == "B":
+                return "American Bombay"
+            return False
+
         return "American Burmese"
 
     @staticmethod
@@ -6214,7 +3659,7 @@ class Breed_checker:
             return False
         if genotype.ext[0] != "E" or genotype.corin[0] != "N":
             return False
-        if genotype.dilutemd[0] != "dm" or genotype.pinkdilute[0] == "dp":
+        if genotype.pinkdilute[0] == "dp":
             return False
         if genotype.agouti[0] == "Apb":
             return False
@@ -6349,6 +3794,10 @@ class Breed_checker:
     
         if genotype.fold[0] == "Fd":
             return "Scottish Fold"
+        if genotype.white[0] == 'w' and genotype.pointgene[0] == 'C' and genotype.pax3[0] == 'DBEcel':
+            if genotype.furLength[0] == "l":
+                return "Celestial Longhair"
+            return "Celestial Shorthair"
         if genotype.furLength[0] == "l":
             return "British Longhair"
         return "British Shorthair"
@@ -6397,9 +3846,9 @@ class Breed_checker:
         if genotype.silver[0] == 'I' or genotype.pointgene[0] != "C":
             return False
         
-        if genotype.breeds.get("Chartreux", 0) >= 100:
+        if genotype.breeds.get("Chartreux", 0) >= 75:
             return "Chartreux"
-        if genotype.breeds.get("Korat", 0) >= 100:
+        if genotype.breeds.get("Korat", 0) >= 75:
             return "Korat"
 
         return "Huh????"
@@ -6470,11 +3919,11 @@ class Breed_checker:
         if (('cm' in genotype.pointgene or 'c' in genotype.pointgene) and genotype.pointgene[0] != "C"):
             return False
     
-        if genotype.breeds.get("Cornish Rex", 0) >= 100:
+        if genotype.breeds.get("Cornish Rex", 0) >= 75:
             if genotype.furLength[0] == "l":
                 return "Californian Rex"
             return "Cornish Rex"
-        if genotype.breeds.get("German Rex", 0) >= 100:
+        if genotype.breeds.get("German Rex", 0) >= 75:
             if genotype.furLength[0] == "l":
                 return False
             return "German Rex"
@@ -6550,9 +3999,9 @@ class Breed_checker:
             return False
     
         
-        if genotype.breeds.get("Egyptian Mau", 0) >= 100:
+        if genotype.breeds.get("Egyptian Mau", 0) >= 75:
             return "Egyptian Mau"
-        if genotype.breeds.get("Savannah", 0) >= 100:
+        if genotype.breeds.get("Savannah", 0) >= 75:
             return "Savannah"
 
         return "Huh????"
@@ -6838,7 +4287,7 @@ class Breed_checker:
 
     @staticmethod
     def Mandalay(genotype, phenotype):
-        if phenotype.length != "shorthaired" or phenotype.furtype != [""]:
+        if phenotype.furtype != [""]:
             return False
         if phenotype.eartype != "" or phenotype.tailtype != "" or phenotype.pawtype != "":
             return False
@@ -6857,6 +4306,8 @@ class Breed_checker:
         if genotype.agouti[0] == "Apb":
             return False
         
+        if genotype.furLength[0] == 'l':
+            return "Tiffany"
         if genotype.pointgene[0] == "cb":
             return "Burmese"
         return "Mandalay"
@@ -7084,7 +4535,7 @@ class Breed_checker:
     def Persian(genotype, phenotype):
         if phenotype.length == "hairless" or phenotype.furtype != [""]:
             return False
-        if phenotype.eartype != "" or phenotype.tailtype != "" or phenotype.pawtype != "":
+        if phenotype.eartype != "" or phenotype.tailtype != "" or genotype.munch[0] != "mk":
             return False
         
         if phenotype.fade != "" or genotype.karp[0] == "K":
@@ -7105,7 +4556,11 @@ class Breed_checker:
 
         if genotype.furLength[0] == "l":
             if genotype.pointgene[0] == "cs":
+                if genotype.poly[0] == "Pd":
+                    return "Nepalayan"
                 return "Himalayan"
+            if genotype.poly[0] == "Pd":
+                return False
             return "Persian"
         return "Exotic"
 
@@ -7503,6 +4958,8 @@ class Breed_checker:
         
         if genotype.furLength[0] == "L":
             return "Anatoli"
+        if genotype.white_pattern == ["full white"]:
+            return "Turkish Vankedisi"
         if genotype.white == ["ws", "ws"] and genotype.whitegrade == 4:
             return "Turkish Van"
         return "Turkish Angora"
@@ -7534,7 +4991,7 @@ class Breed_checker:
 
 
 def find_my_breed(genotype, phenotype, config):
-    purebred_range = 100
+    purebred_range = 75
     mix_range = 12.5
 
     hybrids = {
@@ -7555,6 +5012,8 @@ def find_my_breed(genotype, phenotype, config):
         hybrids["Bambino"] = 0
     if not genotype.breeds.get("Ocicat", False) or not genotype.breeds.get("Bengal", False):
         hybrids["Cheetoh"] = 0
+    if not genotype.breeds.get("Sphynx", False):
+        hybrids["Elf"] = 0
     if not genotype.breeds.get("Persian/Exotic", False) or not genotype.breeds.get("British", False) or genotype.breeds.get("Munchkin", False):
         hybrids["Foldex"] = 0
     if not genotype.breeds.get("Munchkin", False) or not genotype.breeds.get("Persian/Exotic", False) or not genotype.breeds.get("British", False):
@@ -7632,7 +5091,7 @@ breed_functions = {
         "American Bobtail" : Breed_generator.AmBob,
         "American Curl" : Breed_generator.AmCurl,
         "American Shorthair" : Breed_generator.AmSH,
-        "American Burmese" : Breed_generator.AmBurm,
+        "American Burmese/Bombay" : Breed_generator.AmBurm,
         "Aphrodite" : Breed_generator.Aphrodite,
         "Arabian Mau" : Breed_generator.Arab,
         "Asian/Burmese" : Breed_generator.Asian,
@@ -7707,7 +5166,7 @@ breed_functions = {
         "American Bobtail" : Breed_checker.AmBob,
         "American Curl" : Breed_checker.AmCurl,
         "American Shorthair" : Breed_checker.AmSH,
-        "American Burmese" : Breed_checker.AmBurm,
+        "American Burmese/Bombay" : Breed_checker.AmBurm,
         "Aphrodite" : Breed_checker.Aphrodite,
         "Arabian Mau" : Breed_checker.Arab,
         "Asian/Burmese" : Breed_checker.Asian,
