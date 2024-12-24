@@ -1619,62 +1619,43 @@ class Cat:
                 elif KITgrade == 3:
                     white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'full white']))
                     for i in range(randint(0, 2)):
-                        white_pattern.append(choice(
-                            ['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None,
-                             None, None, None]))
+                        white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None]))
                     white_pattern.append(choice(['break/piebald1', 'break/piebald2']))
-                    white_pattern.append(
-                        choice(['break/pants', None, None, None, None, None, None, None, None, None]))
-                    white_pattern.append(choice(
-                        ['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None,
-                         None, None, None, None, None]))
-                    white_pattern.append(choice(
-                        [None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
-                         'break/tail rings', 'break/left face', 'break/right face', 'break/bowl cut']))
+                    white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/tail rings', 'break/left face', 'break/right face', 'break/bowl cut']))
                     white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
                     white_pattern.append(choice(['break/chin', None, None, None, None, None]))
                 elif KITgrade == 4:
                     white_pattern.append(choice(['van1', 'van2', 'van3']))
                     for i in range(randint(0, 2)):
-                        white_pattern.append(choice(
-                            ['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None,
-                             None, None, None]))
-                    white_pattern.append(choice(
-                        ['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None,
-                         None, None, None, None, None]))
-                    white_pattern.append(choice(
-                        ['break/pants', None, None, None, None, None, None, None, None, None, None, None, None,
-                         None, None]))
-                    white_pattern.append(choice([None, None, choice(
-                        ['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
-                         'break/left face', 'break/right face'])]))
-                    white_pattern.append(choice([None, None, None, None, None, choice(
-                        ['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
-                         'break/left face', 'break/right face', 'break/bowl cut'])]))
+                        white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice(['break/pants', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice([None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face'])]))
+                    white_pattern.append(choice([None, None, None, None, None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut'])]))
                     white_pattern.append(choice([None, None, None, None, choice(['break/nose1', 'break/nose2'])]))
                     white_pattern.append(choice(['break/chin', None, None, None, None, None]))
                 else:
                     white_pattern.append(choice(["full white", 'van3']))
                     for i in range(randint(0, 2)):
-                        white_pattern.append(choice(
-                            ['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None,
-                             None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                        white_pattern.append(choice(['break/bracelet left', 'break/bracelet right', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
 
-                    white_pattern.append(choice(
-                        ['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None,
-                         None, None, None, None, None]))
-                    white_pattern.append(choice(
-                        [None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
-                         'break/left face', 'break/right face', 'break/chin']))
-                    white_pattern.append(choice([None, choice(
-                        ['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band',
-                         'break/left face', 'break/right face', 'break/bowl cut', 'break/chin'])]))
+                    white_pattern.append(choice(['break/right no', 'break/left no', None, None, None, None, None, None, None, None, None, None, None, None, None, None]))
+                    white_pattern.append(choice([None, 'break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/chin']))
+                    white_pattern.append(choice([None, choice(['break/left ear', 'break/right ear', 'break/tail tip', 'break/tail band', 'break/left face', 'break/right face', 'break/bowl cut', 'break/chin'])]))
 
                     if random() < 0.02:
                         white_pattern = ["full white", "break/inverse thai"]
 
-        if white_pattern == "No" or white_pattern == [] or white_pattern is None or (
-                KIT == ["w", "w"] and not vit and pax3 == ['NoDBE', 'NoDBE']):
+        if vit:
+            if white_pattern is None or white_pattern == "No":
+                white_pattern = [choice(vitiligo)]
+            else:
+                if len(has_vitiligo) == 0:
+                    white_pattern.append(choice(vitiligo))
+
+        if white_pattern == "No" or white_pattern == [] or white_pattern is None or KIT[0] == "W" or albino[0] == "c" or (KIT[0] == "w" and not vit and pax3 == ['NoDBE', 'NoDBE']):
             return "No"
         return clean_white(white_pattern)
 
@@ -1682,10 +1663,7 @@ class Cat:
         return "CAT OBJECT:" + self.ID
 
     def __eq__(self, other):
-        if not isinstance(other, Cat):
-            return False
-
-        return self.ID == other.ID
+        return False if not isinstance(other, Cat) else self.ID == other.ID
 
     def __hash__(self):
         return hash(self.ID)
@@ -2096,17 +2074,30 @@ class Cat:
 
         if "blue-eyed hearing" not in self.conditions_already_attempted:
             if self.genotype.deaf:
-                if 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
+                if 'blue' in self.genotype.lefteyetype and 'blue' in self.genotype.righteyetype:
+                    if 'DBEre' in self.genotype.pax3:
+                        self.get_permanent_condition(choice(['partial hearing loss', 'partial hearing loss', 'partial hearing loss', 'deaf', 'deaf', 'partial hearing loss']), born_with=True)
+                    else:
+                        self.get_permanent_condition(choice(['deaf', 'deaf', 'partial hearing loss']), born_with=True)
+                elif 'blue' not in self.genotype.lefteyetype or 'blue' not in self.genotype.righteyetype:
                     self.get_permanent_condition('partial hearing loss', born_with=True)
-                elif 'partial hearing loss' not in self.permanent_condition:
-                    self.get_permanent_condition(choice(['deaf', 'partial hearing loss']), born_with=True)
                 self.conditions_already_attempted.append("blue-eyed hearing")
 
         if "manx syndrome" not in self.conditions_already_attempted:
-            if 'M' in self.genotype.manx:
-                if random() > ((self.phenotype.bobtailnr + 1) * 0.2):
+            if ('M' in self.genotype.manx and self.phenotype.bobtailnr):
+                manx_c = 0.95
+                if self.phenotype.bobtailnr > 3:
+                    manx_c = 0.995
+                elif self.phenotype.bobtailnr > 1:
+                    manx_c = 0.98
+                if(random() > manx_c):
                     self.get_permanent_condition('manx syndrome', born_with=True)
                 self.conditions_already_attempted.append("manx syndrome")
+
+        if "extreme cobby" not in self.conditions_already_attempted:
+            if self.genotype.body_label == "snub-nosed":
+                self.get_permanent_condition('flat nose', born_with=True)
+                self.conditions_already_attempted.append("extreme cobby")
 
         if "manx no tail" not in self.conditions_already_attempted:
             if self.genotype.manx[0] == 'M' and (self.genotype.manxtype in ['rumpy', 'riser']):
@@ -2120,27 +2111,27 @@ class Cat:
 
         if 'manx syndrome' in self.permanent_condition:
             if "joint pain" not in self.conditions_already_attempted:
-                if (self.phenotype.bobtailnr < 2 and randint(1, 3) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 6) == 1):
+                if 'M' in self.genotype.manx and self.phenotype.bobtailnr < 4 and self.phenotype.bobtailnr > 1 and random() < 0.05:
                     self.get_permanent_condition('constant joint pain', born_with=True)
                 self.conditions_already_attempted.append("joint pain")
 
             if "IBS" not in self.conditions_already_attempted:
-                if (self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 20) == 1):
+                if (self.phenotype.bobtailnr < 2 and random() > 0.5) or (self.phenotype.bobtailnr > 1 and random() > ((self.phenotype.bobtailnr) * 0.24)):
                     self.get_permanent_condition('irritable bowels', born_with=True)
                 self.conditions_already_attempted.append("IBS")
 
             if "paralysis" not in self.conditions_already_attempted:
-                if (self.phenotype.bobtailnr < 2 and randint(1, 30) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 60) == 1):
+                if (self.phenotype.bobtailnr < 2 and random() > 0.9) or (self.phenotype.bobtailnr > 1 and random() > ((self.phenotype.bobtailnr) * 0.47)):
                     self.get_permanent_condition('paralyzed', born_with=True)
                 self.conditions_already_attempted.append("paralysis")
 
             if "scoliosis" not in self.conditions_already_attempted:
-                if (self.phenotype.bobtailnr < 2 and randint(1, 20) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 40) == 1):
+                if (self.phenotype.bobtailnr < 2 and random() > 0.2) or (self.phenotype.bobtailnr > 1 and random() > ((self.phenotype.bobtailnr) * 0.3)):
                     self.get_permanent_condition('curved spine', born_with=True)
                 self.conditions_already_attempted.append("scoliosis")
 
             if "rabbit gait" not in self.conditions_already_attempted:
-                if (self.phenotype.bobtailnr < 2 and randint(1, 10) == 1) or (self.phenotype.bobtailnr > 1 and randint(1, 20) == 1):
+                if (self.phenotype.bobtailnr < 2 and random() > 0.2) or (self.phenotype.bobtailnr > 1 and random() > ((self.phenotype.bobtailnr) * 0.3)):
                     self.get_permanent_condition('rabbit gait', born_with=True)
                 self.conditions_already_attempted.append("rabbit gait")
 
@@ -2177,12 +2168,12 @@ class Cat:
                 self.conditions_already_attempted.append("joint pain")
 
             if "scoliosis" not in self.conditions_already_attempted:
-                if randint(1, 10) == 1:
+                if randint(1, 5) == 1:
                     self.get_permanent_condition('curved spine', born_with=True)
                 self.conditions_already_attempted.append("scoliosis")
 
             if "narrowed chest" not in self.conditions_already_attempted:
-                if randint(1, 30) == 1:
+                if randint(1, 20) == 1:
                     self.get_permanent_condition('narrowed chest', born_with=True)
                 self.conditions_already_attempted.append("narrowed chest")
 
