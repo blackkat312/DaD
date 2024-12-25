@@ -525,7 +525,6 @@ class CatSkills:
 
         new_skill.hidden = hidden_skill
 
-        # TODO: Make this nicer
         if status == "newborn" or moons <= 0:
             pass
         elif status == "kitten" or moons < 6:
@@ -536,29 +535,22 @@ class CatSkills:
                 new_skill.secondary = Skill.get_random_skill(
                     point_tier=1, interest_only=True, exclude=new_skill.primary.path
                 )
-        elif moons < 50:
-            new_skill.primary = Skill.get_random_skill(point_tier=random.randint(1, 2))
-            if random.randint(1, 2) == 1:
-                new_skill.secondary = Skill.get_random_skill(
-                    point_tier=random.randint(1, 2), exclude=new_skill.primary.path
-                )
-        elif moons < 100:
-            new_skill.primary = Skill.get_random_skill(point_tier=random.randint(1, 3))
-            if random.randint(1, 2) == 1:
-                new_skill.secondary = Skill.get_random_skill(
-                    point_tier=random.randint(1, 2), exclude=new_skill.primary.path
-                )
-        elif moons < 150:
-            new_skill.primary = Skill.get_random_skill(point_tier=random.randint(2, 3))
-            if random.randint(1, 2) == 1:
-                new_skill.secondary = Skill.get_random_skill(
-                    point_tier=random.randint(1, 2), exclude=new_skill.primary.path
-                )
         else:
-            new_skill.primary = Skill.get_random_skill(point_tier=1)
+            primary_tier = 1
+            secondary_tier = 1
+            if moons < 50:
+                primary_tier += random.randint(0, 1)
+                secondary_tier += random.randint(0, 1)
+            elif moons < 100:
+                primary_tier += random.randint(0, 2)
+                secondary_tier += random.randint(0, 1)
+            elif moons < 150:
+                primary_tier += random.randint(1, 2)
+                secondary_tier += random.randint(0, 1)
+            new_skill.primary = Skill.get_random_skill(point_tier=primary_tier)
             if random.randint(1, 2) == 1:
                 new_skill.secondary = Skill.get_random_skill(
-                    point_tier=1, exclude=new_skill.primary.path
+                    point_tier=secondary_tier, exclude=new_skill.primary.path
                 )
 
         return new_skill
@@ -649,7 +641,7 @@ class CatSkills:
         if not self.primary:
             parents = [
                 the_cat.fetch_cat(i)
-                for i in [the_cat.parent1, the_cat.parent2] + the_cat.adoptive_parents
+                for i in [the_cat.parent1, the_cat.parent2, the_cat.parent3] + the_cat.adoptive_parents
                 if type(the_cat) == type(the_cat.fetch_cat(i))
             ]
             parental_paths = [
