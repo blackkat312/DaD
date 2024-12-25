@@ -36,7 +36,7 @@ def medical_cats_condition_fulfilled(all_cats,
     total_exp = total_exp * 0.003
     
     # Determine the total med number. Med cats with certain skill counts 
-    # as "more" of a med cat.  Only full medicine cat can have their skills have effect
+    # as "more" of a med cat.  Only full healer can have their skills have effect
     total_med_number = len(apprentices) / 2
     for cat in full_med:
         if cat.skills.meets_skill_requirement(SkillPath.HEALER, 3):
@@ -68,6 +68,9 @@ def get_amount_cat_for_one_medic(clan):
     amount = 10
     if clan and clan.game_mode == 'cruel season':
         amount = 7
+    if clan and clan.game_mode == 'classic':
+        # just hope nobody has clans with more than 1,000,000 cats in classic
+        amount = 1000000
     return amount
 
 
