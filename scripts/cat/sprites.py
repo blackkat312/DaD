@@ -128,7 +128,7 @@ class Sprites:
             'scars', 'missingscars', 'disabilityscars',
             'medcatherbs', 'wild', 'flower_accessories', 'plant2_accessories', 'snake_accessories',
             'smallAnimal_accessories', 'deadInsect_accessories', 'aliveInsect_accessories', 'fruit_accessories',
-            'crafted_accessories', 'tail2_accessories', 'disabilityaccs', 'booties',
+            'crafted_accessories', 'tail2_accessories', 'disabilityaccs', 'booties', 'wheels',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
             'shadersnewwhite', 'lightingnew',
             'fademask', 'fadestarclan', 'fadedarkforest',
@@ -192,7 +192,16 @@ class Sprites:
 
         # genemod base colours
 
-        self.make_group('base/bases', (0, 0), 'basecolours', sprites_x=6, sprites_y=4)
+        for i, x in enumerate(["black", "chocolate", "cinnamon",
+                               "blue", "lilac", "fawn",
+                               "dove", "champagne", "buff",
+                               "platinum", "lavender", "beige"]):
+            self.make_group('base/eumelanin', (0, i), f'{x}', sprites_x=7, sprites_y=1)
+        for i, x in enumerate(["rufousedred", "mediumred", "lowred",
+                               "rufousedcream", "mediumcream", "lowcream",
+                               "rufousedhoney", "mediumhoney", "lowhoney",
+                               "rufousedivory", "mediumivory", "lowivory"]):
+            self.make_group('base/pheomelanin', (0, i), f'{x}', sprites_x=7, sprites_y=1)
         self.make_group('base/lightbases', (0, 0), 'lightbasecolours', sprites_x=4, sprites_y=1)
 
         # genemod tabby bases
@@ -504,6 +513,10 @@ class Sprites:
             ["PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"]
         ]
 
+        wheels_data = [
+            ["WHEELS"]
+        ]
+
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
             for col, herb in enumerate(herbs):
@@ -587,10 +600,15 @@ class Sprites:
             for col, disabilityacc in enumerate(disabilityaccs):
                 self.make_group('disabilityaccs', (col, row), f'acc_dismod{disabilityacc}')
 
-        # booties added
+        # booties
         for row, bootiesaccs in enumerate(booties_data):
             for col, bootiesacc in enumerate(bootiesaccs):
                 self.make_group('booties', (col, row), f'booties{bootiesacc}')
+
+        # wheels
+        for row, wheelsaccs in enumerate(wheels_data):
+            for col, wheelsacc in enumerate(wheelsaccs):
+                self.make_group('wheels', (col, row), f'wheels{wheelsacc}')
 
     def load_symbols(self):
         """
@@ -611,7 +629,6 @@ class Sprites:
             x_mod = 0
             for i, symbol in enumerate([symbol for symbol in self.symbol_dict if
                                         letter in symbol and self.symbol_dict[symbol]["variants"]]):
-
                 if self.symbol_dict[symbol]["variants"] > 1 and x_mod > 0:
                     x_mod += -1
                 for variant_index in range(self.symbol_dict[symbol]["variants"]):
