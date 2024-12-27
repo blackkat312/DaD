@@ -11,8 +11,9 @@ import sys
 import traceback
 from random import choice, randint, sample, random, getrandbits, randrange, shuffle
 from operator import xor
-from typing import Dict, List, Any, Callable
+from typing import Dict, List, Any, Union, Callable
 
+import i18n
 import ujson  # type: ignore
 
 from scripts.cat.enums import CatAgeEnum
@@ -47,12 +48,17 @@ from scripts.utility import (
     update_sprite,
     leader_ceremony_text_adjust,
 )
+from scripts.game_structure.localization import load_lang_resource
+
+import scripts.game_structure.localization as pronouns
+
 
 class Cat:
     """The cat class."""
 
     dead_cats = []
     used_screen = screen
+    current_pronoun_lang = None
 
     age_moons = {
         CatAgeEnum.NEWBORN: game.config["cat_ages"]["newborn"],
@@ -142,115 +148,127 @@ class Cat:
         "parroting": "echolalia"
     }
 
-    default_pronouns = [
-        {
-            "subject": "they",
-            "object": "them",
-            "poss": "their",
-            "inposs": "theirs",
-            "self": "themself",
-            "conju": 1,
-            "tags": ["default"]
-        },
-        {
-            "subject": "she",
-            "object": "her",
-            "poss": "her",
-            "inposs": "hers",
-            "self": "herself",
-            "conju": 2,
-            "tags": ["default"]
-        },
-        {
-            "subject": "he",
-            "object": "him",
-            "poss": "his",
-            "inposs": "his",
-            "self": "himself",
-            "conju": 2,
-            "tags": ["default"]
-        },
-        {
-            "subject": "ae",
-            "object": "aer",
-            "poss": "aers",
-            "inposs": "aers",
-            "self": "aerself",
-            "conju": 2,
-            "tags": ["pleopronoun", "common"]
-        },
-        {
-            "subject": "astra",
-            "object": "astral",
-            "poss": "astrals",
-            "inposs": "astrals",
-            "self": "astralself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
-        {
-            "subject": "bat",
-            "object": "bat",
-            "poss": "bats",
-            "inposs": "bats",
-            "self": "batself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
-        {
-            "subject": "bea",
-            "object": "beam",
-            "poss": "beams",
-            "inposs": "beams",
-            "self": "beamself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
-        {
-            "subject": "ber",
-            "object": "berry",
-            "poss": "berrys",
-            "inposs": "berrys",
-            "self": "berryself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
-        {
-            "subject": "bun",
-            "object": "bun",
-            "poss": "buns",
-            "inposs": "buns",
-            "self": "bunself",
-            "conju": 2,
-            "tags": ["nounself", "common"]
-        },
-        {
-            "subject": "caw",
-            "object": "caw",
-            "poss": "caws",
-            "inposs": "caws",
-            "self": "cawself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
-        {
-            "subject": "chir",
-            "object": "chirp",
-            "poss": "chirps",
-            "inposs": "chirps",
-            "self": "chirpself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
-        {
-            "subject": "claw",
-            "object": "claw",
-            "poss": "claws",
-            "inposs": "claws",
-            "self": "clawself",
-            "conju": 2,
-            "tags": ["nounself"]
-        },
+    default_pronouns = {
+                           "0": {
+                               "subject": "they",
+                               "object": "them",
+                               "poss": "their",
+                               "inposs": "theirs",
+                               "self": "themself",
+                               "conju": 1,
+                               "gender": 0,
+                               "tags": ["default"]
+                           },
+                           "1": {
+                               "subject": "he",
+                               "object": "him",
+                               "poss": "his",
+                               "inposs": "his",
+                               "self": "himself",
+                               "conju": 2,
+                               "gender": 1,
+                               "tags": ["default"]
+                           },
+                           "2": {
+                               "subject": "she",
+                               "object": "her",
+                               "poss": "her",
+                               "inposs": "hers",
+                               "self": "herself",
+                               "conju": 2,
+                               "gender": 2,
+                               "tags": ["default"]
+                           },
+                           "3": {
+                               "subject": "ae",
+                               "object": "aer",
+                               "poss": "aers",
+                               "inposs": "aers",
+                               "self": "aerself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["pleopronoun", "common"]
+                           },
+                           "4": {
+                               "subject": "astra",
+                               "object": "astral",
+                               "poss": "astrals",
+                               "inposs": "astrals",
+                               "self": "astralself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
+                           "5": {
+                               "subject": "bat",
+                               "object": "bat",
+                               "poss": "bats",
+                               "inposs": "bats",
+                               "self": "batself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
+                           "6": {
+                               "subject": "bea",
+                               "object": "beam",
+                               "poss": "beams",
+                               "inposs": "beams",
+                               "self": "beamself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
+                           "7": {
+                               "subject": "ber",
+                               "object": "berry",
+                               "poss": "berrys",
+                               "inposs": "berrys",
+                               "self": "berryself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
+                           "8": {
+                               "subject": "bun",
+                               "object": "bun",
+                               "poss": "buns",
+                               "inposs": "buns",
+                               "self": "bunself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself", "common"]
+                           },
+                           "9": {
+                               "subject": "caw",
+                               "object": "caw",
+                               "poss": "caws",
+                               "inposs": "caws",
+                               "self": "cawself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
+                           "10": {
+                               "subject": "chir",
+                               "object": "chirp",
+                               "poss": "chirps",
+                               "inposs": "chirps",
+                               "self": "chirpself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
+                           "11": {
+                               "subject": "claw",
+                               "object": "claw",
+                               "poss": "claws",
+                               "inposs": "claws",
+                               "self": "clawself",
+                               "conju": 2,
+                               "gender": 0,
+                               "tags": ["nounself"]
+                           },
         {
             "subject": "click",
             "object": "click",
@@ -620,7 +638,7 @@ class Cat:
             "conju": 2,
             "tags": ["pleopronoun", "common"]
         }
-    ]
+    }
 
     normal_traits = [
         "troublesome", "lonesome", "fierce", "bloodthirsty", "cold", "childish", "playful", "charismatic", "bold",
