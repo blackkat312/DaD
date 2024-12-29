@@ -1,0 +1,11 @@
+[[actions]]
+name = "play"
+platform = "windows"
+path = "Genemod/Genemod.exe"
+args = ["--launched-through-itch"]
+
+[[actions]]
+name = "play"
+platform = "linux"
+path = "Genemod/Genemod"
+args = ["--launched-through-itch"]
