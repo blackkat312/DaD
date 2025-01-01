@@ -595,12 +595,12 @@ class Cat:
                       # Mink's torties
                       'MINKEYEDOT'],
 
-                '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS',
+                '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'WINGS',
                       # Mink's torties
                       'MINKOREO']
             },
             'high': {
-                '1': ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS',
+                '1': ['ANY', 'SHIBAINU', 'MAO', 'WINGS',
                       # Mink's torties
                       'MINKOREO'],
 
@@ -633,9 +633,9 @@ class Cat:
         low4 = ['TUXEDO', 'SAVANNAH', 'RINGTAIL', 'UNDERS', 'FAROFA', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
                 'TOPCOVER', 'MINKEYEDOT']
 
-        low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'TRIXIE', 'WINGS', 'MINKOREO']
+        low5 = ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'WINGS', 'MINKOREO']
 
-        high1 = ['ANY', 'SHIBAINU', 'MAO', 'TRIXIE', 'WINGS', 'MINKOREO']
+        high1 = ['ANY', 'SHIBAINU', 'MAO', 'WINGS', 'MINKOREO']
 
         high2 = ['ANY', 'FRECKLES', 'MASKMANTLE', 'MAO', 'BUB', 'SCAR']
 
