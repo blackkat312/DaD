@@ -275,7 +275,7 @@
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"],
       "status": ["any"],
       "skill": ["DREAM,0"],
-      "relationship_status": ["comfort_50"],
+      "relationship_status": ["comfortable_50"],
       "trait": ["compassionate", "thoughtful", "calm", "loving", "wise", "sincere"]
     },
     "injury": [
