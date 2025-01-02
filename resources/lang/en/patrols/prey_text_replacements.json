@@ -77,12 +77,12 @@
   "beach_tinyprey_dryland_singular": [
     "fiddler crab", "hermit crab", "beach vole", "fog shrew", "beach mouse",
     "yellow-cheeked chipmunk", "ornate shrew", "pocket mouse", "marsh shrew", "crab", "non-toxic jellyfish",
-    "clam cluster", "sandpiper", "crawdad", "jackdaw", "cockle shell", "plover", "finch", "thrush"
+    "clam cluster", "crawdad", "cockle shell"
   ],
   "beach_tinyprey_dryland_plural": [
     "fiddler crabs", "hermit crabs", "beach voles", "fog shrews", "beach mice",
     "yellow-cheeked chipmunks", "ornate shrews", "pocket mice", "marsh shrews", "crabs", "non-toxic jellyfish",
-    "clam clusters", "sandpipers", "crawdads", "jackdaws", "cockle shells", "plovers", "finches", "thrush"
+    "clam clusters", "crawdads", "cockle shells"
   ],
   "beach_tinyprey_aquatic_singular": [
     "shad", "anchovy", "sardine", "smelt", "pink shrimp", "white shrimp", "tropical fish", "sand fish", 
@@ -95,19 +95,19 @@
     "sailfin blenny", "yellowhead jawfish", "pinkeye gobies", "tetras"
   ],
   "beach_midprey_dryland_singular": [
-    "dusky-footed woodrat", "auklet", "gannet", "skua", "loon", "herring gull", "ring-billed gull", "common tern",
+    "dusky-footed woodrat",
     "squirrel"
   ],
   "beach_midprey_dryland_plural": [
-    "dusky-footed woodrats", "auklets", "gannets", "skua", "loons", "herring gulls", "ring-billed gulls", "common terns",
+    "dusky-footed woodrats",
     "squirrels"
   ],
   "beach_midprey_aquatic_singular": [
-    "eel", "needlenose", "seagull", "blowfish", "sea bass", "young squid", "lionfish", "lobster", "sea snake",
+    "eel", "needlenose", "sea bass", "young squid", "lobster", "sea snake",
     "clown triggerfish", "angel fish", "powder blue tang", "yellow tang", "powder brown tang", "butterfly fish"
   ],
   "beach_midprey_aquatic_plural": [
-    "eels", "needlenoses", "seagulls", "blowfish", "sea bass", "young squids", "lionfish", "lobsters", "sea snakes",
+    "eels", "needlenoses", "sea bass", "young squids", "lobsters", "sea snakes",
     "clown triggerfish", "angel fish", "powder blue tangs", "yellow tangs", "powder brown tangs", "butterfly fish"
   ],
   "beach_bigprey_dryland_singular": [
@@ -124,23 +124,23 @@
   ],
   
   "desert_tinyprey_singular": [
-    "spotted ground squirrel", "round-tailed ground squirrel", "ground squirrel", "small bird", "desert pocket gopher",
+    "spotted ground squirrel", "round-tailed ground squirrel", "ground squirrel", "desert pocket gopher",
     "agile kangaroo rat", "spiny pocket mouse", "kangaroo rat", "chisel-toothed kangaroo rat", 
     "banner-tailed kangaroo rat", "narrow-faced kangaroo rat", "big-eared kangaroo rat", "dark kangaroo mouse", 
     "pale kangaroo mouse", "long-tailed pocket mouse", "desert pocket mouse", "silky pocket mouse", "canyon mouse", 
-    "cactus mouse", "deermouse", "white-ankled mouse", "desert shrew", "Long-eared bat", "elf owl", "whiptail", 
-    "masked shrike", "red-spotted toad", "jerboa", "golden hamster", "mulgara", "marsupial mole", "wombat", 
+    "cactus mouse", "deermouse", "white-ankled mouse", "desert shrew", "long-eared bat", "whiptail",
+    "red-spotted toad", "jerboa", "golden hamster", "mulgara", "marsupial mole", "wombat",
     "pink fairy armadillo", "water-holding frog", "arabian sand boa", "gecko", "lizard", "thorny devil", 
     "hopping mouse", "fat-tailed gerbil", "pale gerbil","fat sand rat", "bushy tailed jird", "short-eared gerbil", 
     "hairy-footed gerbil"
   ],
   "desert_tinyprey_plural": [
-    "spotted ground squirrels", "round-tailed ground squirrels", "ground squirrels", "small birds", "desert pocket gophers",
+    "spotted ground squirrels", "round-tailed ground squirrels", "ground squirrels", "desert pocket gophers",
     "agile kangaroo rats", "spiny pocket mice", "kangaroo rats", "chisel-toothed kangaroo rats", 
     "banner-tailed kangaroo rats", "narrow-faced kangaroo rats", "big-eared kangaroo rats", "dark kangaroo mice", 
     "pale kangaroo mice", "long-tailed pocket mice", "desert pocket mice", "silky pocket mice", "canyon mice", 
-    "cactus mice", "deermice", "white-ankled mice", "desert shrews", "Long-eared bats", "elf owls", "whiptails", 
-    "masked shrikes", "red-spotted toads", "jerboas", "golden hamsters", "mulgaras", "marsupial moles", "wombats", 
+    "cactus mice", "deermice", "white-ankled mice", "desert shrews", "long-eared bats", "whiptails",
+    "red-spotted toads", "jerboas", "golden hamsters", "mulgaras", "marsupial moles", "wombats",
     "pink fairy armadillos", "water-holding frogs", "arabian sand boas", "geckos", "lizards", "thorny devils", 
     "hopping mice", "fat-tailed gerbils", "pale gerbils","fat sand rats", "bushy tailed jirds", "short-eared gerbils", 
     "hairy-footed gerbils"
@@ -148,55 +148,51 @@
   "desert_midprey_singular": [
     "antelope squirrel", "white-tailed antelope squirrel", "giant kangaroo rat", "rock squirrel",
     "white-throated woodrat", "desert woodrat", "white-toothed woodrat", "sidewinder", "rattlesnake", "adder",
-    "armadillo", "desert iguana", "bilby", "meerkat", "sandgrouse", "three-banded armadillo", "nine-banded armadillo",
-    "mourning dove", "curve-billed thrasher", "great gerbil"
+    "armadillo", "desert iguana", "bilby", "meerkat", "three-banded armadillo", "nine-banded armadillo",
+    "great gerbil"
   ],
   "desert_midprey_plural": [
     "antelope squirrels", "white-tailed antelope squirrels", "giant kangaroo rats", "rock squirrels",
     "white-throated woodrats", "desert woodrats", "white-toothed woodrats", "sidewinders", "rattlesnakes", "adders",
-    "armadillos", "desert iguanas", "bilbies", "meerkats", "sandgrouse", "three-banded armadillos", "nine-banded armadillos",
-    "mourning doves", "curve-billed thrashers", "great gerbils"
+    "armadillos", "desert iguanas", "bilbies", "meerkats", "three-banded armadillos", "nine-banded armadillos",
+    "great gerbils"
   ],
   "desert_bigprey_singular": [
-    "chaparral bird", "roadrunner", "hawk", "jackrabbit", "antelope jackrabbit", "ringtail", "hare", "desert hare",
-    "crow", "vulture", "eagle"
+    "jackrabbit", "antelope jackrabbit", "ringtail", "hare", "desert hare"
   ],
   "desert_bigprey_plural": [
-    "chaparral birds", "roadrunners", "hawks", "jackrabbits", "antelope jackrabbits", "ringtails", "hares", "desert hares",
-    "crows", "vultures", "eagles"
+    "jackrabbits", "antelope jackrabbits", "ringtails", "hares", "desert hares"
   ],
   
   "forest_tinyprey_singular": [
-    "shrew", "robin", "vole", "dormouse", "blackbird", "wood mouse", "lizard", "tiny grass snake", "finch", "sparrow",
-    "small bird", "young rat", "young hedgehog", "big beetle", "woodrat", "white-footed mouse", "golden mouse",
+    "shrew", "vole", "dormouse", "wood mouse", "lizard", "tiny grass snake",
+    "young rat", "young hedgehog", "big beetle", "woodrat", "white-footed mouse", "golden mouse",
     "young squirrel", "chipmunk", "white-footed vole", "jumping mouse", "red tree vole", "gray-tailed vole",
     "gray-footed chipmunk", "red-tailed chipmunk", "red-backed vole", "creeping vole", "woodland vole", "brush mouse",
     "cotton mouse", "white-ankled mouse", "smoky shrew", "hairy-tailed mole", "mole", "broad-footed mole",
-    "shrew mole", "weasel", "deer mouse", "gnat catcher", "yellow rumped warbler", "rock dove", "stock dove",
-    "bank vole", "green anole", "towhee", "finch", "fantail", "bobwhite quail", "dark-eyed junco", "yellow-eyed junco",
-    "blue-bellies", "gray catbird"
+    "shrew mole", "weasel", "deer mouse",
+    "bank vole", "green anole",
+    "blue-bellies"
   ],
   "forest_tinyprey_plural": [
-    "shrews", "robins", "voles", "dormice", "blackbirds", "wood mice", "lizards", "tiny grass snakes", "finches", "sparrows",
-    "small birds", "young rats", "young hedgehogs", "big beetles", "woodrats", "white-footed mice", "golden mice",
+    "shrews", "voles", "dormice", "wood mice", "lizards", "tiny grass snakes",
+    "young rats", "young hedgehogs", "big beetles", "woodrats", "white-footed mice", "golden mice",
     "young squirrels", "chipmunks", "white-footed voles", "jumping mice", "red tree voles", "gray-tailed voles",
     "gray-footed chipmunks", "red-tailed chipmunks", "red-backed voles", "creeping voles", "woodland voles", "brush mice",
     "cotton mice", "white-ankled mice", "smoky shrews", "hairy-tailed moles", "moles", "broad-footed moles",
-    "shrew moles", "weasels", "deer mice", "gnat catchers", "yellow rumped warblers", "rock doves", "stock doves",
-    "bank voles", "green anoles", "towhees", "finches", "fantails", "bobwhite quails", "dark-eyed juncos", "yellow-eyed juncos",
-    "blue-bellies", "gray catbirds"
+    "shrew moles", "weasels", "deer mice",
+    "bank voles", "green anoles",
+    "blue-bellies"
   ],
   "forest_midprey_singular": [
-    "plump shrew", "woodpecker", "mole", "fat dormouse", "blackbird", "field vole", "big lizard", "grass snake",
-    "half-grown rabbit", "hedgehog", "red squirrel", "grey squirrel", "rat", "flying squirrel", "kingfisher", "packrat",
-    "dusky-footed woodrat", "big-eared woodrat", "stoat", "ermine", "ruffed grouse", "cardinal", "ptarmigan",
-    "chukar", "quail", "pheasant", "starling", "blue jay", "stellar jay"
+    "plump shrew", "mole", "fat dormouse", "field vole", "big lizard", "grass snake",
+    "half-grown rabbit", "hedgehog", "red squirrel", "grey squirrel", "rat", "flying squirrel", "packrat",
+    "dusky-footed woodrat", "big-eared woodrat", "stoat", "ermine"
   ],
   "forest_midprey_plural": [
-    "plump shrews", "woodpeckers", "moles", "fat dormice", "blackbirds", "field voles", "big lizards", "grass snakes",
-    "half-grown rabbits", "hedgehogs", "red squirrels", "grey squirrels", "rats", "flying squirrels", "kingfishers", "packrats",
-    "dusky-footed woodrats", "big-eared woodrats", "stoats", "ermines", "ruffed grouse", "cardinals", "ptarmigan",
-    "chukars", "quail", "pheasants", "starlings", "blue jays", "stellar jays"
+    "plump shrews", "moles", "fat dormice", "field voles", "big lizards", "grass snakes",
+    "half-grown rabbits", "hedgehogs", "red squirrels", "grey squirrels", "rats", "flying squirrels", "packrats",
+    "dusky-footed woodrats", "big-eared woodrats", "stoats", "ermines"
   ],
   "forest_bigprey_singular": [
 
@@ -216,11 +212,11 @@
     "black-eared mice", "long-tailed shrews", "dwarf shrews", "water shrews"
   ],
   "mountain_midprey_singular": [
-    "plump shrew", "woodpecker", "blackbird", "golden-mantled ground squirrel", "half-grown rabbit", "fox squirrel", 
+    "plump shrew", "golden-mantled ground squirrel", "half-grown rabbit", "fox squirrel",
     "yellow-nosed rat", "red squirrel", "grey squirrel", "rat", "flying squirrel", "pika", "collared pika", "pygmy rabbit"
   ],
   "mountain_midprey_plural": [
-    "plump shrews", "woodpeckers", "blackbirds", "golden-mantled ground squirrels", "half-grown rabbits", "fox squirrels", 
+    "plump shrews", "golden-mantled ground squirrels", "half-grown rabbits", "fox squirrels",
     "yellow-nosed rats", "red squirrels", "grey squirrels", "rats", "flying squirrels", "pikas", "collared pikas", "pygmy rabbits"
   ],
   "mountain_bigprey_singular": [
@@ -273,12 +269,12 @@
     "common frogs", "boreal chorus frogs", "spring peeper frogs"
   ],
   "wetlands_midprey_dryland_singular": [
-    "blackbird", "round-tailed muskrat", "muskrat", "big lizard", "grass snake", "marsh rice rat", "rice rat",
-    "kingfisher", "star-nosed mole", "bullfrog"
+    "round-tailed muskrat", "muskrat", "big lizard", "grass snake", "marsh rice rat", "rice rat",
+    "star-nosed mole", "bullfrog"
   ],
   "wetlands_midprey_dryland_plural": [
-    "blackbirds", "round-tailed muskrats", "muskrats", "big lizards", "grass snakes", "marsh rice rats", "rice rats",
-    "kingfishers", "star-nosed moles", "bullfrogs"
+    "round-tailed muskrats", "muskrats", "big lizards", "grass snakes", "marsh rice rats", "rice rats",
+    "star-nosed moles", "bullfrogs"
   ],
   "wetlands_midprey_aquatic_singular": [
     "eel", "crayfish", "bullfrog"
